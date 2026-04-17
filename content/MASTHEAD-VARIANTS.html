@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Shipped. — Masthead: Period vs. Tittle</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT@9..144,300..900,0..100&family=Inter:wght@400;500;600&family=Barlow+Condensed:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #1a1a1a;
+    --paper: #faf8f4;
+    --gray-rule: #e5e3df;
+    --gray-text: #6b6b6b;
+    --orange: #ff6b35;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: 'Inter', sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .top-bar {
+    background: var(--ink);
+    color: var(--paper);
+    padding: 14px 32px;
+    display: flex;
+    justify-content: space-between;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+  }
+
+  .intro {
+    max-width: 760px;
+    margin: 64px auto 32px;
+    padding: 0 32px;
+  }
+  .intro h1 {
+    font-family: 'Fraunces', serif;
+    font-weight: 800;
+    font-size: 56px;
+    line-height: 1.05;
+    letter-spacing: -0.025em;
+    margin-bottom: 16px;
+  }
+  .intro p {
+    font-size: 17px;
+    line-height: 1.6;
+    color: var(--gray-text);
+    max-width: 600px;
+  }
+
+  .variant {
+    max-width: 1080px;
+    margin: 0 auto 80px;
+    padding: 0 32px;
+  }
+  .v-label {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    border-bottom: 2px solid var(--ink);
+    padding-bottom: 12px;
+    margin-bottom: 32px;
+  }
+  .v-num {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: 14px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--orange);
+  }
+  .v-name {
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+    font-size: 20px;
+  }
+  .v-desc {
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    color: var(--gray-text);
+    text-align: right;
+    max-width: 360px;
+  }
+
+  .card {
+    background: #ffffff;
+    border: 1px solid var(--gray-rule);
+    padding: 64px;
+    margin-bottom: 24px;
+  }
+  .card-tag {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gray-text);
+    margin-bottom: 24px;
+  }
+
+  /* Base masthead — Fraunces, weight 800, optical for display */
+  .masthead {
+    font-family: 'Fraunces', serif;
+    font-weight: 800;
+    letter-spacing: -0.04em;
+    line-height: 1;
+    font-variation-settings: "opsz" 144;
+    color: var(--ink);
+    display: inline-block;
+    vertical-align: baseline;
+  }
+  .size-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 56px;
+    align-items: baseline;
+  }
+  .size-row > div { line-height: 1; }
+  .size-label {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 9px;
+    color: var(--gray-text);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-top: 14px;
+    line-height: 1.4;
+  }
+
+  /* Variant A — Period orange (current) */
+  .v-a .dot { color: var(--orange); }
+
+  /* Variant B — Tittle orange, period ink. Use dotless ı + positioned dot. */
+  .i-stem { position: relative; display: inline-block; }
+  .i-stem .tittle {
+    position: absolute;
+    background: var(--orange);
+    border-radius: 50%;
+    /* Sizes set per scale below */
+  }
+
+  /* Tittle sizing per masthead size — ratios derived from Fraunces metrics */
+  /* The tittle should sit centered over the i-stem at roughly cap-height-ish */
+  .ms-192 .tittle { width: 18px; height: 18px; left: 50%; transform: translateX(-50%); top: -22px; }
+  .ms-128 .tittle { width: 12px; height: 12px; left: 50%; transform: translateX(-50%); top: -16px; }
+  .ms-96  .tittle { width: 9px;  height: 9px;  left: 50%; transform: translateX(-50%); top: -12px; }
+  .ms-64  .tittle { width: 6px;  height: 6px;  left: 50%; transform: translateX(-50%); top: -9px; }
+  .ms-32  .tittle { width: 3px;  height: 3px;  left: 50%; transform: translateX(-50%); top: -5px; }
+
+  /* Variant C — both: tittle AND period orange */
+  .v-c .dot { color: var(--orange); }
+  .v-c .tittle { background: var(--orange); }
+
+  /* Variant D — tittle orange, no period at all */
+  /* Just omit the period in HTML for this variant */
+
+  /* Context: a real cover layout for the chosen variant */
+  .context-card {
+    background: #ffffff;
+    border: 1px solid var(--gray-rule);
+    padding: 80px 64px 64px;
+    text-align: center;
+  }
+  .context-kicker {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--gray-text);
+    margin-bottom: 32px;
+  }
+  .context-deck {
+    font-family: 'Fraunces', serif;
+    font-weight: 400;
+    font-style: italic;
+    font-size: 22px;
+    color: var(--gray-text);
+    margin-top: 32px;
+    max-width: 520px;
+    margin-left: auto;
+    margin-right: auto;
+    line-height: 1.4;
+  }
+
+  .summary {
+    max-width: 1080px;
+    margin: 0 auto 96px;
+    padding: 48px 64px;
+    background: var(--ink);
+    color: var(--paper);
+  }
+  .summary h2 {
+    font-family: 'Fraunces', serif;
+    font-weight: 700;
+    font-size: 32px;
+    margin-bottom: 24px;
+    letter-spacing: -0.02em;
+  }
+  .summary p {
+    font-size: 16px;
+    line-height: 1.7;
+    margin-bottom: 14px;
+  }
+  .summary strong { color: var(--orange); font-weight: 600; }
+
+  @media (max-width: 768px) {
+    .card { padding: 32px 24px; }
+    .size-row { gap: 32px; }
+    .ms-192 { font-size: 96px !important; }
+    .ms-128 { font-size: 72px !important; }
+    .ms-96  { font-size: 56px !important; }
+  }
+</style>
+</head>
+<body>
+
+<div class="top-bar">
+  <span>Shipped. <span style="color:var(--orange)">·</span> Masthead Variants</span>
+  <span>Period vs. Tittle</span>
+</div>
+
+<div class="intro">
+  <h1>Where does the orange land?</h1>
+  <p>You picked Fraunces. Now: should the orange mark be the <strong style="color:var(--ink)">period</strong> after "Shipped" (current), the <strong style="color:var(--ink)">tittle</strong> above the lowercase 'i' (your idea), <strong style="color:var(--ink)">both</strong>, or just the tittle with the period dropped entirely? Same wordmark, four treatments.</p>
+</div>
+
+<!-- ========== VARIANT A — PERIOD ORANGE (CURRENT) ========== -->
+<section class="variant v-a">
+  <div class="v-label">
+    <span class="v-num">Variant A — Current</span>
+    <span class="v-name">Period orange</span>
+    <span class="v-desc">The brand thesis: "done, final, shipped." Punctuation as identity.</span>
+  </div>
+  <div class="card">
+    <div class="card-tag">Three sizes — Fraunces 800, opsz 144</div>
+    <div class="size-row">
+      <div><span class="masthead ms-192" style="font-size:192px">Sh<span style="font-style:normal">i</span>pped<span class="dot">.</span></span><div class="size-label">192px · Cover</div></div>
+      <div><span class="masthead ms-96" style="font-size:96px">Sh<span style="font-style:normal">i</span>pped<span class="dot">.</span></span><div class="size-label">96px · Page</div></div>
+      <div><span class="masthead ms-32" style="font-size:32px">Sh<span style="font-style:normal">i</span>pped<span class="dot">.</span></span><div class="size-label">32px · Nav</div></div>
+    </div>
+  </div>
+  <div class="context-card v-a">
+    <div class="context-kicker">Cover Context</div>
+    <span class="masthead ms-128" style="font-size:128px">Sh<span style="font-style:normal">i</span>pped<span class="dot">.</span></span>
+    <div class="context-deck">A magazine of what Anthropic ships. <br>Issue 00 — April 16, 2026.</div>
+  </div>
+</section>
+
+<!-- ========== VARIANT B — TITTLE ORANGE, PERIOD INK ========== -->
+<section class="variant v-b">
+  <div class="v-label">
+    <span class="v-num">Variant B — Your idea</span>
+    <span class="v-name">Tittle orange · Period stays ink</span>
+    <span class="v-desc">Orange integrated INTO the wordmark, not tacked on. FedEx-arrow energy. Period as quiet structural punctuation.</span>
+  </div>
+  <div class="card">
+    <div class="card-tag">Three sizes — orange tittle replaces black tittle on 'i'</div>
+    <div class="size-row">
+      <div><span class="masthead ms-192" style="font-size:192px">Sh<span class="i-stem">ı<span class="tittle"></span></span>pped.</span><div class="size-label">192px · Cover</div></div>
+      <div><span class="masthead ms-96" style="font-size:96px">Sh<span class="i-stem">ı<span class="tittle"></span></span>pped.</span><div class="size-label">96px · Page</div></div>
+      <div><span class="masthead ms-32" style="font-size:32px">Sh<span class="i-stem">ı<span class="tittle"></span></span>pped.</span><div class="size-label">32px · Nav</div></div>
+    </div>
+  </div>
+  <div class="context-card v-b">
+    <div class="context-kicker">Cover Context</div>
+    <span class="masthead ms-128" style="font-size:128px">Sh<span class="i-stem">ı<span class="tittle"></span></span>pped.</span>
+    <div class="context-deck">A magazine of what Anthropic ships. <br>Issue 00 — April 16, 2026.</div>
+  </div>
+</section>
+
+<!-- ========== VARIANT C — BOTH ORANGE ========== -->
+<section class="variant v-c">
+  <div class="v-label">
+    <span class="v-num">Variant C — Doubled</span>
+    <span class="v-name">Tittle AND period orange</span>
+    <span class="v-desc">Two orange dots — system feel. Bookends the wordmark. Risk: the eye doesn't know where to land.</span>
+  </div>
+  <div class="card">
+    <div class="card-tag">Three sizes — orange on both dots</div>
+    <div class="size-row">
+      <div><span class="masthead ms-192" style="font-size:192px">Sh<span class="i-stem">ı<span class="tittle"></span></span>pped<span class="dot">.</span></span><div class="size-label">192px · Cover</div></div>
+      <div><span class="masthead ms-96" style="font-size:96px">Sh<span class="i-stem">ı<span class="tittle"></span></span>pped<span class="dot">.</span></span><div class="size-label">96px · Page</div></div>
+      <div><span class="masthead ms-32" style="font-size:32px">Sh<span class="i-stem">ı<span class="tittle"></span></span>pped<span class="dot">.</span></span><div class="size-label">32px · Nav</div></div>
+    </div>
+  </div>
+  <div class="context-card v-c">
+    <div class="context-kicker">Cover Context</div>
+    <span class="masthead ms-128" style="font-size:128px">Sh<span class="i-stem">ı<span class="tittle"></span></span>pped<span class="dot">.</span></span>
+    <div class="context-deck">A magazine of what Anthropic ships. <br>Issue 00 — April 16, 2026.</div>
+  </div>
+</section>
+
+<!-- ========== VARIANT D — TITTLE ONLY, NO PERIOD ========== -->
+<section class="variant v-d">
+  <div class="v-label">
+    <span class="v-num">Variant D — Rebrand</span>
+    <span class="v-name">Tittle orange · Period dropped</span>
+    <span class="v-desc">Drops the period from the wordmark entirely. The brand becomes "Shipped" with the i-dot as the only mark. Major rebrand — loses the "done, final" thesis.</span>
+  </div>
+  <div class="card">
+    <div class="card-tag">Three sizes — period removed</div>
+    <div class="size-row">
+      <div><span class="masthead ms-192" style="font-size:192px">Sh<span class="i-stem">ı<span class="tittle"></span></span>pped</span><div class="size-label">192px · Cover</div></div>
+      <div><span class="masthead ms-96" style="font-size:96px">Sh<span class="i-stem">ı<span class="tittle"></span></span>pped</span><div class="size-label">96px · Page</div></div>
+      <div><span class="masthead ms-32" style="font-size:32px">Sh<span class="i-stem">ı<span class="tittle"></span></span>pped</span><div class="size-label">32px · Nav</div></div>
+    </div>
+  </div>
+  <div class="context-card v-d">
+    <div class="context-kicker">Cover Context</div>
+    <span class="masthead ms-128" style="font-size:128px">Sh<span class="i-stem">ı<span class="tittle"></span></span>pped</span>
+    <div class="context-deck">A magazine of what Anthropic ships. <br>Issue 00 — April 16, 2026.</div>
+  </div>
+</section>
+
+<!-- ========== SUMMARY ========== -->
+<section class="summary">
+  <h2>My take</h2>
+  <p><strong>A — Period orange (current):</strong> Direct. Simple. The period IS the brand thesis. Easy to recognize, easy to render anywhere, scales to any size. The most defensible.</p>
+  <p><strong>B — Tittle orange, period stays ink:</strong> The most sophisticated. The orange becomes an inside-the-wordmark craft move instead of punctuation. Rewards careful looking. The tittle survives even when the period gets stripped (favicons, app icons, small contexts). My favorite of the four.</p>
+  <p><strong>C — Both orange:</strong> Too much. The eye bounces between two orange dots and neither lands. Skip.</p>
+  <p><strong>D — Tittle only, period dropped:</strong> A real rebrand. Loses the "done, final, shipped" thesis the period carried. Could work but needs you to commit to a new brand premise.</p>
+  <p style="margin-top:24px"><strong>Recommendation:</strong> <strong style="color:var(--orange)">Variant B</strong>. Orange tittle on the 'i', period stays ink. You keep the period as quiet structural punctuation (the brand still says "Shipped." with the period intact), but the orange becomes a craft moment readers discover inside the wordmark. Most magazine-grade move of the four. <em>FedEx</em> arrow energy.</p>
+  <p style="margin-top:16px"><em>Note: at production scale we'd render the masthead as SVG (the way Iris's masthead.svg already does it) so the tittle dot is mathematically perfect and survives subpixel rendering. The CSS approach above is the demo.</em></p>
+</section>
+
+</body>
+</html>

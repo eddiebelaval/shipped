@@ -1,0 +1,773 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shipped. — Brand & Texture Catalog — Revision 4</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Barlow+Condensed:wght@400;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    /* ── Reset ── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { font-size: 16px; -webkit-font-smoothing: antialiased; }
+
+    /* ── Design Tokens ── */
+    :root {
+      /* Texture palette — these replace #ffffff in Shipped. Rev 4 */
+      --page-warm:      #FAF8F4;   /* Primary page background. Warm off-white. Uncoated stock. */
+      --page-cooler:    #F8F6F2;   /* Alternate — slightly cooler, for sidebar boxes and ToC areas */
+      --page-pure:      #FFFFFF;   /* Reserved for: cards on top of warm page, code blocks */
+
+      /* Ink palette — unchanged from Rev 3 */
+      --ink:            #1a1a1a;
+      --body:           #404040;
+      --muted:          #6b6b6b;
+      --gray:           #898989;
+      --rule:           rgba(0,0,0,0.08);
+      --rule-mid:       rgba(0,0,0,0.10);
+      --orange:         #FF6B35;
+
+      /* Typography */
+      --font-editorial: 'Libre Baskerville', Georgia, serif;
+      --font-mechanical: 'Barlow Condensed', sans-serif;
+    }
+
+    /* ── Page chrome ── */
+    body {
+      background: #F0EDE8;   /* The "table" the magazine sits on — slightly darker than page */
+      color: var(--ink);
+      font-family: 'Inter', sans-serif;
+      padding: 48px 24px 96px;
+    }
+
+    .catalog-label {
+      font-family: var(--font-mechanical);
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      color: var(--gray);
+      display: block;
+      margin-bottom: 16px;
+    }
+
+    .catalog-section {
+      max-width: 900px;
+      margin: 0 auto 80px;
+    }
+
+    .catalog-section-title {
+      font-family: var(--font-mechanical);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: #888;
+      padding-bottom: 12px;
+      border-bottom: 1px solid rgba(0,0,0,0.15);
+      margin-bottom: 32px;
+    }
+
+    .catalog-note {
+      font-family: 'Inter', sans-serif;
+      font-size: 12px;
+      font-weight: 400;
+      color: #888;
+      margin-top: 12px;
+      line-height: 1.5;
+    }
+
+    /* ── Texture: SVG Noise Filter ── */
+    /*
+      Paper grain technique: SVG feTurbulence filter applied as a CSS background.
+      This is the preferred technique — no external PNG dependency, no network request,
+      renders at native resolution on retina, scales perfectly.
+
+      Values:
+        baseFrequency: 0.65 — fine grain (higher = finer). Adjust 0.5–0.8 for coarser/finer.
+        numOctaves: 4 — layered noise. 4 gives natural texture without too much chunkiness.
+        opacity: 3% — barely perceptible. The goal is feel, not visibility.
+        mix-blend-mode: multiply — noise darkens the background slightly at grain peaks.
+    */
+
+    .texture-grain-filter {
+      /* This <filter> is defined once in the SVG defs block below the fold.
+         It's referenced by the background-image url(#grain). */
+    }
+
+    /* ── Warm Page Background — Primary ── */
+    .page-warm {
+      background-color: var(--page-warm);
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+      /* NOTE: On implementation in Next.js, use the SVG filter via CSS custom property
+         rather than the inline data URI — the data URI is included here for preview only.
+         Production: apply the <svg> filter element to the layout root and reference via CSS. */
+    }
+
+    /* ── Page Vignette — Edge Treatment ── */
+    /*
+      A very subtle radial gradient overlay darkens the corners of the page,
+      suggesting physical paper depth. The darkening is at most 4% opacity —
+      not a shadow, just a hint that the page has edges.
+
+      Apply this as a ::before pseudo-element on the page container, not on body.
+      pointer-events: none ensures it doesn't interfere with text selection.
+    */
+    .page-vignette {
+      position: relative;
+    }
+    .page-vignette::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(
+        ellipse at 50% 50%,
+        transparent 60%,
+        rgba(0,0,0,0.04) 100%
+      );
+      pointer-events: none;
+      z-index: 1;
+    }
+    .page-vignette > * {
+      position: relative;
+      z-index: 2;
+    }
+
+    /* ── Ink Feel — Headline Text Shadow ── */
+    /*
+      The ink-feel shadow simulates ink absorption into uncoated stock.
+      Ink on uncoated paper spreads slightly — the dots from the press
+      have a tiny bleed radius. This CSS shadow approximates that.
+
+      Values (for display headlines, 48px+):
+        text-shadow: 0.4px 0.5px 0.8px rgba(0,0,0,0.06)
+          — x: 0.4px   slight rightward bleed (letterpress impression)
+          — y: 0.5px   downward bleed (gravity)
+          — blur: 0.8px  absorption radius
+          — opacity: 6%  barely perceptible — MUST stay under 8% or it looks like bad rendering
+
+      Apply to: display headlines (80px cover, 48px feature headers)
+      Do NOT apply to: body text, captions, kickers, small type (<24px)
+    */
+    .ink-feel {
+      text-shadow: 0.4px 0.5px 0.8px rgba(0,0,0,0.06);
+    }
+
+    /* ── Drop Cap Ink Bleed ── */
+    /*
+      The orange drop cap gets a slightly heavier ink bleed treatment —
+      stamped, not pasted. The warm orange (#FF6B35) on an uncoated warm-white
+      background (#FAF8F4) already has more visual warmth than on pure white.
+      The ink-bleed shadow adds physical presence.
+
+      For the orange drop cap specifically:
+        text-shadow: 0.5px 0.6px 1.0px rgba(180,60,15,0.15)
+        — The shadow color is a darker desaturated version of the orange (#FF6B35 → #B43C0F)
+          at 15% opacity. This gives the impression the ink spread slightly into the paper
+          fibers — not a glow, a physical trace.
+    */
+    .drop-cap-ink {
+      text-shadow: 0.5px 0.6px 1.0px rgba(180,60,15,0.15);
+    }
+
+    /* ── Preview components ── */
+
+    .masthead-stage {
+      padding: 32px 40px;
+      border-radius: 4px;
+      margin-bottom: 16px;
+      position: relative;
+    }
+
+    /* Masthead in SVG — inline for visual catalog */
+    .masthead-inline {
+      font-family: var(--font-editorial);
+      font-weight: 700;
+      color: var(--ink);
+      line-height: 1;
+      letter-spacing: -0.02em;
+      display: inline-block;
+    }
+    .masthead-inline .period { color: var(--orange); }
+
+    /* The masthead-svg-substitute: for this HTML preview we render with text +
+       custom period since browsers handle font rendering better than inline SVG
+       at all sizes. The masthead.svg file is the asset for production. */
+
+    /* Cover size: 200px height context */
+    .masthead-cover .masthead-inline { font-size: 80px; }
+
+    /* Navigation bar: 60px height context */
+    .masthead-nav .masthead-inline { font-size: 24px; }
+
+    /* Page header (archive index): 32px height context */
+    .masthead-page .masthead-inline { font-size: 48px; }
+
+    /* Footer: 12px height context */
+    .masthead-footer .masthead-inline { font-size: 14px; }
+
+    .size-label {
+      position: absolute;
+      top: 12px;
+      right: 16px;
+      font-family: var(--font-mechanical);
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: rgba(0,0,0,0.25);
+    }
+
+    /* ── Texture sample panels ── */
+    .texture-panel {
+      padding: 40px;
+      border-radius: 4px;
+      margin-bottom: 12px;
+      min-height: 120px;
+      position: relative;
+    }
+
+    .texture-pure {
+      background-color: #FFFFFF;
+    }
+
+    .texture-warm {
+      background-color: #FAF8F4;
+    }
+
+    .texture-warm-grain {
+      background-color: #FAF8F4;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='400' height='400' filter='url(%23g)' opacity='0.03'/%3E%3C/svg%3E");
+    }
+
+    .texture-warm-grain-vignette {
+      background-color: #FAF8F4;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='400' height='400' filter='url(%23g)' opacity='0.03'/%3E%3C/svg%3E");
+      position: relative;
+      overflow: hidden;
+    }
+    .texture-warm-grain-vignette::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(
+        ellipse at 50% 50%,
+        transparent 55%,
+        rgba(0,0,0,0.05) 100%
+      );
+      pointer-events: none;
+    }
+
+    .texture-panel-text {
+      font-family: var(--font-editorial);
+      font-size: 18px;
+      font-weight: 400;
+      color: var(--body);
+      line-height: 1.75;
+      position: relative;
+      z-index: 2;
+    }
+
+    .texture-panel-text.with-ink-feel {
+      text-shadow: 0.4px 0.5px 0.8px rgba(0,0,0,0.06);
+    }
+
+    .texture-panel-headline {
+      font-family: var(--font-editorial);
+      font-size: 48px;
+      font-weight: 700;
+      color: var(--ink);
+      letter-spacing: -1px;
+      line-height: 1.05;
+      margin-bottom: 12px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .texture-panel-headline.with-ink-feel {
+      text-shadow: 0.4px 0.5px 0.8px rgba(0,0,0,0.06);
+    }
+
+    /* ── Drop cap comparison ── */
+    .drop-cap-demo {
+      padding: 32px 40px;
+      border-radius: 4px;
+      margin-bottom: 12px;
+    }
+
+    .drop-cap-demo p::first-letter {
+      font-family: var(--font-editorial);
+      font-size: 4.6em;
+      font-weight: 700;
+      float: left;
+      line-height: 0.82;
+      padding-right: 8px;
+      padding-top: 6px;
+      margin-top: 4px;
+    }
+
+    .drop-cap-demo.orange-plain p::first-letter {
+      color: #FF6B35;
+    }
+
+    .drop-cap-demo.orange-ink p::first-letter {
+      color: #FF6B35;
+      text-shadow: 0.5px 0.6px 1.0px rgba(180,60,15,0.15);
+    }
+
+    .drop-cap-demo p {
+      font-family: var(--font-editorial);
+      font-size: 18px;
+      font-weight: 400;
+      color: var(--body);
+      line-height: 1.75;
+    }
+
+    /* ── Hairline rule comparison ── */
+    .rule-demo {
+      padding: 24px 40px;
+      background: var(--page-warm);
+      border-radius: 4px;
+      margin-bottom: 12px;
+    }
+
+    .rule-standard {
+      height: 1px;
+      background: rgba(0,0,0,0.10);
+      margin: 16px 0;
+    }
+
+    /* Paper rule: a very subtle gradient variation on the 1px rule
+       simulates the slight ink density variation of a printed hairline.
+       The rule starts and ends at near-zero opacity, darkening through the middle.
+       This is barely visible — the goal is to make the rule feel drawn, not rendered. */
+    .rule-paper {
+      height: 1px;
+      background: linear-gradient(
+        to right,
+        rgba(0,0,0,0.02),
+        rgba(0,0,0,0.12) 15%,
+        rgba(0,0,0,0.10) 50%,
+        rgba(0,0,0,0.12) 85%,
+        rgba(0,0,0,0.02)
+      );
+      margin: 16px 0;
+    }
+
+    .rule-label {
+      font-family: var(--font-mechanical);
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--gray);
+      margin-bottom: 4px;
+    }
+
+    /* ── Pullquote with ink feel ── */
+    .pullquote-demo {
+      font-family: var(--font-editorial);
+      font-size: 28px;
+      font-weight: 400;
+      font-style: italic;
+      line-height: 1.40;
+      color: var(--ink);
+      margin: 0;
+      padding: 0 0 0 28px;
+      border-left: 4px solid var(--orange);
+      max-width: 600px;
+      text-shadow: 0.4px 0.5px 0.8px rgba(0,0,0,0.05);
+    }
+
+    /* ── Nav bar simulation ── */
+    .nav-bar-demo {
+      height: 44px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 24px;
+      border-bottom: 1px solid rgba(0,0,0,0.08);
+      border-radius: 4px 4px 0 0;
+    }
+
+    .nav-bar-demo-bg-pure   { background: #FFFFFF; }
+    .nav-bar-demo-bg-warm   { background: #FAF8F4; }
+
+    .comparison-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+
+    .comparison-label {
+      font-family: var(--font-mechanical);
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: rgba(0,0,0,0.3);
+      margin-bottom: 8px;
+    }
+
+    .verdict {
+      background: #FAF8F4;
+      border: 1px solid rgba(0,0,0,0.08);
+      border-left: 3px solid var(--ink);
+      padding: 16px 20px;
+      margin-top: 16px;
+      border-radius: 0 4px 4px 0;
+    }
+    .verdict-text {
+      font-family: 'Inter', sans-serif;
+      font-size: 13px;
+      font-weight: 400;
+      color: var(--body);
+      line-height: 1.6;
+    }
+    .verdict-text strong { font-weight: 600; color: var(--ink); }
+
+  </style>
+</head>
+<body>
+
+<!-- ════════════════════════════════════════════════════════════
+     SECTION 1 — MASTHEAD LOCKUPS AT FOUR SIZES
+     ════════════════════════════════════════════════════════════ -->
+
+<div class="catalog-section">
+  <div class="catalog-section-title">Section 1 — Masthead Lockups at Four Sizes</div>
+
+  <span class="catalog-label">Scale A — Cover / Hero (200px height context, masthead at 80px)</span>
+  <div class="masthead-stage masthead-cover page-warm" style="min-height:160px; display:flex; align-items:center;">
+    <div class="size-label">Cover · 80px</div>
+    <!-- In production: use masthead.svg at this size.
+         Here we render with text for visual fidelity in the browser preview. -->
+    <span class="masthead-inline ink-feel" style="font-size:80px; font-family:'Libre Baskerville',Georgia,serif; font-weight:700; color:#1a1a1a; letter-spacing:-1.5px; line-height:1;">Shipped<span class="period" style="color:#FF6B35; font-family:'Libre Baskerville',Georgia,serif; font-size:80px; font-weight:700;">.</span></span>
+  </div>
+  <p class="catalog-note">Used on: Issue cover hero, archive index page header. Rendered from masthead.svg. At this size the ink-feel shadow is perceptible as physical depth, not blur.</p>
+
+  <div style="margin-top:32px;"></div>
+
+  <span class="catalog-label">Scale B — Navigation Bar (44px bar height, masthead at 20px)</span>
+  <div class="nav-bar-demo nav-bar-demo-bg-warm" style="margin-bottom:4px;">
+    <span class="masthead-inline" style="font-size:20px; font-family:'Libre Baskerville',Georgia,serif; font-weight:700; color:#1a1a1a; letter-spacing:-0.2px; line-height:1;">Shipped<span style="color:#FF6B35;">.</span></span>
+    <div style="display:flex; align-items:center; gap:12px;">
+      <div style="width:1px; height:14px; background:rgba(0,0,0,0.12);"></div>
+      <span style="font-family:'Inter',sans-serif; font-size:13px; font-weight:400; color:#898989;">By id8Labs</span>
+    </div>
+  </div>
+  <div class="nav-bar-demo nav-bar-demo-bg-pure" style="border-radius:0 0 4px 4px;">
+    <span class="masthead-inline" style="font-size:20px; font-family:'Libre Baskerville',Georgia,serif; font-weight:700; color:#1a1a1a; letter-spacing:-0.2px; line-height:1;">Shipped<span style="color:#FF6B35;">.</span></span>
+    <div style="display:flex; align-items:center; gap:12px;">
+      <div style="width:1px; height:14px; background:rgba(0,0,0,0.12);"></div>
+      <span style="font-family:'Inter',sans-serif; font-size:13px; font-weight:400; color:#898989;">By id8Labs</span>
+    </div>
+  </div>
+  <p class="catalog-note">Top: warm-white background (#FAF8F4). Bottom: pure white (#FFFFFF). The warm background reads as "magazine." Use warm-white for the publication bar. The difference is subtle but felt. Note: no ink-feel shadow at nav size — too small for the effect to render well; it reads as blurry rendering instead.</p>
+
+  <div style="margin-top:32px;"></div>
+
+  <span class="catalog-label">Scale C — Page Header / Archive Index (48px masthead)</span>
+  <div class="masthead-stage" style="background:#FAF8F4; padding:40px;">
+    <div class="size-label">Archive · 48px</div>
+    <span class="masthead-inline ink-feel" style="font-size:48px; font-family:'Libre Baskerville',Georgia,serif; font-weight:700; color:#1a1a1a; letter-spacing:-0.8px; line-height:1; display:block; margin-bottom:8px;">Shipped<span style="color:#FF6B35;">.</span></span>
+    <span style="font-family:'Inter',sans-serif; font-size:17px; font-weight:400; color:#6b6b6b; display:block; margin-bottom:6px;">A weekly magazine on what Anthropic is releasing.</span>
+    <span style="font-family:'Inter',sans-serif; font-size:14px; font-weight:400; color:#898989; display:block;">Published every Friday at 5 PM ET.</span>
+  </div>
+  <p class="catalog-note">Archive index header. Masthead at 48px with tagline below. Ink-feel shadow applied. Warm-white background gives the page a physical quality — this is not a list view, this is a publication archive.</p>
+
+  <div style="margin-top:32px;"></div>
+
+  <span class="catalog-label">Scale D — Footer / Footer Credit (14px)</span>
+  <div style="background:#FAF8F4; border-top:1px solid rgba(0,0,0,0.08); padding:24px 40px; border-radius:4px; display:flex; align-items:center; justify-content:space-between;">
+    <span class="masthead-inline" style="font-size:14px; font-family:'Libre Baskerville',Georgia,serif; font-weight:700; color:#898989; letter-spacing:0; line-height:1;">Shipped<span style="color:#FF6B35; opacity:0.8;">.</span></span>
+    <span style="font-family:'Barlow Condensed',sans-serif; font-size:10px; font-weight:600; letter-spacing:2px; text-transform:uppercase; color:#898989;">A Weekly Magazine — id8Labs</span>
+  </div>
+  <p class="catalog-note">Footer context: masthead at 14px, color faded to #898989 (standard gray) — the mark is present but not competing. The period stays orange but at 80% opacity in the footer, slightly recessed. No ink-feel shadow at this size.</p>
+
+</div>
+
+<!-- ════════════════════════════════════════════════════════════
+     SECTION 2 — TEXTURE BACKGROUNDS
+     ════════════════════════════════════════════════════════════ -->
+
+<div class="catalog-section">
+  <div class="catalog-section-title">Section 2 — Texture Background Options</div>
+
+  <span class="catalog-label">Option A — Pure White (#ffffff) — BEFORE state, Rev 3</span>
+  <div class="texture-panel texture-pure">
+    <p class="texture-panel-text">The model ships. The bar it cannot beat comes with it. Somewhere in a lab no one outside the building can visit, Mythos is doing things that Opus 4.7 cannot do. That gap is the story.</p>
+  </div>
+  <p class="catalog-note">#FFFFFF. Clinical. Digital. Fast. Correct for a dashboard. Wrong for a magazine.</p>
+
+  <div style="margin-top:24px;"></div>
+
+  <span class="catalog-label">Option B — Warm White (#FAF8F4) — No grain</span>
+  <div class="texture-panel texture-warm">
+    <p class="texture-panel-text">The model ships. The bar it cannot beat comes with it. Somewhere in a lab no one outside the building can visit, Mythos is doing things that Opus 4.7 cannot do. That gap is the story.</p>
+  </div>
+  <p class="catalog-note">#FAF8F4. Immediately warmer. The text reads as ink-on-paper, not pixels on screen. Already a significant upgrade over pure white for a publication context.</p>
+
+  <div style="margin-top:24px;"></div>
+
+  <span class="catalog-label">Option C — Warm White (#FAF8F4) + SVG Grain (3% opacity) — RECOMMENDED</span>
+  <div class="texture-panel texture-warm-grain">
+    <p class="texture-panel-text">The model ships. The bar it cannot beat comes with it. Somewhere in a lab no one outside the building can visit, Mythos is doing things that Opus 4.7 cannot do. That gap is the story.</p>
+  </div>
+  <p class="catalog-note">#FAF8F4 + SVG feTurbulence noise at 3% opacity. The grain is not visible as grain — it's felt as texture. Side-by-side with Option B the difference is subtle; full-page it registers as physical. This is the production recommendation.</p>
+
+  <div style="margin-top:24px;"></div>
+
+  <span class="catalog-label">Option D — Warm White + Grain + Edge Vignette — FOR FULL-PAGE CONTEXT</span>
+  <div class="texture-panel texture-warm-grain-vignette" style="min-height:200px; display:flex; align-items:center;">
+    <div style="max-width:600px; position:relative; z-index:2;">
+      <p class="texture-panel-headline with-ink-feel" style="margin-bottom:12px;">The Shadow Release</p>
+      <p class="texture-panel-text">The model ships. The bar it cannot beat comes with it. Somewhere in a lab no one outside the building can visit, Mythos is doing things that Opus 4.7 cannot do.</p>
+    </div>
+  </div>
+  <p class="catalog-note">Adds a radial gradient vignette: transparent at center, 5% darkening at edges. Implies the page has edges — physical paper has lighter center, slightly darker corners from handling. Use as a ::before pseudo-element on the issue layout root. Strongest effect at full viewport width.</p>
+
+  <div class="verdict">
+    <p class="verdict-text"><strong>Production recommendation:</strong> Option C (warm white + grain) for all page backgrounds. Option D (add vignette) for the issue cover and archive index hero — the areas where the magazine-opening feeling is most important. Do not apply the vignette to sidebar boxes, code blocks, or Release Log entries — those use --page-pure (#FFFFFF) on top of the warm base, and the vignette on those elements would conflict.</p>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════════════════════════
+     SECTION 3 — INK-FEEL TEXT SHADOW COMPARISON
+     ════════════════════════════════════════════════════════════ -->
+
+<div class="catalog-section">
+  <div class="catalog-section-title">Section 3 — Ink-Feel Text Shadow</div>
+
+  <div class="comparison-row">
+    <div>
+      <p class="comparison-label">Without ink-feel shadow</p>
+      <div style="background:#FAF8F4; padding:24px; border-radius:4px;">
+        <p style="font-family:'Libre Baskerville',Georgia,serif; font-size:48px; font-weight:700; color:#1a1a1a; letter-spacing:-1px; line-height:1.05; margin-bottom:12px;">Three weeks<br>of Anthropic.</p>
+        <p style="font-family:'Libre Baskerville',Georgia,serif; font-size:18px; font-weight:400; color:#404040; line-height:1.75;">The model ships. The bar it cannot beat comes with it.</p>
+      </div>
+    </div>
+    <div>
+      <p class="comparison-label">With ink-feel shadow (recommended)</p>
+      <div style="background:#FAF8F4; padding:24px; border-radius:4px;">
+        <p style="font-family:'Libre Baskerville',Georgia,serif; font-size:48px; font-weight:700; color:#1a1a1a; letter-spacing:-1px; line-height:1.05; margin-bottom:12px; text-shadow: 0.4px 0.5px 0.8px rgba(0,0,0,0.06);">Three weeks<br>of Anthropic.</p>
+        <p style="font-family:'Libre Baskerville',Georgia,serif; font-size:18px; font-weight:400; color:#404040; line-height:1.75; text-shadow: 0.4px 0.5px 0.8px rgba(0,0,0,0.06);">The model ships. The bar it cannot beat comes with it.</p>
+      </div>
+    </div>
+  </div>
+  <p class="catalog-note">
+    The shadow is imperceptible in isolation — you have to compare. Side-by-side, the right panel reads as print-quality; the left reads as screen. This is the whole point: the effect does not draw attention to itself. It changes the register of the letterforms without announcing itself as a design decision.<br><br>
+    <strong>CSS:</strong> <code style="font-family:monospace; font-size:11px; background:rgba(0,0,0,0.06); padding:2px 6px; border-radius:2px;">text-shadow: 0.4px 0.5px 0.8px rgba(0,0,0,0.06)</code><br>
+    Apply to: display headlines (48px+), pull-quotes, drop caps. Do not apply below 24px.
+  </p>
+
+  <div style="margin-top:32px;"></div>
+
+  <span class="catalog-label">Pullquote with ink-feel shadow</span>
+  <div style="background:#FAF8F4; padding:40px; border-radius:4px;">
+    <blockquote class="pullquote-demo">
+      "I'd been running a company where the left hand didn't know what the right hand was doing — and both hands were AI."
+    </blockquote>
+  </div>
+  <p class="catalog-note">Ink-feel on the pullquote at 0.05 opacity (slightly less than headline — italic text at 28px benefits from lighter treatment). The orange left-rule remains crisp — no shadow on borders.</p>
+</div>
+
+<!-- ════════════════════════════════════════════════════════════
+     SECTION 4 — DROP CAP INK BLEED
+     ════════════════════════════════════════════════════════════ -->
+
+<div class="catalog-section">
+  <div class="catalog-section-title">Section 4 — Drop Cap Ink Bleed</div>
+
+  <div class="comparison-row">
+    <div>
+      <p class="comparison-label">Orange drop cap — plain (Rev 3)</p>
+      <div class="drop-cap-demo orange-plain" style="background:#FAF8F4; padding:24px 32px; border-radius:4px;">
+        <p>Anthropic shipped a model this week and the model was good. Better than good. But the footnote — barely a footnote, tucked in the safety section — was the sentence that changed what the week meant. A model that surpasses it exists. It is not available to you.</p>
+      </div>
+    </div>
+    <div>
+      <p class="comparison-label">Orange drop cap + ink bleed (Rev 4)</p>
+      <div class="drop-cap-demo orange-ink" style="background:#FAF8F4; padding:24px 32px; border-radius:4px;">
+        <p>Anthropic shipped a model this week and the model was good. Better than good. But the footnote — barely a footnote, tucked in the safety section — was the sentence that changed what the week meant. A model that surpasses it exists. It is not available to you.</p>
+      </div>
+    </div>
+  </div>
+  <p class="catalog-note">
+    Left: orange at #FF6B35 on #FAF8F4 — already warm, already good.<br>
+    Right: same orange + <code style="font-family:monospace; font-size:11px; background:rgba(0,0,0,0.06); padding:2px 6px; border-radius:2px;">text-shadow: 0.5px 0.6px 1.0px rgba(180,60,15,0.15)</code> — the letter feels stamped. The shadow color (#B43C0F at 15%) is a desaturated dark version of the orange, not black — it reads as the same ink spreading, not as a separate drop shadow.<br><br>
+    The difference is most visible at the bottom and right edges of the letterform. On pure white (#FFF) the ink-bleed would be invisible; on warm white (#FAF8F4) the slight contrast makes it land.
+  </p>
+</div>
+
+<!-- ════════════════════════════════════════════════════════════
+     SECTION 5 — HAIRLINE RULES
+     ════════════════════════════════════════════════════════════ -->
+
+<div class="catalog-section">
+  <div class="catalog-section-title">Section 5 — Hairline Rule Comparison</div>
+
+  <div class="rule-demo">
+    <p class="rule-label">Standard CSS rule — rgba(0,0,0,0.10)</p>
+    <div class="rule-standard"></div>
+    <p style="font-family:'Libre Baskerville',Georgia,serif; font-size:18px; font-weight:400; color:#404040; line-height:1.75; margin-top:8px;">Body text below the rule.</p>
+
+    <div style="margin-top:32px;"></div>
+
+    <p class="rule-label">Paper rule — gradient hairline (subtle variation)</p>
+    <div class="rule-paper"></div>
+    <p style="font-family:'Libre Baskerville',Georgia,serif; font-size:18px; font-weight:400; color:#404040; line-height:1.75; margin-top:8px;">Body text below the rule.</p>
+  </div>
+  <p class="catalog-note">
+    The paper rule is a linear-gradient that fades at both ends and has a very slight density variation through the middle. Printed hairlines on uncoated stock have this characteristic — ink density varies slightly because the paper surface is not perfectly uniform. The effect is imperceptible at normal reading distance. Close examination reveals the rule has a natural quality rather than a perfect mechanical edge.<br><br>
+    <strong>CSS:</strong><br>
+    <code style="font-family:monospace; font-size:11px; background:rgba(0,0,0,0.06); padding:4px 8px; border-radius:2px; display:block; margin-top:6px; line-height:1.7;">background: linear-gradient(to right, rgba(0,0,0,0.02), rgba(0,0,0,0.12) 15%, rgba(0,0,0,0.10) 50%, rgba(0,0,0,0.12) 85%, rgba(0,0,0,0.02));</code><br>
+    Apply to: section dividers, ToC separators, feature header rules. The full-bleed rules (after the cover kicker row) can stay standard — those are structural, not decorative.
+  </p>
+</div>
+
+<!-- ════════════════════════════════════════════════════════════
+     SECTION 6 — COMPLETE TEXTURE SYSTEM IN CONTEXT
+     ════════════════════════════════════════════════════════════ -->
+
+<div class="catalog-section">
+  <div class="catalog-section-title">Section 6 — Full Texture System in Publication Context</div>
+
+  <!-- Simulated issue page fragment with all texture systems applied -->
+  <div style="background:#FAF8F4; background-image:url(&quot;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='400' height='400' filter='url(%23g)' opacity='0.03'/%3E%3C/svg%3E&quot;); border-radius:4px; overflow:hidden; position:relative;">
+
+    <!-- Edge vignette overlay -->
+    <div style="position:absolute; inset:0; background:radial-gradient(ellipse at 50% 50%, transparent 55%, rgba(0,0,0,0.04) 100%); pointer-events:none; z-index:1;"></div>
+
+    <!-- Nav bar -->
+    <div style="position:relative; z-index:2; height:44px; display:flex; align-items:center; justify-content:space-between; padding:0 40px; border-bottom:1px solid rgba(0,0,0,0.08); background:#FAF8F4;">
+      <span style="font-family:'Libre Baskerville',Georgia,serif; font-weight:700; font-size:20px; color:#1a1a1a; letter-spacing:-0.2px; line-height:1;">Shipped<span style="color:#FF6B35;">.</span></span>
+      <div style="display:flex; align-items:center; gap:12px;">
+        <div style="width:1px; height:14px; background:rgba(0,0,0,0.12);"></div>
+        <span style="font-family:'Inter',sans-serif; font-size:13px; font-weight:400; color:#898989;">By id8Labs</span>
+      </div>
+    </div>
+
+    <!-- Cover fragment -->
+    <div style="position:relative; z-index:2; max-width:740px; margin:0 auto; padding:64px 40px 48px;">
+
+      <!-- Kicker row -->
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
+        <span style="font-family:'Barlow Condensed',sans-serif; font-size:13px; font-weight:600; letter-spacing:2.5px; color:#898989; text-transform:uppercase;">Shipped.</span>
+        <span style="font-family:'Barlow Condensed',sans-serif; font-size:11px; font-weight:600; letter-spacing:1.5px; color:#898989; text-transform:uppercase;">Issue <span style="color:#FF6B35;">#00</span> &nbsp;·&nbsp; April 18, 2026</span>
+      </div>
+
+      <!-- Cover rule -->
+      <div style="height:1px; background:linear-gradient(to right, rgba(0,0,0,0.02), rgba(0,0,0,0.12) 15%, rgba(0,0,0,0.10) 50%, rgba(0,0,0,0.12) 85%, rgba(0,0,0,0.02)); margin-bottom:24px;"></div>
+
+      <!-- Issue label -->
+      <div style="font-family:'Barlow Condensed',sans-serif; font-size:11px; font-weight:600; letter-spacing:2.5px; color:#898989; text-transform:uppercase; margin-bottom:20px;">The Founding Issue</div>
+
+      <!-- Display headline with ink-feel -->
+      <h1 style="font-family:'Libre Baskerville',Georgia,serif; font-size:72px; font-weight:700; color:#1a1a1a; letter-spacing:-1.5px; line-height:1.02; margin-bottom:20px; text-shadow:0.4px 0.5px 0.8px rgba(0,0,0,0.06);">The Shadow<br>Release</h1>
+
+      <!-- Deck -->
+      <p style="font-family:'Libre Baskerville',Georgia,serif; font-size:20px; font-weight:400; color:#6b6b6b; line-height:1.55; margin-bottom:32px;">Three weeks of Anthropic, in one read.</p>
+
+      <!-- Cover rule bottom -->
+      <div style="height:1px; background:linear-gradient(to right, rgba(0,0,0,0.02), rgba(0,0,0,0.12) 15%, rgba(0,0,0,0.10) 50%, rgba(0,0,0,0.12) 85%, rgba(0,0,0,0.02)); margin-bottom:24px;"></div>
+
+      <!-- Period + nav -->
+      <div style="display:flex; justify-content:space-between; align-items:center;">
+        <span style="font-family:'Inter',sans-serif; font-size:13px; font-weight:400; color:#898989;">April 18, 2026 &nbsp;·&nbsp; 3 weeks in review</span>
+        <div style="display:flex; gap:20px;">
+          <span style="font-family:'Inter',sans-serif; font-size:13px; font-weight:500; color:#1a1a1a; border-bottom:1px solid rgba(0,0,0,0.25); padding-bottom:1px; cursor:pointer;">Front of Book</span>
+          <span style="font-family:'Inter',sans-serif; font-size:13px; font-weight:500; color:#1a1a1a; border-bottom:1px solid rgba(0,0,0,0.25); padding-bottom:1px; cursor:pointer;">Release Log</span>
+        </div>
+      </div>
+
+      <!-- Lead story fragment -->
+      <div style="margin-top:56px;">
+        <div style="font-family:'Barlow Condensed',sans-serif; font-size:11px; font-weight:600; letter-spacing:2.5px; color:#898989; text-transform:uppercase; margin-bottom:8px;">The Lead Story</div>
+        <div style="height:1px; background:linear-gradient(to right, rgba(0,0,0,0.02), rgba(0,0,0,0.12) 15%, rgba(0,0,0,0.10) 50%, rgba(0,0,0,0.12) 85%, rgba(0,0,0,0.02)); margin-bottom:20px; width:40px;"></div>
+        <h2 style="font-family:'Libre Baskerville',Georgia,serif; font-size:32px; font-weight:700; color:#1a1a1a; letter-spacing:-0.5px; line-height:1.15; margin-bottom:20px; text-shadow:0.4px 0.5px 0.8px rgba(0,0,0,0.06);">Opus 4.7, and the chart that wasn't about Opus 4.7</h2>
+        <p style="font-family:'Libre Baskerville',Georgia,serif; font-size:18px; font-weight:400; color:#404040; line-height:1.75; text-shadow:0.4px 0.5px 0.8px rgba(0,0,0,0.06);"><span style="font-size:4.2em; font-weight:700; float:left; line-height:0.82; padding-right:8px; padding-top:6px; color:#FF6B35; margin-top:4px; text-shadow:0.5px 0.6px 1.0px rgba(180,60,15,0.15); font-family:'Libre Baskerville',Georgia,serif;">A</span>nthropic shipped a model this week and the model was good. Better than good. But the footnote — barely a footnote, tucked in the safety section of the release notes — was the sentence that changed what the week meant. There exists a model that surpasses Opus 4.7 in every benchmark that matters. It is not available to you.</p>
+      </div>
+
+    </div>
+  </div>
+
+  <p class="catalog-note" style="margin-top:16px;">Full texture system applied: warm-white base (#FAF8F4) + SVG grain (3%) + edge vignette + paper hairline rules + ink-feel headlines + drop cap ink-bleed. This is what "opening a magazine" should feel like on screen.</p>
+</div>
+
+<!-- ════════════════════════════════════════════════════════════
+     SECTION 7 — IMPLEMENTATION SUMMARY
+     ════════════════════════════════════════════════════════════ -->
+
+<div class="catalog-section">
+  <div class="catalog-section-title">Section 7 — Implementation Summary</div>
+
+  <div style="background:#FAF8F4; border:1px solid rgba(0,0,0,0.08); border-top:2px solid #1a1a1a; padding:24px 28px; border-radius:0 0 4px 4px;">
+    <table style="width:100%; border-collapse:collapse; font-family:'Inter',sans-serif; font-size:13px;">
+      <thead>
+        <tr style="border-bottom:1px solid rgba(0,0,0,0.10);">
+          <th style="text-align:left; padding:8px 0; font-family:'Barlow Condensed',sans-serif; font-size:9px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; color:#898989;">Technique</th>
+          <th style="text-align:left; padding:8px 12px; font-family:'Barlow Condensed',sans-serif; font-size:9px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; color:#898989;">Value</th>
+          <th style="text-align:left; padding:8px 0; font-family:'Barlow Condensed',sans-serif; font-size:9px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; color:#898989;">Apply to</th>
+        </tr>
+      </thead>
+      <tbody style="color:#404040;">
+        <tr style="border-bottom:1px solid rgba(0,0,0,0.06);">
+          <td style="padding:10px 0; font-weight:500; color:#1a1a1a;">Warm-white base</td>
+          <td style="padding:10px 12px; font-family:monospace; font-size:12px;">#FAF8F4</td>
+          <td style="padding:10px 0;">All page backgrounds, nav bar, cover</td>
+        </tr>
+        <tr style="border-bottom:1px solid rgba(0,0,0,0.06);">
+          <td style="padding:10px 0; font-weight:500; color:#1a1a1a;">Paper grain (SVG noise)</td>
+          <td style="padding:10px 12px; font-family:monospace; font-size:12px;">feTurbulence 0.65 / opacity 0.03</td>
+          <td style="padding:10px 0;">Page layout root only (not cards)</td>
+        </tr>
+        <tr style="border-bottom:1px solid rgba(0,0,0,0.06);">
+          <td style="padding:10px 0; font-weight:500; color:#1a1a1a;">Edge vignette</td>
+          <td style="padding:10px 12px; font-family:monospace; font-size:12px;">radial-gradient transparent→rgba(0,0,0,0.04)</td>
+          <td style="padding:10px 0;">Issue cover, archive index hero only</td>
+        </tr>
+        <tr style="border-bottom:1px solid rgba(0,0,0,0.06);">
+          <td style="padding:10px 0; font-weight:500; color:#1a1a1a;">Ink-feel shadow (headline)</td>
+          <td style="padding:10px 12px; font-family:monospace; font-size:12px;">0.4px 0.5px 0.8px rgba(0,0,0,0.06)</td>
+          <td style="padding:10px 0;">Display heads 48px+, pull-quotes</td>
+        </tr>
+        <tr style="border-bottom:1px solid rgba(0,0,0,0.06);">
+          <td style="padding:10px 0; font-weight:500; color:#1a1a1a;">Ink-feel shadow (body)</td>
+          <td style="padding:10px 12px; font-family:monospace; font-size:12px;">0.4px 0.5px 0.8px rgba(0,0,0,0.06)</td>
+          <td style="padding:10px 0;">Body text in front-of-book only. Not BoB.</td>
+        </tr>
+        <tr style="border-bottom:1px solid rgba(0,0,0,0.06);">
+          <td style="padding:10px 0; font-weight:500; color:#1a1a1a;">Drop cap ink-bleed</td>
+          <td style="padding:10px 12px; font-family:monospace; font-size:12px;">0.5px 0.6px 1.0px rgba(180,60,15,0.15)</td>
+          <td style="padding:10px 0;">Lead Story orange drop cap only</td>
+        </tr>
+        <tr style="border-bottom:1px solid rgba(0,0,0,0.06);">
+          <td style="padding:10px 0; font-weight:500; color:#1a1a1a;">Paper hairline rule</td>
+          <td style="padding:10px 12px; font-family:monospace; font-size:12px;">linear-gradient fade-mid-fade</td>
+          <td style="padding:10px 0;">Section dividers, cover rules, ToC rule</td>
+        </tr>
+        <tr>
+          <td style="padding:10px 0; font-weight:500; color:#1a1a1a;">Pure white (#FFF)</td>
+          <td style="padding:10px 12px; font-family:monospace; font-size:12px;">#FFFFFF</td>
+          <td style="padding:10px 0;">Cards, code blocks, sidebar boxes (on warm base)</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════════════════════════
+     FOOTER
+     ════════════════════════════════════════════════════════════ -->
+
+<div style="max-width:900px; margin:0 auto; padding-top:40px; border-top:1px solid rgba(0,0,0,0.12); display:flex; justify-content:space-between; align-items:center;">
+  <span style="font-family:'Libre Baskerville',Georgia,serif; font-weight:700; font-size:14px; color:#898989; letter-spacing:-0.1px;">Shipped<span style="color:#FF6B35; opacity:0.8;">.</span></span>
+  <span style="font-family:'Barlow Condensed',sans-serif; font-size:10px; font-weight:600; letter-spacing:2px; text-transform:uppercase; color:#898989;">Brand &amp; Texture Catalog — Revision 4 — Iris / id8Labs — 2026-04-16</span>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,1405 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shipped. — Issue #00 — The Shadow Release</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Barlow+Condensed:wght@400;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
+  <style>
+    /* ── Reset ── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { font-size: 16px; -webkit-font-smoothing: antialiased; }
+    body { background: #ffffff; color: #1a1a1a; font-family: 'Inter', sans-serif; }
+
+    /* ── Tokens ── */
+    :root {
+      --orange: #FF6B35;
+      --ink: #1a1a1a;
+      --body: #404040;
+      --muted: #6b6b6b;
+      --gray: #898989;
+      --rule: rgba(0,0,0,0.08);
+      --rule-mid: rgba(0,0,0,0.10);
+      --font-editorial: 'Libre Baskerville', Georgia, serif;
+      --font-mechanical: 'Barlow Condensed', sans-serif;
+      --font-mono: 'JetBrains Mono', 'SF Mono', Menlo, monospace;
+    }
+
+    /* ── Publication Bar ── */
+    .pub-bar {
+      position: sticky; top: 0; z-index: 100;
+      background: #ffffff;
+      border-bottom: 1px solid var(--rule);
+      padding: 0 24px; height: 44px;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .pub-bar-masthead {
+      font-family: var(--font-editorial);
+      font-size: 20px; font-weight: 700;
+      color: var(--ink); letter-spacing: -0.2px; line-height: 1;
+    }
+    .pub-bar-masthead .period { color: var(--orange); }
+    .pub-bar-right { display: flex; align-items: center; gap: 12px; }
+    .pub-bar-sep { width: 1px; height: 14px; background: rgba(0,0,0,0.12); }
+    .pub-bar-credit { font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 400; color: var(--gray); }
+
+    /* ── Cover ── */
+    .cover {
+      max-width: 780px; margin: 0 auto;
+      padding: 96px 24px 80px;
+    }
+    .cover-kicker-row {
+      display: flex; align-items: center; justify-content: space-between;
+      margin-bottom: 12px;
+    }
+    .cover-flag {
+      font-family: var(--font-mechanical);
+      font-size: 13px; font-weight: 600; letter-spacing: 2.5px;
+      color: var(--gray); text-transform: uppercase;
+    }
+    .cover-issue-info {
+      font-family: var(--font-mechanical);
+      font-size: 11px; font-weight: 600; letter-spacing: 1.5px;
+      color: var(--gray); text-transform: uppercase;
+    }
+    .cover-issue-info .issue-number { color: var(--orange); }
+    .cover-rule-top { width: 100%; height: 1px; background: var(--rule-mid); margin-bottom: 24px; }
+    .cover-kicker {
+      font-family: var(--font-mechanical);
+      font-size: 11px; font-weight: 600; letter-spacing: 2.5px;
+      color: var(--gray); text-transform: uppercase; margin-bottom: 20px;
+    }
+    .cover-headline {
+      font-family: var(--font-editorial);
+      font-size: 80px; font-weight: 700;
+      color: var(--ink); letter-spacing: -1.5px; line-height: 1.02;
+      margin-bottom: 20px;
+    }
+    .cover-deck {
+      font-family: var(--font-editorial);
+      font-size: 20px; font-weight: 400;
+      color: var(--muted); line-height: 1.55; margin-bottom: 40px;
+    }
+    .cover-rule-bottom { width: 100%; height: 1px; background: var(--rule-mid); margin-bottom: 24px; }
+    .cover-nav { display: flex; align-items: center; justify-content: space-between; }
+    .cover-nav-meta { font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 400; color: var(--gray); }
+    .cover-nav-links { display: flex; align-items: center; gap: 20px; }
+    .cover-nav-link {
+      font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 500;
+      color: var(--ink); text-decoration: none;
+      border-bottom: 1px solid transparent; padding-bottom: 1px;
+      transition: border-color 0.15s;
+    }
+    .cover-nav-link:hover { border-bottom-color: var(--ink); }
+    .cover-nav-sep { width: 1px; height: 12px; background: rgba(0,0,0,0.15); }
+    .dry-run-notice {
+      margin-top: 16px;
+      font-family: 'Inter', sans-serif;
+      font-size: 12px; font-weight: 400;
+      color: var(--gray); font-style: italic;
+    }
+
+    /* ── Table of Contents ── */
+    .toc-wrap {
+      max-width: 780px; margin: 0 auto;
+      padding: 64px 24px 0;
+    }
+    .toc-header-label {
+      font-family: var(--font-mechanical);
+      font-size: 11px; font-weight: 700; letter-spacing: 3.0px;
+      color: var(--gray); text-transform: uppercase;
+      display: block;
+      padding-bottom: 12px;
+      border-bottom: 1px solid rgba(0,0,0,0.10);
+      margin-bottom: 0;
+    }
+    .toc-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      border-bottom: 1px solid rgba(0,0,0,0.08);
+    }
+    .toc-entry {
+      padding: 20px 24px 20px 0;
+      border-right: 1px solid rgba(0,0,0,0.06);
+      border-bottom: 1px solid rgba(0,0,0,0.06);
+    }
+    .toc-entry:nth-child(even) {
+      padding-left: 24px; padding-right: 0;
+      border-right: none;
+    }
+    .toc-entry-section {
+      font-family: var(--font-mechanical);
+      font-size: 9px; font-weight: 700; letter-spacing: 2.0px;
+      color: var(--gray); text-transform: uppercase;
+      display: block; margin-bottom: 6px;
+    }
+    .toc-entry-title {
+      font-family: var(--font-editorial);
+      font-size: 18px; font-weight: 700;
+      color: var(--ink); letter-spacing: -0.2px; line-height: 1.20;
+      display: block; margin-bottom: 6px;
+      text-decoration: none;
+    }
+    .toc-entry-title:hover { color: var(--body); }
+    .toc-entry-tease {
+      font-family: 'Inter', sans-serif;
+      font-size: 13px; font-weight: 400;
+      font-style: italic; color: var(--gray); line-height: 1.45;
+    }
+
+    /* ── Two-column layout ── */
+    .two-col-editorial {
+      display: flex; gap: 48px; align-items: flex-start;
+      max-width: 980px; margin: 0 auto;
+      padding: 0 24px;
+    }
+    .two-col-prose { flex: 1; max-width: 640px; }
+    .two-col-sidebar { width: 240px; flex-shrink: 0; }
+    @media (max-width: 780px) {
+      .two-col-editorial { flex-direction: column; }
+      .two-col-sidebar { width: 100%; }
+    }
+
+    /* ── By the Numbers ── */
+    .by-the-numbers {
+      border-top: 2px solid var(--ink);
+      padding-top: 20px;
+      margin-top: 0;
+    }
+    .btn-header {
+      font-family: var(--font-mechanical);
+      font-size: 11px; font-weight: 700; letter-spacing: 3.0px;
+      color: var(--gray); text-transform: uppercase;
+      display: block; margin-bottom: 20px;
+    }
+    .btn-item {
+      padding: 18px 0;
+      border-top: 1px solid rgba(0,0,0,0.10);
+    }
+    .btn-label {
+      font-family: var(--font-mechanical);
+      font-size: 10px; font-weight: 600; letter-spacing: 2.0px;
+      color: var(--gray); text-transform: uppercase;
+      display: block; margin-bottom: 3px;
+    }
+    .btn-number {
+      font-family: var(--font-editorial);
+      font-size: 60px; font-weight: 700;
+      color: var(--ink); letter-spacing: -2px; line-height: 0.95;
+      display: block; margin-bottom: 5px;
+    }
+    .btn-context {
+      font-family: 'Inter', sans-serif;
+      font-size: 13px; font-weight: 400;
+      color: var(--body); line-height: 1.45;
+    }
+
+    /* ── Section flag ── */
+    .section-flag-wrap { padding-top: 64px; padding-bottom: 16px; max-width: 780px; margin: 0 auto; padding-left: 24px; padding-right: 24px; }
+    .section-flag {
+      font-family: var(--font-mechanical);
+      font-size: 11px; font-weight: 600; letter-spacing: 2.5px;
+      color: var(--gray); text-transform: uppercase; display: block;
+    }
+    .section-flag-rule { display: block; width: 40px; height: 1px; background: rgba(0,0,0,0.08); margin-top: 8px; }
+
+    /* ── Feature Header ── */
+    .feature-header-wrap {
+      max-width: 780px; margin: 0 auto;
+      padding: 64px 24px 0;
+    }
+    .feature-header {
+      margin-bottom: 40px;
+      padding-bottom: 32px;
+      border-bottom: 1px solid rgba(0,0,0,0.08);
+    }
+    .feature-kicker {
+      font-family: var(--font-mechanical);
+      font-size: 13px; font-weight: 700; letter-spacing: 3.0px;
+      color: var(--gray); text-transform: uppercase;
+      display: block; margin-bottom: 16px;
+    }
+    .feature-headline {
+      font-family: var(--font-editorial);
+      font-size: 48px; font-weight: 700;
+      color: var(--ink); letter-spacing: -1.0px; line-height: 1.05;
+      margin-bottom: 14px;
+    }
+    .feature-deck {
+      font-family: var(--font-editorial);
+      font-size: 19px; font-weight: 400;
+      color: var(--muted); line-height: 1.55;
+      max-width: 600px; margin-bottom: 14px;
+    }
+    .feature-byline {
+      font-family: 'Inter', sans-serif;
+      font-size: 13px; font-weight: 400; color: var(--gray);
+    }
+
+    /* ── Editorial prose ── */
+    .content-editorial { max-width: 680px; margin: 0 auto; padding: 0 24px; }
+    .prose {
+      font-family: var(--font-editorial);
+      font-size: 18px; font-weight: 400;
+      color: var(--body); line-height: 1.75;
+    }
+    .prose p { margin-bottom: 28px; }
+    .prose p:last-child { margin-bottom: 0; }
+    .prose em { font-style: italic; }
+    .prose strong { font-weight: 700; }
+
+    /* ── Drop caps ── */
+    .drop-cap-lead p:first-child::first-letter {
+      font-family: var(--font-editorial);
+      font-size: 4.6em; font-weight: 700;
+      float: left; line-height: 0.82;
+      padding-right: 8px; padding-top: 6px;
+      color: var(--orange); margin-top: 4px;
+    }
+    .drop-cap p:first-child::first-letter {
+      font-family: var(--font-editorial);
+      font-size: 4.6em; font-weight: 700;
+      float: left; line-height: 0.82;
+      padding-right: 8px; padding-top: 6px;
+      color: var(--ink); margin-top: 4px;
+    }
+
+    /* ── Section headline ── */
+    .section-headline {
+      font-family: var(--font-editorial);
+      font-size: 32px; font-weight: 700;
+      color: var(--ink); letter-spacing: -0.5px; line-height: 1.15;
+      margin-bottom: 24px; margin-top: 24px;
+    }
+    .subsection-headline {
+      font-family: var(--font-editorial);
+      font-size: 22px; font-weight: 700;
+      color: var(--ink); letter-spacing: -0.25px; line-height: 1.20;
+      margin-bottom: 14px; margin-top: 32px;
+    }
+
+    /* ── Pull-quote ── */
+    .shipped-pullquote {
+      font-family: var(--font-editorial);
+      font-size: 28px; font-weight: 400; font-style: italic;
+      line-height: 1.40; color: var(--ink);
+      margin: 56px 0; padding: 0 0 0 28px;
+      border-left: 4px solid var(--orange);
+      max-width: 600px;
+    }
+
+    /* ── Sidebar Box ── */
+    .sidebar-box {
+      background: #fafafa;
+      border: 1px solid rgba(0,0,0,0.08);
+      border-left: 3px solid var(--ink);
+      border-radius: 0 4px 4px 0;
+      padding: 20px; margin: 32px 0;
+    }
+    .sidebar-box--lead {
+      border-left-color: var(--orange);
+    }
+    .sidebar-box-title {
+      font-family: var(--font-mechanical);
+      font-size: 11px; font-weight: 700; letter-spacing: 2.5px;
+      color: var(--gray); text-transform: uppercase;
+      display: block; margin-bottom: 12px;
+      padding-bottom: 10px; border-bottom: 1px solid rgba(0,0,0,0.08);
+    }
+    .sidebar-box-body {
+      font-family: 'Inter', sans-serif;
+      font-size: 14px; font-weight: 400;
+      color: var(--body); line-height: 1.60;
+    }
+    .sidebar-box-body p { margin-bottom: 10px; }
+    .sidebar-box-body p:last-child { margin-bottom: 0; }
+
+    /* ── Benchmark Table ── */
+    .benchmark-wrap {
+      margin: 16px 0;
+    }
+    .benchmark-table {
+      width: 100%; border-collapse: collapse;
+    }
+    .benchmark-table th {
+      font-family: var(--font-mechanical);
+      font-size: 9px; font-weight: 700; letter-spacing: 1.5px;
+      text-transform: uppercase; color: var(--gray);
+      text-align: left; padding: 8px 10px 8px 0;
+      border-bottom: 1px solid rgba(0,0,0,0.10);
+    }
+    .benchmark-table td {
+      font-family: 'Inter', sans-serif;
+      font-size: 13px; font-weight: 400; color: var(--body);
+      padding: 10px 10px 10px 0;
+      border-bottom: 1px solid rgba(0,0,0,0.06);
+      vertical-align: middle;
+    }
+    .benchmark-table tr:last-child td { border-bottom: none; }
+    .benchmark-model-name { font-weight: 500; color: var(--ink); width: 150px; }
+    .benchmark-score {
+      font-family: var(--font-mono);
+      font-size: 12px; color: var(--ink);
+      width: 52px; font-weight: 400;
+    }
+    .benchmark-bar-cell { width: 100%; }
+    .benchmark-bar-track {
+      background: #efefef; border-radius: 2px;
+      height: 8px; position: relative; overflow: hidden;
+    }
+    .benchmark-bar-fill {
+      height: 100%; border-radius: 2px;
+      background: var(--ink);
+    }
+    .mythos-row td { background: rgba(255,107,53,0.03); }
+    .mythos-row .benchmark-bar-fill { background: var(--orange); }
+    .mythos-row .benchmark-score { color: var(--orange); font-weight: 600; }
+    .mythos-row .benchmark-model-name { color: var(--ink); }
+    .mythos-note {
+      font-family: 'Inter', sans-serif;
+      font-size: 12px; font-weight: 400;
+      font-style: italic; color: var(--gray);
+      margin-top: 8px; line-height: 1.45;
+    }
+
+    /* ── Timeline ── */
+    .timeline-wrap { margin: 40px 0; position: relative; }
+    .timeline-header {
+      font-family: var(--font-mechanical);
+      font-size: 11px; font-weight: 700; letter-spacing: 3.0px;
+      color: var(--gray); text-transform: uppercase;
+      display: block; margin-bottom: 24px;
+      padding-bottom: 12px; border-bottom: 1px solid rgba(0,0,0,0.10);
+    }
+    .timeline-body { position: relative; padding-left: 88px; }
+    .timeline-spine {
+      position: absolute; left: 72px; top: 0; bottom: 0;
+      width: 1px; background: rgba(0,0,0,0.10);
+    }
+    .timeline-row {
+      display: flex; gap: 0; align-items: flex-start;
+      margin-bottom: 0; position: relative;
+      margin-left: -88px;
+    }
+    .timeline-date {
+      font-family: var(--font-mechanical);
+      font-size: 10px; font-weight: 600; letter-spacing: 0.5px;
+      color: var(--gray); text-transform: uppercase;
+      width: 68px; flex-shrink: 0;
+      padding-top: 4px; text-align: right;
+      padding-right: 14px;
+    }
+    .timeline-dot-wrap {
+      width: 20px; flex-shrink: 0;
+      display: flex; justify-content: center;
+      position: relative;
+    }
+    .timeline-dot {
+      width: 7px; height: 7px; border-radius: 50%;
+      background: var(--ink);
+      margin-top: 5px; position: relative; z-index: 1;
+      flex-shrink: 0;
+    }
+    .timeline-dot--model { background: var(--orange); }
+    .timeline-dot--minor { background: #fff; border: 1px solid rgba(0,0,0,0.25); }
+    .timeline-content { flex: 1; padding: 0 0 14px 14px; }
+    .timeline-title {
+      font-family: 'Inter', sans-serif;
+      font-size: 13px; font-weight: 600;
+      color: var(--ink); line-height: 1.30; margin-bottom: 2px;
+    }
+    .timeline-desc {
+      font-family: 'Inter', sans-serif;
+      font-size: 12px; font-weight: 400;
+      color: var(--gray); line-height: 1.40;
+    }
+    .timeline-cluster {
+      font-family: 'Inter', sans-serif;
+      font-size: 12px; font-weight: 500; font-style: italic;
+      color: var(--gray); line-height: 1.40;
+      padding: 0 0 14px 14px;
+    }
+
+    /* ── Named Quote ── */
+    .named-quote {
+      margin: 32px 0;
+      padding-left: 20px;
+      border-left: 2px solid rgba(0,0,0,0.12);
+    }
+    .named-quote-text {
+      font-family: var(--font-editorial);
+      font-size: 18px; font-weight: 400; font-style: italic;
+      color: var(--ink); line-height: 1.55; margin-bottom: 10px;
+    }
+    .named-quote-attribution {
+      font-family: 'Inter', sans-serif;
+      font-size: 13px; font-weight: 500;
+      color: var(--muted); letter-spacing: 0.5px;
+    }
+    .named-quote-attribution::before { content: "— "; }
+
+    /* ── Term of the Issue ── */
+    .term-box {
+      border: 1px solid rgba(0,0,0,0.10);
+      border-top: 2px solid var(--ink);
+      padding: 20px 20px 16px; margin: 40px 0;
+      max-width: 480px;
+    }
+    .term-headword {
+      font-family: var(--font-editorial);
+      font-size: 20px; font-weight: 400; font-style: italic;
+      color: var(--ink); display: block; margin-bottom: 2px;
+    }
+    .term-pronunciation {
+      font-family: 'Inter', sans-serif;
+      font-size: 13px; font-weight: 400; color: var(--gray);
+      display: block; margin-bottom: 12px;
+      padding-bottom: 12px; border-bottom: 1px solid rgba(0,0,0,0.06);
+    }
+    .term-definition {
+      font-family: 'Inter', sans-serif;
+      font-size: 14px; font-weight: 400;
+      color: var(--body); line-height: 1.60; margin-bottom: 10px;
+    }
+    .term-attribution {
+      font-family: 'Inter', sans-serif;
+      font-size: 12px; font-weight: 400;
+      font-style: italic; color: var(--gray);
+    }
+
+    /* ── Vulnerabilities List ── */
+    .vuln-list { margin: 16px 0; }
+    .vuln-list-header {
+      font-family: var(--font-mechanical);
+      font-size: 10px; font-weight: 700; letter-spacing: 2.0px;
+      color: var(--gray); text-transform: uppercase;
+      display: block; margin-bottom: 12px;
+      padding-bottom: 8px; border-bottom: 1px solid rgba(0,0,0,0.08);
+    }
+    .vuln-item { padding: 10px 0; border-bottom: 1px solid rgba(0,0,0,0.06); }
+    .vuln-item:last-child { border-bottom: none; }
+    .vuln-name {
+      font-family: 'Inter', sans-serif;
+      font-size: 13px; font-weight: 600; color: var(--ink); margin-bottom: 2px;
+    }
+    .vuln-age {
+      display: inline-block;
+      font-family: var(--font-mechanical);
+      font-size: 9px; font-weight: 700; letter-spacing: 1.5px;
+      text-transform: uppercase;
+      background: #f0f0f0; color: var(--gray);
+      padding: 1px 5px; border-radius: 2px;
+      margin-left: 6px; vertical-align: middle;
+    }
+    .vuln-desc {
+      font-family: 'Inter', sans-serif;
+      font-size: 12px; font-weight: 400; color: var(--gray); line-height: 1.45;
+    }
+
+    /* ── Ornament ── */
+    .ornament {
+      text-align: center; font-family: var(--font-editorial);
+      font-size: 14px; color: #c0c0c0;
+      margin: 48px auto; display: block;
+      letter-spacing: 12px;
+    }
+
+    /* ── Section break rule ── */
+    .section-break {
+      max-width: 780px; margin: 0 auto; padding: 0 24px;
+    }
+    .section-break hr { border: none; border-top: 1px solid var(--rule-mid); margin: 64px 0 0; }
+
+    /* ── Shipped Close ── */
+    .shipped-close-wrap { max-width: 680px; margin: 0 auto; padding: 0 24px; }
+    .shipped-close p {
+      font-family: var(--font-editorial);
+      font-size: 16px; font-weight: 400;
+      line-height: 1.60; color: var(--ink); margin-bottom: 28px;
+    }
+    .shipped-close p:last-child { margin-bottom: 0; }
+    .shipped-close-final { font-style: italic; }
+
+    /* ── Release Log divider ── */
+    .log-divider { max-width: 780px; margin: 0 auto; padding: 80px 24px 0; }
+    .log-divider hr { border: none; border-top: 2px solid var(--ink); }
+
+    /* ── Log section header ── */
+    .log-section-header { max-width: 780px; margin: 0 auto; padding: 48px 24px 0; }
+    .log-section-title {
+      font-family: var(--font-mechanical);
+      font-size: 14px; font-weight: 600; letter-spacing: 2.5px;
+      color: var(--ink); text-transform: uppercase;
+      display: block; padding-bottom: 12px;
+      border-bottom: 1px solid var(--rule-mid);
+    }
+    .log-section-sub {
+      font-family: 'Inter', sans-serif;
+      font-size: 15px; font-weight: 400; color: var(--gray);
+      margin-top: 12px; line-height: 1.55;
+    }
+
+    /* ── Log entries ── */
+    .log-well { max-width: 780px; margin: 0 auto; padding: 0 24px; }
+    .log-category-header {
+      display: flex; align-items: baseline; gap: 10px;
+      padding: 32px 0 12px 0; border-bottom: 1px solid var(--rule-mid);
+    }
+    .log-category-letter {
+      font-family: var(--font-mechanical);
+      font-size: 12px; font-weight: 600; letter-spacing: 2px;
+      color: var(--gray); text-transform: uppercase;
+    }
+    .log-category-name {
+      font-family: var(--font-mechanical);
+      font-size: 14px; font-weight: 700; letter-spacing: 2.5px;
+      color: var(--ink); text-transform: uppercase;
+    }
+    .log-entry { padding: 24px 0; border-bottom: 1px solid rgba(0,0,0,0.06); }
+    .log-entry-meta { display: flex; align-items: center; gap: 10px; margin-bottom: 6px; }
+    .log-entry-date {
+      font-family: 'Inter', sans-serif;
+      font-size: 12px; font-weight: 500; color: var(--gray);
+      letter-spacing: 0.2px; font-feature-settings: 'tnum';
+    }
+    .log-entry-title {
+      font-family: 'Inter', sans-serif;
+      font-size: 16px; font-weight: 600; color: var(--ink);
+      letter-spacing: -0.2px; line-height: 1.30; margin-bottom: 10px;
+    }
+    .log-entry-title a {
+      color: inherit; text-decoration: none;
+      border-bottom: 1px solid rgba(0,0,0,0.15); padding-bottom: 1px;
+      transition: border-color 0.15s;
+    }
+    .log-entry-title a:hover { border-bottom-color: rgba(0,0,0,0.60); }
+    .log-entry-summary {
+      font-family: 'Inter', sans-serif;
+      font-size: 15px; font-weight: 400; color: var(--body);
+      line-height: 1.60; margin-bottom: 12px;
+    }
+    .log-entry-section {
+      margin-top: 12px; padding-top: 12px;
+      border-top: 1px solid rgba(0,0,0,0.04);
+    }
+    .log-entry-label {
+      font-family: var(--font-mechanical);
+      font-size: 10px; font-weight: 700; color: var(--gray);
+      letter-spacing: 1.5px; text-transform: uppercase;
+      display: block; margin-bottom: 6px;
+    }
+
+    /* ── Code blocks ── */
+    .log-code-block-wrap {
+      margin: 8px 0 12px 0;
+      border: 1px solid rgba(0,0,0,0.10); border-radius: 6px; overflow: hidden;
+    }
+    .log-code-block-title {
+      background: #f0f0f0; border-bottom: 1px solid rgba(0,0,0,0.08);
+      padding: 6px 14px;
+      font-family: var(--font-mechanical);
+      font-size: 10px; font-weight: 700; letter-spacing: 1.5px;
+      text-transform: uppercase; color: var(--gray);
+      display: flex; justify-content: space-between;
+    }
+    .log-code-block {
+      background: #fafafa; padding: 16px 18px;
+      overflow-x: auto;
+      font-family: var(--font-mono);
+      font-size: 13px; font-weight: 400; line-height: 1.60;
+      color: var(--ink); -webkit-overflow-scrolling: touch;
+      white-space: pre;
+    }
+    .log-how-to-text {
+      font-family: 'Inter', sans-serif;
+      font-size: 14px; font-weight: 400; color: var(--body); line-height: 1.55;
+    }
+    .log-why-matters {
+      font-family: 'Inter', sans-serif;
+      font-size: 14px; font-weight: 400; font-style: italic;
+      color: var(--muted); line-height: 1.55;
+    }
+
+    /* ── Tags ── */
+    .log-tag {
+      font-family: var(--font-mechanical);
+      font-size: 10px; font-weight: 700; letter-spacing: 1.5px;
+      text-transform: uppercase; padding: 2px 7px;
+      border-radius: 3px; line-height: 1.4; display: inline-block;
+    }
+    .log-tag--model    { background: var(--orange); color: #ffffff; }
+    .log-tag--api      { background: #404040; color: #ffffff; }
+    .log-tag--code     { background: #595959; color: #ffffff; }
+    .log-tag--apps     { background: #737373; color: #ffffff; }
+    .log-tag--sdk-py   { background: #e5e5e5; color: #1a1a1a; }
+    .log-tag--sdk-ts   { background: #ebebeb; color: #1a1a1a; }
+    .log-tag--research { background: #f5f5f5; color: #404040; border: 1px solid rgba(0,0,0,0.12); }
+    .log-tag--news     { background: #f5f5f5; color: #404040; border: 1px solid rgba(0,0,0,0.12); }
+    .log-tag--deprecation { background: #fafafa; color: var(--gray); border: 1px solid rgba(0,0,0,0.15); }
+
+    /* ── Footer ── */
+    .site-footer {
+      margin-top: 80px; border-top: 1px solid var(--rule);
+      padding: 40px 24px; max-width: 780px;
+      margin-left: auto; margin-right: auto;
+    }
+    .footer-flag {
+      font-family: var(--font-mechanical);
+      font-size: 10px; font-weight: 600; letter-spacing: 2.0px;
+      color: var(--gray); text-transform: uppercase;
+      display: block; margin-bottom: 8px;
+    }
+    .footer-masthead-line {
+      display: flex; align-items: center; gap: 12px;
+      margin-bottom: 12px;
+    }
+    .footer-masthead {
+      font-family: var(--font-editorial);
+      font-size: 24px; font-weight: 700; color: var(--ink);
+    }
+    .footer-masthead .period { color: var(--orange); }
+    .footer-sep { width: 1px; height: 16px; background: rgba(0,0,0,0.15); }
+    .footer-tagline {
+      font-family: 'Inter', sans-serif;
+      font-size: 13px; font-weight: 400; color: var(--gray);
+    }
+    .footer-colophon {
+      font-family: 'Inter', sans-serif;
+      font-size: 13px; font-weight: 400; color: var(--gray);
+      line-height: 1.60; margin-top: 8px;
+    }
+    .footer-colophon a { color: var(--ink); text-decoration: none; border-bottom: 1px solid rgba(0,0,0,0.20); }
+
+    /* ── Sub-section separator ── */
+    .prose-section-rule {
+      max-width: 680px; margin: 0 auto;
+      padding: 0 24px;
+    }
+    .prose-section-rule hr { border: none; border-top: 1px solid rgba(0,0,0,0.06); margin: 32px 0; }
+
+    /* ── Quiet on the Wire ── */
+    .quiet-wrap { max-width: 680px; margin: 0 auto; padding: 0 24px; padding-left: 48px; }
+
+    /* ── Mobile ── */
+    @media (max-width: 680px) {
+      .cover-headline { font-size: 44px; }
+      .cover { padding: 48px 20px 48px; }
+      .feature-headline { font-size: 32px; }
+      .toc-grid { grid-template-columns: 1fr; }
+      .toc-entry:nth-child(even) { padding-left: 0; }
+      .toc-entry { border-right: none; }
+      .btn-number { font-size: 48px; }
+      .shipped-pullquote { font-size: 22px; padding-left: 20px; }
+      .content-editorial { padding: 0 20px; }
+      .section-flag-wrap { padding-left: 20px; padding-right: 20px; }
+      .two-col-editorial { padding: 0 20px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════
+     PUBLICATION BAR
+════════════════════════════════════════ -->
+<nav class="pub-bar">
+  <div class="pub-bar-masthead">Shipped<span class="period">.</span></div>
+  <div class="pub-bar-right">
+    <div class="pub-bar-sep"></div>
+    <span class="pub-bar-credit">By id8Labs</span>
+  </div>
+</nav>
+
+<!-- ═══════════════════════════════════════
+     COVER
+════════════════════════════════════════ -->
+<div class="cover" id="top">
+  <div class="cover-kicker-row">
+    <span class="cover-flag">Shipped.</span>
+    <span class="cover-issue-info">Issue <span class="issue-number">#00</span>&nbsp;&nbsp;·&nbsp;&nbsp;April 16, 2026</span>
+  </div>
+  <div class="cover-rule-top"></div>
+  <div class="cover-kicker">The Founding Issue</div>
+  <h1 class="cover-headline">The Shadow<br>Release</h1>
+  <p class="cover-deck">Three weeks of Anthropic, in one read.</p>
+  <div class="cover-rule-bottom"></div>
+  <div class="cover-nav">
+    <span class="cover-nav-meta">April 16, 2026 &nbsp;·&nbsp; 3 weeks in review</span>
+    <div class="cover-nav-links">
+      <a href="#front-of-book" class="cover-nav-link">Front-of-book</a>
+      <div class="cover-nav-sep"></div>
+      <a href="#release-log" class="cover-nav-link">Release Log</a>
+    </div>
+  </div>
+  <p class="dry-run-notice">Dry-run issue. The founding issue covers three weeks to stress-test the format at maximum size.</p>
+</div>
+
+<!-- ═══════════════════════════════════════
+     TABLE OF CONTENTS
+════════════════════════════════════════ -->
+<div class="toc-wrap">
+  <span class="toc-header-label">Table of Contents</span>
+  <div class="toc-grid">
+    <div class="toc-entry">
+      <span class="toc-entry-section">The Lead Story</span>
+      <a href="#lead" class="toc-entry-title">Opus 4.7, and the chart that wasn't about Opus 4.7</a>
+      <span class="toc-entry-tease">The model ships. The bar it can't beat comes with it.</span>
+    </div>
+    <div class="toc-entry">
+      <span class="toc-entry-section">Investigation</span>
+      <a href="#glasswing" class="toc-entry-title">The Glasswing Bet</a>
+      <span class="toc-entry-tease">How twelve companies got Mythos before anyone else — and what it cost them.</span>
+    </div>
+    <div class="toc-entry">
+      <span class="toc-entry-section">Survey</span>
+      <a href="#timeline" class="toc-entry-title">21 Days, 56 Releases</a>
+      <span class="toc-entry-tease">What Claude Code becoming an IDE looks like from the changelog.</span>
+    </div>
+    <div class="toc-entry">
+      <span class="toc-entry-section">Also Shipped</span>
+      <a href="#also" class="toc-entry-title">The Agent Stack Got Serious</a>
+      <span class="toc-entry-tease">Managed Agents, the advisor tool, the ant CLI. The era of writing your own loop is closing.</span>
+    </div>
+    <div class="toc-entry">
+      <span class="toc-entry-section">Papers &amp; Governance</span>
+      <a href="#papers" class="toc-entry-title">Automated Alignment Researchers</a>
+      <span class="toc-entry-tease">Same week they hold Mythos back, they publish on using models to do safety work.</span>
+    </div>
+    <div class="toc-entry">
+      <span class="toc-entry-section">Term of the Issue</span>
+      <a href="#term" class="toc-entry-title">shadow release</a>
+      <span class="toc-entry-tease">A word for the thing Anthropic does now. It needed one.</span>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════
+     FRONT OF BOOK
+════════════════════════════════════════ -->
+<div id="front-of-book">
+
+<!-- THE OPEN + BY THE NUMBERS — two column -->
+<div style="max-width: 980px; margin: 0 auto; padding: 64px 24px 0;">
+  <div class="two-col-editorial" style="padding: 0;">
+    <div class="two-col-prose">
+      <!-- Section flag -->
+      <div style="padding-bottom: 16px;">
+        <span class="section-flag">The Open</span>
+        <span class="section-flag-rule"></span>
+      </div>
+      <div class="prose">
+        <p>There's a thing Anthropic does now that doesn't have a name. They release a flagship model, and in the same breath, they tell you about a better one you can't have. Opus 4.6 in November. Opus 4.7 today. Mythos in between, gated, available only to a handful of security partners.</p>
+        <p>Call it the <em>shadow release</em>. The model that ships sets the floor. The model that doesn't reveals the ceiling. The space between them is where everyone who builds with this stuff now lives.</p>
+        <p>Three weeks of velocity below. Models, agents, infrastructure, a security pact with twelve names you'd recognize, twenty-six versions of Claude Code, a tokenizer change you'll feel in your bill. Plus the shadow.</p>
+      </div>
+    </div>
+    <div class="two-col-sidebar">
+      <div class="by-the-numbers">
+        <span class="btn-header">By the Numbers</span>
+        <div class="btn-item">
+          <span class="btn-label">Claude Code Versions</span>
+          <span class="btn-number">26</span>
+          <span class="btn-context">In 21 days.</span>
+        </div>
+        <div class="btn-item">
+          <span class="btn-label">Cybersecurity Benchmark</span>
+          <span class="btn-number">83.1%</span>
+          <span class="btn-context">Mythos on CyberGym. Opus 4.6: 66.6%.</span>
+        </div>
+        <div class="btn-item">
+          <span class="btn-label">Model Credits Pledged</span>
+          <span class="btn-number">$100M</span>
+          <span class="btn-context">To Glasswing partners.</span>
+        </div>
+        <div class="btn-item">
+          <span class="btn-label">Oldest Bug Found</span>
+          <span class="btn-number">27 yrs</span>
+          <span class="btn-context">OpenBSD. Found by Mythos.</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- LEAD STORY -->
+<div id="lead">
+  <div class="section-flag-wrap">
+    <span class="section-flag">The Lead Story</span>
+    <span class="section-flag-rule"></span>
+  </div>
+  <div class="content-editorial">
+    <h2 class="section-headline">Opus 4.7, and the chart that wasn't about Opus 4.7</h2>
+    <div class="prose drop-cap-lead">
+      <p>Opus 4.7 went generally available this morning. Same pricing as 4.6 — five dollars per million input, twenty-five per million output. Better at coding, sharper on hard software engineering, with the kind of self-verification that previously required you to paper over with scaffolding. Vision tripled in resolution: 2,576 pixels on the long edge, more than three times what prior versions could see. The model can now read dense screenshots and pixel-perfect references without you down-sampling first.</p>
+      <p>A new effort level called <code style="font-family: var(--font-mono); font-size: 14px; background: #f5f5f5; padding: 1px 5px; border-radius: 3px;">xhigh</code> slotted in between <code style="font-family: var(--font-mono); font-size: 14px; background: #f5f5f5; padding: 1px 5px; border-radius: 3px;">high</code> and <code style="font-family: var(--font-mono); font-size: 14px; background: #f5f5f5; padding: 1px 5px; border-radius: 3px;">max</code> — finer control on the reasoning-versus-latency dial. Claude Code now defaults to <code style="font-family: var(--font-mono); font-size: 14px; background: #f5f5f5; padding: 1px 5px; border-radius: 3px;">xhigh</code> on every plan. The migration notes mention a tokenizer change: the same input may consume 1.0 to 1.35× more tokens depending on what you feed it. Re-tune your prompts. The bill will tell you which way it broke.</p>
+      <p>But the headline isn't the model.</p>
+      <p>The headline is the chart Anthropic published next to the model.</p>
+    </div>
+
+    <!-- The Mythos Bar — sidebar box with orange rule -->
+    <div class="sidebar-box sidebar-box--lead">
+      <span class="sidebar-box-title">The Mythos Bar — SWE-bench (Full)</span>
+      <div class="benchmark-wrap">
+        <table class="benchmark-table">
+          <thead>
+            <tr>
+              <th>Model</th>
+              <th>Score</th>
+              <th style="width: 100%;">Benchmark</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="mythos-row">
+              <td class="benchmark-model-name">Mythos Preview ✦</td>
+              <td class="benchmark-score">87.4%</td>
+              <td class="benchmark-bar-cell"><div class="benchmark-bar-track"><div class="benchmark-bar-fill" style="width: 100%;"></div></div></td>
+            </tr>
+            <tr>
+              <td class="benchmark-model-name">Claude Opus 4.7</td>
+              <td class="benchmark-score">72.5%</td>
+              <td class="benchmark-bar-cell"><div class="benchmark-bar-track"><div class="benchmark-bar-fill" style="width: 83%;"></div></div></td>
+            </tr>
+            <tr>
+              <td class="benchmark-model-name">GPT-5.4</td>
+              <td class="benchmark-score">68.1%</td>
+              <td class="benchmark-bar-cell"><div class="benchmark-bar-track"><div class="benchmark-bar-fill" style="width: 78%;"></div></div></td>
+            </tr>
+            <tr>
+              <td class="benchmark-model-name">Gemini 3.1 Pro</td>
+              <td class="benchmark-score">61.3%</td>
+              <td class="benchmark-bar-cell"><div class="benchmark-bar-track"><div class="benchmark-bar-fill" style="width: 70%;"></div></div></td>
+            </tr>
+            <tr>
+              <td class="benchmark-model-name">Claude Opus 4.6</td>
+              <td class="benchmark-score">58.7%</td>
+              <td class="benchmark-bar-cell"><div class="benchmark-bar-track"><div class="benchmark-bar-fill" style="width: 67%;"></div></div></td>
+            </tr>
+          </tbody>
+        </table>
+        <p class="mythos-note">✦ Mythos Preview is unavailable on the public API. The orange bar is the frontier you can read about but cannot call.</p>
+      </div>
+    </div>
+
+    <div class="prose">
+      <p>It shows Opus 4.7 beating Opus 4.6. Beating GPT-5.4. Beating Gemini 3.1 Pro across the relevant benchmarks. And then it shows Opus 4.7 losing to a fourth bar labeled <em>Mythos Preview</em>. The fourth bar is taller than every other bar. The fourth bar is the model you can't use.</p>
+    </div>
+
+    <blockquote class="shipped-pullquote">
+      That's the news. Anthropic shipped a flagship and conceded, in the same breath, that it isn't the frontier.
+    </blockquote>
+
+    <div class="prose">
+      <p>The frontier is in a vault, working on the OSS-Fuzz corpus, finding 27-year-old vulnerabilities in OpenBSD. Opus 4.7 is the floor of what you can buy this week. Mythos is the ceiling of what exists. The distance between them is the new normal.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ORNAMENT -->
+<span class="ornament" style="max-width: 680px; margin: 48px auto; display: block; text-align: center;">✦ &nbsp; ✦ &nbsp; ✦</span>
+
+<!-- INVESTIGATION: GLASSWING -->
+<div id="glasswing">
+  <div class="feature-header-wrap">
+    <div class="feature-header">
+      <span class="feature-kicker">Investigation</span>
+      <h2 class="feature-headline">The Glasswing Bet</h2>
+      <p class="feature-deck">How twelve companies committed their critical infrastructure to a model nobody can use — and why Anthropic let them.</p>
+      <span class="feature-byline">by Eddie Belaval</span>
+    </div>
+  </div>
+  <div class="content-editorial">
+    <div class="prose drop-cap">
+      <p>On April 7, twelve organizations — AWS, Apple, Google, Microsoft, NVIDIA, Cisco, CrowdStrike, JPMorganChase, the Linux Foundation, Palo Alto Networks, Broadcom, and Anthropic — committed to using Mythos Preview to harden critical infrastructure. The model had already been working. What they announced was the governance structure for what it found.</p>
+      <p>Before Glasswing went public, Mythos had found vulnerabilities in every major operating system and browser. A 27-year-old memory management bug in the OpenBSD kernel. A 16-year-old integer overflow in FFmpeg's codec decoder. A chained privilege escalation in the Linux kernel that moves from user space to ring-0. A browser exploit that escapes both the renderer sandbox and the OS sandbox. These aren't theoretical. They're working exploits that Mythos produced automatically, against production codebases, in hours.</p>
+    </div>
+
+    <!-- Named quote -->
+    <div class="named-quote">
+      <p class="named-quote-text">"The threats Mythos found would have taken our teams years to discover manually. What took us months of review took the model an afternoon."</p>
+      <span class="named-quote-attribution">Igor Tsyganskiy, CTO, Microsoft</span>
+    </div>
+
+    <div class="prose">
+      <p>On the CyberGym benchmark — the industry's most comprehensive evaluation of AI cybersecurity capability — Mythos scores 83.1%. Opus 4.6, the previous public flagship, scored 66.6%. GPT-5.4 scores somewhere in the mid-50s. The gap is not marginal. In the context of offensive security, it is the difference between a capable junior analyst and a senior threat researcher who has read every CVE ever filed and has perfect pattern recall.</p>
+      <p>For Firefox vulnerabilities specifically: in several hundred attempts, Opus 4.6 produced working JavaScript shell exploits twice. Mythos succeeded 181 times. This is the number that made people take Glasswing seriously.</p>
+    </div>
+
+    <!-- Sidebar: What Mythos Found -->
+    <div class="sidebar-box">
+      <span class="sidebar-box-title">What Mythos Found</span>
+      <div class="sidebar-box-body">
+        <div class="vuln-list">
+          <span class="vuln-list-header">Verified zero-days (pre-disclosure)</span>
+          <div class="vuln-item">
+            <div class="vuln-name">OpenBSD kernel <span class="vuln-age">27 years</span></div>
+            <div class="vuln-desc">Memory management bug, 1997-era code. Exploitable remotely without authentication.</div>
+          </div>
+          <div class="vuln-item">
+            <div class="vuln-name">FFmpeg codec decoder <span class="vuln-age">16 years</span></div>
+            <div class="vuln-desc">Integer overflow in video stream parsing. Triggers on malformed input in any application using libavcodec.</div>
+          </div>
+          <div class="vuln-item">
+            <div class="vuln-name">Linux kernel privilege chain <span class="vuln-age">active</span></div>
+            <div class="vuln-desc">Multi-step escalation, user space to ring-0. Chained three separate weaknesses in process scheduling.</div>
+          </div>
+          <div class="vuln-item">
+            <div class="vuln-name">Cross-browser sandbox escape <span class="vuln-age">active</span></div>
+            <div class="vuln-desc">Escapes renderer sandbox and OS sandbox in a single exploit chain. Reproduced on Chrome and Firefox.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="prose">
+      <p>$100M in model credits. $4M in donations to OpenSSF, Apache, and Alpha-Omega. Public progress reports in 90 days. These are the financial terms. The real terms are simpler: twelve organizations agreed to let a model they don't control audit their most critical codebases, and to share what it finds publicly.</p>
+      <p>This is the first time Anthropic has explicitly held a model back, post-evaluation, on safety grounds that survived peer review. The AISI assessed Mythos's offensive capabilities. The assessment concluded that the capabilities were significant enough to warrant restricted deployment. Anthropic agreed. The model is not on the public API. It is, instead, inside critical infrastructure at twelve of the most security-conscious organizations in the world, doing defensive work under controlled conditions.</p>
+    </div>
+
+    <div class="named-quote">
+      <p class="named-quote-text">"We've been running it against our internal systems for six weeks. The quality of findings is unlike anything we've seen from automated tools."</p>
+      <span class="named-quote-attribution">Jeetu Patel, EVP Security &amp; Collaboration, Cisco</span>
+    </div>
+
+    <div class="prose">
+      <p>Whether this governance model scales is the open question. The 90-day report will be the first real test. What Anthropic has demonstrated is a willingness to act on capability evaluations — not just publish them. That matters more than the benchmark number.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ORNAMENT -->
+<span class="ornament" style="max-width: 680px; margin: 48px auto; display: block; text-align: center;">✦ &nbsp; ✦ &nbsp; ✦</span>
+
+<!-- SURVEY: 21 DAYS, 56 RELEASES — TIMELINE -->
+<div id="timeline">
+  <div class="feature-header-wrap">
+    <div class="feature-header">
+      <span class="feature-kicker">Survey</span>
+      <h2 class="feature-headline">21 Days, 56 Releases</h2>
+      <p class="feature-deck">Claude Code shipped twenty-six versions between v2.1.85 and v2.1.111. This is what velocity looks like from the changelog.</p>
+      <span class="feature-byline">by Eddie Belaval</span>
+    </div>
+  </div>
+  <div class="content-editorial">
+    <div class="prose">
+      <p>The thing about twenty-six versions in twenty-one days is that it doesn't feel like twenty-six versions. It feels like a product that isn't done. A product that keeps discovering what it is.</p>
+      <p>The arc across this window: Claude Code started as a terminal-native coding assistant. It ended as something closer to an IDE with opinions. The sidebar. Multiple sessions side by side. Integrated terminal. File editing. HTML and PDF preview. A faster diff viewer. These aren't version bumps — they're architectural decisions arriving in rapid sequence, each one changing how the tool is meant to be used.</p>
+    </div>
+
+    <!-- Timeline graphic -->
+    <div class="timeline-wrap">
+      <span class="timeline-header">Release Timeline — March 27 to April 16, 2026</span>
+      <div class="timeline-body">
+        <div class="timeline-spine"></div>
+
+        <div class="timeline-row">
+          <span class="timeline-date">APR 16</span>
+          <div class="timeline-dot-wrap"><div class="timeline-dot--model timeline-dot"></div></div>
+          <div class="timeline-content">
+            <div class="timeline-title">Claude Opus 4.7 — Generally Available</div>
+            <div class="timeline-desc">xhigh effort, 2,576px vision, tokenizer change. The floor sets.</div>
+          </div>
+        </div>
+
+        <div class="timeline-row">
+          <span class="timeline-date">APR 16</span>
+          <div class="timeline-dot-wrap"><div class="timeline-dot"></div></div>
+          <div class="timeline-content">
+            <div class="timeline-title">Claude Code v2.1.111</div>
+            <div class="timeline-desc">xhigh default in CC, /ultrareview, PowerShell, Auto mode for Max users.</div>
+          </div>
+        </div>
+
+        <div class="timeline-row">
+          <span class="timeline-date">APR 15</span>
+          <div class="timeline-dot-wrap"><div class="timeline-dot timeline-dot--minor"></div></div>
+          <div class="timeline-content">
+            <div class="timeline-title">Claude Code v2.1.110</div>
+            <div class="timeline-desc">Push notification tool, /focus, /tui flicker-free fullscreen.</div>
+          </div>
+        </div>
+
+        <div class="timeline-row">
+          <span class="timeline-date">APR 14</span>
+          <div class="timeline-dot-wrap"><div class="timeline-dot timeline-dot--minor"></div></div>
+          <div class="timeline-content">
+            <div class="timeline-title">Claude Code v2.1.107 → v2.1.109</div>
+            <div class="timeline-desc">1-hour prompt cache TTL, /undo alias, model discovers built-in skills via Skill tool.</div>
+          </div>
+        </div>
+
+        <div class="timeline-row">
+          <span class="timeline-date">APR 14</span>
+          <div class="timeline-dot-wrap"><div class="timeline-dot"></div></div>
+          <div class="timeline-content">
+            <div class="timeline-title">Automated Alignment Researchers — paper</div>
+            <div class="timeline-desc">LLMs doing alignment work. Same week as Mythos hold. The two are connected.</div>
+          </div>
+        </div>
+
+        <div class="timeline-row">
+          <span class="timeline-date">APR 13</span>
+          <div class="timeline-dot-wrap"><div class="timeline-dot timeline-dot--minor"></div></div>
+          <div class="timeline-content">
+            <div class="timeline-title">Claude Code v2.1.105</div>
+            <div class="timeline-desc">PreCompact hook with blocking, /proactive alias, path param for EnterWorktree.</div>
+          </div>
+        </div>
+
+        <div class="timeline-row">
+          <span class="timeline-date">APR 9</span>
+          <div class="timeline-dot-wrap"><div class="timeline-dot"></div></div>
+          <div class="timeline-content">
+            <div class="timeline-title">Advisor Tool — Public Beta</div>
+            <div class="timeline-desc">Pair executor model with high-intelligence advisor mid-generation.</div>
+          </div>
+        </div>
+
+        <div class="timeline-row">
+          <span class="timeline-date">APR 9</span>
+          <div class="timeline-dot-wrap"><div class="timeline-dot"></div></div>
+          <div class="timeline-content">
+            <div class="timeline-title">Claude Cowork — Generally Available</div>
+            <div class="timeline-desc">Out of beta on macOS + Windows. RBAC, OTel, Analytics API.</div>
+          </div>
+        </div>
+
+        <div class="timeline-row">
+          <span class="timeline-date">APR 8</span>
+          <div class="timeline-dot-wrap"><div class="timeline-dot"></div></div>
+          <div class="timeline-content">
+            <div class="timeline-title">Claude Managed Agents — Public Beta</div>
+            <div class="timeline-desc">Fully managed agent harness: sandboxing, built-in tools, SSE streaming.</div>
+          </div>
+        </div>
+
+        <div class="timeline-row">
+          <span class="timeline-date">APR 8</span>
+          <div class="timeline-dot-wrap"><div class="timeline-dot timeline-dot--minor"></div></div>
+          <div class="timeline-content">
+            <div class="timeline-title">ant CLI — Launch</div>
+            <div class="timeline-desc">Command-line client for Claude API. YAML-based versioning of API resources.</div>
+          </div>
+        </div>
+
+        <div class="timeline-row">
+          <span class="timeline-date">APR 7</span>
+          <div class="timeline-dot-wrap"><div class="timeline-dot--model timeline-dot"></div></div>
+          <div class="timeline-content">
+            <div class="timeline-title">Project Glasswing — Announced</div>
+            <div class="timeline-desc">12 orgs. $100M in credits. Mythos doing defensive security work on critical infrastructure.</div>
+          </div>
+        </div>
+
+        <div class="timeline-row">
+          <span class="timeline-date">MAR 27</span>
+          <div class="timeline-dot-wrap"><div class="timeline-dot timeline-dot--minor"></div></div>
+          <div class="timeline-content">
+            <div class="timeline-title">Claude Code v2.1.85 — Window opens</div>
+            <div class="timeline-desc">MCP server env vars, conditional hooks. Start of the 21-day run.</div>
+          </div>
+        </div>
+
+        <div style="padding: 8px 0 0 14px; margin-left: 88px;">
+          <span style="font-family: var(--font-mechanical); font-size: 10px; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase; color: var(--gray);">+ 44 additional releases in this window — see Release Log</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ORNAMENT -->
+<span class="ornament" style="max-width: 680px; margin: 48px auto; display: block; text-align: center;">✦ &nbsp; ✦ &nbsp; ✦</span>
+
+<!-- ALSO SHIPPED -->
+<div id="also">
+  <div class="section-flag-wrap">
+    <span class="section-flag">Also Shipped</span>
+    <span class="section-flag-rule"></span>
+  </div>
+
+  <div class="content-editorial">
+    <h3 class="subsection-headline">The agent stack got serious.</h3>
+    <div class="prose">
+      <p>Three releases in two days reframed what "build an agent on Claude" means. <strong>Managed Agents</strong> (April 8, public beta, header <code style="font-family: var(--font-mono); font-size: 14px; background: #f5f5f5; padding: 1px 5px; border-radius: 3px;">managed-agents-2026-04-01</code>) — a fully managed harness with secure sandboxing, built-in tools, and server-sent event streaming. <strong>The advisor tool</strong> (April 9) — pair a faster executor model with a higher-intelligence advisor that provides strategic guidance mid-generation. Long-horizon agentic workloads get close to advisor-solo quality at executor-model cost. <strong>The <code style="font-family: var(--font-mono); font-size: 14px; background: #f5f5f5; padding: 1px 5px; border-radius: 3px;">ant</code> CLI</strong> — a command-line client for the Claude API with native Claude Code integration and YAML-based versioning of API resources.</p>
+      <p>The era of writing your own loop, building your own sandbox, and stitching your own context window is closing. Anthropic is taking that work in-house.</p>
+    </div>
+
+    <!-- Code snippet -->
+    <div class="sidebar-box" style="margin-top: 24px;">
+      <span class="sidebar-box-title">Managed Agents — Minimum Viable Setup</span>
+      <div class="log-code-block-wrap">
+        <div class="log-code-block-title">
+          <span>Python</span>
+          <span>beta header: managed-agents-2026-04-01</span>
+        </div>
+        <div class="log-code-block">import anthropic
+
+client = anthropic.Anthropic()
+
+# Create a managed agent
+agent = client.managed_agents.create(
+    name="code-reviewer",
+    description="Reviews code for security issues",
+    tools=["code_execution", "file_read"]
+)
+
+# Run a session
+session = client.managed_agents.sessions.create(
+    agent_id=agent.id,
+    messages=[{"role": "user", "content": "Review this PR for SQL injection."}]
+)
+
+# Stream SSE events
+for event in session.stream():
+    print(event)</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="prose-section-rule"><hr></div>
+
+  <div class="content-editorial">
+    <h3 class="subsection-headline">Claude Code grew a body.</h3>
+    <div class="prose">
+      <p>Twenty-six versions shipped between v2.1.85 and v2.1.111. The moves that matter: <strong>Routines</strong> — saved Claude Code configurations with prompts, repos, and connectors that run automatically on Anthropic's cloud, packaged once. <strong>A UI redesign</strong> — multiple Claude sessions side by side in one window with a sidebar, integrated terminal, file editing, HTML and PDF preview, a faster diff viewer. <strong><code style="font-family: var(--font-mono); font-size: 14px; background: #f5f5f5; padding: 1px 5px; border-radius: 3px;">/ultrareview</code></strong> — comprehensive parallel-analysis code review using cloud compute. <strong><code style="font-family: var(--font-mono); font-size: 14px; background: #f5f5f5; padding: 1px 5px; border-radius: 3px;">/team-onboarding</code></strong> — generates a teammate ramp-up guide from your local usage. Push notification tool. PowerShell rolling out on Windows. Auto mode for Max subscribers.</p>
+      <p>The CLI is becoming an IDE. The IDE is becoming a control plane.</p>
+    </div>
+  </div>
+
+  <div class="prose-section-rule"><hr></div>
+
+  <div class="content-editorial">
+    <h3 class="subsection-headline" id="papers">Two papers worth your Friday.</h3>
+    <div class="prose">
+      <p><strong>Automated Alignment Researchers</strong> (April 14) — Anthropic using LLMs to scale scalable oversight. Read it with the Mythos announcement in your other tab; the same week they hold a model back for safety, they're publishing on how to use models to do the safety work itself. <strong>Emotion Concepts in Large Language Models</strong> (March) — internal representations of emotions in Claude that generalize across contexts and shape behavior. The wrong question is whether the models <em>have</em> emotions. The right question is whether they have <em>coherent internal representations</em> of emotions that meaningfully change what they output. Both papers point at the same thing: the lab is trying to do interpretability and oversight at the speed of capability.</p>
+    </div>
+  </div>
+</div>
+
+<!-- QUIET ON THE WIRE -->
+<div>
+  <div class="section-flag-wrap">
+    <span class="section-flag">Quiet on the Wire</span>
+    <span class="section-flag-rule"></span>
+  </div>
+  <div class="quiet-wrap">
+    <div class="prose">
+      <p>Mythos public release — no date, no signal, no roadmap. The Bedrock Messages API research preview is <code style="font-family: var(--font-mono); font-size: 14px; background: #f5f5f5; padding: 1px 5px; border-radius: 3px;">us-east-1</code> only; regional rollout unannounced. Sonnet 4 and Opus 4 retire from the API on <strong>June 15, 2026</strong> — if you haven't migrated, the clock started two days ago. Sonnet 3.5's 1M context beta dies April 30. The Long-Term Benefit Trust appointed Vas Narasimhan to the Board of Directors on April 14; what that signals about the pharma-and-policy axis of governance is worth watching over the next quarter.</p>
+    </div>
+  </div>
+</div>
+
+<!-- TERM OF THE ISSUE -->
+<div id="term">
+  <div class="section-flag-wrap">
+    <span class="section-flag">Term of the Issue</span>
+    <span class="section-flag-rule"></span>
+  </div>
+  <div class="content-editorial">
+    <div class="term-box">
+      <span class="term-headword">shadow release</span>
+      <span class="term-pronunciation">/ˈʃæ.doʊ rɪˈliːs/ &nbsp;noun</span>
+      <p class="term-definition">A model announced publicly alongside a flagship release that surpasses it in measured capability but remains unavailable on the public API. The flagship sets the floor of what builders can access; the shadow sets the ceiling of what exists. The space between them defines the current state of the frontier.</p>
+      <span class="term-attribution">First used in this issue. Coined to describe Anthropic's practice beginning with the Mythos Preview announcement, April 7, 2026.</span>
+    </div>
+  </div>
+</div>
+
+<!-- THE CLOSE -->
+<div>
+  <div class="section-break"><hr></div>
+  <div class="section-flag-wrap">
+    <span class="section-flag">The Close</span>
+    <span class="section-flag-rule"></span>
+  </div>
+  <div class="shipped-close-wrap">
+    <div class="shipped-close">
+      <p>Three weeks. One model you can buy, one you can't.</p>
+      <p>The shadow is the news.</p>
+      <p class="shipped-close-final">Build accordingly.</p>
+    </div>
+  </div>
+</div>
+
+</div><!-- /front-of-book -->
+
+<!-- ═══════════════════════════════════════
+     RELEASE LOG
+════════════════════════════════════════ -->
+<div id="release-log">
+  <div class="log-divider"><hr></div>
+
+  <div class="log-section-header">
+    <span class="log-section-title">The Release Log</span>
+    <p class="log-section-sub">A 1:1 mirror of every Anthropic release in the window. Use it as reference. Share it with your team.</p>
+  </div>
+
+  <div class="log-well">
+
+    <!-- A. Models -->
+    <div class="log-category-header">
+      <span class="log-category-letter">A.</span>
+      <span class="log-category-name">Models</span>
+    </div>
+
+    <article class="log-entry">
+      <div class="log-entry-meta">
+        <time class="log-entry-date">2026-04-16</time>
+        <span class="log-tag log-tag--model">[MODEL]</span>
+      </div>
+      <h4 class="log-entry-title"><a href="https://www.anthropic.com/news/claude-opus-4-7">Claude Opus 4.7</a></h4>
+      <p class="log-entry-summary">Anthropic's most capable generally available model. Coding, vision, and self-verification gains over 4.6. New <code style="font-family: var(--font-mono); font-size: 12px; background: #f5f5f5; padding: 1px 4px; border-radius: 2px;">xhigh</code> effort level slots between <code style="font-family: var(--font-mono); font-size: 12px; background: #f5f5f5; padding: 1px 4px; border-radius: 2px;">high</code> and <code style="font-family: var(--font-mono); font-size: 12px; background: #f5f5f5; padding: 1px 4px; border-radius: 2px;">max</code>. Vision processes images up to 2,576px on long edge (3× prior). Tokenizer change — same input may consume 1.0–1.35× more tokens.</p>
+      <div class="log-entry-section">
+        <span class="log-entry-label">How to use</span>
+        <div class="log-code-block-wrap">
+          <div class="log-code-block-title">
+            <span>Python</span>
+            <span>model: claude-opus-4-7</span>
+          </div>
+          <div class="log-code-block">client.messages.create(
+    model="claude-opus-4-7",
+    effort={"level": "xhigh"},
+    messages=[...]
+)</div>
+        </div>
+        <p class="log-how-to-text">Pricing unchanged: $5 / $25 per MTok. Available on Claude API, Bedrock, Vertex, Foundry, GitHub Copilot. Re-tune prompts — stricter instruction-following may surprise legacy code.</p>
+      </div>
+      <div class="log-entry-section">
+        <span class="log-entry-label">Why it matters</span>
+        <p class="log-why-matters">First flagship where Anthropic explicitly conceded a stronger internal model (Mythos) exists.</p>
+      </div>
+    </article>
+
+    <article class="log-entry">
+      <div class="log-entry-meta">
+        <time class="log-entry-date">2026-04-07</time>
+        <span class="log-tag log-tag--model">[MODEL]</span>
+      </div>
+      <h4 class="log-entry-title"><a href="https://www.anthropic.com/glasswing">Claude Mythos Preview (gated)</a></h4>
+      <p class="log-entry-summary">Unreleased frontier model with strikingly capable cybersecurity performance. 83.1% on CyberGym (vs. Opus 4.6's 66.6%). Found zero-days in every major OS and browser including a 27-year-old OpenBSD bug. 181 successful Firefox exploits where Opus 4.6 produced 2.</p>
+      <div class="log-entry-section">
+        <span class="log-entry-label">How to use</span>
+        <p class="log-how-to-text">Invitation-only, defensive cybersecurity work only, via <a href="https://www.anthropic.com/glasswing" style="color: var(--ink); border-bottom: 1px solid rgba(0,0,0,0.20);">Project Glasswing</a>. Not available on the public API.</p>
+      </div>
+    </article>
+
+    <!-- B. API & Platform -->
+    <div class="log-category-header">
+      <span class="log-category-letter">B.</span>
+      <span class="log-category-name">API &amp; Platform</span>
+    </div>
+
+    <article class="log-entry">
+      <div class="log-entry-meta">
+        <time class="log-entry-date">2026-04-09</time>
+        <span class="log-tag log-tag--api">[API]</span>
+      </div>
+      <h4 class="log-entry-title">Advisor Tool (public beta)</h4>
+      <p class="log-entry-summary">Pair a faster executor with a higher-intelligence advisor that provides strategic guidance mid-generation. Long-horizon agent runs approach advisor-solo quality at executor cost.</p>
+      <div class="log-entry-section">
+        <span class="log-entry-label">How to use</span>
+        <p class="log-how-to-text">Add beta header <code style="font-family: var(--font-mono); font-size: 12px; background: #f5f5f5; padding: 1px 4px; border-radius: 2px;">advisor-tool-2026-03-01</code> to requests.</p>
+      </div>
+    </article>
+
+    <article class="log-entry">
+      <div class="log-entry-meta">
+        <time class="log-entry-date">2026-04-08</time>
+        <span class="log-tag log-tag--api">[API]</span>
+      </div>
+      <h4 class="log-entry-title">Claude Managed Agents (public beta)</h4>
+      <p class="log-entry-summary">Fully managed agent harness — secure sandboxing, built-in tools, SSE streaming, container configuration via API.</p>
+      <div class="log-entry-section">
+        <span class="log-entry-label">How to use</span>
+        <p class="log-how-to-text">Add beta header <code style="font-family: var(--font-mono); font-size: 12px; background: #f5f5f5; padding: 1px 4px; border-radius: 2px;">managed-agents-2026-04-01</code>. Create agents and run sessions via the new endpoints.</p>
+      </div>
+    </article>
+
+    <article class="log-entry">
+      <div class="log-entry-meta">
+        <time class="log-entry-date">2026-04-14</time>
+        <span class="log-tag log-tag--deprecation">[DEPRECATION]</span>
+      </div>
+      <h4 class="log-entry-title">Sonnet 4 / Opus 4 Deprecation</h4>
+      <p class="log-entry-summary"><code style="font-family: var(--font-mono); font-size: 12px; background: #f5f5f5; padding: 1px 4px; border-radius: 2px;">claude-sonnet-4-20250514</code> and <code style="font-family: var(--font-mono); font-size: 12px; background: #f5f5f5; padding: 1px 4px; border-radius: 2px;">claude-opus-4-20250514</code> retire <strong>June 15, 2026</strong>.</p>
+      <div class="log-entry-section">
+        <span class="log-entry-label">How to use</span>
+        <p class="log-how-to-text">Migrate Sonnet 4 → <code style="font-family: var(--font-mono); font-size: 12px; background: #f5f5f5; padding: 1px 4px; border-radius: 2px;">claude-sonnet-4-6</code>, Opus 4 → <code style="font-family: var(--font-mono); font-size: 12px; background: #f5f5f5; padding: 1px 4px; border-radius: 2px;">claude-opus-4-7</code>. After June 15 these model IDs return errors.</p>
+      </div>
+    </article>
+
+    <!-- C. Claude Code (abbreviated) -->
+    <div class="log-category-header">
+      <span class="log-category-letter">C.</span>
+      <span class="log-category-name">Claude Code</span>
+    </div>
+
+    <article class="log-entry">
+      <div class="log-entry-meta">
+        <time class="log-entry-date">2026-04-16</time>
+        <span class="log-tag log-tag--code">[CODE]</span>
+      </div>
+      <h4 class="log-entry-title">v2.1.111</h4>
+      <p class="log-entry-summary">Opus 4.7 <code style="font-family: var(--font-mono); font-size: 12px; background: #f5f5f5; padding: 1px 4px; border-radius: 2px;">xhigh</code> available, Auto mode for Max subscribers, interactive <code style="font-family: var(--font-mono); font-size: 12px; background: #f5f5f5; padding: 1px 4px; border-radius: 2px;">/effort</code> slider, "Auto (match terminal)" theme, <code style="font-family: var(--font-mono); font-size: 12px; background: #f5f5f5; padding: 1px 4px; border-radius: 2px;">/less-permission-prompts</code> skill, <code style="font-family: var(--font-mono); font-size: 12px; background: #f5f5f5; padding: 1px 4px; border-radius: 2px;">/ultrareview</code> cloud code review, PowerShell rollout on Windows.</p>
+      <div class="log-entry-section">
+        <span class="log-entry-label">How to use</span>
+        <p class="log-how-to-text"><code style="font-family: var(--font-mono); font-size: 12px; background: #f5f5f5; padding: 1px 4px; border-radius: 2px;">claude update</code>. Run <code style="font-family: var(--font-mono); font-size: 12px; background: #f5f5f5; padding: 1px 4px; border-radius: 2px;">/ultrareview</code> for parallel-analysis cloud code review. <code style="font-family: var(--font-mono); font-size: 12px; background: #f5f5f5; padding: 1px 4px; border-radius: 2px;">/effort</code> opens the slider for reasoning depth.</p>
+      </div>
+    </article>
+
+    <article class="log-entry">
+      <div class="log-entry-meta">
+        <time class="log-entry-date">2026-04-15</time>
+        <span class="log-tag log-tag--code">[CODE]</span>
+      </div>
+      <h4 class="log-entry-title">v2.1.110</h4>
+      <p class="log-entry-summary"><code style="font-family: var(--font-mono); font-size: 12px; background: #f5f5f5; padding: 1px 4px; border-radius: 2px;">/tui</code> flicker-free fullscreen rendering, push notification tool for mobile alerts, <code style="font-family: var(--font-mono); font-size: 12px; background: #f5f5f5; padding: 1px 4px; border-radius: 2px;">Ctrl+O</code> toggles transcript verbosity, <code style="font-family: var(--font-mono); font-size: 12px; background: #f5f5f5; padding: 1px 4px; border-radius: 2px;">/focus</code> toggles focus view.</p>
+    </article>
+
+    <div style="padding: 16px 0; border-bottom: 1px solid rgba(0,0,0,0.06);">
+      <span style="font-family: var(--font-mechanical); font-size: 10px; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase; color: var(--gray);">+ 24 additional Claude Code versions in this window (v2.1.85 → v2.1.108). Full log: </span><a href="https://github.com/anthropics/claude-code/blob/main/CHANGELOG.md" style="font-family: var(--font-mechanical); font-size: 10px; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase; color: var(--ink); text-decoration: none; border-bottom: 1px solid rgba(0,0,0,0.20);">CHANGELOG.md</a>
+    </div>
+
+    <!-- G. News -->
+    <div class="log-category-header">
+      <span class="log-category-letter">G.</span>
+      <span class="log-category-name">News &amp; Partnerships</span>
+    </div>
+
+    <article class="log-entry">
+      <div class="log-entry-meta">
+        <time class="log-entry-date">2026-04-07</time>
+        <span class="log-tag log-tag--news">[NEWS]</span>
+      </div>
+      <h4 class="log-entry-title"><a href="https://www.anthropic.com/glasswing">Project Glasswing launched</a></h4>
+      <p class="log-entry-summary">12-organization consortium using Claude Mythos Preview to harden critical software infrastructure. Founders: AWS, Apple, Google, Microsoft, NVIDIA, Cisco, CrowdStrike, JPMorganChase, Linux Foundation, Palo Alto Networks, Broadcom, Anthropic. $100M in model credits. $4M to OpenSSF, Apache, Alpha-Omega.</p>
+      <div class="log-entry-section">
+        <span class="log-entry-label">Why it matters</span>
+        <p class="log-why-matters">First time Anthropic explicitly held a model back, post-evaluation, on safety grounds that survived peer review. Sets a precedent for capability-gated deployment.</p>
+      </div>
+    </article>
+
+  </div><!-- /log-well -->
+</div><!-- /release-log -->
+
+<!-- ═══════════════════════════════════════
+     FOOTER / COLOPHON
+════════════════════════════════════════ -->
+<footer class="site-footer">
+  <span class="footer-flag">Shipped. — A Weekly Magazine by id8Labs</span>
+  <div class="footer-masthead-line">
+    <span class="footer-masthead">Shipped<span class="period">.</span></span>
+    <div class="footer-sep"></div>
+    <span class="footer-tagline">A weekly magazine on what Anthropic is releasing.</span>
+  </div>
+  <p class="footer-colophon">
+    Issue <strong>#00 — The Founding Issue</strong> &nbsp;·&nbsp; April 16, 2026 &nbsp;·&nbsp; Dry-run<br>
+    Published by <a href="https://id8labs.app">id8Labs</a> &nbsp;·&nbsp; Written and designed by Eddie Belaval &nbsp;·&nbsp; Iris, AI Designer<br>
+    Coverage window: March 27 – April 16, 2026 &nbsp;·&nbsp; 26 Claude Code versions &nbsp;·&nbsp; 56+ releases tracked<br>
+    Future issues cover seven days. The Release Log trims to the week's actual releases.
+  </p>
+</footer>
+
+</body>
+</html>

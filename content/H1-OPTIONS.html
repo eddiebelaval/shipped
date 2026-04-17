@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Shipped. — H1 + Masthead Options</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT@9..144,300..900,0..100&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..900;1,6..96,400..900&family=DM+Serif+Display:ital@0;1&family=Newsreader:ital,opsz,wght@0,6..72,200..800;1,6..72,200..800&family=Inter:wght@400;500;600&family=Barlow+Condensed:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #1a1a1a;
+    --paper: #faf8f4;
+    --paper-card: #ffffff;
+    --gray-rule: #e5e3df;
+    --gray-text: #6b6b6b;
+    --orange: #ff6b35;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { background: var(--paper); color: var(--ink); }
+  body {
+    font-family: 'Inter', -apple-system, sans-serif;
+    line-height: 1.5;
+    padding: 0;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* Page chrome */
+  .top-bar {
+    background: var(--ink);
+    color: var(--paper);
+    padding: 14px 32px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+  .intro {
+    max-width: 800px;
+    margin: 64px auto;
+    padding: 0 32px;
+  }
+  .intro h1 {
+    font-family: 'Fraunces', serif;
+    font-weight: 700;
+    font-size: 48px;
+    line-height: 1.05;
+    letter-spacing: -0.025em;
+    margin-bottom: 16px;
+  }
+  .intro p {
+    font-size: 18px;
+    line-height: 1.6;
+    color: var(--gray-text);
+  }
+
+  /* Option card */
+  .option {
+    max-width: 1080px;
+    margin: 0 auto 96px;
+    padding: 0 32px;
+  }
+  .opt-label {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    border-bottom: 2px solid var(--ink);
+    padding-bottom: 12px;
+    margin-bottom: 32px;
+  }
+  .opt-num {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: 14px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--orange);
+  }
+  .opt-name {
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+    font-size: 20px;
+  }
+  .opt-meta {
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    color: var(--gray-text);
+    text-align: right;
+  }
+
+  /* Sample card */
+  .sample {
+    background: var(--paper-card);
+    border: 1px solid var(--gray-rule);
+    padding: 56px 64px;
+    margin-bottom: 24px;
+  }
+  .sample-tag {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gray-text);
+    margin-bottom: 16px;
+  }
+
+  .masthead-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 48px;
+    align-items: baseline;
+    margin-bottom: 8px;
+  }
+  .masthead-row > div { line-height: 1; }
+  .masthead-row .size-label {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 9px;
+    color: var(--gray-text);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-top: 12px;
+    line-height: 1.4;
+  }
+
+  .headline {
+    line-height: 1.02;
+    letter-spacing: -0.025em;
+    margin-bottom: 16px;
+  }
+  .deck {
+    font-family: 'Inter', sans-serif;
+    font-size: 17px;
+    color: var(--gray-text);
+    line-height: 1.5;
+    max-width: 600px;
+  }
+  .pullquote {
+    font-style: italic;
+    font-size: 28px;
+    line-height: 1.35;
+    border-left: 4px solid var(--orange);
+    padding-left: 24px;
+    margin: 24px 0;
+    max-width: 600px;
+  }
+  .body {
+    font-size: 18px;
+    line-height: 1.65;
+    max-width: 620px;
+  }
+  .body .dropcap {
+    float: left;
+    font-size: 5em;
+    line-height: 0.85;
+    padding-right: 12px;
+    padding-top: 4px;
+    font-weight: 700;
+    color: var(--orange);
+  }
+
+  /* Per-option font scoping */
+  .opt-1 .masthead, .opt-1 .headline, .opt-1 .pullquote, .opt-1 .body, .opt-1 .body .dropcap { font-family: 'Fraunces', serif; }
+  .opt-2 .masthead, .opt-2 .headline, .opt-2 .pullquote, .opt-2 .body, .opt-2 .body .dropcap { font-family: 'Libre Baskerville', serif; }
+  .opt-3 .masthead, .opt-3 .headline, .opt-3 .pullquote, .opt-3 .body, .opt-3 .body .dropcap { font-family: 'Playfair Display', serif; }
+  .opt-4 .masthead, .opt-4 .headline, .opt-4 .pullquote, .opt-4 .body, .opt-4 .body .dropcap { font-family: 'Bodoni Moda', serif; }
+  .opt-5 .masthead, .opt-5 .headline, .opt-5 .pullquote, .opt-5 .body, .opt-5 .body .dropcap { font-family: 'DM Serif Display', serif; }
+  .opt-6 .masthead, .opt-6 .headline, .opt-6 .pullquote, .opt-6 .body, .opt-6 .body .dropcap { font-family: 'Newsreader', serif; }
+
+  /* Body weight overrides — each face needs different weights for body */
+  .opt-1 .body, .opt-2 .body, .opt-6 .body { font-weight: 400; }
+  .opt-3 .body, .opt-4 .body { font-weight: 400; }
+  .opt-5 .body { font-family: 'Inter', sans-serif; font-weight: 400; } /* DM Serif Display has no body weight */
+
+  /* Headlines — heavier weight for display */
+  .opt-1 .headline { font-weight: 800; }
+  .opt-2 .headline { font-weight: 700; }
+  .opt-3 .headline { font-weight: 800; }
+  .opt-4 .headline { font-weight: 700; }
+  .opt-5 .headline { font-weight: 400; } /* DM Serif Display only has regular */
+  .opt-6 .headline { font-weight: 700; }
+
+  /* Mastheads — "Shipped." with orange period */
+  .masthead {
+    font-weight: 800;
+    letter-spacing: -0.04em;
+  }
+  .opt-2 .masthead, .opt-5 .masthead, .opt-6 .masthead { font-weight: 700; }
+  .opt-5 .masthead { font-weight: 400; letter-spacing: -0.025em; }
+  .masthead .dot { color: var(--orange); }
+
+  /* Italic accent for headlines */
+  .ital { font-style: italic; }
+  .opt-1 .ital, .opt-3 .ital, .opt-4 .ital { color: var(--orange); }
+
+  /* Footer summary */
+  .summary {
+    max-width: 1080px;
+    margin: 0 auto 96px;
+    padding: 48px 64px;
+    background: var(--ink);
+    color: var(--paper);
+  }
+  .summary h2 {
+    font-family: 'Fraunces', serif;
+    font-weight: 600;
+    font-size: 32px;
+    margin-bottom: 24px;
+  }
+  .summary p {
+    font-size: 16px;
+    line-height: 1.7;
+    margin-bottom: 12px;
+  }
+  .summary strong {
+    color: var(--orange);
+    font-weight: 600;
+  }
+
+  @media (max-width: 768px) {
+    .sample { padding: 32px 24px; }
+    .masthead-row { gap: 24px; }
+    .pullquote { font-size: 22px; padding-left: 16px; }
+    .opt-num { font-size: 12px; }
+    .opt-name { font-size: 16px; }
+    .opt-meta { font-size: 11px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="top-bar">
+  <span>Shipped. <span style="color:var(--orange)">·</span> H1 + Masthead Options</span>
+  <span>6 contenders <span style="color:var(--orange)">·</span> Pick one</span>
+</div>
+
+<div class="intro">
+  <h1>Pick the voice.</h1>
+  <p>The masthead and headlines are the publication's voice. Six contenders below. Each card shows: <strong style="color:var(--ink)">Shipped.</strong> at scale (192px / 96px / 32px), the cover headline, the Lead Story H1, a pull-quote, and one body paragraph for context. Same copy in every option. Pick the one that sounds like the magazine.</p>
+</div>
+
+<!-- ========== OPTION 1 — FRAUNCES (current temp-100) ========== -->
+<section class="option opt-1">
+  <div class="opt-label">
+    <span class="opt-num">Option 01</span>
+    <span class="opt-name">Fraunces</span>
+    <span class="opt-meta">Modern variable serif · Optical sizing · Expressive italics<br>Currently in temp-100 mockup</span>
+  </div>
+
+  <div class="sample">
+    <div class="sample-tag">Masthead — at three sizes</div>
+    <div class="masthead-row">
+      <div><div class="masthead" style="font-size:192px">Shipped<span class="dot">.</span></div><div class="size-label">192px · Cover</div></div>
+      <div><div class="masthead" style="font-size:96px">Shipped<span class="dot">.</span></div><div class="size-label">96px · Page header</div></div>
+      <div><div class="masthead" style="font-size:32px">Shipped<span class="dot">.</span></div><div class="size-label">32px · Nav</div></div>
+    </div>
+  </div>
+
+  <div class="sample">
+    <div class="sample-tag">Cover headline · 80px</div>
+    <div class="headline" style="font-size:80px">The Shadow <span class="ital">Release</span></div>
+    <div class="deck">Three weeks of Anthropic, in one read. Plus: the model you can't have.</div>
+  </div>
+
+  <div class="sample">
+    <div class="sample-tag">Lead Story H1 · 56px</div>
+    <div class="headline" style="font-size:56px">The chart that <span class="ital">wasn't</span> about Opus 4.7</div>
+  </div>
+
+  <div class="sample">
+    <div class="sample-tag">Pull quote</div>
+    <div class="pullquote">That's the news. Anthropic shipped a flagship and conceded, in the same breath, that it isn't the frontier.</div>
+  </div>
+
+  <div class="sample">
+    <div class="sample-tag">Body paragraph (context)</div>
+    <div class="body"><span class="dropcap">O</span>pus 4.7 went generally available this morning. Same pricing as 4.6 — five dollars per million input, twenty-five per million output. Better at coding, sharper on hard software engineering, with the kind of self-verification that previously required you to paper over with scaffolding.</div>
+  </div>
+</section>
+
+<!-- ========== OPTION 2 — LIBRE BASKERVILLE ========== -->
+<section class="option opt-2">
+  <div class="opt-label">
+    <span class="opt-num">Option 02</span>
+    <span class="opt-name">Libre Baskerville</span>
+    <span class="opt-meta">Classical transitional serif · Restrained, traditional<br>Iris's original Rev 3 pick</span>
+  </div>
+
+  <div class="sample">
+    <div class="sample-tag">Masthead — at three sizes</div>
+    <div class="masthead-row">
+      <div><div class="masthead" style="font-size:192px">Shipped<span class="dot">.</span></div><div class="size-label">192px · Cover</div></div>
+      <div><div class="masthead" style="font-size:96px">Shipped<span class="dot">.</span></div><div class="size-label">96px · Page header</div></div>
+      <div><div class="masthead" style="font-size:32px">Shipped<span class="dot">.</span></div><div class="size-label">32px · Nav</div></div>
+    </div>
+  </div>
+
+  <div class="sample">
+    <div class="sample-tag">Cover headline · 80px</div>
+    <div class="headline" style="font-size:80px">The Shadow <span class="ital">Release</span></div>
+    <div class="deck">Three weeks of Anthropic, in one read. Plus: the model you can't have.</div>
+  </div>
+
+  <div class="sample">
+    <div class="sample-tag">Lead Story H1 · 56px</div>
+    <div class="headline" style="font-size:56px">The chart that <span class="ital">wasn't</span> about Opus 4.7</div>
+  </div>
+
+  <div class="sample">
+    <div class="sample-tag">Pull quote</div>
+    <div class="pullquote">That's the news. Anthropic shipped a flagship and conceded, in the same breath, that it isn't the frontier.</div>
+  </div>
+
+  <div class="sample">
+    <div class="sample-tag">Body paragraph (context)</div>
+    <div class="body"><span class="dropcap">O</span>pus 4.7 went generally available this morning. Same pricing as 4.6 — five dollars per million input, twenty-five per million output. Better at coding, sharper on hard software engineering, with the kind of self-verification that previously required you to paper over with scaffolding.</div>
+  </div>
+</section>
+
+<!-- ========== OPTION 3 — PLAYFAIR DISPLAY ========== -->
+<section class="option opt-3">
+  <div class="opt-label">
+    <span class="opt-num">Option 03</span>
+    <span class="opt-name">Playfair Display</span>
+    <span class="opt-meta">High-contrast Didone-style · Dramatic at scale<br>Popular editorial choice — Vogue energy</span>
+  </div>
+
+  <div class="sample">
+    <div class="sample-tag">Masthead — at three sizes</div>
+    <div class="masthead-row">
+      <div><div class="masthead" style="font-size:192px">Shipped<span class="dot">.</span></div><div class="size-label">192px · Cover</div></div>
+      <div><div class="masthead" style="font-size:96px">Shipped<span class="dot">.</span></div><div class="size-label">96px · Page header</div></div>
+      <div><div class="masthead" style="font-size:32px">Shipped<span class="dot">.</span></div><div class="size-label">32px · Nav</div></div>
+    </div>
+  </div>
+
+  <div class="sample">
+    <div class="sample-tag">Cover headline · 80px</div>
+    <div class="headline" style="font-size:80px">The Shadow <span class="ital">Release</span></div>
+    <div class="deck">Three weeks of Anthropic, in one read. Plus: the model you can't have.</div>
+  </div>
+
+  <div class="sample">
+    <div class="sample-tag">Lead Story H1 · 56px</div>
+    <div class="headline" style="font-size:56px">The chart that <span class="ital">wasn't</span> about Opus 4.7</div>
+  </div>
+
+  <div class="sample">
+    <div class="sample-tag">Pull quote</div>
+    <div class="pullquote">That's the news. Anthropic shipped a flagship and conceded, in the same breath, that it isn't the frontier.</div>
+  </div>
+
+  <div class="sample">
+    <div class="sample-tag">Body paragraph (context)</div>
+    <div class="body"><span class="dropcap">O</span>pus 4.7 went generally available this morning. Same pricing as 4.6 — five dollars per million input, twenty-five per million output. Better at coding, sharper on hard software engineering, with the kind of self-verification that previously required you to paper over with scaffolding.</div>
+  </div>
+</section>
+
+<!-- ========== OPTION 4 — BODONI MODA ========== -->
+<section class="option opt-4">
+  <div class="opt-label">
+    <span class="opt-num">Option 04</span>
+    <span class="opt-name">Bodoni Moda</span>
+    <span class="opt-meta">Extreme contrast Didone · Variable optical sizing<br>Maximum magazine drama — Harper's Bazaar register</span>
+  </div>
+
+  <div class="sample">
+    <div class="sample-tag">Masthead — at three sizes</div>
+    <div class="masthead-row">
+      <div><div class="masthead" style="font-size:192px">Shipped<span class="dot">.</span></div><div class="size-label">192px · Cover</div></div>
+      <div><div class="masthead" style="font-size:96px">Shipped<span class="dot">.</span></div><div class="size-label">96px · Page header</div></div>
+      <div><div class="masthead" style="font-size:32px">Shipped<span class="dot">.</span></div><div class="size-label">32px · Nav</div></div>
+    </div>
+  </div>
+
+  <div class="sample">
+    <div class="sample-tag">Cover headline · 80px</div>
+    <div class="headline" style="font-size:80px">The Shadow <span class="ital">Release</span></div>
+    <div class="deck">Three weeks of Anthropic, in one read. Plus: the model you can't have.</div>
+  </div>
+
+  <div class="sample">
+    <div class="sample-tag">Lead Story H1 · 56px</div>
+    <div class="headline" style="font-size:56px">The chart that <span class="ital">wasn't</span> about Opus 4.7</div>
+  </div>
+
+  <div class="sample">
+    <div class="sample-tag">Pull quote</div>
+    <div class="pullquote">That's the news. Anthropic shipped a flagship and conceded, in the same breath, that it isn't the frontier.</div>
+  </div>
+
+  <div class="sample">
+    <div class="sample-tag">Body paragraph (context)</div>
+    <div class="body"><span class="dropcap">O</span>pus 4.7 went generally available this morning. Same pricing as 4.6 — five dollars per million input, twenty-five per million output. Better at coding, sharper on hard software engineering, with the kind of self-verification that previously required you to paper over with scaffolding.</div>
+  </div>
+</section>
+
+<!-- ========== OPTION 5 — DM SERIF DISPLAY ========== -->
+<section class="option opt-5">
+  <div class="opt-label">
+    <span class="opt-num">Option 05</span>
+    <span class="opt-name">DM Serif Display</span>
+    <span class="opt-meta">Modern display serif · Clean confident weight<br>Display-only — body in Inter · Magazine modern</span>
+  </div>
+
+  <div class="sample">
+    <div class="sample-tag">Masthead — at three sizes</div>
+    <div class="masthead-row">
+      <div><div class="masthead" style="font-size:192px">Shipped<span class="dot">.</span></div><div class="size-label">192px · Cover</div></div>
+      <div><div class="masthead" style="font-size:96px">Shipped<span class="dot">.</span></div><div class="size-label">96px · Page header</div></div>
+      <div><div class="masthead" style="font-size:32px">Shipped<span class="dot">.</span></div><div class="size-label">32px · Nav</div></div>
+    </div>
+  </div>
+
+  <div class="sample">
+    <div class="sample-tag">Cover headline · 80px</div>
+    <div class="headline" style="font-size:80px">The Shadow <span class="ital">Release</span></div>
+    <div class="deck">Three weeks of Anthropic, in one read. Plus: the model you can't have.</div>
+  </div>
+
+  <div class="sample">
+    <div class="sample-tag">Lead Story H1 · 56px</div>
+    <div class="headline" style="font-size:56px">The chart that <span class="ital">wasn't</span> about Opus 4.7</div>
+  </div>
+
+  <div class="sample">
+    <div class="sample-tag">Pull quote</div>
+    <div class="pullquote">That's the news. Anthropic shipped a flagship and conceded, in the same breath, that it isn't the frontier.</div>
+  </div>
+
+  <div class="sample">
+    <div class="sample-tag">Body paragraph (context — body in Inter)</div>
+    <div class="body"><span class="dropcap">O</span>pus 4.7 went generally available this morning. Same pricing as 4.6 — five dollars per million input, twenty-five per million output. Better at coding, sharper on hard software engineering, with the kind of self-verification that previously required you to paper over with scaffolding.</div>
+  </div>
+</section>
+
+<!-- ========== OPTION 6 — NEWSREADER ========== -->
+<section class="option opt-6">
+  <div class="opt-label">
+    <span class="opt-num">Option 06</span>
+    <span class="opt-name">Newsreader</span>
+    <span class="opt-meta">Editorial workhorse · Designed for screen reading<br>Quiet authority — NYT register, designed for digital</span>
+  </div>
+
+  <div class="sample">
+    <div class="sample-tag">Masthead — at three sizes</div>
+    <div class="masthead-row">
+      <div><div class="masthead" style="font-size:192px">Shipped<span class="dot">.</span></div><div class="size-label">192px · Cover</div></div>
+      <div><div class="masthead" style="font-size:96px">Shipped<span class="dot">.</span></div><div class="size-label">96px · Page header</div></div>
+      <div><div class="masthead" style="font-size:32px">Shipped<span class="dot">.</span></div><div class="size-label">32px · Nav</div></div>
+    </div>
+  </div>
+
+  <div class="sample">
+    <div class="sample-tag">Cover headline · 80px</div>
+    <div class="headline" style="font-size:80px">The Shadow <span class="ital">Release</span></div>
+    <div class="deck">Three weeks of Anthropic, in one read. Plus: the model you can't have.</div>
+  </div>
+
+  <div class="sample">
+    <div class="sample-tag">Lead Story H1 · 56px</div>
+    <div class="headline" style="font-size:56px">The chart that <span class="ital">wasn't</span> about Opus 4.7</div>
+  </div>
+
+  <div class="sample">
+    <div class="sample-tag">Pull quote</div>
+    <div class="pullquote">That's the news. Anthropic shipped a flagship and conceded, in the same breath, that it isn't the frontier.</div>
+  </div>
+
+  <div class="sample">
+    <div class="sample-tag">Body paragraph (context)</div>
+    <div class="body"><span class="dropcap">O</span>pus 4.7 went generally available this morning. Same pricing as 4.6 — five dollars per million input, twenty-five per million output. Better at coding, sharper on hard software engineering, with the kind of self-verification that previously required you to paper over with scaffolding.</div>
+  </div>
+</section>
+
+<!-- ========== SUMMARY ========== -->
+<section class="summary">
+  <h2>How to choose</h2>
+  <p><strong>01 · Fraunces</strong> — modern, expressive italics, variable optical-size axis means one face carries 256px display AND 19px body. Most flexible. Currently in temp-100.</p>
+  <p><strong>02 · Libre Baskerville</strong> — classical and restrained. Says "credibility, not drama." Iris picked this for the lab-coat fit.</p>
+  <p><strong>03 · Playfair Display</strong> — Vogue energy. Strong vertical contrast, sharp serifs. Reads as "magazine" instantly. Maybe too fashion-magazine for tech?</p>
+  <p><strong>04 · Bodoni Moda</strong> — extreme contrast Didone. Maximum drama. Harper's Bazaar register. Beautiful but uncompromising — body usability suffers at small sizes.</p>
+  <p><strong>05 · DM Serif Display</strong> — clean modern serif, display-only. Body would have to be Inter. The most "magazine-website" of the lot — feels like *The Atlantic* online.</p>
+  <p><strong>06 · Newsreader</strong> — designed for editorial reading on screen. Quiet authority. NYT-adjacent. Less drama, more substance.</p>
+  <p style="margin-top:24px"><strong>My read:</strong> If you want maximum drama and brand presence, <strong style="color:var(--orange)">04 (Bodoni Moda)</strong>. If you want flexibility and one-face-does-everything, <strong style="color:var(--orange)">01 (Fraunces)</strong>. If you want quiet credible authority, <strong style="color:var(--orange)">06 (Newsreader)</strong>. Tell me which one lands and I'll lock it in across DESIGN.md and rebuild MOCKUP-FINAL.html.</p>
+</section>
+
+</body>
+</html>

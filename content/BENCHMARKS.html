@@ -1,0 +1,810 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Shipped. — Benchmark Charts</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT@9..144,300..900,0..100&family=Inter:wght@400;500;600;700&family=Barlow+Condensed:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #1a1a1a;
+    --paper: #faf8f4;
+    --paper-card: #ffffff;
+    --gray-rule: #e5e3df;
+    --gray-soft: #b5b3af;
+    --gray-text: #6b6b6b;
+    --orange: #ff6b35;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: 'Inter', sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* SVG paper grain — Iris's spec */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='4' /></filter><rect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/></svg>");
+    z-index: 9999;
+  }
+
+  .top-bar {
+    background: var(--ink);
+    color: var(--paper);
+    padding: 14px 32px;
+    display: flex;
+    justify-content: space-between;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+  .top-bar .dot { color: var(--orange); }
+
+  .intro {
+    max-width: 760px;
+    margin: 80px auto 56px;
+    padding: 0 32px;
+  }
+  .intro .kicker {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: 12px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--orange);
+    margin-bottom: 20px;
+  }
+  .intro h1 {
+    font-family: 'Fraunces', serif;
+    font-weight: 800;
+    font-variation-settings: "opsz" 144;
+    font-size: 64px;
+    line-height: 1.02;
+    letter-spacing: -0.025em;
+    margin-bottom: 24px;
+  }
+  .intro h1 .ital { font-style: italic; color: var(--orange); }
+  .intro p {
+    font-size: 18px;
+    line-height: 1.65;
+    color: var(--gray-text);
+    max-width: 640px;
+  }
+
+  /* Chart card */
+  .chart {
+    max-width: 1080px;
+    margin: 0 auto 96px;
+    padding: 0 32px;
+  }
+  .chart-label {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    border-bottom: 2px solid var(--ink);
+    padding-bottom: 12px;
+    margin-bottom: 32px;
+  }
+  .chart-num {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: 12px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--orange);
+  }
+  .chart-name {
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+    font-size: 18px;
+  }
+  .chart-meta {
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    color: var(--gray-text);
+  }
+
+  .card {
+    background: var(--paper-card);
+    border: 1px solid var(--gray-rule);
+    padding: 64px;
+  }
+  .card-kicker {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--gray-text);
+    margin-bottom: 12px;
+  }
+  .card-title {
+    font-family: 'Fraunces', serif;
+    font-weight: 700;
+    font-variation-settings: "opsz" 96;
+    font-size: 40px;
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+    margin-bottom: 12px;
+  }
+  .card-deck {
+    font-family: 'Inter', sans-serif;
+    font-size: 16px;
+    line-height: 1.55;
+    color: var(--gray-text);
+    margin-bottom: 40px;
+    max-width: 540px;
+  }
+  .card-source {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    color: var(--gray-soft);
+    letter-spacing: 0.05em;
+    margin-top: 32px;
+    padding-top: 16px;
+    border-top: 1px solid var(--gray-rule);
+  }
+
+  /* ============================================
+     CHART 1 — THE FIVE-BAR (SWE-bench Verified)
+     ============================================ */
+  .five-bar {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+  }
+  .bar-row {
+    display: grid;
+    grid-template-columns: 220px 1fr 90px;
+    align-items: center;
+    gap: 24px;
+  }
+  .bar-label {
+    text-align: right;
+    font-family: 'Inter', sans-serif;
+    font-weight: 500;
+    font-size: 14px;
+    color: var(--ink);
+  }
+  .bar-label .sub {
+    display: block;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 10px;
+    color: var(--gray-text);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-top: 2px;
+  }
+  .bar-track {
+    position: relative;
+    height: 36px;
+    background: transparent;
+  }
+  .bar-fill {
+    height: 100%;
+    background: var(--ink);
+    transition: width 0.6s ease;
+  }
+  .bar-fill.gated {
+    background: var(--orange);
+  }
+  .bar-fill.dim {
+    background: var(--gray-soft);
+  }
+  .bar-value {
+    font-family: 'Fraunces', serif;
+    font-weight: 700;
+    font-variation-settings: "opsz" 32;
+    font-size: 24px;
+    color: var(--ink);
+    letter-spacing: -0.02em;
+  }
+  .bar-value.gated { color: var(--orange); }
+  .axis {
+    grid-column: 2;
+    margin-top: 16px;
+    padding-top: 8px;
+    border-top: 1px solid var(--gray-rule);
+    display: flex;
+    justify-content: space-between;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px;
+    color: var(--gray-soft);
+    letter-spacing: 0.1em;
+  }
+  .mythos-note {
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-size: 16px;
+    color: var(--gray-text);
+    margin-top: 32px;
+    padding-left: 24px;
+    border-left: 4px solid var(--orange);
+    max-width: 540px;
+    line-height: 1.5;
+  }
+
+  /* ============================================
+     CHART 2 — RATIO VISUALIZATION (Firefox)
+     ============================================ */
+  .ratio-viz {
+    display: grid;
+    grid-template-columns: 1fr 80px 1fr;
+    gap: 0;
+    align-items: stretch;
+  }
+  .ratio-side {
+    text-align: center;
+    padding: 32px 16px;
+  }
+  .ratio-num {
+    font-family: 'Fraunces', serif;
+    font-weight: 800;
+    font-variation-settings: "opsz" 144;
+    line-height: 0.9;
+    letter-spacing: -0.04em;
+    margin-bottom: 16px;
+  }
+  .ratio-num.small { font-size: 96px; color: var(--gray-soft); }
+  .ratio-num.big { font-size: 240px; color: var(--orange); }
+  .ratio-label {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 600;
+    font-size: 13px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--ink);
+    margin-bottom: 8px;
+  }
+  .ratio-label.dim { color: var(--gray-text); }
+  .ratio-sub {
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    color: var(--gray-text);
+    line-height: 1.4;
+  }
+  .ratio-vs {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Fraunces', serif;
+    font-weight: 700;
+    font-style: italic;
+    font-size: 28px;
+    color: var(--ink);
+    border-left: 1px solid var(--gray-rule);
+    border-right: 1px solid var(--gray-rule);
+  }
+  .ratio-callout {
+    text-align: center;
+    margin-top: 32px;
+    padding-top: 24px;
+    border-top: 1px solid var(--gray-rule);
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-size: 18px;
+    color: var(--ink);
+  }
+  .ratio-callout strong { color: var(--orange); font-style: normal; font-weight: 700; }
+
+  /* ============================================
+     CHART 3 — JUMP VISUALIZATION (XBOW Vision)
+     ============================================ */
+  .jump-viz {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 64px;
+    align-items: end;
+    margin-top: 32px;
+  }
+  .jump-side {
+    text-align: center;
+    padding-bottom: 24px;
+    position: relative;
+  }
+  .jump-bar {
+    background: var(--ink);
+    margin: 0 auto 16px;
+    width: 80px;
+  }
+  .jump-bar.before { height: 109px; background: var(--gray-soft); } /* 54.5% */
+  .jump-bar.after  { height: 197px; background: var(--orange); } /* 98.5% */
+  .jump-num {
+    font-family: 'Fraunces', serif;
+    font-weight: 800;
+    font-variation-settings: "opsz" 96;
+    font-size: 56px;
+    line-height: 1;
+    letter-spacing: -0.025em;
+    margin-bottom: 8px;
+  }
+  .jump-num.before { color: var(--gray-soft); }
+  .jump-num.after { color: var(--orange); }
+  .jump-label {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 600;
+    font-size: 12px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--ink);
+  }
+  .jump-arrow {
+    text-align: center;
+    margin-top: 24px;
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-size: 22px;
+    color: var(--ink);
+  }
+  .jump-arrow strong { color: var(--orange); font-weight: 700; font-style: normal; }
+
+  /* ============================================
+     CHART 4 — SWEEP (multi-benchmark grid)
+     ============================================ */
+  .sweep-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-family: 'Inter', sans-serif;
+  }
+  .sweep-table thead th {
+    text-align: right;
+    padding: 16px 12px 12px;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 600;
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--gray-text);
+    border-bottom: 2px solid var(--ink);
+  }
+  .sweep-table thead th:first-child { text-align: left; }
+  .sweep-table tbody td {
+    padding: 18px 12px;
+    border-bottom: 1px solid var(--gray-rule);
+    font-size: 15px;
+    text-align: right;
+    font-variant-numeric: tabular-nums;
+  }
+  .sweep-table tbody td:first-child {
+    text-align: left;
+    font-weight: 500;
+  }
+  .sweep-table tbody td .bench-sub {
+    display: block;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    color: var(--gray-soft);
+    margin-top: 2px;
+    letter-spacing: 0.04em;
+  }
+  .sweep-table .winner {
+    font-family: 'Fraunces', serif;
+    font-weight: 700;
+    color: var(--ink);
+    font-size: 17px;
+  }
+  .sweep-table .winner-mythos {
+    color: var(--orange);
+  }
+  .sweep-table .gain {
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+    font-size: 13px;
+    color: var(--orange);
+    margin-left: 4px;
+  }
+  .sweep-callout {
+    margin-top: 32px;
+    padding: 24px;
+    background: var(--ink);
+    color: var(--paper);
+  }
+  .sweep-callout p {
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-size: 18px;
+    line-height: 1.5;
+    max-width: 720px;
+  }
+  .sweep-callout strong { color: var(--orange); font-style: normal; font-weight: 700; }
+
+  /* ============================================
+     CHART 5 — AGENTIC LEAD (SWE-bench Pro)
+     ============================================ */
+  .agentic-bars {
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+  }
+  .ag-row {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    align-items: center;
+    gap: 24px;
+  }
+  .ag-label {
+    text-align: right;
+    font-family: 'Inter', sans-serif;
+    font-weight: 500;
+    font-size: 14px;
+  }
+  .ag-label .delta {
+    display: block;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    color: var(--gray-soft);
+    text-transform: uppercase;
+    margin-top: 2px;
+  }
+  .ag-bar {
+    position: relative;
+    height: 44px;
+    display: flex;
+    align-items: center;
+  }
+  .ag-fill {
+    height: 100%;
+    background: var(--gray-soft);
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding-right: 16px;
+    color: var(--paper);
+    font-family: 'Fraunces', serif;
+    font-weight: 700;
+    font-variation-settings: "opsz" 32;
+    font-size: 22px;
+    letter-spacing: -0.01em;
+  }
+  .ag-fill.lead {
+    background: var(--ink);
+    color: var(--paper);
+  }
+  .ag-fill.dot {
+    color: var(--paper);
+  }
+  .ag-fill.dot::after {
+    content: '';
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    background: var(--orange);
+    border-radius: 50%;
+    margin-left: 12px;
+  }
+
+  /* Footer */
+  .footer {
+    max-width: 1080px;
+    margin: 0 auto 96px;
+    padding: 48px 64px;
+    background: var(--ink);
+    color: var(--paper);
+  }
+  .footer h2 {
+    font-family: 'Fraunces', serif;
+    font-weight: 700;
+    font-size: 28px;
+    margin-bottom: 16px;
+    letter-spacing: -0.02em;
+  }
+  .footer p { font-size: 15px; line-height: 1.65; margin-bottom: 12px; }
+  .footer strong { color: var(--orange); font-weight: 600; }
+
+  @media (max-width: 768px) {
+    .card { padding: 32px 24px; }
+    .ratio-viz { grid-template-columns: 1fr; }
+    .ratio-vs { display: none; }
+    .ratio-num.big { font-size: 144px; }
+    .ratio-num.small { font-size: 64px; }
+    .jump-viz { grid-template-columns: 1fr 1fr; gap: 24px; }
+    .jump-bar.before { height: 80px; }
+    .jump-bar.after { height: 144px; }
+    .bar-row { grid-template-columns: 100px 1fr 60px; gap: 12px; }
+    .bar-label { font-size: 12px; }
+    .bar-value { font-size: 18px; }
+    .ag-row { grid-template-columns: 130px 1fr; gap: 12px; }
+    .ag-label { font-size: 12px; }
+    .ag-fill { font-size: 16px; padding-right: 10px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="top-bar">
+  <span>Shipped<span class="dot">.</span> &nbsp;·&nbsp; Issue 00 &nbsp;·&nbsp; The Benchmark Story</span>
+  <span>5 Charts &nbsp;·&nbsp; All numbers verified against source</span>
+</div>
+
+<!-- INTRO -->
+<div class="intro">
+  <div class="kicker">A Visual Companion to the Lead Story</div>
+  <h1>The chart that <span class="ital">wasn't</span> about Opus 4.7.</h1>
+  <p>The Lead Story makes the argument; these charts make it visible. Five graphic treatments of the benchmark data behind Opus 4.7's launch and the Mythos Preview disclosure. Sources cited beneath each chart. Pick the treatments that should run in the issue.</p>
+</div>
+
+<!-- ============================================
+     CHART 1 — THE HEADLINE: SWE-BENCH VERIFIED
+     ============================================ -->
+<section class="chart">
+  <div class="chart-label">
+    <span class="chart-num">Chart 01 — The Headline</span>
+    <span class="chart-name">SWE-bench Verified — five-bar comparison</span>
+    <span class="chart-meta">The orange bar is the model you cannot call.</span>
+  </div>
+
+  <div class="card">
+    <div class="card-kicker">Software Engineering · Verified</div>
+    <div class="card-title">Opus 4.7 widens the lead.<br>Mythos sits above the field.</div>
+    <div class="card-deck">SWE-bench Verified is the consensus benchmark for production software engineering. Anthropic's launch chart placed five bars in this order. The fourth is what they shipped. The fifth is what they didn't.</div>
+
+    <div class="five-bar">
+      <div class="bar-row">
+        <div class="bar-label">Gemini 3.1 Pro <span class="sub">Google</span></div>
+        <div class="bar-track"><div class="bar-fill dim" style="width: 80.6%;"></div></div>
+        <div class="bar-value">80.6%</div>
+      </div>
+      <div class="bar-row">
+        <div class="bar-label">Opus 4.6 <span class="sub">Previous Anthropic flagship</span></div>
+        <div class="bar-track"><div class="bar-fill dim" style="width: 80.8%;"></div></div>
+        <div class="bar-value">80.8%</div>
+      </div>
+      <div class="bar-row">
+        <div class="bar-label">GPT-5.4 <span class="sub">OpenAI · est.</span></div>
+        <div class="bar-track"><div class="bar-fill dim" style="width: 84.5%;"></div></div>
+        <div class="bar-value">84.5%</div>
+      </div>
+      <div class="bar-row">
+        <div class="bar-label">Opus 4.7 <span class="sub">Anthropic · today</span></div>
+        <div class="bar-track"><div class="bar-fill" style="width: 87.6%;"></div></div>
+        <div class="bar-value">87.6%</div>
+      </div>
+      <div class="bar-row">
+        <div class="bar-label">Mythos Preview <span class="sub">Anthropic · gated</span></div>
+        <div class="bar-track"><div class="bar-fill gated" style="width: 93.9%;"></div></div>
+        <div class="bar-value gated">93.9%</div>
+      </div>
+      <div class="axis">
+        <span>0%</span>
+        <span>25%</span>
+        <span>50%</span>
+        <span>75%</span>
+        <span>100%</span>
+      </div>
+    </div>
+
+    <div class="mythos-note">The orange bar is the frontier you can read about but cannot call. That distance — six-and-a-third points — is the thesis of this issue.</div>
+
+    <div class="card-source">SOURCE · Anthropic Opus 4.7 announcement · SWE-bench Verified · Apr 16, 2026 · Mythos figure cross-referenced w/ red.anthropic.com Mythos disclosure</div>
+  </div>
+</section>
+
+<!-- ============================================
+     CHART 2 — AGENTIC CODING (SWE-bench Pro)
+     ============================================ -->
+<section class="chart">
+  <div class="chart-label">
+    <span class="chart-num">Chart 02 — Agentic Coding</span>
+    <span class="chart-name">SWE-bench Pro — Opus 4.7 wins among publicly available models</span>
+    <span class="chart-meta">No Mythos number on this benchmark.</span>
+  </div>
+
+  <div class="card">
+    <div class="card-kicker">Agentic Software Engineering</div>
+    <div class="card-title">Among models you can buy this week:<br>Opus 4.7 widens the gap.</div>
+    <div class="card-deck">SWE-bench Pro tests longer-horizon agentic workflows — multi-file edits, test running, refactors that span sessions. It's the benchmark closest to "what production agents actually do."</div>
+
+    <div class="agentic-bars">
+      <div class="ag-row">
+        <div class="ag-label">Gemini 3.1 Pro <span class="delta">−10.1 vs Opus 4.7</span></div>
+        <div class="ag-bar"><div class="ag-fill" style="width: 54.2%;">54.2%</div></div>
+      </div>
+      <div class="ag-row">
+        <div class="ag-label">GPT-5.4 <span class="delta">−6.6 vs Opus 4.7</span></div>
+        <div class="ag-bar"><div class="ag-fill" style="width: 57.7%;">57.7%</div></div>
+      </div>
+      <div class="ag-row">
+        <div class="ag-label">Opus 4.7 <span class="delta">Lead</span></div>
+        <div class="ag-bar"><div class="ag-fill lead dot" style="width: 64.3%;">64.3%</div></div>
+      </div>
+    </div>
+
+    <div class="card-source">SOURCE · Anthropic Opus 4.7 announcement · SWE-bench Pro · Apr 16, 2026 · TheNextWeb verification</div>
+  </div>
+</section>
+
+<!-- ============================================
+     CHART 3 — THE FIREFOX RATIO
+     ============================================ -->
+<section class="chart">
+  <div class="chart-label">
+    <span class="chart-num">Chart 03 — The Firefox Ratio</span>
+    <span class="chart-name">Working JavaScript shell exploits in trial — Mythos vs Opus 4.6</span>
+    <span class="chart-meta">Same trial. Same browser. 90× more exploits.</span>
+  </div>
+
+  <div class="card">
+    <div class="card-kicker">Cybersecurity · Browser Exploitation</div>
+    <div class="card-title">The Firefox trial.</div>
+    <div class="card-deck">Same browser, same vulnerability surface, same number of attempts. One model produced 2 working exploits. The other produced 181. This is why Mythos is gated.</div>
+
+    <div class="ratio-viz">
+      <div class="ratio-side">
+        <div class="ratio-label dim">Opus 4.6</div>
+        <div class="ratio-num small">2</div>
+        <div class="ratio-sub">Working JavaScript shell exploits, hundreds of attempts</div>
+      </div>
+      <div class="ratio-vs"><span class="ital">vs</span></div>
+      <div class="ratio-side">
+        <div class="ratio-label">Mythos Preview</div>
+        <div class="ratio-num big">181</div>
+        <div class="ratio-sub">Same trial. Same browser.</div>
+      </div>
+    </div>
+
+    <div class="ratio-callout">A <strong>90× ratio</strong> in working browser exploits. The capability gap is not "better." It is categorical.</div>
+
+    <div class="card-source">SOURCE · Project Glasswing announcement, Apr 7, 2026 · Anthropic Mythos disclosure cross-referenced w/ AISI evaluation</div>
+  </div>
+</section>
+
+<!-- ============================================
+     CHART 4 — THE VISION LEAP (XBOW)
+     ============================================ -->
+<section class="chart">
+  <div class="chart-label">
+    <span class="chart-num">Chart 04 — The Vision Leap</span>
+    <span class="chart-name">XBOW Visual-Acuity — Opus 4.6 → Opus 4.7</span>
+    <span class="chart-meta">+44 points in one release.</span>
+  </div>
+
+  <div class="card">
+    <div class="card-kicker">Visual Understanding</div>
+    <div class="card-title">From half-blind to nearly perfect.</div>
+    <div class="card-deck">XBOW Visual-Acuity tests the model's ability to read dense screenshots, extract from complex diagrams, and reference pixel-level detail. The 4.6 → 4.7 jump is the largest single-release vision gain Anthropic has shipped.</div>
+
+    <div class="jump-viz">
+      <div class="jump-side">
+        <div class="jump-bar before"></div>
+        <div class="jump-num before">54.5%</div>
+        <div class="jump-label">Opus 4.6</div>
+      </div>
+      <div class="jump-side">
+        <div class="jump-bar after"></div>
+        <div class="jump-num after">98.5%</div>
+        <div class="jump-label">Opus 4.7</div>
+      </div>
+    </div>
+
+    <div class="jump-arrow"><strong>+44 points</strong>, one release. Vision tripled in resolution (2,576px on long edge) underwrites the gain.</div>
+
+    <div class="card-source">SOURCE · Anthropic Opus 4.7 announcement · XBOW Visual-Acuity Benchmark · Apr 16, 2026</div>
+  </div>
+</section>
+
+<!-- ============================================
+     CHART 5 — THE SWEEP
+     ============================================ -->
+<section class="chart">
+  <div class="chart-label">
+    <span class="chart-num">Chart 05 — The Sweep</span>
+    <span class="chart-name">Cross-benchmark grid · Where each model wins</span>
+    <span class="chart-meta">Opus 4.7 leads or ties across the field.</span>
+  </div>
+
+  <div class="card">
+    <div class="card-kicker">Cross-Benchmark Summary</div>
+    <div class="card-title">Where each one wins.</div>
+    <div class="card-deck">Eight benchmarks Anthropic published in the Opus 4.7 launch, with comparable scores from competitor models where reported. Bold = winner. Orange bold = Mythos Preview leads.</div>
+
+    <table class="sweep-table">
+      <thead>
+        <tr>
+          <th>Benchmark</th>
+          <th>Opus 4.6</th>
+          <th>Opus 4.7</th>
+          <th>GPT-5.4</th>
+          <th>Gemini 3.1 Pro</th>
+          <th>Mythos</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>SWE-bench Verified <span class="bench-sub">// general SWE</span></td>
+          <td>80.8%</td>
+          <td>87.6%</td>
+          <td>84.5%</td>
+          <td>80.6%</td>
+          <td><span class="winner winner-mythos">93.9%</span></td>
+        </tr>
+        <tr>
+          <td>SWE-bench Pro <span class="bench-sub">// agentic SWE</span></td>
+          <td>—</td>
+          <td><span class="winner">64.3%</span></td>
+          <td>57.7%</td>
+          <td>54.2%</td>
+          <td>—</td>
+        </tr>
+        <tr>
+          <td>GPQA Diamond <span class="bench-sub">// graduate reasoning</span></td>
+          <td>91.3%</td>
+          <td>94.2%</td>
+          <td>94.4%</td>
+          <td>94.3%</td>
+          <td><span class="winner winner-mythos">94.5%</span></td>
+        </tr>
+        <tr>
+          <td>MCP-Atlas <span class="bench-sub">// scaled tool use</span></td>
+          <td>75.8%</td>
+          <td><span class="winner">77.3%</span></td>
+          <td>68.1%</td>
+          <td>73.9%</td>
+          <td>—</td>
+        </tr>
+        <tr>
+          <td>CursorBench <span class="bench-sub">// IDE agentic</span></td>
+          <td>58.0%</td>
+          <td><span class="winner">70.0% <span class="gain">+12</span></span></td>
+          <td>—</td>
+          <td>—</td>
+          <td>—</td>
+        </tr>
+        <tr>
+          <td>XBOW Visual-Acuity <span class="bench-sub">// vision</span></td>
+          <td>54.5%</td>
+          <td><span class="winner">98.5% <span class="gain">+44</span></span></td>
+          <td>—</td>
+          <td>—</td>
+          <td>—</td>
+        </tr>
+        <tr>
+          <td>BigLaw Bench <span class="bench-sub">// Harvey, legal</span></td>
+          <td>—</td>
+          <td><span class="winner">90.9%</span></td>
+          <td>—</td>
+          <td>—</td>
+          <td>—</td>
+        </tr>
+        <tr>
+          <td>CyberGym <span class="bench-sub">// vulnerability repro</span></td>
+          <td>73.8%</td>
+          <td>—</td>
+          <td>—</td>
+          <td>—</td>
+          <td><span class="winner winner-mythos">83.1%</span></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="sweep-callout">
+      <p>Opus 4.7 leads or ties on every benchmark Anthropic published — except the two Mythos sits on. <strong>The pattern is the news.</strong> Anthropic now ships the second-best model and tells you who's first.</p>
+    </div>
+
+    <div class="card-source">SOURCE · Anthropic Opus 4.7 announcement (anthropic.com/news/claude-opus-4-7) · Mythos rows from red.anthropic.com Mythos Preview disclosure · Em-dash = no published score for that model on that benchmark</div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<section class="footer">
+  <h2>How to use these</h2>
+  <p><strong>Chart 01 (the Five-Bar)</strong> is the headline. It belongs in the Lead Story, immediately after the line "the chart Anthropic published next to the model." Most important visual in the issue.</p>
+  <p><strong>Chart 03 (Firefox 90×)</strong> belongs in the Glasswing Investigation, near the Mythos vulnerability list. Most dramatic single number in the issue.</p>
+  <p><strong>Chart 05 (the Sweep)</strong> belongs in the back of the front-of-book as the comprehensive evidence — the table behind the prose.</p>
+  <p><strong>Charts 02 and 04</strong> are sidebar candidates if the issue runs long. Drop one or both if space is tight.</p>
+  <p style="margin-top:24px"><strong>All five charts</strong> use the locked design system: Fraunces display, Inter labels, Barlow Condensed kickers, mono palette, sparing orange (Mythos rows + Opus 4.7 lead bars only). They are ready to drop into MOCKUP-FINAL.html.</p>
+</section>
+
+</body>
+</html>

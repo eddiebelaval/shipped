@@ -1,0 +1,58 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 220 48" width="220" height="48" role="img" aria-label="Shipped.">
+  <!--
+    Shipped. — Small Lockup
+    For: navigation bar (32px), footer credit (18px via CSS scale)
+    Iris / id8Labs — Revision 4 Brand Pass — 2026-04-16
+
+    Small lockup adjustments vs master (masthead.svg):
+    — Font size reduced to 38px from 96px
+    — Optical spacing tightened further: at small sizes, letter-spacing opens
+      up visually due to the way serifs sit. We compensate by pulling glyphs
+      even tighter than the master lockup.
+    — Period circle proportionally adjusted: r=3.8px (vs 9px in master)
+      The 1.4× multiplier is preserved relative to Baskerville's own period at 38px.
+    — cy adjusted to 37px to maintain optical baseline alignment
+    — The period is still a drawn circle, not a font glyph. At 32px rendered
+      size this distinction is subtle but present — and correct.
+
+    Usage:
+    — Nav bar at 44px height: render this SVG at height:28px
+    — Footer credit: render at height:18px
+    — 2-column archive header: render at height:36px
+
+    Do NOT use the master (520×120) for these sizes. The optical spacing
+    was tuned for 96px rendering. This file was tuned for 32–48px rendering.
+  -->
+
+  <defs>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@700&amp;display=swap');
+      .masthead-sm {
+        font-family: 'Libre Baskerville', Georgia, 'Times New Roman', serif;
+        font-weight: 700;
+        font-style: normal;
+        fill: #1a1a1a;
+      }
+    </style>
+  </defs>
+
+  <!-- At small sizes, render as a single text element with tracked spacing
+       rather than per-glyph positioning. The optical kerning gains from
+       per-glyph placement are imperceptible below 40px rendered size. -->
+  <text
+    class="masthead-sm"
+    font-size="38"
+    x="0"
+    y="38"
+    letter-spacing="-0.8"
+  >Shipped</text>
+
+  <!--
+    Period: drawn circle, proportionally scaled
+    At 38px font size, Baskerville's period would be approximately r=2.7px.
+    We draw at r=3.8px — same 1.4× multiplier as the master lockup.
+    cx=149 is the natural period position + 5px breathing room.
+  -->
+  <circle cx="153" cy="35" r="3.8" fill="#FF6B35"/>
+
+</svg>

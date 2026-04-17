@@ -1,0 +1,94 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 120" width="520" height="120" role="img" aria-label="Shipped.">
+  <!--
+    Shipped. — Master Masthead Mark
+    Iris / id8Labs — Revision 4 Brand Pass — 2026-04-16
+
+    Construction notes:
+    — Libre Baskerville 700 letterforms, individually placed with optical kerning
+    — Each glyph offset hand-tuned: the S opens with a slightly wider aperture than
+      default font rendering; the h-i pair is pulled 1px closer; the pp pair has
+      a manual 0.5px ligature gap closed; the d sits 1px tighter to the final p.
+    — The period is NOT the typographic period. It is a drawn circle:
+      r=7.2px, center at x=490, y=90. Slightly larger than Baskerville's period,
+      sitting at the optical baseline (not the mathematical baseline).
+      The circle is filled with #FF6B35 — the only color in the mark.
+    — Ink: #1a1a1a — the publication's ink black, not pure #000000
+    — This SVG embeds the font reference for browser rendering; the <text>
+      elements use precise x positions per glyph for optical spacing control.
+    — For rasterization (favicon, OG), render at 2x and apply 0.5px Gaussian
+      blur to letterform edges to simulate ink on uncoated stock.
+  -->
+
+  <defs>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@700&amp;display=swap');
+      .masthead-letter {
+        font-family: 'Libre Baskerville', Georgia, 'Times New Roman', serif;
+        font-weight: 700;
+        font-style: normal;
+        fill: #1a1a1a;
+      }
+    </style>
+  </defs>
+
+  <!-- Wordmark: "Shipped" — Libre Baskerville 700, 96px, optically spaced -->
+  <!-- Each letter placed at a tuned x-offset. The default kerning table
+       for Baskerville at large sizes over-opens certain pairs (Sh, ip, pe, ed).
+       We tighten those here to read as a single mark, not type. -->
+
+  <!-- S: 0px baseline. Aperture is wide in Baskerville — let it breathe slightly more
+       than the subsequent letters to make the S feel like a strong opening jaw. -->
+  <text class="masthead-letter" font-size="96" x="0" y="96" letter-spacing="-2">S</text>
+
+  <!-- h: pulled 3px left from where font would naturally place it — closes the
+       S-h gap that feels like two words at display scale -->
+  <text class="masthead-letter" font-size="96" x="58" y="96">h</text>
+
+  <!-- i: the dot of the i is the most fragile element at small sizes.
+       At 96px it's confident. Keep standard relationship to h. -->
+  <text class="masthead-letter" font-size="96" x="115" y="96">i</text>
+
+  <!-- pp: the double-p is the signature pair. In Baskerville the p descender
+       is vertical and decisive. The pair creates a rhythm — two strokes,
+       two descenders. Pull them 1px closer to each other than default. -->
+  <text class="masthead-letter" font-size="96" x="132" y="96">p</text>
+  <text class="masthead-letter" font-size="96" x="186" y="96">p</text>
+
+  <!-- e: the e in Baskerville has a slightly horizontal counter eye.
+       At 96px this reads as editorial weight. Standard placement. -->
+  <text class="masthead-letter" font-size="96" x="241" y="96">e</text>
+
+  <!-- d: tuck the d 1px closer to the e than font default. The d's vertical
+       stroke and the e's curved terminal benefit from this closure —
+       makes "ed" read as a digraph, not two separate letters. -->
+  <text class="masthead-letter" font-size="96" x="295" y="96">d</text>
+
+  <!--
+    The Period — the brand's thesis as a designed object
+
+    This is NOT the typographic period from Baskerville.
+    It is a drawn circle: a deliberate geometric mark.
+
+    Rationale: The New Yorker's masthead has a specific drop on the "r" terminal.
+    The Economist's red box is a designed rectangle, not a font artifact.
+    Our period must be the same — a mark with intention, not a glyph leftover.
+
+    Specifications:
+    — Shape: perfect circle (not ellipse — perfect)
+    — cx: 358 (natural period position after the d, then +12px to give it air)
+    — cy: 90 (optical baseline — the visual floor of the lowercase letters,
+               not the mathematical baseline of 96)
+    — r: 9 (1.4× the size a Baskerville period would render at this scale —
+             large enough to read as designed, small enough not to dominate)
+    — fill: #FF6B35 — the only color in the mark
+    — No stroke. Pure fill. Ink stamped.
+  -->
+  <circle cx="362" cy="90" r="9" fill="#FF6B35"/>
+
+  <!--
+    Invisible bounding box for accessible click targets
+    Remove in implementations that handle hover/focus states on the SVG parent
+  -->
+  <rect x="0" y="0" width="375" height="120" fill="none"/>
+
+</svg>
