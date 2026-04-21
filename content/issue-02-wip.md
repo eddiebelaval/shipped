@@ -16,11 +16,13 @@ running_order_decision_at: 2026-04-23  # Thursday — allow the week to play out
 
 ---
 
-## Editorial Decisions (locked Mon 2026-04-20 PM)
+## Editorial Decisions (locked Mon 2026-04-20 PM; updated Tue 2026-04-21 AM)
 
-- **Lead story:** Claude Design. Anthropic shipped it Apr 17, same morning Shipped. Issue 01 went live.
-- **Secondary story / investigation:** The Trust Week — Lovable + Vercel, as builder warnings with Anthropic-compatible SOPs tied back.
+- **Lead story (A):** Claude Design. Anthropic shipped it Apr 17, same morning Shipped. Issue 01 went live.
+- **Secondary story (B):** **Conway** — Anthropic's codename for an always-on, containerized Claude agent with extension UI. Reported by testingcatalog.com from unreleased build analysis (Tue 2026-04-21). _Tentative B slot pending Thursday confirmation; promotes to lead if it ships this week._
+- **Investigation:** The Trust Week — Lovable + Vercel, as builder warnings with Anthropic-compatible SOPs tied back.
 - **Editorial frame for security piece:** warn builders + tie back to Anthropic + ship vetted SOPs from pros we research. Not news-for-news-sake; action layer.
+- **Thematic spine:** Anthropic landed one product (Claude Design) and is about to ship another (Conway). Two ecosystem platforms broke (Lovable + Vercel). Here's what builders should do. What shipped → what's coming → what broke → what to do.
 - **Opening meta beat:** how Issue 01's readers (WhatsApp group) shaped this issue — translation asks, podcast ask, and what we decided to do with each (ES pocketed to 03; podcast in VISION roadmap; this piece leans into "action layer" signal).
 - **ES pilot:** POCKETED to Issue 03. Reason: editorial load already heavy; splitting focus breaks quality bar.
 - **Running order:** NOT locked until Thursday 2026-04-23. The week may surface something bigger.
@@ -32,7 +34,8 @@ running_order_decision_at: 2026-04-23  # Thursday — allow the week to play out
 | Section | Content | Status |
 |---|---|---|
 | Open | Meta: Issue 01 dropped same morning as Claude Design; WhatsApp group shaped this issue | to write |
-| Lead Story | Claude Design: what it is, who it's for, Figma drop, "Anthropic ships products not just models" read | researching |
+| Lead Story (A) | Claude Design: what it is, who it's for, Figma drop, "Anthropic ships products not just models" read | researching |
+| Secondary Story (B) | Conway: reported always-on containerized Claude agent with extensions, connectors, webhooks. Pre-launch. | researching |
 | Investigation: Trust Week | Lovable BOLA + Vercel via Context.ai — two failure modes, same weekend | researching |
 | Builder SOPs | Vetted actionable tips — rotate env vars, audit third-party OAuth scopes, etc. | needs pro interviews |
 | Release Log | Full weekly dump (scraper populates Thursday) | blocked on scrape |
@@ -71,7 +74,50 @@ running_order_decision_at: 2026-04-23  # Thursday — allow the week to play out
 
 ---
 
-## Story 2 — The Trust Week (INVESTIGATION)
+## Story 2 — Conway (B STORY — reported, pre-launch)
+
+> **Confidence caveat.** This is reported-from-unreleased-builds, not an Anthropic announcement. Attribute carefully. Use "reported codename" not "announced product." Issue 01's Mythos beat is precedent. If Anthropic ships or confirms it by Thursday, it promotes to lead and Claude Design slides to B.
+
+**The facts (as reported by testingcatalog.com Tue 2026-04-21):**
+- Codename: **Conway**.
+- Description: always-on Claude agent running in a **containerized Claude environment**, persistent alongside standard conversations.
+- **UI surface observed in builds:**
+  - Custom UI tabs extensions can provide
+  - Extension install + management
+  - Connector and webhook configuration
+  - Model selection for the agent
+  - Container lifecycle control
+  - Fine-grained tool-call management
+  - Separate chat tab for agent interaction
+  - "Installed" and "Built-in" sidebar sections (web)
+- **Cross-platform parity:** iOS reached parity with the desktop settings interface in recent builds — manage extensions/connectors/webhooks/model selection on mobile.
+- **Status:** confirmed in active development via build evidence. Pre-launch, no public release window.
+- The **"extension platform"** framing is the reporter's analytical interpretation, not a disclosed capability.
+
+**The editorial argument:**
+Anthropic is extending into **always-on, context-absorbing, platform-style products**. Claude Design reads your codebase + design files. Conway runs in a persistent container with extensions and webhooks. The product surface is no longer a chat window — it's a shell that lives next to you and composes with third-party primitives. This is the same axis as Claude Code + Skills + `ant` CLI, just further along.
+
+Connects directly to the Trust Week investigation: as Anthropic's products absorb more context and integrate more third-party surfaces, the OAuth-scope / supply-chain failure modes Lovable and Vercel just demonstrated become *more* relevant, not less. Always-on agents with extension platforms are exactly where this question lands next.
+
+**Angles to explore by Thursday:**
+- Is there anything Anthropic-official we can pair with the build-leak? Check @claudedevs, @alexalbert__, the Anthropic blog, the research page.
+- Does the codename "Conway" reference John Conway (Game of Life — cellular automata, long-running systems)? That'd be a good detail if confirmed; avoid if speculative.
+- Implicit comparison to OpenAI's Operator / Google's agentic assistants — how does "containerized + extensions + webhooks" position differently?
+- What does an "extension" in Conway mean for builders? Paying developers? Free market? MCP-style? Anthropic hasn't said.
+- Privacy/security: always-on + containerized runs into the exact trust questions Trust Week is asking.
+
+**Sources (primary):**
+- TestingCatalog (original report): https://www.testingcatalog.com/anthropics-works-on-its-always-on-agent-with-new-ui-extensions/
+
+**TODO before Thursday:**
+- [ ] Check @claudedevs for any Conway-adjacent hints (teaser tweets, docs preview, research drops)
+- [ ] Search X for the Conway codename tweet the article references — archive it in case it gets deleted
+- [ ] Look at the iOS build version history if possible (App Store update notes) for corroboration
+- [ ] Decide by Thursday: run the B story on reporting-only with clear attribution, or hold for Issue 03 if Anthropic ships it meanwhile
+
+---
+
+## Story 3 — The Trust Week (INVESTIGATION)
 
 ### 2a. Lovable BOLA vulnerability
 
@@ -145,6 +191,7 @@ Not a full section — one paragraph in the open, maybe 150 words.
 - **"Trust"** — obvious but strong. The platform-risk frame.
 - **"Context"** — Claude Design reads your context; Context.ai was the attack vector; context is the week's double-edged sword.
 - **"Scope"** — OAuth scopes are the Vercel story; scope is the VISION.md concept for Shipped.; scope fence is the editorial discipline.
+- **"Always-on"** — Conway is always-on. Breaches are always-on risk. The week argues the builder stack is always-on and needs to be treated as such.
 
 Pick Thursday.
 
@@ -152,7 +199,9 @@ Pick Thursday.
 
 ## Thursday Decision Checklist (2026-04-23)
 
-- [ ] Running order: still lead-Claude-Design-investigate-security, or flip?
+- [ ] Running order: Claude Design (A) → Conway (B) → Trust Week (investigation) → SOPs. Still right?
+- [ ] **Conway promotion check:** did Anthropic ship/announce Conway this week? If yes → Conway becomes lead, Claude Design slides to B.
+- [ ] **Conway hold check:** if build evidence weakened or Anthropic pushed back, hold Conway for Issue 03 and restore Trust Week to co-lead with Claude Design.
 - [ ] Slug for issue-02-*.md (rename from `wip`)
 - [ ] Title
 - [ ] Term of Issue locked
