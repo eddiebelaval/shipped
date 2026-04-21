@@ -72,7 +72,7 @@ This is a product preview, which makes it a telemetry preview. Anthropic is watc
 ## Voice budget used in this draft
 
 - **"X isn't Y, it's Z" formula:** ONE use — *"Anthropic is not building an API company. It is building a product company whose products happen to be powered by its own models."* This spends the issue's budget. Any other section should avoid the formula.
-- **Forbidden phrases:** none present.
-- **Sentence length:** varies aggressively per STYLE.md.
-- **Opening pattern:** in-medias-res (Pattern 1) via specific-moment timing.
+- **Forbidden phrases:** none present. Scanned for EPIC, thrilled, ushers, game-changing, industry-leading, synergies, robust, best-in-class, unveiled, empowers, leverage.
+- **Sentence length:** varies aggressively per STYLE.md. Short paragraphs stacked ("A product. Not a model, not an API...") used deliberately in the opener for rhythm.
+- **Opening pattern:** in-medias-res (Pattern 1) via specific-moment timing. Avoided Pattern 2 here since the Open uses it.
 - **Second person:** used twice, both intentional ("It might be you." and "You might as well be watching too.").

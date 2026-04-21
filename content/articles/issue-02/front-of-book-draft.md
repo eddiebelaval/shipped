@@ -7,9 +7,10 @@ status: drafting
 ship_date: 2026-04-24
 ---
 
-# Issue 02 — Front-of-book Draft
+# Issue 02 — Draft
 
-> Working draft. Section order matches STYLE.md: Open → Lead → Also Shipped → Quiet on the Wire → Close.
+> Working draft. Do NOT push to the WIP on GitHub without Eddie's review.
+> Section order matches STYLE.md: Open → Lead → Also Shipped → Quiet on the Wire → Close → Release Log.
 
 ---
 
@@ -27,7 +28,7 @@ Two shapes. One frequency. This issue tunes to it.
 
 ## Lead Story — Claude Design (with Conway third act)
 
-_[draft lives in claude-design-reception.md — distill to 200–300 words]_
+_[next]_
 
 ---
 
