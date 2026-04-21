@@ -62,6 +62,7 @@ Every source article across all issues. The master list.
 | Issue 02 Signal Report | 02 | background | used | 2026-04-21 | `articles/issue-02/signal-report.md` |
 | Issue 02 Draft (front-of-book) | 02 | open, lead-story | draft | 2026-04-21 | `articles/issue-02/front-of-book-draft.md` |
 | Claude Design Reception | 02 | lead-story | draft | 2026-04-21 | `articles/issue-02/claude-design-reception.md` |
+| OpenClaw Anthropic Return | 02 | also-shipped | research | 2026-04-21 | `articles/issue-02/openclaw-anthropic-return.md` |
 | Conway Leak Analysis | 02 | lead-story, quiet-wire | research | 2026-04-21 | _not yet captured_ |
 | Trust Week — Lovable BOLA | 02 | investigation | research | 2026-04-21 | _not yet captured_ |
 | Trust Week — Vercel via Context.ai | 02 | investigation | research | 2026-04-21 | _not yet captured_ |
@@ -81,7 +82,7 @@ Every source article across all issues. The master list.
 |---|---|---|---|
 | Open | front-of-book-draft.md | draft | Needs final voice pass |
 | Lead Story | claude-design-reception.md + Conway analysis (pending) | draft (Claude Design) / research (Conway) | Hands-on screenshots (Eddie only). Pro quote needed. Conway article not yet captured. |
-| Also Shipped | _(pending Thursday scrape)_ | blocked | Scraper output not yet available |
+| Also Shipped | openclaw-anthropic-return.md + scraper output (pending) | research (OpenClaw) / blocked (scrape) | OpenClaw needs date/version confirmation; other Also Shipped beats wait on Thursday scrape |
 | Investigation | Lovable BOLA + Vercel breach research | research | Pro interview for SOPs. Attribution softening for ShinyHunters. |
 | Quiet on the Wire | Conway (if not promoted to lead) | research | Placement decision Thursday |
 | The Close | _(not started)_ | pending | Rhythm closer, three beats |
@@ -136,3 +137,4 @@ The article files in `content/articles/issue-NN/` are the source material. Claud
 |---|---|
 | 2026-04-21 | Initial tracker. Cataloged Issue 02 materials from signal report and draft. Retroactive entries for Issues 00 and 01. |
 | 2026-04-21 | `claude-design-reception.md` captured as draft. Lead-story section now has a source article. |
+| 2026-04-21 | `openclaw-anthropic-return.md` captured as research. Also Shipped section has its first source article. Policy-signal beat — "Anthropic sanctioned CLI-reuse again" (per OpenClaw docs only, needs attribution discipline). |
