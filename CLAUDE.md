@@ -45,14 +45,22 @@ These are load-bearing. Violating any of them is a hard stop.
 ### Content files
 
 ```
-content/issue-NN-{slug}.md      — canonical issue (e.g., issue-00-the-founding.md)
-content/issue-NN-wip.md         — working document before slug is assigned
-content/articles/issue-NN/      — source articles that feed into an issue
-content/STYLE.md                — voice rules, forbidden phrases, approved moves
-content/DESIGN.md               — design system (colors, type, layout)
-content/index.md                — series archive
-TRACKER.md                      — article inventory + per-issue rollup (see below)
+content/issue-NN-{slug}.md              — canonical issue (e.g., issue-00-the-founding.md)
+content/issue-NN-wip.md                 — working document before slug is assigned
+content/articles/issue-NN/              — source articles that feed into an issue
+content/articles/issue-NN/signal-report.md      — Monday research sweep (Phase 1)
+content/articles/issue-NN/{topic}.md            — per-topic source articles (research → draft → used)
+content/articles/issue-NN/launch-copy.md        — social/email launch copy for the issue
+content/articles/issue-NN/ship-checklist.md     — operational ship-day notes
+content/articles/issue-NN/post-ship.md          — lessons and learnings captured after publish
+content/articles/issue-NN/assets/               — mockups, OG source, screenshots, reference images
+content/STYLE.md                        — voice rules, forbidden phrases, approved moves
+content/DESIGN.md                       — design system (colors, type, layout)
+content/index.md                        — series archive
+TRACKER.md                              — article inventory + per-issue rollup (see below)
 ```
+
+**Per-issue auxiliary files.** Each of `launch-copy.md`, `ship-checklist.md`, `post-ship.md` uses the standard article frontmatter but with `section: launch | ops | post-ship`. They are registered in TRACKER.md like any other article. The `assets/` subfolder is for binary design artifacts (PNG, SVG, PDF, sketch files). Rendered output (OG cards served to Vercel) still lives in `../id8labs/public/shipped/NN/` — `assets/` is for *sources*, not artifacts.
 
 ### Source articles
 
@@ -123,6 +131,19 @@ pipeline/output/            — scraper output (gitignored)
 ## The editorial workflow
 
 See `EDITORIAL.md` for the full lifecycle of an issue from signal to ship.
+
+**Slash commands by phase** (preferred; human-in-the-loop multi-phase):
+
+| Phase | Command | What it does |
+|---|---|---|
+| Signal (Mon) | `/shipped-signal` | Research sweep → `articles/issue-NN/signal-report.md` |
+| WIP (Tue/Wed) | `/shipped-wip` | Refine `issue-NN-wip.md`, capture new articles, update TRACKER |
+| Draft (Thu) | `/shipped-draft` | Lock running order, draft front-of-book prose, populate Release Log |
+| Verify (Fri) | `/verify-shipped` | Attestation gates (URL, number, quote, date, voice) |
+| Stage (Fri) | `/publish-shipped` | Render HTML, stage to `id8labs/public/shipped/NN/` |
+| Ship (Fri) | (human) | Eddie runs `git commit && git push` from `id8labs/` |
+
+**Fallback (dead weeks, missed cycles):** `/shipped` is the one-shot autonomous writer. Scans + drafts + files in a single pass. Skips the article-capture layer, so traceability is lower. Use only when the multi-phase workflow can't run.
 
 **Quick reference — the week's rhythm:**
 
