@@ -16,15 +16,23 @@ running_order_decision_at: 2026-04-23  # Thursday — allow the week to play out
 
 ---
 
-## Editorial Decisions (locked Mon 2026-04-20 PM; updated Tue 2026-04-21 AM)
+## Editorial Decisions (locked Mon 2026-04-20 PM; updated Tue 2026-04-21 AM + PM)
 
 - **Lead story (A):** Claude Design. Anthropic shipped it Apr 17, same morning Shipped. Issue 01 went live.
-- **Secondary story (B):** **Conway** — Anthropic's codename for an always-on, containerized Claude agent with extension UI. Reported by testingcatalog.com from unreleased build analysis (Tue 2026-04-21). _Tentative B slot pending Thursday confirmation; promotes to lead if it ships this week._
-- **Investigation:** The Trust Week — Lovable + Vercel, as builder warnings with Anthropic-compatible SOPs tied back.
+- **Secondary story (B) — CONFLICT, needs Thursday resolution:**
+  - **WIP position:** Conway as a separate B story (reported, pre-launch, codename'd from testingcatalog.com).
+  - **Signal report position (Tue PM):** Conway as a **Lead-Story third act / sidebar** — tightens the "Anthropic ships products" thesis by closing with Conway inside the Lead instead of giving it its own section. Trust Week then moves up to secondary.
+  - **Front-of-book draft position:** Section header reads "Lead Story — Claude Design (with Conway third act)" — aligned with signal report.
+  - **Open question Eddie decides Thursday:** Conway as B story (current WIP) OR Lead third-act (signal/front-of-book)?
+- **Investigation:** The Trust Week — Lovable + Vercel, as builder warnings with Anthropic-compatible SOPs tied back. _If Conway moves into Lead as third-act, Trust Week moves up to secondary._
 - **Editorial frame for security piece:** warn builders + tie back to Anthropic + ship vetted SOPs from pros we research. Not news-for-news-sake; action layer.
 - **Thematic spine:** Anthropic landed one product (Claude Design) and is about to ship another (Conway). Two ecosystem platforms broke (Lovable + Vercel). Here's what builders should do. What shipped → what's coming → what broke → what to do.
 - **Opening meta beat:** how Issue 01's readers (WhatsApp group) shaped this issue — translation asks, podcast ask, and what we decided to do with each (ES pocketed to 03; podcast in VISION roadmap; this piece leans into "action layer" signal).
 - **ES pilot:** POCKETED to Issue 03. Reason: editorial load already heavy; splitting focus breaks quality bar.
+- **Term of Issue — LEANING PRESENCE** (Tue 2026-04-21 PM per signal report re-rank). _Was: Trust/Context/Scope shortlist → now: Presence leads; Trust fallback; Context/Scope demoted. Reason: Presence ties Conway to Eddie's voice corpus (`presence-not-tools.md`), contrasts with Claude Design's one-prompt-one-output mode, opens Move A (memoir → philosophy) pivot._
+- **Amazon-Anthropic deal ($25B / $100B / 10yr):** Release-log-only (Eddie confirmed Tue AM). Not the lead, not the secondary. One entry under `[NEWS]`. Two or three sentences allowed in front-of-book if word budget permits; not a narrative spine.
+- **ShinyHunters attribution — softened.** ShinyHunters publicly denied Vercel involvement (per BleepingComputer + Hackread, Mon/Tue). BreachForums $2M listing still live but the group usually credited has distanced themselves. Magazine copy must read "initially credited to ShinyHunters; group has since denied involvement." _Was: "ShinyHunters / $2M ransom" → now: softened attribution._
+- **Signal report absorbed:** Tue 2026-04-21 PM. `content/articles/issue-02/signal-report.md` findings pulled into fact sheets and Thursday checklist below.
 - **Running order:** NOT locked until Thursday 2026-04-23. The week may surface something bigger.
 
 ---
@@ -33,13 +41,14 @@ running_order_decision_at: 2026-04-23  # Thursday — allow the week to play out
 
 | Section | Content | Status |
 |---|---|---|
-| Open | Meta: Issue 01 dropped same morning as Claude Design; WhatsApp group shaped this issue | to write |
-| Lead Story (A) | Claude Design: what it is, who it's for, Figma drop, "Anthropic ships products not just models" read | researching |
-| Secondary Story (B) | Conway: reported always-on containerized Claude agent with extensions, connectors, webhooks. Pre-launch. | researching |
-| Investigation: Trust Week | Lovable BOLA + Vercel via Context.ai — two failure modes, same weekend | researching |
+| Open | Meta: Issue 01 dropped same morning as Claude Design; WhatsApp group shaped this issue. "Presence" frame. | drafted (see `articles/issue-02/front-of-book-draft.md`) |
+| Lead Story (A) | Claude Design: what it is, who it's for, Figma drop, "Anthropic ships products not just models" read | distilled draft (214 words — see Story 1 below) |
+| Secondary Story (B) — PLACEMENT OPEN | Conway: reported always-on containerized agent. Either standalone B story OR third-act inside Lead (Thursday call). | research — conflict flagged |
+| Investigation: Trust Week | Lovable 4-stage evolution + Vercel via Context.ai. ShinyHunters attribution softened. | research (expanded with signal report) |
+| Also Shipped | OpenClaw Anthropic return (policy-signal beat); other Thursday-scrape candidates | 1 research article captured; rest blocked on scrape |
 | Builder SOPs | Vetted actionable tips — rotate env vars, audit third-party OAuth scopes, etc. | needs pro interviews |
-| Release Log | Full weekly dump (scraper populates Thursday) | blocked on scrape |
-| Close / Term of Issue | "Trust" as the week's term; counterpoint between Claude Design reading your codebase and the breaches showing platform risk | to write |
+| Release Log | Amazon-Anthropic deal ($25B/$100B) confirmed `[NEWS]` entry; full weekly dump populates Thursday scrape | blocked on scrape (1 confirmed entry) |
+| Close / Term of Issue | "Presence" leading; counterpoint between always-on products absorbing context and always-on platforms failing that trust | to write |
 
 ---
 
@@ -103,25 +112,45 @@ That team member has a name. It might be you.
 
 ---
 
-## Story 2 — Conway (B STORY — reported, pre-launch)
+## Story 2 — Conway (PLACEMENT OPEN: B STORY vs Lead third-act)
 
-> **Confidence caveat.** This is reported-from-unreleased-builds, not an Anthropic announcement. Attribute carefully. Use "reported codename" not "announced product." Issue 01's Mythos beat is precedent. If Anthropic ships or confirms it by Thursday, it promotes to lead and Claude Design slides to B.
+> **Confidence caveat.** This is reported-from-unreleased-builds + source-code leak, not an Anthropic announcement. Attribute carefully. Use "reported codename" not "announced product." Issue 01's Mythos beat is precedent. If Anthropic ships or confirms it by Thursday, it promotes to lead and Claude Design slides to B.
 
-**The facts (as reported by testingcatalog.com Tue 2026-04-21):**
-- Codename: **Conway**.
-- Description: always-on Claude agent running in a **containerized Claude environment**, persistent alongside standard conversations.
-- **UI surface observed in builds:**
-  - Custom UI tabs extensions can provide
-  - Extension install + management
-  - Connector and webhook configuration
-  - Model selection for the agent
-  - Container lifecycle control
-  - Fine-grained tool-call management
-  - Separate chat tab for agent interaction
-  - "Installed" and "Built-in" sidebar sections (web)
-- **Cross-platform parity:** iOS reached parity with the desktop settings interface in recent builds — manage extensions/connectors/webhooks/model selection on mobile.
-- **Status:** confirmed in active development via build evidence. Pre-launch, no public release window.
-- The **"extension platform"** framing is the reporter's analytical interpretation, not a disclosed capability.
+> **Placement conflict to resolve Thursday:** front-of-book draft and signal report both recommend Conway as a **Lead-Story third act** (inside Claude Design's section). WIP currently has it as separate B. Editorial call: does Conway tighten the "Anthropic ships products" thesis (third-act inside Lead) or stand on its own (separate B)?
+
+### The March 31 Claude Code source-code leak (primary evidence)
+
+On 2026-03-31, `@anthropic-ai/claude-code` v2.1.88 shipped with a missing `.npmignore` entry. The result: a **59.8 MB `cli.js.map` source map** went public — roughly **512,000 lines of TypeScript across ~1,906 files**. Anthropic confirmed it was a packaging error, not a security breach.
+
+The leak exposed:
+
+- **44 hidden feature flags.** Named ones include `PROACTIVE`, `KAIROS`, `VOICE_MODE`, `BRIDGE_MODE`.
+- **KAIROS** (Greek for *the right moment*) — a fully-built autonomous daemon mode. Not shipped.
+- **Conway** — sidebar option inside Claude's interface that launches a "Conway instance" with three panes: **Search, Chat, System**.
+- **`.cnw.zip`** — a proprietary extension format for custom tools, UI tabs, and context handlers.
+- **Webhook triggers** — public URLs that wake the instance.
+- **Browser control** — Conway can drive Chrome.
+- **GitHub subscriptions** — Conway watches repo activity and responds proactively.
+- **Push notifications** when tasks complete or conditions trigger.
+- **`EPITAXY`** — Claude Code integration codename, clustered with Conway in the code.
+
+### The TestingCatalog follow-up (Tue 2026-04-21)
+
+The iOS version of Claude now has a **hidden feature flag related to managed 24/7 agents**. Evidence Conway is being prepared for consumer-facing rollout, not just an internal experiment. That's the meaningful shift — from "leaked internal project" to "consumer product being staged."
+
+TestingCatalog's Tue report also documented the visible UI surface in unreleased builds:
+
+- Custom UI tabs extensions can provide
+- Extension install + management
+- Connector and webhook configuration
+- Model selection for the agent
+- Container lifecycle control
+- Fine-grained tool-call management
+- Separate chat tab for agent interaction
+- "Installed" and "Built-in" sidebar sections (web)
+- iOS reached parity with the desktop settings interface
+
+**Status:** confirmed in active development via build + leak evidence. Pre-launch, no public release window. The **"extension platform"** framing is a reporter's analytical interpretation, not a disclosed capability.
 
 **The editorial argument:**
 Anthropic is extending into **always-on, context-absorbing, platform-style products**. Claude Design reads your codebase + design files. Conway runs in a persistent container with extensions and webhooks. The product surface is no longer a chat window — it's a shell that lives next to you and composes with third-party primitives. This is the same axis as Claude Code + Skills + `ant` CLI, just further along.
@@ -136,13 +165,23 @@ Connects directly to the Trust Week investigation: as Anthropic's products absor
 - Privacy/security: always-on + containerized runs into the exact trust questions Trust Week is asking.
 
 **Sources (primary):**
-- TestingCatalog (original report): https://www.testingcatalog.com/anthropics-works-on-its-always-on-agent-with-new-ui-extensions/
+- TestingCatalog (Conway scoop): https://www.testingcatalog.com/exclusive-anthropic-tests-its-own-always-on-conway-agent/ _(egress-blocked, cited from search)_
+- TestingCatalog (UI extensions follow-up): https://www.testingcatalog.com/anthropics-works-on-its-always-on-agent-with-new-ui-extensions/
+- The Hacker News (Anthropic confirms packaging error): https://thehackernews.com/2026/04/claude-code-tleaked-via-npm-packaging.html
+- VentureBeat (leak analysis): https://venturebeat.com/technology/claude-codes-source-code-appears-to-have-leaked-heres-what-we-know
+- Layer5 (512k lines, `.npmignore` story): https://layer5.io/blog/engineering/the-claude-code-source-leak-512000-lines-a-missing-npmignore-and-the-fastest-growing-repo-in-github-history/
+- Alex Kim (Conway + KAIROS feature-flag deep dive): https://alex000kim.com/posts/2026-03-31-claude-code-source-leak/
+- Dataconomy (Conway as persistent agent platform): https://dataconomy.com/2026/04/03/anthropic-tests-conway-platform-for-continuous-claude/
+- TestingCatalog on X (original BREAKING tweet): https://x.com/testingcatalog/status/2039490365414048182
+
+**Sourcing discipline before press:** pick **2 primary sources** to cite in the magazine — TestingCatalog (broke the story) + one secondary verification (VentureBeat, The Hacker News, or Dataconomy). The rest live in the article file for research depth.
 
 **TODO before Thursday:**
+- [ ] **Placement decision** — Conway as B story (current WIP) or Lead third-act (signal/front-of-book recommendation)
 - [ ] Check @claudedevs for any Conway-adjacent hints (teaser tweets, docs preview, research drops)
-- [ ] Search X for the Conway codename tweet the article references — archive it in case it gets deleted
+- [ ] Capture Conway analysis into its own article file: `content/articles/issue-02/conway-leak-analysis.md`
 - [ ] Look at the iOS build version history if possible (App Store update notes) for corroboration
-- [ ] Decide by Thursday: run the B story on reporting-only with clear attribution, or hold for Issue 03 if Anthropic ships it meanwhile
+- [ ] Decide by Thursday: run on reporting-only with clear attribution, or hold for Issue 03 if Anthropic ships it meanwhile
 
 ---
 
@@ -156,14 +195,25 @@ Connects directly to the Trust Week investigation: as Anthropic's products absor
 - **Exposed:** source code, hardcoded DB credentials, AI chat histories.
 - Bug reported **48 days ago** and not fixed. Marked as duplicate and left open.
 - Researchers demonstrated live admin-panel access to **Connected Women in AI** (Danish nonprofit): pulled real names, job titles, LinkedIn profiles, Stripe customer IDs via hardcoded Supabase creds in the source.
-- **Lovable's response:** "We did not suffer a data breach" — despite the documented exposure.
 - Affected projects created before Nov 2025.
 
+**Lovable's shifting public story (4 stages, per Register 2026-04-20):**
+
+1. **First:** "intentional behavior" and "unclear documentation."
+2. **Then:** blame shifted to **HackerOne** — reports were closed as duplicate because triagers "thought it was intended behavior."
+3. **Then:** admitted a **February 2026 permissions-unification** accidentally re-enabled access to public-project chats.
+4. **Now:** partial fix shipped — **new projects patched, every pre-existing (pre-Nov 2025) project remains exposed.**
+
+Techloy ran a headline claiming Lovable "fixes" the vulnerability. Independent coverage confirms: the fix is **new-projects-only**. That gap — fix announced vs. legacy still exposed — is the editorial beat worth stating cleanly in the magazine. A company that restructured its story four times in a week, then shipped a fix that covered only new accounts, is showing you the trust margin of the platform under your app.
+
 **Sources:**
+- The Register ("intentional behavior" defense): https://www.theregister.com/2026/04/20/lovable_denies_data_leak/
+- Techloy (partial fix claim): https://www.techloy.com/is-your-code-safe-lovable-ai-fixes-vulnerability-that-leaked-database-credentials/
+- Computing.co.uk (flaw exposed source + creds + chats): https://www.computing.co.uk/news/2026/security/lovable-flaw-exposed-source-code-credentials-and-ai-chats
 - Superblocks (detailed technical breakdown): https://www.superblocks.com/blog/lovable-vulnerabilities
 - Cyber Kendra: https://www.cyberkendra.com/2026/04/lovable-left-thousands-of-projects.html
 - CybersecurityNews: https://cybersecuritynews.com/lovable-ai-app-builder-customer-data/
-- Sifted (Lovable's denial): https://sifted.eu/articles/lovable-denies-data-breach
+- Sifted (Lovable's initial denial): https://sifted.eu/articles/lovable-denies-data-breach
 - Polymarket on X: https://x.com/Polymarket/status/2046248814290387129
 
 ### 2b. Vercel breach via Context.ai
@@ -174,35 +224,87 @@ Connects directly to the Trust Week investigation: as Anthropic's products absor
 - The Context.ai integration had **deployment-level Google Workspace OAuth scopes** — privileged foothold once Context.ai fell.
 - **Affected:** hundreds of users across many orgs.
 - Sensitive-marked env vars: encrypted, believed safe. Non-sensitive env vars: need rotation.
-- **Threat actor:** ShinyHunters. Claims selling access. Alleged $2M ransom discussion per Telegram messages.
 - Crypto/API keys most at-risk — CoinDesk reports developers scrambling to rotate.
+- **Vendor response (per Vercel bulletin):** Mandiant, GitHub, Microsoft, npm, and Socket engaged. Vercel confirmed no compromised npm packages published by Vercel itself.
+- **Policy change going forward:** environment variable default is changing to `sensitive: on`. Non-sensitive was the exposed surface; this flips the default.
+- **Framing beat:** The Register called it **"AI-pwned"** — the attack chain was stolen employee creds via an OAuth-connected AI platform (Context.ai). Same category as Lovable: *the platform's dependencies are the attack surface now.*
+
+### 2c. Attribution reversal — ShinyHunters denies
+
+**This is new (Mon/Tue 2026-04-20/21):** ShinyHunters told BleepingComputer they are **not involved** in the Vercel breach. Hackread reported the same denial. The **BreachForums listing offering Vercel data at $2M is still live**, but the group usually credited has distanced themselves.
+
+**Magazine copy implication:** soften the actor line. *Was: "ShinyHunters claimed responsibility / $2M ransom" → now: "initially credited to ShinyHunters; the group has since publicly denied involvement; the $2M BreachForums listing remains live but unattributed."*
+
+This is a case study in press-cycle attribution drift. It also loosens the Vercel story slightly — it's still a supply-chain compromise via Context.ai, but the public-facing actor story is less clean than reporters initially wrote.
 
 **Sources:**
 - Vercel official bulletin: https://vercel.com/kb/bulletin/vercel-april-2026-security-incident
+- The Register ("AI-pwned"): https://www.theregister.com/2026/04/21/vercel_ceo_points_to_aidriven/
+- GitGuardian (non-sensitive env vars still matter): https://blog.gitguardian.com/vercel-april-2026-incident-non-sensitive-environment-variables-need-investigation-too/
 - TechCrunch (Context.ai tie): https://techcrunch.com/2026/04/20/app-host-vercel-confirms-security-incident-says-customer-data-was-stolen-via-breach-at-context-ai/
-- BleepingComputer (ShinyHunters): https://www.bleepingcomputer.com/news/security/vercel-confirms-breach-as-hackers-claim-to-be-selling-stolen-data/
+- BleepingComputer (ShinyHunters denial): https://www.bleepingcomputer.com/news/security/vercel-confirms-breach-as-hackers-claim-to-be-selling-stolen-data/
+- Hackread (ShinyHunters denial): https://hackread.com/vercel-breach-context-ai-shinyhunters-not-involved/
 - SecurityWeek: https://www.securityweek.com/next-js-creator-vercel-hacked/
 - The Hacker News: https://thehackernews.com/2026/04/vercel-breach-tied-to-context-ai-hack.html
 - CoinDesk (developer scramble): https://www.coindesk.com/tech/2026/04/20/hack-at-vercel-sends-crypto-developers-scrambling-to-lock-down-api-keys
 - iTnews (secrets rotation): https://www.itnews.com.au/news/cloud-deployment-firm-vercel-breached-advises-secrets-rotation-625197
 
-### 2c. The through-line
+### 2d. The through-line
 
-Two failure modes, same weekend:
-- **Lovable** — platform-level security debt + denial. 48 days of unfixed BOLA. Then "we didn't have a breach."
+Three failure modes, same weekend:
+- **Lovable** — platform-level security debt + denial. 48 days of unfixed BOLA. Four versions of a public story in a week. Fix that covers new accounts only.
 - **Vercel** — supply-chain compromise via third-party integration. Didn't exploit a Vercel bug — exploited a privileged OAuth scope granted to an integrated AI platform (Context.ai).
+- **Attribution drift** — press credited ShinyHunters. ShinyHunters denied. BreachForums listing still live, unattributed. A small but real story about how breach narratives solidify before facts do.
 
 The frame: **"The platform under your app can fail in ways you didn't model."** Builders assume the platform is secure; the platform assumes the integration is secure; the integration wasn't.
 
 **TODO before Thursday:**
 - [ ] One pro interview for SOPs — who? (Candidates: an infosec engineer at a YC-backed AI co; an Anthropic DevRel; a known builder who rotated in response)
 - [ ] Check if Anthropic's Claude Code / Skills spec has a prescribed pattern for OAuth scope minimization
-- [ ] Monitor for updates — Lovable may ship a fix; Vercel may clarify scope; ShinyHunters may release data
+- [ ] Monitor for updates — Lovable may ship a full-fleet fix; Vercel may clarify scope; ShinyHunters situation may firm up
 - [ ] Check if any Shipped. readers were affected (ask in WhatsApp group?)
+- [ ] Capture both Lovable + Vercel into their own article files: `content/articles/issue-02/trust-week-lovable.md` + `trust-week-vercel.md`
 
 ---
 
-## Story 3 — Opening Meta Beat
+## Story 4 — Amazon-Anthropic Deal (RELEASE LOG ONLY)
+
+> **Eddie's call Tue AM:** release-log-only, not lead material. One `[NEWS]` entry. Optional two-three sentence mention in front-of-book if word budget allows, but not a narrative spine.
+
+**The facts:**
+- Announced **Mon 2026-04-20 / Tue 2026-04-21.**
+- Amazon invests **up to $25B in Anthropic** — **$5B now, $20B on commercial milestones.**
+- Anthropic commits **$100B+ on AWS over 10 years.**
+- Target: **1 GW capacity via Trainium2 / Trainium3 by end of 2026; 5 GW total goal.**
+- Ties back to Project Glasswing / Mythos context already referenced in Issue 01.
+
+**Editorial treatment:** Release Log entry, `[NEWS]` tag, standard template. The size of the number matters less than the timing — Anthropic's compute commitments are scaling with their product ambitions (Claude Design, Conway). If front-of-book has room, one line acknowledging "the scale Anthropic is now buying" fits the thematic spine without hijacking it.
+
+**Sources:**
+- Rappler: https://www.rappler.com/technology/amazon-investment-anthropic-april-20-2026/
+- Meyka (Apr 21 framing): https://meyka.com/blog/amazon-invests-25b-in-anthropic-ai-on-april-21-2026-2104/
+
+---
+
+## Story 5 — OpenClaw Anthropic Return (ALSO SHIPPED)
+
+> Captured as a full article: `content/articles/issue-02/openclaw-anthropic-return.md`. Research-status; 60-100 word compress for Also Shipped.
+
+**The beat:** OpenClaw (multi-provider LLM gateway — unified config across Anthropic, OpenAI, Qwen, MiniMax, Z.AI, Bedrock) has re-enabled full Anthropic support, including Claude CLI backend reuse. Feature matrix is thorough (prompt caching, extended thinking, Fast mode, 1M context). But the real signal is a line in their docs: *"Anthropic staff reportedly told us OpenClaw-style Claude CLI usage is allowed again."*
+
+**Editorial angle:** policy signal, not a feature launch. A previously grey-zone integration path is now sanctioned — per OpenClaw, not per Anthropic. Fits the thematic spine: Anthropic expanding the sanctioned surface area for how builders use Claude, right as the Trust Week shows what happens when platforms mishandle that kind of flexibility.
+
+**Attribution discipline:** magazine copy must read "per OpenClaw's docs" — no public Anthropic statement corroborates the policy reversal. Flag in Thursday checklist.
+
+**TODO before Thursday:**
+- [ ] Date-stamp the OpenClaw Anthropic re-enablement (changelog entry on their site or GitHub)
+- [ ] Scan whether other gateways (OpenRouter, LiteLLM) got the same update — if yes, the beat is broader than OpenClaw alone
+
+**Source:** https://docs.openclaw.ai/providers/anthropic
+
+---
+
+## Opening Meta Beat
 
 Not a full section — one paragraph in the open, maybe 150 words.
 
@@ -217,10 +319,13 @@ Not a full section — one paragraph in the open, maybe 150 words.
 
 ## Term of Issue candidates
 
-- **"Trust"** — obvious but strong. The platform-risk frame.
-- **"Context"** — Claude Design reads your context; Context.ai was the attack vector; context is the week's double-edged sword.
-- **"Scope"** — OAuth scopes are the Vercel story; scope is the VISION.md concept for Shipped.; scope fence is the editorial discipline.
-- **"Always-on"** — Conway is always-on. Breaches are always-on risk. The week argues the builder stack is always-on and needs to be treated as such.
+Re-ranked Tue 2026-04-21 PM per signal report. Front-of-book draft frontmatter already uses `term_of_issue: Presence`.
+
+1. **"Presence"** — _LEADING._ Conway's architecture is *presence* itself: persistent, watching, responsive to conditions vs. summoned. Echoes Eddie's `presence-not-tools.md` essay (voice corpus). Opens a Move A (memoir → philosophy) pivot. Contrasts with Claude Design's one-prompt-one-output mode.
+2. **"Trust"** — strong fallback. Handles Lovable + Vercel cleanly. Loses Conway slightly; doesn't absorb Claude Design.
+3. **"Always-on"** — Conway is always-on; breaches are always-on risk; the builder stack is always-on.
+4. **"Scope"** — strong for OAuth/Vercel but doesn't absorb Conway or Claude Design.
+5. **"Context"** — cute tri-meaning (Claude Design reads context; Context.ai was the attack vector; context is the week's double-edged sword) but gets thin once Conway joins.
 
 Pick Thursday.
 
@@ -228,12 +333,34 @@ Pick Thursday.
 
 ## Thursday Decision Checklist (2026-04-23)
 
-- [ ] Running order: Claude Design (A) → Conway (B) → Trust Week (investigation) → SOPs. Still right?
-- [ ] **Conway promotion check:** did Anthropic ship/announce Conway this week? If yes → Conway becomes lead, Claude Design slides to B.
-- [ ] **Conway hold check:** if build evidence weakened or Anthropic pushed back, hold Conway for Issue 03 and restore Trust Week to co-lead with Claude Design.
-- [ ] Slug for issue-02-*.md (rename from `wip`)
-- [ ] Title
-- [ ] Term of Issue locked
-- [ ] All TODOs above resolved or explicitly deferred
-- [ ] Scraper output reviewed for anything bigger I'm missing
-- [ ] Pro interview booked for SOPs section
+**Structure decisions (resolve before drafting):**
+
+- [ ] **Conway placement:** B story (current WIP) OR Lead third-act inside Claude Design (signal + front-of-book recommendation). If third-act, Trust Week moves up to secondary slot.
+- [ ] **Conway promotion check:** did Anthropic ship/announce Conway this week? If yes → Conway becomes Lead, Claude Design slides to B, front-of-book rewrites around the ship.
+- [ ] **Conway hold check:** if build evidence weakened or Anthropic pushed back publicly, hold Conway for Issue 03 and restore Trust Week to co-lead with Claude Design.
+- [ ] **Running order confirmation:** with placement resolved, freeze the section order.
+
+**Editorial decisions:**
+
+- [ ] **Term of Issue** — lock **Presence** (current lead) or fall back to Trust.
+- [ ] **Slug for `issue-02-{slug}.md`** — candidates: `presence`, `the-product-turn`, `what-gets-watched`.
+- [ ] **Title** — open.
+- [ ] **Attribution line for Vercel** — soften to "initially credited to ShinyHunters; group has since denied involvement; $2M BreachForums listing remains live, unattributed."
+- [ ] **Conway sourcing** — pick the 2 primary sources to cite in the magazine: TestingCatalog (broke it) + one secondary (VentureBeat, The Hacker News, or Dataconomy).
+- [ ] **OpenClaw attribution** — confirm "per OpenClaw's docs" framing, not "Anthropic sanctioned."
+
+**Research TODOs (resolve or explicitly defer):**
+
+- [ ] Hands-on Claude Design screenshots (Eddie only — first-person use)
+- [ ] Developer/designer quote in the wild for Claude Design (X, LinkedIn, HN scan Apr 18+)
+- [ ] Pro interview booked for SOPs section (infosec eng at YC AI co; or Anthropic DevRel on Claude Code safety)
+- [ ] Capture Conway analysis into `articles/issue-02/conway-leak-analysis.md`
+- [ ] Capture Trust Week into two articles: `trust-week-lovable.md` + `trust-week-vercel.md`
+- [ ] Date-stamp the OpenClaw Anthropic re-enablement
+- [ ] Scan for other-gateway policy updates (OpenRouter, LiteLLM)
+
+**Pipeline TODOs:**
+
+- [ ] **Scraper run** — Thursday PM `pnpm scrape` for Release Log data
+- [ ] Scraper output reviewed for anything bigger than Amazon-Anthropic / OpenClaw that we haven't tracked
+- [ ] Verify Amazon-Anthropic deal fits the `[NEWS]` entry template cleanly
