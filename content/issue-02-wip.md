@@ -45,6 +45,35 @@ running_order_decision_at: 2026-04-23  # Thursday — allow the week to play out
 
 ## Story 1 — Claude Design (LEAD)
 
+> Full source article: `content/articles/issue-02/claude-design-reception.md` (~900 words, drafted 2026-04-21). The prose below is the 200–300 word Lead Story distillation for the magazine. Full article preserves research and Anthropic-pattern analysis that didn't fit the word budget.
+
+### Lead Story — distilled draft (214 words)
+
+Thursday, 9 AM. Anthropic shipped Claude Design — a product, not a model — the same morning Issue 01 hit. Pro, Max, Team, and Enterprise subscribers got access. Everyone else got a waitlist.
+
+Claude Design turns a prompt, a codebase, or a half-written PRD into something you can send somewhere. Pitch decks, prototypes, one-pagers, full design systems. Exports to PDF, URL, PPTX, or Canva, where the artifact stays editable. Powered by Opus 4.7.
+
+Figma closed down 7.28%.
+
+The market's first read is split almost exactly down the middle. Brilliant and Datadog, on record, call it a step change — twenty prompts compressed to two, week-long cycles collapsed into a conversation. The r/ClaudeAI community landed on what one recap called "a resounding meh" — every application looks the same unless you upload your own design tokens.
+
+Both reads are true. For a team with a design system, Claude Design is a compression engine. For an individual trying to ship something with character, it's a mirror that returns whatever average its training produced.
+
+The distribution choice is the tell. Exports flow to Canva, not Figma. Designers already have their tool. Claude Design is aimed at the team member who opens Canva at 4 PM the Tuesday before an all-hands.
+
+That team member has a name. It might be you.
+
+### Voice budget used in this distillation
+
+- **"X isn't Y, it's Z" formula:** NOT used here (issue budget already spent once in the long article on "Anthropic is not building an API company..." — cannot re-use at issue level).
+- **Forbidden phrases:** none.
+- **Opening pattern:** specific-moment timing ("Thursday, 9 AM") — matches the Open's "Last Friday, Issue 01 hit at 9 AM" anchor.
+- **First person:** avoided. Reserved for the Open per front-of-book structure.
+- **Term of issue ("Presence"):** echoed implicitly in the close — "That team member has a name. It might be you." The product arrives before you call for it. Not stated.
+- **Rhythm:** period-heavy, short after long, one-sentence paragraph for stock-drop landing beat.
+
+### Research notes
+
 **The facts:**
 - Launched **Thu 2026-04-17** — same morning as Shipped. Issue 01.
 - Experimental/research preview for Claude Pro, Max, Team, Enterprise.
