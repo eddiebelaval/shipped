@@ -47,7 +47,7 @@ The format — a magazine, not a feed — is the point. A magazine says: someone
 
 **In:**
 
-- English + Spanish editions. Miami context: Spanish earns its slot. Issue 02 is the ES pilot; the renderer takes `(markdown, lang)` and produces per-language HTML.
+- English + Spanish editions. Miami context: Spanish earns its slot. **Issue 03 is the ES pilot** (moved from Issue 02 on 2026-04-20 — editorial load for 02 was already heavy with Claude Design + Trust Week coverage; splitting focus would have broken the quality bar). The renderer takes `(markdown, lang)` and produces per-language HTML.
 - The verifier, hardened. Per-language number-format tolerance. Known-fragile domain allowlist for sources that block scraper user agents.
 - Weekly cadence, never skipped.
 
