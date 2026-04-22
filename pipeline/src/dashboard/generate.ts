@@ -23,6 +23,7 @@ import { join, resolve } from 'node:path';
 import matter from 'gray-matter';
 import { renderDashboard } from './template.js';
 import { gradeArticle, type Grade } from './grader.js';
+import { resolveNextActions, type NextActionPlan } from './next-action.js';
 
 // ────────────────────────────────────────────────────────────────────
 // Types
@@ -74,6 +75,7 @@ export interface Dashboard {
   sections: SectionSlot[];
   scratchPad: DashboardArticle[];
   gaps: string[];
+  nextActions: NextActionPlan;
   generatedAt: string;
 }
 
@@ -380,7 +382,7 @@ export async function buildDashboard(issueNumber: string, contentRoot: string): 
     lockDate = d.toISOString().slice(0, 10);
   }
 
-  return {
+  const draft: Dashboard = {
     issue: issueNumber,
     shipDate: wipMeta.shipDate ?? '',
     theme: wipMeta.theme ?? '',
@@ -395,8 +397,12 @@ export async function buildDashboard(issueNumber: string, contentRoot: string): 
     sections,
     scratchPad,
     gaps,
+    // Resolver needs the draft to inspect grades, sections, meta
+    nextActions: undefined as unknown as NextActionPlan,
     generatedAt: new Date().toISOString(),
   };
+  draft.nextActions = resolveNextActions(draft);
+  return draft;
 }
 
 // ────────────────────────────────────────────────────────────────────

@@ -79,6 +79,21 @@ Three things, in order of defensibility:
 2. **The voice.** Style guide is strict (see `content/STYLE.md`). Builders recognize writing that takes the reader seriously.
 3. **The weekly cadence.** Shipped. exists every Friday. That's the product.
 
+## Auto-ops, human-voice
+
+The pipeline may automate any mechanical operation — scraping, grading, scheduling, staging, routing, state tracking, readiness scoring, next-action resolution. The pipeline **shall not** generate prose, assign editorial judgment, or make attribution decisions. Those are the editor's, every issue, every line.
+
+This is the difference between a fully automated *operations* layer and a fully automated *magazine*. Only the former. The latter would kill the moat.
+
+When a tool proposes an editorial action — *"retrofit the counter-frame in this article,"* *"add an operator-takeaway section here"* — it produces **scaffolding**: section headers, structural prompts, references to STYLE.md moves. It does not produce the words that ship. A writer — human — does that, every time.
+
+The practical rule:
+
+- Automate the **when, what state, what's missing, what's next.**
+- Never automate the **what it says.**
+
+If a future tool sits on this line and feels ambiguous about which side it's on, default to manual. The moat is the voice. The voice is yours.
+
 ## Success signals
 
 **Leading (first 4 weeks):**
@@ -97,3 +112,4 @@ Three things, in order of defensibility:
 - The verifier runs, or the issue doesn't ship.
 - Voice stays tight. The style guide is the contract.
 - The human pushes git. Never automated.
+- Auto-ops, human-voice. Automate the mechanics. Write the words.

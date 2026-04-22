@@ -24,7 +24,22 @@ export interface RenderOptions {
 export function renderDashboard(d: Dashboard, opts: RenderOptions = {}): string {
   const live = opts.live === true;
   const port = opts.port ?? 4321;
+  const endpoint = live ? `http://127.0.0.1:${port}/api/next` : '(dashboard-dev server not running — run `pnpm dashboard-dev` to access /api/next)';
   return `<!DOCTYPE html>
+<!--
+  CLAUDE DIRECTIVE — when the user points you at this dashboard:
+  1. Fetch ${endpoint}
+  2. Read the top-priority action in the returned JSON.actions array.
+  3. Report the state + proposed move in <200 words. Wait for Eddie to green-light before acting.
+  4. If green-lit, execute using the action's claudePrompt field as your instruction.
+
+  DOCTRINE — Auto-ops, human-voice (VISION.md):
+  The resolver proposes SCAFFOLDING (section headers, structural prompts, state
+  transitions). It does NOT generate prose. If a claudePrompt asks you to write
+  prose, something is wrong — stop and surface it. Prose is Eddie's, every time.
+
+  Source of truth: content/RUBRIC.md, content/FORMULA.md, VISION.md.
+-->
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -40,6 +55,7 @@ export function renderDashboard(d: Dashboard, opts: RenderOptions = {}): string 
   ${renderPubBar(d, live)}
   ${renderHeader(d)}
   ${renderGapStrip(d)}
+  ${renderNextPanel(d)}
   <main class="stage" data-view-pane="table">
     ${renderSidebar(d)}
     ${renderCanvas(d)}
@@ -342,6 +358,63 @@ function renderSlotArticle(a: DashboardArticle): string {
 </div>`;
 }
 
+function renderNextPanel(d: Dashboard): string {
+  const plan = d.nextActions;
+  const hoursLabel = plan.hoursToLock !== null
+    ? `${formatHours(plan.hoursToLock)} to lock · ${formatHours(plan.hoursToShip ?? 0)} to ship`
+    : '';
+  const topActions = plan.actions.slice(0, 4);
+
+  if (topActions.length === 0) {
+    return `
+<section class="next-panel next-panel-clear">
+  <div class="next-head">
+    <div class="folio"><b>·</b><span class="ruler"></span><span>Next moves</span></div>
+    <div class="next-sub">${escapeHtml(plan.phaseName)} · ${escapeHtml(plan.dayOfWeek)}${hoursLabel ? ' · ' + escapeHtml(hoursLabel) : ''}</div>
+  </div>
+  <div class="next-empty">All systems clear. No actions queued.</div>
+</section>`;
+  }
+
+  const rows = topActions.map(a => `
+<article class="next-action next-pri-${escapeHtml(a.priority)}">
+  <div class="next-action-head">
+    <span class="next-pri-badge next-pri-badge-${escapeHtml(a.priority)}">${escapeHtml(a.priority)}</span>
+    <span class="next-action-phase">${escapeHtml(a.phase)}</span>
+    <span class="next-action-est">${escapeHtml(a.estimate)}</span>
+  </div>
+  <h3 class="next-action-title">${escapeHtml(a.title)}</h3>
+  <p class="next-action-detail">${escapeHtml(a.detail)}</p>
+  <details class="next-action-prompt">
+    <summary>Delegate to Claude</summary>
+    <div class="next-action-why"><strong>Why:</strong> ${escapeHtml(a.why)}</div>
+    <pre class="next-action-prompt-text">${escapeHtml(a.claudePrompt)}</pre>
+    ${a.command ? `<div class="next-action-cmd">Slash: <code>${escapeHtml(a.command)}</code></div>` : ''}
+  </details>
+</article>`).join('');
+
+  return `
+<section class="next-panel">
+  <div class="next-head">
+    <div class="folio"><b>·</b><span class="ruler"></span><span>Next moves</span></div>
+    <div class="next-sub">${escapeHtml(plan.phaseName)} · ${escapeHtml(plan.dayOfWeek)}${hoursLabel ? ' · ' + escapeHtml(hoursLabel) : ''}</div>
+  </div>
+  <div class="next-body">${rows}</div>
+  <div class="next-doctrine">${escapeHtml(plan.doctrine)}</div>
+</section>`;
+}
+
+function formatHours(h: number): string {
+  if (h < 0) {
+    const past = Math.abs(Math.round(h));
+    return `${past}h past`;
+  }
+  if (h < 1) return `<1h`;
+  if (h < 48) return `${Math.round(h)}h`;
+  const days = Math.round(h / 24);
+  return `${days}d`;
+}
+
 function renderMagazineMockup(d: Dashboard): string {
   // Compose the filled sections + Term of Issue + Close as a magazine storyboard
   const allArticles = [
@@ -635,6 +708,97 @@ body::before{
 .gap-strip-clear .gap-dot{
   display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--green);margin-right:10px;vertical-align:middle;
 }
+
+/* ── Next-moves panel ─────────────────────────────────────── */
+.next-panel{
+  background:var(--paper);
+  border-bottom:1px solid var(--ink);
+  padding:24px 28px 28px;
+  max-width:1600px;margin:0 auto;
+}
+.next-head{
+  display:flex;align-items:center;justify-content:space-between;gap:16px;
+  padding-bottom:14px;margin-bottom:14px;border-bottom:1px solid var(--hair);flex-wrap:wrap;
+}
+.next-sub{
+  font-family:var(--narrow);font-size:11px;font-weight:500;letter-spacing:.2em;
+  text-transform:uppercase;color:var(--muted);
+}
+.next-body{
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:14px;
+}
+.next-action{
+  background:var(--paper-alt);
+  border:1px solid var(--hair-hard);
+  padding:14px 16px;
+  border-left:4px solid var(--hair-hard);
+}
+.next-pri-critical{border-left-color:var(--red);background:rgba(184,54,30,.03)}
+.next-pri-high{border-left-color:var(--ink)}
+.next-pri-medium{border-left-color:var(--amber)}
+.next-pri-low{border-left-color:var(--gray)}
+
+.next-action-head{
+  display:flex;align-items:center;gap:10px;margin-bottom:8px;flex-wrap:wrap;
+}
+.next-pri-badge{
+  font-family:var(--narrow);font-size:9px;font-weight:700;letter-spacing:.22em;
+  text-transform:uppercase;padding:2px 6px;border:1px solid;
+}
+.next-pri-badge-critical{color:var(--red);border-color:var(--red);background:rgba(184,54,30,.06)}
+.next-pri-badge-high{color:var(--ink);border-color:var(--ink);background:rgba(11,11,11,.04)}
+.next-pri-badge-medium{color:var(--amber);border-color:var(--amber);background:rgba(184,117,23,.06)}
+.next-pri-badge-low{color:var(--gray);border-color:var(--gray)}
+
+.next-action-phase{
+  font-family:var(--mono);font-size:10px;color:var(--muted);letter-spacing:.04em;
+}
+.next-action-est{
+  margin-left:auto;font-family:var(--narrow);font-size:10px;font-weight:500;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--muted);
+}
+.next-action-title{
+  font-family:var(--disp);font-weight:500;font-size:16px;line-height:1.25;letter-spacing:-.015em;
+  color:var(--ink);margin-bottom:6px;
+}
+.next-action-detail{
+  font-family:var(--sans);font-size:12px;line-height:1.4;color:var(--body);margin-bottom:8px;
+}
+.next-action-prompt{margin-top:6px;border-top:1px dashed var(--hair);padding-top:8px}
+.next-action-prompt summary{
+  font-family:var(--narrow);font-size:10px;font-weight:600;letter-spacing:.22em;
+  text-transform:uppercase;color:var(--muted);cursor:pointer;padding:2px 0;
+}
+.next-action-prompt summary:hover{color:var(--ink)}
+.next-action-prompt[open] summary{color:var(--ink)}
+.next-action-why{
+  font-family:var(--disp);font-style:italic;font-size:12px;line-height:1.4;color:var(--muted);
+  margin:8px 0;
+}
+.next-action-why strong{font-style:normal;color:var(--ink);font-weight:600}
+.next-action-prompt-text{
+  font-family:var(--mono);font-size:11px;line-height:1.5;color:var(--body);
+  background:var(--paper);border:1px solid var(--hair);
+  padding:10px 12px;white-space:pre-wrap;word-wrap:break-word;
+  margin-top:6px;
+}
+.next-action-cmd{
+  margin-top:6px;font-family:var(--narrow);font-size:10px;font-weight:500;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--muted);
+}
+.next-action-cmd code{font-family:var(--mono);font-size:11px;letter-spacing:0;color:var(--orange);background:var(--paper-shadow);padding:1px 5px;border:1px solid var(--hair)}
+.next-empty{
+  font-family:var(--disp);font-style:italic;font-size:14px;color:var(--muted);
+  padding:12px 0;
+}
+.next-doctrine{
+  margin-top:16px;padding-top:12px;border-top:1px solid var(--hair);
+  font-family:var(--narrow);font-size:10px;font-weight:500;letter-spacing:.18em;
+  text-transform:uppercase;color:var(--gray);font-style:italic;
+}
+.next-panel-clear .next-empty{color:var(--green)}
+
+body[data-view="mockup"] .next-panel{display:none}
 
 /* ── Stage (sidebar + canvas) ─────────────────────────────────────── */
 .stage{

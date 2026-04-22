@@ -149,6 +149,19 @@ async function handleImage(cfg: ServerConfig, req: IncomingMessage, res: ServerR
   }
 }
 
+async function handleNext(cfg: ServerConfig, res: ServerResponse): Promise<void> {
+  try {
+    const dashboard = await buildDashboard(cfg.issue, cfg.contentRoot);
+    sendJson(res, 200, {
+      issue: dashboard.issue,
+      ...dashboard.nextActions,
+    });
+  } catch (err) {
+    const msg = err instanceof Error ? err.message : String(err);
+    sendJson(res, 500, { error: msg });
+  }
+}
+
 async function handleHealth(cfg: ServerConfig, res: ServerResponse): Promise<void> {
   try {
     const dashboard = await buildDashboard(cfg.issue, cfg.contentRoot);
@@ -198,6 +211,11 @@ async function main(): Promise<void> {
       // POST /api/image → attach image to article
       if (req.method === 'POST' && url.pathname === '/api/image') {
         await handleImage(cfg, req, res);
+        return;
+      }
+      // GET /api/next → stage-aware action queue (auto-ops only)
+      if (req.method === 'GET' && url.pathname === '/api/next') {
+        await handleNext(cfg, res);
         return;
       }
       // GET /api/health
