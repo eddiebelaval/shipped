@@ -234,6 +234,39 @@ Anthropic on using LLMs to scale scalable oversight — alignment work performed
 
 ---
 
+## Voice anchors — external references
+
+External voices Shipped. points toward. Not impersonations — **compass readings.** When drafting prose gets hard, reach for these. The anchor is how the voice *feels*, not a license to borrow lines.
+
+### Raoul Duke (Hunter S. Thompson) — the patron saint of how we paint events
+
+STYLE.md already invokes Rolling Stone. Raoul Duke is the ghost inside that half of the equation — Thompson's alter ego through Rolling Stone's political coverage and Fear and Loathing. Shipped. reaches for the **observational craft**, not the gonzo.
+
+**What we borrow:**
+
+- **Specific-moment-as-opening.** Duke doesn't write *"the convention was tense."* He writes a time, a room, a detail — *"Las Vegas, 1971, 3 AM, the air conditioning stuck on full."* Specific timing. Specific sensory detail. Grounds the abstract in one concrete instant. Shipped.'s leads live in this mode — e.g., *"Thursday, 9 AM. Anthropic shipped Claude Design — a product, not a model — the same morning Issue 01 hit."*
+
+- **Single-detail characterization.** Rather than *"the company was defensive,"* find the one detail that does the work — the stock move, the softened attribution, the `xhigh` default raised before anyone noticed. One observation carries the posture.
+
+- **The headline isn't the announcement.** Duke covering the '72 campaign wasn't writing about the candidate; he was writing about the press bus smelling like stale beer at hour 39. Shipped.'s house move — *"the chart that wasn't about Opus 4.7"* — is the same inversion. Look past the headline for what the moment actually reveals.
+
+- **Dry deadpan drop.** The line lands because of the setup and the silence around it. Thompson's punchlines sit alone on a line. (This is Move B — punchline isolation — with a name.)
+
+- **Verbs doing work, adverbs dead.** *"He leaned in"* beats *"he said eagerly."* *"Figma closed down 7.28%"* beats *"Figma's stock fell significantly."* Numbers and verbs do the load-bearing; adjectives cover for them when they're weak.
+
+**What we do NOT borrow:**
+
+- Hunter's unreliability. Shipped.'s moat is verification. Every number attested. No hallucinated scenes.
+- Gonzo-as-reporter-is-story. The byline is a person; the subject is not the byline.
+- Intoxicated register, drugs as texture, riot-energy maximalism. Shipped. is **dry and confident**, not wild-eyed.
+- Political venom by name. Opinions stated, positions named — never ad hominem.
+
+**The test:**
+
+Read the line out loud. Does it feel like a specific moment observed by someone paying attention — or like a summary by someone who wasn't there? If it's summary, find the specific detail and let it do the work.
+
+---
+
 ## Source essays — voice training corpus
 
 The writer should re-read these before each generation to recalibrate:
@@ -284,4 +317,5 @@ When a rule comes off the active list, it goes here with the date and the reason
 | Date | Change | Reason |
 |---|---|---|
 | 2026-04-16 | Initial draft. Forbidden phrases (3), approved moves (3), opening patterns (3). | Series founding. Eddie fed voice anchors directly. |
+| 2026-04-22 | Added "Voice anchors — external references" section. Raoul Duke / Hunter S. Thompson as patron saint of Shipped.'s observational craft — specific-moment openings, single-detail characterization, "headline isn't the announcement" inversion. Compass, not costume — borrowed moves explicit, refused moves explicit. | Naming what the voice already reaches for. The Rolling Stone DNA was implicit in the founding draft; Duke makes it load-bearing. |
 
