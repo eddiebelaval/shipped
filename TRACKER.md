@@ -63,10 +63,10 @@ Every source article across all issues. The master list.
 | Issue 02 Draft (front-of-book) | 02 | open, lead-story | draft | 2026-04-21 | `articles/issue-02/front-of-book-draft.md` |
 | Claude Design Reception | 02 | lead-story | draft | 2026-04-21 | `articles/issue-02/claude-design-reception.md` |
 | OpenClaw Anthropic Return | 02 | also-shipped | research | 2026-04-21 | `articles/issue-02/openclaw-anthropic-return.md` |
-| Conway Leak Analysis | 02 | lead-story, quiet-wire | research | 2026-04-21 | _not yet captured_ |
-| Trust Week — Lovable BOLA | 02 | investigation | research | 2026-04-21 | _not yet captured_ |
-| Trust Week — Vercel via Context.ai | 02 | investigation | research | 2026-04-21 | _not yet captured_ |
-| Amazon-Anthropic Deal | 02 | release-log | research | 2026-04-21 | _not yet captured_ |
+| Conway Leak Analysis | 02 | lead-story (third-act) OR b-story | research | 2026-04-22 | `articles/issue-02/conway-leak-analysis.md` |
+| Trust Week — Lovable BOLA | 02 | investigation | research | 2026-04-22 | `articles/issue-02/trust-week-lovable.md` |
+| Trust Week — Vercel via Context.ai | 02 | investigation | research | 2026-04-22 | `articles/issue-02/trust-week-vercel.md` |
+| Amazon-Anthropic Deal | 02 | release-log | research | 2026-04-21 | _release-log-only; no standalone article_ |
 
 > **"not yet captured"** = the research exists (in the WIP, in signal reports, in conversation) but hasn't been pulled into a standalone article file yet. Capturing it is step one of making it trackable.
 
@@ -81,14 +81,17 @@ Every source article across all issues. The master list.
 | Section | Source article(s) | Status | Gaps |
 |---|---|---|---|
 | Open | front-of-book-draft.md | draft | Needs final voice pass |
-| Lead Story | claude-design-reception.md + Conway analysis (pending) | draft (Claude Design) / research (Conway) | Hands-on screenshots (Eddie only). Pro quote needed. Conway article not yet captured. |
-| Also Shipped | openclaw-anthropic-return.md + scraper output (pending) | research (OpenClaw) / blocked (scrape) | OpenClaw needs date/version confirmation; other Also Shipped beats wait on Thursday scrape |
-| Investigation | Lovable BOLA + Vercel breach research | research | Pro interview for SOPs. Attribution softening for ShinyHunters. |
-| Quiet on the Wire | Conway (if not promoted to lead) | research | Placement decision Thursday |
-| The Close | _(not started)_ | pending | Rhythm closer, three beats |
-| Release Log | _(blocked on scraper)_ | blocked | Thursday PM scrape run |
+| Lead Story | claude-design-reception.md + conway-leak-analysis.md | draft (Claude Design) / research (Conway) | Hands-on screenshots (Eddie only). Pro quote needed. Conway placement call Thursday. |
+| Also Shipped | openclaw-anthropic-return.md + scraper output (pending) | research (OpenClaw) / blocked (scrape) | OpenClaw needs date/version confirmation; 2–4 more Also Shipped items wait on Thursday scrape |
+| Investigation | trust-week-lovable.md + trust-week-vercel.md | research | Pro interview for SOPs. Attribution softened (ShinyHunters denial integrated). Legacy-exposure scope confirm before press. |
+| Quiet on the Wire | Compiled from signal report Thursday | pending | Writeup + Conway demotion if promoted to Lead third-act |
+| Term of the Issue | Leaning "Presence" — definition block not yet written | pending | Write the definition + usage example Thursday AM |
+| The Close | _(not started)_ | pending | Rhythm closer, three beats, tied to Term of Issue |
+| Release Log | _(blocked on scraper)_ | blocked | Thursday PM scrape run + Friday 7 AM final |
 
-**Readiness:** 2 of 7 sections have material in progress. 2 blocked on pipeline. 3 in active research.
+**Readiness (7/Apr/22):** 5 of 8 sections have source articles captured. 2 blocked on pipeline (Release Log + scraper-dependent Also Shipped items). 3 editorial slots pending Thursday (Quiet on Wire, Term of Issue, Close).
+
+**Article inventory:** 7 source articles on disk (signal + front-of-book draft + 5 topic articles). Per `content/FORMULA.md`, a healthy weekly needs 6–8 source articles. **Issue 02 is now at formula.**
 
 ---
 
@@ -139,3 +142,5 @@ The article files in `content/articles/issue-NN/` are the source material. Claud
 | 2026-04-21 | `claude-design-reception.md` captured as draft. Lead-story section now has a source article. |
 | 2026-04-21 | `openclaw-anthropic-return.md` captured as research. Also Shipped section has its first source article. Policy-signal beat — "Anthropic sanctioned CLI-reuse again" (per OpenClaw docs only, needs attribution discipline). |
 | 2026-04-21 (PM) | WIP refresh via `/shipped-wip`. Signal report absorbed. Conway placement conflict flagged for Thursday (B story vs Lead third-act). Lovable 4-stage story evolution + ShinyHunters attribution reversal integrated into Trust Week. Amazon-Anthropic deal added as release-log-only entry (Story 4). OpenClaw wired in as Story 5 / Also Shipped. Presence now leading term-of-issue candidate. Thursday checklist expanded with structure/editorial/research/pipeline sections. |
+| 2026-04-22 | `content/FORMULA.md` created — weekly skeleton, word budgets, article inventory minimums, slot-based section decision tree. Derived from Issue 00 + STYLE.md + Issue 02 WIP work. |
+| 2026-04-22 | Three article skeletons captured: `conway-leak-analysis.md`, `trust-week-lovable.md`, `trust-week-vercel.md`. Flipped three "not yet captured" rows in the inventory to real file paths. Issue 02 now has 7 source articles on disk — at formula per FORMULA.md. |
