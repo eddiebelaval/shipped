@@ -221,11 +221,16 @@ Anthropic on using LLMs to scale scalable oversight — alignment work performed
 
 ## Tone defaults
 
-- Sentence length: vary aggressively. Long sentence, long sentence, short. Then long again.
-- Adjectives: earned, not stacked. One adjective per noun, max.
-- Opinions: stated. Never hedged with "in my opinion" or "arguably."
-- Second person: rare. Only when addressing the reader directly matters.
-- First person: used. The byline is a person, not a publication.
+- **Sentence length:** vary aggressively. Long sentence, long sentence, short. Then long again.
+- **Adjectives:** earned, not stacked. One adjective per noun, max.
+- **Opinions:** stated. Never hedged with "in my opinion" or "arguably."
+- **Second person:** rare. Only when addressing the reader directly matters.
+- **First person:** used. The byline is a person, not a publication.
+- **Attitude:** confident with teeth. Default register is *observational pointed*, not *wire-service dry*. The voice has opinions. It's allowed to enjoy being right.
+- **Sass — load-bearing but precise.** Sass is the house tone, not a flourish. Lands in word choice, rhythm, and what the sentence declines to apologize for. "Figma closed down 7.28%." is sass. So is *"Anthropic shipped a flagship and conceded, in the same breath, that it isn't the frontier."* No exclamation marks. No winks.
+- **Sarcasm — rare, surgical.** Budget: ~1 moment per issue, reserved for when the absurdity *is* the story (the model you can't buy; the attribution that retracted itself; the "non-sensitive" env var that wasn't). Overused sarcasm becomes snark. Snark is dead on contact.
+- **Memes — even rarer.** Internet-literate references land only when the cultural shorthand does work that the straight description can't, and only mid-issue — never in an opening, never in a close. Max one per issue. If it'd feel at home on a LinkedIn thread with rocket emojis, kill it twice.
+- **The ratio:** roughly 8 observational beats : 1 sass beat : 1 sarcasm-or-meme beat (at most). When in doubt, cut the joke. The voice is funnier when it trusts the reader to catch it.
 
 ## The kill rule
 
@@ -258,7 +263,7 @@ STYLE.md already invokes Rolling Stone. Raoul Duke is the ghost inside that half
 
 - Hunter's unreliability. Shipped.'s moat is verification. Every number attested. No hallucinated scenes.
 - Gonzo-as-reporter-is-story. The byline is a person; the subject is not the byline.
-- Intoxicated register, drugs as texture, riot-energy maximalism. Shipped. is **dry and confident**, not wild-eyed.
+- Intoxicated register, drugs as texture, riot-energy maximalism. Shipped. is **confident with teeth**, not wild-eyed — sass earned, not sprayed.
 - Political venom by name. Opinions stated, positions named — never ad hominem.
 
 **The test:**
@@ -318,4 +323,5 @@ When a rule comes off the active list, it goes here with the date and the reason
 |---|---|---|
 | 2026-04-16 | Initial draft. Forbidden phrases (3), approved moves (3), opening patterns (3). | Series founding. Eddie fed voice anchors directly. |
 | 2026-04-22 | Added "Voice anchors — external references" section. Raoul Duke / Hunter S. Thompson as patron saint of Shipped.'s observational craft — specific-moment openings, single-detail characterization, "headline isn't the announcement" inversion. Compass, not costume — borrowed moves explicit, refused moves explicit. | Naming what the voice already reaches for. The Rolling Stone DNA was implicit in the founding draft; Duke makes it load-bearing. |
+| 2026-04-22 (PM) | Tone calibration — added Attitude / Sass / Sarcasm / Memes / Ratio to Tone defaults. Softened "dry and confident" → "confident with teeth" in Raoul Duke refused-moves list. | "Dry" was overshooting. Shipped. needs teeth. Sass is the house tone (load-bearing), sarcasm is rare (surgical), memes are rarer (never on openings or closes). Ratio is ~8:1:1 observational:sass:sarcasm-or-meme. The voice is funnier when it trusts the reader. |
 
