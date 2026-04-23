@@ -28,8 +28,12 @@ export function inlineMarkdown(input: string): string {
   // Use unique placeholders so later passes don't re-process produced HTML.
   let out = input;
 
-  // Escape ampersands and angle brackets (but keep our markdown intact)
+  // Escape ampersands and angle brackets BEFORE injecting our own markup.
+  // Input is markdown (no HTML), so any < or > is literal text and must be escaped.
+  // If we did this AFTER bold/italic injection (the prior bug), the injected
+  // <strong> and <em> tags would themselves be escaped to literal text.
   out = out.replace(/&(?![a-zA-Z]+;|#\d+;)/g, '&amp;');
+  out = out.replace(/</g, '&lt;').replace(/>/g, '&gt;');
 
   // Inline code `...`
   const codes: string[] = [];
@@ -53,8 +57,6 @@ export function inlineMarkdown(input: string): string {
   out = out.replace(/(^|[\s(])\*([^*]+?)\*(?=$|[\s.,;:!?)])/g, '$1<em>$2</em>');
 
   // Em-dash and en-dash already in the markdown (—, –) pass through.
-  // Angle brackets in plain text need escaping (after we've protected code/links).
-  out = out.replace(/</g, '&lt;').replace(/>/g, '&gt;');
 
   // Restore code and links
   out = out.replace(/\u0000C(\d+)\u0000/g, (_m, i: string) => codes[Number(i)]!);
