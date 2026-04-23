@@ -57,11 +57,11 @@ by_the_numbers:
       size: 3
     - label: Additional TPU capacity via Broadcom + Alphabet from 2027
       value: 3.5 GW
-      size: 4
+      size: 6
     - label: Anthropic run-rate revenue
       value: $30B
       note: Up from $9B at end of 2025
-      size: 4
+      size: 6
     - label: Bugs confirmed in the Anthropic Claude Code post-mortem, published Apr 23
       value: 3
       note: Default effort (fixed Apr 7), caching with thinking deletion (v2.1.101, Apr 10), system-prompt verbosity cap (v2.1.116, Apr 20). API never touched.
