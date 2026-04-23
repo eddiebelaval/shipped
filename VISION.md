@@ -57,6 +57,22 @@ The format — a magazine, not a feed — is the point. A magazine says: someone
 - Video ("how Shipped is made"). Deferred, not killed. High-value eventually; low-priority now.
 - Additional scraped sources (other labs, community projects). Anthropic-only until the signal is clear.
 
+## In-flight — Issue 02 → Issue 03 launch (Apr 24 → May 1)
+
+Three initiatives carried over to Issue 03's Friday May 1 launch, captured here so the triad reflects reality:
+
+### Email engine (building Mon–Thu)
+
+Automated weekly send, fires Friday 9 AM ET as part of the gate-open ship model (below). Stack: Resend for delivery, Supabase (`newsletter_subscribers` with the `lists` column) for the subscriber list, React Email for templates, Vercel Cron for the trigger. Format: **full inline magazine in the email body** — not a digest, not a "read on web" teaser. The reader opens the email and has the whole issue. Mobile-safe typography (Georgia + system-sans fallbacks since Fraunces won't load reliably in email clients), tables for layout, preheader text pulled from the deck, one-click unsubscribe per RFC 8058 (Gmail/Yahoo required).
+
+### Gate-open ship model
+
+The shipped magazine moves from *last-minute Friday push* to *stage Thursday, gate opens Friday*. Refinement: the editor does the final read and git push Thursday evening at their pace; the issue lives at its direct URL (`id8labs.app/shipped/NN/`) unlisted. At Friday 9 AM ET a Vercel Cron fires `/api/shipped/publish/cron`, which marks the issue public on the archive, fires the email, and logs the send. Friday morning becomes a clock event, not a typing event. Human gate preserved (Thursday push); Friday morning risk removed.
+
+### Language settings — EN canonical, PR edition
+
+The pipeline architecture already assumes `(markdown, lang) → html`. Issue 03 is the Spanish (Puerto Rican flavor) pilot. The edition ships alongside EN — same canonical, translated from EN, at `id8labs.app/shipped/NN/es/` or equivalent route. The verifier runs per-language with number-format tolerance (commas vs. periods, currency). Translation is human-assisted (Eddie's native register, not a machine-dump). PT and other locales earn slots after PR proves out.
+
 ## Roadmap beyond v1
 
 ### Podcast (exploring — real signal)
