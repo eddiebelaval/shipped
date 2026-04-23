@@ -62,11 +62,15 @@ by_the_numbers:
       value: $30B
       note: Up from $9B at end of 2025
       size: 4
+    - label: Bugs confirmed in the Anthropic Claude Code post-mortem, published Apr 23
+      value: 3
+      note: Default effort (fixed Apr 7), caching with thinking deletion (v2.1.101, Apr 10), system-prompt verbosity cap (v2.1.116, Apr 20). API never touched.
+      size: 6
+      accent: true
     - label: Anthropic public statements on Conway between the leak and ship day
       value: 0
       note: The silence is the data
-      size: 4
-      accent: true
+      size: 6
 sources:
   - https://alex000kim.com/posts/2026-03-31-claude-code-source-leak/
   - https://blockchain.news/ainews/claude-app-launches-cowork-on-all-paid-plans-latest-availability-update-and-business-impact-analysis
@@ -74,6 +78,7 @@ sources:
   - https://blog.gitguardian.com/vercel-april-2026-incident-non-sensitive-environment-variables-need-investigation-too/
   - https://claude.com/pricing
   - https://code.claude.com/docs/en/changelog
+  - https://code.claude.com/docs/en/ultrareview
   - https://cybersecuritynews.com/lovable-ai-app-builder-customer-data/
   - https://dataconomy.com/2026/04/03/anthropic-tests-conway-platform-for-continuous-claude/
   - https://docs.anthropic.com/en/api/agents
@@ -100,6 +105,7 @@ sources:
   - https://openai.com/news/company-announcements/
   - https://phemex.com/news/article/claude-launches-live-artifacts-for-autorefreshing-dashboards-in-cowork-74713
   - https://platform.claude.com/docs/en/release-notes/overview
+  - https://platform.claude.com/usage/cache
   - https://releasebot.io/updates/anthropic
   - https://releasebot.io/updates/anthropic/claude-code
   - https://sifted.eu/articles/lovable-denies-data-breach
@@ -108,7 +114,6 @@ sources:
   - https://siliconangle.com/2026/04/22/google-puts-gemini-enterprise-heart-new-agentic-taskforce-enterprise-automation/
   - https://simonwillison.net/2026/Apr/22/claude-code-confusion/
   - https://startupfortune.com/anthropic-quietly-pulls-claude-code-from-pro-plan-and-hands-local-model-advocates-their-strongest-argument-yet/
-  - https://status.anthropic.com/
   - https://techbriefly.com/2026/04/17/google-expands-gemini-personal-intelligence-with-image-ai/
   - https://techcrunch.com/2026/04/17/anthropic-launches-claude-design-a-new-product-for-creating-quick-visuals/
   - https://thehackernews.com/2026/04/claude-code-tleaked-via-npm-packaging.html
@@ -117,6 +122,7 @@ sources:
   - https://venturebeat.com/technology/claude-codes-source-code-appears-to-have-leaked-heres-what-we-know
   - https://vercel.com/kb/bulletin/vercel-april-2026-security-incident
   - https://www.anthropic.com/
+  - https://www.anthropic.com/engineering/april-23-postmortem
   - https://www.anthropic.com/news/claude-design-anthropic-labs
   - https://www.anthropic.com/news/claude-opus-4-7
   - https://www.bleepingcomputer.com/news/security/shinyhunters-denies-vercel-breach/
@@ -133,7 +139,6 @@ sources:
   - https://www.neuralbuddies.com/p/ai-news-recap-april-17-2026
   - https://www.pymnts.com/news/2026/financial-officials-sound-alarm-about-anthropics-banking-risk
   - https://www.rappler.com/technology/amazon-investment-anthropic-april-20-2026/
-  - https://www.reddit.com/r/ClaudeAI/
   - https://www.superblocks.com/blog/lovable-vulnerabilities
   - https://www.techloy.com/is-your-code-safe-lovable-ai-fixes-vulnerability-that-leaked-database-credentials/
   - https://www.testingcatalog.com/anthropic-launches-claude-design-ai-tool-for-paid-plans/
@@ -147,6 +152,7 @@ sources:
   - https://www.thestandard.com.hk/finance/article/329134/UK-financial-regulators-rush-to-assess-risks-of-Anthropic-latest-AI-model-FT-reports
   - https://www.tradingview.com/news/reuters.com,2026:newsml_L4N40V018:0-uk-financial-regulators-rush-to-assess-risks-of-anthropic-s-latest-ai-model-ft-reports/
   - https://www.wheresyoured.at/news-anthropic-removes-pro-cc/
+  - https://x.com/ClaudeDevs/status/2045206682830303358
   - https://x.com/FT/status/2042626202200907865
   - https://x.com/FT/status/2045109459605692696
   - https://x.com/amolavasare/status/2046724659039932830
@@ -305,9 +311,17 @@ Capability outruns framework. Same shape as the two substories above. At soverei
 
 ## Also Shipped
 
-### Claude performance backlash, the contaminating context
+### The Claude Code post-mortem, three bugs named
 
-Fortune, April 14. Coverage of community complaints about perceived degradation in Claude model quality. Inconsistent outputs. Failed-then-succeeded regenerations. Hedge-heavy responses. Users across r/ClaudeAI, X, and Hacker News flagging it. Zero Anthropic public statements between the Fortune piece and this week's ship. The reception of every Anthropic launch this month lands in a context where the community is already reading outputs as degraded. The r/ClaudeAI "meh" on Claude Design is partly downstream of this, not just the product. Transparency is the asked-for fix. Methodology disclosure. Version-to-version evals. Anthropic ships; reception filters through prior weeks of frustration.
+Ninety minutes before this issue shipped, Anthropic published "An update on recent Claude Code quality reports" and broke the silence Fortune called out nine days earlier. Three bugs confirmed. All in Claude Code and the Agent SDK. None in the models. Usage limits reset for all subscribers. *"We never intentionally degrade our models and we were able to immediately confirm that our API and inference layer were unaffected."*
+
+The bugs, in order. **March 4, default effort.** Claude Code's default reasoning effort moved from `high` to `medium` to reduce UI-latency complaints. The tradeoff cost measurable intelligence. Fixed April 7. **March 26, caching with thinking deletion.** A prompt-cache optimization using the `clear_thinking_20251015` header with `keep:1` was meant to clear reasoning after idle periods. Instead it cleared reasoning every turn mid-tool-use, forcing cache misses and draining usage limits faster. Fixed April 10 in v2.1.101. **April 16, system-prompt verbosity.** An instruction to hold responses to under 25 words between tool calls and under 100 in the final dropped coding quality by 3%. Caught after weeks of internal testing that showed no regression. Fixed April 20 in v2.1.116.
+
+Cowork was swept in because it runs on the Agent SDK. The API was never touched.
+
+The committed process changes read like the audit the community asked for: broader per-model evals on every system-prompt change, soak periods for intelligence-impacting changes, staff dogfooding the public build, @ClaudeDevs and GitHub threads for faster transparency. One quoted line matters. *"Opus 4.7 found the bug, while Opus 4.6 didn't."* The model that caught the regression is the one the company couldn't have used two weeks earlier.
+
+The silence Fortune named is over. The r/ClaudeAI *meh* was early.
 
 ### Vercel flips env-var default to sensitive:on
 
@@ -431,7 +445,12 @@ Anthropic Labs shipped Claude Design, powered by Claude Opus 4.7. Research previ
 
 ## G. Partnerships and Policy
 
-*6 entries in window.*
+*7 entries in window.*
+
+#### 2026-04-23 - Claude Code quality post-mortem published ([Anthropic Engineering](https://www.anthropic.com/engineering/april-23-postmortem), [@ClaudeDevs on X](https://x.com/ClaudeDevs/status/2045206682830303358))
+`[POLICY]`
+
+Anthropic published "An update on recent Claude Code quality reports" addressing perceived degradation that Fortune covered on 2026-04-14. Three bugs confirmed, all in Claude Code and Agent SDK (which also impacted Cowork since it runs on the SDK); the API and inference layer were unaffected. Issue 1: default reasoning effort changed from `high` to `medium` on March 4 (fixed April 7). Issue 2: caching bug using `clear_thinking_20251015` with `keep:1` cleared reasoning every turn mid-tool-use instead of after idle periods, draining usage limits (fixed April 10 in v2.1.101). Issue 3: system-prompt verbosity instruction ("≤25 words between tool calls, ≤100 final") dropped coding quality 3% (fixed April 20 in v2.1.116). Usage limits reset for all subscribers as of April 23. Process changes: broader per-model evals on every system prompt change, soak periods for intelligence-impacting changes, internal dogfooding at parity with public build, tighter prompt-change review tooling. Anthropic quote: *"We never intentionally degrade our models and we were able to immediately confirm that our API and inference layer were unaffected."* Category: `[POLICY]`.
 
 #### 2026-04-23 - UK and US regulators briefed banks on Mythos cyber risk ([FT](https://www.ft.com/content/56d65763-69fe-4756-baf4-c8192b7aadaf), [PYMNTS](https://www.pymnts.com/news/2026/financial-officials-sound-alarm-about-anthropics-banking-risk), [Bloomberg](https://www.bloomberg.com/news/videos/2026-04-17/financial-watchdog-to-share-insight-on-anthropic-ai-video))
 `[POLICY]`

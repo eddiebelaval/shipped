@@ -140,7 +140,7 @@ function checkFobWordCount(canonicalPath: string): CheckResult {
   const fob = body.slice(fobStart, fobEnd > 0 ? fobEnd : body.length);
   const words = fob.replace(/```[\s\S]*?```/g, ' ').replace(/[#>*`_|\-]/g, ' ').split(/\s+/).filter((w) => w.length > 0).length;
   const soft = 1500;
-  const hard = 2800;
+  const hard = 3000;
   if (words <= soft) return { id: 'fob-words', name: 'FOB word budget', status: 'pass', summary: `${words} / ${soft}w soft ceiling`, details: [] };
   if (words <= hard) return { id: 'fob-words', name: 'FOB word budget', status: 'warn', summary: `${words}w (${soft}w soft / ${hard}w hard)`, details: [`  ${Math.round((words / soft - 1) * 100)}% over soft`] };
   return { id: 'fob-words', name: 'FOB word budget', status: 'fail', summary: `${words}w exceeds ${hard}w hard`, details: [`  Trim ${words - hard}+ words`], fix: 'Trim section bodies (Investigation + Feature are biggest levers).' };

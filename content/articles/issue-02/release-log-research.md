@@ -45,6 +45,10 @@ Default I applied here: option 1. Easy to re-swap.
 
 ### 2026-04-23 (Thursday, top-off pass)
 
+#### 2026-04-23: Claude Code quality post-mortem published ([Anthropic Engineering](https://www.anthropic.com/engineering/april-23-postmortem), [@ClaudeDevs on X](https://x.com/ClaudeDevs/status/2045206682830303358))
+
+Anthropic published "An update on recent Claude Code quality reports" addressing perceived degradation that Fortune covered on 2026-04-14. Three bugs confirmed, all in Claude Code and Agent SDK (which also impacted Cowork since it runs on the SDK); the API and inference layer were unaffected. Issue 1: default reasoning effort changed from `high` to `medium` on March 4 (fixed April 7). Issue 2: caching bug using `clear_thinking_20251015` with `keep:1` cleared reasoning every turn mid-tool-use instead of after idle periods, draining usage limits (fixed April 10 in v2.1.101). Issue 3: system-prompt verbosity instruction ("≤25 words between tool calls, ≤100 final") dropped coding quality 3% (fixed April 20 in v2.1.116). Usage limits reset for all subscribers as of April 23. Process changes: broader per-model evals on every system prompt change, soak periods for intelligence-impacting changes, internal dogfooding at parity with public build, tighter prompt-change review tooling. Anthropic quote: *"We never intentionally degrade our models and we were able to immediately confirm that our API and inference layer were unaffected."* Category: `[POLICY]`.
+
 #### 2026-04-23: Claude Code 2.1.118 ([changelog](https://code.claude.com/docs/en/changelog))
 
 Vim visual mode (`v`) and visual-line mode (`V`) added with selection, operators, and visual feedback. Fixed message duplication when scrolling in fullscreen mode. Category: `[RELEASE]`.

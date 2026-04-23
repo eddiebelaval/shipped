@@ -1,21 +1,30 @@
 ---
-title: Claude performance backlash, the contaminating context
+title: The Claude Code post-mortem — three bugs, named
 issue: 2
 section: also-shipped
 status: research
 created: 2026-04-22
-updated: 2026-04-22
+updated: 2026-04-23
 sources:
+  - https://www.anthropic.com/engineering/april-23-postmortem
+  - https://x.com/ClaudeDevs/status/2045206682830303358
   - https://fortune.com/2026/04/14/anthropic-claude-performance-decline-user-complaints-backlash-lack-of-transparency-accusations-compute-crunch/
-  - https://www.theneurondaily.com/p/anthropic-s-claude-design-launched-and-reddit-has-thoughts
-  - https://status.anthropic.com/
-  - https://www.anthropic.com/
-  - https://www.reddit.com/r/ClaudeAI/
+  - https://code.claude.com/docs/en/ultrareview
+  - https://platform.claude.com/usage/cache
+  - https://github.com/anthropics/claude-code/blob/main/CHANGELOG.md
 ---
 
-# Claude performance backlash, the contaminating context
+# The Claude Code post-mortem, three bugs named
 
-Fortune, April 14. Coverage of community complaints about perceived degradation in Claude model quality. Inconsistent outputs. Failed-then-succeeded regenerations. Hedge-heavy responses. Users across r/ClaudeAI, X, and Hacker News flagging it. Zero Anthropic public statements between the Fortune piece and this week's ship. The reception of every Anthropic launch this month lands in a context where the community is already reading outputs as degraded. The r/ClaudeAI "meh" on Claude Design is partly downstream of this, not just the product. Transparency is the asked-for fix. Methodology disclosure. Version-to-version evals. Anthropic ships; reception filters through prior weeks of frustration.
+Ninety minutes before this issue shipped, Anthropic published "An update on recent Claude Code quality reports" and broke the silence Fortune called out nine days earlier. Three bugs confirmed. All in Claude Code and the Agent SDK. None in the models. Usage limits reset for all subscribers. *"We never intentionally degrade our models and we were able to immediately confirm that our API and inference layer were unaffected."*
+
+The bugs, in order. **March 4, default effort.** Claude Code's default reasoning effort moved from `high` to `medium` to reduce UI-latency complaints. The tradeoff cost measurable intelligence. Fixed April 7. **March 26, caching with thinking deletion.** A prompt-cache optimization using the `clear_thinking_20251015` header with `keep:1` was meant to clear reasoning after idle periods. Instead it cleared reasoning every turn mid-tool-use, forcing cache misses and draining usage limits faster. Fixed April 10 in v2.1.101. **April 16, system-prompt verbosity.** An instruction to hold responses to under 25 words between tool calls and under 100 in the final dropped coding quality by 3%. Caught after weeks of internal testing that showed no regression. Fixed April 20 in v2.1.116.
+
+Cowork was swept in because it runs on the Agent SDK. The API was never touched.
+
+The committed process changes read like the audit the community asked for: broader per-model evals on every system-prompt change, soak periods for intelligence-impacting changes, staff dogfooding the public build, @ClaudeDevs and GitHub threads for faster transparency. One quoted line matters. *"Opus 4.7 found the bug, while Opus 4.6 didn't."* The model that caught the regression is the one the company couldn't have used two weeks earlier.
+
+The silence Fortune named is over. The r/ClaudeAI *meh* was early.
 
 ## Attribution caveats
 

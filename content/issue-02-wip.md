@@ -57,11 +57,15 @@ by_the_numbers:
       value: "$30B"
       note: "Up from $9B at end of 2025"
       size: 4
+    - label: "Bugs confirmed in the Anthropic Claude Code post-mortem, published Apr 23"
+      value: "3"
+      note: "Default effort (fixed Apr 7), caching with thinking deletion (v2.1.101, Apr 10), system-prompt verbosity cap (v2.1.116, Apr 20). API never touched."
+      size: 6
+      accent: true
     - label: "Anthropic public statements on Conway between the leak and ship day"
       value: "0"
       note: "The silence is the data"
-      size: 4
-      accent: true
+      size: 6
 ---
 
 # Issue 02 — Working Document
