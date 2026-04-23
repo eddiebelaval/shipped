@@ -200,6 +200,72 @@ interface WipMeta {
   byline: string;
   investigationUmbrella: string;
   byTheNumbers: boolean;
+  byTheNumbersData: unknown | undefined; // structured block propagated verbatim to canonical frontmatter
+}
+
+/**
+ * Serialize a JS value back into yaml-ish lines with leading indent spaces.
+ * Handles scalars, arrays, and objects. gray-matter parses objects → JS, so we
+ * need this to round-trip a structured block like by_the_numbers.
+ */
+function serializeYamlBlock(value: unknown, indent: number): string[] {
+  const out: string[] = [];
+  const pad = ' '.repeat(indent);
+  if (value === null || value === undefined) {
+    out.push(`${pad}null`);
+    return out;
+  }
+  if (Array.isArray(value)) {
+    for (const item of value) {
+      if (item !== null && typeof item === 'object' && !Array.isArray(item)) {
+        const entries = Object.entries(item as Record<string, unknown>);
+        if (entries.length === 0) {
+          out.push(`${pad}- {}`);
+          continue;
+        }
+        const [firstKey, firstVal] = entries[0]!;
+        out.push(`${pad}- ${firstKey}: ${serializeScalar(firstVal)}`);
+        for (let i = 1; i < entries.length; i++) {
+          const [k, v] = entries[i]!;
+          if (v !== null && typeof v === 'object') {
+            out.push(`${pad}  ${k}:`);
+            out.push(...serializeYamlBlock(v, indent + 4));
+          } else {
+            out.push(`${pad}  ${k}: ${serializeScalar(v)}`);
+          }
+        }
+      } else {
+        out.push(`${pad}- ${serializeScalar(item)}`);
+      }
+    }
+    return out;
+  }
+  if (typeof value === 'object') {
+    for (const [k, v] of Object.entries(value as Record<string, unknown>)) {
+      if (v !== null && typeof v === 'object') {
+        out.push(`${pad}${k}:`);
+        out.push(...serializeYamlBlock(v, indent + 2));
+      } else {
+        out.push(`${pad}${k}: ${serializeScalar(v)}`);
+      }
+    }
+    return out;
+  }
+  out.push(`${pad}${serializeScalar(value)}`);
+  return out;
+}
+
+function serializeScalar(v: unknown): string {
+  if (v === null || v === undefined) return 'null';
+  if (typeof v === 'boolean') return v ? 'true' : 'false';
+  if (typeof v === 'number') return String(v);
+  const s = String(v);
+  // Quote if yaml would misread as special. Safe default: quote anything with
+  // a colon, leading/trailing whitespace, special chars, or HTML entities.
+  if (/[:#&*!|>%@`]/.test(s) || /^(true|false|null|yes|no)$/i.test(s) || /^\s|\s$/.test(s) || /<[a-z]/i.test(s) || s.includes('"')) {
+    return JSON.stringify(s);
+  }
+  return s;
 }
 
 function readWipMetadata(contentRoot: string, issueNumber: string): WipMeta {
@@ -232,6 +298,7 @@ function readWipMetadata(contentRoot: string, issueNumber: string): WipMeta {
     byline: String(canonicalFm.byline ?? 'Edited by Eddie Belaval. Reported with the assistance of Claude.'),
     investigationUmbrella: String(wipFm.investigation_umbrella ?? canonicalFm.investigation_umbrella ?? ''),
     byTheNumbers: wipFm.by_the_numbers_placeholder !== false,
+    byTheNumbersData: wipFm.by_the_numbers ?? canonicalFm.by_the_numbers,
   };
 }
 
@@ -502,6 +569,14 @@ function assembleCanonical(
   parts.push(`log_content: reference`);
   parts.push(`generated_at: ${new Date().toISOString().slice(0, 10)}`);
   parts.push(`generated_by: shipped-assemble`);
+
+  // Propagate by_the_numbers block from WIP into canonical frontmatter so the
+  // renderer can find it. Serialized as yaml-ish indentation; matter handles
+  // the resulting dict/array structure on re-parse.
+  if (wip.byTheNumbersData && typeof wip.byTheNumbersData === 'object') {
+    parts.push('by_the_numbers:');
+    parts.push(...serializeYamlBlock(wip.byTheNumbersData as Record<string, unknown>, 2));
+  }
 
   const sources = collectAllSources(articles);
   if (sources.length > 0) {

@@ -15,6 +15,58 @@ fob_content: editorial
 log_content: reference
 generated_at: 2026-04-23
 generated_by: shipped-assemble
+by_the_numbers:
+  head: "By <em>the</em> numbers."
+  deck: The shape of one week — the product turn, the trust margin, the scale Anthropic bought.
+  cells:
+    - label: Figma close on Apr 17, the day Claude Design shipped
+      value: "−7.28%"
+      size: 4
+      accent: true
+    - label: Anthropic products shipped or staged this month
+      value: 2
+      note: Claude Design (shipped Apr 17) + Conway (staged, per the leak)
+      size: 4
+    - label: Hidden feature flags in the Claude Code source leak
+      value: 44
+      note: KAIROS, EPITAXY, BRIDGE_MODE, and 41 more
+      size: 4
+    - label: Labs shipped variants of the Presence pattern this week
+      value: 3
+      note: Anthropic (Claude Design + Conway), OpenAI (Codex workspace agents), Google (Gemini auto-browse)
+      size: 6
+    - label: Regulatory venues engaged on Mythos in 7 days
+      value: 5
+      note: US Treasury, Bank of England, Financial Stability Board, White House, Pentagon
+      size: 6
+    - label: Days Lovable's BOLA sat unfixed
+      value: 48
+      note: HackerOne report closed as intended behavior
+      size: 3
+    - label: BreachForums listing for Vercel data
+      value: $2M
+      note: Initially credited to ShinyHunters, who denied involvement
+      size: 3
+    - label: Amazon investment in Anthropic
+      value: $25B
+      note: $5B now + $20B on commercial milestones
+      size: 3
+    - label: Anthropic compute commitment to AWS over 10 years
+      value: $100B
+      note: 1 GW via Trainium2/3 by end of 2026; 5 GW target
+      size: 3
+    - label: Additional TPU capacity via Broadcom + Alphabet from 2027
+      value: 3.5 GW
+      size: 4
+    - label: Anthropic run-rate revenue
+      value: $30B
+      note: Up from $9B at end of 2025
+      size: 4
+    - label: Anthropic public statements on Conway between the leak and ship day
+      value: 0
+      note: The silence is the data
+      size: 4
+      accent: true
 sources:
   - https://alex000kim.com/posts/2026-03-31-claude-code-source-leak/
   - https://blockchain.news/ainews/claude-app-launches-cowork-on-all-paid-plans-latest-availability-update-and-business-impact-analysis
