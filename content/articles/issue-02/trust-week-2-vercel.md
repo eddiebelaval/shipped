@@ -15,7 +15,7 @@ sources:
 
 # Vercel. The OAuth Pivot, The Non-Sensitive Vars, and the Attribution That Cracked
 
-Weekend incident, disclosed Sunday April 19. Vercel traced a security breach to stolen employee credentials used through an OAuth-connected AI tool. Context.ai had been granted, at install, read access to Vercel's environment. Someone clicked through the scope six months ago. An attacker pivoted through that session into Vercel's systems.
+OAuth is a promise with a half-life. Six months ago someone at Vercel clicked through a scope. Sunday, April 19, the bill came due. Stolen employee credentials, used through an AI tool called Context.ai that had been granted read access to Vercel's environment at install. One session, six months old, became the pivot.
 
 Environment variables marked non-sensitive were exposed. Variables marked sensitive were encrypted at rest and are believed safe. Vercel's fix, per its bulletin, flips the default: new env vars default to `sensitive: on` going forward. Legacy non-sensitive vars stay in their original state until manually rotated.
 

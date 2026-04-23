@@ -19,7 +19,7 @@ sources:
 
 # Lovable. The BOLA That Wasn't Intentional, Then Was, Then Got Half-Fixed
 
-Lovable, the AI-native app builder, ran a broken object-level authorization flaw that exposed source code, database credentials, and AI chat histories from public projects. A HackerOne report sat for forty-eight days, closed as intended behavior.
+A vulnerability disclosed is a vulnerability. A vulnerability filed as intended behavior is a posture. Lovable, the AI-native app builder, chose the second for forty-eight days. Source code, database credentials, and AI chat histories from public projects leaked through a broken object-level authorization flaw. HackerOne report sat. Closed as intended behavior.
 
 Over three weeks in April, Lovable's public story shifted four times.
 

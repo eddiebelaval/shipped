@@ -23,7 +23,7 @@ hero_image: 'https://placehold.co/1200x600/0b0b0b/FF6B35/png?text=Project+Conway
 
 # Conway, caught in the leak
 
-On March 31, 2026, Anthropic shipped `@anthropic-ai/claude-code` v2.1.88 with a missing `.npmignore` entry. The package included a 59.8 MB source map. Roughly 512,000 lines of TypeScript across 1,906 files. Anthropic confirmed a packaging error, not a breach. The source is now the fastest-growing repo in GitHub history, in mirrors.
+The fastest-growing repo in GitHub history this month wasn't open-sourced. It was leaked. `@anthropic-ai/claude-code` v2.1.88 shipped on March 31 with a 59.8 MB source map packed by mistake, an `.npmignore` entry that wasn't there. Roughly 512,000 lines of TypeScript across 1,906 files. Anthropic confirmed a packaging error, not a breach. The mirrors did the rest.
 
 What emerged is a catalog of unshipped product.
 

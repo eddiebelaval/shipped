@@ -15,7 +15,7 @@ sources:
 
 # Vercel flips env-var default to sensitive:on
 
-Vercel's April bulletin confirms the default for new environment variables flips to `sensitive: on` going forward. Previously, non-sensitive was the default; users had to opt in. Per GitGuardian's reading of the bulletin, pre-existing env vars stay in their original state until manually rotated. The fix is a default change, not a migration. Legacy non-sensitive vars need manual rotation and re-flagging. Watch Netlify, Railway, Render for parallel moves. The default was the problem.
+The right default is the one you'd pick on your worst day. Vercel's April bulletin flips new environment variables to `sensitive: on` going forward, the correct default three years late. Per GitGuardian's reading, pre-existing env vars stay in their original state until manually rotated. This is a default change, not a migration. Legacy non-sensitive vars need manual rotation and re-flagging. Watch Netlify, Railway, Render for parallel moves. The default was the problem.
 
 ## Attribution caveats
 

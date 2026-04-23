@@ -187,7 +187,7 @@ Two shapes. One frequency. This issue tunes to it.
 
 # Claude Design, and the product turn
 
-Thursday, 9 AM. Anthropic shipped Claude Design, a product, not a model, the same morning Issue 01 hit. Pro, Max, Team, and Enterprise subscribers got access. Everyone else got a waitlist.
+The model-first era was never going to end with an announcement. It would end with a product. Thursday morning, Anthropic shipped Claude Design, a component library for designers, not a model for developers. Pro, Max, Team, and Enterprise got access. Everyone else got a waitlist.
 
 Claude Design turns a prompt, a codebase, or a half-written PRD into something you can send somewhere. Pitch decks, prototypes, one-pagers, full design systems. Exports to PDF, URL, PPTX, or Canva, where the artifact stays editable. Powered by Opus 4.7.
 
@@ -229,7 +229,7 @@ The question stops being *what does the model do* and becomes *what does the pro
 
 # Conway, caught in the leak
 
-On March 31, 2026, Anthropic shipped `@anthropic-ai/claude-code` v2.1.88 with a missing `.npmignore` entry. The package included a 59.8 MB source map. Roughly 512,000 lines of TypeScript across 1,906 files. Anthropic confirmed a packaging error, not a breach. The source is now the fastest-growing repo in GitHub history, in mirrors.
+The fastest-growing repo in GitHub history this month wasn't open-sourced. It was leaked. `@anthropic-ai/claude-code` v2.1.88 shipped on March 31 with a 59.8 MB source map packed by mistake, an `.npmignore` entry that wasn't there. Roughly 512,000 lines of TypeScript across 1,906 files. Anthropic confirmed a packaging error, not a breach. The mirrors did the rest.
 
 What emerged is a catalog of unshipped product.
 
@@ -257,7 +257,7 @@ Zero Anthropic public statements on Conway between the leak and this week's ship
 
 ### Lovable. The BOLA That Wasn't Intentional, Then Was, Then Got Half-Fixed
 
-Lovable, the AI-native app builder, ran a broken object-level authorization flaw that exposed source code, database credentials, and AI chat histories from public projects. A HackerOne report sat for forty-eight days, closed as intended behavior.
+A vulnerability disclosed is a vulnerability. A vulnerability filed as intended behavior is a posture. Lovable, the AI-native app builder, chose the second for forty-eight days. Source code, database credentials, and AI chat histories from public projects leaked through a broken object-level authorization flaw. HackerOne report sat. Closed as intended behavior.
 
 Over three weeks in April, Lovable's public story shifted four times.
 
@@ -273,7 +273,7 @@ This is not a vulnerability post. It's a trust-margin collapse. The pattern acro
 
 ### Vercel. The OAuth Pivot, The Non-Sensitive Vars, and the Attribution That Cracked
 
-Weekend incident, disclosed Sunday April 19. Vercel traced a security breach to stolen employee credentials used through an OAuth-connected AI tool. Context.ai had been granted, at install, read access to Vercel's environment. Someone clicked through the scope six months ago. An attacker pivoted through that session into Vercel's systems.
+OAuth is a promise with a half-life. Six months ago someone at Vercel clicked through a scope. Sunday, April 19, the bill came due. Stolen employee credentials, used through an AI tool called Context.ai that had been granted read access to Vercel's environment at install. One session, six months old, became the pivot.
 
 Environment variables marked non-sensitive were exposed. Variables marked sensitive were encrypted at rest and are believed safe. Vercel's fix, per its bulletin, flips the default: new env vars default to `sensitive: on` going forward. Legacy non-sensitive vars stay in their original state until manually rotated.
 
@@ -325,7 +325,7 @@ The silence Fortune named is over. The r/ClaudeAI *meh* was early.
 
 ### Vercel flips env-var default to sensitive:on
 
-Vercel's April bulletin confirms the default for new environment variables flips to `sensitive: on` going forward. Previously, non-sensitive was the default; users had to opt in. Per GitGuardian's reading of the bulletin, pre-existing env vars stay in their original state until manually rotated. The fix is a default change, not a migration. Legacy non-sensitive vars need manual rotation and re-flagging. Watch Netlify, Railway, Render for parallel moves. The default was the problem.
+The right default is the one you'd pick on your worst day. Vercel's April bulletin flips new environment variables to `sensitive: on` going forward, the correct default three years late. Per GitGuardian's reading, pre-existing env vars stay in their original state until manually rotated. This is a default change, not a migration. Legacy non-sensitive vars need manual rotation and re-flagging. Watch Netlify, Railway, Render for parallel moves. The default was the problem.
 
 ### The field moved too: OpenAI and Google's week
 

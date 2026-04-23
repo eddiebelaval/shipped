@@ -21,7 +21,7 @@ sources:
 
 # Claude Design, and the product turn
 
-Thursday, 9 AM. Anthropic shipped Claude Design, a product, not a model, the same morning Issue 01 hit. Pro, Max, Team, and Enterprise subscribers got access. Everyone else got a waitlist.
+The model-first era was never going to end with an announcement. It would end with a product. Thursday morning, Anthropic shipped Claude Design, a component library for designers, not a model for developers. Pro, Max, Team, and Enterprise got access. Everyone else got a waitlist.
 
 Claude Design turns a prompt, a codebase, or a half-written PRD into something you can send somewhere. Pitch decks, prototypes, one-pagers, full design systems. Exports to PDF, URL, PPTX, or Canva, where the artifact stays editable. Powered by Opus 4.7.
 
