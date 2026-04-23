@@ -27,25 +27,28 @@ interface OgTarget {
   html: string;
 }
 
+// Same card on every thumbnail — signature Shipped. brand mark.
+// The URL tells readers which issue; the thumbnail tells them what Shipped. is.
+const CONSTANT_KICKER = 'Every Friday · 9 AM ET';
+const CONSTANT_SUBHEAD = 'A weekly magazine on what Anthropic ships.';
+
 function archiveHtml(): string {
   return renderOgHtml({
-    kicker: 'Weekly · Every Friday, 9 AM ET',
-    number: '',
-    title: 'A weekly magazine on what Anthropic ships.',
-    date: 'id8labs.app/shipped',
+    number: '00',
+    kicker: CONSTANT_KICKER,
+    title: CONSTANT_SUBHEAD,
     isArchive: true,
   });
 }
 
-function issueHtml(fm: Record<string, unknown>, issueNum: string): string {
-  const title = String(fm.title || '').replace(/^"|"$/g, '');
-  const date = String(fm.date || '');
-  const prettyDate = date ? formatPrettyDate(date) : '';
+function issueHtml(_fm: Record<string, unknown>, _issueNum: string): string {
+  // Issue cards are visually identical to the archive card. Per Eddie:
+  // the thumbnail is the brand, not the issue. "00" and the tagline stay
+  // constant across every shipped issue; the URL distinguishes them.
   return renderOgHtml({
-    kicker: `Issue ${issueNum}${prettyDate ? ` · ${prettyDate}` : ''}`,
-    number: issueNum,
-    title,
-    date: String(fm.deck || '').replace(/^"|"$/g, ''),
+    number: '00',
+    kicker: CONSTANT_KICKER,
+    title: CONSTANT_SUBHEAD,
     isArchive: false,
   });
 }
@@ -57,15 +60,15 @@ function formatPrettyDate(iso: string): string {
   return `${months[parseInt(m[2]!, 10) - 1]} ${parseInt(m[3]!, 10)}, ${m[1]}`;
 }
 
-function renderOgHtml(args: { kicker: string; number: string; title: string; date: string; isArchive: boolean }): string {
-  const { kicker, number, title, date, isArchive } = args;
+function renderOgHtml(args: { kicker: string; number: string; title: string; isArchive: boolean }): string {
+  const { kicker, number, title } = args;
   return `<!DOCTYPE html>
 <html>
 <head>
 <meta charset="utf-8">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,700;1,9..144,400;1,9..144,500&family=Archivo+Narrow:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,700;0,9..144,900;1,9..144,400;1,9..144,500&family=Archivo+Narrow:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
   :root{
     --paper:#fafaf7;
@@ -90,15 +93,43 @@ function renderOgHtml(args: { kicker: string; number: string; title: string; dat
   }
   .card{
     width:1200px;height:630px;
-    padding:52px 64px;
+    padding:48px 64px;
     position:relative;
-    display:flex;flex-direction:column;justify-content:space-between;
+    overflow:hidden;
     border:2px solid var(--ink);
     box-shadow: inset 0 0 0 14px var(--paper), inset 0 0 0 15px var(--ink);
   }
+
+  /* The big numeral sits CENTERED BEHIND the masthead — exact mirror of
+     the magazine front cover's .cover-huge-num. Color is paper-shadow
+     (faded tan) with a faint 8% ink outline for definition. The masthead
+     overlays it at z-index 2. */
+  .number-bg{
+    position:absolute;
+    top:50%;left:50%;transform:translate(-50%,-54%);
+    font-family:var(--serif);
+    font-weight:900;font-style:normal;
+    font-variation-settings:"opsz" 144;
+    font-size:640px;line-height:.78;letter-spacing:-.06em;
+    color:var(--paper-shadow);
+    -webkit-text-stroke:1px rgba(11,11,11,.08);
+    user-select:none;
+    pointer-events:none;
+    z-index:1;
+  }
+
+  .fg{
+    position:relative;z-index:2;
+    height:100%;
+    display:flex;flex-direction:column;justify-content:flex-start;align-items:center;
+    text-align:center;
+    padding-top:90px;
+  }
+  .top{display:flex;flex-direction:column;align-items:center;gap:18px}
+
   .kicker{
     font-family:var(--narrow);
-    font-size:18px;font-weight:600;
+    font-size:17px;font-weight:600;
     text-transform:uppercase;letter-spacing:.28em;
     color:var(--orange);
     display:flex;align-items:center;gap:14px;
@@ -108,89 +139,39 @@ function renderOgHtml(args: { kicker: string; number: string; title: string; dat
     width:10px;height:10px;border-radius:50%;
     background:var(--orange);
   }
+
   .masthead{
     font-family:var(--serif);font-style:italic;
     font-weight:500;font-variation-settings:"opsz" 144;
-    font-size:180px;line-height:.9;letter-spacing:-.04em;
+    font-size:260px;line-height:.86;letter-spacing:-.045em;
     color:var(--ink);
-    margin:12px 0 20px -6px;
+    margin:0;
   }
   .masthead .dot{color:var(--orange);font-style:normal}
-  .number{
-    font-family:var(--serif);
-    font-weight:400;font-variation-settings:"opsz" 144;
-    font-size:96px;line-height:1;letter-spacing:-.03em;
-    color:var(--ink);
-    margin-bottom:6px;
-  }
-  .title{
-    font-family:var(--serif);font-weight:400;
-    font-variation-settings:"opsz" 72;
-    font-size:52px;line-height:1.1;letter-spacing:-.018em;
-    color:var(--ink);
-    max-width:1000px;
-  }
-  .title em{font-style:italic;color:var(--orange)}
+
   .sub{
-    font-family:var(--serif);font-style:italic;
-    font-size:24px;line-height:1.4;
-    color:var(--muted);
-    max-width:960px;
-    margin-top:12px;
-  }
-  .footer{
-    display:flex;justify-content:space-between;align-items:flex-end;
-    border-top:1px solid var(--hair);
-    padding-top:18px;
-    font-family:var(--mono);font-size:14px;color:var(--muted);
-  }
-  .footer b{color:var(--ink);font-weight:500}
-  .big-mark{
     position:absolute;
-    right:64px;bottom:64px;
-    font-family:var(--serif);font-style:italic;font-weight:500;
-    font-size:56px;letter-spacing:-.02em;color:var(--ink);
-    opacity:1;
-    font-variation-settings:"opsz" 144;
+    left:64px;right:64px;bottom:52px;
+    text-align:center;
+    font-family:var(--serif);font-style:italic;
+    font-weight:400;font-variation-settings:"opsz" 72;
+    font-size:30px;line-height:1.35;letter-spacing:-.005em;
+    color:var(--body);
   }
-  .big-mark .dot{color:var(--orange);font-style:normal}
-  .archive-hero{
-    display:flex;flex-direction:column;justify-content:center;align-items:center;
-    height:100%;text-align:center;gap:0;
-  }
-  .archive-hero .masthead{font-size:240px;margin:0}
-  .archive-hero .sub{margin-top:24px;text-align:center;font-size:32px}
-  .archive-hero .kicker{justify-content:center;margin-bottom:32px}
+  .sub em{font-style:italic;color:var(--orange);font-weight:500}
 </style>
 </head>
 <body>
-  ${isArchive ? `
   <div class="card">
-    <div class="archive-hero">
-      <div class="kicker">${kicker}</div>
-      <div class="masthead">Shipped<span class="dot">.</span></div>
-      <div class="sub">${escape(title)}</div>
+    <div class="number-bg">${number}</div>
+    <div class="fg">
+      <div class="top">
+        <div class="kicker">${escape(kicker)}</div>
+        <div class="masthead">Shipped<span class="dot">.</span></div>
+      </div>
+      <div class="sub">${formatTitle(title)}</div>
     </div>
-    <div class="footer" style="position:absolute;bottom:40px;left:64px;right:64px;">
-      <span><b>id8labs.app/shipped</b></span>
-      <span>Published by id8Labs</span>
-    </div>
-  </div>` : `
-  <div class="card">
-    <div>
-      <div class="kicker">${kicker}</div>
-      <div class="masthead">Shipped<span class="dot">.</span></div>
-    </div>
-    <div>
-      ${number ? `<div class="number">Issue ${number}.</div>` : ''}
-      <div class="title">${formatTitle(title)}</div>
-      ${date ? `<div class="sub">${escape(date)}</div>` : ''}
-    </div>
-    <div class="footer">
-      <span>id8labs.app/shipped/${number}</span>
-      <span>Edited by <b>Eddie Belaval</b> · Published by id8Labs</span>
-    </div>
-  </div>`}
+  </div>
 </body>
 </html>`;
 }
