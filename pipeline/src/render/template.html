@@ -456,15 +456,16 @@ body::before{
 .btn-cell.s8{grid-column:span 8}
 .btn-label{
   font-family:var(--narrow);
-  font-size:10px;font-weight:600;letter-spacing:.28em;
-  text-transform:uppercase;color:rgba(250,250,247,.55);
+  font-size:13px;font-weight:600;letter-spacing:.16em;
+  text-transform:uppercase;color:rgba(250,250,247,.78);
+  line-height:1.35;
 }
 .btn-num{
   font-family:var(--disp);
   font-weight:700;
-  font-variation-settings:"opsz" 144;
-  font-size:clamp(88px,14vw,220px);
-  line-height:.82;letter-spacing:-.055em;
+  font-variation-settings:"opsz" 96;
+  font-size:clamp(56px,7.5vw,120px);
+  line-height:.92;letter-spacing:-.04em;
   color:var(--paper);
 }
 .btn-num.accent{color:var(--orange)}
@@ -481,7 +482,7 @@ body::before{
 }
 @media(max-width:520px){
   .btn-cell{grid-column:span 12 !important}
-  .btn-num{font-size:96px}
+  .btn-num{font-size:64px}
 }
 
 /* ─────────────────────────────────────────
@@ -705,91 +706,91 @@ body::before{
 /* ─────────────────────────────────────────
    THE MYTHOS BAR — hero benchmark diagram
    ───────────────────────────────────────── */
-.mythos-section{
+.hero-chart-section{
   background:var(--paper);
   padding:64px 28px 56px;max-width:1280px;margin:0 auto;
 }
-.mythos-head{
+.hero-chart-head{
   display:grid;grid-template-columns:1fr auto;
   gap:24px;align-items:end;
   padding-bottom:18px;
   border-bottom:1px solid var(--ink);
   margin-bottom:36px;
 }
-.mythos-head-title{
+.hero-chart-head-title{
   font-family:var(--disp);font-weight:700;
   font-variation-settings:"opsz" 144;
   font-size:clamp(36px,5vw,64px);
   line-height:.95;letter-spacing:-.03em;color:var(--ink);
 }
-.mythos-head-title em{font-style:italic;color:var(--orange);font-weight:500}
-.mythos-head-meta{
+.hero-chart-head-title em{font-style:italic;color:var(--orange);font-weight:500}
+.hero-chart-head-meta{
   font-family:var(--narrow);
   font-size:10px;font-weight:600;letter-spacing:.28em;
   text-transform:uppercase;color:var(--muted);
   text-align:right;line-height:1.8;
 }
-.mythos-head-meta b{color:var(--ink);font-weight:700}
+.hero-chart-head-meta b{color:var(--ink);font-weight:700}
 
-.mythos-bars{
+.hero-chart-bars{
   display:flex;flex-direction:column;gap:0;
 }
-.mythos-row{
+.hero-chart-row{
   display:grid;
   grid-template-columns:minmax(160px,220px) 1fr 90px;
   gap:24px;align-items:center;
   padding:18px 0;
   border-bottom:1px solid var(--hair);
 }
-.mythos-row:last-child{border-bottom:1px solid var(--ink)}
-.mythos-name{
+.hero-chart-row:last-child{border-bottom:1px solid var(--ink)}
+.hero-chart-name{
   font-family:var(--disp);font-weight:500;
   font-variation-settings:"opsz" 72;
   font-size:20px;color:var(--ink);letter-spacing:-.01em;
 }
-.mythos-name .tag{
+.hero-chart-name .tag{
   display:inline-block;margin-left:8px;
   font-family:var(--narrow);font-size:9px;font-weight:700;
   letter-spacing:.24em;text-transform:uppercase;
   color:var(--orange);vertical-align:2px;
 }
-.mythos-bar{
+.hero-chart-bar{
   height:16px;background:var(--paper-shadow);
   position:relative;overflow:hidden;
   border:1px solid var(--hair);
 }
-.mythos-bar-fill{
+.hero-chart-bar-fill{
   position:absolute;left:0;top:0;bottom:0;
   background:var(--ink);
 }
-.mythos-row.frontier .mythos-bar-fill{background:var(--orange)}
-.mythos-row.frontier{background:rgba(255,107,53,.04)}
-.mythos-row.frontier .mythos-name{color:var(--ink)}
-.mythos-score{
+.hero-chart-row.frontier .hero-chart-bar-fill{background:var(--orange)}
+.hero-chart-row.frontier{background:rgba(255,107,53,.04)}
+.hero-chart-row.frontier .hero-chart-name{color:var(--ink)}
+.hero-chart-score{
   font-family:var(--disp);font-weight:700;
   font-variation-settings:"opsz" 72;
   font-size:28px;letter-spacing:-.02em;
   color:var(--ink);text-align:right;
   font-variant-numeric:tabular-nums;
 }
-.mythos-row.frontier .mythos-score{color:var(--orange)}
-.mythos-caption{
+.hero-chart-row.frontier .hero-chart-score{color:var(--orange)}
+.hero-chart-caption{
   margin-top:20px;
   display:grid;grid-template-columns:auto 1fr;gap:16px;align-items:start;
   font-family:var(--disp);font-style:italic;
   font-size:14px;line-height:1.5;color:var(--muted);
 }
-.mythos-caption-num{
+.hero-chart-caption-num{
   font-family:var(--narrow);font-style:normal;
   font-size:10px;font-weight:700;letter-spacing:.28em;
   text-transform:uppercase;color:var(--orange);
   padding-top:2px;white-space:nowrap;
 }
 @media(max-width:720px){
-  .mythos-row{grid-template-columns:1fr auto;gap:6px 12px}
-  .mythos-bar{grid-column:1 / -1;order:3}
-  .mythos-name{grid-column:1;grid-row:1}
-  .mythos-score{grid-column:2;grid-row:1}
+  .hero-chart-row{grid-template-columns:1fr auto;gap:6px 12px}
+  .hero-chart-bar{grid-column:1 / -1;order:3}
+  .hero-chart-name{grid-column:1;grid-row:1}
+  .hero-chart-score{grid-column:2;grid-row:1}
 }
 
 /* ─────────────────────────────────────────
@@ -1086,19 +1087,32 @@ body::before{
   margin-bottom:48px;
 }
 .close-stack{
-  max-width:820px;margin:0 auto;
-  display:flex;flex-direction:column;gap:28px;
+  max-width:780px;margin:0 auto;
+  display:flex;flex-direction:column;gap:32px;
 }
 .close-line{
   font-family:var(--disp);font-weight:400;
-  font-variation-settings:"opsz" 144;
-  font-size:clamp(32px,5vw,64px);
-  line-height:1.05;letter-spacing:-.025em;
+  font-variation-settings:"opsz" 96;
+  font-size:clamp(26px,3.6vw,46px);
+  line-height:1.18;letter-spacing:-.018em;
   color:var(--paper);
 }
 .close-line em{font-style:italic;color:var(--orange);font-weight:500}
 .close-final{
   font-style:italic;color:var(--orange);
+  font-size:clamp(18px,2.2vw,26px);
+  line-height:1.5;letter-spacing:0;
+  max-width:580px;margin:0 auto;
+  font-variation-settings:"opsz" 36;
+}
+.close-coda-start{
+  margin-top:48px;position:relative;
+}
+.close-coda-start::before{
+  content:"";display:block;
+  width:32px;height:1px;
+  background:rgba(217,107,73,.45);
+  margin:0 auto 36px;
 }
 .close-mark{
   margin-top:72px;
@@ -1353,14 +1367,14 @@ body::before{
    MOBILE FINAL
    ───────────────────────────────────────── */
 @media(max-width:600px){
-  .section,.log-section,.mythos-section,.tl-section,.feature-opener,.prose-well{padding-left:20px;padding-right:20px}
+  .section,.log-section,.hero-chart-section,.tl-section,.feature-opener,.prose-well{padding-left:20px;padding-right:20px}
   .open-grid{gap:20px}
   .open-lead{grid-column:1 / -1}
   .btn-grid{grid-template-columns:repeat(4,1fr)}
   .cover{padding:24px 20px 48px}
   .cover-top{flex-direction:column;gap:12px;align-items:flex-start}
   .cover-top-right{text-align:left}
-  .btn-num{font-size:76px}
+  .btn-num{font-size:54px}
 }
 </style>
 </head>
@@ -1414,118 +1428,9 @@ body::before{
 </section>
 
 <!-- ═════════════════════════════════════════
-     TABLE OF CONTENTS
+     TABLE OF CONTENTS (driven by frontmatter, per-issue)
      ═════════════════════════════════════════ -->
-<section class="section toc-section" id="contents">
-  <div class="section-folio">
-    <div class="section-folio-left">
-      <span class="folio"><b>p.02</b> <span class="ruler"></span> Shipped. <span class="dot">—</span> 00 <span class="dot">—</span> Apr 2026</span>
-    </div>
-    <span class="section-folio-sub">Front of book</span>
-  </div>
-
-  <div class="toc-head">
-    <div class="toc-head-num">02</div>
-    <div class="toc-head-title">In this issue,</div>
-    <div class="toc-head-meta">
-      <div><b>6</b> Front-of-book pieces</div>
-      <div><b>56</b> Release-log entries</div>
-    </div>
-  </div>
-
-  <div class="toc-grid">
-    <a href="#open" class="toc-entry">
-      <span class="toc-entry-n">01</span>
-      <div class="toc-entry-body">
-        <span class="toc-entry-kicker">The Open</span>
-        <span class="toc-entry-title">A thing Anthropic does now that doesn&apos;t have a name</span>
-        <span class="toc-entry-tease">A flagship, and a better one you can&apos;t have — in the same breath.</span>
-      </div>
-      <span class="toc-entry-page">p.03</span>
-    </a>
-    <a href="#numbers" class="toc-entry">
-      <span class="toc-entry-n">02</span>
-      <div class="toc-entry-body">
-        <span class="toc-entry-kicker">By the Numbers</span>
-        <span class="toc-entry-title">The shape of three weeks</span>
-        <span class="toc-entry-tease">56 releases. 26 versions. $100M in credits. The frontier in ten digits.</span>
-      </div>
-      <span class="toc-entry-page">p.04</span>
-    </a>
-    <a href="#lead" class="toc-entry">
-      <span class="toc-entry-n">03</span>
-      <div class="toc-entry-body">
-        <span class="toc-entry-kicker">The Lead Story</span>
-        <span class="toc-entry-title">The chart that wasn&apos;t about Opus 4.7</span>
-        <span class="toc-entry-tease">The fourth bar. Taller than every released model. Named &lsquo;Mythos Preview.&rsquo; Gated.</span>
-      </div>
-      <span class="toc-entry-page">p.06</span>
-    </a>
-    <a href="#glasswing" class="toc-entry">
-      <span class="toc-entry-n">04</span>
-      <div class="toc-entry-body">
-        <span class="toc-entry-kicker">Investigation</span>
-        <span class="toc-entry-title">Glasswing</span>
-        <span class="toc-entry-tease">Twelve companies. $100M in credits. A 27-year-old OpenBSD bug. And a precedent.</span>
-      </div>
-      <span class="toc-entry-page">p.09</span>
-    </a>
-    <a href="#agent" class="toc-entry">
-      <span class="toc-entry-n">05</span>
-      <div class="toc-entry-body">
-        <span class="toc-entry-kicker">Feature</span>
-        <span class="toc-entry-title">The agent stack got serious</span>
-        <span class="toc-entry-tease">Managed Agents. The advisor tool. The ant CLI. Your loop just became a glue layer.</span>
-      </div>
-      <span class="toc-entry-page">p.12</span>
-    </a>
-    <a href="#timeline" class="toc-entry">
-      <span class="toc-entry-n">06</span>
-      <div class="toc-entry-body">
-        <span class="toc-entry-kicker">Timeline</span>
-        <span class="toc-entry-title">21 days, 56 releases</span>
-        <span class="toc-entry-tease">Read the bumps. The pattern of a lab that does not rest.</span>
-      </div>
-      <span class="toc-entry-page">p.15</span>
-    </a>
-    <a href="#survey" class="toc-entry">
-      <span class="toc-entry-n">07</span>
-      <div class="toc-entry-body">
-        <span class="toc-entry-kicker">Survey</span>
-        <span class="toc-entry-title">Claude Code grew a body</span>
-        <span class="toc-entry-tease">Twenty-six versions. Routines. /ultrareview. The CLI is becoming the work environment.</span>
-      </div>
-      <span class="toc-entry-page">p.17</span>
-    </a>
-    <a href="#term" class="toc-entry">
-      <span class="toc-entry-n">08</span>
-      <div class="toc-entry-body">
-        <span class="toc-entry-kicker">Term of the Issue</span>
-        <span class="toc-entry-title">shadow release</span>
-        <span class="toc-entry-tease">A word for the thing Anthropic does now. It needed one.</span>
-      </div>
-      <span class="toc-entry-page">p.19</span>
-    </a>
-    <a href="#quiet" class="toc-entry">
-      <span class="toc-entry-n">09</span>
-      <div class="toc-entry-body">
-        <span class="toc-entry-kicker">Quiet on the Wire</span>
-        <span class="toc-entry-title">Absences worth watching</span>
-        <span class="toc-entry-tease">No Haiku 5. No Opus 4.7 fast-mode. No date for Mythos. Four deprecation clocks.</span>
-      </div>
-      <span class="toc-entry-page">p.20</span>
-    </a>
-    <a href="#log" class="toc-entry">
-      <span class="toc-entry-n">10</span>
-      <div class="toc-entry-body">
-        <span class="toc-entry-kicker">The Release Log</span>
-        <span class="toc-entry-title">A 1:1 mirror of every Anthropic release</span>
-        <span class="toc-entry-tease">Seven sections. Fifty-six entries. The reference engineers grep on Tuesday.</span>
-      </div>
-      <span class="toc-entry-page">p.21</span>
-    </a>
-  </div>
-</section>
+{{toc_html}}
 <!-- BEGIN EDITORIAL SECTIONS -->
 {{section:open}}
 {{section:by_the_numbers}}
@@ -1703,89 +1608,9 @@ body::before{
 <!-- END RELEASE LOG -->
 
 <!-- ═════════════════════════════════════════
-     SOURCES & BIBLIOGRAPHY
+     SOURCES & BIBLIOGRAPHY (driven by frontmatter, per-issue)
      ═════════════════════════════════════════ -->
-<section style="max-width:1240px;margin:96px auto 64px;padding:0 32px">
-  <div style="display:flex;align-items:baseline;justify-content:space-between;border-bottom:2px solid var(--ink);padding-bottom:14px;margin-bottom:32px">
-    <span style="font-family:var(--narrow);font-weight:700;font-size:12px;letter-spacing:.25em;text-transform:uppercase;color:var(--orange)">Sources &amp; Bibliography</span>
-    <span style="font-family:var(--sans);font-size:13px;color:var(--muted)">40+ citations · Every claim traceable</span>
-  </div>
-
-  <div style="background:#ffffff;border:1px solid rgba(0,0,0,0.08);padding:48px 56px">
-    <p style="font-family:var(--serif);font-style:italic;font-size:18px;line-height:1.55;color:var(--muted);margin-bottom:40px;max-width:680px">Every URL consulted in the reporting of Issue 01. If you find a missing citation, file it back via <code style="font-family:var(--mono);font-size:.85em;background:rgba(0,0,0,0.04);padding:2px 6px;color:var(--ink)">/shipped --revise</code>.</p>
-
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:48px 64px">
-
-      <div>
-        <h4 style="font-family:var(--narrow);font-weight:600;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--ink);margin-bottom:14px;padding-bottom:8px;border-bottom:1px solid rgba(0,0,0,0.12)">Anthropic — Primary</h4>
-        <ul style="list-style:none;padding:0;margin:0;font-family:var(--sans);font-size:13px;line-height:1.7;color:var(--ink)">
-          <li><a href="https://www.anthropic.com/news/claude-opus-4-7" style="color:var(--ink);text-decoration:none;border-bottom:1px solid rgba(0,0,0,0.2)">Introducing Claude Opus 4.7</a> — Anthropic, Apr 16, 2026</li>
-          <li><a href="https://www.anthropic.com/glasswing" style="color:var(--ink);text-decoration:none;border-bottom:1px solid rgba(0,0,0,0.2)">Project Glasswing</a> — Anthropic, Apr 7, 2026</li>
-          <li><a href="https://red.anthropic.com/2026/mythos-preview/" style="color:var(--ink);text-decoration:none;border-bottom:1px solid rgba(0,0,0,0.2)">Claude Mythos Preview</a> — Anthropic Red, Apr 7, 2026</li>
-          <li><a href="https://www.anthropic.com/news" style="color:var(--ink);text-decoration:none;border-bottom:1px solid rgba(0,0,0,0.2)">Anthropic News</a> — master index</li>
-        </ul>
-      </div>
-
-      <div>
-        <h4 style="font-family:var(--narrow);font-weight:600;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--ink);margin-bottom:14px;padding-bottom:8px;border-bottom:1px solid rgba(0,0,0,0.12)">Release Notes &amp; Docs</h4>
-        <ul style="list-style:none;padding:0;margin:0;font-family:var(--sans);font-size:13px;line-height:1.7;color:var(--ink)">
-          <li><a href="https://platform.claude.com/docs/en/release-notes/api" style="color:var(--ink);text-decoration:none;border-bottom:1px solid rgba(0,0,0,0.2)">Claude API release notes</a></li>
-          <li><a href="https://github.com/anthropics/claude-code/blob/main/CHANGELOG.md" style="color:var(--ink);text-decoration:none;border-bottom:1px solid rgba(0,0,0,0.2)">Claude Code CHANGELOG</a></li>
-          <li><a href="https://support.claude.com/en/articles/12138966-release-notes" style="color:var(--ink);text-decoration:none;border-bottom:1px solid rgba(0,0,0,0.2)">Claude Apps release notes</a></li>
-          <li><a href="https://github.com/anthropics/claude-agent-sdk-python/releases" style="color:var(--ink);text-decoration:none;border-bottom:1px solid rgba(0,0,0,0.2)">Python Agent SDK releases</a></li>
-          <li><a href="https://github.com/anthropics/claude-agent-sdk-typescript/releases" style="color:var(--ink);text-decoration:none;border-bottom:1px solid rgba(0,0,0,0.2)">TypeScript Agent SDK releases</a></li>
-          <li><a href="https://platform.claude.com/docs/en/managed-agents/overview" style="color:var(--ink);text-decoration:none;border-bottom:1px solid rgba(0,0,0,0.2)">Managed Agents overview</a></li>
-          <li><a href="https://platform.claude.com/docs/en/about-claude/model-deprecations" style="color:var(--ink);text-decoration:none;border-bottom:1px solid rgba(0,0,0,0.2)">Model deprecations</a></li>
-        </ul>
-      </div>
-
-      <div>
-        <h4 style="font-family:var(--narrow);font-weight:600;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--ink);margin-bottom:14px;padding-bottom:8px;border-bottom:1px solid rgba(0,0,0,0.12)">Research &amp; Engineering</h4>
-        <ul style="list-style:none;padding:0;margin:0;font-family:var(--sans);font-size:13px;line-height:1.7;color:var(--ink)">
-          <li>Automated Alignment Researchers — Anthropic, Apr 14, 2026</li>
-          <li><a href="https://transformer-circuits.pub/2026/emotions/index.html" style="color:var(--ink);text-decoration:none;border-bottom:1px solid rgba(0,0,0,0.2)">Emotion Concepts in LLMs</a> — Transformer Circuits, Mar 2026</li>
-          <li><a href="https://assets.anthropic.com/m/983c85a201a962f/original/Alignment-Faking-in-Large-Language-Models-full-paper.pdf" style="color:var(--ink);text-decoration:none;border-bottom:1px solid rgba(0,0,0,0.2)">Alignment Faking in LLMs</a> — Anthropic, prior work</li>
-          <li><a href="https://assets.anthropic.com/m/74342f2c96095771/original/Natural-emergent-misalignment-from-reward-hacking-paper.pdf" style="color:var(--ink);text-decoration:none;border-bottom:1px solid rgba(0,0,0,0.2)">Natural Emergent Misalignment from Reward Hacking</a> — Anthropic</li>
-        </ul>
-      </div>
-
-      <div>
-        <h4 style="font-family:var(--narrow);font-weight:600;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--ink);margin-bottom:14px;padding-bottom:8px;border-bottom:1px solid rgba(0,0,0,0.12)">Coverage &amp; Analysis</h4>
-        <ul style="list-style:none;padding:0;margin:0;font-family:var(--sans);font-size:13px;line-height:1.7;color:var(--ink)">
-          <li><a href="https://www.bloomberg.com/news/articles/2026-04-16/anthropic-unveils-updated-opus-model-aimed-at-advanced-coding" style="color:var(--ink);text-decoration:none;border-bottom:1px solid rgba(0,0,0,0.2)">Bloomberg</a> — Opus 4.7 with weaker cyber than Mythos</li>
-          <li><a href="https://www.axios.com/2026/04/16/anthropic-claude-opus-model-mythos" style="color:var(--ink);text-decoration:none;border-bottom:1px solid rgba(0,0,0,0.2)">Axios</a> — Anthropic concedes 4.7 trails Mythos</li>
-          <li><a href="https://techcrunch.com/2026/04/07/anthropic-mythos-ai-model-preview-security/" style="color:var(--ink);text-decoration:none;border-bottom:1px solid rgba(0,0,0,0.2)">TechCrunch</a> — Mythos preview in security initiative</li>
-          <li><a href="https://www.cfr.org/articles/six-reasons-claude-mythos-is-an-inflection-point-for-ai-and-global-security" style="color:var(--ink);text-decoration:none;border-bottom:1px solid rgba(0,0,0,0.2)">Council on Foreign Relations</a> — Mythos inflection</li>
-          <li><a href="https://simonwillison.net/2026/Apr/7/project-glasswing/" style="color:var(--ink);text-decoration:none;border-bottom:1px solid rgba(0,0,0,0.2)">Simon Willison</a> — Project Glasswing analysis</li>
-          <li><a href="https://www.aisi.gov.uk/blog/our-evaluation-of-claude-mythos-previews-cyber-capabilities" style="color:var(--ink);text-decoration:none;border-bottom:1px solid rgba(0,0,0,0.2)">UK AISI</a> — Independent Mythos evaluation</li>
-        </ul>
-      </div>
-
-      <div>
-        <h4 style="font-family:var(--narrow);font-weight:600;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--ink);margin-bottom:14px;padding-bottom:8px;border-bottom:1px solid rgba(0,0,0,0.12)">Quote Attributions</h4>
-        <ul style="list-style:none;padding:0;margin:0;font-family:var(--sans);font-size:13px;line-height:1.7;color:var(--ink)">
-          <li><b>Igor Tsyganskiy</b>, Microsoft — <em>vulnerability discovery to exploitation collapsed</em>. Source: Glasswing announcement.</li>
-          <li><b>Anthony Grieco</b>, Cisco — <em>old ways of hardening systems no longer sufficient</em>. Source: Glasswing announcement.</li>
-          <li><b>Jim Zemlin</b>, Linux Foundation — <em>credible path to AI-augmented security for every maintainer</em>. Source: Glasswing announcement.</li>
-        </ul>
-      </div>
-
-      <div>
-        <h4 style="font-family:var(--narrow);font-weight:600;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--ink);margin-bottom:14px;padding-bottom:8px;border-bottom:1px solid rgba(0,0,0,0.12)">Benchmark Sources</h4>
-        <ul style="list-style:none;padding:0;margin:0;font-family:var(--sans);font-size:13px;line-height:1.7;color:var(--ink)">
-          <li><b>SWE-bench Verified, Pro</b> — Anthropic Opus 4.7 announcement chart</li>
-          <li><b>GPQA Diamond</b> — Anthropic + competitor publications</li>
-          <li><b>MCP-Atlas, CursorBench, XBOW Visual-Acuity, BigLaw Bench</b> — Anthropic Opus 4.7 announcement</li>
-          <li><b>CyberGym</b> — Mythos disclosure / academic vulnerability-reproduction suite</li>
-          <li><b>OSS-Fuzz</b> — Google open-source fuzzing project</li>
-        </ul>
-      </div>
-
-    </div>
-
-    <div style="font-family:var(--mono);font-size:10px;color:#b5b3af;letter-spacing:.05em;margin-top:40px;padding-top:20px;border-top:1px solid rgba(0,0,0,0.08);text-align:center">TOTAL SOURCES CONSULTED: 40+  &nbsp;·&nbsp;  ALL CLAIMS TRACEABLE  &nbsp;·&nbsp;  REVISIONS WELCOME</div>
-  </div>
-</section>
+{{sources_html}}
 
 <!-- ═════════════════════════════════════════
      COLOPHON

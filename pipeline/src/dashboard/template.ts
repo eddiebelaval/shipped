@@ -63,7 +63,33 @@ export function renderDashboard(d: Dashboard, opts: RenderOptions = {}): string 
   ${renderMagazineMockup(d)}
   ${renderFooter(d, live)}
   <div class="toast" id="dashboard-toast" role="status" aria-live="polite" hidden></div>
+  <div class="reader-drawer" id="reader-drawer" hidden aria-modal="true" role="dialog" aria-labelledby="reader-title">
+    <div class="reader-backdrop" data-reader-close></div>
+    <aside class="reader-panel">
+      <header class="reader-head">
+        <div class="reader-head-left">
+          <span class="reader-status"></span>
+          <span class="reader-grade"></span>
+          <span class="reader-section"></span>
+          <span class="reader-highlight-count" hidden>Highlights · <b>0</b></span>
+        </div>
+        <button class="reader-close" type="button" data-reader-close aria-label="Close reader">×</button>
+      </header>
+      <div class="reader-meta">
+        <h1 class="reader-title" id="reader-title">Loading…</h1>
+        <div class="reader-file"></div>
+      </div>
+      <nav class="reader-sources" hidden></nav>
+      <article class="reader-body"></article>
+    </aside>
+  </div>
+  <div class="selection-bar" id="selection-bar" hidden>
+    <button type="button" data-sel-action="highlight" aria-label="Highlight selection">◈ highlight</button>
+    <span class="sel-divider"></span>
+    <button type="button" data-sel-action="highlight-note" aria-label="Highlight with note">+ note</button>
+  </div>
   <script>window.__SHIPPED_LIVE__ = ${live ? 'true' : 'false'}; window.__SHIPPED_PORT__ = ${port};</script>
+  <script src="https://cdn.jsdelivr.net/npm/marked@11.1.1/marked.min.js" defer></script>
   <script>${JS}</script>
 </body>
 </html>`;
@@ -220,7 +246,10 @@ function renderArticleCard(a: DashboardArticle): string {
   ${renderGradePanel(a)}
   <footer class="card-foot">
     <span class="card-file">${escapeHtml(a.filename)}</span>
-    <button class="card-grade-toggle" type="button" data-target="${cardId}-notes" aria-label="Toggle grade notes">notes ▾</button>
+    <div class="card-actions">
+      <button class="card-read-btn" type="button" data-read-filename="${escapeHtml(a.filename)}" aria-label="Read article">read</button>
+      <button class="card-grade-toggle" type="button" data-target="${cardId}-notes" aria-label="Toggle grade notes">notes ▾</button>
+    </div>
   </footer>
 </article>`;
 }
@@ -351,7 +380,7 @@ function renderSlotArticle(a: DashboardArticle): string {
 <div class="slot-article" data-filename="${escapeHtml(a.filename)}">
   <div class="slot-article-left">
     <span class="card-status status-${escapeHtml(a.status)}">${escapeHtml(a.status)}</span>
-    <h4 class="slot-article-title">${escapeHtml(a.title)}</h4>
+    <h4 class="slot-article-title"><button class="slot-article-read" type="button" data-read-filename="${escapeHtml(a.filename)}">${escapeHtml(a.title)}</button></h4>
     <div class="slot-article-file">${escapeHtml(a.filename)} · ${a.wordCount}w · ${a.sourceCount} src</div>
   </div>
   ${a.placementOpen ? '<div class="card-flag">◇ placement open</div>' : ''}
@@ -1256,6 +1285,271 @@ body[data-view="table"] .magazine-mockup{display:none}
 .toast.toast-error{border-left-color:var(--red)}
 .toast.toast-success{border-left-color:var(--green)}
 .toast b{color:var(--orange);font-weight:700;letter-spacing:0}
+
+/* ── Card actions row ───────────────────────────────────────── */
+.card-actions{display:flex;gap:6px;align-items:center}
+.card-read-btn{
+  background:transparent;border:1px solid var(--rule);
+  padding:3px 10px;border-radius:2px;cursor:pointer;
+  font-family:var(--sans-narrow);font-weight:600;font-size:10px;
+  text-transform:uppercase;letter-spacing:.08em;color:var(--mute);
+  transition:all .12s;
+}
+.card-read-btn:hover{border-color:var(--orange);color:var(--orange);background:rgba(255,107,53,.04)}
+.slot-article-read{
+  background:none;border:none;padding:0;margin:0;text-align:left;
+  font:inherit;color:inherit;cursor:pointer;
+}
+.slot-article-read:hover{color:var(--orange);text-decoration:underline;text-underline-offset:3px}
+
+/* ── Reader popup (centered modal) ──────────────────────────── */
+.reader-drawer{
+  position:fixed;inset:0;z-index:500;
+  display:flex;align-items:center;justify-content:center;
+  padding:40px 24px;
+}
+.reader-drawer[hidden]{display:none}
+.reader-backdrop{
+  position:absolute;inset:0;
+  background:rgba(11,11,11,.42);
+  backdrop-filter:blur(3px);
+  animation:reader-fade-in .18s ease-out;
+}
+.reader-panel{
+  position:relative;
+  width:min(840px,100%);max-height:88vh;
+  background:var(--paper);
+  overflow-y:auto;overflow-x:hidden;
+  box-shadow:0 24px 64px rgba(0,0,0,.24), 0 2px 0 var(--ink);
+  padding:36px 52px 56px;
+  border:1px solid var(--ink);
+  animation:reader-pop-in .22s cubic-bezier(.2,.8,.2,1);
+}
+@media (max-width:720px){
+  .reader-drawer{padding:12px}
+  .reader-panel{padding:24px 24px 40px;max-height:94vh}
+}
+@keyframes reader-fade-in{from{opacity:0}to{opacity:1}}
+@keyframes reader-pop-in{from{transform:scale(.96);opacity:0}to{transform:scale(1);opacity:1}}
+
+/* ── Highlights ─────────────────────────────────────────────── */
+.reader-body mark.user-highlight{
+  background:linear-gradient(180deg,transparent 50%,rgba(255,107,53,.35) 50%);
+  color:var(--ink);padding:0 1px;border-radius:0;
+  transition:background .15s;
+}
+.reader-body mark.user-highlight:hover{
+  background:linear-gradient(180deg,transparent 30%,rgba(255,107,53,.5) 30%);
+}
+.reader-highlight-count{
+  font-family:var(--sans-narrow);font-size:10px;
+  text-transform:uppercase;letter-spacing:.1em;
+  color:var(--mute);padding:2px 8px;
+  border:1px solid var(--rule);border-radius:2px;
+}
+.reader-highlight-count[hidden]{display:none}
+.reader-highlight-count b{color:var(--orange);font-weight:700}
+
+/* Floating selection bar */
+.selection-bar{
+  position:fixed;z-index:600;
+  background:var(--ink);color:var(--paper);
+  padding:6px 4px;border-radius:3px;
+  display:flex;gap:2px;align-items:center;
+  box-shadow:0 8px 24px rgba(0,0,0,.32), 0 2px 0 rgba(255,107,53,.4);
+  animation:selection-bar-in .14s ease-out;
+  font-family:var(--sans-narrow);
+}
+.selection-bar[hidden]{display:none}
+.selection-bar::after{
+  content:'';position:absolute;bottom:-5px;left:50%;
+  transform:translateX(-50%);
+  width:0;height:0;
+  border-left:5px solid transparent;
+  border-right:5px solid transparent;
+  border-top:5px solid var(--ink);
+}
+.selection-bar button{
+  background:transparent;border:none;color:var(--paper);
+  font-family:var(--sans-narrow);font-size:11px;font-weight:600;
+  text-transform:uppercase;letter-spacing:.08em;
+  padding:4px 10px;border-radius:2px;cursor:pointer;
+}
+.selection-bar button:hover{background:rgba(255,107,53,.25);color:var(--orange-bright,#ffa575)}
+.selection-bar .sel-divider{width:1px;height:14px;background:rgba(255,255,255,.15)}
+@keyframes selection-bar-in{from{transform:translateY(4px);opacity:0}to{transform:translateY(0);opacity:1}}
+
+.reader-head{
+  display:flex;justify-content:space-between;align-items:center;
+  margin-bottom:28px;padding-bottom:14px;
+  border-bottom:1px solid var(--rule);
+}
+.reader-head-left{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.reader-head .card-status{font-family:var(--sans-narrow);font-size:10px;letter-spacing:.08em}
+.reader-grade{font-family:var(--sans-narrow);font-size:11px;font-weight:700;letter-spacing:.04em;padding:2px 8px;border-radius:2px}
+.reader-section{
+  font-family:var(--sans-narrow);font-size:10px;
+  text-transform:uppercase;letter-spacing:.1em;
+  color:var(--mute);padding:2px 8px;border:1px solid var(--rule);border-radius:2px;
+}
+.reader-close{
+  background:none;border:none;
+  font-size:32px;line-height:1;cursor:pointer;
+  padding:0 10px;color:var(--ink);
+  font-family:var(--serif);
+}
+.reader-close:hover{color:var(--orange)}
+
+.reader-meta{margin-bottom:20px}
+.reader-title{
+  font-family:var(--serif);font-weight:700;
+  font-size:38px;line-height:1.1;
+  margin:0 0 10px;letter-spacing:-.01em;
+}
+.reader-file{
+  font-family:var(--mono);font-size:11px;
+  color:var(--mute);letter-spacing:.02em;
+}
+
+.reader-sources{
+  margin:20px 0 24px;padding:14px 18px;
+  background:var(--paper-shadow);
+  border-left:3px solid var(--orange);
+  font-size:12px;
+}
+.reader-sources h4{
+  margin:0 0 8px;font-family:var(--sans-narrow);
+  text-transform:uppercase;letter-spacing:.1em;
+  font-size:10px;color:var(--mute);
+}
+.reader-sources a{
+  display:block;word-break:break-all;
+  color:var(--ink);margin-bottom:4px;
+  font-family:var(--mono);font-size:11px;
+  text-decoration:none;border-bottom:1px dotted var(--rule);padding-bottom:2px;
+}
+.reader-sources a:hover{color:var(--orange);border-bottom-color:var(--orange)}
+
+.reader-body{
+  font-family:var(--sans);font-size:15px;line-height:1.65;
+  color:var(--ink);
+}
+.reader-body h1{display:none}
+.reader-body h2{
+  font-family:var(--serif);font-weight:600;
+  font-size:24px;line-height:1.2;
+  margin:36px 0 12px;letter-spacing:-.005em;
+}
+.reader-body h3{
+  font-family:var(--sans-narrow);font-weight:700;
+  font-size:12px;margin:28px 0 8px;
+  text-transform:uppercase;letter-spacing:.12em;color:var(--mute);
+}
+.reader-body h4{
+  font-family:var(--sans);font-weight:600;
+  font-size:15px;margin:18px 0 6px;
+}
+.reader-body p{margin:0 0 14px}
+.reader-body ul,.reader-body ol{margin:0 0 16px;padding-left:24px}
+.reader-body li{margin-bottom:6px}
+.reader-body li>p{margin-bottom:6px}
+.reader-body li>ul,.reader-body li>ol{margin:6px 0}
+.reader-body blockquote{
+  border-left:3px solid var(--rule);
+  padding:4px 18px;margin:18px 0;
+  color:var(--mute);font-style:italic;
+}
+.reader-body code{
+  font-family:var(--mono);font-size:12px;
+  background:var(--paper-shadow);
+  padding:2px 6px;border-radius:2px;
+}
+.reader-body pre{
+  background:var(--ink);color:var(--paper);
+  padding:14px 16px;border-radius:3px;
+  overflow-x:auto;margin:16px 0;
+  font-family:var(--mono);font-size:12px;line-height:1.5;
+}
+.reader-body pre code{background:none;padding:0;color:inherit;font-size:inherit}
+.reader-body table{
+  width:100%;border-collapse:collapse;
+  margin:16px 0;font-size:13px;
+}
+.reader-body th,.reader-body td{
+  text-align:left;padding:8px 12px;
+  border-bottom:1px solid var(--rule);
+  vertical-align:top;
+}
+.reader-body th{
+  font-family:var(--sans-narrow);font-weight:700;
+  text-transform:uppercase;letter-spacing:.08em;
+  font-size:10px;color:var(--mute);
+  border-bottom:1px solid var(--ink);
+}
+.reader-body a{color:var(--orange);text-decoration:none;border-bottom:1px solid var(--orange-soft, rgba(255,107,53,.3))}
+.reader-body a:hover{border-bottom-color:var(--orange)}
+.reader-body hr{border:none;border-top:1px solid var(--rule);margin:32px 0}
+.reader-body strong{font-weight:700;color:var(--ink)}
+.reader-body em{font-style:italic}
+.reader-body input[type="checkbox"]{margin-right:6px;accent-color:var(--orange)}
+
+/* Copy vs notes distinction in the reader */
+.reader-scaffolding-divider{
+  display:flex;align-items:center;gap:12px;
+  margin:44px 0 28px;
+  font-family:var(--sans-narrow);font-size:10px;
+  text-transform:uppercase;letter-spacing:.16em;
+  color:var(--mute);
+}
+.reader-scaffolding-divider::before,
+.reader-scaffolding-divider::after{
+  content:'';flex:1;height:1px;
+  background:repeating-linear-gradient(90deg, var(--rule), var(--rule) 4px, transparent 4px, transparent 8px);
+}
+.reader-scaffolding-divider span{
+  padding:4px 10px;
+  border:1px solid var(--rule);border-radius:2px;
+  background:var(--paper);
+  color:var(--ink);font-weight:700;
+  white-space:nowrap;
+}
+.reader-body .scaffolding-block{
+  background:var(--paper-shadow);
+  border-left:3px solid var(--rule);
+  padding:14px 18px;margin:10px 0;
+  font-size:13.5px;line-height:1.6;
+  color:var(--mute);
+}
+.reader-body .scaffolding-block strong,
+.reader-body .scaffolding-block h2,
+.reader-body .scaffolding-block h3,
+.reader-body .scaffolding-block h4{color:var(--ink)}
+.reader-body h2.scaffolding-heading{
+  font-family:var(--sans-narrow);font-weight:700;
+  font-size:14px;margin:22px 0 8px;
+  text-transform:uppercase;letter-spacing:.1em;
+  color:var(--mute);
+  padding:0;
+}
+.reader-body h2.scaffolding-heading::after{
+  content:'notes';
+  display:inline-block;margin-left:10px;
+  font-size:9px;letter-spacing:.12em;
+  padding:2px 6px;border-radius:2px;
+  background:var(--orange);color:var(--paper);
+  vertical-align:middle;
+  font-weight:700;
+}
+.reader-body .scaffolding-block blockquote{color:var(--mute)}
+.reader-body .scaffolding-block table{font-size:12px}
+.reader-copy-marker{
+  display:inline-block;margin-top:6px;margin-bottom:14px;
+  font-family:var(--sans-narrow);font-size:9px;
+  text-transform:uppercase;letter-spacing:.14em;
+  padding:2px 8px;border-radius:2px;
+  background:var(--ink);color:var(--paper);
+  font-weight:700;
+}
 `;
 
 // ────────────────────────────────────────────────────────────────────
@@ -1458,6 +1752,397 @@ const JS = `
       t.classList.remove('show');
       setTimeout(function(){ t.setAttribute('hidden',''); }, 300);
     }, 2400);
+  }
+
+  // ─── Reader popup + highlights ──────────────────────────────
+  const drawer = document.getElementById('reader-drawer');
+  if (drawer) {
+    const panel = drawer.querySelector('.reader-panel');
+    const statusEl = drawer.querySelector('.reader-status');
+    const gradeEl = drawer.querySelector('.reader-grade');
+    const sectionEl = drawer.querySelector('.reader-section');
+    const titleEl = drawer.querySelector('.reader-title');
+    const fileEl = drawer.querySelector('.reader-file');
+    const sourcesEl = drawer.querySelector('.reader-sources');
+    const bodyEl = drawer.querySelector('.reader-body');
+    const hlCountEl = drawer.querySelector('.reader-highlight-count');
+    const selBar = document.getElementById('selection-bar');
+    let currentFilename = null;
+
+    function closeDrawer(){
+      drawer.setAttribute('hidden', '');
+      document.body.style.overflow = '';
+      if (selBar) selBar.setAttribute('hidden', '');
+      currentFilename = null;
+    }
+
+    function updateHighlightCount(n){
+      if (!hlCountEl) return;
+      if (n > 0) {
+        hlCountEl.innerHTML = '';
+        const label = document.createTextNode('Highlights · ');
+        const b = document.createElement('b');
+        b.textContent = String(n);
+        hlCountEl.appendChild(label);
+        hlCountEl.appendChild(b);
+        hlCountEl.removeAttribute('hidden');
+      } else {
+        hlCountEl.setAttribute('hidden', '');
+      }
+    }
+
+    // Scaffolding-heading detector: mark grader-targeted notes sections
+    // so the reader can distinguish shipping copy from scaffolding.
+    const SCAFFOLDING_PATTERNS = [
+      /^attribution caveats?$/i,
+      /^how this fits the issue$/i,
+      /^for builders?$/i,
+      /^the stake$/i,
+      /^(the )?operator[- ]?layer implications?$/i,
+      /^the operator takeaway$/i,
+      /^voice notes\\b/i,
+      /^voice budget\\b/i,
+      /^voice anchors\\b/i,
+      /^open questions\\b/i,
+      /^named evidence\\b/i,
+      /^cross-references within the issue$/i,
+      /^the close move it enables$/i,
+      /^format note$/i,
+      /^category groupings\\b/i,
+      /^still pending\\b/i,
+      /^scaffolding-only mode\\b/i,
+      /^the concept in one line$/i,
+      /^why this week surfaced it$/i,
+    ];
+
+    function isScaffoldingHeading(text){
+      const t = (text || '').trim();
+      return SCAFFOLDING_PATTERNS.some(function(p){ return p.test(t); });
+    }
+
+    function tagScaffoldingSections(root){
+      if (!root) return;
+      const h2s = Array.from(root.querySelectorAll('h2'));
+      let firstScaffoldSeen = false;
+      let firstCopyMarkerInserted = false;
+      for (let i = 0; i < h2s.length; i++) {
+        const h2 = h2s[i];
+        if (!isScaffoldingHeading(h2.textContent)) continue;
+
+        // Insert divider before the first scaffolding heading
+        if (!firstScaffoldSeen) {
+          const divider = document.createElement('div');
+          divider.className = 'reader-scaffolding-divider';
+          const span = document.createElement('span');
+          span.textContent = 'Scaffolding notes · not for print';
+          divider.appendChild(span);
+          h2.parentNode.insertBefore(divider, h2);
+          firstScaffoldSeen = true;
+        }
+
+        // Mark the heading
+        h2.classList.add('scaffolding-heading');
+
+        // Wrap the section content (up to next H2 or end) in a scaffolding-block
+        const blockContents = [];
+        let sib = h2.nextElementSibling;
+        while (sib && sib.tagName !== 'H2') {
+          const next = sib.nextElementSibling;
+          blockContents.push(sib);
+          sib = next;
+        }
+        if (blockContents.length > 0) {
+          const wrapper = document.createElement('div');
+          wrapper.className = 'scaffolding-block';
+          // Insert wrapper right after the heading
+          h2.parentNode.insertBefore(wrapper, blockContents[0]);
+          blockContents.forEach(function(el){ wrapper.appendChild(el); });
+        }
+      }
+
+      // If scaffolding was found AND there is any copy above it, prefix a Copy pill
+      if (firstScaffoldSeen) {
+        const firstEl = root.firstElementChild;
+        if (firstEl && !firstEl.classList.contains('reader-scaffolding-divider')) {
+          const copyMarker = document.createElement('span');
+          copyMarker.className = 'reader-copy-marker';
+          copyMarker.textContent = 'Copy · ships to print';
+          root.insertBefore(copyMarker, firstEl);
+        }
+      }
+    }
+
+    // Walk text nodes under root and wrap the first unmarked occurrence of needle
+    function wrapFirstOccurrence(root, needle, id){
+      if (!needle) return false;
+      const walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT, null);
+      const textNodes = [];
+      let n;
+      while ((n = walker.nextNode())) textNodes.push(n);
+      for (let i = 0; i < textNodes.length; i++) {
+        const node = textNodes[i];
+        if (node.parentElement && node.parentElement.closest('.user-highlight')) continue;
+        const idx = node.textContent.indexOf(needle);
+        if (idx >= 0) {
+          const range = document.createRange();
+          range.setStart(node, idx);
+          range.setEnd(node, idx + needle.length);
+          const mark = document.createElement('mark');
+          mark.className = 'user-highlight';
+          if (id) mark.dataset.highlightId = id;
+          try { range.surroundContents(mark); return true; } catch (e) { /* cross-boundary, skip */ }
+        }
+      }
+      return false;
+    }
+
+    function mergeExistingHighlights(filename){
+      if (!window.__SHIPPED_LIVE__ || !filename) return;
+      fetch('/api/highlights?filename=' + encodeURIComponent(filename))
+        .then(function(r){ return r.json(); })
+        .then(function(data){
+          if (!data.ok) return;
+          let wrapped = 0;
+          (data.highlights || []).forEach(function(h){
+            if (wrapFirstOccurrence(bodyEl, h.text, h.id)) wrapped++;
+          });
+          updateHighlightCount(data.count || 0);
+        })
+        .catch(function(){});
+    }
+
+    function hideSelectionBar(){
+      if (selBar) selBar.setAttribute('hidden', '');
+    }
+
+    function maybeShowSelectionBar(){
+      if (!selBar || drawer.hasAttribute('hidden')) return;
+      const sel = window.getSelection();
+      if (!sel || sel.isCollapsed || !sel.rangeCount) { hideSelectionBar(); return; }
+      const range = sel.getRangeAt(0);
+      if (!bodyEl.contains(range.commonAncestorContainer)) { hideSelectionBar(); return; }
+      const text = sel.toString().trim();
+      if (text.length < 3 || text.length > 4000) { hideSelectionBar(); return; }
+      const rect = range.getBoundingClientRect();
+      if (!rect.width && !rect.height) { hideSelectionBar(); return; }
+      // position above selection
+      const barWidth = 190; // approx
+      let left = rect.left + (rect.width / 2) - (barWidth / 2);
+      left = Math.max(12, Math.min(window.innerWidth - barWidth - 12, left));
+      let top = rect.top - 44;
+      if (top < 8) top = rect.bottom + 10; // flip below if no room above
+      selBar.style.left = left + 'px';
+      selBar.style.top = top + 'px';
+      selBar.dataset.text = text;
+      selBar.removeAttribute('hidden');
+    }
+
+    function saveHighlight(opts){
+      const text = (selBar && selBar.dataset.text) || '';
+      if (!text || !currentFilename) return;
+      const sel = window.getSelection();
+      const range = (sel && sel.rangeCount) ? sel.getRangeAt(0) : null;
+      // Capture a bit of surrounding context
+      let context = null;
+      if (range) {
+        const c = range.startContainer;
+        if (c.nodeType === 3) {
+          const full = c.textContent || '';
+          const pre = full.slice(Math.max(0, range.startOffset - 60), range.startOffset);
+          const post = full.slice(range.endOffset, Math.min(full.length, range.endOffset + 60));
+          context = (pre + '‹' + text + '›' + post).slice(0, 400);
+        }
+      }
+      const payload = { filename: currentFilename, text: text, context: context };
+      if (opts && opts.withNote) {
+        const note = prompt('Note for this highlight (optional):');
+        if (note) payload.note = note;
+      }
+
+      fetch('/api/highlight', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload),
+      })
+        .then(function(r){ return r.json(); })
+        .then(function(data){
+          if (!data.ok) { showToast('error', 'highlight', data.error || 'save failed'); return; }
+          // Wrap the current selection visually
+          if (range) {
+            const mark = document.createElement('mark');
+            mark.className = 'user-highlight';
+            mark.dataset.highlightId = data.highlight.id;
+            try {
+              range.surroundContents(mark);
+            } catch (e) {
+              try {
+                const frag = range.extractContents();
+                mark.appendChild(frag);
+                range.insertNode(mark);
+              } catch (e2) { /* give up on DOM wrap; server has it */ }
+            }
+            if (sel) sel.removeAllRanges();
+          }
+          // Bump count
+          const cur = hlCountEl && hlCountEl.querySelector('b');
+          const n = cur ? (parseInt(cur.textContent, 10) || 0) + 1 : 1;
+          updateHighlightCount(n);
+          showToast('success', 'highlighted', text.slice(0, 48) + (text.length > 48 ? '…' : ''));
+          hideSelectionBar();
+        })
+        .catch(function(err){ showToast('error', 'highlight failed', String(err)); });
+    }
+
+    // Selection tracking inside the reader
+    let selTimer = null;
+    document.addEventListener('selectionchange', function(){
+      if (selTimer) clearTimeout(selTimer);
+      selTimer = setTimeout(maybeShowSelectionBar, 120);
+    });
+
+    // Hide selection bar on scroll inside the panel
+    if (panel) panel.addEventListener('scroll', hideSelectionBar);
+    window.addEventListener('resize', hideSelectionBar);
+
+    // Selection-bar click handlers
+    if (selBar) {
+      selBar.addEventListener('mousedown', function(e){ e.preventDefault(); }); // keep selection alive
+      selBar.addEventListener('click', function(e){
+        const btn = e.target.closest('[data-sel-action]');
+        if (!btn) return;
+        e.preventDefault();
+        const action = btn.getAttribute('data-sel-action');
+        if (action === 'highlight') saveHighlight({ withNote: false });
+        else if (action === 'highlight-note') saveHighlight({ withNote: true });
+      });
+    }
+
+    function openDrawer(data){
+      if (panel) panel.scrollTop = 0;
+      currentFilename = data.filename || null;
+
+      // Status chip
+      statusEl.textContent = data.status || '';
+      statusEl.className = 'reader-status card-status status-' + (data.status || 'research');
+
+      // Grade badge
+      if (data.grade && data.grade.letter) {
+        gradeEl.textContent = data.grade.letter + ' · ' + data.grade.total + '/28';
+        gradeEl.className = 'reader-grade grade-badge grade-' + data.grade.letter.toLowerCase();
+      } else {
+        gradeEl.textContent = '';
+        gradeEl.className = 'reader-grade';
+      }
+
+      // Section chip
+      sectionEl.textContent = data.section || '';
+      sectionEl.className = 'reader-section' + (data.section ? '' : ' hidden');
+      if (!data.section) sectionEl.setAttribute('hidden', ''); else sectionEl.removeAttribute('hidden');
+
+      // Title + file line
+      titleEl.textContent = data.title || data.filename;
+      const bits = [data.filename];
+      if (typeof data.wordCount === 'number') bits.push(data.wordCount + 'w');
+      if (typeof data.sourceCount === 'number') bits.push(data.sourceCount + ' source' + (data.sourceCount === 1 ? '' : 's'));
+      if (data.updated) bits.push('updated ' + data.updated);
+      fileEl.textContent = bits.join(' · ');
+
+      // Sources list
+      while (sourcesEl.firstChild) sourcesEl.removeChild(sourcesEl.firstChild);
+      if (data.sources && data.sources.length) {
+        const h = createEl('h4', null, 'Sources');
+        sourcesEl.appendChild(h);
+        data.sources.forEach(function(src){
+          const s = String(src);
+          const a = document.createElement('a');
+          a.href = s;
+          a.target = '_blank';
+          a.rel = 'noopener';
+          a.textContent = s;
+          sourcesEl.appendChild(a);
+        });
+        sourcesEl.removeAttribute('hidden');
+      } else {
+        sourcesEl.setAttribute('hidden', '');
+      }
+
+      // Body — render markdown
+      const content = data.content || '';
+      if (window.marked && typeof window.marked.parse === 'function') {
+        // marked handles GFM by default in v11+ (tables, task lists, etc.)
+        bodyEl.innerHTML = window.marked.parse(content);
+        // Open external links in new tab
+        bodyEl.querySelectorAll('a[href^="http"]').forEach(function(a){
+          a.target = '_blank';
+          a.rel = 'noopener';
+        });
+        // Tag scaffolding vs copy sections
+        tagScaffoldingSections(bodyEl);
+      } else {
+        bodyEl.textContent = content;
+      }
+
+      // Reset highlight count, then merge any existing highlights from disk
+      updateHighlightCount(0);
+      mergeExistingHighlights(data.filename);
+
+      drawer.removeAttribute('hidden');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function fetchAndOpen(filename){
+      if (!window.__SHIPPED_LIVE__) {
+        showToast('error', 'reader offline', 'open http://127.0.0.1:4321/ — you are on the static HTML');
+        return;
+      }
+      // Open with loading state
+      titleEl.textContent = 'Loading…';
+      fileEl.textContent = filename;
+      while (sourcesEl.firstChild) sourcesEl.removeChild(sourcesEl.firstChild);
+      sourcesEl.setAttribute('hidden', '');
+      bodyEl.textContent = '';
+      drawer.removeAttribute('hidden');
+      document.body.style.overflow = 'hidden';
+
+      fetch('/api/article/' + encodeURIComponent(filename))
+        .then(function(r){ return r.json(); })
+        .then(function(data){
+          if (!data.ok) {
+            showToast('error', 'reader', data.error || 'unknown');
+            closeDrawer();
+            return;
+          }
+          openDrawer(data);
+        })
+        .catch(function(err){
+          showToast('error', 'reader fetch failed', String(err));
+          closeDrawer();
+        });
+    }
+
+    // Delegated click: read triggers + close triggers
+    document.addEventListener('click', function(e){
+      const closer = e.target.closest('[data-reader-close]');
+      if (closer) {
+        e.preventDefault();
+        closeDrawer();
+        return;
+      }
+      const readBtn = e.target.closest('[data-read-filename]');
+      if (readBtn) {
+        e.preventDefault();
+        e.stopPropagation();
+        const filename = readBtn.getAttribute('data-read-filename');
+        if (filename) fetchAndOpen(filename);
+      }
+    });
+
+    // ESC to close
+    document.addEventListener('keydown', function(e){
+      if (e.key === 'Escape' && !drawer.hasAttribute('hidden')) {
+        closeDrawer();
+      }
+    });
   }
 })();
 `;

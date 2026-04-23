@@ -35,8 +35,10 @@ import type { ParsedIssue, RenderOptions, RenderResult, Section } from './types.
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 // Default deploy paths relative to the renderer module.
-//   tool-factory/scrapers/shipped/src/render/  →  ../../../../../id8labs/public/shipped
-const DEFAULT_DEPLOY_ROOT = path.resolve(__dirname, '../../../../../id8labs/public/shipped');
+// The deployed id8labs.app site lives at id8/id8labs/ (inside the id8
+// monorepo). The sibling id8labs/ at ~/Development/ is a legacy scaffold.
+//   id8/shipped/pipeline/src/render/  →  ../../../id8labs/public/shipped
+const DEFAULT_DEPLOY_ROOT = path.resolve(__dirname, '../../../../id8labs/public/shipped');
 
 // ────────────────────────────────────────────────────────────────────
 // Public entry point
@@ -50,7 +52,11 @@ export async function renderIssue(
   const markdown = await fs.readFile(absMarkdown, 'utf-8');
   const issue = parseIssue(markdown, absMarkdown);
 
-  const issueNum = pad2(issue.frontmatter.issue + 1); // dry-run #00 → URL /01/
+  // Issue number maps 1:1 to the URL path. Historical +1 offset removed
+  // 2026-04-22: it was leftover from Issue 00 being a dry-run, but it now
+  // misleads (Issue 02 rendered at /shipped/03/). Source of truth is the
+  // frontmatter `issue` field.
+  const issueNum = pad2(issue.frontmatter.issue);
   const deployRoot =
     options.deployRoot ??
     process.env.SHIPPED_DEPLOY_PATH ??
@@ -119,6 +125,7 @@ async function buildTemplateData(
   const survey = find('survey');
   const cowork = find('cowork');
   const papers = find('papers');
+  const alsoShipped = find('also_shipped');
   const term = find('term_of_issue');
   const quiet = find('quiet_on_wire');
   const close = find('close');
@@ -126,8 +133,8 @@ async function buildTemplateData(
   // Compute "next issue" date (current + 7 days)
   const nextIssueDate = computeNextIssueDate(fm.date);
 
-  // Build cover bottom row from cover_label / lead headline / etc.
-  const coverBottomRow = renderCoverBottomRow();
+  // Build cover bottom row from frontmatter (term_of_issue + optional cover_bottom array).
+  const coverBottomRow = renderCoverBottomRow(fm as unknown as { term_of_issue?: string; cover_bottom?: Array<{ label: string; val: string }> });
 
   const releaseLogHtml = renderReleaseLog(issue.releaseLog);
   const releaseLogCount = issue.releaseLog.reduce((s, c) => s + c.entries.length, 0);
@@ -147,27 +154,28 @@ async function buildTemplateData(
 
     // Cover
     volume: 'I',
-    cover_label: stripTitlePrefix(fm.title) || 'The Founding Issue',
-    cover_sub: 'A dry-run — three weeks to stress-test the format at maximum size.',
+    cover_label: stripTitlePrefix(fm.title) || `Issue ${issueNum}`,
+    cover_sub: fm.deck ?? `Week of ${fm.date}.`,
     date_iso_spaced: dateIsoSpaced,
     period: fmtPeriod(fm.period),
-    cover_top_meta: `${releaseLogCount} Releases · 21 Days · 1 Shadow`,
+    cover_top_meta: `${releaseLogCount} Releases · ${computePeriodLabel(fm.period)}`,
     cover_huge_num: issueNum,
-    cover_deck: 'The <em>Shadow</em> Release',
-    cover_deckline:
-      'Three weeks of Anthropic, in one read. The model they shipped. The model you can&apos;t have. And the distance between them — the new normal.',
+    cover_deck: stripTitlePrefix(fm.title),
+    cover_deckline: fm.deck ?? '',
     cover_bottom_row: coverBottomRow,
+    toc_html: renderToc(issue.sections, issueNum),
+    sources_html: renderSources(fm as unknown as { sources?: string[] }),
 
     // Editorial
     'section:open': open ? renderOpen(open, fm.period) : '',
-    'section:by_the_numbers': renderByTheNumbers(),
+    'section:by_the_numbers': renderByTheNumbers(fm.by_the_numbers as { head?: string; deck?: string; cells?: Array<{ label: string; value: string; note?: string; size?: 3 | 4 | 6; accent?: boolean }> } | undefined),
     'section:lead_story': lead ? renderLeadStory(lead) : '',
     'chart:sweep_table': sweepHtml,
     'section:investigation': investigation ? renderInvestigation(investigation) : '',
     'section:feature': feature ? renderFeature(feature) : '',
     'section:timeline': timeline ? renderTimeline(timeline) : '',
     'section:survey': survey ? renderSurvey(survey) : '',
-    'section:also_shipped': renderAlsoShipped(cowork, papers),
+    'section:also_shipped': renderAlsoShipped(alsoShipped, cowork, papers),
     'section:term_of_issue': term ? renderTermOfIssue(term) : '',
     'section:quiet_on_wire': quiet ? renderQuietOnWire(quiet) : '',
     'section:close': close ? renderClose(close) : '',
@@ -197,6 +205,86 @@ function fmtPeriod(period: string): string {
   return period.replace(/\s+/g, ' ').trim().replace(/ to /, ' → ');
 }
 
+function renderToc(sections: Array<{ name: string; kind: string }>, issueNum: string): string {
+  // Skip non-editorial sections in the ToC.
+  const editorialKinds = new Set([
+    'open', 'in_this_issue', 'by_the_numbers', 'lead_story',
+    'companion_lead', 'feature', 'investigation', 'also_shipped',
+    'timeline', 'survey', 'cowork', 'papers', 'term_of_issue',
+    'quiet_on_wire', 'close',
+  ]);
+  const entries = sections
+    .filter(s => editorialKinds.has(s.kind))
+    .map((s, i) => {
+      const anchor = '#' + s.name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+      const num = String(i + 1).padStart(2, '0');
+      return `<a href="${anchor}" class="toc-entry">
+      <span class="toc-entry-n">${num}</span>
+      <div class="toc-entry-body">
+        <span class="toc-entry-kicker">${s.name}</span>
+      </div>
+    </a>`;
+    })
+    .join('\n    ');
+
+  if (!entries) return '';
+  return `<section class="section toc-section" id="contents">
+  <div class="section-folio">
+    <div class="section-folio-left">
+      <span class="folio"><b>p.02</b> <span class="ruler"></span> Shipped. <span class="dot">·</span> ${issueNum} <span class="dot">·</span> Front of book</span>
+    </div>
+    <span class="section-folio-sub">Front of book</span>
+  </div>
+
+  <div class="toc-head">
+    <div class="toc-head-num">${issueNum}</div>
+    <div class="toc-head-title">In this issue,</div>
+  </div>
+
+  <div class="toc-grid">
+    ${entries}
+  </div>
+</section>`;
+}
+
+function renderSources(fm: { sources?: string[] }): string {
+  const sources = Array.isArray(fm.sources) ? fm.sources : [];
+  if (sources.length === 0) return '';
+
+  const items = sources
+    .filter((s) => typeof s === 'string' && /^https?:\/\//.test(s))
+    .map((url) => {
+      const host = url.match(/^https?:\/\/([^/]+)/)?.[1] ?? url;
+      return `<li><a href="${url}" style="color:var(--ink);text-decoration:none;border-bottom:1px solid rgba(0,0,0,0.2)" target="_blank" rel="noopener">${host}</a></li>`;
+    })
+    .join('\n          ');
+
+  if (!items) return '';
+
+  return `<section style="max-width:1240px;margin:96px auto 64px;padding:0 32px">
+  <div style="display:flex;align-items:baseline;justify-content:space-between;border-bottom:2px solid var(--ink);padding-bottom:14px;margin-bottom:32px">
+    <span style="font-family:var(--narrow);font-weight:700;font-size:12px;letter-spacing:.25em;text-transform:uppercase;color:var(--orange)">Sources</span>
+    <span style="font-family:var(--sans);font-size:13px;color:var(--muted)">Every claim traceable</span>
+  </div>
+
+  <div style="background:#ffffff;border:1px solid rgba(0,0,0,0.08);padding:48px 56px">
+    <ul style="list-style:none;padding:0;margin:0;font-family:var(--sans);font-size:13px;line-height:1.9;color:var(--ink);columns:2;column-gap:48px">
+          ${items}
+    </ul>
+  </div>
+</section>`;
+}
+
+function computePeriodLabel(period: string | undefined): string {
+  if (!period) return '7 Days';
+  const m = period.match(/(\d{4}-\d{2}-\d{2}).*?(\d{4}-\d{2}-\d{2})/);
+  if (!m) return '7 Days';
+  const start = new Date(m[1]!);
+  const end = new Date(m[2]!);
+  const days = Math.round((end.getTime() - start.getTime()) / (1000 * 60 * 60 * 24));
+  return `${days} Days`;
+}
+
 function computeNextIssueDate(date: string): string {
   const d = new Date(date);
   d.setUTCDate(d.getUTCDate() + 7);
@@ -207,24 +295,25 @@ function capitalize(s: string): string {
   return s.length === 0 ? s : s[0]!.toUpperCase() + s.slice(1);
 }
 
-function renderCoverBottomRow(): string {
-  // Issue 01 hardcoded; future issues can override via frontmatter
-  return `<div class="cover-bottom">
-    <div class="cover-bottom-cell">
-      <span class="cover-bottom-label">The Lead</span>
-      <span class="cover-bottom-val">Opus <b>4.7</b> vs. the chart</span>
-    </div>
-    <div class="cover-bottom-cell">
-      <span class="cover-bottom-label">The Investigation</span>
-      <span class="cover-bottom-val"><b>Glasswing</b></span>
-    </div>
-    <div class="cover-bottom-cell">
-      <span class="cover-bottom-label">The Survey</span>
-      <span class="cover-bottom-val">Claude Code, <b>v26</b></span>
-    </div>
-    <div class="cover-bottom-cell">
+function renderCoverBottomRow(fm?: { term_of_issue?: string; cover_bottom?: Array<{ label: string; val: string }> }): string {
+  // Per-issue override via frontmatter `cover_bottom` array. Fallback to a
+  // generic four-cell layout with Term of the Issue if provided.
+  if (fm?.cover_bottom && Array.isArray(fm.cover_bottom)) {
+    const cells = fm.cover_bottom
+      .map(
+        (c) => `<div class="cover-bottom-cell">
+      <span class="cover-bottom-label">${c.label}</span>
+      <span class="cover-bottom-val">${c.val}</span>
+    </div>`,
+      )
+      .join('\n    ');
+    return `<div class="cover-bottom">\n    ${cells}\n  </div>`;
+  }
+  const termCell = fm?.term_of_issue
+    ? `<div class="cover-bottom-cell">
       <span class="cover-bottom-label">The Term</span>
-      <span class="cover-bottom-val"><em>shadow release</em></span>
-    </div>
-  </div>`;
+      <span class="cover-bottom-val"><em>${fm.term_of_issue.toLowerCase()}</em></span>
+    </div>`
+    : '';
+  return `<div class="cover-bottom">\n    ${termCell}\n  </div>`;
 }

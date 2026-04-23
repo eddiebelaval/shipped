@@ -10,6 +10,41 @@ The visual identity spec for `id8labs.app/shipped/`. Read this before touching a
 
 ## Revision History
 
+### Revision 5 — PLANNED (triggered after Issue 03 ships, 2026-05-01)
+
+Eddie's brief, captured Thu 2026-04-23 AM pre-Issue-02-lock:
+
+> "When we're in a good place we need have a design.md created. It should be created off of 3 issues for triangulation and variety. We need to be able to go in many directions. This design keeps us in style/theme with room to explore and come back home."
+
+**What Rev 5 does:**
+
+1. **Triangulates from three shipped issues** (Issue 01 "The Shadow Release," Issue 02 "Presence," Issue 03 TBD) rather than deriving the spec primarily from Issue 01's founding visual direction.
+2. **Identifies variable surfaces** — the places where issue-to-issue variation is *sanctioned* (cover treatment, hero illustration, chart aesthetic, section ornaments, drop-cap color, masthead micro-variants).
+3. **Identifies constant surfaces** — the load-bearing identity elements that must NOT vary (masthead logo, body typography, page grid, trust markers, footer, warm-white stock + ink feel).
+4. **Builds the "explore / come home" protocol** — a documented range of motion: per-issue visual decisions sit inside a bounded palette and furniture set. Each issue picks from the range. The range itself is the identity.
+5. **Captures emergent patterns** — what Rev 4 called a "spec" is actually a set of decisions made for Issue 01. Rev 5 refactors those decisions into *principles + variants* by observing what held and what wanted to change across three issues.
+
+**Trigger conditions:**
+- Issue 03 shipped and visible at `id8labs.app/shipped/03/`
+- At least one visual element deliberately varied between Issue 01 and Issue 02 or 03 (hero chart treatment is the current candidate — Mythos bar in Issue 01 vs. whatever Issue 02/03 run)
+- Eddie's read-through of all three side-by-side, noting what "felt like Shipped." and what drifted
+
+**Methodology (Rev 5 authoring pass):**
+1. Pull all three covers + front-of-book hero treatments + one representative interior spread per issue. Compare.
+2. Tag every visible design decision. Mark each as either CONSTANT (appears identically in all three) or VARIANT (differs across at least one).
+3. For each VARIANT, name the range. Document what's sanctioned and what's out-of-bounds.
+4. For each CONSTANT, confirm it's load-bearing — if a constant could vary without losing the identity, it's actually a variant in disguise; re-classify.
+5. Rewrite Rev 4's prescriptive sections as principle-plus-range, not as a single specified value.
+
+**What Rev 5 does NOT do:**
+- Does not retire Rev 4 as gospel. Rev 4 remains the default when Rev 5 is silent.
+- Does not ship with Issue 03. Rev 5 is authored *from* Issue 03's release, not *for* it.
+- Does not prescribe the variants. The variants are observed from what the three issues actually shipped, not invented ahead of time.
+
+**Placeholder status:** brief captured; authoring deferred. Revision block will be filled in during the week of 2026-05-04 after Issue 03 is live.
+
+---
+
 ### Revision 4 — 2026-04-16
 
 Brand & Texture Pass. Eddie's feedback on Rev 3: "this is just fantastic. only thing I'd flag is I want a list of sources. and I want Shipped to be branded. the title to have more style to it. I want to feel like I'm opening a magazine. maybe we need texture or some kind of something. We're 90% there."

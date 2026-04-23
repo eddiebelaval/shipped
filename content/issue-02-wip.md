@@ -1,11 +1,15 @@
 ---
 issue: 02
-slug: wip
-title: TBD
+slug: presence
+title: Presence
+term_of_issue: Presence
+investigation_umbrella: Trust Week
 status: draft
 ship_date: 2026-04-24
-running_order_locked: false
-running_order_decision_at: 2026-04-23  # Thursday — allow the week to play out
+running_order_locked: true
+running_order_decision_at: 2026-04-23
+slug_locked_at: 2026-04-22
+canonical_file: content/issue-02-presence.md  # skeleton assembled Wed PM, 11 prose slots
 ---
 
 # Issue 02 — Working Document
@@ -19,17 +23,15 @@ running_order_decision_at: 2026-04-23  # Thursday — allow the week to play out
 ## Editorial Decisions (locked Mon 2026-04-20 PM; updated Tue 2026-04-21 AM + PM)
 
 - **Lead story (A):** Claude Design. Anthropic shipped it Apr 17, same morning Shipped. Issue 01 went live.
-- **Secondary story (B) — CONFLICT, needs Thursday resolution:**
-  - **WIP position:** Conway as a separate B story (reported, pre-launch, codename'd from testingcatalog.com).
-  - **Signal report position (Tue PM):** Conway as a **Lead-Story third act / sidebar** — tightens the "Anthropic ships products" thesis by closing with Conway inside the Lead instead of giving it its own section. Trust Week then moves up to secondary.
-  - **Front-of-book draft position:** Section header reads "Lead Story — Claude Design (with Conway third act)" — aligned with signal report.
-  - **Open question Eddie decides Thursday:** Conway as B story (current WIP) OR Lead third-act (signal/front-of-book)?
+- **Secondary story (B) — LOCKED Wed 2026-04-22 PM:** Conway runs as a **standalone B-story (Feature slot)**, not as Lead third-act. Eddie's call. Front-of-book draft + signal report had recommended Lead third-act; overridden in favor of giving Conway its own reporting frame.
+  - Trust Week stays in Investigation slot (not promoted to secondary).
+  - Front-of-book word budget impact: runs heavier. Close monitoring against the 1,500-word ceiling at Thursday lock.
 - **Investigation:** The Trust Week — Lovable + Vercel, as builder warnings with Anthropic-compatible SOPs tied back. _If Conway moves into Lead as third-act, Trust Week moves up to secondary._
 - **Editorial frame for security piece:** warn builders + tie back to Anthropic + ship vetted SOPs from pros we research. Not news-for-news-sake; action layer.
 - **Thematic spine:** Anthropic landed one product (Claude Design) and is about to ship another (Conway). Two ecosystem platforms broke (Lovable + Vercel). Here's what builders should do. What shipped → what's coming → what broke → what to do.
 - **Opening meta beat:** how Issue 01's readers (WhatsApp group) shaped this issue — translation asks, podcast ask, and what we decided to do with each (ES pocketed to 03; podcast in VISION roadmap; this piece leans into "action layer" signal).
 - **ES pilot:** POCKETED to Issue 03. Reason: editorial load already heavy; splitting focus breaks quality bar.
-- **Term of Issue — LEANING PRESENCE** (Tue 2026-04-21 PM per signal report re-rank). _Was: Trust/Context/Scope shortlist → now: Presence leads; Trust fallback; Context/Scope demoted. Reason: Presence ties Conway to Eddie's voice corpus (`presence-not-tools.md`), contrasts with Claude Design's one-prompt-one-output mode, opens Move A (memoir → philosophy) pivot._
+- **Term of Issue — LOCKED PRESENCE** (Wed 2026-04-22 PM, Eddie). _Leading candidate from signal report's Tue PM re-rank confirmed. Slug: `presence`. Title: TBD (pick Thursday). Companion piece `presence-as-category.md` captured as scaffolding for the thesis._
 - **Amazon-Anthropic deal ($25B / $100B / 10yr):** Release-log-only (Eddie confirmed Tue AM). Not the lead, not the secondary. One entry under `[NEWS]`. Two or three sentences allowed in front-of-book if word budget permits; not a narrative spine.
 - **ShinyHunters attribution — softened.** ShinyHunters publicly denied Vercel involvement (per BleepingComputer + Hackread, Mon/Tue). BreachForums $2M listing still live but the group usually credited has distanced themselves. Magazine copy must read "initially credited to ShinyHunters; group has since denied involvement." _Was: "ShinyHunters / $2M ransom" → now: softened attribution._
 - **Signal report absorbed:** Tue 2026-04-21 PM. `content/articles/issue-02/signal-report.md` findings pulled into fact sheets and Thursday checklist below.
@@ -43,11 +45,12 @@ running_order_decision_at: 2026-04-23  # Thursday — allow the week to play out
 |---|---|---|
 | Open | Meta: Issue 01 dropped same morning as Claude Design; WhatsApp group shaped this issue. "Presence" frame. | drafted (see `articles/issue-02/front-of-book-draft.md`) |
 | Lead Story (A) | Claude Design: what it is, who it's for, Figma drop, "Anthropic ships products not just models" read | distilled draft (214 words — see Story 1 below) |
-| Secondary Story (B) — PLACEMENT OPEN | Conway: reported always-on containerized agent. Either standalone B story OR third-act inside Lead (Thursday call). | research — conflict flagged |
+| Secondary Story (B) / Feature | Conway: reported always-on containerized agent. **Locked standalone B-story (Feature slot) Wed 2026-04-22 PM.** | research — placement resolved |
 | Investigation: Trust Week | Lovable 4-stage evolution + Vercel via Context.ai. ShinyHunters attribution softened. | research (expanded with signal report) |
-| Also Shipped | OpenClaw Anthropic return (policy-signal beat); other Thursday-scrape candidates | 1 research article captured; rest blocked on scrape |
+| Also Shipped | OpenClaw Anthropic return + Vercel sensitive-default + Claude performance backlash | 3 research articles captured, all grade A. Thursday scrape may add 1-2 more. |
+| Quiet on the Wire | Claude Code briefly removed from $20 Pro plan (Avasare 2% quote) | research article captured at grade A 28/28 |
 | Builder SOPs | Vetted actionable tips — rotate env vars, audit third-party OAuth scopes, etc. | needs pro interviews |
-| Release Log | Amazon-Anthropic deal ($25B/$100B) confirmed `[NEWS]` entry; full weekly dump populates Thursday scrape | blocked on scrape (1 confirmed entry) |
+| Release Log | release-log-research.md captured Wed PM with 10 entries across Apr 17 to 22 window | research. Scraper tokenless; built from releasebot + primary sources. Top-off Thursday PM for Thu items; final Friday 7 AM. |
 | Close / Term of Issue | "Presence" leading; counterpoint between always-on products absorbing context and always-on platforms failing that trust | to write |
 
 ---
@@ -317,17 +320,19 @@ Not a full section — one paragraph in the open, maybe 150 words.
 
 ---
 
-## Term of Issue candidates
+## Term of Issue — LOCKED PRESENCE (Wed 2026-04-22 PM)
 
-Re-ranked Tue 2026-04-21 PM per signal report. Front-of-book draft frontmatter already uses `term_of_issue: Presence`.
+**Decision:** `term_of_issue: Presence`. Slug: `presence`. Title: TBD (pick Thursday).
 
-1. **"Presence"** — _LEADING._ Conway's architecture is *presence* itself: persistent, watching, responsive to conditions vs. summoned. Echoes Eddie's `presence-not-tools.md` essay (voice corpus). Opens a Move A (memoir → philosophy) pivot. Contrasts with Claude Design's one-prompt-one-output mode.
-2. **"Trust"** — strong fallback. Handles Lovable + Vercel cleanly. Loses Conway slightly; doesn't absorb Claude Design.
-3. **"Always-on"** — Conway is always-on; breaches are always-on risk; the builder stack is always-on.
-4. **"Scope"** — strong for OAuth/Vercel but doesn't absorb Conway or Claude Design.
-5. **"Context"** — cute tri-meaning (Claude Design reads context; Context.ai was the attack vector; context is the week's double-edged sword) but gets thin once Conway joins.
+**Why it won:** Conway's architecture is *presence* itself — persistent, watching, responsive to conditions vs. summoned. Echoes Eddie's `presence-not-tools.md` essay (voice corpus). Contrasts with Claude Design's one-prompt-one-output mode. Opens Move A (memoir → philosophy) pivot.
 
-Pick Thursday.
+**Candidates not taken** (archival, for Issue 03+ consideration):
+- **"Trust"** — strong fallback, but Presence absorbs Conway better.
+- **"Always-on"** — Conway-native but thinner on Claude Design reception beat.
+- **"Scope"** — Vercel-heavy; doesn't absorb Conway or Claude Design.
+- **"Context"** — cute tri-meaning but thin once Conway joins.
+
+**Container piece:** `articles/issue-02/presence-as-category.md` — locked as Companion to the Lead (150–250w).
 
 ---
 
@@ -335,16 +340,17 @@ Pick Thursday.
 
 **Structure decisions (resolve before drafting):**
 
-- [ ] **Conway placement:** B story (current WIP) OR Lead third-act inside Claude Design (signal + front-of-book recommendation). If third-act, Trust Week moves up to secondary slot.
+- [x] **Conway placement** — LOCKED standalone B-story (Feature slot) Wed 2026-04-22 PM. Trust Week stays in Investigation slot.
 - [ ] **Conway promotion check:** did Anthropic ship/announce Conway this week? If yes → Conway becomes Lead, Claude Design slides to B, front-of-book rewrites around the ship.
 - [ ] **Conway hold check:** if build evidence weakened or Anthropic pushed back publicly, hold Conway for Issue 03 and restore Trust Week to co-lead with Claude Design.
-- [ ] **Running order confirmation:** with placement resolved, freeze the section order.
+- [x] **Presence-as-category placement** — LOCKED Companion to the Lead (150–250w) Wed 2026-04-22 PM.
+- [ ] **Running order confirmation:** with placements resolved, freeze the section order Thursday AM.
 
 **Editorial decisions:**
 
-- [ ] **Term of Issue** — lock **Presence** (current lead) or fall back to Trust.
-- [ ] **Slug for `issue-02-{slug}.md`** — candidates: `presence`, `the-product-turn`, `what-gets-watched`.
-- [ ] **Title** — open.
+- [x] **Term of Issue** — LOCKED Presence Wed 2026-04-22 PM.
+- [x] **Slug** — LOCKED `presence` Wed 2026-04-22 PM. File rename (`issue-02-wip.md` → `issue-02-presence.md`) deferred to Thursday lock per WIP doctrine.
+- [ ] **Title** — open. No candidates drafted yet. Surface 3 Thursday AM once running order freezes.
 - [ ] **Attribution line for Vercel** — soften to "initially credited to ShinyHunters; group has since denied involvement; $2M BreachForums listing remains live, unattributed."
 - [ ] **Conway sourcing** — pick the 2 primary sources to cite in the magazine: TestingCatalog (broke it) + one secondary (VentureBeat, The Hacker News, or Dataconomy).
 - [ ] **OpenClaw attribution** — confirm "per OpenClaw's docs" framing, not "Anthropic sanctioned."
@@ -361,6 +367,11 @@ Pick Thursday.
 
 **Pipeline TODOs:**
 
-- [ ] **Scraper run** — Thursday PM `pnpm scrape` for Release Log data
-- [ ] Scraper output reviewed for anything bigger than Amazon-Anthropic / OpenClaw that we haven't tracked
-- [ ] Verify Amazon-Anthropic deal fits the `[NEWS]` entry template cleanly
+- [x] **Wednesday PM scrape**. `pnpm scrape` failed (no X_API_BEARER_TOKEN, Nitter mirrors dead). Fallback: web research via releasebot.io + primary sources. 10 Release Log entries captured in `release-log-research.md`.
+- [ ] **Thursday PM top-off scrape**. Re-run `pnpm scrape` with a token if set up, or re-run the web-research pass. Focus: Claude Code releases Thursday, docs.anthropic.com updates, Avasare follow-ups, any `/agents` or `/skills` API surfacing. See "Still pending, top off Thursday" section of release-log-research.md.
+- [ ] **Friday 7 AM final**. Last pass before ship.
+- [ ] **Release Log separator format**. STYLE.md uses em dash in `#### YYYY-MM-DD — Title`. Per 2026-04-22 no-em-dashes rule, entries currently use colon. Pick house format at Thursday lock: keep colon and amend STYLE.md, or carve out em dashes for Release Log only.
+- [ ] Scraper output reviewed for anything bigger than already-captured (Amazon deal, Claude Code test, Claude Design, Opus 4.7 rollout).
+- [ ] Verify Amazon-Anthropic deal fits the `[NEWS]` entry template cleanly.
+- [ ] Find primary Amazon press release or Anthropic blog post for the $25B deal; currently attributed to Rappler + Meyka.
+- [ ] Archive Avasare X post via Internet Archive before Thursday; X URLs decay.

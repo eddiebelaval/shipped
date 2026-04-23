@@ -9,35 +9,77 @@
 import type { Section } from '../types.js';
 import { inlineMarkdown } from '../markdown.js';
 
-export function renderAlsoShipped(cowork: Section | undefined, papers: Section | undefined): string {
-  const coworkHtml = cowork ? renderInner(cowork) : '';
-  const papersHtml = papers ? renderInner(papers, /*isFirst*/ false) : '';
-
-  return `<section class="section" id="also">
+export function renderAlsoShipped(
+  alsoShipped: Section | undefined,
+  cowork: Section | undefined,
+  papers: Section | undefined,
+): string {
+  // Modern path: a single "Also Shipped" section from the markdown (Issue 02+).
+  // H3 subsections become italic display headings; each subsection's body
+  // becomes paragraphs underneath.
+  if (alsoShipped) {
+    return `<section class="section" id="also">
   <div class="section-folio">
     <div class="section-folio-left">
-      <span class="folio"><b>p.18</b> <span class="ruler"></span> Shipped. <span class="dot">—</span> 00 <span class="dot">—</span> Apr 2026</span>
+      <span class="folio">Shipped. <span class="dot">·</span> Also shipped</span>
     </div>
     <span class="section-folio-sub">Also shipped</span>
   </div>
 
   <div class="prose-well" style="padding:0">
-    <span class="prose-marginalia">&#x2197; &nbsp; Cowork GA</span>
+    <div class="prose">
+${renderBodyWithSubheadings(alsoShipped.content)}
+    </div>
+  </div>
+</section>`;
+  }
+
+  // Legacy Issue 00 path (cowork + papers split into two sections).
+  const coworkHtml = cowork ? renderInner(cowork) : '';
+  const papersHtml = papers ? renderInner(papers, /*isFirst*/ false) : '';
+  if (!coworkHtml && !papersHtml) return '';
+
+  return `<section class="section" id="also">
+  <div class="section-folio">
+    <div class="section-folio-left">
+      <span class="folio">Shipped. <span class="dot">·</span> Also shipped</span>
+    </div>
+    <span class="section-folio-sub">Also shipped</span>
+  </div>
+
+  <div class="prose-well" style="padding:0">
     <div class="prose">
 ${coworkHtml}
 ${papersHtml}
     </div>
-    <aside class="prose-aside">
-      <div><b>Cowork GA</b></div>
-      <div>Apr 09 · macOS + Windows</div>
-      <div>RBAC · Enterprise</div>
-      <div>Analytics API · OTel</div>
-      <div style="margin-top:12px"><b>Papers</b></div>
-      <div>Automated Alignment Researchers</div>
-      <div>Emotion Concepts in LLMs</div>
-    </aside>
   </div>
 </section>`;
+}
+
+function renderBodyWithSubheadings(content: string): string {
+  const lines = content.split('\n');
+  const out: string[] = [];
+  let buffer: string[] = [];
+  const flushBuffer = () => {
+    if (buffer.length > 0) {
+      out.push(paragraphs(buffer.join('\n')));
+      buffer = [];
+    }
+  };
+  for (const line of lines) {
+    if (line.startsWith('# ')) continue; // skip H1
+    const h3 = line.match(/^###\s+(.+)$/);
+    if (h3) {
+      flushBuffer();
+      out.push(
+        `      <h3 style="font-family:var(--disp);font-weight:500;font-style:italic;font-size:30px;letter-spacing:-.02em;line-height:1.15;color:var(--ink);margin:32px 0 14px">${h3[1]}.</h3>`,
+      );
+      continue;
+    }
+    buffer.push(line);
+  }
+  flushBuffer();
+  return out.join('\n');
 }
 
 function renderInner(section: Section, isFirst = true): string {

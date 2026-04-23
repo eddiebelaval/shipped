@@ -107,6 +107,7 @@ function normalizeFrontmatter(data: Record<string, unknown>): IssueFrontmatter {
     byline: fm.byline ? String(fm.byline) : undefined,
     fob_content: fm.fob_content ? String(fm.fob_content) : undefined,
     log_content: fm.log_content ? String(fm.log_content) : undefined,
+    by_the_numbers: fm.by_the_numbers as IssueFrontmatter['by_the_numbers'],
   };
 }
 
@@ -180,6 +181,7 @@ const NAME_TO_KIND: Array<[RegExp, SectionKind]> = [
   [/^companion to the lead$/i, 'companion_lead'],
   [/^feature$/i, 'feature'],
   [/^investigation$/i, 'investigation'],
+  [/^also shipped$/i, 'also_shipped'],
   [/^timeline$/i, 'timeline'],
   [/^survey$/i, 'survey'],
   [/^cowork shipped/i, 'cowork'],
@@ -385,9 +387,12 @@ function parseTermOfIssue(content: string): TermOfIssue {
   const lines = content
     .split('\n')
     .map((l) => l.replace(/^\s*>\s?/, ''))
-    .filter((l) => l !== '');
+    .filter((l) => l !== '')
+    .filter((l) => !/^#\s/.test(l));
 
-  let word = 'shadow release';
+  // Fallback word pulled from article H1 if dictionary-entry pattern is absent.
+  const h1Match = content.match(/^#\s+(.+)$/m);
+  let word = h1Match ? h1Match[1]!.trim() : 'term';
   let pronunciation: string | undefined;
   let partOfSpeech: string | undefined;
   const definition: string[] = [];

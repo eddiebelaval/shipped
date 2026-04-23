@@ -101,7 +101,7 @@ Claude Haiku 3 retired. Users urged to upgrade to Claude Haiku 4.5. Category: `[
 
 Fixed crash in permission dialog when agent teammates request tool access. Category: `[FIX]`.
 
-#### 2026-04-17: White House chief-of-staff meets Dario Amodei over Mythos ([National Today](https://nationaltoday.com/us/dc/washington/news/2026/04/17/white-house-chief-of-staff-meets-with-anthropic-ceo-over-new-ai-technology/))
+#### 2026-04-17: White House chief-of-staff meets Dario Amodei over Mythos ([CNN](https://www.cnn.com/2026/04/17/business/anthropic-white-house-meeting-dario-amodei))
 
 Susie Wiles (White House Chief of Staff) met with Anthropic CEO Dario Amodei to discuss Mythos, framed as "productive and constructive" and exploring collaboration plus "balancing innovation and safety." Category: `[POLICY]`.
 

@@ -31,6 +31,12 @@ export interface IssueFrontmatter {
   fob_content?: string;
   /** "editorial" | "reference" — kind of the release log. */
   log_content?: string;
+  /** Optional per-issue By the Numbers data. Renders empty if absent. */
+  by_the_numbers?: {
+    head?: string;
+    deck?: string;
+    cells?: Array<{ label: string; value: string; note?: string; size?: 3 | 4 | 6; accent?: boolean }>;
+  };
 }
 
 // ────────────────────────────────────────────────────────────────────
@@ -50,6 +56,7 @@ export type SectionKind =
   | 'companion_lead'
   | 'feature'
   | 'investigation'
+  | 'also_shipped'
   | 'timeline'
   | 'survey'
   | 'cowork'

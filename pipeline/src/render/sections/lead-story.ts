@@ -10,72 +10,31 @@ import { inlineMarkdown } from '../markdown.js';
 
 export function renderLeadStory(section: Section): string {
   const headline = extractHeadline(section.content);
-  const split = splitOnChart(section.content);
+  const prose = paragraphs(stripChartBlock(stripSidebar(stripPullQuote(section.content))));
 
   const chart = extractFiveBarChart(section.content);
   const chartHtml = chart && chart.kind === 'five_bar' ? renderFiveBar(chart.bars) : '';
 
-  const beforeProse = paragraphs(stripChartBlock(split.before));
-  const afterProse = paragraphs(stripSidebar(stripPullQuote(split.after)));
-
   const pullQuote = extractPullQuote(section.content);
   const pullQuoteHtml = pullQuote ? renderPullQuote(pullQuote) : '';
-
-  const sidebarHtml = renderMythosSidebar();
 
   return `<div class="feature-opener" id="lead">
   <span class="vert-label">The Lead Story <span class="vert-num">01</span></span>
   <div class="feature-heading">
-    <div class="feature-kicker">p.06 &nbsp;—&nbsp; Report by Eddie Belaval</div>
+    <div class="feature-kicker">Report by Eddie Belaval</div>
     <h2 class="feature-title">${formatTitle(headline)}</h2>
-    <p class="feature-deck">Opus 4.7 ships. Same price. Better vision. Sharper coding. And then, on the fourth bar of the launch chart, a model you cannot buy — taller than everything else.</p>
-    <div class="feature-meta">
-      <div><b>Report</b> &nbsp;·&nbsp; <b>Opus 4.7 launch</b> &nbsp;·&nbsp; <b>Apr 16, 2026</b></div>
-      <div>Floor &amp; ceiling &nbsp;·&nbsp; <b>2,576 px</b> vision &nbsp;·&nbsp; <b>xhigh</b> default &nbsp;·&nbsp; <b>1.0 – 1.35×</b> tokenizer</div>
-    </div>
   </div>
-  <aside class="feature-right">
-    <span class="feature-right-label">Why this matters</span>
-    First flagship where Anthropic explicitly conceded a stronger internal model (<em>Mythos</em>) exists. Precedent set. The next time the lab invokes &quot;too dangerous to ship in the standard channel,&quot; the chart will look familiar.
-  </aside>
 </div>
 
 <div class="prose-well">
-  <span class="prose-marginalia">&#x2197; &nbsp; Apr 16 &nbsp; · &nbsp; GA &nbsp; · &nbsp; Opus 4.7</span>
   <div class="prose drop-cap drop-cap-orange">
-${beforeProse}
+${prose}
   </div>
-  <aside class="prose-aside">
-    <div><b>At a glance</b></div>
-    <div>Price $5 / $25 MTok</div>
-    <div>Vision 2,576 px</div>
-    <div>Effort levels low → max (+xhigh)</div>
-    <div>Tokenizer 1.0–1.35×</div>
-    <div>Default xhigh</div>
-    <div>Rollout API, Bedrock, Vertex, Foundry, Copilot</div>
-  </aside>
 </div>
 
 ${chartHtml}
 
 ${pullQuoteHtml}
-
-<div class="prose-well">
-  <span class="prose-marginalia">&#x2197; &nbsp; Lead &nbsp; · &nbsp; Continued</span>
-  <div class="prose">
-${afterProse}
-  </div>
-  <aside class="prose-aside">
-    <div><b>In this section</b></div>
-    <div>Opus 4.7 GA ✓</div>
-    <div>xhigh default ✓</div>
-    <div>Tokenizer +35% ceiling</div>
-    <div>Vision 2576 px</div>
-    <div>Mythos · precedent</div>
-  </aside>
-</div>
-
-${sidebarHtml}
 
 <span class="ornament bold">&#10022; &nbsp; &#10022; &nbsp; &#10022;</span>`;
 }
@@ -89,7 +48,7 @@ function extractHeadline(content: string): string {
   for (const l of lines) {
     if (l.startsWith('# ')) return l.slice(2).trim();
   }
-  return 'The chart that was about Opus 4.7';
+  return 'The Lead Story';
 }
 
 function formatTitle(headline: string): string {

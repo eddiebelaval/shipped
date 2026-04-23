@@ -30,26 +30,26 @@ export function renderFiveBar(bars: BarData[]): string {
           ? ' <span class="tag">Frontier · Gated</span>'
           : '';
       return `    <div class="${rowClass}">
-      <span class="mythos-name">${esc(b.label)}${tag}</span>
-      <div class="mythos-bar"><div class="mythos-bar-fill" style="width:${widthPct}%"></div></div>
-      <span class="mythos-score">${esc(b.display)}</span>
+      <span class="hero-chart-name">${esc(b.label)}${tag}</span>
+      <div class="hero-chart-bar"><div class="hero-chart-bar-fill" style="width:${widthPct}%"></div></div>
+      <span class="hero-chart-score">${esc(b.display)}</span>
     </div>`;
     })
     .join('\n');
 
-  return `<section class="mythos-section">
-  <div class="mythos-head">
-    <h3 class="mythos-head-title">The fifth bar, the <em>Mythos</em> bar.</h3>
-    <div class="mythos-head-meta">
+  return `<section class="hero-chart-section">
+  <div class="hero-chart-head">
+    <h3 class="hero-chart-head-title">The fifth bar, the <em>Mythos</em> bar.</h3>
+    <div class="hero-chart-head-meta">
       <div><b>SWE-bench Verified</b> · production software engineering</div>
       <div>Higher is better · published by Anthropic, Apr 16</div>
     </div>
   </div>
-  <div class="mythos-bars">
+  <div class="hero-chart-bars">
 ${rows}
   </div>
-  <div class="mythos-caption">
-    <span class="mythos-caption-num">Fig. 01</span>
+  <div class="hero-chart-caption">
+    <span class="hero-chart-caption-num">Fig. 01</span>
     <span>The orange bar is the frontier you can read about but cannot call. Opus 4.7 is the floor of what you can buy this week. Mythos is the ceiling of what exists. The 6.3-point gap is the new normal — and Anthropic has decided, for now, that the distance is a feature.</span>
   </div>
 </section>`;

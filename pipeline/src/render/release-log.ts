@@ -50,25 +50,49 @@ ${entries}
 
 function renderCount(cat: ReleaseLogCategory): string {
   const n = cat.entries.length;
-  // Sniff a more specific count label per category, matching the canonical.
+  const versionRange = cat.letter === 'C' ? getVersionRange(cat.entries) : '';
   switch (cat.letter) {
     case 'A':
-      return `<b>${n}</b> Models in window`;
+      return `<b>${n}</b> ${n === 1 ? 'Model' : 'Models'} in window`;
     case 'B':
       return `<b>${n}</b> Release notes`;
     case 'C':
-      return `<b>${n}</b> versions &nbsp;·&nbsp; v2.1.85 → v2.1.111`;
+      return versionRange
+        ? `<b>${n}</b> ${n === 1 ? 'version' : 'versions'} &nbsp;·&nbsp; ${versionRange}`
+        : `<b>${n}</b> ${n === 1 ? 'version' : 'versions'}`;
     case 'D':
-      return `<b>${n}</b> App releases`;
+      return `<b>${n}</b> App ${n === 1 ? 'release' : 'releases'}`;
     case 'E':
-      return `<b>${n}</b> SDK releases`;
+      return `<b>${n}</b> SDK ${n === 1 ? 'release' : 'releases'}`;
     case 'F':
-      return `<b>${n}</b> Papers`;
+      return `<b>${n}</b> ${n === 1 ? 'Paper' : 'Papers'}`;
     case 'G':
       return `<b>${n}</b> Items`;
     default:
       return `<b>${n}</b> Items`;
   }
+}
+
+// Pull earliest and latest Claude Code version numbers from entry titles to
+// build a live range subtitle ("v2.1.112 → v2.1.118") instead of hardcoding.
+function getVersionRange(entries: ReleaseLogEntry[]): string {
+  const versions: string[] = [];
+  for (const e of entries) {
+    const m = e.title.match(/(\d+\.\d+\.\d+)/);
+    if (m) versions.push(m[1]!);
+  }
+  if (versions.length === 0) return '';
+  versions.sort((a, b) => {
+    const pa = a.split('.').map(Number);
+    const pb = b.split('.').map(Number);
+    for (let i = 0; i < 3; i++) {
+      if (pa[i]! !== pb[i]!) return pa[i]! - pb[i]!;
+    }
+    return 0;
+  });
+  const first = versions[0]!;
+  const last = versions[versions.length - 1]!;
+  return first === last ? `v${first}` : `v${first} → v${last}`;
 }
 
 function renderEntry(entry: ReleaseLogEntry): string {

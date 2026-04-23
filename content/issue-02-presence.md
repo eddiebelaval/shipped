@@ -17,8 +17,11 @@ generated_at: 2026-04-23
 generated_by: shipped-assemble
 sources:
   - https://alex000kim.com/posts/2026-03-31-claude-code-source-leak/
+  - https://blockchain.news/ainews/claude-app-launches-cowork-on-all-paid-plans-latest-availability-update-and-business-impact-analysis
+  - https://blockchain.news/ainews/claude-cowork-update-live-artifacts-for-real-time-dashboards-and-trackers-2026-analysis
   - https://blog.gitguardian.com/vercel-april-2026-incident-non-sensitive-environment-variables-need-investigation-too/
   - https://claude.com/pricing
+  - https://code.claude.com/docs/en/changelog
   - https://cybersecuritynews.com/lovable-ai-app-builder-customer-data/
   - https://dataconomy.com/2026/04/03/anthropic-tests-conway-platform-for-continuous-claude/
   - https://docs.anthropic.com/en/api/agents
@@ -38,11 +41,13 @@ sources:
   - https://layer5.io/blog/engineering/the-claude-code-source-leak-512000-lines-a-missing-npmignore-and-the-fastest-growing-repo-in-github-history/
   - https://llm-stats.com/llm-updates
   - https://lovable.dev/
+  - https://medium.com/ai-analytics-diaries/claude-cowork-just-went-ga-how-agentic-ai-agents-are-automating-data-science-workflows-in-2026-433ed86b0727
   - https://meyka.com/blog/amazon-invests-25b-in-anthropic-ai-on-april-21-2026-2104/
-  - https://nationaltoday.com/us/dc/washington/news/2026/04/17/white-house-chief-of-staff-meets-with-anthropic-ceo-over-new-ai-technology/
   - https://news.ycombinator.com/item?id=47854477
   - https://openai.com/news/
   - https://openai.com/news/company-announcements/
+  - https://phemex.com/news/article/claude-launches-live-artifacts-for-autorefreshing-dashboards-in-cowork-74713
+  - https://platform.claude.com/docs/en/release-notes/overview
   - https://releasebot.io/updates/anthropic
   - https://releasebot.io/updates/anthropic/claude-code
   - https://sifted.eu/articles/lovable-denies-data-breach
@@ -65,6 +70,7 @@ sources:
   - https://www.bleepingcomputer.com/news/security/shinyhunters-denies-vercel-breach/
   - https://www.bloomberg.com/news/videos/2026-04-17/financial-watchdog-to-share-insight-on-anthropic-ai-video
   - https://www.buildfastwithai.com/blogs/claude-design-anthropic-guide-2026
+  - https://www.cnn.com/2026/04/17/business/anthropic-white-house-meeting-dario-amodei
   - https://www.coindesk.com/tech/2026/04/20/hack-at-vercel-sends-crypto-developers-scrambling-to-lock-down-api-keys
   - https://www.computing.co.uk/news/2026/security/lovable-flaw-exposed-source-code-credentials-and-ai-chats
   - https://www.detroitnews.com/story/business/2026/04/21/trump-says-anthropic-is-shaping-up-open-to-deal-with-pentagon/89716263007/
@@ -92,26 +98,9 @@ sources:
   - https://x.com/FT/status/2042626202200907865
   - https://x.com/FT/status/2045109459605692696
   - https://x.com/amolavasare/status/2046724659039932830
+  - https://x.com/claudeai/status/2046328619249684989
   - https://x.com/testingcatalog/status/2039490365414048182
-term:
-  word: "Presence"
-  pronunciation: "PREZ-uhns"
-  partOfSpeech: "noun"
-  firstObservable: "2026-04-16"
-  definition:
-    - "The shift from AI-as-called-function to AI-as-ambient-condition. A product that absorbs context before a prompt arrives, responds to conditions rather than requests, and composes with adjacent surfaces by staying on instead of being invoked."
-    - "Claude Design reads your codebase before you prompt. That is presence. The input is ambient context, not the typed prompt. Conway, per the leak, watches your GitHub for events. That is presence. The trigger is an upstream condition, not an invocation. A Vercel env var fails silently for six hours before a builder notices. That is the failure mode of presence. Trust decays ambient too."
-    - "Three labs shipped variants of the pattern this week. Anthropic with Claude Design and Conway. OpenAI with Codex workspace agents. Google with Gemini auto-browse in Chrome. Presence is what the field chose this month."
-by_the_numbers:
-  head: "By <em>the</em> numbers."
-  deck: "Week of 2026-04-17 to 2026-04-23. Anthropic ships, the field follows."
-  cells:
-    - { label: "Figma stock drop, Claude Design launch day", value: "-7.28%", note: "Apr 17. Adobe -1.0% same day.", size: 4, accent: true }
-    - { label: "Claude Code source-code lines exposed in Mar 31 leak", value: "~512K", note: "Across ~1,906 files. Missing .npmignore on @anthropic-ai/claude-code v2.1.88.", size: 4 }
-    - { label: "Hidden feature flags surfaced in the leak", value: "44", note: "Including Conway, KAIROS (autonomous daemon), VOICE_MODE.", size: 4 }
-    - { label: "Lovable's pre-Nov-2025 projects still exposed after partial fix", value: "all of them", note: "BOLA flaw in /projects/{id}/* endpoints. 48 days unfixed.", size: 4 }
-    - { label: "Vercel users impacted by Context.ai supply-chain breach", value: "hundreds", note: "Across many orgs. ShinyHunters denied involvement.", size: 4 }
-    - { label: "Amazon's commit to Anthropic compute over 10 years", value: "$100B", note: "Plus $25B invested ($5B now, $20B on milestones). 1 GW Trainium2/3 by EOY 2026.", size: 4, accent: true }
+  - https://yourstory.com/ai-story/claude-cowork-live-dashboards-ai-bi-disruption
 ---
 
 # Shipped.
@@ -138,6 +127,8 @@ Two shapes. One frequency. This issue tunes to it.
 
 ## The Lead Story
 
+# Claude Design, and the product turn
+
 Thursday, 9 AM. Anthropic shipped Claude Design, a product, not a model, the same morning Issue 01 hit. Pro, Max, Team, and Enterprise subscribers got access. Everyone else got a waitlist.
 
 Claude Design turns a prompt, a codebase, or a half-written PRD into something you can send somewhere. Pitch decks, prototypes, one-pagers, full design systems. Exports to PDF, URL, PPTX, or Canva, where the artifact stays editable. Powered by Opus 4.7.
@@ -160,6 +151,8 @@ That team member has a name. It might be you.
 
 ## Companion to the Lead
 
+# Three labs, one direction
+
 Three products shipped or staged in two weeks name the same primitive.
 
 Claude Design reads your codebase, design files, and PRD before you prompt. The input is ambient context. The output arrives closer to a collaborator's draft than a tool's response. That's the absorb half.
@@ -175,6 +168,8 @@ The question stops being *what does the model do* and becomes *what does the pro
 ---
 
 ## Feature
+
+# Conway, caught in the leak
 
 On March 31, 2026, Anthropic shipped `@anthropic-ai/claude-code` v2.1.88 with a missing `.npmignore` entry. The package included a 59.8 MB source map. Roughly 512,000 lines of TypeScript across 1,906 files. Anthropic confirmed a packaging error, not a breach. The source is now the fastest-growing repo in GitHub history, in mirrors.
 
@@ -199,6 +194,8 @@ Zero Anthropic public statements on Conway between the leak and this week's ship
 ---
 
 ## Investigation
+
+# Trust Week
 
 ### Lovable. The BOLA That Wasn't Intentional, Then Was, Then Got Half-Fixed
 
@@ -248,6 +245,12 @@ Capability outruns framework. Same shape as the two substories above. At soverei
 
 ---
 
+## By the Numbers
+
+*The cells render from frontmatter; this section header is the placement marker for the renderer.*
+
+---
+
 ## Also Shipped
 
 ### Claude performance backlash, the contaminating context
@@ -288,15 +291,21 @@ For builders. `claude -p` inside Claude Code is sanctioned. OAuth token used ext
 
 ## Term of the Issue
 
-*Presence* **(n.)** The shift from AI-as-called-function to AI-as-ambient-condition. A product that absorbs context before a prompt arrives, responds to conditions rather than requests, and composes with adjacent surfaces by staying on instead of being invoked.
+# Presence
 
-Claude Design reads your codebase before you prompt. That is presence. The input is ambient context, not the typed prompt. Conway, per the leak, watches your GitHub for events. That is presence. The trigger is an upstream condition, not an invocation. A Vercel env var fails silently for six hours before a builder notices. That is the failure mode of presence. Trust decays ambient too.
+**Presence** /ˈprɛz.əns/ *noun*
 
-Three labs shipped variants of the pattern this week. Anthropic with Claude Design and Conway. OpenAI with Codex workspace agents. Google with Gemini auto-browse in Chrome. Presence is what the field chose this month.
+The shift from AI-as-called-function to AI-as-ambient-condition. A product that absorbs context before a prompt arrives, responds to conditions rather than requests, and composes with adjacent surfaces by staying on instead of being invoked.
+
+**First observable** 2026-04-17, the week Anthropic shipped Claude Design and staged Conway. OpenAI shipped Codex workspace agents the same week. Google shipped Gemini auto-browse in Chrome. Three labs converged on the pattern in seven days.
+
+**Usage** *"We're not shipping a feature, we're extending our presence into the workspace."*
 
 ---
 
 ## The Close
+
+# Shipped was last year's verb
 
 A developer wakes at 6:12 AM to a Claude Code push notification. The agent fired the edit while they slept. Tests green. PR open. No one summoned it. The builder reads the diff, closes the laptop, refills the coffee. Day's already started.
 
@@ -317,12 +326,17 @@ Claude Haiku 3 retired. Users urged to upgrade to Claude Haiku 4.5. Category: `[
 
 ## C. Claude Code
 
-*5 entries in window.*
+*6 entries in window.*
+
+#### 2026-04-23 - Claude Code 2.1.118 ([changelog](https://code.claude.com/docs/en/changelog))
+`[RELEASE]`
+
+Vim visual mode (`v`) and visual-line mode (`V`) added with selection, operators, and visual feedback. Fixed message duplication when scrolling in fullscreen mode. Category: `[RELEASE]`.
 
 #### 2026-04-22 - Claude Code 2.1.117 ([changelog](https://github.com/anthropics/claude-code/blob/main/CHANGELOG.md))
 `[RELEASE]`
 
-Faster startup, stronger plugin management, better session resume and model persistence, improved OpenTelemetry. macOS, Linux, Windows, and API fixes. Category: `[RELEASE]`.
+Faster startup, stronger plugin management, better session resume and model persistence, improved OpenTelemetry. Experimental Advisor tool updates, safer auth handling, more reliable context and subagent behavior. macOS, Linux, Windows, and API fixes. Category: `[RELEASE]`.
 
 #### 2026-04-21 - Claude Code 2.1.116 ([changelog](https://github.com/anthropics/claude-code/blob/main/CHANGELOG.md))
 `[RELEASE]`
@@ -346,7 +360,17 @@ Hotfix: resolved "claude-opus-4-7 is temporarily unavailable" in auto mode. Cate
 
 ## D. Claude Apps
 
-*1 entry in window.*
+*3 entries in window.*
+
+#### 2026-04-20 - Claude Cowork live artifacts — dashboards and trackers that auto-refresh ([@claudeai on X](https://x.com/claudeai/status/2046328619249684989))
+`[LAUNCH]`
+
+Cowork can now build live artifacts: dashboards and trackers connected to apps and files. Open any of them later and they refresh with current data. Shifts artifacts from one-shot snapshots to persistent surfaces with data bindings — closer to a Notion or Retool block than the previous Claude artifact format. Category: `[LAUNCH]`. Pairs with the Cowork GA + Enterprise feature push the same day.
+
+#### 2026-04-20 - Claude Cowork goes GA on macOS and Windows desktop, expanded analytics, OpenTelemetry support, RBAC for Enterprise ([Medium / Data Mind](https://medium.com/ai-analytics-diaries/claude-cowork-just-went-ga-how-agentic-ai-agents-are-automating-data-science-workflows-in-2026-433ed86b0727), [Phemex](https://phemex.com/news/article/claude-launches-live-artifacts-for-autorefreshing-dashboards-in-cowork-74713))
+`[LAUNCH]`
+
+Cowork moves from public beta to GA on Claude Desktop (macOS + Windows). Bundled with: expanded usage analytics, OpenTelemetry export support, role-based access controls for Enterprise plans, custom charts, and inline visualizations in responses. Category: `[LAUNCH]`. Cowork was previously preview-status as recently as Issue 01's coverage; this is the formal exit.
 
 #### 2026-04-17 - Claude Design launch ([announcement](https://www.anthropic.com/news/claude-design-anthropic-labs))
 `[LAUNCH]`
@@ -382,7 +406,7 @@ Amazon invests up to $25B in Anthropic: $5B immediate, $20B committed on commerc
 
 Trump told reporters Anthropic is "shaping up" and indicated willingness to explore a Pentagon deal. Read alongside the White House chief-of-staff + Dario Amodei meeting (Apr 17). National-security surface for Mythos continues to widen. Category: `[POLICY]`.
 
-#### 2026-04-17 - White House chief-of-staff meets Dario Amodei over Mythos ([National Today](https://nationaltoday.com/us/dc/washington/news/2026/04/17/white-house-chief-of-staff-meets-with-anthropic-ceo-over-new-ai-technology/))
+#### 2026-04-17 - White House chief-of-staff meets Dario Amodei over Mythos ([CNN](https://www.cnn.com/2026/04/17/business/anthropic-white-house-meeting-dario-amodei))
 `[POLICY]`
 
 Susie Wiles (White House Chief of Staff) met with Anthropic CEO Dario Amodei to discuss Mythos, framed as "productive and constructive" and exploring collaboration plus "balancing innovation and safety." Category: `[POLICY]`.

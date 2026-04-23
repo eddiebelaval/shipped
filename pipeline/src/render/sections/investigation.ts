@@ -12,31 +12,29 @@ import { inlineMarkdown } from '../markdown.js';
 
 export function renderInvestigation(section: Section): string {
   const headline = extractHeadline(section.content);
-
   const ratio = extractRatioChart(section.content);
   const ratioHtml = ratio && ratio.kind === 'ratio' ? renderRatio(ratio.data) : '';
 
-  // Build the voices block from blockquoted quote+attribution pairs.
-  const voicesHtml = renderVoicesAndProse(section.content, ratioHtml);
+  // Generic investigation body: the full prose block. Quotes render inline
+  // via blockquote formatting. No per-issue hardcoded consortium table or
+  // money-aside (those were Issue 00 Glasswing-specific).
+  const prose = paragraphs(stripSidebar(section.content));
 
-  return `<div class="feature-opener" id="glasswing">
-  <span class="vert-label">Investigation <span class="vert-num">02</span></span>
+  return `<div class="feature-opener" id="investigation">
+  <span class="vert-label">Investigation</span>
   <div class="feature-heading">
-    <div class="feature-kicker">p.09 &nbsp;—&nbsp; Reporting by Eddie Belaval</div>
+    <div class="feature-kicker">Reporting by Eddie Belaval</div>
     <h2 class="feature-title">${formatTitle(headline)}</h2>
-    <p class="feature-deck">On April 7, twelve organizations agreed to use a model none of their customers can touch. The precedent starts here.</p>
-    <div class="feature-meta">
-      <div><b>Consortium</b> 12 founders · 40+ in talks</div>
-      <div>AWS · Apple · Broadcom · Cisco · CrowdStrike · Google · JPMorgan Chase · Linux Foundation · Microsoft · NVIDIA · Palo Alto Networks · Anthropic</div>
-    </div>
   </div>
-  <aside class="feature-right">
-    <span class="feature-right-label">The money</span>
-    <b>$100M</b> in Anthropic model credits to partners. <b>$2.5M</b> to Alpha-Omega and OpenSSF. <b>$1.5M</b> to the Apache Software Foundation. Funding routed to the open-source maintainers who don&apos;t have security teams.
-  </aside>
 </div>
 
-${voicesHtml}
+<div class="prose-well">
+  <div class="prose drop-cap">
+${prose}
+  </div>
+</div>
+
+${ratioHtml}
 
 <span class="ornament">&sect; &nbsp; &sect; &nbsp; &sect;</span>`;
 }
@@ -46,12 +44,16 @@ function extractHeadline(content: string): string {
   for (const l of lines) {
     if (l.startsWith('# ')) return l.slice(2).trim();
   }
-  return 'Glasswing';
+  return 'Investigation';
 }
 
 function formatTitle(headline: string): string {
-  // Italicize the whole title for one-word names (e.g. "Glasswing")
-  return `<em>${headline}.</em>`;
+  // For multi-word or multi-clause titles, leave as-is with trailing period.
+  // For single-word titles (e.g. "Glasswing"), italicize.
+  if (/^\w+$/.test(headline.trim())) {
+    return `<em>${headline}.</em>`;
+  }
+  return headline.replace(/\.$/, '') + '.';
 }
 
 interface Quote {

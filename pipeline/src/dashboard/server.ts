@@ -18,8 +18,11 @@
  */
 
 import { createServer, type IncomingMessage, type ServerResponse } from 'node:http';
-import { readdirSync } from 'node:fs';
-import { resolve } from 'node:path';
+import { readdirSync, existsSync } from 'node:fs';
+import { readFile, appendFile } from 'node:fs/promises';
+import { resolve, join, basename } from 'node:path';
+import { randomBytes } from 'node:crypto';
+import matter from 'gray-matter';
 import { buildDashboard } from './generate.js';
 import { renderDashboard } from './template.js';
 import { moveArticle, setArticleImage } from './writer.js';
@@ -152,13 +155,192 @@ async function handleImage(cfg: ServerConfig, req: IncomingMessage, res: ServerR
 async function handleNext(cfg: ServerConfig, res: ServerResponse): Promise<void> {
   try {
     const dashboard = await buildDashboard(cfg.issue, cfg.contentRoot);
+    const highlights = await readHighlights(cfg);
+    const recent = highlights.slice().reverse().slice(0, 10); // newest first, cap at 10
+    const plan = { ...dashboard.nextActions, actions: [...dashboard.nextActions.actions] };
+
+    // Promote any unreviewed highlights to the top of the action queue.
+    if (recent.length > 0) {
+      const top = recent[0]!;
+      const snippet = top.text.length > 80 ? top.text.slice(0, 80) + '…' : top.text;
+      const highlightAction = {
+        id: 'review-highlights',
+        priority: 'high' as const,
+        phase: plan.currentPhase,
+        title: `Review ${recent.length} highlight${recent.length === 1 ? '' : 's'} from Eddie`,
+        detail: `Most recent: "${snippet}" (${top.filename})`,
+        why: 'A highlight is a manual signal. Eddie flagged that phrase as structurally important — it may need a pull-quote slot, counter-frame header, or operator-takeaway hook the article doesn\'t yet have.',
+        claudePrompt: `Eddie left ${recent.length} highlight${recent.length === 1 ? '' : 's'} in the reader. Read content/articles/issue-${cfg.issue}/_highlights.jsonl OR curl http://127.0.0.1:${cfg.port}/api/highlights for the full list. For each highlight: quote the phrase, name its article, and surface Eddie's note (if any). Then propose ONE structural scaffolding move per highlight (new section header, bullet slot, voice note anchor) that would let that phrase land cleanly in the final prose. Present as a short table. DO NOT write prose. Wait for Eddie to pick which scaffolds to apply.`,
+        estimate: '5-15 min',
+      };
+      plan.actions = [highlightAction, ...plan.actions];
+    }
+
     sendJson(res, 200, {
       issue: dashboard.issue,
-      ...dashboard.nextActions,
+      ...plan,
+      recentHighlights: recent,
+      highlightsTotal: highlights.length,
     });
   } catch (err) {
     const msg = err instanceof Error ? err.message : String(err);
     sendJson(res, 500, { error: msg });
+  }
+}
+
+async function handleArticle(
+  cfg: ServerConfig,
+  filenameRaw: string,
+  res: ServerResponse,
+): Promise<void> {
+  try {
+    // Path-traversal guard: strip directories, reject suspicious names
+    const filename = basename(filenameRaw);
+    if (!filename.endsWith('.md') || filename.startsWith('.') || filename !== filenameRaw) {
+      sendJson(res, 400, { ok: false, error: 'Invalid filename' });
+      return;
+    }
+
+    // Try per-issue articles dir first; fall back to content root for WIP/signal etc.
+    const articleDir = resolve(cfg.contentRoot, 'articles', `issue-${cfg.issue}`);
+    const articlePath = join(articleDir, filename);
+    const wipPath = join(cfg.contentRoot, filename);
+    const path = existsSync(articlePath)
+      ? articlePath
+      : existsSync(wipPath) ? wipPath : null;
+
+    if (!path) {
+      sendJson(res, 404, { ok: false, error: `Article not found: ${filename}` });
+      return;
+    }
+
+    const raw = await readFile(path, 'utf8');
+    const parsed = matter(raw);
+    const fm = parsed.data as Record<string, unknown>;
+
+    // Lookup grade from a fresh dashboard build
+    const dashboard = await buildDashboard(cfg.issue, cfg.contentRoot);
+    const allArticles = [
+      ...dashboard.sections.flatMap(s => s.articles),
+      ...dashboard.scratchPad,
+    ];
+    const meta = allArticles.find(a => a.filename === filename);
+
+    sendJson(res, 200, {
+      ok: true,
+      filename,
+      title: String(fm.title ?? filename.replace(/\.md$/, '')),
+      section: String(fm.section ?? 'background'),
+      status: String(fm.status ?? 'research'),
+      created: String(fm.created ?? ''),
+      updated: String(fm.updated ?? ''),
+      wordCount: meta?.wordCount ?? parsed.content.trim().split(/\s+/).length,
+      sourceCount: meta?.sourceCount ?? (Array.isArray(fm.sources) ? fm.sources.length : 0),
+      sources: Array.isArray(fm.sources) ? fm.sources : [],
+      grade: meta?.grade ?? null,
+      content: parsed.content,
+      frontmatterRaw: parsed.matter,
+    });
+  } catch (err) {
+    const msg = err instanceof Error ? err.message : String(err);
+    sendJson(res, 500, { ok: false, error: msg });
+  }
+}
+
+interface HighlightRecord {
+  id: string;
+  issue: string;
+  filename: string;
+  text: string;
+  context: string | null;
+  note: string | null;
+  createdAt: string;
+}
+
+function highlightsFilePath(cfg: ServerConfig): string {
+  return resolve(cfg.contentRoot, 'articles', `issue-${cfg.issue}`, '_highlights.jsonl');
+}
+
+async function readHighlights(cfg: ServerConfig): Promise<HighlightRecord[]> {
+  const path = highlightsFilePath(cfg);
+  if (!existsSync(path)) return [];
+  const raw = await readFile(path, 'utf8');
+  const records: HighlightRecord[] = [];
+  for (const line of raw.split('\n')) {
+    const trimmed = line.trim();
+    if (!trimmed) continue;
+    try {
+      records.push(JSON.parse(trimmed) as HighlightRecord);
+    } catch {
+      // skip malformed lines
+    }
+  }
+  return records;
+}
+
+async function handleHighlightCreate(
+  cfg: ServerConfig,
+  req: IncomingMessage,
+  res: ServerResponse,
+): Promise<void> {
+  try {
+    const body = await readRequestBody(req);
+    const data = JSON.parse(body) as {
+      filename?: string;
+      text?: string;
+      context?: string;
+      note?: string;
+    };
+    if (!data.filename || !data.text) {
+      sendJson(res, 400, { ok: false, error: 'filename and text required' });
+      return;
+    }
+    const filename = basename(data.filename);
+    if (!filename.endsWith('.md') || filename !== data.filename) {
+      sendJson(res, 400, { ok: false, error: 'Invalid filename' });
+      return;
+    }
+    const text = String(data.text).trim();
+    if (!text || text.length > 4000) {
+      sendJson(res, 400, { ok: false, error: 'text must be 1-4000 chars' });
+      return;
+    }
+
+    const record: HighlightRecord = {
+      id: 'h-' + randomBytes(4).toString('hex'),
+      issue: cfg.issue,
+      filename,
+      text,
+      context: typeof data.context === 'string' ? data.context.slice(0, 400) : null,
+      note: typeof data.note === 'string' ? data.note.slice(0, 1000) : null,
+      createdAt: new Date().toISOString(),
+    };
+    await appendFile(highlightsFilePath(cfg), JSON.stringify(record) + '\n', 'utf8');
+    sendJson(res, 200, { ok: true, highlight: record });
+  } catch (err) {
+    const msg = err instanceof Error ? err.message : String(err);
+    sendJson(res, 500, { ok: false, error: msg });
+  }
+}
+
+async function handleHighlightList(
+  cfg: ServerConfig,
+  url: URL,
+  res: ServerResponse,
+): Promise<void> {
+  try {
+    const records = await readHighlights(cfg);
+    const filter = url.searchParams.get('filename');
+    const filtered = filter ? records.filter(r => r.filename === filter) : records;
+    sendJson(res, 200, {
+      ok: true,
+      issue: cfg.issue,
+      count: filtered.length,
+      highlights: filtered,
+    });
+  } catch (err) {
+    const msg = err instanceof Error ? err.message : String(err);
+    sendJson(res, 500, { ok: false, error: msg });
   }
 }
 
@@ -218,6 +400,22 @@ async function main(): Promise<void> {
         await handleNext(cfg, res);
         return;
       }
+      // GET /api/article/:filename → raw markdown + metadata (drives reader drawer)
+      if (req.method === 'GET' && url.pathname.startsWith('/api/article/')) {
+        const filename = decodeURIComponent(url.pathname.slice('/api/article/'.length));
+        await handleArticle(cfg, filename, res);
+        return;
+      }
+      // POST /api/highlight → save a user highlight from the reader
+      if (req.method === 'POST' && url.pathname === '/api/highlight') {
+        await handleHighlightCreate(cfg, req, res);
+        return;
+      }
+      // GET /api/highlights[?filename=X] → list saved highlights (Claude reads this too)
+      if (req.method === 'GET' && url.pathname === '/api/highlights') {
+        await handleHighlightList(cfg, url, res);
+        return;
+      }
       // GET /api/health
       if (req.method === 'GET' && url.pathname === '/api/health') {
         await handleHealth(cfg, res);
@@ -238,6 +436,9 @@ async function main(): Promise<void> {
     console.log(`│  content     : ${contentRoot}`);
     console.log(`│  url         : ${url}`);
     console.log(`│  writeback   : POST /api/move (drag-drop persists to frontmatter)`);
+    console.log(`│  reader      : GET  /api/article/:filename (inline reader popup)`);
+    console.log(`│  highlights  : POST /api/highlight · GET /api/highlights?filename=X`);
+    console.log(`│                persisted to: content/articles/issue-${cfg.issue}/_highlights.jsonl`);
     console.log(`└─ Ctrl+C to stop`);
   });
 }

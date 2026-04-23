@@ -17,54 +17,27 @@ export function renderFeature(section: Section): string {
   const afterProse = paragraphs(after);
   const codeHtml = code ? renderCodeBlock(code) : '';
 
-  return `<div class="feature-opener" id="agent">
-  <span class="vert-label">Feature <span class="vert-num">03</span></span>
+  const fullProse = paragraphs(stripCodeBlock(section.content));
+
+  return `<div class="feature-opener" id="feature">
+  <span class="vert-label">Feature</span>
   <div class="feature-heading">
-    <div class="feature-kicker">p.12 &nbsp;—&nbsp; Reporting by Eddie Belaval</div>
+    <div class="feature-kicker">Reporting by Eddie Belaval</div>
     <h2 class="feature-title">${formatTitle(headline)}</h2>
-    <p class="feature-deck">Managed Agents. The advisor tool. The <code style="font-family:var(--mono);font-size:.7em;background:var(--paper-shadow);padding:2px 8px">ant</code> CLI. All three shipped inside April 8–9. The era of writing your own loop is closing — Anthropic is taking that work in-house.</p>
-    <div class="feature-meta">
-      <div><b>Apr 08</b> Managed Agents public beta · <b>ant</b> CLI launch</div>
-      <div><b>Apr 09</b> Advisor tool public beta · Cowork GA · SDK parity</div>
-    </div>
   </div>
-  <aside class="feature-right">
-    <span class="feature-right-label">Four primitives, all shipped</span>
-    Sandbox. Tool harness. Context manager. Streaming loop. If your competitive moat was the loop, your moat just shrank.
-  </aside>
 </div>
 
 <div class="prose-well">
-  <span class="prose-marginalia">&#x2197; &nbsp; Primitives</span>
   <div class="prose drop-cap">
-${beforeProse}
+${fullProse}
+${codeHtml}
   </div>
-  <aside class="prose-aside">
-    <div><b>Four primitives</b></div>
-    <div>1. Sandbox</div>
-    <div>2. Tool harness</div>
-    <div>3. Context manager</div>
-    <div>4. Streaming loop</div>
-    <div style="margin-top:12px;color:var(--orange)"><b>Now commodity</b></div>
-  </aside>
-</div>
-
-<div class="prose-well">
-  <span class="prose-marginalia">&#x2197; &nbsp; Composition</span>
-  <div class="prose">
-    ${codeHtml}
-${afterProse}
-  </div>
-  <aside class="prose-aside">
-    <div><b>Still differentiated</b></div>
-    <div>Your prompt library</div>
-    <div>Domain-specific tools</div>
-    <div>Retrieval pipeline</div>
-    <div style="margin-top:12px;color:var(--orange)"><b>Now commodity</b></div>
-    <div>Harness · sandbox</div>
-    <div>Streaming · context</div>
-  </aside>
 </div>`;
+}
+
+function stripCodeBlock(content: string): string {
+  const { before, after } = splitOnCodeBlock(content);
+  return before + '\n\n' + after;
 }
 
 function extractHeadline(content: string): string {
@@ -72,7 +45,7 @@ function extractHeadline(content: string): string {
   for (const l of lines) {
     if (l.startsWith('# ')) return l.slice(2).trim();
   }
-  return 'The agent stack got serious';
+  return 'Feature';
 }
 
 function formatTitle(headline: string): string {

@@ -10,8 +10,10 @@
   },
   "scripts": {
     "build": "tsc",
+    "assemble": "tsx src/assemble.ts",
     "render": "tsx src/render/cli.ts",
     "verify": "tsx src/verify/cli.ts",
+    "preflight": "tsx src/preflight/index.ts",
     "scrape": "tsx src/scrape/cli.ts",
     "publish": "tsx src/orchestrate/cli.ts",
     "dashboard": "tsx src/dashboard/generate.ts",
