@@ -145,7 +145,7 @@ async function buildTemplateData(
     meta_description: `A weekly magazine on what Anthropic ships. Issue ${issueNum} — ${fm.deck ?? stripTitlePrefix(fm.title)}.`,
     meta_description_short: 'A weekly magazine on what Anthropic ships.',
     canonical_url: `https://id8labs.app/shipped/${issueNum}/`,
-    og_image_url: `https://id8labs.app/shipped/${issueNum}/og.png`,
+    og_image_url: `https://id8labs.app/shipped/${issueNum}/og.png?v=2`,
     author: 'Eddie Belaval',
 
     // Pub bar
