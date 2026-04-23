@@ -29,8 +29,16 @@ export function renderTermOfIssue(section: Section): string {
     </div>`
     : '';
 
+  // Build the kicker line — pull dynamic bits from data; fall back to legacy
+  // fixed copy only when nothing was provided (preserves Issue 01 behavior).
+  const page = (data as TermOfIssue & { page?: string }).page ?? 'p.19';
+  const firstObsKicker = data.firstObservable
+    ? `First observable ${data.firstObservable}`
+    : 'First observable 2026-04-16';
+  const kicker = `Term of the Issue &nbsp;·&nbsp; ${page} &nbsp;·&nbsp; ${firstObsKicker}`;
+
   return `<section class="term-section" id="term">
-  <div class="term-kicker">Term of the Issue &nbsp;·&nbsp; p.19 &nbsp;·&nbsp; First observable 2026-04-16</div>
+  <div class="term-kicker">${kicker}</div>
   <div class="term-word">
     ${wordHtml}<span class="part">/<em>${formatPron(pron)}</em>/&nbsp;&nbsp;·&nbsp;&nbsp;${part}</span>
   </div>
