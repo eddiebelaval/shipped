@@ -53,6 +53,10 @@ Anthropic published "An update on recent Claude Code quality reports" addressing
 
 Vim visual mode (`v`) and visual-line mode (`V`) added with selection, operators, and visual feedback. Fixed message duplication when scrolling in fullscreen mode. Category: `[RELEASE]`.
 
+#### 2026-04-23: Claude ships 15 consumer connectors ([Anthropic](https://claude.com/blog/connectors-for-everyday-life/))
+
+Anthropic added AllTrails, Audible, Booking.com, Instacart, Credit Karma, TurboTax, Resy, Spotify, StubHub, Taskrabbit, Thumbtack, TripAdvisor, Uber, Uber Eats, and Viator as native connectors inside Claude. Available on all plans, mobile in beta. Claude surfaces relevant ones mid-conversation based on context. Over 200 total connectors now live. Anthropic on record: *"ad-free and will stay that way."* Category: `[PRODUCT]`.
+
 #### 2026-04-23: UK and US regulators briefed banks on Mythos cyber risk ([FT](https://www.ft.com/content/56d65763-69fe-4756-baf4-c8192b7aadaf), [PYMNTS](https://www.pymnts.com/news/2026/financial-officials-sound-alarm-about-anthropics-banking-risk), [Bloomberg](https://www.bloomberg.com/news/videos/2026-04-17/financial-watchdog-to-share-insight-on-anthropic-ai-video))
 
 At the IMF and World Bank spring meetings in Washington, regulators and central bankers focused on Anthropic's Claude Mythos Preview and the possibility that advanced LLMs could expose weak spots in banks' cyber defenses. Bank of England Governor Andrew Bailey (chair of the Financial Stability Board) called the issue "a very serious challenge for all of us." US Treasury secretary Scott Bessent summoned leaders of the largest US banks earlier in the week. Anthropic has said Mythos found thousands of high-severity vulnerabilities in major operating systems and browsers, with access limited to ~40 Project Glasswing partners (Amazon, Apple, JPMorgan Chase, etc.). Category: `[POLICY]`.

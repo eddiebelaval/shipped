@@ -76,6 +76,7 @@ sources:
   - https://blockchain.news/ainews/claude-app-launches-cowork-on-all-paid-plans-latest-availability-update-and-business-impact-analysis
   - https://blockchain.news/ainews/claude-cowork-update-live-artifacts-for-real-time-dashboards-and-trackers-2026-analysis
   - https://blog.gitguardian.com/vercel-april-2026-incident-non-sensitive-environment-variables-need-investigation-too/
+  - https://claude.com/blog/connectors-for-everyday-life/
   - https://claude.com/pricing
   - https://code.claude.com/docs/en/changelog
   - https://code.claude.com/docs/en/ultrareview
@@ -311,6 +312,10 @@ Capability outruns framework. Same shape as the two substories above. At soverei
 
 ## Also Shipped
 
+### Claude goes consumer: 15 connectors for everyday life
+
+A model becomes a product the moment it starts calling APIs on your behalf. Anthropic shipped 15 consumer connectors Thursday. AllTrails, Audible, Booking.com, Instacart, Credit Karma, TurboTax, Resy, Spotify, StubHub, Taskrabbit, Thumbtack, TripAdvisor, Uber, Uber Eats, Viator. Available on all plans. Mobile in beta. Claude now surfaces relevant ones mid-conversation based on context, ask about a hike and AllTrails appears without being invoked. Over 200 total connectors now live. Anthropic, on record, *"ad-free and will stay that way."* This is the Presence term of this issue wired into the consumer stack.
+
 ### The Claude Code post-mortem, three bugs named
 
 Ninety minutes before this issue shipped, Anthropic published "An update on recent Claude Code quality reports" and broke the silence Fortune called out nine days earlier. Three bugs confirmed. All in Claude Code and the Agent SDK. None in the models. Usage limits reset for all subscribers. *"We never intentionally degrade our models and we were able to immediately confirm that our API and inference layer were unaffected."*
@@ -445,12 +450,17 @@ Anthropic Labs shipped Claude Design, powered by Claude Opus 4.7. Research previ
 
 ## G. Partnerships and Policy
 
-*7 entries in window.*
+*8 entries in window.*
 
 #### 2026-04-23 - Claude Code quality post-mortem published ([Anthropic Engineering](https://www.anthropic.com/engineering/april-23-postmortem), [@ClaudeDevs on X](https://x.com/ClaudeDevs/status/2045206682830303358))
 `[POLICY]`
 
 Anthropic published "An update on recent Claude Code quality reports" addressing perceived degradation that Fortune covered on 2026-04-14. Three bugs confirmed, all in Claude Code and Agent SDK (which also impacted Cowork since it runs on the SDK); the API and inference layer were unaffected. Issue 1: default reasoning effort changed from `high` to `medium` on March 4 (fixed April 7). Issue 2: caching bug using `clear_thinking_20251015` with `keep:1` cleared reasoning every turn mid-tool-use instead of after idle periods, draining usage limits (fixed April 10 in v2.1.101). Issue 3: system-prompt verbosity instruction ("≤25 words between tool calls, ≤100 final") dropped coding quality 3% (fixed April 20 in v2.1.116). Usage limits reset for all subscribers as of April 23. Process changes: broader per-model evals on every system prompt change, soak periods for intelligence-impacting changes, internal dogfooding at parity with public build, tighter prompt-change review tooling. Anthropic quote: *"We never intentionally degrade our models and we were able to immediately confirm that our API and inference layer were unaffected."* Category: `[POLICY]`.
+
+#### 2026-04-23 - Claude ships 15 consumer connectors ([Anthropic](https://claude.com/blog/connectors-for-everyday-life/))
+`[PRODUCT]`
+
+Anthropic added AllTrails, Audible, Booking.com, Instacart, Credit Karma, TurboTax, Resy, Spotify, StubHub, Taskrabbit, Thumbtack, TripAdvisor, Uber, Uber Eats, and Viator as native connectors inside Claude. Available on all plans, mobile in beta. Claude surfaces relevant ones mid-conversation based on context. Over 200 total connectors now live. Anthropic on record: *"ad-free and will stay that way."* Category: `[PRODUCT]`.
 
 #### 2026-04-23 - UK and US regulators briefed banks on Mythos cyber risk ([FT](https://www.ft.com/content/56d65763-69fe-4756-baf4-c8192b7aadaf), [PYMNTS](https://www.pymnts.com/news/2026/financial-officials-sound-alarm-about-anthropics-banking-risk), [Bloomberg](https://www.bloomberg.com/news/videos/2026-04-17/financial-watchdog-to-share-insight-on-anthropic-ai-video))
 `[POLICY]`
