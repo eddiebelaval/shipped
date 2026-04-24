@@ -1,3 +1,18 @@
+---
+title: "Issue 02 — Signal Report"
+issue: 02
+section: signal-report
+status: used
+created: 2026-04-21
+updated: 2026-04-23
+grade_override: true
+grade_override_reason: "Signal reports are Monday research sweeps. Frozen decision input for Thursday's lock, not editorial articles. Grading rubric does not apply."
+sources:
+  - https://www.testingcatalog.com/anthropics-works-on-its-always-on-agent-with-new-ui-extensions/
+  - https://vercel.com/kb/bulletin/vercel-april-2026-security-incident
+  - https://www.anthropic.com/news
+---
+
 # Issue 02 — Signal Report
 **Tue 2026-04-21 · T-3 days to ship · T-2 days to running-order lock**
 

@@ -35,6 +35,22 @@ The AI twist sharpens it. The pivot mechanism was an AI-native OAuth grant. The 
 - **"No compromised npm packages published by Vercel."** Vercel's own statement. Attribute to the Vercel bulletin.
 - **Mandiant et al.** Named in Vercel's bulletin. Attribution is safe.
 
+## The stake
+
+The call is: OAuth grants to AI-native tools have become the new privileged credential, and the modern builder stack has not caught up. The posture is: Vercel's default flip is forward-looking, not restitution; legacy non-sensitive vars stay exposed until manually rotated. The tell is: the attribution cracked within 48 hours, which is what happens when the listing is commercial before it is political. What this means: AI-tool-OAuth-pivot is now demonstrated in the wild at hyperscaler scale, and the primitive is the consent screen nobody reads. The precedent is: install-time scope creep against a platform's entire env-var surface is the modern credential-theft path. The bet is: the rotation burden falls on individual builders, not on Vercel, and most will not do it in time.
+
+## For builders
+
+Vetted moves, imperative, action-layer:
+
+- Audit every OAuth grant on your Vercel account today; revoke any AI-tool integration that was scoped read-access at install and has not been used in 90 days.
+- Rotate every pre-Apr-19 environment variable marked non-sensitive, treating it as leaked until proven otherwise; the default flip only protects new vars.
+- Re-issue any token, API key, or database credential stored in a non-sensitive env var before 2026-04-19, across all projects, staging included.
+- Set `sensitive: on` as the org-level default going forward; disable the non-sensitive tier for any project that handles production secrets.
+- Verify that your logging, analytics, and feature-flag provider keys are classified sensitive; these are the ones most often mis-bucketed.
+- Monitor the BreachForums listing status and any Context.ai post-incident statement; if Context.ai remains silent past May, treat that silence as part of the signal.
+- Flag this as a Trust Week instance of the Presence pattern — OAuth scope drift is ambient trust decay, and ambient trust decays faster than incident response restores it.
+
 ## How this fits the issue
 
 **Primary slot: Investigation section** (400 to 700 words prose, paired with Lovable).

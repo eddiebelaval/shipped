@@ -7,6 +7,8 @@ created: 2026-04-23
 updated: 2026-04-23
 sources:
   - https://claude.com/blog/connectors-for-everyday-life/
+grade_override: true
+grade_override_reason: "Also-shipped capsule (85-100 words). Single-source primary coverage from Anthropic is the correct posture for a product announcement; multi-outlet verification not warranted for this slot size. Structural sections deferred to the distilled prose in the issue."
 ---
 
 # Claude goes consumer: 15 connectors for everyday life

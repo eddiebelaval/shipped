@@ -125,4 +125,4 @@ House moves for the 200-250w Investigation third substory (or 400-500w if promot
 
 ## How this fits the arc
 
-The arc before this research was: product turn (Lead) + always-on staging (Feature) + platform trust collapse (Investigation) + ambient trust category (Companion/Term). Adding the Regulator Week gives the arc a fifth and arguably most-consequential beat: capability outruns framework at the sovereign level. It also resolves the Lead's thesis ("Anthropic ships products, not just models") by its inverse: the model Anthropic *does not* ship is the one reshaping the room.
+The arc before this research was: product turn (Lead) + always-on staging (Feature) + platform trust collapse (Investigation) + ambient trust category (Companion/Term). Adding the Regulator Week gives the arc a fifth, and the most consequential, beat: capability outruns framework at the sovereign level. The beat is that the model Anthropic *does not* ship is the one reshaping the room, which is the inverse of the Lead's thesis ("Anthropic ships products, not just models"). The pattern is sovereign demand preceding sovereign supply. That's the news.

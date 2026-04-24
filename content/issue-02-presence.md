@@ -397,29 +397,34 @@ Claude Haiku 3 retired. Users urged to upgrade to Claude Haiku 4.5. Category: `[
 
 ## C. Claude Code
 
-*6 entries in window.*
+*7 entries in window.*
 
-#### 2026-04-23 - Claude Code 2.1.118 ([changelog](https://code.claude.com/docs/en/changelog))
+#### 2026-04-23 - Claude Code 2.1.119 ([changelog](https://github.com/anthropics/claude-code/blob/main/CHANGELOG.md), [release](https://github.com/anthropics/claude-code/releases/tag/v2.1.119))
 `[RELEASE]`
 
-Vim visual mode (`v`) and visual-line mode (`V`) added with selection, operators, and visual feedback. Fixed message duplication when scrolling in fullscreen mode. Category: `[RELEASE]`.
+PowerShell tool commands auto-approvable in permission mode (parity with Bash). `PostToolUse` hook inputs now include `duration_ms`. `--from-pr` accepts GitLab / Bitbucket / GitHub Enterprise URLs. `/config` settings persist to `~/.claude/settings.json` with proper override precedence. Added `prUrlTemplate` for custom review-URL footer badge. Subagent + SDK MCP servers reconnect in parallel. Shipped Apr 23, 7:24 PM ET. Category: `[RELEASE]`.
 
-#### 2026-04-22 - Claude Code 2.1.117 ([changelog](https://github.com/anthropics/claude-code/blob/main/CHANGELOG.md))
+#### 2026-04-23 - Claude Code 2.1.118 ([changelog](https://github.com/anthropics/claude-code/blob/main/CHANGELOG.md), [release](https://github.com/anthropics/claude-code/releases/tag/v2.1.118))
+`[RELEASE]`
+
+Vim visual mode (`v`) and visual-line mode (`V`) added with selection, operators, and visual feedback. `/cost` and `/stats` merged into `/usage`. Fixed message duplication when scrolling in fullscreen mode. Category: `[RELEASE]`.
+
+#### 2026-04-22 - Claude Code 2.1.117 ([changelog](https://github.com/anthropics/claude-code/blob/main/CHANGELOG.md), [release](https://github.com/anthropics/claude-code/releases/tag/v2.1.117))
 `[RELEASE]`
 
 Faster startup, stronger plugin management, better session resume and model persistence, improved OpenTelemetry. Experimental Advisor tool updates, safer auth handling, more reliable context and subagent behavior. macOS, Linux, Windows, and API fixes. Category: `[RELEASE]`.
 
-#### 2026-04-21 - Claude Code 2.1.116 ([changelog](https://github.com/anthropics/claude-code/blob/main/CHANGELOG.md))
+#### 2026-04-21 - Claude Code 2.1.116 ([changelog](https://github.com/anthropics/claude-code/blob/main/CHANGELOG.md), [release](https://github.com/anthropics/claude-code/releases/tag/v2.1.116))
 `[RELEASE]`
 
 Faster `/resume` on large sessions. Quicker MCP startup. Smarter slash-command search. Terminal behavior improvements. Category: `[RELEASE]`.
 
-#### 2026-04-19 - Claude Code 2.1.114 ([changelog](https://github.com/anthropics/claude-code/blob/main/CHANGELOG.md))
+#### 2026-04-19 - Claude Code 2.1.114 ([changelog](https://github.com/anthropics/claude-code/blob/main/CHANGELOG.md), [release](https://github.com/anthropics/claude-code/releases/tag/v2.1.114))
 `[FIX]`
 
 Fixed crash in permission dialog when agent teammates request tool access. Category: `[FIX]`.
 
-#### 2026-04-17 - Claude Code 2.1.112 ([changelog](https://github.com/anthropics/claude-code/blob/main/CHANGELOG.md))
+#### 2026-04-17 - Claude Code 2.1.112 ([changelog](https://github.com/anthropics/claude-code/blob/main/CHANGELOG.md), [release](https://github.com/anthropics/claude-code/releases/tag/v2.1.112))
 `[FIX]`
 
 Hotfix: resolved "claude-opus-4-7 is temporarily unavailable" in auto mode. Category: `[FIX]`. **Note for Issue 02:** v2.1.111 itself was dated 2026-04-16 and was already carried in Issue 01's Release Log; 2.1.112 is the first post-ship-window version.
@@ -467,12 +472,12 @@ Anthropic added AllTrails, Audible, Booking.com, Instacart, Credit Karma, TurboT
 
 Persistent memory for Claude Managed Agents shipped in public beta under the `managed-agents-2026-04-01` header. Agents now maintain a durable context object that lives outside Claude's context window, stored in the session log. Lets agents carry knowledge and context across distinct sessions — the builder-side counterpart to the consumer connectors ship. Managed Agents itself launched public beta April 8; memory is the first research-preview capability to graduate. Category: `[PRODUCT]`.
 
-#### 2026-04-23 - UK and US regulators briefed banks on Mythos cyber risk ([FT](https://www.ft.com/content/56d65763-69fe-4756-baf4-c8192b7aadaf), [PYMNTS](https://www.pymnts.com/news/2026/financial-officials-sound-alarm-about-anthropics-banking-risk), [Bloomberg](https://www.bloomberg.com/news/videos/2026-04-17/financial-watchdog-to-share-insight-on-anthropic-ai-video))
+#### 2026-04-23 - UK and US regulators briefed banks on Mythos cyber risk ([FT](https://www.ft.com/content/56d65763-69fe-4756-baf4-c8192b7aadaf), [PYMNTS](https://www.pymnts.com/news/2026/financial-officials-sound-alarm-about-anthropics-banking-risk))
 `[POLICY]`
 
 At the IMF and World Bank spring meetings in Washington, regulators and central bankers focused on Anthropic's Claude Mythos Preview and the possibility that advanced LLMs could expose weak spots in banks' cyber defenses. Bank of England Governor Andrew Bailey (chair of the Financial Stability Board) called the issue "a very serious challenge for all of us." US Treasury secretary Scott Bessent summoned leaders of the largest US banks earlier in the week. Anthropic has said Mythos found thousands of high-severity vulnerabilities in major operating systems and browsers, with access limited to ~40 Project Glasswing partners (Amazon, Apple, JPMorgan Chase, etc.). Category: `[POLICY]`.
 
-#### 2026-04-22 - Anthropic expands TPU deal with Google and Broadcom, 3.5 GW from 2027 ([Anthropic](https://www.anthropic.com/news/google-broadcom-partnership-compute), [Motley Fool](https://www.fool.com/investing/2026/04/22/anthropic-just-announced-huge-news-for-alphabet-an/), [Seeking Alpha](https://seekingalpha.com/news/4572848-anthropic-targets-30b-revenue-signs-tpu-deal-with-google-and-broadcom))
+#### 2026-04-22 - Anthropic expands TPU deal with Google and Broadcom, 3.5 GW from 2027 ([Anthropic](https://www.anthropic.com/news/google-broadcom-partnership-compute), [Motley Fool](https://www.fool.com/investing/2026/04/22/anthropic-just-announced-huge-news-for-alphabet-an/))
 `[DEAL]`
 
 Anthropic announced expanded access to next-generation TPUs via the Broadcom + Alphabet joint venture. Up to 3.5 GW of capacity from 2027. Accelerating demand has pushed run-rate revenue over $30B (up from $9B at end of 2025). Second major compute commitment this week after the Amazon $25B / $100B AWS deal. Category: `[DEAL]`. Cross-references Amazon entry below.

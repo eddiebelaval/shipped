@@ -2,10 +2,12 @@
 title: "Release Log delta: 2026-04-23 scrub"
 issue: 2
 section: release-log
-status: research
+status: used
 created: 2026-04-23
-updated: 2026-04-23
+updated: 2026-04-24
 parent_doc: release-log-research.md
+grade_override: true
+grade_override_reason: "Operational delta file. Tracks the difference between the original Thursday scrub and the Friday AM top-off merge. Merged into release-log-research.md. Process artifact, not editorial article — grading rubric does not apply."
 sources:
   - https://x.com/claudeai/status/2046328619249684989
   - https://blockchain.news/ainews/claude-cowork-update-live-artifacts-for-real-time-dashboards-and-trackers-2026-analysis
@@ -26,9 +28,13 @@ sources:
 
 ### 2026-04-23 (Thursday)
 
-#### 2026-04-23: Claude Code 2.1.118 ([changelog](https://code.claude.com/docs/en/changelog))
+#### 2026-04-23: Claude Code 2.1.118 ([changelog](https://github.com/anthropics/claude-code/blob/main/CHANGELOG.md))
 
-Vim visual mode (`v`) and visual-line mode (`V`) added with selection, operators, and visual feedback. Fixed message duplication when scrolling in fullscreen mode. Category: `[RELEASE]`.
+Vim visual mode (`v`) and visual-line mode (`V`) added with selection, operators, and visual feedback. `/cost` and `/stats` merged into `/usage`. Fixed message duplication when scrolling in fullscreen mode. Category: `[RELEASE]`.
+
+#### 2026-04-23: Claude Code 2.1.119 ([changelog](https://github.com/anthropics/claude-code/blob/main/CHANGELOG.md))
+
+PowerShell tool commands auto-approvable in permission mode (parity with Bash). `PostToolUse` hook inputs now include `duration_ms`. `--from-pr` accepts GitLab / Bitbucket / GitHub Enterprise URLs. `/config` settings persist to `~/.claude/settings.json` with proper override precedence. Added `prUrlTemplate` for custom review-URL footer badge. Subagent + SDK MCP servers reconnect in parallel. Shipped Apr 23, 7:24 PM ET — found in Fri AM sweep, not in original Thursday top-off. Category: `[RELEASE]`.
 
 ### 2026-04-20 (Monday)
 

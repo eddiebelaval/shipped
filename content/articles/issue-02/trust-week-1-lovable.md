@@ -44,6 +44,24 @@ The call is: Lovable's fix is narrower than the announcement implies. What this 
 - **"February permissions-unification"**, per Lovable's own admission via The Register. Attribute to Lovable's statement, not to independent reporting.
 - **The Register's phrasing**. The Register has house voice ("intentional behavior defense"). Paraphrase for tone; cite for facts.
 
+## Named evidence
+
+- **48 days** between HackerOne report and partial fix.
+- **100%** of pre-November 2025 Lovable projects remain exposed after the patch.
+- **4 distinct public positions** in three weeks: intentional, HackerOne's fault, admitted bug, partial fix.
+- **Bailey-style framing quote for builders:** *"Public was a UI label, not a security property."* — House voice; source the observation to independent coverage (The Register / Computing.co.uk), never to Lovable.
+
+## For builders
+
+Vetted moves, imperative, action-layer:
+
+- Audit every Lovable project created before 2026-11-01; assume source, credentials, and AI chat transcripts are reachable until Lovable publishes a scope-complete fix.
+- Rotate any database credentials, API keys, or tokens that ever lived in a pre-November 2025 Lovable project, including staging and abandoned sandboxes.
+- Re-issue OAuth tokens embedded in Lovable AI chat transcripts; the chat surface is a credential-leak surface, not just a prompt surface.
+- Check whether your Lovable projects are labelled "public" in the UI; treat "public" as a weak claim until Lovable publishes an explicit contract for public versus private data within a project.
+- Monitor Lovable's support channel for a scope-complete fix announcement; absence is itself the signal.
+- Treat this as a Presence-era trust decay, the same pattern that underwrites this issue's Term of the Issue; ambient trust margins collapse before the first incident report lands.
+
 ## How this fits the issue
 
 **Primary slot: Investigation section** (400 to 700 words prose).
