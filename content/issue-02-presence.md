@@ -13,7 +13,7 @@ ship_date: 2026-04-24
 running_order_locked: false
 fob_content: editorial
 log_content: reference
-generated_at: 2026-04-23
+generated_at: 2026-04-24
 generated_by: shipped-assemble
 by_the_numbers:
   head: "By <em>the</em> numbers."
@@ -450,7 +450,7 @@ Anthropic Labs shipped Claude Design, powered by Claude Opus 4.7. Research previ
 
 ## G. Partnerships and Policy
 
-*8 entries in window.*
+*9 entries in window.*
 
 #### 2026-04-23 - Claude Code quality post-mortem published ([Anthropic Engineering](https://www.anthropic.com/engineering/april-23-postmortem), [@ClaudeDevs on X](https://x.com/ClaudeDevs/status/2045206682830303358))
 `[POLICY]`
@@ -461,6 +461,11 @@ Anthropic published "An update on recent Claude Code quality reports" addressing
 `[PRODUCT]`
 
 Anthropic added AllTrails, Audible, Booking.com, Instacart, Credit Karma, TurboTax, Resy, Spotify, StubHub, Taskrabbit, Thumbtack, TripAdvisor, Uber, Uber Eats, and Viator as native connectors inside Claude. Available on all plans, mobile in beta. Claude surfaces relevant ones mid-conversation based on context. Over 200 total connectors now live. Anthropic on record: *"ad-free and will stay that way."* Category: `[PRODUCT]`.
+
+#### 2026-04-23 - Memory for Claude Managed Agents enters public beta ([Anthropic](https://platform.claude.com/docs/en/release-notes/overview), [docs](https://platform.claude.com/docs/en/managed-agents/memory))
+`[PRODUCT]`
+
+Persistent memory for Claude Managed Agents shipped in public beta under the `managed-agents-2026-04-01` header. Agents now maintain a durable context object that lives outside Claude's context window, stored in the session log. Lets agents carry knowledge and context across distinct sessions — the builder-side counterpart to the consumer connectors ship. Managed Agents itself launched public beta April 8; memory is the first research-preview capability to graduate. Category: `[PRODUCT]`.
 
 #### 2026-04-23 - UK and US regulators briefed banks on Mythos cyber risk ([FT](https://www.ft.com/content/56d65763-69fe-4756-baf4-c8192b7aadaf), [PYMNTS](https://www.pymnts.com/news/2026/financial-officials-sound-alarm-about-anthropics-banking-risk), [Bloomberg](https://www.bloomberg.com/news/videos/2026-04-17/financial-watchdog-to-share-insight-on-anthropic-ai-video))
 `[POLICY]`
