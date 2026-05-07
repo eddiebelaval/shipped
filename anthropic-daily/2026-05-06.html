@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Shipped. Daily — May 06, 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Newsreader:ital,wght@0,400;0,700;1,400;1,700&family=Barlow+Condensed:wght@600;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --ink:     #000000;
+    --muted:   #666666;
+    --rule:    #E5E5E5;
+    --bg:      #FFFFFF;
+    --orange:  #FF6B35;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --ink:   #FFFFFF;
+      --muted: #999999;
+      --rule:  #2A2A2A;
+      --bg:    #0A0A0A;
+    }
+  }
+
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: 'Inter', system-ui, sans-serif;
+    font-size: 15px;
+    line-height: 1.65;
+    padding: 5rem 1.5rem 6rem;
+  }
+
+  .page {
+    max-width: 720px;
+    margin: 0 auto;
+  }
+
+  /* Masthead */
+  .masthead {
+    margin-bottom: 2.5rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .masthead-wordmark {
+    font-family: 'Newsreader', Georgia, serif;
+    font-style: italic;
+    font-weight: 700;
+    font-size: 2rem;
+    line-height: 1;
+    letter-spacing: -0.5px;
+    display: block;
+    margin-bottom: 0.35rem;
+  }
+
+  .masthead-wordmark .period {
+    color: var(--orange);
+  }
+
+  .masthead-dateline {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  /* One-line read */
+  .one-liner {
+    font-family: 'Newsreader', Georgia, serif;
+    font-size: 1.2rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: var(--ink);
+    margin-bottom: 2.5rem;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid var(--rule);
+    text-shadow: 0.4px 0.5px 0.8px rgba(0,0,0,0.06);
+  }
+
+  /* Lead */
+  .section-flag {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: var(--muted);
+    display: block;
+    margin-bottom: 0.75rem;
+  }
+
+  .lead-body {
+    font-family: 'Newsreader', Georgia, serif;
+    font-size: 1.05rem;
+    line-height: 1.75;
+    color: var(--ink);
+    margin-bottom: 2.5rem;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .lead-body p { margin-bottom: 1rem; }
+  .lead-body p:last-child { margin-bottom: 0; }
+
+  /* Release log */
+  .log-header {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: var(--ink);
+    display: block;
+    padding-bottom: 0.75rem;
+    border-bottom: 1px solid var(--rule);
+    margin-bottom: 0;
+  }
+
+  .log-category {
+    padding: 1.75rem 0 0.75rem;
+    border-bottom: 1px solid var(--rule);
+    margin-bottom: 0;
+  }
+
+  .log-category-label {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  .log-entry {
+    padding: 1.25rem 0;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .log-entry:last-child {
+    border-bottom: none;
+  }
+
+  .log-entry-meta {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    margin-bottom: 0.4rem;
+    flex-wrap: wrap;
+  }
+
+  .log-entry-date {
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--muted);
+    font-feature-settings: 'tnum';
+  }
+
+  .log-tag {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    padding: 2px 7px;
+    border-radius: 3px;
+  }
+
+  .tag-code    { background: #595959; color: #fff; }
+  .tag-apps    { background: #737373; color: #fff; }
+  .tag-sdk-py  { background: #e5e5e5; color: #1a1a1a; }
+  .tag-sdk-ts  { background: #ebebeb; color: #1a1a1a; }
+  .tag-news    { background: #f5f5f5; color: #404040; border: 1px solid rgba(0,0,0,0.12); }
+  .tag-api     { background: #404040; color: #fff; }
+
+  @media (prefers-color-scheme: dark) {
+    .tag-sdk-py  { background: #333; color: #ccc; }
+    .tag-sdk-ts  { background: #2e2e2e; color: #bbb; }
+    .tag-news    { background: #1a1a1a; color: #aaa; border-color: rgba(255,255,255,0.1); }
+  }
+
+  .log-entry-title {
+    font-family: 'Inter', sans-serif;
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--ink);
+    letter-spacing: -0.2px;
+    line-height: 1.3;
+    margin-bottom: 0.4rem;
+  }
+
+  .log-entry-title a {
+    color: inherit;
+    text-decoration: none;
+    border-bottom: 1px solid rgba(0,0,0,0.15);
+    padding-bottom: 1px;
+  }
+
+  .log-entry-title a:hover {
+    border-bottom-color: var(--ink);
+  }
+
+  @media (prefers-color-scheme: dark) {
+    .log-entry-title a { border-bottom-color: rgba(255,255,255,0.2); }
+    .log-entry-title a:hover { border-bottom-color: var(--ink); }
+  }
+
+  .log-entry-body {
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    color: var(--muted);
+    line-height: 1.6;
+    margin-bottom: 0.5rem;
+  }
+
+  .log-entry-howto {
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    color: var(--muted);
+    margin-top: 0.4rem;
+  }
+
+  .log-entry-howto code {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 12px;
+    background: var(--rule);
+    padding: 2px 6px;
+    border-radius: 3px;
+    color: var(--ink);
+  }
+
+  @media (prefers-color-scheme: dark) {
+    .log-entry-howto code { background: #1e1e1e; }
+  }
+
+  /* Quiet section */
+  .quiet {
+    margin: 2.5rem 0;
+    padding-left: 1.25rem;
+    border-left: 2px solid var(--rule);
+  }
+
+  .quiet-body {
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    color: var(--muted);
+    line-height: 1.65;
+  }
+
+  /* Footer */
+  .footer {
+    margin-top: 3rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--rule);
+  }
+
+  .footer-flag {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--muted);
+    display: block;
+    margin-bottom: 0.75rem;
+  }
+
+  .footer-sources {
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    color: var(--muted);
+    line-height: 1.8;
+  }
+
+  .footer-sources a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  .footer-sources a:hover {
+    text-decoration: underline;
+  }
+
+  .footer-ts {
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    color: var(--muted);
+    margin-top: 1rem;
+  }
+
+  /* Responsive */
+  @media (max-width: 600px) {
+    body { padding: 3rem 1.25rem 4rem; }
+    .masthead-wordmark { font-size: 1.6rem; }
+    .one-liner { font-size: 1.05rem; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- Masthead -->
+  <header class="masthead">
+    <span class="masthead-wordmark">Shipped<span class="period">.</span></span>
+    <span class="masthead-dateline">Daily &nbsp;|&nbsp; Wednesday, May 06, 2026</span>
+  </header>
+
+  <!-- One-line read -->
+  <p class="one-liner">Anthropic held its first developer conference today, shipped a Code Review feature that every internal team already runs, and signed SpaceX for 300 megawatts of compute at the Colossus 1 data center in Memphis.</p>
+
+  <!-- Lead -->
+  <span class="section-flag">Lead</span>
+  <div class="lead-body">
+    <p>The <a href="https://claude.com/code-with-claude/san-francisco">"Code with Claude 2026" keynote</a> opened in San Francisco at 09:00 PT with CPO Ami Vora saying the event "is about how we are making our products work better for you." No new model. What shipped instead: Code Review, a tool that dispatches a team of parallel agents against a pull request, each checking for different error categories, leaving comments with conclusions and fix suggestions. Anthropic said it is already used by every team at the company.</p>
+    <p>The same morning, Anthropic published a <a href="https://www.anthropic.com/news/higher-limits-spacex">separate announcement</a>: it has signed SpaceX for all AI capacity at Colossus 1 in Memphis, giving Anthropic access to over 220,000 NVIDIA GPUs drawing more than 300 megawatts. The deal doubles Claude Code rate limits for paid plans, removes peak-hour caps for Pro and Max subscribers, and sharply increases Opus API throughput. <a href="https://www.bloomberg.com/news/articles/2026-05-06/anthropic-inks-computing-deal-with-spacex-to-meet-ai-demand">Bloomberg first reported the deal.</a></p>
+  </div>
+
+  <!-- Release Log -->
+  <span class="log-header">Release Log</span>
+
+  <!-- CODE -->
+  <div class="log-category">
+    <span class="log-category-label">Code</span>
+  </div>
+
+  <div class="log-entry">
+    <div class="log-entry-meta">
+      <span class="log-entry-date">2026-05-06</span>
+      <span class="log-tag tag-code">CODE</span>
+    </div>
+    <div class="log-entry-title">
+      <a href="https://github.com/anthropics/claude-code/blob/main/CHANGELOG.md">Claude Code 2.1.132</a>
+    </div>
+    <div class="log-entry-body">Adds <code>CLAUDE_CODE_SESSION_ID</code> to the Bash tool subprocess environment. Fixes fullscreen rendering after sleep/wake cycles, cursor positioning with Indic scripts and emoji, and pasting text that starts with <code>/</code>.</div>
+  </div>
+
+  <div class="log-entry">
+    <div class="log-entry-meta">
+      <span class="log-entry-date">2026-05-06</span>
+      <span class="log-tag tag-code">CODE</span>
+    </div>
+    <div class="log-entry-title">
+      <a href="https://github.com/anthropics/claude-code/blob/main/CHANGELOG.md">Claude Code 2.1.131</a>
+    </div>
+    <div class="log-entry-body">Fixes VS Code extension activation failures on Windows and Mantle endpoint authentication problems.</div>
+  </div>
+
+  <!-- APPS -->
+  <div class="log-category">
+    <span class="log-category-label">Apps</span>
+  </div>
+
+  <div class="log-entry">
+    <div class="log-entry-meta">
+      <span class="log-entry-date">2026-05-06</span>
+      <span class="log-tag tag-apps">APPS</span>
+    </div>
+    <div class="log-entry-title">
+      <a href="https://claude.com/code-with-claude/san-francisco">Code Review</a>
+    </div>
+    <div class="log-entry-body">Dispatches a team of parallel agents against a pull request. Each agent checks for a different category of errors, leaves comments with conclusions, and suggests fixes. Used internally by every team at Anthropic. Announced at Code with Claude 2026.</div>
+  </div>
+
+  <div class="log-entry">
+    <div class="log-entry-meta">
+      <span class="log-entry-date">2026-05-06</span>
+      <span class="log-tag tag-apps">APPS</span>
+    </div>
+    <div class="log-entry-title">
+      <a href="https://claude.com/code-with-claude/san-francisco">CI Auto-Fix</a>
+    </div>
+    <div class="log-entry-body">Files automatic code fixes against failing CI checks on pull requests. Announced at Code with Claude 2026.</div>
+  </div>
+
+  <div class="log-entry">
+    <div class="log-entry-meta">
+      <span class="log-entry-date">2026-05-06</span>
+      <span class="log-tag tag-apps">APPS</span>
+    </div>
+    <div class="log-entry-title">
+      <a href="https://claude.com/code-with-claude/san-francisco">Remote Agents</a>
+    </div>
+    <div class="log-entry-body">Control your laptop from your phone via Claude. Announced at Code with Claude 2026.</div>
+  </div>
+
+  <div class="log-entry">
+    <div class="log-entry-meta">
+      <span class="log-entry-date">2026-05-06</span>
+      <span class="log-tag tag-apps">APPS</span>
+    </div>
+    <div class="log-entry-title">
+      <a href="https://claude.com/code-with-claude/san-francisco">Multi-agent Orchestration and Outcomes (Managed Agents)</a>
+    </div>
+    <div class="log-entry-body">Managed Agents now supports creating coordinated fleets of agents (Multi-agent orchestration) and defining success criteria that Claude iterates toward (Outcomes). The matching SDK surface shipped today in anthropic-sdk-python v0.100.0 and anthropic-sdk-typescript v0.95.0.</div>
+  </div>
+
+  <!-- SDK -->
+  <div class="log-category">
+    <span class="log-category-label">SDK</span>
+  </div>
+
+  <div class="log-entry">
+    <div class="log-entry-meta">
+      <span class="log-entry-date">2026-05-06</span>
+      <span class="log-tag tag-sdk-py">SDK-PY</span>
+    </div>
+    <div class="log-entry-title">
+      <a href="https://github.com/anthropics/anthropic-sdk-python/releases">anthropic-sdk-python v0.100.0</a>
+    </div>
+    <div class="log-entry-body">Adds Managed Agents multiagents and outcomes support, webhooks, and vault validation.</div>
+    <div class="log-entry-howto"><strong>How to use:</strong> <code>pip install anthropic==0.100.0</code></div>
+  </div>
+
+  <div class="log-entry">
+    <div class="log-entry-meta">
+      <span class="log-entry-date">2026-05-05</span>
+      <span class="log-tag tag-sdk-py">SDK-PY</span>
+    </div>
+    <div class="log-entry-title">
+      <a href="https://github.com/anthropics/anthropic-sdk-python/releases">anthropic-sdk-python v0.99.0</a>
+    </div>
+    <div class="log-entry-body">Allows targeting a specific workspace for OIDC federation token exchange.</div>
+    <div class="log-entry-howto"><strong>How to use:</strong> <code>pip install anthropic==0.99.0</code></div>
+  </div>
+
+  <div class="log-entry">
+    <div class="log-entry-meta">
+      <span class="log-entry-date">2026-05-06</span>
+      <span class="log-tag tag-sdk-ts">SDK-TS</span>
+    </div>
+    <div class="log-entry-title">
+      <a href="https://github.com/anthropics/anthropic-sdk-typescript/releases">anthropic-sdk-typescript v0.95.0</a>
+    </div>
+    <div class="log-entry-body">Adds Managed Agents multiagents and outcomes support, webhooks, and vault validation.</div>
+    <div class="log-entry-howto"><strong>How to use:</strong> <code>npm install @anthropic-ai/sdk@0.95.0</code></div>
+  </div>
+
+  <div class="log-entry">
+    <div class="log-entry-meta">
+      <span class="log-entry-date">2026-05-05</span>
+      <span class="log-tag tag-sdk-ts">SDK-TS</span>
+    </div>
+    <div class="log-entry-title">
+      <a href="https://github.com/anthropics/anthropic-sdk-typescript/releases">anthropic-sdk-typescript v0.94.0</a>
+    </div>
+    <div class="log-entry-body">Allows targeting a specific workspace for OIDC federation token exchange.</div>
+    <div class="log-entry-howto"><strong>How to use:</strong> <code>npm install @anthropic-ai/sdk@0.94.0</code></div>
+  </div>
+
+  <div class="log-entry">
+    <div class="log-entry-meta">
+      <span class="log-entry-date">2026-05-06</span>
+      <span class="log-tag tag-sdk-py">SDK-PY</span>
+    </div>
+    <div class="log-entry-title">
+      <a href="https://github.com/anthropics/claude-agent-sdk-python/releases">claude-agent-sdk-python v0.1.76</a>
+    </div>
+    <div class="log-entry-body">Adds <code>api_error_status: int | None</code> to <code>ResultMessage</code>, surfacing HTTP status codes (429, 500, 529) from API failures. Fixes <code>ToolPermissionContext.suggestions</code> deserialization. Bundles Claude CLI 2.1.132.</div>
+    <div class="log-entry-howto"><strong>How to use:</strong> <code>pip install claude-agent-sdk==0.1.76</code></div>
+  </div>
+
+  <div class="log-entry">
+    <div class="log-entry-meta">
+      <span class="log-entry-date">2026-05-06</span>
+      <span class="log-tag tag-sdk-py">SDK-PY</span>
+    </div>
+    <div class="log-entry-title">
+      <a href="https://github.com/anthropics/claude-agent-sdk-python/releases">claude-agent-sdk-python v0.1.75</a>
+    </div>
+    <div class="log-entry-body">Bundles Claude CLI 2.1.131. No new API surface.</div>
+    <div class="log-entry-howto"><strong>How to use:</strong> <code>pip install claude-agent-sdk==0.1.75</code></div>
+  </div>
+
+  <div class="log-entry">
+    <div class="log-entry-meta">
+      <span class="log-entry-date">2026-05-06</span>
+      <span class="log-tag tag-sdk-py">SDK-PY</span>
+    </div>
+    <div class="log-entry-title">
+      <a href="https://github.com/anthropics/claude-agent-sdk-python/releases">claude-agent-sdk-python v0.1.74</a>
+    </div>
+    <div class="log-entry-body">Hook event streaming via <code>include_hook_events</code> option. Deferred hook decisions (<code>"defer"</code> in <code>PreToolUseHookSpecificOutput</code>). Strict MCP config option. Permission context enrichment: adds <code>decision_reason</code>, <code>blocked_path</code>, <code>title</code>, <code>display_name</code>, <code>description</code> fields. <code>updatedToolOutput</code> for post-tool hooks. <code>xhigh</code> effort level for Opus 4.7. Subprocess cleanup on parent exit via atexit handler.</div>
+    <div class="log-entry-howto"><strong>How to use:</strong> <code>pip install claude-agent-sdk==0.1.74</code></div>
+  </div>
+
+  <!-- NEWS -->
+  <div class="log-category">
+    <span class="log-category-label">News</span>
+  </div>
+
+  <div class="log-entry">
+    <div class="log-entry-meta">
+      <span class="log-entry-date">2026-05-06</span>
+      <span class="log-tag tag-news">NEWS</span>
+    </div>
+    <div class="log-entry-title">
+      <a href="https://www.anthropic.com/news/higher-limits-spacex">Anthropic signs SpaceX for 300MW at Colossus 1</a>
+    </div>
+    <div class="log-entry-body">Anthropic will access all AI capacity at SpaceX's Colossus 1 data center in Memphis: more than 220,000 NVIDIA GPUs (H100, H200, GB200) drawing over 300 megawatts. Doubles Claude Code rate limits for paid plans; removes peak-hour caps for Pro and Max subscribers; sharply increases Opus API throughput. Anthropic also noted interest in multi-gigawatt orbital compute capacity as part of the agreement. Reported by <a href="https://www.bloomberg.com/news/articles/2026-05-06/anthropic-inks-computing-deal-with-spacex-to-meet-ai-demand">Bloomberg</a> and <a href="https://www.cnbc.com/2026/05/06/anthropic-spacex-data-center-capacity.html">CNBC</a>.</div>
+  </div>
+
+  <div class="log-entry">
+    <div class="log-entry-meta">
+      <span class="log-entry-date">2026-05-05</span>
+      <span class="log-tag tag-news">NEWS</span>
+    </div>
+    <div class="log-entry-title">
+      <a href="https://fortune.com/2026/05/05/anthropic-wall-street-financial-services-agents-jamie-dimon/">Financial services agent templates and Microsoft 365 integration</a>
+    </div>
+    <div class="log-entry-body">Anthropic launched ten pre-built agent templates for financial services, covering pitchbook creation, KYC file screening, and month-end close. Deepened Microsoft 365 integration (Excel, PowerPoint, Word, Outlook) and announced a data partnership with Moody's. Reported by <a href="https://fortune.com/2026/05/05/anthropic-wall-street-financial-services-agents-jamie-dimon/">Fortune</a> and <a href="https://www.theregister.com/2026/05/05/anthropic_midmarket_software_spend/">The Register</a>. "The Briefing: Financial Services" virtual event ran May 5 at 11:00 AM ET.</div>
+  </div>
+
+  <!-- Quiet on the Wire -->
+  <div style="margin-top: 2.5rem; margin-bottom: 0.75rem; padding-top: 2rem; border-top: 1px solid var(--rule);">
+    <span class="section-flag">Quiet on the Wire</span>
+  </div>
+  <div class="quiet">
+    <p class="quiet-body">Mythos was absent from today's keynote. Speculation before Code with Claude had pointed to a model reveal. Vora's opening line closed that door for today. Code with Claude continues in London on May 19 and Tokyo on June 10. No model deprecations announced in the window.</p>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <span class="footer-flag">Sources</span>
+    <div class="footer-sources">
+      <a href="https://claude.com/code-with-claude/san-francisco">claude.com/code-with-claude/san-francisco</a><br>
+      <a href="https://www.anthropic.com/news/higher-limits-spacex">anthropic.com/news/higher-limits-spacex</a><br>
+      <a href="https://www.bloomberg.com/news/articles/2026-05-06/anthropic-inks-computing-deal-with-spacex-to-meet-ai-demand">bloomberg.com (SpaceX/Anthropic compute deal)</a><br>
+      <a href="https://www.cnbc.com/2026/05/06/anthropic-spacex-data-center-capacity.html">cnbc.com (Colossus 1 capacity)</a><br>
+      <a href="https://fortune.com/2026/05/05/anthropic-wall-street-financial-services-agents-jamie-dimon/">fortune.com (financial services agents)</a><br>
+      <a href="https://www.theregister.com/2026/05/05/anthropic_midmarket_software_spend/">theregister.com (midmarket expansion)</a><br>
+      <a href="https://github.com/anthropics/anthropic-sdk-python/releases">github.com/anthropics/anthropic-sdk-python/releases</a><br>
+      <a href="https://github.com/anthropics/anthropic-sdk-typescript/releases">github.com/anthropics/anthropic-sdk-typescript/releases</a><br>
+      <a href="https://github.com/anthropics/claude-agent-sdk-python/releases">github.com/anthropics/claude-agent-sdk-python/releases</a><br>
+      <a href="https://github.com/anthropics/claude-code/blob/main/CHANGELOG.md">github.com/anthropics/claude-code CHANGELOG.md</a><br>
+      <a href="https://thenewstack.io/anthropic-launches-a-multi-agent-code-review-tool-for-claude-code/">thenewstack.io (Code Review tool)</a>
+    </div>
+    <p class="footer-ts">Generated 2026-05-07T01:02:39Z</p>
+  </footer>
+
+</div>
+</body>
+</html>
