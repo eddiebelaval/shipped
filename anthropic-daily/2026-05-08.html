@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shipped. Daily | Friday, May 08, 2026</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Newsreader:ital,opsz,wght@1,6..72,400;1,6..72,600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #FFFFFF;
+      --ink: #000000;
+      --muted: #666666;
+      --rule: #E5E5E5;
+      --orange: #FF6B35;
+      --code-bg: #F4F4F4;
+      --tag-dark-bg: #404040;
+      --tag-dark-color: #ffffff;
+      --tag-light-bg: #F0F0F0;
+      --tag-light-color: #444444;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #0A0A0A;
+        --ink: #FFFFFF;
+        --muted: #999999;
+        --rule: #2A2A2A;
+        --code-bg: #1A1A1A;
+        --tag-dark-bg: #595959;
+        --tag-dark-color: #ffffff;
+        --tag-light-bg: #1F1F1F;
+        --tag-light-color: #CCCCCC;
+      }
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: var(--bg);
+      color: var(--ink);
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      font-size: 15px;
+      line-height: 1.65;
+      padding: 5rem 1.5rem 4rem;
+    }
+
+    .page {
+      max-width: 720px;
+      margin: 0 auto;
+    }
+
+    /* Masthead */
+    .masthead-mark {
+      font-family: 'Newsreader', Georgia, serif;
+      font-style: italic;
+      font-weight: 600;
+      font-size: 2.25rem;
+      line-height: 1;
+      color: var(--ink);
+      letter-spacing: -0.5px;
+      margin-bottom: 0.3rem;
+    }
+    .masthead-mark .period {
+      color: var(--orange);
+    }
+    .masthead-daily {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 2.5rem;
+    }
+
+    /* One-line read */
+    .one-liner {
+      font-size: 17px;
+      font-weight: 500;
+      color: var(--ink);
+      line-height: 1.6;
+      padding-bottom: 1.75rem;
+      border-bottom: 1px solid var(--rule);
+      margin-bottom: 2.25rem;
+    }
+
+    /* Section flag */
+    .section-flag {
+      display: block;
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 1rem;
+    }
+
+    /* Lead */
+    .lead {
+      margin-bottom: 2.5rem;
+      padding-bottom: 2.25rem;
+      border-bottom: 1px solid var(--rule);
+    }
+    .lead p {
+      font-size: 16px;
+      line-height: 1.75;
+      color: var(--ink);
+      margin-bottom: 1.1rem;
+    }
+    .lead p:last-child { margin-bottom: 0; }
+
+    /* Release log */
+    .log-section-header {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--muted);
+      padding-bottom: 0.6rem;
+      border-bottom: 1px solid var(--rule);
+      margin-top: 2rem;
+      margin-bottom: 0;
+    }
+
+    .log-entry {
+      padding: 1.25rem 0;
+      border-bottom: 1px solid var(--rule);
+    }
+    .log-entry:last-child {
+      border-bottom: none;
+    }
+
+    .entry-meta {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      margin-bottom: 0.4rem;
+      flex-wrap: wrap;
+    }
+    .entry-date {
+      font-size: 11px;
+      font-weight: 500;
+      color: var(--muted);
+      letter-spacing: 0.3px;
+      font-feature-settings: 'tnum';
+    }
+    .entry-tag {
+      display: inline-block;
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      padding: 2px 7px;
+      border-radius: 3px;
+    }
+    .tag-code { background: var(--tag-dark-bg); color: var(--tag-dark-color); }
+    .tag-news { background: var(--tag-light-bg); color: var(--tag-light-color); border: 1px solid var(--rule); }
+    .tag-model { background: var(--orange); color: #ffffff; }
+    .tag-api { background: var(--tag-dark-bg); color: var(--tag-dark-color); }
+
+    .entry-title {
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--ink);
+      line-height: 1.35;
+      margin-bottom: 0.6rem;
+    }
+    .entry-title a {
+      color: inherit;
+      text-decoration: none;
+      border-bottom: 1px solid var(--rule);
+    }
+    .entry-title a:hover {
+      border-bottom-color: var(--ink);
+    }
+
+    .entry-body {
+      font-size: 14px;
+      line-height: 1.7;
+      color: var(--ink);
+      margin-bottom: 0.5rem;
+    }
+    .entry-body + .entry-body {
+      margin-top: 0.5rem;
+    }
+
+    .entry-how {
+      font-size: 13px;
+      color: var(--muted);
+      margin-top: 0.6rem;
+      line-height: 1.6;
+    }
+    .entry-how strong {
+      color: var(--ink);
+      font-weight: 600;
+    }
+
+    code {
+      font-family: 'JetBrains Mono', 'SF Mono', 'Courier New', monospace;
+      font-size: 12px;
+      background: var(--code-bg);
+      padding: 1px 5px;
+      border-radius: 3px;
+    }
+
+    /* Release log container */
+    .release-log {
+      margin-bottom: 2.5rem;
+    }
+    .log-category {
+      margin-bottom: 0.25rem;
+      padding-bottom: 1.75rem;
+      border-bottom: 1px solid var(--rule);
+    }
+    .log-category:last-child {
+      border-bottom: none;
+      padding-bottom: 0;
+    }
+
+    /* Quiet on the Wire */
+    .quiet-section {
+      margin-bottom: 2.5rem;
+    }
+    .quiet-body {
+      font-size: 14px;
+      line-height: 1.7;
+      color: var(--muted);
+      padding-left: 1.25rem;
+      border-left: 2px solid var(--rule);
+    }
+
+    /* Footer */
+    .footer {
+      border-top: 1px solid var(--rule);
+      padding-top: 1.5rem;
+      font-size: 11px;
+      color: var(--muted);
+      line-height: 2;
+    }
+    .footer-generated {
+      margin-bottom: 0.5rem;
+      font-weight: 500;
+    }
+    .footer-sources {
+      display: flex;
+      flex-direction: column;
+      gap: 0.15rem;
+    }
+    .footer a {
+      color: var(--muted);
+      text-decoration: none;
+    }
+    .footer a:hover {
+      color: var(--ink);
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+
+    <!-- Masthead -->
+    <header>
+      <div class="masthead-mark">Shipped<span class="period">.</span></div>
+      <div class="masthead-daily">Daily &nbsp;&nbsp; Friday, May 08, 2026</div>
+    </header>
+
+    <!-- One-line read -->
+    <p class="one-liner">Anthropic signed a seven-year, $1.8 billion compute deal with Akamai, disclosed 80-fold Q1 revenue growth, and shipped roughly 50 bugfixes in Claude Code v2.1.136.</p>
+
+    <!-- Lead -->
+    <section class="lead">
+      <span class="section-flag">The Lead</span>
+      <p>Akamai Technologies confirmed a $1.8 billion, seven-year cloud computing deal with Anthropic on May 8, reported by <a href="https://www.bloomberg.com/news/articles/2026-05-08/anthropic-inks-1-8-billion-computing-deal-with-akamai">Bloomberg</a>. The largest contract in Akamai&#39;s history. Akamai stock closed up 27 percent on the day.</p>
+      <p>The deal puts Claude models on Akamai&#39;s edge and cloud infrastructure. CEO Dario Amodei, cited by <a href="https://fortune.com/2026/05/08/anthropic-80fold-growth-quarter-renting-elon-musk-data-center/">Fortune</a>, said Anthropic planned for 10x growth but saw annualized revenue and usage expand 80-fold in Q1 2026. He described the company as &#34;working as quickly as possible&#34; to secure compute. Akamai is the third infrastructure arrangement in a week: Google and SpaceX&#39;s Colossus 1 (220,000 NVIDIA GPUs, 300 megawatts of new capacity) are already in the stack.</p>
+      <p>Three billion-dollar compute arrangements in a week. The supply side is moving.</p>
+    </section>
+
+    <!-- Release Log -->
+    <section class="release-log">
+      <span class="section-flag">Release Log</span>
+
+      <!-- C. Claude Code -->
+      <div class="log-category">
+        <div class="log-section-header">C. Claude Code</div>
+
+        <div class="log-entry">
+          <div class="entry-meta">
+            <span class="entry-date">2026-05-09 &nbsp; 00:11 UTC</span>
+            <span class="entry-tag tag-code">CODE</span>
+          </div>
+          <div class="entry-title">
+            <a href="https://github.com/anthropics/claude-code/releases">Claude Code v2.1.137</a>
+          </div>
+          <p class="entry-body">Single fix: VSCode extension failing to activate on Windows.</p>
+          <p class="entry-how"><strong>How to use:</strong> <code>claude update</code> or reinstall.</p>
+        </div>
+
+        <div class="log-entry">
+          <div class="entry-meta">
+            <span class="entry-date">2026-05-08 &nbsp; 18:39 UTC</span>
+            <span class="entry-tag tag-code">CODE</span>
+          </div>
+          <div class="entry-title">
+            <a href="https://github.com/anthropics/claude-code/releases">Claude Code v2.1.136</a>
+          </div>
+          <p class="entry-body">Roughly 50 fixes in one release. New capability: <code>settings.autoMode.hard_deny</code> lets teams define auto-mode classifier rules that block unconditionally, regardless of user intent or configured allow-exceptions. New enterprise telemetry hook: <code>CLAUDE_CODE_ENABLE_FEEDBACK_SURVEY_FOR_OTEL</code> re-enables the session quality survey for orgs capturing responses via OpenTelemetry. WSL2 image paste from Windows clipboard now works via PowerShell fallback.</p>
+          <p class="entry-body">Notable fix cluster: MCP servers configured in <code>.mcp.json</code>, plugins, and claude.ai connectors were silently disappearing after <code>/clear</code>. An OAuth token race that could cause a rare login loop. <code>--resume</code> and <code>--continue</code> not finding sessions when the project path contains underscores.</p>
+          <p class="entry-how"><strong>How to use:</strong> <code>claude update</code> or reinstall. Add <code>settings.autoMode.hard_deny</code> rules in <code>.claude/settings.json</code> to define unconditional classifier blocks for your team.</p>
+        </div>
+      </div>
+
+      <!-- G. News -->
+      <div class="log-category">
+        <div class="log-section-header">G. News and Partnerships</div>
+
+        <div class="log-entry">
+          <div class="entry-meta">
+            <span class="entry-date">2026-05-08</span>
+            <span class="entry-tag tag-news">NEWS</span>
+          </div>
+          <div class="entry-title">
+            <a href="https://www.bloomberg.com/news/articles/2026-05-08/anthropic-inks-1-8-billion-computing-deal-with-akamai">Anthropic signs $1.8B compute deal with Akamai</a>
+          </div>
+          <p class="entry-body">Seven-year contract for Akamai cloud and edge infrastructure to serve Claude models. The largest deal in Akamai&#39;s history. Akamai shares gained 27 percent on the day. Third major compute expansion this week, after the Google and SpaceX Colossus 1 arrangements. Reported by Bloomberg.</p>
+        </div>
+
+        <div class="log-entry">
+          <div class="entry-meta">
+            <span class="entry-date">2026-05-08</span>
+            <span class="entry-tag tag-news">NEWS</span>
+          </div>
+          <div class="entry-title">
+            <a href="https://fortune.com/2026/05/08/anthropic-80fold-growth-quarter-renting-elon-musk-data-center/">Amodei discloses 80x Q1 revenue growth</a>
+          </div>
+          <p class="entry-body">Reported by Fortune: Dario Amodei said Anthropic planned for 10x annualized growth and instead saw 80-fold expansion in revenue and usage in Q1 2026. The figure is the stated justification for the current compute spending pace.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Quiet on the Wire -->
+    <section class="quiet-section">
+      <span class="section-flag">Quiet on the Wire</span>
+      <div class="quiet-body">
+        No model releases today. No API release notes in the window. Python SDK v0.100.0 (Managed Agents support) and TypeScript SDK v0.95.1 (API key redaction in debug logs) both shipped May 6 and May 7, covered in yesterday&#39;s page.
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="footer-generated">Generated: 2026-05-09T01:09:38Z</div>
+      <div class="footer-sources">
+        <a href="https://www.bloomberg.com/news/articles/2026-05-08/anthropic-inks-1-8-billion-computing-deal-with-akamai">Bloomberg: Anthropic-Akamai $1.8B deal</a>
+        <a href="https://fortune.com/2026/05/08/anthropic-80fold-growth-quarter-renting-elon-musk-data-center/">Fortune: Anthropic 80x Q1 growth</a>
+        <a href="https://github.com/anthropics/claude-code/releases">GitHub: Claude Code releases</a>
+        <a href="https://www.investing.com/news/earnings/akamai-shares-surge-15-on-18b-ai-cloud-deal-as-q1-earnings-tops-estimates-93CH-4669793">Investing.com: Akamai share move</a>
+        <a href="https://solutionsreview.com/ai-news-for-the-week-of-may-8-updates-from-anthropic-cribl-ibm-more/">Solutions Review: Anthropic May 8 roundup</a>
+      </div>
+    </footer>
+
+  </div>
+</body>
+</html>
