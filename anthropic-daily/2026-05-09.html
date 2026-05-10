@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shipped. Daily, Friday, May 9, 2026</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Newsreader:ital,wght@1,400&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #FFFFFF;
+      --ink: #000000;
+      --muted: #666666;
+      --rule: #E5E5E5;
+      --accent: #FF6B35;
+      --tag-code-bg: #595959;
+      --tag-news-bg: #F0F0F0;
+      --tag-news-color: #555555;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #0A0A0A;
+        --ink: #FFFFFF;
+        --muted: #999999;
+        --rule: #2A2A2A;
+        --tag-code-bg: #737373;
+        --tag-news-bg: #1E1E1E;
+        --tag-news-color: #999999;
+      }
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: var(--bg);
+      color: var(--ink);
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      font-size: 15px;
+      line-height: 1.65;
+      padding: 5rem 1.5rem 5rem;
+    }
+    a { color: inherit; text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    .page { max-width: 720px; margin: 0 auto; }
+
+    /* Masthead */
+    .masthead {
+      margin-bottom: 2.75rem;
+      padding-bottom: 1.5rem;
+      border-bottom: 1px solid var(--rule);
+    }
+    .masthead-name {
+      font-family: 'Newsreader', Georgia, 'Times New Roman', serif;
+      font-style: italic;
+      font-weight: 400;
+      font-size: 2.5rem;
+      color: var(--ink);
+      line-height: 1;
+      margin-bottom: 0.5rem;
+      letter-spacing: -0.5px;
+    }
+    .masthead-name .period { color: var(--accent); }
+    .masthead-dateline {
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 2px;
+    }
+
+    /* One-liner */
+    .one-liner {
+      font-size: 16px;
+      font-weight: 500;
+      line-height: 1.55;
+      color: var(--ink);
+      padding-left: 1rem;
+      border-left: 3px solid var(--ink);
+      margin-bottom: 3.5rem;
+    }
+
+    /* Section flag */
+    .section-flag {
+      display: block;
+      font-size: 10px;
+      font-weight: 600;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 2.5px;
+      margin-bottom: 1rem;
+      padding-bottom: 0.625rem;
+      border-bottom: 1px solid var(--rule);
+    }
+
+    /* Release log */
+    .release-log { margin-bottom: 3.5rem; }
+    .log-area { margin-bottom: 0.25rem; }
+    .log-area-header {
+      display: flex;
+      align-items: baseline;
+      gap: 0.5rem;
+      padding: 1.75rem 0 0.75rem 0;
+      border-bottom: 1px solid var(--rule);
+    }
+    .log-area-letter {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 2px;
+      color: var(--muted);
+      text-transform: uppercase;
+    }
+    .log-area-name {
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      color: var(--ink);
+      text-transform: uppercase;
+    }
+
+    /* Entry */
+    .entry {
+      padding: 1.5rem 0;
+      border-bottom: 1px solid var(--rule);
+    }
+    .entry:last-child { border-bottom: none; }
+    .entry-meta {
+      display: flex;
+      align-items: center;
+      gap: 0.625rem;
+      margin-bottom: 0.375rem;
+      flex-wrap: wrap;
+    }
+    .entry-date {
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--muted);
+      font-variant-numeric: tabular-nums;
+    }
+    .tag {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      padding: 2px 7px;
+      border-radius: 3px;
+    }
+    .tag-code { background: var(--tag-code-bg); color: #ffffff; }
+    .tag-news { background: var(--tag-news-bg); color: var(--tag-news-color); }
+    .entry-title {
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--ink);
+      letter-spacing: -0.2px;
+      line-height: 1.35;
+      margin-bottom: 0.5rem;
+    }
+    .entry-title a {
+      color: inherit;
+      text-decoration: none;
+      border-bottom: 1px solid var(--rule);
+      padding-bottom: 1px;
+    }
+    .entry-title a:hover {
+      border-bottom-color: var(--ink);
+      text-decoration: none;
+    }
+    .entry-body {
+      font-size: 14px;
+      line-height: 1.7;
+      color: var(--muted);
+    }
+    .entry-body p { margin-bottom: 0.5rem; }
+    .entry-body p:last-child { margin-bottom: 0; }
+    .entry-how {
+      margin-top: 0.625rem;
+      font-size: 13px;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+    .entry-how strong { color: var(--ink); }
+    code {
+      font-family: 'Menlo', 'Monaco', 'Consolas', 'Courier New', monospace;
+      font-size: 12px;
+      background: var(--rule);
+      padding: 1px 5px;
+      border-radius: 3px;
+      color: var(--ink);
+    }
+
+    /* Quiet */
+    .quiet { margin-bottom: 3.5rem; }
+    .quiet p {
+      font-size: 14px;
+      line-height: 1.7;
+      color: var(--muted);
+      margin-bottom: 0.75rem;
+    }
+    .quiet p:last-child { margin-bottom: 0; }
+
+    /* The Close */
+    .the-close { margin-bottom: 3.5rem; }
+    .close-line {
+      font-size: 15px;
+      line-height: 1.65;
+      color: var(--ink);
+      margin-bottom: 0.75rem;
+    }
+    .close-line.final {
+      font-style: italic;
+      color: var(--muted);
+      margin-bottom: 0;
+    }
+
+    /* Footer */
+    .footer {
+      border-top: 1px solid var(--rule);
+      padding-top: 1.5rem;
+    }
+    .footer-ts {
+      font-size: 12px;
+      color: var(--muted);
+      margin-bottom: 1rem;
+    }
+    .footer-label {
+      display: block;
+      font-size: 10px;
+      font-weight: 600;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      margin-bottom: 0.5rem;
+    }
+    .footer-sources {
+      font-size: 12px;
+      color: var(--muted);
+      line-height: 2;
+    }
+    .footer-sources a { word-break: break-all; }
+    .footer-sources a:hover { color: var(--ink); text-decoration: underline; }
+
+    @media (max-width: 600px) {
+      body { padding: 2.5rem 1.25rem 3rem; }
+      .masthead-name { font-size: 2rem; }
+      .one-liner { font-size: 15px; }
+    }
+  </style>
+</head>
+<body>
+<div class="page">
+
+  <header class="masthead">
+    <div class="masthead-name">Shipped<span class="period">.</span></div>
+    <div class="masthead-dateline">Daily, Friday, May 9, 2026</div>
+  </header>
+
+  <div class="one-liner">
+    One Claude Code internal-fix patch, one unclosed $900 billion funding round, zero product releases: the shape of Friday, May 9.
+  </div>
+
+  <section class="release-log">
+    <span class="section-flag">Release Log</span>
+
+    <div class="log-area">
+      <div class="log-area-header">
+        <span class="log-area-letter">C</span>
+        <span class="log-area-name">Claude Code</span>
+      </div>
+
+      <div class="entry">
+        <div class="entry-meta">
+          <span class="entry-date">2026-05-09</span>
+          <span class="tag tag-code">CODE</span>
+        </div>
+        <div class="entry-title">
+          <a href="https://github.com/anthropics/claude-code/blob/main/CHANGELOG.md">Claude Code v2.1.138</a>
+        </div>
+        <div class="entry-body">
+          <p>Internal fixes. No user-facing changes documented.</p>
+        </div>
+        <div class="entry-how"><strong>How to use:</strong> <code>claude update</code> or reinstall.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="quiet">
+    <span class="section-flag">Quiet on the Wire</span>
+    <p>The $50 billion fundraise targeting an $880 to $900 billion valuation has been in motion since Bloomberg and <a href="https://techcrunch.com/2026/04/30/anthropic-potential-900b-valuation-round-could-happen-within-two-weeks/">TechCrunch</a> reported preemptive offers on April 29. Board decision was expected sometime in May. As of this sweep, Anthropic has not publicly confirmed a close.</p>
+    <p>Everything loud from the past 24 hours landed in yesterday's page: the Akamai $1.8 billion compute deal, Fortune's 80x Q1 growth disclosure, and the v2.1.136 and v2.1.137 patch cluster. API platform release notes, Claude Apps release notes, system prompts, and Anthropic research: no changes in this window.</p>
+  </section>
+
+  <section class="the-close">
+    <span class="section-flag">The Close</span>
+    <p class="close-line">One patch. Internal only.</p>
+    <p class="close-line">No model. No announcement.</p>
+    <p class="close-line final">The week ends quiet.</p>
+  </section>
+
+  <footer class="footer">
+    <div class="footer-ts">Generated 2026-05-10T01:02:45Z</div>
+    <span class="footer-label">Sources</span>
+    <div class="footer-sources">
+      <a href="https://github.com/anthropics/claude-code/blob/main/CHANGELOG.md">github.com/anthropics/claude-code: CHANGELOG.md</a><br>
+      <a href="https://techcrunch.com/2026/04/30/anthropic-potential-900b-valuation-round-could-happen-within-two-weeks/">techcrunch.com: Anthropic potential $900B+ valuation round could happen within 2 weeks</a><br>
+      <a href="https://www.bloomberg.com/news/articles/2026-04-29/anthropic-considering-funding-offers-at-over-900-billion-value">bloomberg.com: Anthropic Weighs Funding Offers at Over $900 Billion Valuation</a><br>
+      <a href="https://github.com/anthropics/anthropic-sdk-python/releases">github.com/anthropics/anthropic-sdk-python/releases</a><br>
+      <a href="https://github.com/anthropics/anthropic-sdk-typescript/releases">github.com/anthropics/anthropic-sdk-typescript/releases</a>
+    </div>
+  </footer>
+
+</div>
+</body>
+</html>
