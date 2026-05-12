@@ -3,10 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Shipped. Daily — May 11, 2026</title>
+  <title>Shipped. Daily - May 11, 2026</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Newsreader:ital,opsz,wght@1,6..72,400;1,6..72,600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Newsreader:ital,wght@1,400;1,600&display=swap" rel="stylesheet">
   <style>
     *, *::before, *::after {
       box-sizing: border-box;
@@ -20,7 +20,7 @@
       --muted: #666666;
       --rule: #E5E5E5;
       --tag-bg: #F2F2F2;
-      --code-bg: #F7F7F7;
+      --code-bg: #F5F5F5;
     }
 
     @media (prefers-color-scheme: dark) {
@@ -29,165 +29,147 @@
         --ink: #FFFFFF;
         --muted: #999999;
         --rule: #2A2A2A;
-        --tag-bg: #1A1A1A;
-        --code-bg: #141414;
+        --tag-bg: #1E1E1E;
+        --code-bg: #161616;
       }
     }
 
     body {
       background: var(--bg);
       color: var(--ink);
-      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
       font-size: 15px;
       line-height: 1.65;
       padding: 5rem 1.5rem 5rem;
+    }
+
+    .page {
       max-width: 720px;
       margin: 0 auto;
     }
 
-    a {
-      color: inherit;
-      text-decoration: none;
-    }
-
-    a:hover {
-      text-decoration: underline;
-      text-underline-offset: 2px;
-    }
-
-    /* ---- Masthead ---- */
-    .masthead {
+    /* Masthead */
+    .masthead-wrap {
       margin-bottom: 2.75rem;
-      padding-bottom: 1.75rem;
-      border-bottom: 1px solid var(--rule);
     }
 
-    .masthead-name {
-      font-family: 'Newsreader', 'Georgia', serif;
+    .masthead {
+      font-family: 'Newsreader', Georgia, 'Times New Roman', serif;
       font-style: italic;
       font-weight: 600;
       font-size: 2.25rem;
-      color: var(--ink);
-      letter-spacing: -0.025em;
+      letter-spacing: -0.03em;
       line-height: 1;
+      color: var(--ink);
       display: block;
-      margin-bottom: 0.5rem;
+      margin-bottom: 0.4rem;
     }
 
-    .masthead-dateline {
-      font-size: 0.7rem;
-      font-weight: 500;
-      color: var(--muted);
+    .dateline {
+      font-size: 11px;
+      font-weight: 600;
       letter-spacing: 0.14em;
       text-transform: uppercase;
+      color: var(--muted);
     }
 
-    /* ---- One-line read ---- */
+    /* One-line read */
     .one-line-read {
-      font-size: 1.125rem;
-      font-weight: 400;
-      line-height: 1.5;
+      font-size: 17px;
+      font-weight: 500;
+      line-height: 1.55;
       color: var(--ink);
-      margin-bottom: 2.75rem;
-      padding-bottom: 1.75rem;
-      border-bottom: 1px solid var(--rule);
+      margin-bottom: 2.25rem;
     }
 
-    /* ---- Section label ---- */
-    .section-label {
+    hr {
+      border: none;
+      border-top: 1px solid var(--rule);
+      margin: 2rem 0;
+    }
+
+    /* Section flags */
+    .section-flag {
       display: block;
-      font-size: 0.625rem;
-      font-weight: 600;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--muted);
-      margin-bottom: 0.875rem;
-    }
-
-    /* ---- Lead ---- */
-    .lead {
-      margin-bottom: 2.75rem;
-      padding-bottom: 2rem;
-      border-bottom: 1px solid var(--rule);
-    }
-
-    .lead p {
-      font-size: 1rem;
-      line-height: 1.725;
-      color: var(--ink);
-      margin-bottom: 0.875rem;
-    }
-
-    .lead p:last-child {
-      margin-bottom: 0;
-    }
-
-    .lead .source-line {
-      font-size: 0.8rem;
-      color: var(--muted);
-    }
-
-    /* ---- Release log ---- */
-    .release-log {
-      margin-bottom: 2.75rem;
-    }
-
-    .release-log-title {
-      display: block;
-      font-size: 0.625rem;
-      font-weight: 600;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--muted);
-      margin-bottom: 1.5rem;
-      padding-bottom: 0.75rem;
-      border-bottom: 1px solid var(--rule);
-    }
-
-    .category-group {
-      margin-bottom: 2rem;
-    }
-
-    .category-label {
-      display: block;
-      font-size: 0.6rem;
-      font-weight: 600;
+      font-size: 10px;
+      font-weight: 700;
       letter-spacing: 0.18em;
       text-transform: uppercase;
       color: var(--muted);
-      margin-bottom: 0.875rem;
-      padding-bottom: 0.5rem;
+      margin-bottom: 0.85rem;
+    }
+
+    /* Lead */
+    .lead-text {
+      font-size: 16px;
+      line-height: 1.72;
+      color: var(--ink);
+    }
+
+    .lead-text a {
+      color: inherit;
+      text-decoration: none;
       border-bottom: 1px solid var(--rule);
+    }
+
+    .lead-text a:hover {
+      border-bottom-color: var(--ink);
+    }
+
+    /* Release log */
+    .log-area-header {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--muted);
+      padding: 1.75rem 0 0.6rem;
+      border-bottom: 1px solid var(--rule);
+      margin-bottom: 0;
     }
 
     .log-entry {
-      padding: 1.125rem 0;
+      padding: 1.25rem 0;
       border-bottom: 1px solid var(--rule);
-    }
-
-    .log-entry:last-child {
-      border-bottom: none;
     }
 
     .log-entry-meta {
       display: flex;
-      align-items: center;
-      gap: 0.625rem;
-      margin-bottom: 0.5rem;
+      align-items: baseline;
       flex-wrap: wrap;
+      gap: 0.5rem 0.6rem;
+      margin-bottom: 0.4rem;
     }
 
     .log-date {
-      font-size: 0.7rem;
+      font-size: 11px;
       font-weight: 500;
       color: var(--muted);
       font-variant-numeric: tabular-nums;
+      flex-shrink: 0;
+    }
+
+    .log-title {
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--ink);
+      line-height: 1.3;
+    }
+
+    .log-title a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .log-title a:hover {
+      text-decoration: underline;
     }
 
     .log-tag {
-      font-size: 0.575rem;
+      display: inline-block;
+      font-size: 9px;
       font-weight: 700;
-      letter-spacing: 0.14em;
+      letter-spacing: 0.12em;
       text-transform: uppercase;
       background: var(--tag-bg);
       color: var(--muted);
@@ -195,247 +177,250 @@
       border-radius: 3px;
     }
 
-    .log-tag--code {
-      background: var(--ink);
-      color: var(--bg);
-    }
-
-    .log-tag--sdk-py {
-      background: var(--tag-bg);
-      color: var(--ink);
-      border: 1px solid var(--rule);
-    }
-
-    .log-tag--sdk-ts {
-      background: var(--tag-bg);
-      color: var(--ink);
-      border: 1px solid var(--rule);
-    }
-
-    .log-title {
-      font-size: 0.9375rem;
-      font-weight: 600;
-      color: var(--ink);
-      line-height: 1.3;
-    }
-
     .log-body {
-      font-size: 0.875rem;
-      line-height: 1.68;
+      font-size: 14px;
+      line-height: 1.63;
+      color: var(--muted);
+    }
+
+    .log-body a {
+      color: inherit;
+      text-decoration: none;
+      border-bottom: 1px solid var(--rule);
+    }
+
+    .log-body a:hover {
+      border-bottom-color: var(--muted);
+    }
+
+    .log-how-to {
+      font-size: 13px;
+      font-weight: 500;
       color: var(--ink);
-      margin-top: 0.5rem;
+      margin-top: 0.55rem;
     }
 
-    .log-body p {
-      margin-bottom: 0.5rem;
-    }
-
-    .log-body p:last-child {
-      margin-bottom: 0;
-    }
-
-    .log-body code,
     code {
-      font-family: 'SF Mono', 'Menlo', 'Consolas', 'Liberation Mono', monospace;
-      font-size: 0.8125em;
+      font-family: 'SF Mono', 'Fira Code', 'Menlo', 'Monaco', 'Consolas', monospace;
+      font-size: 12.5px;
       background: var(--code-bg);
       padding: 1px 5px;
       border-radius: 3px;
       color: var(--ink);
     }
 
-    .how-to-use {
-      font-size: 0.8rem;
+    /* Quiet section */
+    .quiet-body {
+      font-size: 14px;
+      line-height: 1.65;
       color: var(--muted);
+      padding-left: 1.25rem;
       margin-top: 0.5rem;
     }
 
-    .how-to-use code {
-      font-size: 0.8125em;
-    }
-
-    /* ---- Quiet on the Wire ---- */
-    .quiet {
-      margin-bottom: 2.75rem;
-      padding-bottom: 2rem;
-      border-bottom: 1px solid var(--rule);
-    }
-
-    .quiet-body {
-      font-size: 0.875rem;
-      line-height: 1.725;
-      color: var(--muted);
-      padding-left: 1.25rem;
-      border-left: 2px solid var(--rule);
-    }
-
-    /* ---- The Close ---- */
+    /* The Close */
     .close-section {
-      margin-bottom: 2.75rem;
-      padding-bottom: 2rem;
-      border-bottom: 1px solid var(--rule);
-    }
-
-    .close-body p {
-      font-size: 0.9375rem;
-      line-height: 1.65;
-      color: var(--ink);
-      margin-bottom: 0.5rem;
-    }
-
-    .close-body p:last-child {
-      font-style: italic;
-      color: var(--muted);
-      margin-bottom: 0;
-    }
-
-    /* ---- Footer ---- */
-    .footer {
-      font-size: 0.7rem;
-      color: var(--muted);
-      line-height: 1.75;
-    }
-
-    .footer p {
-      margin-bottom: 0.5rem;
-    }
-
-    .footer p:last-child {
-      margin-bottom: 0;
-    }
-
-    .footer-sources {
-      margin-top: 0.75rem;
-    }
-
-    .footer-sources ul {
-      list-style: none;
       margin-top: 0.25rem;
     }
 
-    .footer-sources li {
-      margin-bottom: 0.2rem;
+    .close-section p {
+      font-size: 15px;
+      font-weight: 400;
+      line-height: 1.55;
+      color: var(--ink);
+      margin-bottom: 0.4rem;
+    }
+
+    .close-section p:last-child {
+      font-style: italic;
+      color: var(--muted);
+    }
+
+    /* Footer */
+    .footer {
+      margin-top: 3rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--rule);
+      font-size: 11.5px;
+      color: var(--muted);
+      line-height: 1.85;
+    }
+
+    .footer a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .footer a:hover {
+      text-decoration: underline;
+    }
+
+    .footer-label {
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      font-size: 10px;
+      display: block;
+      margin-bottom: 0.4rem;
     }
 
     @media (max-width: 600px) {
       body {
-        padding: 3rem 1.25rem 4rem;
+        padding: 3rem 1.25rem 3.5rem;
       }
-      .masthead-name {
-        font-size: 1.875rem;
+      .masthead {
+        font-size: 1.75rem;
       }
       .one-line-read {
-        font-size: 1rem;
+        font-size: 16px;
       }
     }
   </style>
 </head>
 <body>
+  <div class="page">
 
-  <header class="masthead">
-    <span class="masthead-name">Shipped.</span>
-    <span class="masthead-dateline">Daily &middot; Monday, May 11, 2026</span>
-  </header>
+    <div class="masthead-wrap">
+      <span class="masthead">Shipped.</span>
+      <div class="dateline">Daily &middot; Monday, May 11, 2026</div>
+    </div>
 
-  <p class="one-line-read">Three releases. Agent View lands in Claude Code, AWS client support ships across both SDKs, and the rest of the board stays quiet.</p>
+    <p class="one-line-read">Claude Code ships Agent View and a goal-based continuation command; four language SDKs sync around AWS client support and API-key log hygiene.</p>
 
-  <section class="lead">
-    <span class="section-label">Lead</span>
-    <p>Agent View is the kind of feature that sounds obvious once it exists. Before today, running multiple Claude Code sessions meant context-switching blind: no unified view of what was running, what was blocked, what had finished. Version 2.1.139, released Monday afternoon, changes that. Run <code>claude agents</code> from any terminal and you get a single list of every session, organized by state.</p>
-    <p>The research preview ships alongside a <code>/goal</code> command that lets Claude continue working across turns until a defined completion condition is met, and a <code>continueOnBlock</code> hook option for PostToolUse that gives operators finer control over automated runs. Both features push in the same direction: multi-session orchestration, handled natively in the CLI.</p>
-    <p class="source-line">Sources: <a href="https://github.com/anthropics/claude-code/releases">github.com/anthropics/claude-code/releases</a> &bull; <a href="https://code.claude.com/docs/en/agent-view">code.claude.com/docs/en/agent-view</a></p>
-  </section>
+    <hr>
 
-  <section class="release-log">
-    <span class="release-log-title">Release Log</span>
+    <span class="section-flag">Lead</span>
+    <p class="lead-text">
+      Claude Code v2.1.139 landed at 18:43 UTC. Two features anchor it. Agent View (Research Preview) surfaces every session, running, blocked, or completed, in a single list accessible via <code>claude agents</code>. The <code>/goal</code> command lets you set a completion condition once; Claude keeps working across turns until it hits it, with a live overlay showing elapsed time, turns, and tokens. Forty-plus bug fixes ride along, including a deadlock fix for expired credentials and a hard 16 MB cap on previously unbounded memory growth in HTTP/SSE MCP servers.
+      (<a href="https://github.com/anthropics/claude-code/releases/tag/v2.1.139">release notes</a>)
+    </p>
 
-    <div class="category-group">
-      <span class="category-label">C. Claude Code</span>
+    <hr>
 
-      <div class="log-entry">
-        <div class="log-entry-meta">
-          <span class="log-date">2026-05-11</span>
-          <span class="log-tag log-tag--code">CODE</span>
-          <span class="log-title"><a href="https://github.com/anthropics/claude-code/releases">Claude Code v2.1.139</a></span>
-        </div>
-        <div class="log-body">
-          <p>Agent View (research preview) adds <code>claude agents</code>, a single-list view of all Claude Code sessions (running, blocked on you, done). New <code>/goal</code> command sets a completion condition and Claude works across turns until it is met, in interactive, <code>-p</code>, and Remote Control modes, with a live overlay showing elapsed time, turns, and tokens. <code>/scroll-speed</code> tunes mouse wheel scroll speed with live preview. <code>claude plugin details &lt;name&gt;</code> shows plugin component inventory and projected per-session token cost.</p>
-          <p>Transcript navigation: <code>?</code> for keyboard shortcuts, <code>{</code>/<code>}</code> to jump between user prompts, <code>v</code> to toggle the shortcut panel. Hook improvements: <code>args: string[]</code> exec-form field for direct command spawning without shell; <code>continueOnBlock</code> config option for PostToolUse. MCP: stdio servers now receive <code>CLAUDE_PROJECT_DIR</code> env var; <code>/mcp Reconnect</code> picks up <code>.mcp.json</code> edits without restart. Remote Control subagent requests carry <code>x-claude-code-agent-id</code> and <code>x-claude-code-parent-agent-id</code> headers. Settings: Remote Control, <code>/schedule</code>, and claude.ai MCP connectors disabled when <code>ANTHROPIC_API_KEY</code> is set. Numerous bug fixes across terminal rendering, MCP servers, permissions, and UI.</p>
-        </div>
-        <p class="how-to-use"><strong>How to use:</strong> <code>claude update</code> or reinstall. Then run <code>claude agents</code> to open Agent View.</p>
+    <span class="section-flag">Release Log</span>
+
+    <div class="log-area-header">Code</div>
+
+    <div class="log-entry">
+      <div class="log-entry-meta">
+        <span class="log-date">2026-05-11</span>
+        <span class="log-title"><a href="https://github.com/anthropics/claude-code/releases/tag/v2.1.139">Claude Code v2.1.139</a></span>
+        <span class="log-tag">CODE</span>
+      </div>
+      <div class="log-body">
+        Agent View (Research Preview): <code>claude agents</code> lists all running, blocked, and completed sessions in one place. <code>/goal</code> sets a multi-turn completion condition with a live timer overlay. <code>/scroll-speed</code> tunes scroll behavior with live preview. <code>claude plugin details &lt;name&gt;</code> shows component inventory and projected per-session token cost. Transcript navigation: <code>?</code> for shortcuts, <code>{</code>/<code>}</code> to jump between user prompts, <code>v</code> to toggle the shortcut panel. Hook additions: <code>args: string[]</code> field for exec-form commands, <code>continueOnBlock</code> option on <code>PostToolUse</code> hooks. MCP: stdio servers now receive <code>CLAUDE_PROJECT_DIR</code>, and <code>/mcp Reconnect</code> picks up <code>.mcp.json</code> edits without a restart. 40+ bug fixes, including a deadlock on expired credentials, an <code>autoAllowBashIfSandboxed</code> shell-expansion gap, a 16 MB memory cap per MCP frame, and mouse scroll in Cursor and VS Code 1.92 through 1.104.
+      </div>
+      <div class="log-how-to">How to use: <code>claude update</code>, then run <code>claude agents</code> to open Agent View.</div>
+    </div>
+
+    <div class="log-entry">
+      <div class="log-entry-meta">
+        <span class="log-date">2026-05-11</span>
+        <span class="log-title"><a href="https://github.com/anthropics/claude-agent-sdk-typescript/releases/tag/v0.2.139">claude-agent-sdk-typescript v0.2.139</a></span>
+        <span class="log-tag">CODE</span>
+      </div>
+      <div class="log-body">
+        Published at parity with Claude Code v2.1.139.
+      </div>
+      <div class="log-how-to">Install: <code>npm install @anthropic-ai/claude-agent-sdk@0.2.139</code></div>
+    </div>
+
+    <div class="log-area-header">SDK</div>
+
+    <div class="log-entry">
+      <div class="log-entry-meta">
+        <span class="log-date">2026-05-11</span>
+        <span class="log-title"><a href="https://github.com/anthropics/anthropic-sdk-python/releases/tag/v0.101.0">anthropic-sdk-python v0.101.0</a></span>
+        <span class="log-tag">SDK</span>
+      </div>
+      <div class="log-body">
+        Adds an AWS client for Claude Platform on AWS. Fixes a missing <code>f</code>-string prefix in the file type error message. Updates example tools to <code>claude-sonnet-4-5-20250929</code>.
+      </div>
+      <div class="log-how-to">Install: <code>pip install --upgrade anthropic</code></div>
+    </div>
+
+    <div class="log-entry">
+      <div class="log-entry-meta">
+        <span class="log-date">2026-05-11</span>
+        <span class="log-title"><a href="https://github.com/anthropics/anthropic-sdk-typescript/releases">anthropic-sdk-typescript sdk v0.95.2 / aws-sdk v0.3.0</a></span>
+        <span class="log-tag">SDK</span>
+      </div>
+      <div class="log-body">
+        aws-sdk v0.3.0 adds a new AWS client for Claude Platform on AWS, matching the Python SDK addition published the same hour. sdk v0.95.2 is a patch release with no listed feature changes.
+      </div>
+      <div class="log-how-to">Install: <code>npm install @anthropic-ai/sdk@latest</code></div>
+    </div>
+
+    <div class="log-entry">
+      <div class="log-entry-meta">
+        <span class="log-date">2026-05-11</span>
+        <span class="log-title"><a href="https://github.com/anthropics/anthropic-sdk-java/releases/tag/v2.31.0">anthropic-sdk-java v2.31.0</a></span>
+        <span class="log-tag">SDK</span>
+      </div>
+      <div class="log-body">
+        Improved logging throughout the client. API-key headers are now redacted in debug logs, removing a credential-exposure vector present in verbose debug output.
       </div>
     </div>
 
-    <div class="category-group">
-      <span class="category-label">F. Agent SDKs</span>
+    <div class="log-area-header">API</div>
 
-      <div class="log-entry">
-        <div class="log-entry-meta">
-          <span class="log-date">2026-05-11</span>
-          <span class="log-tag log-tag--sdk-py">SDK-PY</span>
-          <span class="log-title"><a href="https://github.com/anthropics/anthropic-sdk-python/releases">anthropic-sdk-python v0.101.0</a></span>
-        </div>
-        <div class="log-body">
-          <p>Adds an AWS client for Claude Platform on AWS. Bug fix: corrected missing f-string prefix in a file type error message.</p>
-        </div>
-        <p class="how-to-use"><strong>How to use:</strong> <code>pip install --upgrade anthropic</code></p>
+    <div class="log-entry">
+      <div class="log-entry-meta">
+        <span class="log-date">2026-05-11</span>
+        <span class="log-title"><a href="https://github.com/anthropics/anthropic-cli/releases/tag/v1.7.1">anthropic-cli v1.7.1</a></span>
+        <span class="log-tag">API</span>
       </div>
-
-      <div class="log-entry">
-        <div class="log-entry-meta">
-          <span class="log-date">2026-05-11</span>
-          <span class="log-tag log-tag--sdk-ts">SDK-TS</span>
-          <span class="log-title"><a href="https://github.com/anthropics/anthropic-sdk-typescript/releases">anthropic-sdk-typescript v0.95.2</a></span>
-        </div>
-        <div class="log-body">
-          <p>Patch release. Full changelog in the GitHub comparison.</p>
-        </div>
-        <p class="how-to-use"><strong>How to use:</strong> <code>npm install @anthropic-ai/sdk@latest</code></p>
-      </div>
-
-      <div class="log-entry">
-        <div class="log-entry-meta">
-          <span class="log-date">2026-05-11</span>
-          <span class="log-tag log-tag--sdk-ts">SDK-TS</span>
-          <span class="log-title"><a href="https://github.com/anthropics/anthropic-sdk-typescript/releases">anthropic-sdk-typescript aws-sdk v0.3.0</a></span>
-        </div>
-        <div class="log-body">
-          <p>Adds an AWS client for Claude Platform on AWS. Mirrors the Python SDK v0.101.0 feature, giving TypeScript callers the same AWS compute lane.</p>
-        </div>
+      <div class="log-body">
+        API-key headers redacted in debug logs. Single-change patch. Mirrors the same hygiene fix applied to the Java SDK.
       </div>
     </div>
-  </section>
 
-  <section class="quiet">
-    <span class="section-label">Quiet on the Wire</span>
-    <p class="quiet-body">No model releases. No API release notes updates (docs.anthropic.com returned 403 on direct fetch today; no changes confirmed for the window). No Claude Apps changes. No research papers from anthropic.com in this window. No news posts from anthropic.com. The Frontier Safety Roadmap last updated May 5, 2026, when Anthropic moved the Phase 1 Moonshot R&D target to September 30, 2026, and removed the data retention goal from the roadmap. Nothing moved today.</p>
-  </section>
+    <div class="log-entry">
+      <div class="log-entry-meta">
+        <span class="log-date">2026-05-11</span>
+        <span class="log-title"><a href="https://github.com/anthropics/anthropic-cli/releases/tag/v1.7.0">anthropic-cli v1.7.0</a></span>
+        <span class="log-tag">API</span>
+      </div>
+      <div class="log-body">
+        Support for Managed Agents multiagents and outcomes, webhooks, and vault validation. Originally implemented May 6; tagged and published May 11.
+      </div>
+    </div>
 
-  <section class="close-section">
-    <span class="section-label">The Close</span>
-    <div class="close-body">
+    <hr>
+
+    <span class="section-flag">Quiet on the Wire</span>
+    <p class="quiet-body">
+      No model releases in this window. No research papers. No Claude Apps updates visible. anthropic.com/news shows no posts dated May 11. The API release notes, system-prompt, and docs pages returned 403 errors during this sweep; activity there is unconfirmed for today.
+    </p>
+
+    <hr>
+
+    <span class="section-flag">The Close</span>
+    <div class="close-section">
       <p>Agent View ships. The CLI becomes a dashboard.</p>
-      <p>Both SDKs open an AWS lane.</p>
+      <p>Four SDKs open an AWS lane on the same afternoon.</p>
       <p>Quiet everywhere else.</p>
     </div>
-  </section>
 
-  <footer class="footer">
-    <p>Generated 2026-05-12T01:09:00Z</p>
-    <div class="footer-sources">
-      <p>Sources:</p>
-      <ul>
-        <li><a href="https://github.com/anthropics/claude-code/releases">github.com/anthropics/claude-code/releases</a></li>
-        <li><a href="https://code.claude.com/docs/en/agent-view">code.claude.com/docs/en/agent-view</a></li>
-        <li><a href="https://github.com/anthropics/anthropic-sdk-python/releases">github.com/anthropics/anthropic-sdk-python/releases</a></li>
-        <li><a href="https://github.com/anthropics/anthropic-sdk-typescript/releases">github.com/anthropics/anthropic-sdk-typescript/releases</a></li>
-        <li><a href="https://claude-world.com/articles/claude-code-21139-release/">claude-world.com (Claude Code v2.1.139 coverage)</a></li>
-        <li><a href="https://www.testingcatalog.com/anthropic-adds-agent-view-for-claude-code-for-parralel-work/">testingcatalog.com (Agent View coverage)</a></li>
-        <li><a href="https://x.com/ClaudeCodeLog/status/2053913638197416198">x.com/ClaudeCodeLog (v2.1.139 changelog thread)</a></li>
-        <li><a href="https://www.anthropic.com/responsible-scaling-policy/updates">anthropic.com/responsible-scaling-policy/updates (last update 2026-05-05, outside window)</a></li>
-      </ul>
+    <div class="footer">
+      <span class="footer-label">Generated</span>
+      2026-05-12T01:58:33Z
+
+      <br><br>
+      <span class="footer-label">Sources</span>
+      <a href="https://github.com/anthropics/claude-code/releases">github.com/anthropics/claude-code/releases</a><br>
+      <a href="https://github.com/anthropics/claude-agent-sdk-typescript/releases">github.com/anthropics/claude-agent-sdk-typescript/releases</a><br>
+      <a href="https://github.com/anthropics/anthropic-sdk-python/releases">github.com/anthropics/anthropic-sdk-python/releases</a><br>
+      <a href="https://github.com/anthropics/anthropic-sdk-typescript/releases">github.com/anthropics/anthropic-sdk-typescript/releases</a><br>
+      <a href="https://github.com/anthropics/anthropic-sdk-java/releases">github.com/anthropics/anthropic-sdk-java/releases</a><br>
+      <a href="https://github.com/anthropics/anthropic-cli/releases">github.com/anthropics/anthropic-cli/releases</a><br>
+      <a href="https://www.anthropic.com/news">anthropic.com/news</a> (403 during sweep; no May 11 entries via search)<br>
+      <a href="https://docs.anthropic.com/en/release-notes/overview">docs.anthropic.com/en/release-notes/overview</a> (403)<br>
+      <a href="https://docs.anthropic.com/en/release-notes/api">docs.anthropic.com/en/release-notes/api</a> (403)<br>
+      <a href="https://docs.anthropic.com/en/release-notes/claude-apps">docs.anthropic.com/en/release-notes/claude-apps</a> (403)<br>
+      <a href="https://www.anthropic.com/research">anthropic.com/research</a> (403)
     </div>
-  </footer>
 
+  </div>
 </body>
 </html>
