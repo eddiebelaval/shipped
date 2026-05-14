@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Shipped. Daily — May 13, 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Newsreader:ital,wght@1,400;1,600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #FFFFFF;
+    --ink: #000000;
+    --muted: #666666;
+    --rule: #E5E5E5;
+    --accent: #FF6B35;
+    --tag-bg: #F0F0F0;
+    --tag-ink: #444444;
+    --code-bg: #F6F6F6;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #0A0A0A;
+      --ink: #FFFFFF;
+      --muted: #999999;
+      --rule: #2A2A2A;
+      --tag-bg: #1E1E1E;
+      --tag-ink: #CCCCCC;
+      --code-bg: #141414;
+    }
+  }
+
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: 'Inter', -apple-system, sans-serif;
+    font-size: 15px;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .page {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 5rem 1.5rem 5rem;
+  }
+
+  /* Masthead */
+  .masthead {
+    margin-bottom: 2.5rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid var(--rule);
+  }
+  .masthead-title {
+    font-family: 'Newsreader', Georgia, serif;
+    font-style: italic;
+    font-size: 2.25rem;
+    font-weight: 600;
+    color: var(--ink);
+    line-height: 1;
+    letter-spacing: -0.02em;
+    margin-bottom: 0.4rem;
+  }
+  .masthead-title .period {
+    color: var(--accent);
+  }
+  .masthead-dateline {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  /* One-liner */
+  .one-liner {
+    font-size: 1.0625rem;
+    font-weight: 500;
+    color: var(--ink);
+    line-height: 1.55;
+    margin-bottom: 2.5rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  /* Section flags */
+  .section-flag {
+    display: block;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 0.85rem;
+  }
+
+  /* Lead */
+  .lead {
+    margin-bottom: 2.5rem;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid var(--rule);
+  }
+  .lead p {
+    font-size: 1rem;
+    line-height: 1.70;
+    color: var(--ink);
+    margin-bottom: 1rem;
+  }
+  .lead p:last-child { margin-bottom: 0; }
+
+  /* Release log */
+  .release-log {
+    margin-bottom: 2.5rem;
+  }
+  .release-log-header {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--muted);
+    padding-bottom: 0.75rem;
+    border-bottom: 1px solid var(--rule);
+    margin-bottom: 1.5rem;
+  }
+
+  .log-group {
+    margin-bottom: 2rem;
+  }
+  .log-group-label {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 1rem;
+    padding-bottom: 0.4rem;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .log-entry {
+    padding: 1.25rem 0;
+    border-bottom: 1px solid var(--rule);
+  }
+  .log-entry:last-child { border-bottom: none; }
+
+  .log-entry-meta {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    margin-bottom: 0.45rem;
+    flex-wrap: wrap;
+  }
+  .log-entry-date {
+    font-size: 11px;
+    font-weight: 500;
+    color: var(--muted);
+    font-feature-settings: 'tnum';
+  }
+  .log-tag {
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 2px 6px;
+    border-radius: 3px;
+    background: var(--tag-bg);
+    color: var(--tag-ink);
+  }
+  .log-tag--code { background: #595959; color: #fff; }
+  .log-tag--sdk-py { background: var(--tag-bg); color: var(--tag-ink); border: 1px solid var(--rule); }
+  .log-tag--sdk-ts { background: var(--tag-bg); color: var(--tag-ink); border: 1px solid var(--rule); }
+  .log-tag--news { background: var(--tag-bg); color: var(--tag-ink); border: 1px solid var(--rule); }
+
+  .log-entry-title {
+    font-size: 0.9375rem;
+    font-weight: 600;
+    color: var(--ink);
+    line-height: 1.35;
+    margin-bottom: 0.5rem;
+  }
+  .log-entry-title a {
+    color: inherit;
+    text-decoration: none;
+    border-bottom: 1px solid var(--rule);
+    padding-bottom: 1px;
+  }
+  .log-entry-title a:hover { border-bottom-color: var(--ink); }
+
+  .log-entry-body {
+    font-size: 0.875rem;
+    line-height: 1.60;
+    color: #404040;
+  }
+  @media (prefers-color-scheme: dark) {
+    .log-entry-body { color: #BBBBBB; }
+  }
+
+  .log-entry-how {
+    margin-top: 0.6rem;
+    font-size: 0.8125rem;
+    color: var(--muted);
+  }
+  .log-entry-how strong {
+    font-weight: 600;
+    color: var(--ink);
+  }
+
+  code {
+    font-family: 'JetBrains Mono', 'Fira Code', 'Courier New', monospace;
+    font-size: 0.8125rem;
+    background: var(--code-bg);
+    color: var(--ink);
+    padding: 1px 5px;
+    border-radius: 3px;
+  }
+
+  /* Quiet on the wire */
+  .quiet {
+    margin-bottom: 2.5rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid var(--rule);
+  }
+  .quiet p {
+    font-size: 0.9375rem;
+    line-height: 1.65;
+    color: var(--muted);
+    padding-left: 1.25rem;
+    border-left: 2px solid var(--rule);
+  }
+
+  /* Footer */
+  .footer {
+    font-size: 11px;
+    color: var(--muted);
+    line-height: 1.70;
+  }
+  .footer-flag {
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 0.75rem;
+    display: block;
+  }
+  .footer a {
+    color: inherit;
+    text-decoration: underline;
+    text-underline-offset: 2px;
+  }
+  .footer a:hover { color: var(--ink); }
+  .footer-sources { margin-top: 0.75rem; }
+  .footer-sources ul { list-style: none; }
+  .footer-sources li { margin-bottom: 0.2rem; }
+
+  @media (max-width: 600px) {
+    .page { padding: 3rem 1.25rem 3rem; }
+    .masthead-title { font-size: 1.75rem; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- Masthead -->
+  <header class="masthead">
+    <div class="masthead-title">Shipped<span class="period">.</span></div>
+    <div class="masthead-dateline">Daily &nbsp;|&nbsp; Wednesday, May 13, 2026</div>
+  </header>
+
+  <!-- One-line read -->
+  <p class="one-liner">
+    Anthropic shipped Claude for Small Business, two Claude Code builds, and the same cache-diagnostics-plus-ManagedAgents drop across both SDK flavors.
+  </p>
+
+  <!-- Lead -->
+  <section class="lead">
+    <span class="section-flag">Lead</span>
+    <p>
+      Claude for Small Business is a toggle install. That is the product decision underneath the announcement: no new interface, no separate app, no extra line item. The package drops Claude-powered connectors and agentic workflows into the software small businesses already run: Intuit QuickBooks, PayPal, HubSpot, Canva, DocuSign, Google Workspace, Microsoft 365. Payroll planning, month-end close, cash-flow forecasting, invoice chasing, and campaign creation are the covered workloads. (<a href="https://www.anthropic.com/news/claude-for-small-business">anthropic.com/news/claude-for-small-business</a>; reported by TechCrunch and The Register, May 13.)
+    </p>
+    <p>
+      Anthropic put a number on the audience: 44% of U.S. GDP, roughly half the private-sector workforce. The gap they are pitching against is the distance between "we have a chat window" and "Claude is doing work." Starting May 14 in Chicago, a 10-city free half-day workshop tour runs to close that gap in person. No extra cost beyond existing Claude licenses. Anthropic is also backing a Workday Foundation solopreneurship accelerator and partnering with three CDFIs (Accion Opportunity Fund, Community Reinvestment Fund USA, Pacific Community Ventures) with Claude credits.
+    </p>
+    <p>
+      The connector model is the tell: Anthropic is not building the SMB integrations itself. It is providing the reasoning layer and the workflow primitives; the software partners carry the integration surface. Same structure as the enterprise push.
+    </p>
+  </section>
+
+  <!-- Release Log -->
+  <section class="release-log">
+    <div class="release-log-header">Release Log</div>
+
+    <!-- Claude Code group -->
+    <div class="log-group">
+      <div class="log-group-label">C. Claude Code</div>
+
+      <div class="log-entry">
+        <div class="log-entry-meta">
+          <span class="log-entry-date">2026-05-13</span>
+          <span class="log-tag log-tag--code">CODE</span>
+        </div>
+        <div class="log-entry-title">
+          <a href="https://github.com/anthropics/claude-code/releases">Claude Code v2.1.141</a>
+        </div>
+        <div class="log-entry-body">
+          Agent view (Research Preview) shows all Claude Code sessions in a single list: running, blocked on you, or done. <code>/goal</code> sets a completion condition and Claude keeps working across turns until it is met. <code>/scroll-speed</code> tunes mouse wheel speed with live preview. <code>claude plugin details &lt;name&gt;</code> shows a plugin's component inventory and projected per-session token cost. Auto mode permission dialog now explains when a <code>permissions.ask</code> rule caused the prompt. Rewind menu gains "Summarize up to here." Background agents via <code>/bg</code> or double-left-arrow preserve the current permission mode. Spinner feedback goes amber after 10 seconds of long thinking. Plus reliability fixes across background side-queries, daemon status, agent dashboard, permission prompts, markdown tables, and editor integrations.
+        </div>
+        <div class="log-entry-how">
+          <strong>How to use:</strong> <code>claude update</code> or reinstall. Agent view appears automatically for Research Preview users. <code>/goal &lt;condition&gt;</code> starts a persistent multi-turn run.
+        </div>
+      </div>
+
+      <div class="log-entry">
+        <div class="log-entry-meta">
+          <span class="log-entry-date">2026-05-12</span>
+          <span class="log-tag log-tag--code">CODE</span>
+        </div>
+        <div class="log-entry-title">
+          <a href="https://github.com/anthropics/claude-code/releases">Claude Code v2.1.140</a>
+        </div>
+        <div class="log-entry-body">
+          Agent tool <code>subagent_type</code> matching now accepts case- and separator-insensitive values. Updated agent color palette. Fixes: <code>/goal</code> hanging silently when <code>disableAllHooks</code> or <code>allowManagedHooksOnly</code> is set; settings hot-reload regression for symlinked files; <code>claude --bg</code> connection drops; background service startup failures on machines with enterprise endpoint security; event-loop stalls on Windows with missing executables; <code>Read</code> tool validation for padded offset values.
+        </div>
+        <div class="log-entry-how">
+          <strong>How to use:</strong> <code>claude update</code> or reinstall. No config changes required.
+        </div>
+      </div>
+    </div>
+
+    <!-- News group -->
+    <div class="log-group">
+      <div class="log-group-label">G. News</div>
+
+      <div class="log-entry">
+        <div class="log-entry-meta">
+          <span class="log-entry-date">2026-05-13</span>
+          <span class="log-tag log-tag--news">NEWS</span>
+        </div>
+        <div class="log-entry-title">
+          <a href="https://www.anthropic.com/news/claude-for-small-business">Introducing Claude for Small Business</a>
+        </div>
+        <div class="log-entry-body">
+          A packaged install of Claude connectors and agentic workflows for SMB software: QuickBooks, PayPal, HubSpot, Canva, DocuSign, Google Workspace, Microsoft 365. No additional charge beyond existing Claude and partner-tool licenses. Anthropic is also backing a Workday Foundation solopreneurship accelerator and partnering with three CDFIs (Accion Opportunity Fund, Community Reinvestment Fund USA, Pacific Community Ventures). A 10-city free training tour kicks off May 14 in Chicago.
+        </div>
+      </div>
+    </div>
+
+    <!-- SDKs group -->
+    <div class="log-group">
+      <div class="log-group-label">E. Agent SDKs</div>
+
+      <div class="log-entry">
+        <div class="log-entry-meta">
+          <span class="log-entry-date">2026-05-13</span>
+          <span class="log-tag log-tag--sdk-py">SDK-PY</span>
+        </div>
+        <div class="log-entry-title">
+          <a href="https://github.com/anthropics/anthropic-sdk-python/releases/tag/v0.102.0">anthropic-sdk-python v0.102.0</a>
+        </div>
+        <div class="log-entry-body">
+          Adds <code>BetaManagedAgentsSearchResultBlock</code> types and support for the cache diagnostics beta. Internal: eager validation for Pydantic iterators. API spec updates.
+        </div>
+        <div class="log-entry-how">
+          <strong>How to use:</strong> <code>pip install anthropic==0.102.0</code>
+        </div>
+      </div>
+
+      <div class="log-entry">
+        <div class="log-entry-meta">
+          <span class="log-entry-date">2026-05-13</span>
+          <span class="log-tag log-tag--sdk-ts">SDK-TS</span>
+        </div>
+        <div class="log-entry-title">
+          <a href="https://github.com/anthropics/anthropic-sdk-typescript/releases/tag/sdk-v0.96.0">anthropic-sdk-typescript v0.96.0</a>
+        </div>
+        <div class="log-entry-body">
+          Adds <code>BetaManagedAgentsSearchResultBlock</code> types and cache diagnostics beta support, matching the Python drop. Bug fix: ensures only <code>zod/v4</code> types are used.
+        </div>
+        <div class="log-entry-how">
+          <strong>How to use:</strong> <code>npm install @anthropic-ai/sdk@0.96.0</code>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Quiet on the Wire -->
+  <section class="quiet">
+    <span class="section-flag">Quiet on the Wire</span>
+    <p>
+      No model releases. No API release notes changes confirmed (docs.anthropic.com returned 403 on direct fetch). No Claude Apps changes visible. No research papers from anthropic.com in this window. System prompts release notes not accessible. Search results and multiple outlets confirm Claude for Small Business was the only news.anthropic.com post today.
+    </p>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <span class="footer-flag">Shipped. Daily &nbsp;|&nbsp; id8Labs &nbsp;|&nbsp; Generated 2026-05-14T01:10:46Z UTC</span>
+    <div class="footer-sources">
+      Sources consulted:
+      <ul>
+        <li><a href="https://www.anthropic.com/news/claude-for-small-business">anthropic.com/news/claude-for-small-business</a> (403 on direct fetch; confirmed via search and multiple outlets)</li>
+        <li><a href="https://techcrunch.com/2026/05/13/anthropic-courts-a-new-kind-of-customer-small-business-owners/">TechCrunch: Anthropic courts small business owners</a></li>
+        <li><a href="https://www.theregister.com/ai-ml/2026/05/13/anthropic-butts-in-to-small-business-promises-help-with-payroll-and-other-core-tasks/5239967">The Register: Anthropic and small business</a></li>
+        <li><a href="https://github.com/anthropics/claude-code/releases">github.com/anthropics/claude-code/releases</a></li>
+        <li><a href="https://github.com/anthropics/anthropic-sdk-python/releases">github.com/anthropics/anthropic-sdk-python/releases</a></li>
+        <li><a href="https://github.com/anthropics/anthropic-sdk-typescript/releases">github.com/anthropics/anthropic-sdk-typescript/releases</a></li>
+      </ul>
+    </div>
+  </footer>
+
+</div>
+</body>
+</html>
