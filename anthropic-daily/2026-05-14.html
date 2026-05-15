@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Shipped. Daily — May 14, 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Newsreader:ital,wght@1,400;1,600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #ffffff;
+    --ink: #000000;
+    --muted: #666666;
+    --rule: #e5e5e5;
+    --tag-bg: #f0f0f0;
+    --tag-ink: #333333;
+    --code-bg: #f7f7f7;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #0a0a0a;
+      --ink: #ffffff;
+      --muted: #999999;
+      --rule: #2a2a2a;
+      --tag-bg: #1e1e1e;
+      --tag-ink: #cccccc;
+      --code-bg: #111111;
+    }
+  }
+
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-size: 16px;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .page {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 5rem 1.5rem 6rem;
+  }
+
+  /* Masthead */
+  .masthead {
+    margin-bottom: 2.5rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .masthead-name {
+    font-family: 'Newsreader', Georgia, serif;
+    font-style: italic;
+    font-weight: 600;
+    font-size: 2.25rem;
+    color: var(--ink);
+    letter-spacing: -0.5px;
+    line-height: 1;
+    display: block;
+    margin-bottom: 0.5rem;
+  }
+
+  .masthead-dateline {
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  /* One-line read */
+  .one-liner {
+    font-size: 1.125rem;
+    line-height: 1.6;
+    color: var(--ink);
+    margin-bottom: 2.5rem;
+    font-weight: 400;
+  }
+
+  /* Section rule */
+  hr {
+    border: none;
+    border-top: 1px solid var(--rule);
+    margin: 2.5rem 0;
+  }
+
+  /* Section flags */
+  .section-flag {
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--muted);
+    display: block;
+    margin-bottom: 1rem;
+  }
+
+  /* Lead prose */
+  .lead-body p {
+    font-size: 1rem;
+    line-height: 1.75;
+    color: var(--ink);
+    margin-bottom: 1.1rem;
+  }
+
+  .lead-body p:last-child { margin-bottom: 0; }
+
+  /* Release log */
+  .log-section-header {
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--muted);
+    padding: 1.5rem 0 0.75rem;
+    border-bottom: 1px solid var(--rule);
+    display: block;
+    margin-bottom: 0;
+  }
+
+  .log-entry {
+    padding: 1.25rem 0;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .log-entry:last-child { border-bottom: none; }
+
+  .log-entry-meta {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    margin-bottom: 0.4rem;
+    flex-wrap: wrap;
+  }
+
+  .log-entry-date {
+    font-size: 0.73rem;
+    font-weight: 500;
+    color: var(--muted);
+    letter-spacing: 0.04em;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .log-tag {
+    font-size: 0.63rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 2px 7px;
+    border-radius: 3px;
+    background: var(--tag-bg);
+    color: var(--tag-ink);
+  }
+
+  .log-tag--news { background: #f0f0f0; color: #333; }
+  .log-tag--code { background: #1a1a1a; color: #fff; }
+  .log-tag--api  { background: #333; color: #fff; }
+  .log-tag--sdk  { background: #e8e8e8; color: #222; }
+
+  @media (prefers-color-scheme: dark) {
+    .log-tag--news { background: #2a2a2a; color: #bbb; }
+    .log-tag--code { background: #e8e8e8; color: #111; }
+    .log-tag--api  { background: #ccc; color: #111; }
+    .log-tag--sdk  { background: #222; color: #bbb; }
+  }
+
+  .log-entry-title {
+    font-size: 0.975rem;
+    font-weight: 600;
+    color: var(--ink);
+    line-height: 1.35;
+    margin-bottom: 0.45rem;
+  }
+
+  .log-entry-title a {
+    color: inherit;
+    text-decoration: none;
+    border-bottom: 1px solid var(--rule);
+    padding-bottom: 1px;
+    transition: border-color 0.12s;
+  }
+
+  .log-entry-title a:hover { border-color: var(--muted); }
+
+  .log-entry-body {
+    font-size: 0.9rem;
+    line-height: 1.65;
+    color: var(--ink);
+    opacity: 0.88;
+    margin-bottom: 0.5rem;
+  }
+
+  .log-entry-body p { margin-bottom: 0.5rem; }
+  .log-entry-body p:last-child { margin-bottom: 0; }
+
+  .log-entry-howto {
+    font-size: 0.83rem;
+    color: var(--muted);
+    margin-top: 0.5rem;
+  }
+
+  .log-entry-howto strong {
+    color: var(--ink);
+    font-weight: 600;
+  }
+
+  code {
+    font-family: 'SF Mono', 'Fira Code', 'Cascadia Code', monospace;
+    font-size: 0.82em;
+    background: var(--code-bg);
+    padding: 1px 5px;
+    border-radius: 3px;
+    border: 1px solid var(--rule);
+  }
+
+  /* Quiet section */
+  .quiet-body {
+    font-size: 0.9rem;
+    line-height: 1.65;
+    color: var(--muted);
+    padding-left: 1rem;
+  }
+
+  /* Footer */
+  .footer {
+    margin-top: 3.5rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--rule);
+  }
+
+  .footer-generated {
+    font-size: 0.73rem;
+    color: var(--muted);
+    letter-spacing: 0.04em;
+    margin-bottom: 0.75rem;
+  }
+
+  .footer-sources {
+    font-size: 0.73rem;
+    color: var(--muted);
+    line-height: 1.7;
+  }
+
+  .footer-sources a {
+    color: var(--muted);
+    text-decoration: none;
+    word-break: break-all;
+  }
+
+  .footer-sources a:hover { text-decoration: underline; }
+
+  .footer-label {
+    font-size: 0.63rem;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--muted);
+    display: block;
+    margin-bottom: 0.4rem;
+  }
+
+  @media (max-width: 600px) {
+    .page { padding: 2.5rem 1.25rem 4rem; }
+    .masthead-name { font-size: 1.75rem; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- Masthead -->
+  <header class="masthead">
+    <span class="masthead-name">Shipped.</span>
+    <span class="masthead-dateline">Daily &nbsp;|&nbsp; Thursday, May 14, 2026</span>
+  </header>
+
+  <!-- One-line read -->
+  <p class="one-liner">
+    Two partnerships, different scales entirely: PwC is putting Claude Code in front of 30,000 professionals;
+    the Gates Foundation is putting $200M toward the 4.6 billion who have no access to essential health services.
+    Claude Code v2.1.142 ships the same day with Fast mode upgraded to Opus 4.7.
+  </p>
+
+  <hr>
+
+  <!-- Lead -->
+  <span class="section-flag">Lead</span>
+  <div class="lead-body">
+    <p>
+      Anthropic and the Gates Foundation committed $200 million on May 13 to put Claude into global health,
+      life sciences, education, and agricultural productivity programs in low- and middle-income countries.
+      The $200M covers grant funding, Claude usage credits, and technical support over four years.
+      Health gets the largest allocation: accelerating vaccine and therapy development, helping governments
+      act on population health data, and researching diseases that attract no commercial investment because
+      the patients can't pay. Polio, HPV, and eclampsia/preeclampsia are the opening targets.
+      (<a href="https://www.gatesfoundation.org/ideas/media-center/press-releases/2026/05/ai-anthropic-partnership">Gates Foundation press release</a>;
+      <a href="https://www.anthropic.com/news/gates-foundation-partnership">Anthropic announcement</a>, May 13.)
+    </p>
+    <p>
+      Around 4.6 billion people worldwide lack access to essential health services, per the Foundation's
+      own framing. Education targets K-12 tutoring in the U.S. and foundational literacy and numeracy
+      programs in sub-Saharan Africa and India. Agriculture focuses on smallholder farming productivity
+      for nearly two billion people whose incomes depend on it.
+    </p>
+    <p>
+      The structure mirrors the enterprise push: Anthropic provides the reasoning layer, sector partners
+      carry the integration surface, and the Gates Foundation brings three decades of on-the-ground
+      infrastructure in exactly the places Claude will need it.
+    </p>
+  </div>
+
+  <hr>
+
+  <!-- Release Log -->
+  <span class="section-flag">Release Log</span>
+
+  <!-- G. News -->
+  <span class="log-section-header">G. News</span>
+
+  <div class="log-entry">
+    <div class="log-entry-meta">
+      <span class="log-entry-date">2026-05-14</span>
+      <span class="log-tag log-tag--news">NEWS</span>
+    </div>
+    <div class="log-entry-title">
+      <a href="https://siliconangle.com/2026/05/14/pwc-expands-anthropic-alliance-will-train-30000-staff-claude/">PwC expands Anthropic alliance, will train 30,000 staff on Claude</a>
+    </div>
+    <div class="log-entry-body">
+      <p>
+        PwC and Anthropic expanded their alliance to put Claude Code and Claude Cowork in front of
+        PwC's U.S. workforce, with 30,000 professionals being trained on Anthropic models. The deal
+        establishes a joint Center of Excellence and a Claude-native finance business group inside
+        PwC's Office of the CFO practice.
+      </p>
+      <p>
+        Production deployments already running: insurance underwriting compressed from 10 weeks to
+        10 days, a stalled HR transformation restarted with a working prototype in one week and full
+        application live in under two months, incident response from hours to minutes via agentic
+        vulnerability operations. Clients report delivery improvements of up to 70%. The stated
+        target: $2 trillion in enterprise technical debt. Rollout begins U.S.-first, then extends
+        toward PwC's 364,000-person global workforce in 136 countries.
+        (<a href="https://www.pwc.com/us/en/about-us/newsroom/press-releases/anthropic-pwc-expand-alliance-agentic-enterprise.html">PwC press release</a>)
+      </p>
+    </div>
+  </div>
+
+  <div class="log-entry">
+    <div class="log-entry-meta">
+      <span class="log-entry-date">2026-05-13</span>
+      <span class="log-tag log-tag--news">NEWS</span>
+    </div>
+    <div class="log-entry-title">
+      <a href="https://www.anthropic.com/news/gates-foundation-partnership">Anthropic forms $200M partnership with Gates Foundation</a>
+    </div>
+    <div class="log-entry-body">
+      <p>
+        $200 million in grant funding, Claude credits, and technical support for global health,
+        life sciences, education, and economic mobility over four years. Health work opens with polio,
+        HPV, and eclampsia research in low- and middle-income countries where 4.6 billion people lack
+        access to essential health services. Education: K-12 tutoring (U.S.) and foundational literacy
+        and numeracy programs (sub-Saharan Africa, India). Agriculture: smallholder farming productivity
+        for nearly two billion people.
+        (<a href="https://www.gatesfoundation.org/ideas/media-center/press-releases/2026/05/ai-anthropic-partnership">Gates Foundation press release</a>)
+      </p>
+    </div>
+  </div>
+
+  <!-- C. Claude Code -->
+  <span class="log-section-header">C. Claude Code</span>
+
+  <div class="log-entry">
+    <div class="log-entry-meta">
+      <span class="log-entry-date">2026-05-14</span>
+      <span class="log-tag log-tag--code">CODE</span>
+    </div>
+    <div class="log-entry-title">
+      <a href="https://github.com/anthropics/claude-code/releases">Claude Code v2.1.142</a>
+    </div>
+    <div class="log-entry-body">
+      <p>
+        Fast mode now defaults to Opus 4.7 (was Opus 4.6). New <code>claude agents</code> flags for
+        configuring dispatched background sessions: <code>--add-dir</code>, <code>--settings</code>,
+        <code>--mcp-config</code>, <code>--plugin-dir</code>, <code>--permission-mode</code>,
+        <code>--model</code>, <code>--effort</code>, <code>--dangerously-skip-permissions</code>.
+        Plugins with a root-level <code>SKILL.md</code> and no <code>skills/</code> subdirectory
+        are now automatically surfaced as a skill. The <code>/plugin</code> details pane and
+        <code>claude plugin details</code> now show LSP servers a plugin provides.
+        <code>/web-setup</code> warns before replacing an existing GitHub App connection.
+      </p>
+      <p>
+        Bug fixes: <code>MCP_TOOL_TIMEOUT</code> now correctly raises the per-request fetch timeout
+        for remote HTTP and SSE MCP servers (previously capped tool calls at 60 seconds regardless
+        of configured value). Background sessions not recognizing pre-existing git worktrees fixed.
+        macOS sleep/wake daemon reconnect fixed. Daemon exit on binary upgrade fixed.
+      </p>
+    </div>
+    <div class="log-entry-howto">
+      <strong>How to use:</strong> <code>claude update</code> or reinstall.
+      Set <code>CLAUDE_CODE_OPUS_4_6_FAST_MODE_OVERRIDE=1</code> to pin fast mode back to Opus 4.6.
+    </div>
+  </div>
+
+  <hr>
+
+  <!-- Quiet on the Wire -->
+  <span class="section-flag">Quiet on the Wire</span>
+  <p class="quiet-body">
+    docs.anthropic.com returned 403 on all direct fetches during this sweep: API release notes,
+    Claude Code release notes, Claude Apps release notes, system prompts, and the overview page.
+    No model launches observed. No research papers confirmed in this window.
+    Claude Platform on AWS (GA: May 11) covered in prior sweeps.
+  </p>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <p class="footer-generated">Generated 2026-05-15T01:05:32Z</p>
+    <span class="footer-label">Sources</span>
+    <div class="footer-sources">
+      <a href="https://www.gatesfoundation.org/ideas/media-center/press-releases/2026/05/ai-anthropic-partnership">gatesfoundation.org -- Gates Foundation/Anthropic press release</a><br>
+      <a href="https://www.anthropic.com/news/gates-foundation-partnership">anthropic.com/news/gates-foundation-partnership</a><br>
+      <a href="https://finance.yahoo.com/sectors/healthcare/articles/anthropic-gates-foundation-launch-200m-172229798.html">Yahoo Finance -- Reuters reporting, May 13</a><br>
+      <a href="https://siliconangle.com/2026/05/14/pwc-expands-anthropic-alliance-will-train-30000-staff-claude/">SiliconANGLE -- PwC/Anthropic alliance, May 14</a><br>
+      <a href="https://www.pwc.com/us/en/about-us/newsroom/press-releases/anthropic-pwc-expand-alliance-agentic-enterprise.html">pwc.com -- PwC/Anthropic press release</a><br>
+      <a href="https://github.com/anthropics/claude-code/releases">github.com/anthropics/claude-code/releases</a>
+    </div>
+  </footer>
+
+</div>
+</body>
+</html>
