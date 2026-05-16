@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="color-scheme" content="light">
+  <title>Shipped. Daily &mdash; May 15, 2026</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Newsreader:ital,wght@1,400;1,600&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background: #FFFFFF;
+      color: #000000;
+      font-family: 'Inter', system-ui, sans-serif;
+      font-size: 15px;
+      line-height: 1.65;
+      padding: 5rem 1.5rem 5rem;
+    }
+
+    .page {
+      max-width: 720px;
+      margin: 0 auto;
+    }
+
+    /* Masthead */
+    .masthead {
+      margin-bottom: 2.25rem;
+      padding-bottom: 1.5rem;
+      border-bottom: 1px solid #E5E5E5;
+    }
+
+    .masthead-name {
+      font-family: 'Newsreader', Georgia, serif;
+      font-style: italic;
+      font-weight: 600;
+      font-size: 2.1rem;
+      color: #000000;
+      letter-spacing: -0.02em;
+      line-height: 1;
+      display: block;
+      margin-bottom: 0.45rem;
+    }
+
+    .masthead-dateline {
+      font-size: 10.5px;
+      font-weight: 500;
+      letter-spacing: 0.13em;
+      text-transform: uppercase;
+      color: #666666;
+    }
+
+    /* One-liner */
+    .one-liner {
+      font-size: 1.1rem;
+      font-weight: 500;
+      line-height: 1.55;
+      color: #000000;
+      margin-bottom: 2.25rem;
+      padding-bottom: 1.5rem;
+      border-bottom: 1px solid #E5E5E5;
+    }
+
+    /* Section label */
+    .section-label {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.13em;
+      text-transform: uppercase;
+      color: #666666;
+      display: block;
+      margin-bottom: 0.9rem;
+    }
+
+    /* Lead */
+    .lead {
+      margin-bottom: 2.75rem;
+      padding-bottom: 2rem;
+      border-bottom: 1px solid #E5E5E5;
+    }
+
+    .lead p {
+      font-size: 1rem;
+      line-height: 1.72;
+      color: #000000;
+      margin-bottom: 1rem;
+    }
+
+    .lead p:last-child {
+      margin-bottom: 0;
+    }
+
+    /* Release log */
+    .release-log {
+      margin-bottom: 2.75rem;
+    }
+
+    .log-category {
+      margin-bottom: 2.25rem;
+    }
+
+    .log-category-name {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.13em;
+      text-transform: uppercase;
+      color: #666666;
+      display: block;
+      padding-bottom: 0.55rem;
+      border-bottom: 1px solid #E5E5E5;
+      margin-bottom: 1.25rem;
+    }
+
+    .log-entry {
+      padding-bottom: 1.5rem;
+      margin-bottom: 1.5rem;
+      border-bottom: 1px solid #E5E5E5;
+    }
+
+    .log-entry:last-child {
+      border-bottom: none;
+      margin-bottom: 0;
+      padding-bottom: 0;
+    }
+
+    .log-entry-meta {
+      display: flex;
+      align-items: center;
+      gap: 0.55rem;
+      flex-wrap: wrap;
+      margin-bottom: 0.35rem;
+    }
+
+    .log-date {
+      font-size: 11px;
+      font-weight: 500;
+      color: #666666;
+      flex-shrink: 0;
+    }
+
+    .log-tag {
+      font-size: 9px;
+      font-weight: 600;
+      letter-spacing: 0.09em;
+      text-transform: uppercase;
+      background: #F0F0F0;
+      color: #333333;
+      padding: 1px 6px;
+      border-radius: 2px;
+      flex-shrink: 0;
+    }
+
+    .log-title {
+      font-size: 0.9375rem;
+      font-weight: 600;
+      line-height: 1.35;
+      color: #000000;
+      margin-bottom: 0.45rem;
+    }
+
+    .log-title a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .log-title a:hover {
+      text-decoration: underline;
+    }
+
+    .log-body {
+      font-size: 0.875rem;
+      line-height: 1.65;
+      color: #333333;
+    }
+
+    /* Inline code */
+    code {
+      font-family: 'SF Mono', 'Fira Code', 'Fira Mono', 'Consolas', monospace;
+      font-size: 0.8em;
+      background: #F7F7F7;
+      padding: 0.12em 0.38em;
+      border-radius: 3px;
+      color: #333333;
+    }
+
+    /* Footer */
+    .footer {
+      border-top: 1px solid #E5E5E5;
+      padding-top: 1.5rem;
+      font-size: 11.5px;
+      color: #666666;
+      line-height: 1.6;
+    }
+
+    .footer-ts {
+      font-weight: 500;
+      display: block;
+      margin-bottom: 0.8rem;
+      color: #666666;
+    }
+
+    .footer-sources-label {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #666666;
+      display: block;
+      margin-bottom: 0.5rem;
+    }
+
+    .footer-sources {
+      list-style: none;
+      margin-bottom: 0.75rem;
+    }
+
+    .footer-sources li {
+      margin-bottom: 0.2rem;
+    }
+
+    .footer-sources a {
+      color: #666666;
+      text-decoration: none;
+    }
+
+    .footer-sources a:hover {
+      text-decoration: underline;
+    }
+
+    .footer-note {
+      font-style: italic;
+      color: #666666;
+    }
+
+    /* Global link style */
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    @media (max-width: 600px) {
+      body {
+        padding: 3rem 1.25rem 3rem;
+        font-size: 14px;
+      }
+
+      .masthead-name {
+        font-size: 1.75rem;
+      }
+
+      .one-liner {
+        font-size: 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+
+    <header class="masthead">
+      <span class="masthead-name">Shipped.</span>
+      <span class="masthead-dateline">Daily &middot; Friday, May 15, 2026</span>
+    </header>
+
+    <p class="one-liner">Two institutional bets landed in the same 24 hours: one for humanity's overlooked diseases, one for a Big Four firm's headcount.</p>
+
+    <section class="lead">
+      <span class="section-label">Lead</span>
+      <p>The Gates Foundation committed $200 million in grant funding, Claude usage credits, and technical support to work with Anthropic on global health, education, economic mobility, and language accessibility over four years. The starting point is specific: polio, HPV, and eclampsia. Not abstract &ldquo;healthcare.&rdquo; Claude is already screening drug candidates and catching patterns in systematic reviews (<a href="https://www.anthropic.com/news/gates-foundation-partnership">Anthropic</a>, <a href="https://www.gatesfoundation.org/ideas/media-center/press-releases/2026/05/ai-anthropic-partnership">Gates Foundation</a>); the partnership formalizes and funds that work at scale.</p>
+      <p>The education arm runs two tracks: K-12 tutoring in the US, foundational literacy and numeracy in sub-Saharan Africa and India. The language component addresses a structural gap AI systems have ignored for years. Dozens of African languages have inadequate training data. The partnership will fund collection and labeling and release it publicly, which means the upside goes beyond Claude.</p>
+    </section>
+
+    <section class="release-log">
+      <span class="section-label">Release Log</span>
+
+      <div class="log-category">
+        <span class="log-category-name">News</span>
+
+        <div class="log-entry">
+          <div class="log-entry-meta">
+            <span class="log-date">2026-05-14</span>
+            <span class="log-tag">NEWS</span>
+          </div>
+          <div class="log-title">
+            <a href="https://www.anthropic.com/news/gates-foundation-partnership">Anthropic + Gates Foundation: $200M partnership</a>
+          </div>
+          <div class="log-body">$200M in grant funding, Claude usage credits, and technical support over four years. Focus: overlooked diseases (polio, HPV, eclampsia/preeclampsia), K-12 tutoring in the US, literacy programs in sub-Saharan Africa and India, agricultural productivity, and African language datasets released as public goods.</div>
+        </div>
+
+        <div class="log-entry">
+          <div class="log-entry-meta">
+            <span class="log-date">2026-05-14</span>
+            <span class="log-tag">NEWS</span>
+          </div>
+          <div class="log-title">
+            <a href="https://www.anthropic.com/news/pwc-expanded-partnership">PwC expanded alliance: 30,000 staff, joint Center of Excellence</a>
+          </div>
+          <div class="log-body">PwC will train and certify 30,000 professionals on Claude and establish a joint Center of Excellence. Deployment starts with US teams, then expands to a global workforce of hundreds of thousands. Three focus areas: agentic technology build, AI-native deal execution, and enterprise function reinvention. Claude Code and Cowork are part of the stack.</div>
+        </div>
+      </div>
+
+      <div class="log-category">
+        <span class="log-category-name">Claude Code</span>
+
+        <div class="log-entry">
+          <div class="log-entry-meta">
+            <span class="log-date">2026-05-14</span>
+            <span class="log-tag">CODE</span>
+          </div>
+          <div class="log-title">
+            <a href="https://github.com/anthropics/claude-code/blob/main/CHANGELOG.md">Claude Code v2.1.142</a>
+          </div>
+          <div class="log-body">Fast mode default model bumped from Opus 4.6 to Opus 4.7 (set <code>CLAUDE_CODE_OPUS_4_6_FAST_MODE_OVERRIDE=1</code> to pin to 4.6). New flags for <code>claude agents</code>: <code>--add-dir</code>, <code>--settings</code>, <code>--mcp-config</code>, <code>--plugin-dir</code>, <code>--permission-mode</code>, <code>--model</code>, <code>--effort</code>, <code>--dangerously-skip-permissions</code> to configure dispatched background sessions. Plugins with a root-level SKILL.md and no <code>skills/</code> subdirectory now surface as a skill. /plugin details pane shows LSP servers a plugin provides. /web-setup warns before replacing an existing GitHub App connection. Bug fix: <code>MCP_TOOL_TIMEOUT</code> now correctly raises the per-request fetch timeout for remote HTTP and SSE MCP servers (was capped at 60 seconds regardless of config). Fixed background sessions not recognizing pre-existing git worktrees.</div>
+        </div>
+
+        <div class="log-entry">
+          <div class="log-entry-meta">
+            <span class="log-date">2026-05-15</span>
+            <span class="log-tag">CODE</span>
+          </div>
+          <div class="log-title">
+            <a href="https://github.com/anthropics/claude-code/blob/main/CHANGELOG.md">Claude Code v2.1.143</a>
+          </div>
+          <div class="log-body">Plugin dependency enforcement: <code>claude plugin disable</code> now refuses when another enabled plugin depends on the target (provides a copy-pasteable disable-chain hint); <code>claude plugin enable</code> force-enables transitive dependencies. Projected context cost (per-turn and per-invocation token estimates) added to the /plugin marketplace browse pane. New <code>worktree.bgIsolation: "none"</code> setting lets background sessions edit the working copy directly without EnterWorktree, for repos where worktrees are impractical. PowerShell tool now passes <code>-ExecutionPolicy Bypass</code>. Background sessions preserve model and effort level after waking from idle.</div>
+        </div>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <span class="footer-ts">Generated 2026-05-16T01:04:41Z UTC</span>
+      <span class="footer-sources-label">Sources</span>
+      <ul class="footer-sources">
+        <li><a href="https://www.anthropic.com/news/gates-foundation-partnership">anthropic.com/news/gates-foundation-partnership</a></li>
+        <li><a href="https://www.gatesfoundation.org/ideas/media-center/press-releases/2026/05/ai-anthropic-partnership">gatesfoundation.org press release, May 14, 2026</a></li>
+        <li><a href="https://www.anthropic.com/news/pwc-expanded-partnership">anthropic.com/news/pwc-expanded-partnership</a></li>
+        <li><a href="https://github.com/anthropics/claude-code/blob/main/CHANGELOG.md">github.com/anthropics/claude-code CHANGELOG.md</a></li>
+        <li><a href="https://releasebot.io/updates/anthropic/claude-code">releasebot.io/updates/anthropic/claude-code</a></li>
+      </ul>
+      <p class="footer-note">docs.anthropic.com returned HTTP 403 for all direct fetches. API, Claude Apps, and system prompt release notes sourced via web search only. Items without confirmed May 14-15 dates excluded from this log. SDK Python v0.102.0 and SDK TypeScript v0.96.0 confirmed released May 13; excluded as outside the 24-hour window.</p>
+    </footer>
+
+  </div>
+</body>
+</html>
