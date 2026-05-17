@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="color-scheme" content="light">
+  <title>Shipped. Daily -- May 16, 2026</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Newsreader:ital,wght@1,400;1,600&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: #FFFFFF;
+      color: #000000;
+      font-family: 'Inter', system-ui, sans-serif;
+      font-size: 16px;
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .page {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 5rem 24px 5rem;
+    }
+
+    /* Masthead */
+    .masthead {
+      border-bottom: 1px solid #E5E5E5;
+      padding-bottom: 1.5rem;
+      margin-bottom: 2.5rem;
+    }
+    .masthead-name {
+      font-family: 'Newsreader', Georgia, serif;
+      font-style: italic;
+      font-weight: 600;
+      font-size: 2rem;
+      color: #000000;
+      letter-spacing: -0.5px;
+      display: block;
+      margin-bottom: 4px;
+    }
+    .masthead-dateline {
+      font-size: 12px;
+      font-weight: 500;
+      color: #666666;
+      letter-spacing: 0.8px;
+      text-transform: uppercase;
+    }
+
+    /* One-line read */
+    .one-line {
+      font-size: 15px;
+      font-weight: 400;
+      color: #666666;
+      font-style: italic;
+      padding: 1rem 0 1.5rem;
+      border-bottom: 1px solid #E5E5E5;
+      margin-bottom: 2.5rem;
+    }
+
+    /* Section flag */
+    .section-flag {
+      font-size: 10px;
+      font-weight: 600;
+      color: #666666;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      display: block;
+      margin-bottom: 1rem;
+    }
+
+    /* Lead */
+    .lead {
+      margin-bottom: 3rem;
+    }
+    .lead p {
+      font-size: 17px;
+      line-height: 1.72;
+      color: #000000;
+      margin-bottom: 1.1rem;
+    }
+    .lead p:last-child { margin-bottom: 0; }
+
+    /* Divider */
+    .rule {
+      border: none;
+      border-top: 1px solid #E5E5E5;
+      margin: 2.5rem 0;
+    }
+
+    /* Release log */
+    .log-section {
+      margin-bottom: 2.5rem;
+    }
+
+    .log-category {
+      font-size: 10px;
+      font-weight: 600;
+      color: #666666;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      display: block;
+      padding-bottom: 0.75rem;
+      border-bottom: 1px solid #E5E5E5;
+      margin-bottom: 1.5rem;
+    }
+
+    .log-entry {
+      padding: 1.25rem 0;
+      border-bottom: 1px solid #E5E5E5;
+    }
+    .log-entry:last-child { border-bottom: none; }
+
+    .log-entry-header {
+      display: flex;
+      align-items: baseline;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-bottom: 0.5rem;
+    }
+
+    .log-entry-date {
+      font-size: 11px;
+      font-weight: 500;
+      color: #666666;
+      flex-shrink: 0;
+    }
+
+    .log-entry-title {
+      font-size: 15px;
+      font-weight: 600;
+      color: #000000;
+      letter-spacing: -0.1px;
+    }
+
+    .log-entry-title a {
+      color: inherit;
+      text-decoration: none;
+      border-bottom: 1px solid rgba(0,0,0,0.18);
+      padding-bottom: 1px;
+    }
+    .log-entry-title a:hover {
+      border-bottom-color: #000000;
+    }
+
+    .tag {
+      display: inline-block;
+      font-size: 9px;
+      font-weight: 600;
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
+      background: #F0F0F0;
+      color: #333333;
+      padding: 2px 7px;
+      border-radius: 3px;
+      flex-shrink: 0;
+    }
+
+    .log-entry-body {
+      font-size: 14px;
+      color: #333333;
+      line-height: 1.60;
+    }
+
+    /* Quiet on the wire */
+    .quiet {
+      margin-bottom: 3rem;
+      padding-left: 20px;
+    }
+    .quiet p {
+      font-size: 14px;
+      color: #666666;
+      line-height: 1.65;
+    }
+
+    /* The close */
+    .close-section {
+      margin-bottom: 3rem;
+    }
+    .close-section p {
+      font-size: 16px;
+      color: #000000;
+      line-height: 1.65;
+      margin-bottom: 1.25rem;
+    }
+    .close-section p:last-child {
+      font-style: italic;
+      margin-bottom: 0;
+    }
+
+    /* Footer */
+    .footer {
+      border-top: 1px solid #E5E5E5;
+      padding-top: 1.5rem;
+      margin-top: 3rem;
+    }
+    .footer-generated {
+      font-size: 12px;
+      color: #666666;
+      margin-bottom: 0.75rem;
+    }
+    .footer-sources-label {
+      font-size: 10px;
+      font-weight: 600;
+      color: #666666;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      display: block;
+      margin-bottom: 0.5rem;
+    }
+    .footer-sources {
+      font-size: 12px;
+      color: #666666;
+      line-height: 1.8;
+    }
+    .footer-sources a {
+      color: #666666;
+      text-decoration: none;
+      border-bottom: 1px solid #E5E5E5;
+    }
+    .footer-sources a:hover {
+      color: #000000;
+      border-bottom-color: #000000;
+    }
+
+    @media (max-width: 600px) {
+      .page { padding: 3rem 20px 3rem; }
+      .masthead-name { font-size: 1.6rem; }
+      .lead p { font-size: 16px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+
+    <header class="masthead">
+      <span class="masthead-name">Shipped.</span>
+      <span class="masthead-dateline">Daily &nbsp;&#183;&nbsp; Saturday, May 16, 2026</span>
+    </header>
+
+    <p class="one-line">One loud sentence dropped on a quiet Saturday: Anthropic named 2026 the year the AI race tips.</p>
+
+    <section class="lead">
+      <span class="section-flag">Lead</span>
+      <p>The paper is titled "2028: Two scenarios for global AI leadership" and it is exactly what it says. Anthropic's research team lays out two possible worlds. In the first, the US tightens chip export controls, blocks China's access to American frontier models, and the democratic coalition holds a 12-to-24-month compute lead by 2028. In the second, policymakers hold back, China closes the gap, and the norms governing AI globally are written by authoritarian states.</p>
+      <p>The paper places semiconductors at the center. Not capabilities. Not safety frameworks. Chips. "There is a high likelihood that we will look back on 2026 as the breakaway opportunity for American AI." That sentence is the thesis, and the rest of the paper is the argument for it. The paper <a href="https://www.anthropic.com/research/2028-ai-leadership">published on anthropic.com</a> while Trump was in Beijing for the first time in nearly a decade. The timing was not accidental.</p>
+    </section>
+
+    <hr class="rule">
+
+    <section class="log-section">
+      <span class="section-flag">Release Log</span>
+
+      <span class="log-category">Research</span>
+
+      <div class="log-entry">
+        <div class="log-entry-header">
+          <span class="log-entry-date">2026-05-15</span>
+          <span class="log-entry-title">
+            <a href="https://www.anthropic.com/research/2028-ai-leadership">2028: Two scenarios for global AI leadership</a>
+          </span>
+          <span class="tag">Research</span>
+        </div>
+        <p class="log-entry-body">Anthropic's research team frames 2028 as the inflection year for US-China AI dominance. Scenario one: democracies defend compute advantage, tighten chip export controls, hold a 12-to-24-month frontier lead, and set the global rules. Scenario two: policymakers defer, China closes the gap or overtakes, and AI governance norms are authored by authoritarian regimes. The paper recommends restricting adversarial-state access to American AI models and tightening semiconductor supply chain controls. Published while Trump made his first trip to Beijing in nearly a decade.</p>
+      </div>
+    </section>
+
+    <hr class="rule">
+
+    <section class="quiet">
+      <span class="section-flag">Quiet on the Wire</span>
+      <p>No Claude Code releases in the past 24 hours. Last: v2.1.143, May 15 (plugin dependency enforcement, projected context costs, background session state preservation). No API release notes. No SDK updates: Python v0.102.0 and TypeScript v0.96.0 both last released May 13. Claude Apps: no signal. System prompts: no signal. The week's operational shipping settled mid-week. Saturday.</p>
+    </section>
+
+    <hr class="rule">
+
+    <section class="close-section">
+      <span class="section-flag">The Close</span>
+      <p>Anthropic published a policy paper. No model. No API note. No changelog.</p>
+      <p>The quiet day has one loud sentence on it.</p>
+      <p>Breakaway, or not.</p>
+    </section>
+
+    <footer class="footer">
+      <p class="footer-generated">Generated 2026-05-17T01:08:41Z</p>
+      <span class="footer-sources-label">Sources</span>
+      <div class="footer-sources">
+        <a href="https://www.anthropic.com/research/2028-ai-leadership">anthropic.com/research/2028-ai-leadership</a><br>
+        <a href="https://www.anthropic.com/news">anthropic.com/news</a><br>
+        <a href="https://github.com/anthropics/claude-code/blob/main/CHANGELOG.md">github.com/anthropics/claude-code CHANGELOG</a><br>
+        <a href="https://github.com/anthropics/anthropic-sdk-python/releases">github.com/anthropics/anthropic-sdk-python releases</a><br>
+        <a href="https://github.com/anthropics/anthropic-sdk-typescript/releases">github.com/anthropics/anthropic-sdk-typescript releases</a><br>
+        <span style="color:#999">docs.anthropic.com release notes: HTTP 403, not accessible in this environment</span>
+      </div>
+    </footer>
+
+  </div>
+</body>
+</html>
