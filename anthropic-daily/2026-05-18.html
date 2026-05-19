@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light">
+<title>Shipped. Daily — May 18, 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Newsreader:ital,wght@0,400;1,600&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  background: #ffffff;
+  color: #000000;
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  font-size: 16px;
+  line-height: 1.6;
+  padding: 5rem 1.5rem 5rem;
+}
+
+.page {
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+.masthead {
+  font-family: 'Newsreader', Georgia, 'Times New Roman', serif;
+  font-style: italic;
+  font-weight: 600;
+  font-size: 2.5rem;
+  color: #000000;
+  margin-bottom: 0.25rem;
+  letter-spacing: -0.01em;
+}
+
+.dateline {
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #666666;
+  margin-bottom: 3rem;
+}
+
+.one-line-read {
+  font-size: 1.0625rem;
+  font-weight: 500;
+  color: #000000;
+  line-height: 1.55;
+  padding: 1.25rem 0;
+  border-top: 1px solid #E5E5E5;
+  border-bottom: 1px solid #E5E5E5;
+  margin-bottom: 2.5rem;
+}
+
+.section-flag {
+  display: block;
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #666666;
+  margin-bottom: 0.75rem;
+}
+
+.lead-head {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #000000;
+  line-height: 1.2;
+  letter-spacing: -0.025em;
+  margin-bottom: 1.25rem;
+}
+
+.lead-body {
+  font-size: 1rem;
+  line-height: 1.75;
+  color: #000000;
+}
+
+.lead-body p {
+  margin-bottom: 1rem;
+}
+
+.lead-body p:last-child {
+  margin-bottom: 0;
+}
+
+.rule {
+  border: none;
+  border-top: 1px solid #E5E5E5;
+  margin: 2.5rem 0;
+}
+
+.log-wrap {
+  margin-bottom: 2.5rem;
+}
+
+.log-category-head {
+  display: block;
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #666666;
+  padding-bottom: 0.625rem;
+  border-bottom: 1px solid #E5E5E5;
+  margin-bottom: 1.25rem;
+}
+
+.log-entry {
+  padding: 1.25rem 0;
+  border-bottom: 1px solid #E5E5E5;
+}
+
+.log-entry:last-child {
+  border-bottom: none;
+}
+
+.log-entry-meta {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+  margin-bottom: 0.375rem;
+  flex-wrap: wrap;
+}
+
+.log-entry-title {
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: #000000;
+  line-height: 1.35;
+}
+
+.log-entry-title a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.log-entry-title a:hover {
+  text-decoration: underline;
+}
+
+.tag {
+  display: inline-block;
+  font-size: 0.5625rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  background: #F0F0F0;
+  color: #333333;
+  padding: 2px 6px;
+  border-radius: 3px;
+  white-space: nowrap;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.tag--code {
+  background: #404040;
+  color: #ffffff;
+}
+
+.tag--news {
+  background: #F0F0F0;
+  color: #333333;
+}
+
+.log-entry-date {
+  font-size: 0.75rem;
+  color: #666666;
+  margin-bottom: 0.625rem;
+}
+
+.log-entry-body {
+  font-size: 0.875rem;
+  line-height: 1.65;
+  color: #000000;
+}
+
+.log-entry-body p {
+  margin-bottom: 0.5rem;
+}
+
+.log-entry-body p:last-child {
+  margin-bottom: 0;
+}
+
+.log-entry-howto {
+  margin-top: 0.625rem;
+  font-size: 0.8125rem;
+  color: #000000;
+}
+
+code {
+  font-family: ui-monospace, 'SFMono-Regular', Menlo, Monaco, 'Courier New', monospace;
+  font-size: 0.8125rem;
+  background: #F7F7F7;
+  border: 1px solid #E5E5E5;
+  padding: 1px 5px;
+  border-radius: 3px;
+}
+
+.log-entry-source {
+  margin-top: 0.625rem;
+  font-size: 0.75rem;
+  color: #666666;
+}
+
+.log-entry-source a {
+  color: #666666;
+  text-decoration: underline;
+}
+
+.quiet-section {
+  margin-bottom: 2.5rem;
+}
+
+.quiet-body {
+  font-size: 0.875rem;
+  line-height: 1.7;
+  color: #666666;
+  padding-left: 1rem;
+}
+
+.footer {
+  padding-top: 2rem;
+  border-top: 1px solid #E5E5E5;
+  font-size: 0.75rem;
+  color: #666666;
+  line-height: 1.75;
+}
+
+.footer a {
+  color: #666666;
+  text-decoration: underline;
+}
+
+.footer a:hover {
+  color: #000000;
+}
+
+.footer-sources {
+  margin-top: 0.75rem;
+  padding-left: 0;
+  list-style: none;
+}
+
+.footer-sources li {
+  margin-bottom: 0.25rem;
+}
+
+@media (max-width: 680px) {
+  body { padding: 3rem 1.25rem 3rem; }
+  .masthead { font-size: 2rem; }
+  .lead-head { font-size: 1.25rem; }
+}
+</style>
+</head>
+<body>
+<div class="page">
+
+  <div class="masthead">Shipped.</div>
+  <div class="dateline">Daily &nbsp;&#183;&nbsp; Monday, May 18, 2026</div>
+
+  <div class="one-line-read">
+    Anthropic bought the company that generates SDKs for OpenAI and Google, then said it will shut the service down. Claude Code landed v2.1.144 at 8:48&nbsp;PM&nbsp;ET.
+  </div>
+
+  <span class="section-flag">Lead</span>
+  <h2 class="lead-head">The factory that built everyone's tools</h2>
+  <div class="lead-body">
+    <p>That's the move. Anthropic announced Monday it has <a href="https://www.anthropic.com/news/anthropic-acquires-stainless">acquired Stainless</a>, the startup that generates production-ready SDKs from API specifications. Terms were not disclosed, but The Information reported before the announcement that talks valued Stainless at over $300&nbsp;million, with part of the consideration potentially in Anthropic equity.</p>
+    <p>Stainless, founded by former Stripe engineer Alex Rattray and backed by Sequoia Capital and Andreessen Horowitz, sits in a peculiar position in the AI toolchain: it generated every official Anthropic SDK since the API's earliest days, but it also generates the Python, TypeScript, Go, Java, Kotlin, and Ruby libraries that OpenAI, Google, Cloudflare, and Meta ship to their own developers. One startup builds the scaffolding for all of them.</p>
+    <p>Anthropic will wind down all hosted Stainless products, including the SDK generator. Existing customers retain the SDKs they have already built, with full rights to modify. The factory closes; the parts stay where they landed.</p>
+  </div>
+
+  <hr class="rule">
+
+  <span class="section-flag">Release Log</span>
+
+  <div class="log-wrap">
+    <span class="log-category-head">News</span>
+
+    <div class="log-entry">
+      <div class="log-entry-meta">
+        <span class="log-entry-title"><a href="https://www.anthropic.com/news/anthropic-acquires-stainless">Anthropic acquires Stainless</a></span>
+        <span class="tag tag--news">NEWS</span>
+      </div>
+      <div class="log-entry-date">2026-05-18</div>
+      <div class="log-entry-body">
+        <p>Stainless (founded 2022, backed by Sequoia and a16z) generates SDKs, CLIs, and MCP servers from API specifications. Customers include OpenAI, Google, Cloudflare, and Meta. Stainless generated every official Anthropic SDK to date. Post-acquisition: all hosted Stainless products, including the SDK generator, wind down. Existing customers retain generated SDKs with full modification rights.</p>
+        <p>Reported deal size: over $300&nbsp;million per The Information. Anthropic did not disclose terms.</p>
+      </div>
+      <div class="log-entry-source">
+        Sources: <a href="https://www.anthropic.com/news/anthropic-acquires-stainless">Anthropic</a> &nbsp;&#183;&nbsp; reported by <a href="https://techcrunch.com/2026/05/18/anthropic-has-acquired-the-dev-tools-startup-used-by-openai-google-and-cloudflare/">TechCrunch</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="log-wrap">
+    <span class="log-category-head">Claude Code</span>
+
+    <div class="log-entry">
+      <div class="log-entry-meta">
+        <span class="log-entry-title"><a href="https://github.com/anthropics/claude-code/blob/main/CHANGELOG.md">Claude Code v2.1.144</a></span>
+        <span class="tag tag--code">CODE</span>
+      </div>
+      <div class="log-entry-date">2026-05-18 &nbsp;&#183;&nbsp; 20:48 ET</div>
+      <div class="log-entry-body">
+        <p>Resume support for background sessions. Elapsed-duration notifications when agents complete. Model selection now scoped to individual sessions rather than global. Fixes: startup hangs when the API is unreachable, terminal display corruption, macOS background session crashes in protected folders.</p>
+        <div class="log-entry-howto"><strong>How to use:</strong> <code>claude update</code> or <code>npm i -g @anthropic-ai/claude-code</code></div>
+      </div>
+      <div class="log-entry-source">
+        Source: <a href="https://github.com/anthropics/claude-code/blob/main/CHANGELOG.md">CHANGELOG</a> &nbsp;&#183;&nbsp; <a href="https://github.com/anthropics/claude-code/releases">Releases</a>
+      </div>
+    </div>
+  </div>
+
+  <hr class="rule">
+
+  <div class="quiet-section">
+    <span class="section-flag">Quiet on the Wire</span>
+    <div class="quiet-body">
+      SDK cadence held: Python v0.102.0 (May&nbsp;13) and TypeScript v0.96.0 (May&nbsp;13) remain the latest releases on both. No API release notes or Claude Apps updates surfaced in the window. docs.anthropic.com release-notes pages returned 403 errors during this sweep; if those pages updated today, they are not captured here.
+    </div>
+  </div>
+
+  <div class="footer">
+    Generated 2026-05-19T01:07:24Z.
+    <ul class="footer-sources">
+      <li><a href="https://www.anthropic.com/news/anthropic-acquires-stainless">anthropic.com/news/anthropic-acquires-stainless</a></li>
+      <li><a href="https://techcrunch.com/2026/05/18/anthropic-has-acquired-the-dev-tools-startup-used-by-openai-google-and-cloudflare/">techcrunch.com, May 18 2026</a></li>
+      <li><a href="https://www.anthropic.com/news">anthropic.com/news</a></li>
+      <li><a href="https://github.com/anthropics/anthropic-sdk-python/releases">github.com/anthropics/anthropic-sdk-python/releases</a></li>
+      <li><a href="https://github.com/anthropics/anthropic-sdk-typescript/releases">github.com/anthropics/anthropic-sdk-typescript/releases</a></li>
+      <li><a href="https://github.com/anthropics/claude-code/blob/main/CHANGELOG.md">github.com/anthropics/claude-code/blob/main/CHANGELOG.md</a></li>
+      <li><a href="https://github.com/anthropics/claude-code/releases">github.com/anthropics/claude-code/releases</a></li>
+    </ul>
+  </div>
+
+</div>
+</body>
+</html>
