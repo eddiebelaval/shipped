@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="color-scheme" content="light">
+  <title>Shipped. Daily, Tuesday, May 19, 2026</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Newsreader:ital,wght@1,400;1,600&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #FFFFFF;
+      --ink: #000000;
+      --muted: #666666;
+      --rule: #E5E5E5;
+      --tag-bg: #F0F0F0;
+      --tag-ink: #333333;
+      --code-bg: #F7F7F7;
+    }
+
+    html { background: var(--bg); }
+
+    body {
+      background: var(--bg);
+      color: var(--ink);
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      font-size: 15px;
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    .page {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 5rem 1.5rem 4rem;
+    }
+
+    /* ---- Masthead ---- */
+    .masthead {
+      margin-bottom: 2.5rem;
+      padding-bottom: 1.75rem;
+      border-bottom: 1px solid var(--rule);
+    }
+
+    .masthead-name {
+      font-family: 'Newsreader', Georgia, 'Times New Roman', serif;
+      font-style: italic;
+      font-weight: 600;
+      font-size: 2.25rem;
+      color: var(--ink);
+      letter-spacing: -0.02em;
+      line-height: 1;
+      margin-bottom: 0.5rem;
+      display: block;
+    }
+
+    .masthead-dateline {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    /* ---- One-line read ---- */
+    .one-line-read {
+      font-size: 17px;
+      font-weight: 400;
+      color: var(--ink);
+      line-height: 1.6;
+      margin-bottom: 2.25rem;
+      padding-bottom: 2rem;
+      border-bottom: 1px solid var(--rule);
+    }
+
+    /* ---- Section label ---- */
+    .section-label {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 0.85rem;
+      display: block;
+    }
+
+    /* ---- Lead ---- */
+    .lead {
+      margin-bottom: 2.5rem;
+      padding-bottom: 2.25rem;
+      border-bottom: 1px solid var(--rule);
+    }
+
+    .lead p {
+      font-size: 15px;
+      line-height: 1.75;
+      color: var(--ink);
+      margin-bottom: 1rem;
+    }
+
+    .lead p:last-child { margin-bottom: 0; }
+
+    .lead .note {
+      font-size: 13px;
+      color: var(--muted);
+      line-height: 1.6;
+      margin-top: 1rem;
+      padding-top: 0.75rem;
+      border-top: 1px solid var(--rule);
+    }
+
+    /* ---- Release log ---- */
+    .release-log-header {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--ink);
+      padding-bottom: 0.6rem;
+      border-bottom: 2px solid var(--ink);
+      margin-bottom: 2rem;
+      display: block;
+    }
+
+    .log-category {
+      margin-bottom: 2.5rem;
+    }
+
+    .log-category-header {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+      padding-bottom: 0.5rem;
+      border-bottom: 1px solid var(--rule);
+      margin-bottom: 1.25rem;
+    }
+
+    .log-category-note {
+      font-size: 12px;
+      color: var(--muted);
+      line-height: 1.6;
+      margin-bottom: 1rem;
+      padding: 0.65rem 0.85rem;
+      background: var(--code-bg);
+      border-left: 2px solid var(--rule);
+    }
+
+    .log-entry {
+      padding: 1.25rem 0;
+      border-bottom: 1px solid var(--rule);
+    }
+
+    .log-entry:last-child {
+      border-bottom: none;
+      padding-bottom: 0;
+    }
+
+    .log-entry-meta {
+      display: flex;
+      align-items: center;
+      gap: 0.55rem;
+      margin-bottom: 0.45rem;
+      flex-wrap: wrap;
+    }
+
+    .log-entry-date {
+      font-size: 11px;
+      font-weight: 500;
+      color: var(--muted);
+      font-variant-numeric: tabular-nums;
+    }
+
+    .log-tag {
+      font-size: 9px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      background: var(--tag-bg);
+      color: var(--tag-ink);
+      padding: 2px 6px;
+      border-radius: 3px;
+    }
+
+    .log-entry-title {
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--ink);
+      line-height: 1.35;
+      margin-bottom: 0.55rem;
+    }
+
+    .log-entry-title a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .log-entry-title a:hover {
+      text-decoration: underline;
+    }
+
+    .log-entry-body {
+      font-size: 13.5px;
+      line-height: 1.70;
+      color: #333333;
+      margin-bottom: 0.6rem;
+    }
+
+    .log-entry-how {
+      font-size: 12.5px;
+      line-height: 1.55;
+      color: var(--muted);
+      margin-top: 0.55rem;
+    }
+
+    .log-entry-how strong {
+      color: var(--ink);
+      font-weight: 600;
+    }
+
+    code {
+      font-family: 'SF Mono', 'JetBrains Mono', 'Fira Code', Consolas, 'Courier New', monospace;
+      font-size: 12px;
+      background: var(--code-bg);
+      padding: 1px 5px;
+      border-radius: 3px;
+      color: var(--ink);
+    }
+
+    /* ---- Quiet on the Wire ---- */
+    .quiet {
+      margin-bottom: 2.5rem;
+      padding-bottom: 2rem;
+      border-bottom: 1px solid var(--rule);
+    }
+
+    .quiet p {
+      font-size: 13.5px;
+      color: var(--muted);
+      line-height: 1.65;
+      padding-left: 1rem;
+      border-left: 2px solid var(--rule);
+    }
+
+    /* ---- Footer ---- */
+    .page-footer {
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--rule);
+    }
+
+    .footer-ts {
+      font-size: 11px;
+      color: var(--muted);
+      margin-bottom: 0.85rem;
+    }
+
+    .footer-sources-label {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 0.5rem;
+      display: block;
+    }
+
+    .footer-sources ul {
+      list-style: none;
+    }
+
+    .footer-sources li {
+      font-size: 11px;
+      color: var(--muted);
+      line-height: 1.7;
+    }
+
+    .footer-sources a {
+      color: var(--muted);
+      text-decoration: none;
+    }
+
+    .footer-sources a:hover {
+      text-decoration: underline;
+    }
+
+    .footer-pub {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--rule);
+      margin-top: 2rem;
+    }
+
+    @media (max-width: 600px) {
+      .page { padding: 3rem 1.25rem 3rem; }
+      .masthead-name { font-size: 1.75rem; }
+      .one-line-read { font-size: 16px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+
+    <!-- Masthead -->
+    <header class="masthead">
+      <span class="masthead-name">Shipped.</span>
+      <span class="masthead-dateline">Daily &middot; Tuesday, May 19, 2026</span>
+    </header>
+
+    <!-- One-line read -->
+    <p class="one-line-read">Claude Code 2.1.145 patched a Bash permission bypass and shipped scripting hooks for agent sessions; the SDK tier added self-hosted sandbox support across Python and TypeScript in the same cycle.</p>
+
+    <!-- Lead -->
+    <section class="lead">
+      <span class="section-label">Lead</span>
+      <p>Claude Code 2.1.145 shipped at 21:31 UTC and closed a permission-prompt bypass: bare variable assignments to non-allowlisted environment variables in Bash commands were being auto-approved. In agentic workflows, that is a real security hole, not a cosmetic patch. The fix sits at bullet twelve of a nineteen-item <a href="https://github.com/anthropics/claude-code/releases/tag/v2.1.145">changelog</a>, which is the right amount of understatement.</p>
+      <p>The same build added <code>claude agents --json</code> to output live session lists as JSON, which unlocks tmux-resurrect integrations, status bars, and external session pickers. OTEL spans now carry <code>agent_id</code> and <code>parent_agent_id</code> with correct trace parenting for background subagents. The <code>/plugin</code> Discover and Browse screens show a plugin's full capability manifest before install. The agent-as-platform surface area keeps accumulating. Two versions in one day.</p>
+      <p class="note">v2.1.144 (released 00:48 UTC May 19, 20:48 ET May 18) was covered in yesterday's sweep.</p>
+    </section>
+
+    <!-- Release Log -->
+    <section>
+      <span class="release-log-header">Release Log</span>
+
+      <!-- Claude Code -->
+      <div class="log-category">
+        <div class="log-category-header">C. Claude Code</div>
+
+        <div class="log-entry">
+          <div class="log-entry-meta">
+            <span class="log-entry-date">2026-05-19</span>
+            <span class="log-tag">CODE</span>
+          </div>
+          <div class="log-entry-title">
+            <a href="https://github.com/anthropics/claude-code/releases/tag/v2.1.145">Claude Code v2.1.145</a>
+          </div>
+          <div class="log-entry-body">
+            Scripting, observability, plugin discoverability, and a security fix. <code>claude agents --json</code> surfaces live sessions as JSON for external tooling. OTEL gains <code>agent_id</code> and <code>parent_agent_id</code> on <code>claude_code.tool</code> spans with corrected trace parenting for background subagents. Status line JSON now includes GitHub repo and PR context. <code>/plugin</code> Discover and Browse show a plugin's full manifest before install. <code>claude agents</code> tab titles show awaiting-input count. Security fix: bare variable assignments to non-allowlisted environment variables in Bash were auto-approved; now blocked. Also fixed: MCP slash command error messaging, spinner freeze after resize, Windows PowerShell separator, voice push-to-talk in agent view, task list ordering on concurrent creation, Agent Teams non-ASCII name header encoding, <code>/review</code> GraphQL regression on Classic Projects repos, skill <code>context: fork</code> infinite loop, Read tool hard errors on token-limit overflow replaced with partial content notice.
+          </div>
+          <div class="log-entry-how">
+            <strong>How to use:</strong> <code>claude update</code> or <code>npm i -g @anthropic-ai/claude-code</code>. Script sessions: <code>claude agents --json | jq '.[] | .id'</code>
+          </div>
+        </div>
+      </div>
+
+      <!-- API -->
+      <div class="log-category">
+        <div class="log-category-header">B. API and Platform</div>
+        <div class="log-category-note">docs.anthropic.com returned 403 during yesterday's and today's sweeps. These three May 18 items were confirmed via web search against the API release notes page.</div>
+
+        <div class="log-entry">
+          <div class="log-entry-meta">
+            <span class="log-entry-date">2026-05-18</span>
+            <span class="log-tag">API</span>
+          </div>
+          <div class="log-entry-title">
+            <a href="https://docs.anthropic.com/en/release-notes/api">Cache diagnostics (public beta)</a>
+          </div>
+          <div class="log-entry-body">
+            Pass <code>diagnostics.previous_message_id</code> on a Messages request and the API returns a <code>cache_miss_reason</code> field explaining where the prompt cache prefix diverged from the previous turn. Useful for debugging multi-turn cache behavior without guessing.
+          </div>
+          <div class="log-entry-how">
+            <strong>How to use:</strong> Include beta header <code>cache-diagnosis-2026-04-07</code>. Add <code>diagnostics: { previous_message_id: "&lt;id&gt;" }</code> to the request body.
+          </div>
+        </div>
+
+        <div class="log-entry">
+          <div class="log-entry-meta">
+            <span class="log-entry-date">2026-05-18</span>
+            <span class="log-tag">API</span>
+          </div>
+          <div class="log-entry-title">
+            <a href="https://docs.anthropic.com/en/release-notes/api">Fast mode for Claude Opus 4.7 (research preview)</a>
+          </div>
+          <div class="log-entry-body">
+            Fast mode, previously limited to Opus 4.6, now supports Opus 4.7. Faster output token generation at premium pricing. Pricing and rate limits match Opus 4.6 fast mode. Waitlist access via the Console.
+          </div>
+          <div class="log-entry-how">
+            <strong>How to use:</strong> Set <code>speed: "fast"</code> and <code>model: "claude-opus-4-7"</code> with the <code>fast-mode-2026-02-01</code> beta header. Join the waitlist.
+          </div>
+        </div>
+
+        <div class="log-entry">
+          <div class="log-entry-meta">
+            <span class="log-entry-date">2026-05-18</span>
+            <span class="log-tag">API</span>
+          </div>
+          <div class="log-entry-title">
+            <a href="https://docs.anthropic.com/en/release-notes/api">SEC filing data in web search tool</a>
+          </div>
+          <div class="log-entry-body">
+            The built-in web search tool now returns richer SEC filing data, surfacing primary-source citations for financial research agents, earnings analysis, and due-diligence workflows.
+          </div>
+        </div>
+      </div>
+
+      <!-- SDKs -->
+      <div class="log-category">
+        <div class="log-category-header">E. Agent SDKs</div>
+
+        <div class="log-entry">
+          <div class="log-entry-meta">
+            <span class="log-entry-date">2026-05-19</span>
+            <span class="log-tag">SDK-PY</span>
+          </div>
+          <div class="log-entry-title">
+            <a href="https://github.com/anthropics/anthropic-sdk-python/releases/tag/v0.103.0">anthropic-sdk-python v0.103.0</a>
+          </div>
+          <div class="log-entry-body">
+            Adds support for self-hosted sandboxes in the CMA (Compute Management API) with new sandbox helper utilities for configuring and interacting with custom sandbox environments.
+          </div>
+          <div class="log-entry-how">
+            <strong>How to use:</strong> <code>pip install anthropic==0.103.0</code>
+          </div>
+        </div>
+
+        <div class="log-entry">
+          <div class="log-entry-meta">
+            <span class="log-entry-date">2026-05-19</span>
+            <span class="log-tag">SDK-PY</span>
+          </div>
+          <div class="log-entry-title">
+            <a href="https://github.com/anthropics/anthropic-sdk-python/releases/tag/v0.103.1">anthropic-sdk-python v0.103.1</a>
+          </div>
+          <div class="log-entry-body">
+            Bug fix: <code>SessionToolRunner</code> now skips tool calls it does not own, preventing dispatch conflicts when multiple runners share a session.
+          </div>
+          <div class="log-entry-how">
+            <strong>How to use:</strong> <code>pip install anthropic==0.103.1</code>
+          </div>
+        </div>
+
+        <div class="log-entry">
+          <div class="log-entry-meta">
+            <span class="log-entry-date">2026-05-19</span>
+            <span class="log-tag">SDK-TS</span>
+          </div>
+          <div class="log-entry-title">
+            <a href="https://github.com/anthropics/anthropic-sdk-typescript/releases">anthropic-sdk-typescript v0.97.0</a>
+          </div>
+          <div class="log-entry-body">
+            Self-hosted sandbox support in the CMA, matching the Python SDK. Upgrades tsc-multi for Node 26 compatibility.
+          </div>
+          <div class="log-entry-how">
+            <strong>How to use:</strong> <code>npm install @anthropic-ai/sdk@0.97.0</code>
+          </div>
+        </div>
+
+        <div class="log-entry">
+          <div class="log-entry-meta">
+            <span class="log-entry-date">2026-05-19</span>
+            <span class="log-tag">SDK-TS</span>
+          </div>
+          <div class="log-entry-title">
+            <a href="https://github.com/anthropics/anthropic-sdk-typescript/releases">anthropic-sdk-typescript v0.97.1</a>
+          </div>
+          <div class="log-entry-body">
+            Bug fix: <code>SessionToolRunner</code> skips tool calls it does not own. Mirrors Python SDK 0.103.1.
+          </div>
+          <div class="log-entry-how">
+            <strong>How to use:</strong> <code>npm install @anthropic-ai/sdk@0.97.1</code>
+          </div>
+        </div>
+
+        <div class="log-entry">
+          <div class="log-entry-meta">
+            <span class="log-entry-date">2026-05-19</span>
+            <span class="log-tag">SDK-TS</span>
+          </div>
+          <div class="log-entry-title">
+            <a href="https://github.com/anthropics/anthropic-sdk-typescript/releases">bedrock-sdk v0.29.2 and vertex-sdk v0.16.1</a>
+          </div>
+          <div class="log-entry-body">
+            Dependency hygiene: <code>@types/node</code> aligned across sub-packages to fix CI build failures. No feature changes.
+          </div>
+          <div class="log-entry-how">
+            <strong>How to use:</strong> <code>npm install @anthropic-ai/bedrock-sdk@0.29.2</code> or <code>@anthropic-ai/vertex-sdk@0.16.1</code>
+          </div>
+        </div>
+      </div>
+
+      <!-- Quiet on the Wire -->
+      <div class="quiet">
+        <span class="section-label">Quiet on the Wire</span>
+        <p>No new Claude Apps updates, research papers, or news announcements found in the window. anthropic.com/news last moved May 14 (Gates Foundation partnership). anthropic.com/research: no new publications today. docs.anthropic.com returned 403 on all direct fetches; API items above confirmed via web search.</p>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="page-footer">
+      <p class="footer-ts">Generated 2026-05-20T01:03:21Z. Shipped. Daily is an automated sweep. All claims sourced from primary URLs below.</p>
+      <div class="footer-sources">
+        <span class="footer-sources-label">Sources</span>
+        <ul>
+          <li><a href="https://github.com/anthropics/claude-code/releases">github.com/anthropics/claude-code/releases</a></li>
+          <li><a href="https://github.com/anthropics/anthropic-sdk-python/releases">github.com/anthropics/anthropic-sdk-python/releases</a></li>
+          <li><a href="https://github.com/anthropics/anthropic-sdk-typescript/releases">github.com/anthropics/anthropic-sdk-typescript/releases</a></li>
+          <li><a href="https://docs.anthropic.com/en/release-notes/api">docs.anthropic.com/en/release-notes/api</a> (403 during sweep; items confirmed via web search)</li>
+          <li><a href="https://www.anthropic.com/news">anthropic.com/news</a> (403 during sweep; no new items in window per web search)</li>
+          <li><a href="https://www.anthropic.com/research">anthropic.com/research</a> (403 during sweep; no new items per web search)</li>
+        </ul>
+      </div>
+      <p class="footer-pub">Shipped. Daily. A sweep on what Anthropic is releasing.</p>
+    </footer>
+
+  </div>
+</body>
+</html>
