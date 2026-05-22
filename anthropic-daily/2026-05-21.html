@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="color-scheme" content="light">
+  <title>Shipped. Daily -- May 21, 2026</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Newsreader:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { font-size: 16px; background: #FFFFFF; }
+
+    body {
+      background: #FFFFFF;
+      color: #000000;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      font-size: 15px;
+      line-height: 1.65;
+      padding: 5rem 1.5rem 5rem;
+    }
+
+    .page {
+      max-width: 720px;
+      margin: 0 auto;
+    }
+
+    /* Masthead */
+    .masthead {
+      margin-bottom: 2.5rem;
+      padding-bottom: 1.5rem;
+      border-bottom: 1px solid #E5E5E5;
+    }
+    .masthead-name {
+      font-family: 'Newsreader', Georgia, 'Times New Roman', serif;
+      font-style: italic;
+      font-weight: 400;
+      font-size: 2.25rem;
+      color: #000000;
+      letter-spacing: -0.01em;
+      line-height: 1.05;
+      margin-bottom: 0.5rem;
+    }
+    .masthead-dateline {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.10em;
+      text-transform: uppercase;
+      color: #666666;
+    }
+
+    /* One-liner */
+    .one-liner {
+      font-size: 17px;
+      font-weight: 400;
+      color: #000000;
+      line-height: 1.60;
+      margin-bottom: 2.5rem;
+      padding-bottom: 1.5rem;
+      border-bottom: 1px solid #E5E5E5;
+    }
+
+    /* Section label */
+    .section-label {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.13em;
+      text-transform: uppercase;
+      color: #666666;
+      margin-bottom: 0.85rem;
+      display: block;
+    }
+
+    /* Lead */
+    .lead {
+      margin-bottom: 2.75rem;
+      padding-bottom: 1.75rem;
+      border-bottom: 1px solid #E5E5E5;
+    }
+    .lead-title {
+      font-size: 21px;
+      font-weight: 600;
+      color: #000000;
+      line-height: 1.25;
+      letter-spacing: -0.02em;
+      margin-bottom: 1rem;
+    }
+    .lead-body p {
+      font-size: 15px;
+      color: #000000;
+      line-height: 1.75;
+      margin-bottom: 0.85rem;
+    }
+    .lead-body p:last-child { margin-bottom: 0; }
+
+    /* Release log */
+    .release-log {
+      margin-bottom: 2.75rem;
+    }
+    .release-log-header {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #000000;
+      margin-bottom: 1.75rem;
+      padding-bottom: 0.65rem;
+      border-bottom: 2px solid #000000;
+    }
+    .log-area {
+      margin-bottom: 2rem;
+    }
+    .log-area-label {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.10em;
+      text-transform: uppercase;
+      color: #666666;
+      padding-bottom: 0.5rem;
+      margin-bottom: 0;
+      border-bottom: 1px solid #E5E5E5;
+    }
+    .log-entry {
+      padding: 1.1rem 0;
+      border-bottom: 1px solid #E5E5E5;
+    }
+    .log-entry:last-child {
+      border-bottom: none;
+    }
+    .log-entry-meta {
+      display: flex;
+      align-items: baseline;
+      gap: 0.75rem;
+      margin-bottom: 0.4rem;
+      flex-wrap: wrap;
+    }
+    .log-entry-date {
+      font-size: 11px;
+      font-weight: 500;
+      color: #666666;
+      flex-shrink: 0;
+      font-variant-numeric: tabular-nums;
+    }
+    .log-entry-title {
+      font-size: 15px;
+      font-weight: 600;
+      color: #000000;
+      line-height: 1.3;
+    }
+    .log-entry-title a {
+      color: inherit;
+      text-decoration: none;
+      border-bottom: 1px solid rgba(0,0,0,0.18);
+      padding-bottom: 1px;
+    }
+    .log-entry-title a:hover {
+      border-bottom-color: #000000;
+    }
+    .tag {
+      display: inline-block;
+      font-family: 'Inter', sans-serif;
+      font-size: 9px;
+      font-weight: 600;
+      letter-spacing: 0.10em;
+      text-transform: uppercase;
+      background: #F0F0F0;
+      color: #333333;
+      padding: 2px 7px;
+      border-radius: 3px;
+      margin-bottom: 0.6rem;
+      margin-top: 0.15rem;
+    }
+    .log-entry-body {
+      font-size: 14px;
+      color: #000000;
+      line-height: 1.65;
+    }
+    .log-entry-body p {
+      margin-bottom: 0.5rem;
+    }
+    .log-entry-body p:last-child { margin-bottom: 0; }
+    .how-to {
+      margin-top: 0.65rem;
+      font-size: 13px;
+      color: #333333;
+      line-height: 1.60;
+    }
+    .how-to strong {
+      font-weight: 600;
+      color: #000000;
+    }
+
+    code {
+      font-family: 'SFMono-Regular', 'Menlo', 'Monaco', 'Consolas', 'Liberation Mono', monospace;
+      font-size: 12px;
+      background: #F7F7F7;
+      color: #000000;
+      padding: 1px 5px;
+      border-radius: 3px;
+      border: 1px solid rgba(0,0,0,0.08);
+    }
+
+    a code {
+      border-bottom: none;
+    }
+
+    /* Quiet on the Wire */
+    .quiet-section {
+      margin-bottom: 2.75rem;
+      padding-bottom: 1.75rem;
+      border-bottom: 1px solid #E5E5E5;
+    }
+    .quiet-body {
+      padding-left: 1.25rem;
+      font-size: 14px;
+      color: #666666;
+      line-height: 1.70;
+    }
+
+    /* Footer */
+    .footer {
+      font-size: 12px;
+      color: #666666;
+      line-height: 1.80;
+      padding-top: 0.5rem;
+    }
+    .footer-ts {
+      font-weight: 500;
+      margin-bottom: 1rem;
+    }
+    .footer-sources-label {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.10em;
+      text-transform: uppercase;
+      color: #666666;
+      margin-bottom: 0.5rem;
+      display: block;
+    }
+    .footer-sources {
+      list-style: none;
+    }
+    .footer-sources li {
+      margin-bottom: 0.2rem;
+    }
+    .footer-sources a {
+      color: #666666;
+      text-decoration: none;
+      font-size: 11px;
+      word-break: break-all;
+    }
+    .footer-sources a:hover {
+      color: #000000;
+    }
+
+    /* Global link style */
+    a {
+      color: inherit;
+    }
+
+    /* Mobile */
+    @media (max-width: 580px) {
+      body {
+        padding: 3rem 1.25rem 4rem;
+      }
+      .masthead-name {
+        font-size: 1.85rem;
+      }
+      .lead-title {
+        font-size: 18px;
+      }
+      .one-liner {
+        font-size: 16px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+
+    <header class="masthead">
+      <div class="masthead-name">Shipped.</div>
+      <div class="masthead-dateline">Daily &nbsp;&middot;&nbsp; Thursday, May 21, 2026</div>
+    </header>
+
+    <p class="one-liner">Three releases, no headlines: a Claude Code patch with 28 fixes, and both SDKs gaining streaming token estimates for extended thinking.</p>
+
+    <section class="lead">
+      <span class="section-label">Lead</span>
+      <h2 class="lead-title">Claude Code v2.1.147: 28 fixes and a renamed command</h2>
+      <div class="lead-body">
+        <p>The most visible change in <a href="https://github.com/anthropics/claude-code/releases/tag/v2.1.147">v2.1.147</a> is a rename: <code>/simplify</code> is now <code>/code-review</code>, and it ships with effort levels (<code>/code-review high</code>) and a <code>--comment</code> flag that posts findings directly as inline PR comments on GitHub. Clean integration, no clipboard archaeology.</p>
+        <p>The second change worth tracking is operational: pinned background sessions (<code>Ctrl+T</code> in <code>claude agents</code>) now survive idle, restart in place when an update lands, and are shed under memory pressure only after non-pinned sessions clear first. Sessions that hold their state through an update cycle are sessions you can rely on.</p>
+        <p>The rest is a 28-item fix list covering PowerShell on Windows, MCP server pagination, auto-updater retries, diff rendering performance, and edge cases in plugin and shell snapshot handling. Nothing changes what the tool can do. Several things change how reliably it does it.</p>
+      </div>
+    </section>
+
+    <section class="release-log">
+      <div class="release-log-header">Release Log</div>
+
+      <div class="log-area">
+        <div class="log-area-label">C. Claude Code</div>
+
+        <div class="log-entry">
+          <div class="log-entry-meta">
+            <span class="log-entry-date">2026-05-21</span>
+            <span class="log-entry-title"><a href="https://github.com/anthropics/claude-code/releases/tag/v2.1.147">Claude Code v2.1.147</a></span>
+          </div>
+          <div><span class="tag">CODE</span></div>
+          <div class="log-entry-body">
+            <p><code>/simplify</code> renamed to <code>/code-review</code> with effort-level reporting (<code>/code-review high</code>) and a <code>--comment</code> flag for GitHub PR inline comments. Pinned background sessions (<code>Ctrl+T</code> in <code>claude agents</code>) now survive idle and restart in place when updates land. 28 additional fixes including: auto-updater retry logic, diff rendering performance on large files, enterprise login enforcement for <code>forceLoginOrgUUID</code> and <code>forceLoginMethod</code>, PowerShell on Windows (winget and Microsoft Store installs), MCP server pagination (resources and prompts past page 1 were silently dropped), shell snapshot user-function handling, plugin agent multi-type declarations, hook <code>if</code> condition matching, and full-screen strobing on Windows Terminal.</p>
+            <div class="how-to"><strong>How to use:</strong> Run <code>claude update</code> to get v2.1.147. Then use <code>/code-review</code> in any session, or <code>/code-review high</code> for a deeper pass. Add the <code>--comment</code> flag to post findings as inline GitHub PR review comments.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="log-area">
+        <div class="log-area-label">E. Agent SDKs</div>
+
+        <div class="log-entry">
+          <div class="log-entry-meta">
+            <span class="log-entry-date">2026-05-21</span>
+            <span class="log-entry-title"><a href="https://github.com/anthropics/anthropic-sdk-python/releases/tag/v0.104.0">anthropic-sdk-python v0.104.0</a></span>
+          </div>
+          <div><span class="tag">SDK-PY</span></div>
+          <div class="log-entry-body">
+            <p>Adds <code>thinking-token-count</code> beta support: when streaming extended thinking, the SDK now surfaces estimated token counts in thinking block deltas. Useful for cost estimation and context budget management in agentic loops that rely on extended thinking.</p>
+            <div class="how-to"><strong>How to use:</strong> Include the <code>thinking-token-count</code> beta header in your request. Token estimates arrive as metadata on thinking block delta events. See <a href="https://platform.claude.com/docs/en/build-with-claude/streaming">streaming docs</a> for the full schema.</div>
+          </div>
+        </div>
+
+        <div class="log-entry">
+          <div class="log-entry-meta">
+            <span class="log-entry-date">2026-05-21</span>
+            <span class="log-entry-title"><a href="https://github.com/anthropics/anthropic-sdk-typescript/releases/tag/sdk-v0.98.0">anthropic-sdk-typescript v0.98.0</a></span>
+          </div>
+          <div><span class="tag">SDK-TS</span></div>
+          <div class="log-entry-body">
+            <p>Parity release with Python v0.104.0: same <code>thinking-token-count</code> beta feature for streaming extended thinking token estimates. Both SDKs shipped the same capability on the same day.</p>
+            <div class="how-to"><strong>How to use:</strong> Include the <code>thinking-token-count</code> beta header. Token estimates appear in thinking block delta events during streaming.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="quiet-section">
+      <span class="section-label">Quiet on the Wire</span>
+      <div class="quiet-body">
+        <p>No model releases. No API feature announcements. Code with Claude London wrapped its two-day run on May 20 (MIT Technology Review and Fortune published coverage today), but the features shown there, self-hosted sandboxes and MCP tunnels for Claude Managed Agents, were announced on May 19. Nothing from the claude-apps or system-prompts release channels confirmed in this window. The docs.anthropic.com release notes pages returned 403 on this sweep and could not be directly verified.</p>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <p class="footer-ts">Generated 2026-05-22T01:08:40Z UTC</p>
+      <span class="footer-sources-label">Sources</span>
+      <ul class="footer-sources">
+        <li><a href="https://github.com/anthropics/claude-code/releases/tag/v2.1.147">https://github.com/anthropics/claude-code/releases/tag/v2.1.147</a></li>
+        <li><a href="https://github.com/anthropics/anthropic-sdk-python/releases/tag/v0.104.0">https://github.com/anthropics/anthropic-sdk-python/releases/tag/v0.104.0</a></li>
+        <li><a href="https://github.com/anthropics/anthropic-sdk-typescript/releases/tag/sdk-v0.98.0">https://github.com/anthropics/anthropic-sdk-typescript/releases/tag/sdk-v0.98.0</a></li>
+        <li><a href="https://www.technologyreview.com/2026/05/21/1137735/anthropics-code-with-claude-showed-off-codings-future-whether-you-like-it-or-not/">MIT Technology Review: Code with Claude London, May 21, 2026</a></li>
+        <li><a href="https://fortune.com/2026/05/21/claude-code-london-anthropic-ai-software-engineering/">Fortune: Claude Code London, May 21, 2026</a></li>
+        <li><a href="https://www.anthropic.com/news">https://www.anthropic.com/news</a></li>
+        <li><a href="https://docs.anthropic.com/en/release-notes/overview">https://docs.anthropic.com/en/release-notes/overview</a></li>
+      </ul>
+    </footer>
+
+  </div>
+</body>
+</html>
