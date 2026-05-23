@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="color-scheme" content="light dark">
+  <title>Shipped. Anthropic Weekly &mdash; Week of 2026-05-18</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Newsreader:ital,wght@1,400;1,600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #FFFFFF;
+      --ink: #000000;
+      --muted: #666666;
+      --rule: #E5E5E5;
+      --tag-bg: #F0F0F0;
+      --tag-ink: #333333;
+      --code-bg: #F7F7F7;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #0A0A0A;
+        --ink: #FFFFFF;
+        --muted: #999999;
+        --rule: #2A2A2A;
+        --tag-bg: #1E1E1E;
+        --tag-ink: #CCCCCC;
+        --code-bg: #181818;
+      }
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { background: var(--bg); }
+
+    body {
+      background: var(--bg);
+      color: var(--ink);
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      font-size: 15px;
+      line-height: 1.65;
+      padding: 5rem 1.5rem 5rem;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    .page {
+      max-width: 720px;
+      margin: 0 auto;
+    }
+
+    /* Masthead */
+    .masthead {
+      margin-bottom: 2.5rem;
+      padding-bottom: 1.5rem;
+      border-bottom: 1px solid var(--rule);
+    }
+
+    .masthead-name {
+      font-family: 'Newsreader', Georgia, 'Times New Roman', serif;
+      font-style: italic;
+      font-weight: 600;
+      font-size: 2.25rem;
+      color: var(--ink);
+      letter-spacing: -0.02em;
+      line-height: 1;
+      margin-bottom: 0.5rem;
+      display: block;
+    }
+
+    .masthead-dateline {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.10em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    /* Cover line */
+    .cover-line {
+      font-size: 17px;
+      font-weight: 500;
+      line-height: 1.55;
+      color: var(--ink);
+      margin-bottom: 2.5rem;
+      padding-top: 1.5rem;
+      padding-bottom: 1.5rem;
+      border-bottom: 1px solid var(--rule);
+    }
+
+    /* Section label */
+    .section-label {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.13em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 0.85rem;
+      display: block;
+    }
+
+    /* Sections */
+    .section {
+      margin-bottom: 2.75rem;
+      padding-bottom: 2.25rem;
+      border-bottom: 1px solid var(--rule);
+    }
+
+    .section h2 {
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: var(--ink);
+      line-height: 1.25;
+      letter-spacing: -0.02em;
+      margin-bottom: 1.1rem;
+    }
+
+    .section h3 {
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--ink);
+      line-height: 1.3;
+      margin-bottom: 0.65rem;
+    }
+
+    .section p {
+      font-size: 15px;
+      line-height: 1.75;
+      color: var(--ink);
+      margin-bottom: 0.85rem;
+    }
+
+    .section p:last-child { margin-bottom: 0; }
+
+    a { color: inherit; }
+
+    .section a {
+      text-decoration: underline;
+      text-decoration-color: var(--rule);
+      text-underline-offset: 2px;
+    }
+
+    .section a:hover { text-decoration-color: var(--ink); }
+
+    /* Pullquote (punchline isolation) */
+    .pullquote {
+      font-size: 17px;
+      font-style: italic;
+      line-height: 1.55;
+      color: var(--ink);
+      margin: 1.75rem 0;
+      padding-left: 1.25rem;
+      border-left: 3px solid var(--ink);
+    }
+
+    /* Also Shipped sub-sections */
+    .also-item {
+      padding-bottom: 1.25rem;
+      border-bottom: 1px solid var(--rule);
+      margin-bottom: 1.25rem;
+    }
+
+    .also-item:last-child {
+      border-bottom: none;
+      padding-bottom: 0;
+      margin-bottom: 0;
+    }
+
+    /* Quiet */
+    .quiet-body {
+      padding-left: 1rem;
+      font-size: 14px;
+      color: var(--muted);
+      line-height: 1.70;
+    }
+
+    /* Close */
+    .close-body p {
+      font-size: 15px;
+      line-height: 1.6;
+      color: var(--ink);
+      margin-bottom: 1rem;
+    }
+
+    .close-body p:last-child {
+      font-style: italic;
+      margin-bottom: 0;
+    }
+
+    /* Release log */
+    .release-log-header {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.13em;
+      text-transform: uppercase;
+      color: var(--ink);
+      padding-bottom: 0.65rem;
+      border-bottom: 2px solid var(--ink);
+      margin-bottom: 1.5rem;
+      display: block;
+    }
+
+    .release-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13px;
+    }
+
+    .release-table th {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.10em;
+      text-transform: uppercase;
+      color: var(--muted);
+      text-align: left;
+      padding: 8px 12px 8px 0;
+      border-bottom: 1px solid var(--rule);
+    }
+
+    .release-table td {
+      padding: 10px 12px 10px 0;
+      border-bottom: 1px solid var(--rule);
+      vertical-align: top;
+      line-height: 1.55;
+      color: var(--ink);
+    }
+
+    .release-table tr:last-child td { border-bottom: none; }
+
+    .col-date {
+      white-space: nowrap;
+      color: var(--muted);
+      font-size: 11px;
+      font-weight: 500;
+      width: 82px;
+    }
+
+    .col-area { width: 72px; }
+
+    .col-title { font-weight: 600; }
+
+    .col-title a {
+      color: inherit;
+      text-decoration: none;
+      border-bottom: 1px solid rgba(128,128,128,0.3);
+      padding-bottom: 1px;
+    }
+
+    .col-title a:hover { border-color: var(--ink); }
+
+    .col-oneliner { color: var(--muted); }
+
+    /* Tags */
+    .tag {
+      display: inline-block;
+      font-size: 9px;
+      font-weight: 600;
+      letter-spacing: 0.10em;
+      text-transform: uppercase;
+      background: var(--tag-bg);
+      color: var(--tag-ink);
+      padding: 2px 6px;
+      border-radius: 3px;
+      white-space: nowrap;
+    }
+
+    .tag-code { background: #595959; color: #ffffff; }
+    .tag-api  { background: #404040; color: #ffffff; }
+    .tag-sdk-py { background: var(--tag-bg); color: var(--tag-ink); }
+    .tag-sdk-ts { background: #DEDEDE; color: #333333; }
+    .tag-news { background: var(--tag-bg); color: var(--tag-ink); border: 1px solid var(--rule); }
+
+    code {
+      font-family: 'SFMono-Regular', Menlo, Monaco, Consolas, 'Courier New', monospace;
+      font-size: 12px;
+      background: var(--code-bg);
+      padding: 1px 5px;
+      border-radius: 3px;
+      color: var(--ink);
+    }
+
+    /* Footer */
+    .footer {
+      padding-top: 2rem;
+      border-top: 1px solid var(--rule);
+      font-size: 11px;
+      color: var(--muted);
+      line-height: 1.75;
+    }
+
+    @media (max-width: 600px) {
+      body { padding: 3rem 1.25rem 3rem; }
+      .masthead-name { font-size: 1.75rem; }
+      .cover-line { font-size: 16px; }
+      .col-oneliner { display: none; }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+
+    <header class="masthead">
+      <span class="masthead-name">Shipped.</span>
+      <span class="masthead-dateline">Anthropic Weekly &middot; Week of May 18, 2026 &middot; ISO 2026-W21</span>
+    </header>
+
+    <p class="cover-line">Anthropic bought the company that built everyone's SDKs and shut it down. Claude Code shipped five times.</p>
+
+    <!-- The Open -->
+    <section class="section">
+      <span class="section-label">The Open</span>
+      <p>There is a company most developers have never heard of that built the SDKs they use every day to talk to Claude, GPT, Gemini, and Llama. It is called Stainless. Monday morning, it became an Anthropic asset. The service shut down.</p>
+      <p>The rest of the week was Claude Code. Five versions in four days. Three of those drops contained security patches for permission boundary issues in Bash, PowerShell, and git worktrees. The platform is accumulating surface area. The security work is keeping pace, mostly.</p>
+      <p>Code with Claude London ran May 19 and 20, showcasing self-hosted sandboxes and MCP tunnels for Claude Managed Agents. The features were already shipped. The event was the demonstration.</p>
+    </section>
+
+    <!-- The Lead Story -->
+    <section class="section">
+      <span class="section-label">The Lead Story</span>
+      <h2>The factory that built everyone's tools</h2>
+
+      <p>There is a peculiar position in the AI infrastructure stack: building the tooling layer that every competing lab relies on. Stainless occupied it. Founded in 2022 by former Stripe engineer Alex Rattray and backed by Sequoia Capital and Andreessen Horowitz, Stainless generated production-ready SDKs, CLIs, and MCP servers from API specifications. Its customers included OpenAI, Google, Cloudflare, and Meta. It also generated every official Anthropic SDK.</p>
+
+      <p>Anthropic <a href="https://www.anthropic.com/news/anthropic-acquires-stainless">announced the acquisition</a> Monday without disclosing terms. The Information reported before the announcement, and <a href="https://techcrunch.com/2026/05/18/anthropic-has-acquired-the-dev-tools-startup-used-by-openai-google-and-cloudflare/">TechCrunch confirmed</a>, that talks valued Stainless at over $300 million, with part of the consideration in Anthropic equity. Post-close: all hosted Stainless products, including the SDK generator, wind down. Existing customers retain their generated SDKs with full modification rights.</p>
+
+      <div class="pullquote">The generator stops. The parts stay where they landed.</div>
+
+      <p>The move is about supply chain, not product. A $300 million acquisition to secure a build pipeline is unusual. The calculation becomes less unusual when you note that the same pipeline was building the developer tooling that makes every competing lab accessible to developers. Anthropic now owns the team, the generator, and the institutional knowledge of exactly how its competitors ship SDKs.</p>
+
+      <p>What Stainless becomes internally is not stated. The external service is closing.</p>
+    </section>
+
+    <!-- Also Shipped -->
+    <section class="section">
+      <span class="section-label">Also Shipped</span>
+
+      <div class="also-item">
+        <h3>Self-hosted sandboxes land in the SDKs</h3>
+        <p>Python SDK v0.103.0 and TypeScript SDK v0.97.0 (both May 19) added self-hosted sandbox support in the Compute Management API. Operators can now configure custom sandbox environments for Claude Managed Agents rather than relying on Anthropic's hosted compute. Both SDKs shipped the same day; the feature was demoed at Code with Claude London on May 20. Install: <code>pip install anthropic==0.103.0</code> or <code>npm install @anthropic-ai/sdk@0.97.0</code>. (<a href="https://github.com/anthropics/anthropic-sdk-python/releases/tag/v0.103.0">Python</a>, <a href="https://github.com/anthropics/anthropic-sdk-typescript/releases">TypeScript</a>)</p>
+      </div>
+
+      <div class="also-item">
+        <h3>Fast mode reaches Opus 4.7</h3>
+        <p>Fast mode, previously limited to Opus 4.6, now supports Opus 4.7 as a research preview. Faster output at full Opus 4.7 capability. Pricing matches Opus 4.6 fast mode. Waitlist via the Console; beta header <code>fast-mode-2026-02-01</code>, set <code>speed: "fast"</code> and <code>model: "claude-opus-4-7"</code>. (<a href="https://docs.anthropic.com/en/release-notes/api">API release notes</a>)</p>
+      </div>
+
+      <div class="also-item">
+        <h3>Cache diagnostics: know why you missed</h3>
+        <p>Pass <code>diagnostics.previous_message_id</code> on a Messages request and get back <code>cache_miss_reason</code>, which explains exactly where the prompt cache prefix diverged. Requires the <code>cache-diagnosis-2026-04-07</code> beta header. This landed May 18 and was confirmed via web search; docs.anthropic.com returned 403 on all sweeps this week. (<a href="https://docs.anthropic.com/en/release-notes/api">API release notes</a>)</p>
+      </div>
+
+      <div class="also-item">
+        <h3>Extended thinking with a running meter</h3>
+        <p>Python SDK v0.104.0 and TypeScript SDK v0.98.0 (both May 21) added streaming token count estimates for extended thinking. Token estimates arrive as metadata on thinking block delta events during streaming, enabling cost estimation and context budget management without waiting for full completion. Beta header: <code>thinking-token-count</code>. (<a href="https://github.com/anthropics/anthropic-sdk-python/releases/tag/v0.104.0">Python</a>, <a href="https://github.com/anthropics/anthropic-sdk-typescript/releases/tag/sdk-v0.98.0">TypeScript</a>)</p>
+      </div>
+
+      <div class="also-item">
+        <h3>/code-review, /usage, and four security patches</h3>
+        <p>Claude Code v2.1.147 renamed <code>/simplify</code> to <code>/code-review</code> (with effort levels and a <code>--comment</code> flag for GitHub PR inline comments) and pinned background sessions that survive idle and restart through updates. v2.1.149 carried four security fixes: a PowerShell built-in <code>cd</code> bypass, a git worktree sandbox scope issue, wildcard pre-approval gaps for native executables, and stale PWD variable tracking. The same drop added a per-category <code>/usage</code> cost breakdown (skills, subagents, plugins, per-MCP-server) and keyboard navigation for <code>/diff</code>. Between v2.1.147 and v2.1.149, v2.1.148 was a one-liner hotfix: Bash tool was returning exit code 127 on every command, a regression that broke all shell execution for anyone who updated Thursday. (<a href="https://github.com/anthropics/claude-code/blob/main/CHANGELOG.md">CHANGELOG</a>)</p>
+      </div>
+    </section>
+
+    <!-- Quiet on the Wire -->
+    <section class="section">
+      <span class="section-label">Quiet on the Wire</span>
+      <div class="quiet-body">
+        <p>The KPMG alliance, announced May 19, appeared in Friday's sweep as a reference but has no corresponding daily page (Wednesday's page is absent from this week's record). Scope and structure unconfirmed. No model releases this week. docs.anthropic.com returned 403 on every sweep from Monday through Friday; several API items in the release log were confirmed via web search rather than direct source verification.</p>
+      </div>
+    </section>
+
+    <!-- The Close -->
+    <section class="section">
+      <span class="section-label">The Close</span>
+      <div class="close-body">
+        <p>Anthropic bought the factory and shut the door.</p>
+        <p>Claude Code patched its own permission gaps five times in four days.</p>
+        <p>The platform you build on is changing shape.</p>
+      </div>
+    </section>
+
+    <!-- Release Log -->
+    <section>
+      <span class="release-log-header">Release Log</span>
+      <table class="release-table">
+        <thead>
+          <tr>
+            <th class="col-date">Date</th>
+            <th class="col-area">Area</th>
+            <th class="col-title">Title</th>
+            <th class="col-oneliner">One-liner</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="col-date">2026-05-18</td>
+            <td class="col-area"><span class="tag tag-news">NEWS</span></td>
+            <td class="col-title"><a href="https://www.anthropic.com/news/anthropic-acquires-stainless">Anthropic acquires Stainless</a></td>
+            <td class="col-oneliner">SDK generator used by OpenAI, Google, Cloudflare, Meta, and Anthropic acquired; service wound down. Reported at $300M+ by The Information.</td>
+          </tr>
+          <tr>
+            <td class="col-date">2026-05-18</td>
+            <td class="col-area"><span class="tag tag-code">CODE</span></td>
+            <td class="col-title"><a href="https://github.com/anthropics/claude-code/releases">Claude Code v2.1.144</a></td>
+            <td class="col-oneliner">Resume support for background sessions. Elapsed-duration notifications. Per-session model selection. Startup hang and terminal corruption fixes.</td>
+          </tr>
+          <tr>
+            <td class="col-date">2026-05-18</td>
+            <td class="col-area"><span class="tag tag-api">API</span></td>
+            <td class="col-title"><a href="https://docs.anthropic.com/en/release-notes/api">Cache diagnostics beta</a></td>
+            <td class="col-oneliner"><code>diagnostics.previous_message_id</code> returns <code>cache_miss_reason</code>. Header: <code>cache-diagnosis-2026-04-07</code>.</td>
+          </tr>
+          <tr>
+            <td class="col-date">2026-05-18</td>
+            <td class="col-area"><span class="tag tag-api">API</span></td>
+            <td class="col-title"><a href="https://docs.anthropic.com/en/release-notes/api">Fast mode for Opus 4.7</a></td>
+            <td class="col-oneliner">Research preview. Fast output at full Opus 4.7 capability. Header: <code>fast-mode-2026-02-01</code>. Waitlist via Console.</td>
+          </tr>
+          <tr>
+            <td class="col-date">2026-05-18</td>
+            <td class="col-area"><span class="tag tag-api">API</span></td>
+            <td class="col-title"><a href="https://docs.anthropic.com/en/release-notes/api">SEC filing data in web search</a></td>
+            <td class="col-oneliner">Built-in web search now returns richer SEC filing data with primary-source citations.</td>
+          </tr>
+          <tr>
+            <td class="col-date">2026-05-19</td>
+            <td class="col-area"><span class="tag tag-code">CODE</span></td>
+            <td class="col-title"><a href="https://github.com/anthropics/claude-code/releases/tag/v2.1.145">Claude Code v2.1.145</a></td>
+            <td class="col-oneliner">Security fix: Bash env var auto-approval bypass. <code>claude agents --json</code>. OTEL agent_id/parent_agent_id spans. Plugin manifest on discover. 19 items.</td>
+          </tr>
+          <tr>
+            <td class="col-date">2026-05-19</td>
+            <td class="col-area"><span class="tag tag-sdk-py">SDK-PY</span></td>
+            <td class="col-title"><a href="https://github.com/anthropics/anthropic-sdk-python/releases/tag/v0.103.0">Python SDK v0.103.0</a></td>
+            <td class="col-oneliner">Self-hosted sandbox support in CMA with new sandbox helper utilities.</td>
+          </tr>
+          <tr>
+            <td class="col-date">2026-05-19</td>
+            <td class="col-area"><span class="tag tag-sdk-py">SDK-PY</span></td>
+            <td class="col-title"><a href="https://github.com/anthropics/anthropic-sdk-python/releases/tag/v0.103.1">Python SDK v0.103.1</a></td>
+            <td class="col-oneliner">Bug fix: SessionToolRunner skips tool calls it does not own.</td>
+          </tr>
+          <tr>
+            <td class="col-date">2026-05-19</td>
+            <td class="col-area"><span class="tag tag-sdk-ts">SDK-TS</span></td>
+            <td class="col-title"><a href="https://github.com/anthropics/anthropic-sdk-typescript/releases">TypeScript SDK v0.97.0</a></td>
+            <td class="col-oneliner">Self-hosted sandbox support in CMA. Node 26 compatibility via tsc-multi upgrade.</td>
+          </tr>
+          <tr>
+            <td class="col-date">2026-05-19</td>
+            <td class="col-area"><span class="tag tag-sdk-ts">SDK-TS</span></td>
+            <td class="col-title"><a href="https://github.com/anthropics/anthropic-sdk-typescript/releases">TypeScript SDK v0.97.1</a></td>
+            <td class="col-oneliner">Bug fix: SessionToolRunner skips tool calls it does not own. Mirrors Python v0.103.1.</td>
+          </tr>
+          <tr>
+            <td class="col-date">2026-05-19</td>
+            <td class="col-area"><span class="tag tag-sdk-ts">SDK-TS</span></td>
+            <td class="col-title"><a href="https://github.com/anthropics/anthropic-sdk-typescript/releases">bedrock-sdk v0.29.2, vertex-sdk v0.16.1</a></td>
+            <td class="col-oneliner">@types/node alignment for CI. No features.</td>
+          </tr>
+          <tr>
+            <td class="col-date">2026-05-21</td>
+            <td class="col-area"><span class="tag tag-code">CODE</span></td>
+            <td class="col-title"><a href="https://github.com/anthropics/claude-code/releases/tag/v2.1.147">Claude Code v2.1.147</a></td>
+            <td class="col-oneliner"><code>/simplify</code> renamed to <code>/code-review</code> with effort levels and <code>--comment</code> for GitHub PR inline comments. Pinned sessions survive idle and updates. 28 fixes.</td>
+          </tr>
+          <tr>
+            <td class="col-date">2026-05-21</td>
+            <td class="col-area"><span class="tag tag-sdk-py">SDK-PY</span></td>
+            <td class="col-title"><a href="https://github.com/anthropics/anthropic-sdk-python/releases/tag/v0.104.0">Python SDK v0.104.0</a></td>
+            <td class="col-oneliner">thinking-token-count beta: estimated token counts for thinking block deltas during streaming.</td>
+          </tr>
+          <tr>
+            <td class="col-date">2026-05-21</td>
+            <td class="col-area"><span class="tag tag-sdk-ts">SDK-TS</span></td>
+            <td class="col-title"><a href="https://github.com/anthropics/anthropic-sdk-typescript/releases/tag/sdk-v0.98.0">TypeScript SDK v0.98.0</a></td>
+            <td class="col-oneliner">Parity with Python v0.104.0: same thinking-token-count beta for streaming extended thinking.</td>
+          </tr>
+          <tr>
+            <td class="col-date">2026-05-22</td>
+            <td class="col-area"><span class="tag tag-code">CODE</span></td>
+            <td class="col-title"><a href="https://github.com/anthropics/claude-code/releases/tag/v2.1.148">Claude Code v2.1.148</a></td>
+            <td class="col-oneliner">Critical hotfix: Bash tool returned exit code 127 on every command. Regression from v2.1.147.</td>
+          </tr>
+          <tr>
+            <td class="col-date">2026-05-22</td>
+            <td class="col-area"><span class="tag tag-code">CODE</span></td>
+            <td class="col-title"><a href="https://github.com/anthropics/claude-code/releases/tag/v2.1.149">Claude Code v2.1.149</a></td>
+            <td class="col-oneliner">4 security fixes (PowerShell cd bypass, git worktree scope, wildcard pre-approval, stale PWD tracking). /usage per-category breakdown. /diff keyboard nav. GFM checkboxes. Enterprise allowAllClaudeAiMcps.</td>
+          </tr>
+          <tr>
+            <td class="col-date">2026-05-22</td>
+            <td class="col-area"><span class="tag tag-sdk-py">SDK-PY</span></td>
+            <td class="col-title"><a href="https://github.com/anthropics/anthropic-sdk-python/releases/tag/v0.104.1">Python SDK v0.104.1</a></td>
+            <td class="col-oneliner">Bug fix: encrypted_content not carried through beta compaction accumulator during streaming.</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <footer class="footer">
+      Generated 2026-05-23T02:00:00Z. Shipped. Anthropic Weekly, ISO 2026-W21. Source material: daily pages 2026-05-18, 2026-05-19, 2026-05-21, 2026-05-22. Wednesday 2026-05-20 page absent from record.
+    </footer>
+
+  </div>
+</body>
+</html>
