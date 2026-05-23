@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light">
+<title>Shipped. Daily - May 22, 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Newsreader:ital,wght@1,400;1,600&family=Barlow+Condensed:wght@600;700&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #FFFFFF;
+    --ink: #000000;
+    --muted: #666666;
+    --rule: #E5E5E5;
+    --tag-bg: #F0F0F0;
+    --tag-ink: #333333;
+    --code-bg: #F7F7F7;
+    --orange: #FF6B35;
+  }
+
+  html { background: var(--bg); color: var(--ink); }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    background: var(--bg);
+    color: var(--ink);
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 5rem 1.5rem 4rem;
+    font-size: 15px;
+    line-height: 1.65;
+  }
+
+  /* Masthead */
+  .masthead {
+    margin-bottom: 2.5rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid var(--rule);
+  }
+  .masthead-name {
+    font-family: 'Newsreader', Georgia, serif;
+    font-style: italic;
+    font-weight: 600;
+    font-size: 2rem;
+    line-height: 1;
+    letter-spacing: -0.03em;
+    color: var(--ink);
+    display: block;
+    margin-bottom: 0.4rem;
+  }
+  .masthead-name .period { color: var(--orange); }
+  .dateline {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 600;
+    font-size: 11px;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  /* One-line read */
+  .one-liner {
+    font-size: 17px;
+    font-weight: 500;
+    line-height: 1.5;
+    color: var(--ink);
+    margin-bottom: 2.5rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  /* Section flag */
+  .section-flag {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: 10px;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: var(--muted);
+    display: block;
+    margin-bottom: 0.75rem;
+  }
+
+  /* Lead */
+  .lead-section {
+    margin-bottom: 2.5rem;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid var(--rule);
+  }
+  .lead-headline {
+    font-size: 1.25rem;
+    font-weight: 600;
+    line-height: 1.3;
+    letter-spacing: -0.02em;
+    margin-bottom: 1rem;
+    color: var(--ink);
+  }
+  .lead-body p {
+    color: #333333;
+    margin-bottom: 0.9rem;
+    font-size: 15px;
+    line-height: 1.7;
+  }
+  .lead-body p:last-child { margin-bottom: 0; }
+  .lead-body a { color: inherit; text-decoration: underline; text-decoration-color: var(--rule); text-underline-offset: 2px; }
+  .lead-body a:hover { text-decoration-color: var(--ink); }
+
+  /* Release Log */
+  .log-section { margin-bottom: 2.5rem; }
+  .log-category {
+    margin-bottom: 1.5rem;
+  }
+  .log-category-header {
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--rule);
+    margin-bottom: 0.5rem;
+  }
+  .log-category-letter {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    color: var(--muted);
+    text-transform: uppercase;
+  }
+  .log-category-name {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    color: var(--ink);
+    text-transform: uppercase;
+  }
+  .log-entry {
+    padding: 1.25rem 0;
+    border-bottom: 1px solid #F0F0F0;
+  }
+  .log-entry:last-child { border-bottom: none; }
+  .log-entry-meta {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 0.4rem;
+    flex-wrap: wrap;
+  }
+  .log-entry-date {
+    font-size: 11px;
+    font-weight: 500;
+    color: var(--muted);
+    font-feature-settings: 'tnum';
+  }
+  .log-tag {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    padding: 2px 6px;
+    border-radius: 3px;
+  }
+  .tag-code { background: #595959; color: #fff; }
+  .tag-sdk-py { background: var(--tag-bg); color: var(--tag-ink); }
+  .tag-sdk-ts { background: #EBEBEB; color: var(--tag-ink); }
+  .tag-api { background: #404040; color: #fff; }
+  .log-entry-title {
+    font-size: 15px;
+    font-weight: 600;
+    line-height: 1.3;
+    color: var(--ink);
+    margin-bottom: 0.5rem;
+    letter-spacing: -0.01em;
+  }
+  .log-entry-title a {
+    color: inherit;
+    text-decoration: none;
+    border-bottom: 1px solid rgba(0,0,0,0.15);
+    padding-bottom: 1px;
+  }
+  .log-entry-title a:hover { border-color: var(--ink); }
+  .log-entry-body {
+    font-size: 13.5px;
+    color: #444444;
+    line-height: 1.65;
+    margin-bottom: 0.6rem;
+  }
+  .log-entry-body a { color: inherit; text-decoration: underline; text-decoration-color: var(--rule); text-underline-offset: 2px; }
+  .log-entry-body a:hover { text-decoration-color: var(--ink); }
+  .how-to-use {
+    font-size: 12.5px;
+    color: var(--muted);
+    line-height: 1.55;
+    margin-top: 0.4rem;
+  }
+  .how-to-use strong { color: #444444; font-weight: 600; }
+  code {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    background: var(--code-bg);
+    padding: 1px 5px;
+    border-radius: 3px;
+    color: var(--ink);
+  }
+
+  /* Quiet section */
+  .quiet-section {
+    margin-bottom: 2.5rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid var(--rule);
+    padding-left: 1.25rem;
+  }
+  .quiet-body {
+    font-size: 13.5px;
+    color: var(--muted);
+    line-height: 1.65;
+  }
+  .quiet-body a { color: inherit; text-decoration: underline; text-decoration-color: var(--rule); text-underline-offset: 2px; }
+
+  /* Footer */
+  .footer {
+    font-size: 11px;
+    color: var(--muted);
+    line-height: 1.7;
+  }
+  .footer-flag {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--muted);
+    display: block;
+    margin-bottom: 0.6rem;
+  }
+  .footer a { color: inherit; text-decoration: none; }
+  .footer a:hover { text-decoration: underline; }
+  .footer ul { list-style: none; padding: 0; margin: 0; }
+  .footer li { margin-bottom: 2px; }
+
+  @media (max-width: 600px) {
+    body { padding: 2.5rem 1.25rem 3rem; }
+    .masthead-name { font-size: 1.6rem; }
+    .one-liner { font-size: 15px; }
+    .lead-headline { font-size: 1.1rem; }
+  }
+</style>
+</head>
+<body>
+
+<header class="masthead">
+  <span class="masthead-name">Shipped<span class="period">.</span></span>
+  <span class="dateline">Daily &nbsp;|&nbsp; Friday, May 22, 2026</span>
+</header>
+
+<p class="one-liner">Claude Code shipped twice on Friday: a Bash hotfix at midnight, then a security-and-transparency drop at dinner.</p>
+
+<section class="lead-section">
+  <span class="section-flag">Lead</span>
+  <h2 class="lead-headline">Claude Code v2.1.149: four security patches and the /usage breakdown you actually needed</h2>
+  <div class="lead-body">
+    <p>Four security fixes in one drop. PowerShell permission bypass via built-in <code>cd</code> functions. Git worktrees sandbox write allowlist covering the entire repo root instead of scoped paths. PowerShell prefix/wildcard allow rules incorrectly pre-approving native executables. A permission-analysis gap from stale variable tracking for PWD/OLDPWD/DIRSTACK. These are sandbox and permission-boundary issues: the kind that compound when Claude Code runs with broad access on systems adjacent to production.</p>
+    <p>Beyond the security work: <code>/usage</code> now shows cost broken down by category (skills, subagents, plugins, per-MCP-server) rather than a single opaque total. Useful for any workflow heavy on agent chains. <code>/diff</code> gains keyboard navigation (arrows, j/k, PgUp/PgDn). GFM task list checkboxes now render in markdown output. Enterprise gets <code>allowAllClaudeAiMcps</code> for cloud MCP connectors via managed settings.</p>
+    <p>The day opened with <a href="https://github.com/anthropics/claude-code/releases/tag/v2.1.148">v2.1.148</a>, a one-liner: Bash tool was returning exit code 127 on every command. A regression from v2.1.147. Fixed within hours of the window opening.</p>
+  </div>
+</section>
+
+<section class="log-section">
+  <span class="section-flag">Release Log</span>
+
+  <div class="log-category">
+    <div class="log-category-header">
+      <span class="log-category-letter">C</span>
+      <span class="log-category-name">Claude Code</span>
+    </div>
+
+    <div class="log-entry">
+      <div class="log-entry-meta">
+        <span class="log-entry-date">2026-05-22</span>
+        <span class="log-tag tag-code">CODE</span>
+      </div>
+      <div class="log-entry-title">
+        <a href="https://github.com/anthropics/claude-code/releases/tag/v2.1.149">Claude Code v2.1.149</a>
+      </div>
+      <div class="log-entry-body">
+        Major drop. <code>/usage</code> now shows per-category cost breakdown: skills, subagents, plugins, per-MCP-server. <code>/diff</code> gains keyboard navigation. Markdown renders GFM task list checkboxes. Enterprise: <code>allowAllClaudeAiMcps</code> managed setting for claude.ai cloud MCP connectors. Four security fixes: PowerShell <code>cd</code> bypass, git worktree sandbox scope, wildcard pre-approval gap, stale PWD variable tracking. Also fixes <code>find</code> exhausting macOS vnode table on large trees, managed-settings dialog freeze, and <code>/ultraplan</code> remote session creation errors.
+      </div>
+      <div class="how-to-use"><strong>How to use:</strong> <code>claude update</code>. The <code>/usage</code> breakdown and <code>/diff</code> navigation are live immediately.</div>
+    </div>
+
+    <div class="log-entry">
+      <div class="log-entry-meta">
+        <span class="log-entry-date">2026-05-22</span>
+        <span class="log-tag tag-code">CODE</span>
+      </div>
+      <div class="log-entry-title">
+        <a href="https://github.com/anthropics/claude-code/releases/tag/v2.1.148">Claude Code v2.1.148</a>
+      </div>
+      <div class="log-entry-body">
+        Critical hotfix. Bash tool was returning exit code 127 (command not found) on every invocation: a regression introduced in v2.1.147. Any workflow depending on shell command execution was broken until this landed.
+      </div>
+      <div class="how-to-use"><strong>How to use:</strong> <code>claude update</code>. If you're on v2.1.147 and Bash commands are failing, this is why.</div>
+    </div>
+  </div>
+
+  <div class="log-category">
+    <div class="log-category-header">
+      <span class="log-category-letter">E</span>
+      <span class="log-category-name">Agent SDKs</span>
+    </div>
+
+    <div class="log-entry">
+      <div class="log-entry-meta">
+        <span class="log-entry-date">2026-05-22</span>
+        <span class="log-tag tag-sdk-py">SDK-PY</span>
+      </div>
+      <div class="log-entry-title">
+        <a href="https://github.com/anthropics/anthropic-sdk-python/releases/tag/v0.104.1">Python SDK v0.104.1</a>
+      </div>
+      <div class="log-entry-body">
+        Bug fix: <code>encrypted_content</code> was not being carried through the beta compaction accumulator during streaming. Affects users of extended thinking with context compaction enabled.
+      </div>
+      <div class="how-to-use"><strong>How to use:</strong> <code>pip install anthropic==0.104.1</code></div>
+    </div>
+  </div>
+</section>
+
+<section class="quiet-section">
+  <span class="section-flag">Quiet on the Wire</span>
+  <div class="quiet-body">
+    <p>Python SDK v0.104.0 and TypeScript SDK v0.98.0 (both May 21, ~16:00 EDT) landed just outside today's window. Both add the <code>thinking-token-count</code> beta: estimated token counts for thinking block deltas during streaming. Check yesterday's sweep or the <a href="https://github.com/anthropics/anthropic-sdk-python/releases">SDK releases</a> directly.</p>
+    <p>No model announcements. No API release notes (docs.anthropic.com returned 403 in this sweep). The Anthropic news page showed nothing new within the window: the KPMG alliance (May 19) and Gates Foundation partnership (May 14) remain the week's headline stories.</p>
+  </div>
+</section>
+
+<footer class="footer">
+  <span class="footer-flag">Shipped. Daily</span>
+  <p>Generated 2026-05-23T01:06:32Z. Sources:</p>
+  <ul>
+    <li><a href="https://github.com/anthropics/claude-code/releases">github.com/anthropics/claude-code/releases</a></li>
+    <li><a href="https://github.com/anthropics/anthropic-sdk-python/releases">github.com/anthropics/anthropic-sdk-python/releases</a></li>
+    <li><a href="https://github.com/anthropics/anthropic-sdk-typescript/releases">github.com/anthropics/anthropic-sdk-typescript/releases</a></li>
+    <li><a href="https://www.anthropic.com/news">anthropic.com/news</a></li>
+  </ul>
+</footer>
+
+</body>
+</html>
