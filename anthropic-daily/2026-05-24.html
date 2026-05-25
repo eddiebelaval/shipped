@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="color-scheme" content="light">
+  <title>Shipped. Daily, May 24, 2026</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Newsreader:ital,opsz,wght@1,6..72,600&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      background: #FFFFFF;
+      color: #000000;
+    }
+
+    body {
+      background: #FFFFFF;
+      color: #000000;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      font-size: 16px;
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    .container {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 5rem 1.5rem 5rem;
+    }
+
+    /* Masthead */
+    .masthead {
+      margin-bottom: 2.5rem;
+      padding-bottom: 2rem;
+      border-bottom: 1px solid #E5E5E5;
+    }
+
+    .masthead-logo {
+      font-family: 'Newsreader', Georgia, 'Times New Roman', serif;
+      font-style: italic;
+      font-weight: 600;
+      font-size: 2.5rem;
+      color: #000000;
+      letter-spacing: -0.5px;
+      line-height: 1;
+      display: block;
+      margin-bottom: 0.4rem;
+    }
+
+    .masthead-dateline {
+      font-size: 0.6875rem;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: #666666;
+    }
+
+    /* One-line read */
+    .one-liner {
+      font-size: 1.0625rem;
+      font-weight: 500;
+      color: #000000;
+      line-height: 1.55;
+      margin-bottom: 2.5rem;
+      padding-bottom: 2rem;
+      border-bottom: 1px solid #E5E5E5;
+    }
+
+    /* Section flags */
+    .section-flag {
+      display: block;
+      font-size: 0.6875rem;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: #666666;
+      margin-bottom: 1rem;
+    }
+
+    /* Quiet body prose */
+    .quiet-body {
+      font-size: 1rem;
+      color: #000000;
+      line-height: 1.75;
+      margin-bottom: 2rem;
+    }
+
+    .quiet-body p {
+      margin-bottom: 1rem;
+    }
+
+    .quiet-body p:last-child {
+      margin-bottom: 0;
+    }
+
+    .quiet-body code {
+      font-family: 'SF Mono', 'Fira Code', 'Consolas', monospace;
+      font-size: 0.875rem;
+      background: #F7F7F7;
+      padding: 1px 5px;
+      border-radius: 3px;
+      color: #333333;
+    }
+
+    /* Last-seen table */
+    .last-seen-section {
+      margin-top: 2rem;
+      margin-bottom: 2.5rem;
+    }
+
+    .last-seen-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 1rem;
+      font-size: 0.875rem;
+    }
+
+    .last-seen-table th {
+      text-align: left;
+      font-size: 0.625rem;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: #666666;
+      padding: 0.5rem 0.75rem 0.5rem 0;
+      border-bottom: 1px solid #E5E5E5;
+    }
+
+    .last-seen-table td {
+      padding: 0.55rem 0.75rem 0.55rem 0;
+      border-bottom: 1px solid #F0F0F0;
+      vertical-align: top;
+      color: #000000;
+    }
+
+    .last-seen-table td.muted {
+      color: #666666;
+      white-space: nowrap;
+    }
+
+    .last-seen-table td.note {
+      color: #333333;
+    }
+
+    .last-seen-table tr:last-child td {
+      border-bottom: none;
+    }
+
+    /* Rule */
+    .rule {
+      border: none;
+      border-top: 1px solid #E5E5E5;
+      margin: 2.5rem 0;
+    }
+
+    /* Footer */
+    .footer {
+      font-size: 0.8125rem;
+      color: #666666;
+      line-height: 1.65;
+    }
+
+    .footer-timestamp {
+      margin-bottom: 1.25rem;
+    }
+
+    .sources-label {
+      font-size: 0.625rem;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: #666666;
+      display: block;
+      margin-bottom: 0.5rem;
+    }
+
+    .sources-list {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    .sources-list li {
+      margin-bottom: 0.25rem;
+    }
+
+    .sources-list a {
+      color: inherit;
+      text-decoration: none;
+      border-bottom: 1px solid #E5E5E5;
+      transition: border-color 0.15s ease;
+    }
+
+    .sources-list a:hover {
+      border-bottom-color: #666666;
+    }
+
+    .tag-unavailable {
+      display: inline-block;
+      font-size: 0.625rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      background: #F0F0F0;
+      color: #666666;
+      padding: 1px 6px;
+      border-radius: 3px;
+      margin-left: 4px;
+      vertical-align: middle;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+
+    <!-- Masthead -->
+    <header class="masthead">
+      <span class="masthead-logo">Shipped.</span>
+      <span class="masthead-dateline">Daily &middot; Sunday, May 24, 2026</span>
+    </header>
+
+    <!-- One-line read -->
+    <p class="one-liner">The past 24 hours were quiet across all Anthropic sources.</p>
+
+    <!-- Quiet on the Wire -->
+    <section>
+      <span class="section-flag">Quiet on the Wire</span>
+      <div class="quiet-body">
+        <p>Sunday held all the way to the sweep.</p>
+        <p>Anthropic&#8217;s news page last updated May 19 with the KPMG global alliance. All docs endpoints (api, claude-code, claude-apps) returned 403 on direct fetch throughout this sweep. Claude Code sits at v2.1.150 (May 23): an infrastructure-only release, no user-facing changes. The substantive v2.1.149 drop (four security patches, <code>/usage</code> cost breakdown, <code>/diff</code> keyboard navigation) was covered in the May 22 sweep. Project Glasswing&#8217;s 10,000-bug milestone posted Saturday and is in the May 23 sweep.</p>
+        <p>SDK releases: Python SDK closed the week at v0.104.1 (May 22), a streaming fix for <code>encrypted_content</code> through the beta compaction accumulator. TypeScript SDK at sdk-v0.98.0 (May 21), thinking-token-count beta for streaming deltas.</p>
+        <p>No model announcements. No detectable API changes. The pace this year has been one Claude Code release every 24 to 48 hours on weekdays. Sunday is the pause.</p>
+      </div>
+
+      <!-- Last-seen table -->
+      <div class="last-seen-section">
+        <span class="section-flag">Last Seen by Source</span>
+        <table class="last-seen-table">
+          <thead>
+            <tr>
+              <th>Source</th>
+              <th>Last update</th>
+              <th>Note</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>anthropic.com/news</td>
+              <td class="muted">May 19</td>
+              <td class="note">KPMG global alliance</td>
+            </tr>
+            <tr>
+              <td>docs.anthropic.com/api</td>
+              <td class="muted">unavailable</td>
+              <td class="note">403 during sweep <span class="tag-unavailable">403</span></td>
+            </tr>
+            <tr>
+              <td>docs.anthropic.com/claude-code</td>
+              <td class="muted">unavailable</td>
+              <td class="note">403; GitHub: v2.1.150, May 23 <span class="tag-unavailable">403</span></td>
+            </tr>
+            <tr>
+              <td>docs.anthropic.com/claude-apps</td>
+              <td class="muted">unavailable</td>
+              <td class="note">403 during sweep <span class="tag-unavailable">403</span></td>
+            </tr>
+            <tr>
+              <td>github.com/anthropics/claude-code</td>
+              <td class="muted">May 23</td>
+              <td class="note">v2.1.150, no user-facing changes</td>
+            </tr>
+            <tr>
+              <td>github.com/anthropics/anthropic-sdk-python</td>
+              <td class="muted">May 22</td>
+              <td class="note">v0.104.1, streaming bug fix</td>
+            </tr>
+            <tr>
+              <td>github.com/anthropics/anthropic-sdk-typescript</td>
+              <td class="muted">May 21</td>
+              <td class="note">sdk-v0.98.0, thinking-token-count streaming</td>
+            </tr>
+            <tr>
+              <td>code.claude.com/docs/en/whats-new</td>
+              <td class="muted">May 11-15</td>
+              <td class="note">Week 20 digest</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <hr class="rule">
+
+    <!-- Footer -->
+    <footer class="footer">
+      <p class="footer-timestamp">Generated 2026-05-25T01:06:14Z.</p>
+      <span class="sources-label">Sources checked</span>
+      <ul class="sources-list">
+        <li><a href="https://github.com/anthropics/claude-code/releases">github.com/anthropics/claude-code/releases</a></li>
+        <li><a href="https://github.com/anthropics/anthropic-sdk-python/releases">github.com/anthropics/anthropic-sdk-python/releases</a></li>
+        <li><a href="https://github.com/anthropics/anthropic-sdk-typescript/releases">github.com/anthropics/anthropic-sdk-typescript/releases</a></li>
+        <li><a href="https://www.anthropic.com/news">anthropic.com/news</a></li>
+        <li><a href="https://docs.anthropic.com/en/release-notes/api">docs.anthropic.com/en/release-notes/api</a></li>
+        <li><a href="https://docs.anthropic.com/en/release-notes/claude-code">docs.anthropic.com/en/release-notes/claude-code</a></li>
+        <li><a href="https://docs.anthropic.com/en/release-notes/claude-apps">docs.anthropic.com/en/release-notes/claude-apps</a></li>
+        <li><a href="https://code.claude.com/docs/en/whats-new">code.claude.com/docs/en/whats-new</a></li>
+      </ul>
+    </footer>
+
+  </div>
+</body>
+</html>
