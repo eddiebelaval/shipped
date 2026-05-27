@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="color-scheme" content="light">
+  <title>Shipped. Daily, May 26, 2026</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,wght@0,400;0,700;1,400;1,700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #FFFFFF;
+      --ink: #000000;
+      --muted: #666666;
+      --rule: #E5E5E5;
+      --tag-bg: #F0F0F0;
+      --tag-ink: #333333;
+      --code-bg: #F7F7F7;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--ink);
+      font-family: 'Inter', -apple-system, sans-serif;
+      font-size: 16px;
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .page {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 5rem 1.5rem 4rem;
+    }
+
+    .masthead {
+      margin-bottom: 2.5rem;
+      padding-bottom: 1.5rem;
+      border-bottom: 1px solid var(--rule);
+    }
+
+    .masthead-title {
+      font-family: 'Newsreader', Georgia, serif;
+      font-size: 2rem;
+      font-weight: 700;
+      font-style: italic;
+      letter-spacing: -0.03em;
+      line-height: 1.1;
+      color: var(--ink);
+      margin-bottom: 0.35rem;
+    }
+
+    .masthead-title .period { color: #FF6B35; }
+
+    .masthead-dateline {
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .one-liner {
+      font-family: 'Newsreader', Georgia, serif;
+      font-size: 1.2rem;
+      font-style: italic;
+      color: var(--ink);
+      margin-bottom: 2.5rem;
+      padding-bottom: 1.5rem;
+      border-bottom: 1px solid var(--rule);
+      line-height: 1.55;
+    }
+
+    .section-label {
+      font-size: 0.68rem;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--muted);
+      display: block;
+      margin-bottom: 1rem;
+    }
+
+    .lead { margin-bottom: 3rem; }
+
+    .lead p {
+      font-family: 'Newsreader', Georgia, serif;
+      font-size: 1.05rem;
+      line-height: 1.78;
+      color: #1a1a1a;
+      margin-bottom: 1.1em;
+    }
+
+    .lead p:last-child { margin-bottom: 0; }
+
+    .section-divider {
+      height: 1px;
+      background: var(--rule);
+      border: none;
+      margin: 2.5rem 0;
+    }
+
+    .release-log h2 {
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 1.5rem;
+      padding-bottom: 0.75rem;
+      border-bottom: 1px solid var(--rule);
+    }
+
+    .log-category { margin-bottom: 2rem; }
+
+    .log-category-label {
+      font-size: 0.65rem;
+      font-weight: 600;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--muted);
+      display: block;
+      margin-bottom: 1rem;
+    }
+
+    .log-entry {
+      padding: 1.25rem 0;
+      border-bottom: 1px solid var(--rule);
+    }
+
+    .log-entry:last-child { border-bottom: none; }
+
+    .log-entry-header {
+      display: flex;
+      align-items: baseline;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .log-entry-date {
+      font-size: 0.72rem;
+      font-weight: 500;
+      color: var(--muted);
+      font-variant-numeric: tabular-nums;
+      flex-shrink: 0;
+    }
+
+    .log-entry-title {
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--ink);
+      letter-spacing: -0.01em;
+      line-height: 1.3;
+    }
+
+    .log-entry-title a {
+      color: inherit;
+      text-decoration: none;
+      border-bottom: 1px solid rgba(0,0,0,0.2);
+      padding-bottom: 1px;
+    }
+
+    .log-entry-title a:hover { border-bottom-color: var(--ink); }
+
+    .tag {
+      display: inline-block;
+      font-size: 0.62rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      background: var(--tag-bg);
+      color: var(--tag-ink);
+      padding: 2px 7px;
+      border-radius: 3px;
+      flex-shrink: 0;
+    }
+
+    .tag--sdk-ts { background: #E8E8E8; color: #1a1a1a; }
+    .tag--news { background: var(--tag-bg); color: var(--tag-ink); border: 1px solid rgba(0,0,0,0.12); }
+
+    .log-entry-body {
+      font-size: 0.88rem;
+      line-height: 1.62;
+      color: #333333;
+      margin-top: 0.35rem;
+    }
+
+    .log-entry-body a {
+      color: inherit;
+      text-decoration: none;
+      border-bottom: 1px solid rgba(0,0,0,0.2);
+    }
+
+    .log-entry-body a:hover { border-bottom-color: var(--ink); }
+
+    .log-entry-how-to {
+      margin-top: 0.5rem;
+      font-size: 0.85rem;
+      color: #444;
+    }
+
+    .log-entry-how-to strong { font-weight: 600; }
+
+    code {
+      font-family: 'SF Mono', 'Fira Code', 'Consolas', monospace;
+      font-size: 0.82em;
+      background: var(--code-bg);
+      padding: 1px 5px;
+      border-radius: 3px;
+      color: var(--ink);
+    }
+
+    .quiet { margin-bottom: 3rem; }
+
+    .quiet p {
+      font-size: 0.9rem;
+      line-height: 1.65;
+      color: var(--muted);
+      font-style: italic;
+    }
+
+    .footer {
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--rule);
+    }
+
+    .footer-label {
+      font-size: 0.65rem;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--muted);
+      display: block;
+      margin-bottom: 0.75rem;
+    }
+
+    .footer-timestamp {
+      font-size: 0.78rem;
+      color: var(--muted);
+      margin-bottom: 0.75rem;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .footer-sources { list-style: none; }
+
+    .footer-sources li {
+      font-size: 0.75rem;
+      margin-bottom: 0.25rem;
+    }
+
+    .footer-sources a {
+      color: var(--muted);
+      text-decoration: none;
+      border-bottom: 1px solid transparent;
+      word-break: break-all;
+    }
+
+    .footer-sources a:hover { border-bottom-color: var(--muted); }
+
+    @media (max-width: 600px) {
+      .page { padding: 3rem 1.25rem 3rem; }
+      .masthead-title { font-size: 1.6rem; }
+      .one-liner { font-size: 1.05rem; }
+      .lead p { font-size: 1rem; }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+
+    <div class="masthead">
+      <div class="masthead-title">Shipped<span class="period">.</span></div>
+      <div class="masthead-dateline">Daily &nbsp;|&nbsp; Tuesday, May 26, 2026</div>
+    </div>
+
+    <p class="one-liner">Anthropic's co-founder spoke at the Vatican. The TypeScript SDK patched a directory bug. That was the day.</p>
+
+    <div class="lead">
+      <span class="section-label">Lead</span>
+      <p>Chris Olah stood in Vatican City on Monday for the press conference launching Pope Leo XIV's encyclical on artificial intelligence, "Magnifica humanitas: On safeguarding the human person in the time of artificial Intelligence." The document runs 42,000 words across 245 paragraphs. (<a href="https://www.ncronline.org/vatican/vatican-news/pope-leo-anthropic-co-founder-call-church-tech-ethics-partnership-magnifica">National Catholic Reporter</a>) Anthropic published Olah's full remarks the same day. (<a href="https://www.anthropic.com/news/chris-olah-pope-leo-encyclical">anthropic.com</a>)</p>
+      <p>The invitation is the actual story. Not Anthropic's CEO, not its policy team. The co-founder who invented mechanistic interpretability. A person whose public work is about understanding what neural networks are actually doing, internally, before they do something you cannot walk back. That the Vatican wanted that particular person at that particular lectern says something about what the encyclical is actually arguing. Pope Leo XIV is the first pope to personally present an encyclical to the world. He picked AI as the subject.</p>
+    </div>
+
+    <hr class="section-divider">
+
+    <div class="release-log">
+      <h2>Release Log</h2>
+
+      <div class="log-category">
+        <span class="log-category-label">SDK</span>
+        <div class="log-entry">
+          <div class="log-entry-header">
+            <span class="log-entry-date">2026-05-26</span>
+            <span class="log-entry-title"><a href="https://github.com/anthropics/anthropic-sdk-typescript/releases/tag/sdk-v0.98.1">Anthropic TypeScript SDK v0.98.1</a></span>
+            <span class="tag tag--sdk-ts">SDK-TS</span>
+          </div>
+          <div class="log-entry-body">
+            Maintenance release. Fixes directory prefix preservation in <code>skills.versions.create</code> uploads, migrates releases to Trusted Publishing, renames the managed-agents <code>private-sandbox-worker</code> example to <code>self-hosted-sandbox-worker</code>. Published May 26 at 23:19 UTC.
+          </div>
+          <div class="log-entry-how-to"><strong>How to use:</strong> <code>npm install @anthropic-ai/sdk@0.98.1</code></div>
+        </div>
+      </div>
+
+      <div class="log-category">
+        <span class="log-category-label">News</span>
+        <div class="log-entry">
+          <div class="log-entry-header">
+            <span class="log-entry-date">2026-05-25</span>
+            <span class="log-entry-title"><a href="https://www.anthropic.com/news/chris-olah-pope-leo-encyclical">Chris Olah's remarks on Pope Leo XIV's encyclical "Magnifica humanitas"</a></span>
+            <span class="tag tag--news">NEWS</span>
+          </div>
+          <div class="log-entry-body">
+            Anthropic co-founder Chris Olah spoke at the Vatican presentation of "Magnifica humanitas: On safeguarding the human person in the time of artificial Intelligence," a 42,000-word, 245-paragraph encyclical from Pope Leo XIV calling for ethical oversight of AI. Anthropic published Olah's full remarks. Per reporting from <a href="https://www.ncronline.org/vatican/vatican-news/pope-leo-anthropic-co-founder-call-church-tech-ethics-partnership-magnifica">National Catholic Reporter</a>, Pope Leo XIV and Olah both called for a church-tech ethics partnership. Pope Leo XIV is the first pope to personally present an encyclical to the world.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <hr class="section-divider">
+
+    <div class="quiet">
+      <span class="section-label">Quiet on the Wire</span>
+      <p>No Claude Code release since v2.1.150 (May 23, infrastructure only). Python SDK last released May 22 (v0.104.1, streaming bug fix). No API or Claude Apps updates detected. docs.anthropic.com endpoints returned 403 throughout this sweep.</p>
+    </div>
+
+    <div class="footer">
+      <span class="footer-label">Sources</span>
+      <div class="footer-timestamp">Generated 2026-05-27T01:01:16Z</div>
+      <ul class="footer-sources">
+        <li><a href="https://www.anthropic.com/news/chris-olah-pope-leo-encyclical">https://www.anthropic.com/news/chris-olah-pope-leo-encyclical</a></li>
+        <li><a href="https://www.ncronline.org/vatican/vatican-news/pope-leo-anthropic-co-founder-call-church-tech-ethics-partnership-magnifica">https://www.ncronline.org/vatican/vatican-news/pope-leo-anthropic-co-founder-call-church-tech-ethics-partnership-magnifica</a></li>
+        <li><a href="https://github.com/anthropics/anthropic-sdk-typescript/releases/tag/sdk-v0.98.1">https://github.com/anthropics/anthropic-sdk-typescript/releases/tag/sdk-v0.98.1</a></li>
+        <li><a href="https://github.com/anthropics/claude-code/releases">https://github.com/anthropics/claude-code/releases</a></li>
+        <li><a href="https://github.com/anthropics/anthropic-sdk-python/releases">https://github.com/anthropics/anthropic-sdk-python/releases</a></li>
+        <li><a href="https://github.com/anthropics/anthropic-sdk-typescript/releases">https://github.com/anthropics/anthropic-sdk-typescript/releases</a></li>
+        <li><a href="https://www.anthropic.com/news">https://www.anthropic.com/news</a> (403 during sweep)</li>
+        <li><a href="https://docs.anthropic.com/en/release-notes/api">https://docs.anthropic.com/en/release-notes/api</a> (403 during sweep)</li>
+        <li><a href="https://docs.anthropic.com/en/release-notes/claude-code">https://docs.anthropic.com/en/release-notes/claude-code</a> (403 during sweep)</li>
+      </ul>
+    </div>
+
+  </div>
+</body>
+</html>
