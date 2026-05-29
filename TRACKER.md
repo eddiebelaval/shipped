@@ -78,6 +78,17 @@ Every source article across all issues. The master list.
 | Launch copy scaffold | 02 | launch | research | 2026-04-22 | `articles/issue-02/launch-copy.md` |
 | Ship-day checklist | 02 | ops | research | 2026-04-22 | `articles/issue-02/ship-checklist.md` |
 | Post-ship retrospective scaffold | 02 | post-ship | pending | 2026-04-22 | `articles/issue-02/post-ship.md` |
+| Issue 03 Signal Report | 03 | background | research | 2026-04-30 | `articles/issue-03/signal-report.md` |
+| Lead: Patron Economy | 03 | lead-story | not yet captured | 2026-04-30 | `articles/issue-03/patron-economy.md` |
+| Investigation: Disclosure Tax | 03 | investigation | not yet captured | 2026-04-30 | `articles/issue-03/disclosure-tax.md` |
+| Quiet: Rate Limits API | 03 | quiet-wire | not yet captured | 2026-04-30 | `articles/issue-03/quiet-rate-limits-api.md` |
+| Term of Issue: Patron | 03 | term-of-issue | not yet captured | 2026-04-30 | `articles/issue-03/term-of-issue-patron.md` |
+| Close: three-beat closer | 03 | close | not yet captured | 2026-04-30 | `articles/issue-03/close-prep.md` |
+| Also Shipped: Creative Connectors | 03 | also-shipped | not yet captured | 2026-04-30 | `articles/issue-03/also-shipped-creative-connectors.md` |
+| Also Shipped: OpenAI on Bedrock | 03 | also-shipped | not yet captured | 2026-04-30 | `articles/issue-03/also-shipped-openai-bedrock.md` |
+| Also Shipped: GitHub Copilot Metered | 03 | also-shipped | not yet captured | 2026-04-30 | `articles/issue-03/also-shipped-github-metered.md` |
+| Also Shipped: BioMysteryBench | 03 | also-shipped | not yet captured | 2026-04-30 | `articles/issue-03/also-shipped-biomysterybench.md` |
+| Release Log research 04-24 to 04-30 | 03 | release-log | not yet captured | 2026-04-30 | `articles/issue-03/release-log-research.md` |
 
 > **"not yet captured"** = the research exists (in the WIP, in signal reports, in conversation) but hasn't been pulled into a standalone article file yet. Capturing it is step one of making it trackable.
 
@@ -85,9 +96,35 @@ Every source article across all issues. The master list.
 
 ## Per-issue rollup
 
-### Issue 02 — ship date 2026-04-24
+### Issue 03, ship date 2026-05-01
 
-**Status:** Drafting. Running order not yet locked (locks Thu 2026-04-23).
+**Status:** WIP, signal sweep ran Thu 2026-04-30 PM (cycle late, two-main-lines doctrine deprioritized Mon-Wed). Running order not yet locked.
+
+**Window:** 2026-04-24 to 2026-04-30.
+
+**Working slug, proposed:** `patron`. **Term of Issue, proposed:** Patron. **Lead, proposed:** "The Patron Economy" (Google $40B + Blender Dev Fund + NEC/ANZ).
+
+| Section | Source article(s) | Status | Gaps |
+|---|---|---|---|
+| Open | wip-only (1M context cliff cold open) | scaffold | Eddie writes Thu PM / Fri AM |
+| Lead Story | patron-economy.md (to capture) | not started | Capture article, three beats: Google $40B, Blender Patron, NEC + ANZ. $50B round as callout |
+| Also Shipped | 4 capsules planned (creative connectors, OpenAI Bedrock, GitHub metered, BioMysteryBench) | not started | Capture 4 of 5 candidates, pick which to drop |
+| Investigation | disclosure-tax.md (to capture) | not started | Schneier + BioMysteryBench caveat + Goldman HK + $50B round attribution |
+| Companion / Term of Issue | term-of-issue-patron.md (to capture) | not started | Definition block + usage |
+| Quiet on the Wire | quiet-rate-limits-api.md (to capture) | not started | Rate Limits API + at_mention telemetry |
+| The Close | close-prep.md (to capture) | not started | Three-beat rhythm closer, Term of Issue lands mid-beat-2 |
+| Release Log | release-log-research.md (to capture Fri AM) | not started | 12-14 entries Apr 24-30 |
+| By the Numbers | populated in WIP frontmatter (TBD) | scaffold | Number selection + accent picks |
+
+**Readiness (Thu Apr 30 PM):** Signal report captured. WIP drafted with editorial calls. 0 of 9 article files captured. Friday morning needs heavy lift to capture lead, investigation, also-shipped (4), term-of-issue, close, quiet, release-log = 9 article files + 1 canonical issue file.
+
+**Risk:** Cycle compressed to one day. Lead and Investigation are the two pieces that cannot slip; everything else is auxiliary or scaffold.
+
+---
+
+### Issue 02, shipped 2026-04-24
+
+**Status:** Shipped. Live at `id8labs/public/shipped/02/`. Post-ship retrospective unfilled (carry-over to next live week).
 
 | Section | Source article(s) | Status | Gaps |
 |---|---|---|---|
@@ -159,4 +196,6 @@ The article files in `content/articles/issue-NN/` are the source material. Claud
 | 2026-04-22 (PM) | Three more article skeletons captured via auto-ops resolver: `also-shipped-vercel-sensitive-default.md`, `also-shipped-claude-performance-backlash.md`, `presence-as-category.md`. Also Shipped now 3/3-5 (at formula minimum). Companion/Term-of-Issue container article in place with placement open for Thursday. `conway-leak-analysis.md` extended with "Operator takeaway" scaffolding (rubric v2 dimension was 0/4, target 2+/4). Issue 02 inventory now 10 source files, within healthy-inventory range per FORMULA.md. |
 | 2026-04-22 (PM) | Grade sweep: all 9 topic articles brought to grade A (25/28 to 28/28). Rubric v2 scaffolding sections added to each (Attribution caveats, How this fits the issue, For builders, The stake, Named evidence, Voice notes with kill lists). New article captured: `quiet-claude-code-pro-test.md` for Quiet on the Wire slot (A 28/28) with the Amol Avasare "~2% of new prosumer signups" quote from the Claude Code Pro plan test. Term-of-Issue, slug, Conway placement, and Companion placement locked in WIP frontmatter per Eddie's PM calls. Em and en dashes swept from all articles I authored (183 replaced). |
 | 2026-04-22 (late PM) | Issue 02 arc audit plus gap-fill sweep. Counter-signal article captured: OpenAI's GPT-Rosalind, Codex expansion, workspace agents; Google's Gemini Personal Intelligence, $750M partner fund, agentic-taskforce framing. Lands the field-context beat at A 28/28. Close scaffolding captured (`close-prep.md` at A 27/28): three-beat rhythm closer, Presence landing mid-beat-2. Term-of-Issue definition block scaffolded (`term-of-issue-presence.md` at A 27/28). Front-of-book draft retrofitted with pre-flight checklist, named-evidence inventory, Thursday lock-day checklist. Three ship-day files created: `launch-copy.md` (platform templates + voice rules), `ship-checklist.md` (T-48h to T+24h), `post-ship.md` (retrospective scaffold, filled Saturday). All three graded OVR as operational ship-day auxiliary files. Issue 02 now has 17 source files total; dashboard shows 100% readiness, zero gaps. |
+| 2026-04-27 to 2026-04-30 (AM) | **Cycle dormant.** Two-main-lines doctrine in effect (Profesa + Homer through May 21); Shipped pipeline deprioritized. Mon Apr 27 signal sweep missed, Tue/Wed Apr 28-29 WIP missed. Issue 02 post-ship retrospective also unfilled (Apr 22 scaffold still in place). |
+| 2026-04-30 (PM) | Issue 03 cycle restarted. `/shipped-wip --capture` triggered late-week catch-up. Signal sweep ran via research agent: 30+ primary sources, window 2026-04-24 to 2026-04-30. Top signals: Google $40B / 5GW TPU (Apr 24), Blender Dev Fund Corporate Patron (Apr 28), Claude for Creative Work 9 connectors (Apr 28), $50B / $900B round reported (Apr 29), Schneier Mythos critique (Apr 28), Goldman Hong Kong block (Apr 28-29), 1M context beta retirement (Apr 30 today). Editorial calls drafted: Term of Issue = Patron, Lead = Patron Economy three-beat, Investigation = Disclosure Tax, Open = 1M context cliff cold open, Quiet = Rate Limits API. Issue 03 inventory created (1 captured + 9 to capture). WIP at `content/issue-03-wip.md`. Cycle compressed to one day; Friday May 1 ship target stands but tight. |
 | 2026-04-22 (evening) | Canonical issue file assembled at `content/issue-02-presence.md` (471 lines). Open (Eddie, unchanged) and Lead Story distilled 214w (Eddie, unchanged) pulled inline. All other sections scaffolded with HTML-comment SCAFFOLD blocks containing word budgets, named-evidence pick lists, voice moves, kill-on-sight phrases, and attribution caveats pulled from their graded source articles. 11 {PROSE: ...} slots ready to fill Thursday. Release Log populated with 10 entries from `release-log-research.md` (colon separator pending Thursday lock decision). 5 em dashes remain (all in Eddie's original Open + Lead prose, flagged inline for edit pass). MC command panel updated: new Shipped. category with 8 commands, weekly-rhythm workflow block, project-scoped scan path. |
