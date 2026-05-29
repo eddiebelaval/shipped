@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="color-scheme" content="light">
+  <title>Shipped. Daily, Wednesday, May 28, 2026</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Newsreader:ital,opsz,wght@1,6..72,400;1,6..72,600&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      background: #FFFFFF;
+      color: #000000;
+    }
+
+    body {
+      background: #FFFFFF;
+      color: #000000;
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      font-size: 15px;
+      line-height: 1.65;
+      padding: 5rem 1.5rem 5rem;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .page {
+      max-width: 720px;
+      margin: 0 auto;
+    }
+
+    /* Masthead */
+    .masthead {
+      margin-bottom: 2.5rem;
+      padding-bottom: 1.75rem;
+      border-bottom: 1px solid #E5E5E5;
+    }
+
+    .masthead-name {
+      font-family: 'Newsreader', Georgia, 'Times New Roman', serif;
+      font-style: italic;
+      font-size: 2.5rem;
+      font-weight: 600;
+      color: #000000;
+      line-height: 1;
+      letter-spacing: -0.02em;
+      display: block;
+      margin-bottom: 0.375rem;
+    }
+
+    .masthead-dateline {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #666666;
+    }
+
+    /* One-liner */
+    .one-liner {
+      font-size: 1.05rem;
+      font-weight: 500;
+      color: #000000;
+      line-height: 1.55;
+      margin-bottom: 2.5rem;
+      padding-bottom: 2rem;
+      border-bottom: 1px solid #E5E5E5;
+    }
+
+    /* Sections */
+    .section {
+      margin-bottom: 2.5rem;
+    }
+
+    .section-label {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: #666666;
+      display: block;
+      margin-bottom: 1rem;
+    }
+
+    .lead-body p {
+      font-size: 15px;
+      color: #000000;
+      line-height: 1.7;
+      margin-bottom: 0.85rem;
+    }
+
+    .lead-body p:last-child {
+      margin-bottom: 0;
+    }
+
+    .lead-body a {
+      color: inherit;
+      text-decoration: none;
+      border-bottom: 1px solid rgba(0,0,0,0.25);
+    }
+
+    .lead-body a:hover {
+      border-color: #000000;
+    }
+
+    /* Release log */
+    .release-log {
+      margin-bottom: 2.5rem;
+    }
+
+    .log-header {
+      margin-bottom: 2rem;
+      padding-bottom: 0.75rem;
+      border-bottom: 2px solid #000000;
+    }
+
+    .log-header-title {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #000000;
+    }
+
+    /* Category group */
+    .log-group {
+      margin-bottom: 1.75rem;
+    }
+
+    .log-group-label {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: #666666;
+      display: block;
+      padding: 0.6rem 0;
+      border-bottom: 1px solid #E5E5E5;
+      margin-bottom: 0;
+    }
+
+    /* Individual entry */
+    .log-entry {
+      padding: 1.25rem 0;
+      border-bottom: 1px solid #E5E5E5;
+    }
+
+    .log-entry:last-child {
+      border-bottom: none;
+    }
+
+    .entry-meta {
+      display: flex;
+      align-items: center;
+      gap: 0.625rem;
+      flex-wrap: wrap;
+      margin-bottom: 0.5rem;
+    }
+
+    .entry-date {
+      font-size: 11px;
+      font-weight: 500;
+      color: #666666;
+      font-variant-numeric: tabular-nums;
+      white-space: nowrap;
+    }
+
+    .entry-tag {
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      background: #F0F0F0;
+      color: #333333;
+      padding: 2px 6px;
+      border-radius: 3px;
+      white-space: nowrap;
+    }
+
+    .entry-tag.tag-model {
+      background: #000000;
+      color: #FFFFFF;
+    }
+
+    .entry-title {
+      font-size: 15px;
+      font-weight: 600;
+      color: #000000;
+      line-height: 1.35;
+      margin-bottom: 0.6rem;
+    }
+
+    .entry-title a {
+      color: inherit;
+      text-decoration: none;
+      border-bottom: 1px solid rgba(0,0,0,0.2);
+    }
+
+    .entry-title a:hover {
+      border-color: #000000;
+    }
+
+    .entry-body {
+      font-size: 14px;
+      color: #333333;
+      line-height: 1.65;
+      margin-bottom: 0;
+    }
+
+    .entry-body p {
+      margin-bottom: 0.5rem;
+    }
+
+    .entry-body p:last-child {
+      margin-bottom: 0;
+    }
+
+    .entry-subhead {
+      font-size: 11px;
+      font-weight: 600;
+      color: #000000;
+      letter-spacing: 0.04em;
+      margin-top: 0.75rem;
+      margin-bottom: 0.25rem;
+    }
+
+    pre {
+      font-family: 'JetBrains Mono', 'Fira Code', 'Cascadia Code', ui-monospace, monospace;
+      font-size: 12px;
+      background: #F7F7F7;
+      border: 1px solid #E5E5E5;
+      border-radius: 4px;
+      padding: 0.75rem 1rem;
+      overflow-x: auto;
+      line-height: 1.55;
+      color: #000000;
+      margin: 0.625rem 0 0;
+    }
+
+    code {
+      font-family: 'JetBrains Mono', 'Fira Code', 'Cascadia Code', ui-monospace, monospace;
+      font-size: 12px;
+      background: #F7F7F7;
+      border: 1px solid #E5E5E5;
+      border-radius: 3px;
+      padding: 1px 5px;
+      color: #000000;
+    }
+
+    pre code {
+      background: none;
+      border: none;
+      padding: 0;
+      font-size: inherit;
+    }
+
+    /* Quiet on the Wire */
+    .quiet {
+      margin-bottom: 2.5rem;
+      padding-bottom: 2rem;
+      border-bottom: 1px solid #E5E5E5;
+    }
+
+    .quiet p {
+      font-size: 14px;
+      color: #666666;
+      line-height: 1.65;
+      padding-left: 1.25rem;
+    }
+
+    /* Footer */
+    .footer {
+      font-size: 12px;
+      color: #666666;
+      line-height: 1.7;
+    }
+
+    .footer-timestamp {
+      margin-bottom: 1rem;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .sources-label {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #333333;
+      display: block;
+      margin-bottom: 0.5rem;
+    }
+
+    .sources-list {
+      list-style: none;
+      padding: 0;
+    }
+
+    .sources-list li {
+      margin-bottom: 0.25rem;
+    }
+
+    .sources-list a {
+      color: #666666;
+      text-decoration: none;
+      border-bottom: 1px solid #E5E5E5;
+    }
+
+    .sources-list a:hover {
+      color: #000000;
+      border-color: #000000;
+    }
+
+    .sources-list .muted {
+      color: #999999;
+    }
+
+    hr.rule {
+      border: none;
+      border-top: 1px solid #E5E5E5;
+      margin: 2rem 0;
+    }
+
+    @media (max-width: 600px) {
+      body {
+        padding: 2.5rem 1.125rem 4rem;
+      }
+      .masthead-name {
+        font-size: 2rem;
+      }
+    }
+  </style>
+</head>
+<body>
+<div class="page">
+
+  <header class="masthead">
+    <span class="masthead-name">Shipped.</span>
+    <span class="masthead-dateline">Daily, Wednesday, May 28, 2026</span>
+  </header>
+
+  <p class="one-liner">Opus 4.8 ships at Opus 4.7 pricing, with the first 0% score on uncritically reporting flawed results in the Claude line and a USAMO math benchmark that jumped 27 points overnight.</p>
+
+  <section class="section">
+    <span class="section-label">Lead</span>
+    <div class="lead-body">
+      <p>Anthropic released Claude Opus 4.8 today. The model's honesty benchmarks are the story: it scores 0% on uncritically accepting and reporting flawed results, the first Claude model to reach that mark, and shows a more than tenfold reduction in overconfidence compared to 4.7. The USAMO 2026 math benchmark moved from 69.3% to 96.7%. SWE-bench Pro reached 69.2% from 64.3%. Source: <a href="https://www.anthropic.com/news/claude-opus-4-8">anthropic.com/news/claude-opus-4-8</a>, also reported by <a href="https://the-decoder.com/anthropic-ships-claude-opus-4-8-as-a-modest-but-tangible-improvement-that-tops-gpt-5-5-in-most-benchmarks/">The Decoder</a> and <a href="https://techcrunch.com/2026/05/28/anthropic-releases-opus-4-8-with-new-dynamic-workflow-tool/">TechCrunch</a>.</p>
+      <p>Pricing holds: $5/$25 per MTok. Context window: 1M tokens on Claude API, Amazon Bedrock, and Google Cloud Vertex AI. 200k on Microsoft Foundry. Max output: 128k tokens. Fast mode drops to 2x standard pricing for 2.5x speed, down from 6x previously.</p>
+    </div>
+  </section>
+
+  <hr class="rule">
+
+  <section class="release-log">
+    <div class="log-header">
+      <span class="log-header-title">Release Log</span>
+    </div>
+
+    <!-- MODEL -->
+    <div class="log-group">
+      <span class="log-group-label">Model</span>
+      <div class="log-entry">
+        <div class="entry-meta">
+          <span class="entry-date">2026-05-28</span>
+          <span class="entry-tag tag-model">MODEL</span>
+        </div>
+        <div class="entry-title"><a href="https://www.anthropic.com/news/claude-opus-4-8">Claude Opus 4.8</a></div>
+        <div class="entry-body">
+          <p>Anthropic's new flagship. Available on Claude API, Amazon Bedrock, Google Cloud Vertex AI, and Microsoft Foundry. Context window 1M tokens (200k on Foundry). Max output 128k tokens. Benchmarks vs 4.7: SWE-bench Pro 69.2% (from 64.3%), SWE-bench Verified 88.6% (from 87.6%), USAMO 2026 96.7% (from 69.3%), GraphWalks long-context F1 at 1M tokens 68.1% (from 40.3%). First Claude model to score 0% on uncritically reporting flawed results. Overconfidence more than tenfold lower than 4.7. Pricing unchanged: $5/$25 per MTok. Fast mode: 2x standard rate for 2.5x speed.</p>
+          <div class="entry-subhead">How to use:</div>
+          <pre><code>client.messages.create(
+    model="claude-opus-4-8",
+    max_tokens=1024,
+    messages=[{"role": "user", "content": "..."}]
+)</code></pre>
+        </div>
+      </div>
+    </div>
+
+    <!-- API -->
+    <div class="log-group">
+      <span class="log-group-label">API</span>
+      <div class="log-entry">
+        <div class="entry-meta">
+          <span class="entry-date">2026-05-28</span>
+          <span class="entry-tag">API</span>
+        </div>
+        <div class="entry-title"><a href="https://www.anthropic.com/news/claude-opus-4-8">Mid-conversation system messages</a></div>
+        <div class="entry-body">
+          <p>The Claude API now accepts <code>role: &quot;system&quot;</code> messages after a user turn, on Opus 4.8. Previously, system prompts were fixed at conversation start. Enables dynamic system prompt updates mid-session without restarting the conversation. <code>stop_details</code> field now documented publicly.</p>
+          <div class="entry-subhead">How to use:</div>
+          <p>Pass a message with <code>role: &quot;system&quot;</code> at any position in your messages array after the first user turn. Requires <code>claude-opus-4-8</code>.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- CODE -->
+    <div class="log-group">
+      <span class="log-group-label">Claude Code</span>
+      <div class="log-entry">
+        <div class="entry-meta">
+          <span class="entry-date">2026-05-28 18:00 UTC</span>
+          <span class="entry-tag">CODE</span>
+        </div>
+        <div class="entry-title"><a href="https://github.com/anthropics/claude-code/releases">Claude Code v2.1.154</a></div>
+        <div class="entry-body">
+          <p>Opus 4.8 defaults to high effort in Claude Code. Dynamic workflows (research preview): describe a large task and Claude will spin up tens to hundreds of background subagents to execute it in parallel. Fast mode for Opus 4.8 priced at 2x standard rate (2.5x speed). Lean system prompt is now the default for all models except Haiku, Sonnet, and Opus 4.7 and earlier. <code>/simplify</code> now runs cleanup-only review and applies fixes automatically. Shell background sessions: type <code>! &lt;command&gt;</code> to run a shell command as a background session with attach/detach capability. Streaming tool execution always enabled including on Bedrock, Vertex, and Foundry. Worktree isolation guard prevents subagents from bypassing restrictions.</p>
+          <div class="entry-subhead">How to use:</div>
+          <p><code>claude update</code> to get v2.1.154. Dynamic workflows: start a large task description and Claude will propose splitting across agents if applicable.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- APPS -->
+    <div class="log-group">
+      <span class="log-group-label">Claude Apps</span>
+      <div class="log-entry">
+        <div class="entry-meta">
+          <span class="entry-date">2026-05-28</span>
+          <span class="entry-tag">APPS</span>
+        </div>
+        <div class="entry-title"><a href="https://www.anthropic.com/news/claude-opus-4-8">Effort control on claude.ai</a></div>
+        <div class="entry-body">
+          <p>Claude.ai users can now select the effort level Claude applies to a response. Ships alongside Opus 4.8. High effort is the default for Opus 4.8. The control surfaces the tradeoff between quality and response speed per conversation.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- NEWS -->
+    <div class="log-group">
+      <span class="log-group-label">News</span>
+      <div class="log-entry">
+        <div class="entry-meta">
+          <span class="entry-date">2026-05-28</span>
+          <span class="entry-tag">NEWS</span>
+        </div>
+        <div class="entry-title"><a href="https://github.blog/changelog/2026-05-28-claude-opus-4-8-is-generally-available-for-github-copilot/">Claude Opus 4.8 generally available for GitHub Copilot</a></div>
+        <div class="entry-body">
+          <p>Reported by GitHub. Opus 4.8 is now selectable for all GitHub Copilot users in Copilot Chat, inline suggestions, and agent mode. Previously available in limited preview.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- SDK -->
+    <div class="log-group">
+      <span class="log-group-label">SDKs</span>
+      <div class="log-entry">
+        <div class="entry-meta">
+          <span class="entry-date">2026-05-28</span>
+          <span class="entry-tag">SDK-PY</span>
+        </div>
+        <div class="entry-title"><a href="https://github.com/anthropics/anthropic-sdk-python/releases">anthropic-sdk-python v0.105.0, v0.105.1, v0.105.2</a></div>
+        <div class="entry-body">
+          <p>v0.105.0: adds <code>claude-opus-4-8</code> model support, mid-conversation system blocks, and <code>usage.output_tokens_details</code>. v0.105.1: switches PyPI releases to Trusted Publishing for improved supply-chain security. v0.105.2: minor patch. Three releases inside 24 hours.</p>
+          <div class="entry-subhead">How to use:</div>
+          <pre><code>pip install --upgrade anthropic</code></pre>
+        </div>
+      </div>
+      <div class="log-entry">
+        <div class="entry-meta">
+          <span class="entry-date">2026-05-28</span>
+          <span class="entry-tag">SDK-TS</span>
+        </div>
+        <div class="entry-title"><a href="https://github.com/anthropics/anthropic-sdk-typescript/releases">@anthropic-ai/sdk v0.100.0 and v0.100.1</a></div>
+        <div class="entry-body">
+          <p>v0.100.0: adds <code>claude-opus-4-8</code>, mid-conversation system blocks, and <code>usage.output_tokens_details</code>. v0.100.1: fixes streaming to carry <code>encrypted_content</code> on beta compaction blocks. Dependency lockfiles updated across foundry-sdk and aws-sdk sub-packages.</p>
+          <div class="entry-subhead">How to use:</div>
+          <pre><code>npm install @anthropic-ai/sdk@latest</code></pre>
+        </div>
+      </div>
+    </div>
+
+  </section>
+
+  <section class="quiet">
+    <span class="section-label">Quiet on the Wire</span>
+    <p>No research paper published. No system prompt update detected (docs.anthropic.com returned 403 throughout sweep). No deprecation notice. No standalone Claude Apps update beyond the effort-control feature attached to the Opus 4.8 launch.</p>
+  </section>
+
+  <footer class="footer">
+    <p class="footer-timestamp">Generated 2026-05-29T01:01:28Z</p>
+    <span class="sources-label">Sources</span>
+    <ul class="sources-list">
+      <li><a href="https://www.anthropic.com/news/claude-opus-4-8">anthropic.com/news/claude-opus-4-8</a></li>
+      <li><a href="https://the-decoder.com/anthropic-ships-claude-opus-4-8-as-a-modest-but-tangible-improvement-that-tops-gpt-5-5-in-most-benchmarks/">the-decoder.com: Anthropic ships Claude Opus 4.8</a></li>
+      <li><a href="https://techcrunch.com/2026/05/28/anthropic-releases-opus-4-8-with-new-dynamic-workflow-tool/">techcrunch.com: Anthropic releases Opus 4.8</a></li>
+      <li><a href="https://9to5mac.com/2026/05/28/anthropic-upgrades-claude-with-new-opus-4-8-model-heres-whats-new/">9to5mac.com: Anthropic upgrades Claude with Opus 4.8</a></li>
+      <li><a href="https://github.com/anthropics/claude-code/releases">github.com/anthropics/claude-code/releases</a></li>
+      <li><a href="https://github.com/anthropics/anthropic-sdk-python/releases">github.com/anthropics/anthropic-sdk-python/releases</a></li>
+      <li><a href="https://github.com/anthropics/anthropic-sdk-typescript/releases">github.com/anthropics/anthropic-sdk-typescript/releases</a></li>
+      <li><a href="https://github.blog/changelog/2026-05-28-claude-opus-4-8-is-generally-available-for-github-copilot/">github.blog/changelog: Opus 4.8 for GitHub Copilot</a></li>
+      <li class="muted">docs.anthropic.com/en/release-notes/* (403 during sweep)</li>
+      <li class="muted">anthropic.com/news and /research (403 during sweep)</li>
+    </ul>
+  </footer>
+
+</div>
+</body>
+</html>
