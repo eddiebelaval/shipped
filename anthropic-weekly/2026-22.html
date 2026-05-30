@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="color-scheme" content="light dark">
+  <title>Shipped. Anthropic Weekly &mdash; Week of 2026-05-25</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Newsreader:ital,wght@1,400;1,600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #FFFFFF;
+      --ink: #000000;
+      --muted: #666666;
+      --rule: #E5E5E5;
+      --tag-bg: #F0F0F0;
+      --tag-ink: #333333;
+      --code-bg: #F7F7F7;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #0A0A0A;
+        --ink: #FFFFFF;
+        --muted: #999999;
+        --rule: #2A2A2A;
+        --tag-bg: #1E1E1E;
+        --tag-ink: #CCCCCC;
+        --code-bg: #181818;
+      }
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { background: var(--bg); }
+
+    body {
+      background: var(--bg);
+      color: var(--ink);
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      font-size: 15px;
+      line-height: 1.65;
+      padding: 5rem 1.5rem 5rem;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    .page {
+      max-width: 720px;
+      margin: 0 auto;
+    }
+
+    /* Masthead */
+    .masthead {
+      margin-bottom: 2.5rem;
+      padding-bottom: 1.5rem;
+      border-bottom: 1px solid var(--rule);
+    }
+
+    .masthead-name {
+      font-family: 'Newsreader', Georgia, 'Times New Roman', serif;
+      font-style: italic;
+      font-weight: 600;
+      font-size: 2.25rem;
+      color: var(--ink);
+      letter-spacing: -0.02em;
+      line-height: 1;
+      margin-bottom: 0.5rem;
+      display: block;
+    }
+
+    .masthead-dateline {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.10em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    /* Cover line */
+    .cover-line {
+      font-size: 17px;
+      font-weight: 500;
+      line-height: 1.55;
+      color: var(--ink);
+      margin-bottom: 2.5rem;
+      padding-top: 1.5rem;
+      padding-bottom: 1.5rem;
+      border-bottom: 1px solid var(--rule);
+    }
+
+    /* Section label */
+    .section-label {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.13em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 0.85rem;
+      display: block;
+    }
+
+    /* Sections */
+    .section {
+      margin-bottom: 2.75rem;
+      padding-bottom: 2.25rem;
+      border-bottom: 1px solid var(--rule);
+    }
+
+    .section h2 {
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: var(--ink);
+      line-height: 1.25;
+      letter-spacing: -0.02em;
+      margin-bottom: 1.1rem;
+    }
+
+    .section h3 {
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--ink);
+      line-height: 1.3;
+      margin-bottom: 0.65rem;
+    }
+
+    .section p {
+      font-size: 15px;
+      line-height: 1.75;
+      color: var(--ink);
+      margin-bottom: 0.85rem;
+    }
+
+    .section p:last-child { margin-bottom: 0; }
+
+    a { color: inherit; }
+
+    .section a {
+      text-decoration: underline;
+      text-decoration-color: var(--rule);
+      text-underline-offset: 2px;
+    }
+
+    .section a:hover { text-decoration-color: var(--ink); }
+
+    /* Pullquote */
+    .pullquote {
+      font-size: 17px;
+      font-style: italic;
+      line-height: 1.55;
+      color: var(--ink);
+      margin: 1.75rem 0;
+      padding-left: 1.25rem;
+      border-left: 3px solid var(--ink);
+    }
+
+    /* Also Shipped sub-sections */
+    .also-item {
+      padding-bottom: 1.25rem;
+      border-bottom: 1px solid var(--rule);
+      margin-bottom: 1.25rem;
+    }
+
+    .also-item:last-child {
+      border-bottom: none;
+      padding-bottom: 0;
+      margin-bottom: 0;
+    }
+
+    /* Quiet */
+    .quiet-body {
+      padding-left: 1rem;
+      font-size: 14px;
+      color: var(--muted);
+      line-height: 1.70;
+    }
+
+    /* Close */
+    .close-body p {
+      font-size: 15px;
+      line-height: 1.6;
+      color: var(--ink);
+      margin-bottom: 1rem;
+    }
+
+    .close-body p:last-child {
+      font-style: italic;
+      margin-bottom: 0;
+    }
+
+    /* Release log */
+    .release-log-header {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.13em;
+      text-transform: uppercase;
+      color: var(--ink);
+      padding-bottom: 0.65rem;
+      border-bottom: 2px solid var(--ink);
+      margin-bottom: 1.5rem;
+      display: block;
+    }
+
+    .release-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13px;
+    }
+
+    .release-table th {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.10em;
+      text-transform: uppercase;
+      color: var(--muted);
+      text-align: left;
+      padding: 8px 12px 8px 0;
+      border-bottom: 1px solid var(--rule);
+    }
+
+    .release-table td {
+      padding: 10px 12px 10px 0;
+      border-bottom: 1px solid var(--rule);
+      vertical-align: top;
+      line-height: 1.55;
+      color: var(--ink);
+    }
+
+    .release-table tr:last-child td { border-bottom: none; }
+
+    .col-date {
+      white-space: nowrap;
+      color: var(--muted);
+      font-size: 11px;
+      font-weight: 500;
+      width: 82px;
+    }
+
+    .col-area { width: 72px; }
+
+    .col-title { font-weight: 600; }
+
+    .col-title a {
+      color: inherit;
+      text-decoration: none;
+      border-bottom: 1px solid rgba(128,128,128,0.3);
+      padding-bottom: 1px;
+    }
+
+    .col-title a:hover { border-color: var(--ink); }
+
+    .col-oneliner { color: var(--muted); }
+
+    /* Tags */
+    .tag {
+      display: inline-block;
+      font-size: 9px;
+      font-weight: 600;
+      letter-spacing: 0.10em;
+      text-transform: uppercase;
+      background: var(--tag-bg);
+      color: var(--tag-ink);
+      padding: 2px 6px;
+      border-radius: 3px;
+      white-space: nowrap;
+    }
+
+    .tag-model  { background: #FF6B35; color: #ffffff; }
+    .tag-code   { background: #595959; color: #ffffff; }
+    .tag-api    { background: #404040; color: #ffffff; }
+    .tag-apps   { background: #737373; color: #ffffff; }
+    .tag-sdk-py { background: var(--tag-bg); color: var(--tag-ink); }
+    .tag-sdk-ts { background: #DEDEDE; color: #333333; }
+    .tag-news   { background: var(--tag-bg); color: var(--tag-ink); border: 1px solid var(--rule); }
+
+    code {
+      font-family: 'SFMono-Regular', Menlo, Monaco, Consolas, 'Courier New', monospace;
+      font-size: 12px;
+      background: var(--code-bg);
+      padding: 1px 5px;
+      border-radius: 3px;
+      color: var(--ink);
+    }
+
+    pre {
+      font-family: 'SFMono-Regular', Menlo, Monaco, Consolas, 'Courier New', monospace;
+      font-size: 12px;
+      background: var(--code-bg);
+      padding: 12px 14px;
+      border-radius: 4px;
+      overflow-x: auto;
+      line-height: 1.55;
+      color: var(--ink);
+      margin: 0.5rem 0 0;
+    }
+
+    pre code { background: none; padding: 0; }
+
+    /* Footer */
+    .footer {
+      padding-top: 2rem;
+      border-top: 1px solid var(--rule);
+      font-size: 11px;
+      color: var(--muted);
+      line-height: 1.75;
+    }
+
+    @media (max-width: 600px) {
+      body { padding: 3rem 1.25rem 3rem; }
+      .masthead-name { font-size: 1.75rem; }
+      .cover-line { font-size: 16px; }
+      .col-oneliner { display: none; }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+
+    <header class="masthead">
+      <span class="masthead-name">Shipped.</span>
+      <span class="masthead-dateline">Anthropic Weekly &middot; Week of May 25, 2026 &middot; ISO 2026-W22</span>
+    </header>
+
+    <p class="cover-line">Anthropic raised $65 billion at a near-trillion valuation, shipped a flagship model, and told customers the model it withheld for safety arrives in weeks.</p>
+
+    <!-- The Open -->
+    <section class="section">
+      <span class="section-label">The Open</span>
+      <p>Tuesday, May 26. Anthropic co-founder Chris Olah stood at a Vatican press conference for the launch of Pope Leo XIV's encyclical on artificial intelligence: &#8220;Magnifica humanitas: On safeguarding the human person in the time of artificial Intelligence.&#8221; Forty-two thousand words. Two hundred and forty-five paragraphs. (<a href="https://www.anthropic.com/news/chris-olah-pope-leo-encyclical">anthropic.com</a>, <a href="https://www.ncronline.org/vatican/vatican-news/pope-leo-anthropic-co-founder-call-church-tech-ethics-partnership-magnifica">National Catholic Reporter</a>) Pope Leo XIV is the first pope to personally present an encyclical to the world. He chose AI. The Vatican did not invite the CEO. It invited the interpretability researcher.</p>
+      <p>Wednesday brought a new flagship model. Thursday brought an SDK update cascade. Friday brought a $65 billion Series H at a $965 billion valuation and a timeline on the model Anthropic had classified as too dangerous for general release.</p>
+      <p>The interpretability researcher was at the Vatican on Tuesday. By Friday, the company was worth nearly a trillion dollars and preparing to ship the model the Vatican's encyclical might have had something to say about. Whether those facts are in tension depends on who you ask. What is clear is that they belong to the same week.</p>
+    </section>
+
+    <!-- The Lead Story -->
+    <section class="section">
+      <span class="section-label">The Lead Story</span>
+      <h2>$965 billion and the weeks-away model</h2>
+
+      <p>Anthropic closed a $65 billion Series H on May 29, led by Altimeter Capital, Dragoneer, Greenoaks, and Sequoia. Post-money valuation: $965 billion, surpassing OpenAI as the most valuable private AI company. (<a href="https://www.anthropic.com/news/series-h">anthropic.com/news/series-h</a>) Run-rate revenue crossed $47 billion, per <a href="https://fortune.com/2026/05/29/anthropic-raises-65-billion-at-record-965-billion-valuation-promises-mythos-ai-model-in-wide-release-in-coming-weeks-releases-claude-opus-4-8/">Fortune</a> and <a href="https://simonwillison.net/2026/May/29/anthropic/">Simon Willison</a>. The revenue trajectory: $9B at year-end 2025, $14B at the Series G close in February, $30B in April, $47B now. Three times the revenue in three months. Claude Code is the stated driver.</p>
+
+      <p>In the same announcement window, Bloomberg <a href="https://www.bloomberg.com/news/articles/2026-05-28/anthropic-unveils-new-flagship-ai-model-that-s-better-at-coding">reported</a> that Anthropic told customers it has made &#8220;swift progress&#8221; developing safety safeguards for Mythos-class models and plans to release them broadly in &#8220;coming weeks.&#8221; Mythos has been restricted to Glasswing partners since April, on the grounds that it can identify and exploit vulnerabilities in every major OS and browser when directed. That restriction is close to lifting. No specific date.</p>
+
+      <div class="pullquote">&#8220;Coming weeks&#8221; is doing substantial work in that sentence.</div>
+
+      <p>These are not separate stories. A company raising capital at a $965 billion valuation is also a company telling its customers that the capability it once classified as too dangerous for general release is coming soon. The revenue validates the demand. The investment validates the trajectory. The safety work, Anthropic says, is done enough. Mythos is not a model with a launch date yet. It is a model with a direction of travel.</p>
+    </section>
+
+    <!-- Also Shipped -->
+    <section class="section">
+      <span class="section-label">Also Shipped</span>
+
+      <div class="also-item">
+        <h3>Claude Opus 4.8</h3>
+        <p>Anthropic released Opus 4.8 on May 28. Pricing unchanged: $5/$25 per MTok. Context window: 1M tokens on the Claude API, Amazon Bedrock, and Google Cloud Vertex AI (200k on Microsoft Foundry). Max output: 128k tokens. (<a href="https://www.anthropic.com/news/claude-opus-4-8">anthropic.com/news/claude-opus-4-8</a>)</p>
+        <p>The headline benchmarks are in math and honesty. USAMO 2026 moved from 69.3% to 96.7%. Opus 4.8 is the first Claude model to score 0% on uncritically accepting and reporting flawed results, and shows more than a tenfold reduction in overconfidence compared to 4.7. SWE-bench Pro: 64.3% to 69.2%. GraphWalks 1M-token F1: 40.3% to 68.1%. Fast mode repriced: 2x standard rate for 2.5x speed, down from 6x previously.</p>
+      </div>
+
+      <div class="also-item">
+        <h3>Dynamic Workflows in Claude Code</h3>
+        <p>Claude Code v2.1.154 (May 28) introduced Dynamic Workflows as a research preview: describe a large task and Claude proposes splitting execution across tens to hundreds of background subagents running in parallel. (<a href="https://github.com/anthropics/claude-code/releases">github.com/anthropics/claude-code/releases</a>) Opus 4.8 defaults to high effort. Shell background sessions via <code>! &lt;command&gt;</code>. Streaming tool execution universally enabled across Bedrock, Vertex, and Foundry. Worktree isolation guard added.</p>
+        <p>v2.1.152 earlier that week removed Auto mode's opt-in consent requirement and landed <code>/code-review --fix</code>, which applies review findings to the working tree directly. v2.1.157 on Friday added auto-loading plugins from <code>.claude/skills</code> and the <code>EnterWorktree</code> hook for mid-session worktree switching.</p>
+      </div>
+
+      <div class="also-item">
+        <h3>Mid-conversation system messages</h3>
+        <p>The Claude API now accepts <code>role: &quot;system&quot;</code> messages at any position in the messages array after the first user turn, on Opus 4.8. System prompts no longer need to be fixed at conversation start. Enables mid-session updates without restarting. <code>stop_details</code> field is now publicly documented. Python SDK v0.105.0 and TypeScript SDK v0.100.0 shipped support the same day. (<a href="https://www.anthropic.com/news/claude-opus-4-8">anthropic.com/news/claude-opus-4-8</a>)</p>
+      </div>
+
+      <div class="also-item">
+        <h3>The First Broadcast</h3>
+        <p>Anthropic held its inaugural partner webinar on May 27: May product news, CCAF certification updates, and the launch of Anthropic Partner Academy with the Claude Partner Certification alongside it. (<a href="https://www.anthropic.com/webinars/the-first-broadcast">anthropic.com/webinars/the-first-broadcast</a>) Global replay ran May 28 at 11:00 AM SGT.</p>
+      </div>
+    </section>
+
+    <!-- Quiet on the Wire -->
+    <section class="section">
+      <span class="section-label">Quiet on the Wire</span>
+      <div class="quiet-body">
+        <p>No research paper published this week. No standalone Claude Apps update beyond the effort-control feature attached to the Opus 4.8 launch. The Python SDK was quiet from May 22 (v0.104.1) until Opus 4.8 triggered three releases in 24 hours on May 28. docs.anthropic.com returned HTTP 403 on all four sweeps this week, leaving API release notes, Claude Apps notes, and system prompt docs unverifiable from primary source. Claude Code v2.1.155 does not appear in this week's dailies.</p>
+      </div>
+    </section>
+
+    <!-- The Close -->
+    <section class="section">
+      <span class="section-label">The Close</span>
+      <div class="close-body">
+        <p>The Vatican heard from the interpretability researcher on Tuesday.</p>
+        <p>The company cleared $965 billion by Friday.</p>
+        <p>The model they called too dangerous for general release is arriving in weeks.</p>
+      </div>
+    </section>
+
+    <!-- Release Log -->
+    <section>
+      <span class="release-log-header">Release Log</span>
+      <p style="font-size:12px;color:var(--muted);margin-bottom:1.25rem;">A 1:1 mirror of every Anthropic release for the week of 2026-05-25.</p>
+
+      <table class="release-table">
+        <thead>
+          <tr>
+            <th class="col-date">Date</th>
+            <th class="col-area">Area</th>
+            <th class="col-title">Title</th>
+            <th class="col-oneliner">One-liner</th>
+          </tr>
+        </thead>
+        <tbody>
+
+          <tr>
+            <td class="col-date">2026-05-28</td>
+            <td class="col-area"><span class="tag tag-model">MODEL</span></td>
+            <td class="col-title"><a href="https://www.anthropic.com/news/claude-opus-4-8">Claude Opus 4.8</a></td>
+            <td class="col-oneliner">New flagship. $5/$25 per MTok unchanged. USAMO 69.3% to 96.7%. First Claude model to score 0% on uncritically reporting flawed results. Overconfidence more than 10x lower than 4.7.</td>
+          </tr>
+
+          <tr>
+            <td class="col-date">2026-05-28</td>
+            <td class="col-area"><span class="tag tag-api">API</span></td>
+            <td class="col-title"><a href="https://www.anthropic.com/news/claude-opus-4-8">Mid-conversation system messages</a></td>
+            <td class="col-oneliner"><code>role: &quot;system&quot;</code> accepted after first user turn. Opus 4.8 only. <code>stop_details</code> now publicly documented.</td>
+          </tr>
+
+          <tr>
+            <td class="col-date">2026-05-27</td>
+            <td class="col-area"><span class="tag tag-code">CODE</span></td>
+            <td class="col-title"><a href="https://github.com/anthropics/claude-code/releases">Claude Code v2.1.152</a></td>
+            <td class="col-oneliner"><code>/code-review --fix</code> applies findings to working tree. <code>/simplify</code> aliases to it. Auto mode opt-in consent removed. <code>MessageDisplay</code> hook event. <code>disallowed-tools</code> frontmatter support.</td>
+          </tr>
+
+          <tr>
+            <td class="col-date">2026-05-28</td>
+            <td class="col-area"><span class="tag tag-code">CODE</span></td>
+            <td class="col-title"><a href="https://github.com/anthropics/claude-code/releases">Claude Code v2.1.153</a></td>
+            <td class="col-oneliner">Status line commands receive <code>COLUMNS</code>/<code>LINES</code> env vars. macOS background agents surface as &#8220;Claude Code&#8221; in Privacy and Security. <code>/model</code> saves as default. MCP reconnect-loop and OAuth bugfixes.</td>
+          </tr>
+
+          <tr>
+            <td class="col-date">2026-05-28</td>
+            <td class="col-area"><span class="tag tag-code">CODE</span></td>
+            <td class="col-title"><a href="https://github.com/anthropics/claude-code/releases">Claude Code v2.1.154</a></td>
+            <td class="col-oneliner">Dynamic Workflows (research preview): parallel subagent execution for large tasks. Opus 4.8 defaults to high effort. Lean system prompt now default for new models. Shell background sessions via <code>! &lt;cmd&gt;</code>.</td>
+          </tr>
+
+          <tr>
+            <td class="col-date">2026-05-29</td>
+            <td class="col-area"><span class="tag tag-code">CODE</span></td>
+            <td class="col-title"><a href="https://github.com/anthropics/claude-code/blob/main/CHANGELOG.md">Claude Code v2.1.156</a></td>
+            <td class="col-oneliner">Hotfix: Opus 4.8 thinking blocks were being modified in Claude Code, causing API errors. Fixed.</td>
+          </tr>
+
+          <tr>
+            <td class="col-date">2026-05-29</td>
+            <td class="col-area"><span class="tag tag-code">CODE</span></td>
+            <td class="col-title"><a href="https://github.com/anthropics/claude-code/blob/main/CHANGELOG.md">Claude Code v2.1.157</a></td>
+            <td class="col-oneliner">Plugins in <code>.claude/skills</code> load automatically. <code>claude plugin init &lt;name&gt;</code> scaffolds plugins. <code>EnterWorktree</code> mid-session switch. WSL image/screenshot paste and Windows Explorer drag-and-drop.</td>
+          </tr>
+
+          <tr>
+            <td class="col-date">2026-05-28</td>
+            <td class="col-area"><span class="tag tag-apps">APPS</span></td>
+            <td class="col-title"><a href="https://www.anthropic.com/news/claude-opus-4-8">Effort control on claude.ai</a></td>
+            <td class="col-oneliner">Per-conversation effort level selector. Ships with Opus 4.8. High effort is the default for Opus 4.8.</td>
+          </tr>
+
+          <tr>
+            <td class="col-date">2026-05-26</td>
+            <td class="col-area"><span class="tag tag-sdk-ts">SDK-TS</span></td>
+            <td class="col-title"><a href="https://github.com/anthropics/anthropic-sdk-typescript/releases/tag/sdk-v0.98.1">TypeScript SDK v0.98.1</a></td>
+            <td class="col-oneliner">Fixes directory prefix preservation in <code>skills.versions.create</code> uploads. Trusted Publishing. Renames private-sandbox-worker example to <code>self-hosted-sandbox-worker</code>.</td>
+          </tr>
+
+          <tr>
+            <td class="col-date">2026-05-27</td>
+            <td class="col-area"><span class="tag tag-sdk-ts">SDK-TS</span></td>
+            <td class="col-title"><a href="https://github.com/anthropics/anthropic-sdk-typescript/releases">TypeScript SDK v0.99.0</a></td>
+            <td class="col-oneliner">Custom file size caps. Streaming fix: <code>stop_details</code> now carried through <code>message_delta</code> accumulation.</td>
+          </tr>
+
+          <tr>
+            <td class="col-date">2026-05-28</td>
+            <td class="col-area"><span class="tag tag-sdk-py">SDK-PY</span></td>
+            <td class="col-title"><a href="https://github.com/anthropics/anthropic-sdk-python/releases">anthropic-sdk-python v0.105.0&ndash;2</a></td>
+            <td class="col-oneliner">v0.105.0: <code>claude-opus-4-8</code>, mid-conversation system blocks, <code>usage.output_tokens_details</code>. v0.105.1: Trusted Publishing. v0.105.2: minor patch. Three releases in 24 hours.</td>
+          </tr>
+
+          <tr>
+            <td class="col-date">2026-05-28</td>
+            <td class="col-area"><span class="tag tag-sdk-ts">SDK-TS</span></td>
+            <td class="col-title"><a href="https://github.com/anthropics/anthropic-sdk-typescript/releases">@anthropic-ai/sdk v0.100.0&ndash;1</a></td>
+            <td class="col-oneliner">v0.100.0: <code>claude-opus-4-8</code>, mid-conversation system blocks, <code>output_tokens_details</code>. v0.100.1: fixes streaming <code>encrypted_content</code> on beta compaction blocks.</td>
+          </tr>
+
+          <tr>
+            <td class="col-date">2026-05-25</td>
+            <td class="col-area"><span class="tag tag-news">NEWS</span></td>
+            <td class="col-title"><a href="https://www.anthropic.com/news/chris-olah-pope-leo-encyclical">Chris Olah at Vatican, &#8220;Magnifica humanitas&#8221;</a></td>
+            <td class="col-oneliner">Anthropic co-founder speaks at launch of Pope Leo XIV's 42,000-word, 245-paragraph AI encyclical. First pope to personally present an encyclical. Olah's remarks published on anthropic.com.</td>
+          </tr>
+
+          <tr>
+            <td class="col-date">2026-05-27</td>
+            <td class="col-area"><span class="tag tag-news">NEWS</span></td>
+            <td class="col-title"><a href="https://www.anthropic.com/webinars/the-first-broadcast">The First Broadcast</a></td>
+            <td class="col-oneliner">Anthropic's inaugural partner webinar. May product news, CCAF cert updates. Partner Academy and Claude Partner Certification launched.</td>
+          </tr>
+
+          <tr>
+            <td class="col-date">2026-05-28</td>
+            <td class="col-area"><span class="tag tag-news">NEWS</span></td>
+            <td class="col-title"><a href="https://github.blog/changelog/2026-05-28-claude-opus-4-8-is-generally-available-for-github-copilot/">Opus 4.8 GA for GitHub Copilot</a></td>
+            <td class="col-oneliner">Opus 4.8 available for all GitHub Copilot users in Chat, inline suggestions, and agent mode. Previously limited preview.</td>
+          </tr>
+
+          <tr>
+            <td class="col-date">2026-05-29</td>
+            <td class="col-area"><span class="tag tag-news">NEWS</span></td>
+            <td class="col-title"><a href="https://www.anthropic.com/news/series-h">Series H: $65B at $965B valuation</a></td>
+            <td class="col-oneliner">Led by Altimeter, Dragoneer, Greenoaks, Sequoia. $47B run-rate revenue. Trajectory: $9B (Dec 2025), $14B (Feb), $30B (Apr), $47B (May). Surpasses OpenAI as most valuable private AI company.</td>
+          </tr>
+
+          <tr>
+            <td class="col-date">2026-05-29</td>
+            <td class="col-area"><span class="tag tag-news">NEWS</span></td>
+            <td class="col-title"><a href="https://www.bloomberg.com/news/articles/2026-05-28/anthropic-unveils-new-flagship-ai-model-that-s-better-at-coding">Mythos-level models in &#8220;coming weeks&#8221;</a></td>
+            <td class="col-oneliner">Anthropic told customers: &#8220;swift progress&#8221; on safety safeguards, Mythos-class capabilities coming to all customers in &#8220;coming weeks.&#8221; Previously restricted to Glasswing partners. No specific date.</td>
+          </tr>
+
+        </tbody>
+      </table>
+    </section>
+
+    <footer class="footer">
+      <p>Compiled 2026-05-30 &middot; Sources: daily pages 2026-05-26 through 2026-05-29 &middot; <a href="https://eddiebelaval.github.io/shipped/">Shipped.</a></p>
+    </footer>
+
+  </div>
+</body>
+</html>
