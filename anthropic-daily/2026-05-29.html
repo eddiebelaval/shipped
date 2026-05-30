@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="color-scheme" content="light">
+  <title>Shipped. Daily, Friday, May 29, 2026</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Newsreader:ital,wght@1,400;1,600&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      background: #FFFFFF;
+    }
+
+    body {
+      font-family: 'Inter', system-ui, sans-serif;
+      background: #FFFFFF;
+      color: #000000;
+      font-size: 15px;
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    .page {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 5rem 24px 5rem;
+    }
+
+    /* ---- Masthead ---- */
+    .masthead {
+      margin-bottom: 2.5rem;
+      padding-bottom: 1.5rem;
+      border-bottom: 1px solid #E5E5E5;
+    }
+
+    .masthead-logo {
+      font-family: 'Newsreader', Georgia, serif;
+      font-style: italic;
+      font-weight: 600;
+      font-size: 2.25rem;
+      color: #000000;
+      letter-spacing: -0.5px;
+      display: block;
+      line-height: 1.1;
+      margin-bottom: 0.4rem;
+    }
+
+    .masthead-dateline {
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      color: #666666;
+    }
+
+    /* ---- One-line read ---- */
+    .one-liner {
+      font-size: 17px;
+      font-weight: 500;
+      line-height: 1.55;
+      color: #000000;
+      margin-bottom: 2.5rem;
+      padding-bottom: 2rem;
+      border-bottom: 1px solid #E5E5E5;
+    }
+
+    /* ---- Section flags ---- */
+    .section-flag {
+      display: block;
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      color: #666666;
+      margin-bottom: 0.85rem;
+    }
+
+    /* ---- Lead ---- */
+    .lead-section {
+      margin-bottom: 2.5rem;
+      padding-bottom: 2rem;
+      border-bottom: 1px solid #E5E5E5;
+    }
+
+    .lead-body p {
+      font-size: 16px;
+      line-height: 1.72;
+      color: #000000;
+      margin-bottom: 1rem;
+    }
+
+    .lead-body p:last-child {
+      margin-bottom: 0;
+    }
+
+    /* ---- Release Log ---- */
+    .release-log {
+      margin-bottom: 2.5rem;
+    }
+
+    .log-header {
+      display: block;
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      color: #666666;
+      margin-bottom: 1.5rem;
+      padding-bottom: 0.85rem;
+      border-bottom: 1px solid #E5E5E5;
+    }
+
+    .area-group {
+      margin-bottom: 1.75rem;
+    }
+
+    .area-label {
+      display: block;
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: #666666;
+      margin-bottom: 0.75rem;
+    }
+
+    .log-entry {
+      padding: 1rem 0;
+      border-bottom: 1px solid #E5E5E5;
+    }
+
+    .log-entry:last-child {
+      border-bottom: none;
+    }
+
+    .log-entry-meta {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 0.35rem;
+      flex-wrap: wrap;
+    }
+
+    .log-entry-date {
+      font-size: 11px;
+      font-weight: 500;
+      color: #666666;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .log-tag {
+      display: inline-block;
+      font-size: 9px;
+      font-weight: 600;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      background: #F0F0F0;
+      color: #333333;
+      padding: 2px 6px;
+      border-radius: 2px;
+    }
+
+    .log-tag-news   { background: #F0F0F0; color: #333333; }
+    .log-tag-model  { background: #000000; color: #FFFFFF; }
+    .log-tag-api    { background: #F0F0F0; color: #333333; }
+    .log-tag-code   { background: #F0F0F0; color: #333333; }
+    .log-tag-sdk    { background: #F0F0F0; color: #333333; }
+
+    .log-entry-title {
+      font-size: 15px;
+      font-weight: 600;
+      color: #000000;
+      line-height: 1.35;
+      margin-bottom: 0.4rem;
+    }
+
+    .log-entry-body {
+      font-size: 13.5px;
+      color: #333333;
+      line-height: 1.62;
+    }
+
+    .log-entry-body p {
+      margin-bottom: 0.4rem;
+    }
+
+    .log-entry-body p:last-child {
+      margin-bottom: 0;
+    }
+
+    code {
+      font-family: ui-monospace, 'SF Mono', 'Cascadia Code', 'Fira Code', monospace;
+      font-size: 12px;
+      background: #F7F7F7;
+      color: #000000;
+      padding: 1px 5px;
+      border-radius: 3px;
+    }
+
+    /* ---- Quiet ---- */
+    .quiet-section {
+      margin-bottom: 2.5rem;
+      padding-bottom: 2rem;
+      border-bottom: 1px solid #E5E5E5;
+    }
+
+    .quiet-body {
+      font-size: 14px;
+      color: #666666;
+      line-height: 1.65;
+      padding-left: 1rem;
+    }
+
+    /* ---- Footer ---- */
+    .footer {
+      font-size: 12px;
+      color: #666666;
+      line-height: 1.70;
+    }
+
+    .footer-ts {
+      margin-bottom: 1.25rem;
+      font-weight: 500;
+    }
+
+    .footer-sources-label {
+      display: block;
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: #666666;
+      margin-bottom: 0.5rem;
+    }
+
+    .footer-sources a {
+      display: block;
+      color: #666666;
+      text-decoration: none;
+      word-break: break-all;
+      margin-bottom: 0.2rem;
+    }
+
+    .footer-sources a:hover {
+      color: #000000;
+      text-decoration: underline;
+    }
+
+    /* ---- Links ---- */
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    /* ---- Mobile ---- */
+    @media (max-width: 600px) {
+      .page {
+        padding: 3rem 18px 3rem;
+      }
+
+      .masthead-logo {
+        font-size: 1.8rem;
+      }
+
+      .one-liner {
+        font-size: 15px;
+      }
+
+      .lead-body p {
+        font-size: 15px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+
+    <header class="masthead">
+      <span class="masthead-logo">Shipped.</span>
+      <span class="masthead-dateline">Daily, Friday, May 29, 2026</span>
+    </header>
+
+    <p class="one-liner">The $65B Series H closed at a $965B valuation, run-rate revenue crossed $47 billion, and Anthropic said Mythos-level models are coming to all customers in weeks.</p>
+
+    <section class="lead-section">
+      <span class="section-flag">Lead</span>
+      <div class="lead-body">
+        <p>Anthropic raised $65 billion in a Series H led by Altimeter Capital, Dragoneer, Greenoaks, and Sequoia, valuing the company at $965 billion post-money (<a href="https://fortune.com/2026/05/29/anthropic-raises-65-billion-at-record-965-billion-valuation-promises-mythos-ai-model-in-wide-release-in-coming-weeks-releases-claude-opus-4-8/">Fortune</a>). Run-rate revenue has crossed $47 billion, up from $30B in April, $14B in February, and $9B at year-end 2025 (<a href="https://simonwillison.net/2026/May/29/anthropic/">Simon Willison</a>). In the same announcement window, Bloomberg reported Anthropic told customers it has made &#8220;swift progress&#8221; on safety safeguards and plans to release Mythos-level models to all customers in &#8220;coming weeks&#8221; (<a href="https://www.bloomberg.com/news/articles/2026-05-28/anthropic-unveils-new-flagship-ai-model-that-s-better-at-coding">Bloomberg</a>), the first public timeline on capabilities the company previously said could exploit vulnerabilities in every major OS and browser.</p>
+        <p>The two facts connect. A company raising capital at a $965B valuation is also a company telling its customers the model it withheld for safety reasons is about to become generally available. Those are not separate stories.</p>
+      </div>
+    </section>
+
+    <section class="release-log">
+      <span class="log-header">Release Log</span>
+
+      <div class="area-group">
+        <span class="area-label">News</span>
+
+        <div class="log-entry">
+          <div class="log-entry-meta">
+            <span class="log-entry-date">2026-05-29</span>
+            <span class="log-tag log-tag-news">NEWS</span>
+          </div>
+          <div class="log-entry-title">
+            <a href="https://www.anthropic.com/news/series-h">Anthropic raises $65B Series H at $965B valuation</a>
+          </div>
+          <div class="log-entry-body">
+            <p>Round led by Altimeter Capital, Dragoneer, Greenoaks, and Sequoia. Post-money: $965 billion, surpassing OpenAI as the most valuable private AI company. Run-rate revenue: $47 billion. Revenue trajectory: $9B ARR at end of 2025, $14B at Series G close in February, $30B in April, $47B now. Three-times jump in three months, attributed to Claude Code.</p>
+          </div>
+        </div>
+
+        <div class="log-entry">
+          <div class="log-entry-meta">
+            <span class="log-entry-date">2026-05-29</span>
+            <span class="log-tag log-tag-news">NEWS</span>
+          </div>
+          <div class="log-entry-title">
+            <a href="https://www.bloomberg.com/news/articles/2026-05-28/anthropic-unveils-new-flagship-ai-model-that-s-better-at-coding">Mythos-level capabilities coming to all customers in weeks</a>
+          </div>
+          <div class="log-entry-body">
+            <p>Anthropic stated it has made &#8220;swift progress&#8221; developing safety safeguards sufficient to release Mythos-class models broadly. Mythos has been restricted to Glasswing partners since April on the basis that it could identify and exploit vulnerabilities in every major OS and browser when directed. No specific date given. Reported by Bloomberg, <a href="https://www.insurancejournal.com/news/national/2026/05/29/871703.htm">Insurance Journal</a>, and <a href="https://fortune.com/2026/05/29/anthropic-raises-65-billion-at-record-965-billion-valuation-promises-mythos-ai-model-in-wide-release-in-coming-weeks-releases-claude-opus-4-8/">Fortune</a>.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="area-group">
+        <span class="area-label">Claude Code</span>
+
+        <div class="log-entry">
+          <div class="log-entry-meta">
+            <span class="log-entry-date">2026-05-29</span>
+            <span class="log-tag log-tag-code">CODE</span>
+          </div>
+          <div class="log-entry-title">
+            <a href="https://github.com/anthropics/claude-code/blob/main/CHANGELOG.md">Claude Code v2.1.157</a>
+          </div>
+          <div class="log-entry-body">
+            <p>Plugins in <code>.claude/skills</code> load automatically without marketplace requirement. <code>claude plugin init &lt;name&gt;</code> scaffolds new plugins. <code>EnterWorktree</code> switches between Claude-managed worktrees mid-session. WSL improvements: image paste, screenshot paste, Windows Explorer drag-and-drop. <code>tool_decision</code> telemetry includes <code>tool_parameters</code> when <code>OTEL_LOG_TOOL_DETAILS=1</code>. Removed startup sandbox banner. Bug fixes: worktree isolation, background session reliability, terminal rendering, IDE stop button for subagents, <code>/model</code> picker version hints.</p>
+            <p><strong>How to use:</strong> <code>claude update</code> or reinstall.</p>
+          </div>
+        </div>
+
+        <div class="log-entry">
+          <div class="log-entry-meta">
+            <span class="log-entry-date">2026-05-29</span>
+            <span class="log-tag log-tag-code">CODE</span>
+          </div>
+          <div class="log-entry-title">
+            <a href="https://github.com/anthropics/claude-code/blob/main/CHANGELOG.md">Claude Code v2.1.156</a>
+          </div>
+          <div class="log-entry-body">
+            <p>Hotfix: Opus 4.8 thinking blocks were being modified in Claude Code, causing API errors. Fixed.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="quiet-section">
+      <span class="section-flag">Quiet on the Wire</span>
+      <p class="quiet-body">No model, API, SDK, apps, or research releases in today&#8217;s window beyond the CODE entries above. Opus 4.8, its SDK support, and the API mid-conversation system blocks are covered in yesterday&#8217;s sweep. docs.anthropic.com returned HTTP 403 throughout this sweep: API release notes, Claude Apps, system prompts, and research pages all unverified via primary source. &#8220;Coming weeks&#8221; on Mythos is not a date.</p>
+    </section>
+
+    <footer class="footer">
+      <p class="footer-ts">Generated 2026-05-30T01:00:25Z</p>
+      <span class="footer-sources-label">Sources</span>
+      <div class="footer-sources">
+        <a href="https://fortune.com/2026/05/29/anthropic-raises-65-billion-at-record-965-billion-valuation-promises-mythos-ai-model-in-wide-release-in-coming-weeks-releases-claude-opus-4-8/">fortune.com: Anthropic raises $65B at record $965B valuation</a>
+        <a href="https://www.anthropic.com/news/series-h">anthropic.com: Series H announcement</a>
+        <a href="https://simonwillison.net/2026/May/29/anthropic/">simonwillison.net: Anthropic run-rate revenue hits $47 billion</a>
+        <a href="https://www.bloomberg.com/news/articles/2026-05-28/anthropic-unveils-new-flagship-ai-model-that-s-better-at-coding">bloomberg.com: Anthropic Plans Wide Release of Mythos-Level AI Models in Weeks</a>
+        <a href="https://www.insurancejournal.com/news/national/2026/05/29/871703.htm">insurancejournal.com: Anthropic Plans Wide Release of Mythos-Level AI Models in Weeks</a>
+        <a href="https://www.cnbc.com/2026/05/28/anthropic-open-ai-startup-value.html">cnbc.com: Anthropic tops OpenAI as most valuable AI startup</a>
+        <a href="https://github.com/anthropics/claude-code/blob/main/CHANGELOG.md">github.com: claude-code CHANGELOG.md</a>
+        <a href="https://docs.anthropic.com/en/release-notes/api">docs.anthropic.com/en/release-notes/api (403 during sweep)</a>
+        <a href="https://docs.anthropic.com/en/release-notes/claude-code">docs.anthropic.com/en/release-notes/claude-code (403 during sweep)</a>
+        <a href="https://docs.anthropic.com/en/release-notes/claude-apps">docs.anthropic.com/en/release-notes/claude-apps (403 during sweep)</a>
+        <a href="https://docs.anthropic.com/en/release-notes/system-prompts">docs.anthropic.com/en/release-notes/system-prompts (403 during sweep)</a>
+        <a href="https://www.anthropic.com/news">anthropic.com/news (403 during sweep)</a>
+        <a href="https://www.anthropic.com/research">anthropic.com/research (403 during sweep)</a>
+      </div>
+    </footer>
+
+  </div>
+</body>
+</html>
