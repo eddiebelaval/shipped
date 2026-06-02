@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="color-scheme" content="light">
+  <title>Shipped. Daily - June 01, 2026</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Newsreader:ital,wght@1,400&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background: #FFFFFF;
+      color: #000000;
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      font-size: 16px;
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .page {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 5rem 2rem 7rem;
+    }
+
+    /* MASTHEAD */
+    .masthead {
+      margin-bottom: 3rem;
+      padding-bottom: 2rem;
+      border-bottom: 1px solid #E5E5E5;
+    }
+
+    .masthead-logo {
+      font-family: 'Newsreader', Georgia, 'Times New Roman', serif;
+      font-style: italic;
+      font-size: 2.75rem;
+      font-weight: 400;
+      color: #000000;
+      letter-spacing: -0.5px;
+      line-height: 1;
+      margin-bottom: 0.75rem;
+    }
+
+    .masthead-logo .period {
+      color: #FF6B35;
+    }
+
+    .masthead-dateline {
+      font-size: 0.6875rem;
+      font-weight: 600;
+      color: #666666;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+    }
+
+    /* SECTION FLAGS */
+    .section-flag {
+      font-size: 0.625rem;
+      font-weight: 600;
+      color: #666666;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      display: block;
+      margin-bottom: 0.875rem;
+    }
+
+    /* ONE-LINE READ */
+    .one-line {
+      margin-bottom: 3rem;
+      padding-bottom: 2.5rem;
+      border-bottom: 1px solid #E5E5E5;
+    }
+
+    .one-line-text {
+      font-size: 1.375rem;
+      font-weight: 500;
+      line-height: 1.4;
+      color: #000000;
+    }
+
+    /* LEAD SECTION */
+    .lead-section {
+      margin-bottom: 3rem;
+      padding-bottom: 3rem;
+      border-bottom: 1px solid #E5E5E5;
+    }
+
+    .lead-body {
+      font-size: 1rem;
+      line-height: 1.75;
+      color: #000000;
+    }
+
+    .lead-body p {
+      margin-bottom: 1.1em;
+    }
+
+    .lead-body p:last-child {
+      margin-bottom: 0;
+    }
+
+    .lead-body a {
+      color: inherit;
+      text-decoration: none;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.25);
+      transition: border-color 0.1s;
+    }
+
+    .lead-body a:hover {
+      border-bottom-color: #000000;
+    }
+
+    /* RELEASE LOG */
+    .release-log {
+      margin-bottom: 3rem;
+      padding-bottom: 3rem;
+      border-bottom: 1px solid #E5E5E5;
+    }
+
+    .log-header {
+      font-size: 0.625rem;
+      font-weight: 600;
+      color: #000000;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      display: block;
+      padding-bottom: 0.875rem;
+      border-bottom: 1px solid #E5E5E5;
+      margin-bottom: 1.75rem;
+    }
+
+    .log-group {
+      margin-bottom: 0.5rem;
+    }
+
+    .log-group-label {
+      font-size: 0.5625rem;
+      font-weight: 600;
+      color: #666666;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      display: block;
+      margin-bottom: 0.875rem;
+    }
+
+    .log-entry {
+      padding: 1.25rem 0;
+      border-bottom: 1px solid #E5E5E5;
+    }
+
+    .log-entry:last-child {
+      border-bottom: none;
+      padding-bottom: 0;
+    }
+
+    .log-entry-meta {
+      display: flex;
+      align-items: center;
+      gap: 0.625rem;
+      margin-bottom: 0.5rem;
+      flex-wrap: wrap;
+    }
+
+    .log-entry-date {
+      font-size: 0.75rem;
+      font-weight: 500;
+      color: #666666;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .log-tag {
+      font-size: 0.5625rem;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      padding: 2px 7px;
+      border-radius: 3px;
+      background: #F0F0F0;
+      color: #333333;
+    }
+
+    .log-entry-title {
+      font-size: 0.9375rem;
+      font-weight: 600;
+      color: #000000;
+      line-height: 1.4;
+      margin-bottom: 0.625rem;
+    }
+
+    .log-entry-title a {
+      color: inherit;
+      text-decoration: none;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+      transition: border-color 0.1s;
+    }
+
+    .log-entry-title a:hover {
+      border-bottom-color: #000000;
+    }
+
+    .log-entry-body {
+      font-size: 0.9375rem;
+      line-height: 1.65;
+      color: #000000;
+    }
+
+    /* QUIET ON THE WIRE */
+    .quiet-section {
+      margin-bottom: 3rem;
+      padding-bottom: 3rem;
+      border-bottom: 1px solid #E5E5E5;
+    }
+
+    .quiet-body {
+      font-size: 0.9375rem;
+      line-height: 1.65;
+      color: #666666;
+      padding-left: 1rem;
+      border-left: 2px solid #E5E5E5;
+    }
+
+    /* FOOTER */
+    .footer {
+      font-size: 0.75rem;
+      color: #666666;
+      line-height: 1.65;
+    }
+
+    .footer-ts {
+      font-weight: 500;
+      margin-bottom: 1.25rem;
+      display: block;
+    }
+
+    .footer-sources-label {
+      font-size: 0.5625rem;
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      display: block;
+      margin-bottom: 0.625rem;
+      color: #666666;
+    }
+
+    .footer-sources {
+      list-style: none;
+    }
+
+    .footer-sources li {
+      margin-bottom: 0.25rem;
+      word-break: break-all;
+    }
+
+    .footer-sources a {
+      color: #666666;
+      text-decoration: none;
+    }
+
+    .footer-sources a:hover {
+      text-decoration: underline;
+    }
+
+    .footer-note {
+      color: #999999;
+      font-style: italic;
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 580px) {
+      .page {
+        padding: 3rem 1.25rem 5rem;
+      }
+      .masthead-logo {
+        font-size: 2.25rem;
+      }
+      .one-line-text {
+        font-size: 1.1875rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+
+    <header class="masthead">
+      <div class="masthead-logo">Shipped<span class="period">.</span></div>
+      <div class="masthead-dateline">Daily &nbsp;&#183;&nbsp; Monday, June 01, 2026</div>
+    </header>
+
+    <div class="one-line">
+      <span class="section-flag">Today's read</span>
+      <p class="one-line-text">Anthropic is going public.</p>
+    </div>
+
+    <div class="lead-section">
+      <span class="section-flag">The Lead</span>
+      <div class="lead-body">
+        <p>Monday morning, Anthropic submitted a confidential draft registration statement on Form S-1 to the U.S. Securities and Exchange Commission. The filing is the formal start of the IPO process. It follows a $65 billion funding round, closed last week, that placed the post-money valuation at $965 billion. CNBC and NPR, reporting on the filing, noted an annualized revenue run rate that has crossed $47 billion (<a href="https://www.anthropic.com/news/confidential-draft-s1-sec">anthropic.com</a>). No share count. No price range. A listing as early as October 2026 is the reported target. Wilson Sonsini, the firm that handled Google's 2004 public debut, is reportedly engaged for the process.</p>
+        <p>The filing is confidential. Revenue, margins, and risk factors stay private until Anthropic elects to disclose them. What is public today: the direction, and the scale.</p>
+      </div>
+    </div>
+
+    <div class="release-log">
+      <span class="log-header">Release Log</span>
+
+      <div class="log-group">
+        <span class="log-group-label">News</span>
+
+        <div class="log-entry">
+          <div class="log-entry-meta">
+            <span class="log-entry-date">2026-06-01</span>
+            <span class="log-tag">NEWS</span>
+          </div>
+          <div class="log-entry-title">
+            <a href="https://www.anthropic.com/news/confidential-draft-s1-sec">Anthropic confidentially submits draft S-1 to the SEC</a>
+          </div>
+          <div class="log-entry-body">
+            Anthropic filed a confidential draft registration statement on Form S-1 with the SEC on June 1, 2026, initiating the formal IPO process. The number of shares and price have not been set. The offering is subject to market conditions. Post-money valuation at filing: approximately $965 billion, following a $65 billion funding round led by Altimeter Capital, Dragoneer, Greenoaks, and Sequoia Capital. CNBC and NPR reported an annualized revenue run rate crossing $47 billion. Target listing window: as early as October 2026, per reporting. Wilson Sonsini is reportedly engaged as legal counsel.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="quiet-section">
+      <span class="section-flag">Quiet on the Wire</span>
+      <p class="quiet-body">No product releases fell within the 24-hour window (May 31 21:01 ET to June 1 21:01 ET). Anthropic documentation endpoints for API, Claude Apps, Claude Code, and system-prompt release notes all returned HTTP 403 and could not be verified. Claude Code v2.1.159, an internal infrastructure build with no user-facing changes, shipped May 31 at 19:42 UTC, just before the window opened. Python SDK last: v0.105.2, May 29. TypeScript SDK last: May 29. An elevated error rate on Sonnet 4.5 was reported on June 1 and resolved during the morning, per Claude status monitoring.</p>
+    </div>
+
+    <footer class="footer">
+      <span class="footer-ts">Generated: 2026-06-02T01:01:33Z</span>
+      <span class="footer-sources-label">Sources</span>
+      <ul class="footer-sources">
+        <li><a href="https://www.anthropic.com/news/confidential-draft-s1-sec">anthropic.com/news/confidential-draft-s1-sec</a></li>
+        <li><a href="https://www.cnbc.com/2026/06/01/anthropic-ipo-s1-prospectus.html">cnbc.com - Anthropic IPO S-1 (2026-06-01)</a></li>
+        <li><a href="https://www.npr.org/2026/06/01/nx-s1-5843199/anthropic-ipo-filing-ai-large">npr.org - Anthropic IPO filing (2026-06-01)</a></li>
+        <li><a href="https://ca.finance.yahoo.com/news/anthropic-races-toward-wall-street-174223748.html">Yahoo Finance - Anthropic races toward Wall Street</a></li>
+        <li><a href="https://finance.yahoo.com/markets/stocks/articles/anthropic-files-confidential-1-1-181246257.html">Yahoo Finance - Anthropic files confidential S-1</a></li>
+        <li><a href="https://github.com/anthropics/claude-code/releases">github.com/anthropics/claude-code/releases</a></li>
+        <li><a href="https://github.com/anthropics/anthropic-sdk-python/releases">github.com/anthropics/anthropic-sdk-python/releases</a></li>
+        <li><a href="https://github.com/anthropics/anthropic-sdk-typescript/releases">github.com/anthropics/anthropic-sdk-typescript/releases</a></li>
+        <li class="footer-note">docs.anthropic.com/en/release-notes/api (HTTP 403 at sweep time)</li>
+        <li class="footer-note">docs.anthropic.com/en/release-notes/claude-apps (HTTP 403 at sweep time)</li>
+        <li class="footer-note">docs.anthropic.com/en/release-notes/claude-code (HTTP 403 at sweep time)</li>
+        <li class="footer-note">docs.anthropic.com/en/release-notes/system-prompts (HTTP 403 at sweep time)</li>
+      </ul>
+    </footer>
+
+  </div>
+</body>
+</html>
