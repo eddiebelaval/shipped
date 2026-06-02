@@ -1,14 +1,15 @@
 #!/usr/bin/env bash
 #
-# Install the Shipped. Friday automation jobs into launchd.
+# Install the Shipped. automation jobs into launchd.
 # Run once. Re-running is idempotent.
 #
 # What gets installed:
 #   - com.id8labs.shipped-friday   → Friday 7 AM scraper refresh
 #   - com.id8labs.shipped-notify   → Friday 8:55 AM publish-window reminder
 #   - com.id8labs.shipped-nightly  → Daily 9 PM dashboard + status notification
+#   - com.id8labs.shipped-monthly  → 1st of month 9 AM monthly-issue heartbeat
 #
-# No job auto-publishes. The human at git push remains the final gate.
+# No job auto-publishes or generates content. The human at git push remains the final gate.
 
 set -euo pipefail
 
@@ -19,7 +20,7 @@ LOG_DIR="$HOME/Library/Logs/shipped"
 mkdir -p "$LAUNCHD_DIR"
 mkdir -p "$LOG_DIR"
 
-JOBS=("com.id8labs.shipped-friday" "com.id8labs.shipped-notify" "com.id8labs.shipped-nightly")
+JOBS=("com.id8labs.shipped-friday" "com.id8labs.shipped-notify" "com.id8labs.shipped-nightly" "com.id8labs.shipped-monthly")
 
 echo "Installing Shipped. cron jobs..."
 
@@ -55,6 +56,7 @@ echo ""
 echo "Logs: $LOG_DIR"
 echo "Manual run for testing:"
 echo "  cd $PIPELINE_ROOT && pnpm scrape --days 7"
+echo "  bash $PIPELINE_ROOT/scripts/monthly-check.sh   # test the monthly heartbeat"
 echo ""
 echo "To uninstall:"
 echo "  bash $PIPELINE_ROOT/scripts/uninstall-cron.sh"

@@ -3,7 +3,7 @@
 set -euo pipefail
 
 LAUNCHD_DIR="$HOME/Library/LaunchAgents"
-JOBS=("com.id8labs.shipped-friday" "com.id8labs.shipped-notify")
+JOBS=("com.id8labs.shipped-friday" "com.id8labs.shipped-notify" "com.id8labs.shipped-nightly" "com.id8labs.shipped-monthly")
 
 for job in "${JOBS[@]}"; do
   dst="$LAUNCHD_DIR/$job.plist"

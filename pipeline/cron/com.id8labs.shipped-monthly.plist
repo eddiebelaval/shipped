@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<!--
+  Shipped. — Monthly issue heartbeat
+  Runs on the 1st of each month at 09:00 local. Checks whether the
+  just-ended month's anthropic-monthly issue exists and posts a macOS
+  notification (missing / draft / published). Does NOT generate, publish,
+  or commit. Passive nudge only.
+
+  Install via: bash pipeline/scripts/install-cron.sh
+-->
+<plist version="1.0">
+<dict>
+  <key>Label</key>
+  <string>com.id8labs.shipped-monthly</string>
+
+  <key>ProgramArguments</key>
+  <array>
+    <string>/bin/bash</string>
+    <string>/Users/eddiebelaval/Development/id8/shipped/pipeline/scripts/monthly-check.sh</string>
+  </array>
+
+  <key>StartCalendarInterval</key>
+  <dict>
+    <key>Day</key><integer>1</integer>
+    <key>Hour</key><integer>9</integer>
+    <key>Minute</key><integer>0</integer>
+  </dict>
+
+  <key>RunAtLoad</key>
+  <false/>
+
+  <key>StandardOutPath</key>
+  <string>/Users/eddiebelaval/Library/Logs/shipped/monthly-stdout.log</string>
+
+  <key>StandardErrorPath</key>
+  <string>/Users/eddiebelaval/Library/Logs/shipped/monthly-stderr.log</string>
+
+  <key>EnvironmentVariables</key>
+  <dict>
+    <key>PATH</key>
+    <string>/Users/eddiebelaval/.nvm/versions/node/v22.21.1/bin:/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin</string>
+    <key>HOME</key>
+    <string>/Users/eddiebelaval</string>
+  </dict>
+
+  <key>WorkingDirectory</key>
+  <string>/Users/eddiebelaval/Development/id8/shipped/pipeline</string>
+</dict>
+</plist>
