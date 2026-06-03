@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="color-scheme" content="light">
+  <title>Shipped. Anthropic Weekly: Week of 2026-06-01</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Newsreader:ital,wght@1,400;1,600&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { background: #FFFFFF; }
+
+    body {
+      background: #FFFFFF;
+      color: #000000;
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      font-size: 15px;
+      line-height: 1.65;
+      padding: 5rem 1.5rem 5rem;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    .page { max-width: 720px; margin: 0 auto; }
+
+    /* Masthead */
+    .masthead {
+      margin-bottom: 2.5rem;
+      padding-bottom: 1.5rem;
+      border-bottom: 1px solid #E5E5E5;
+    }
+
+    .masthead-name {
+      font-family: 'Newsreader', Georgia, 'Times New Roman', serif;
+      font-style: italic;
+      font-weight: 600;
+      font-size: 2.25rem;
+      color: #000000;
+      letter-spacing: -0.02em;
+      line-height: 1;
+      margin-bottom: 0.5rem;
+      display: block;
+    }
+
+    .masthead-name .period { color: #FF6B35; }
+
+    .masthead-dateline {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.10em;
+      text-transform: uppercase;
+      color: #666666;
+    }
+
+    /* Cover line */
+    .cover-line {
+      font-size: 17px;
+      font-weight: 500;
+      line-height: 1.55;
+      color: #000000;
+      margin-bottom: 2.5rem;
+      padding-top: 1.5rem;
+      padding-bottom: 1.5rem;
+      border-bottom: 1px solid #E5E5E5;
+    }
+
+    /* Section label */
+    .section-label {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.13em;
+      text-transform: uppercase;
+      color: #666666;
+      margin-bottom: 0.85rem;
+      display: block;
+    }
+
+    /* Sections */
+    .section {
+      margin-bottom: 2.75rem;
+      padding-bottom: 2.25rem;
+      border-bottom: 1px solid #E5E5E5;
+    }
+
+    .section h2 {
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: #000000;
+      line-height: 1.25;
+      letter-spacing: -0.02em;
+      margin-bottom: 1.1rem;
+    }
+
+    .section h3 {
+      font-size: 1rem;
+      font-weight: 600;
+      color: #000000;
+      line-height: 1.3;
+      margin-bottom: 0.65rem;
+    }
+
+    .section p {
+      font-size: 15px;
+      line-height: 1.75;
+      color: #000000;
+      margin-bottom: 0.85rem;
+    }
+
+    .section p:last-child { margin-bottom: 0; }
+
+    a { color: inherit; }
+
+    .section a {
+      text-decoration: underline;
+      text-decoration-color: #E5E5E5;
+      text-underline-offset: 2px;
+    }
+
+    .section a:hover { text-decoration-color: #000000; }
+
+    /* Pullquote */
+    .pullquote {
+      font-size: 17px;
+      font-style: italic;
+      line-height: 1.55;
+      color: #000000;
+      margin: 1.75rem 0;
+      padding-left: 1.25rem;
+      border-left: 3px solid #FF6B35;
+    }
+
+    /* Also Shipped sub-sections */
+    .also-item {
+      padding-bottom: 1.25rem;
+      border-bottom: 1px solid #E5E5E5;
+      margin-bottom: 1.25rem;
+    }
+
+    .also-item:last-child {
+      border-bottom: none;
+      padding-bottom: 0;
+      margin-bottom: 0;
+    }
+
+    /* Quiet */
+    .quiet-body {
+      padding-left: 1rem;
+      font-size: 14px;
+      color: #666666;
+      line-height: 1.70;
+      border-left: 2px solid #E5E5E5;
+    }
+
+    /* Close */
+    .close-body p {
+      font-size: 15px;
+      line-height: 1.6;
+      color: #000000;
+      margin-bottom: 1.1rem;
+    }
+
+    .close-body p:last-child {
+      font-style: italic;
+      margin-bottom: 0;
+    }
+
+    /* Release log */
+    .release-log-header {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.13em;
+      text-transform: uppercase;
+      color: #000000;
+      padding-bottom: 0.65rem;
+      border-bottom: 2px solid #000000;
+      margin-bottom: 1.5rem;
+      display: block;
+    }
+
+    .release-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13px;
+    }
+
+    .release-table th {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.10em;
+      text-transform: uppercase;
+      color: #666666;
+      text-align: left;
+      padding: 8px 12px 8px 0;
+      border-bottom: 1px solid #E5E5E5;
+    }
+
+    .release-table td {
+      padding: 10px 12px 10px 0;
+      border-bottom: 1px solid #E5E5E5;
+      vertical-align: top;
+      line-height: 1.55;
+      color: #000000;
+    }
+
+    .release-table tr:last-child td { border-bottom: none; }
+
+    .col-date {
+      white-space: nowrap;
+      color: #666666;
+      font-size: 11px;
+      font-weight: 500;
+      width: 82px;
+    }
+
+    .col-area { width: 72px; }
+
+    .col-title { font-weight: 600; }
+
+    .col-title a {
+      color: inherit;
+      text-decoration: none;
+      border-bottom: 1px solid rgba(128,128,128,0.3);
+      padding-bottom: 1px;
+    }
+
+    .col-title a:hover { border-color: #000000; }
+
+    .col-oneliner { color: #666666; }
+
+    /* Tags */
+    .tag {
+      display: inline-block;
+      font-size: 9px;
+      font-weight: 600;
+      letter-spacing: 0.10em;
+      text-transform: uppercase;
+      background: #F0F0F0;
+      color: #333333;
+      padding: 2px 6px;
+      border-radius: 3px;
+      white-space: nowrap;
+    }
+
+    .tag-model  { background: #FF6B35; color: #ffffff; }
+    .tag-code   { background: #595959; color: #ffffff; }
+    .tag-api    { background: #404040; color: #ffffff; }
+    .tag-apps   { background: #737373; color: #ffffff; }
+    .tag-news   { background: #F0F0F0; color: #333333; border: 1px solid #E5E5E5; }
+
+    code {
+      font-family: 'SFMono-Regular', Menlo, Monaco, Consolas, 'Courier New', monospace;
+      font-size: 12px;
+      background: #F7F7F7;
+      padding: 1px 5px;
+      border-radius: 3px;
+      color: #000000;
+    }
+
+    /* Footer */
+    .footer {
+      padding-top: 2rem;
+      border-top: 1px solid #E5E5E5;
+      font-size: 11px;
+      color: #666666;
+      line-height: 1.75;
+    }
+
+    @media (max-width: 600px) {
+      body { padding: 3rem 1.25rem 3rem; }
+      .masthead-name { font-size: 1.75rem; }
+      .cover-line { font-size: 16px; }
+      .col-oneliner { display: none; }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+
+    <header class="masthead">
+      <span class="masthead-name">Shipped<span class="period">.</span></span>
+      <span class="masthead-dateline">Anthropic Weekly &middot; Week of June 1, 2026 &middot; ISO 2026-W23</span>
+    </header>
+
+    <p class="cover-line">The IPO filing landed Monday. By Tuesday, Anthropic had set a public timeline for the model it once called too dangerous to release.</p>
+
+    <!-- The Open -->
+    <section class="section">
+      <span class="section-label">The Open</span>
+
+      <p>Monday, June 1. Anthropic submitted a confidential draft registration statement on Form S-1 to the U.S. Securities and Exchange Commission. A brief post on anthropic.com. No live stream, no coordinated media moment. (<a href="https://www.anthropic.com/news/confidential-draft-s1-sec">anthropic.com</a>) The direction: public markets. The timeline: as early as October 2026.</p>
+
+      <p>Thirty-four hours later, Anthropic expanded Project Glasswing to 150 new organizations across more than 15 countries. Power grids. Water systems. Healthcare providers. Communications companies. Hardware manufacturers. Samsung and NATO confirmed as additions, per Financial Times reporting cited by SiliconANGLE. (<a href="https://www.anthropic.com/news/expanding-project-glasswing">anthropic.com</a>, <a href="https://www.cnbc.com/2026/06/02/anthropic-mythos-ai-project-glasswing.html">CNBC</a>) Buried near the bottom of that announcement: Mythos-class models will be available to all customers &#8220;in the coming weeks,&#8221; once additional safeguards are finalized.</p>
+
+      <p>Two days. An IPO filing and a public timeline for the model the company had classified as too dangerous for general release. These are not separate narratives. They are the same bet, announced 34 hours apart.</p>
+    </section>
+
+    <!-- The Lead Story -->
+    <section class="section">
+      <span class="section-label">The Lead Story</span>
+      <h2>$965 billion, confidential</h2>
+
+      <p>The S-1 mechanics are these. Anthropic submitted a confidential draft on Form S-1 to the SEC on June 1, 2026. Confidential status means the document's risk factors, revenue details, margins, and growth trajectory stay private until the company elects to disclose them. What is public: the direction and the scale. (<a href="https://www.anthropic.com/news/confidential-draft-s1-sec">anthropic.com</a>)</p>
+
+      <p>What had already leaked into reporting: the annualized revenue run rate has crossed $47 billion. (<a href="https://www.cnbc.com/2026/06/01/anthropic-ipo-s1-prospectus.html">CNBC</a>, <a href="https://www.npr.org/2026/06/01/nx-s1-5843199/anthropic-ipo-filing-ai-large">NPR</a>) That number deserves a frame. Salesforce, which built its enterprise platform over two decades, reported $34.9 billion in revenue for all of fiscal 2024. Anthropic's current run rate is 35 percent above that. The velocity: $9 billion at year-end 2025, $14 billion in February, $30 billion in April, $47 billion now. (<a href="https://fortune.com/2026/05/29/anthropic-raises-65-billion-at-record-965-billion-valuation-promises-mythos-ai-model-in-wide-release-in-coming-weeks-releases-claude-opus-4-8/">Fortune</a>) Four data points in five months.</p>
+
+      <div class="pullquote">The line is nearly vertical.</div>
+
+      <p>Target listing: as early as October 2026. Wilson Sonsini, the firm that handled Google's 2004 IPO, is reportedly engaged as legal counsel. No share count. No price range. Both wait on market conditions and the full prospectus.</p>
+
+      <p>What the filing will eventually need to address: the cost of safety. Anthropic's Responsible Scaling Policy, the compute dedicated to alignment research, the Glasswing infrastructure, and the interpretability evaluations required to clear Mythos for public release are all real expenditures. None of them appear in the run-rate number. Public markets will want to know how they flow through to margins.</p>
+
+      <p>What the filing will not need to justify, at this valuation: the market's belief in the product. $47 billion in annualized revenue settled that argument. The S-1, when it becomes public, is the document that explains the gap between the safety story and the growth story. It will be the read of the year.</p>
+    </section>
+
+    <!-- Also Shipped -->
+    <section class="section">
+      <span class="section-label">Also Shipped</span>
+
+      <div class="also-item">
+        <h3>Project Glasswing: 150 new organizations</h3>
+        <p>Anthropic added 150 organizations across more than 15 countries to Project Glasswing, bringing total partners to approximately 200. (<a href="https://www.anthropic.com/news/expanding-project-glasswing">anthropic.com</a>) New sectors: power, water, healthcare, communications, hardware. Samsung and NATO confirmed as additions. Partners have collectively found more than 10,000 high- or critical-severity security flaws in widely deployed systems since launch, per CNBC. (<a href="https://www.cnbc.com/2026/06/02/anthropic-mythos-ai-project-glasswing.html">CNBC</a>)</p>
+        <p>The access program is not ending. The announcement positions it as the on-ramp to a public product: Mythos-class models will be available to all customers &#8220;in the coming weeks,&#8221; once additional safeguards are ready. The general release is no longer a question of whether. It is a question of when, and when appears to be June.</p>
+      </div>
+
+      <div class="also-item">
+        <h3>Claude Code v2.1.160 (security pass)</h3>
+        <p>Anthropic added explicit prompts before Claude writes to shell startup files (.zshenv, .zlogin, .bash_login) and to ~/.config/git/. In acceptEdits mode, build-tool config files that can grant code execution (.npmrc, .yarnrc, bunfig.toml, .bazelrc, .pre-commit-config.yaml, .devcontainer/) now require explicit approval. New /config setting: &#8220;Workflow keyword trigger&#8221; controls whether &#8220;workflow&#8221; in a prompt auto-starts a Dynamic Workflow. Fixes: WSL clipboard (now uses OSC 52 instead of PowerShell interop), completed agent sessions re-running original prompts, Windows keyboard responsiveness under heavy CPU load. (<a href="https://github.com/anthropics/claude-code/releases">GitHub</a>)</p>
+      </div>
+
+      <div class="also-item">
+        <h3>Claude Code v2.1.161 (observability and credential fix)</h3>
+        <p>OTEL_RESOURCE_ATTRIBUTES values now appear as labels on metric datapoints for custom-dimension slicing by team or repo. Agent view rows show done/total progress when work fans out. MCP credentials (headers, URL secrets) that were being printed by <code>claude mcp list/get/add</code> are now redacted. Parallel tool calls: a failed bash command no longer cancels other calls in the same batch. Linux fullscreen mode adds wl-copy/xclip/xsel support with middle-click paste. (<a href="https://github.com/anthropics/claude-code/releases">GitHub</a>)</p>
+      </div>
+
+      <div class="also-item">
+        <h3>Service disruption (resolved)</h3>
+        <p>Elevated error rates across Claude AI, Claude Console, Claude API, and Claude Code were reported starting at 2:19 AM ET on June 2. Root cause identified and fix rolled out. No public post-mortem at time of compilation.</p>
+      </div>
+    </section>
+
+    <!-- Quiet on the Wire -->
+    <section class="section">
+      <span class="section-label">Quiet on the Wire</span>
+      <div class="quiet-body">
+        <p>The API, Claude Apps, Claude Code, and system-prompt release notes documentation pages returned HTTP 403 on both sweep days this week. Python SDK (last: v0.105.2, May 29) and TypeScript SDK (last: v0.100.1, May 29) have not published new releases. (<a href="https://github.com/anthropics/anthropic-sdk-python/releases">GitHub Python SDK</a>) No research papers confirmed for the June 1 to 2 window. The operative story this week is corporate structure and policy, not platform.</p>
+      </div>
+    </section>
+
+    <!-- The Close -->
+    <section class="section">
+      <span class="section-label">The Close</span>
+      <div class="close-body">
+        <p>Anthropic filed for its IPO on Monday.</p>
+        <p>On Tuesday it expanded the program to find vulnerabilities in critical infrastructure and set a public timeline for its most powerful model.</p>
+        <p>The prospectus, when it arrives, will be the read of the year.</p>
+      </div>
+    </section>
+
+    <!-- Release Log -->
+    <section>
+      <span class="release-log-header">Release Log</span>
+      <p style="font-size:12px;color:#666666;margin-bottom:1.25rem;">A 1:1 mirror of every Anthropic release for the week of 2026-06-01. Sources: daily pages 2026-06-01 and 2026-06-02.</p>
+
+      <table class="release-table">
+        <thead>
+          <tr>
+            <th class="col-date">Date</th>
+            <th class="col-area">Area</th>
+            <th class="col-title">Title</th>
+            <th class="col-oneliner">One-liner</th>
+          </tr>
+        </thead>
+        <tbody>
+
+          <tr>
+            <td class="col-date">2026-06-01</td>
+            <td class="col-area"><span class="tag tag-news">NEWS</span></td>
+            <td class="col-title"><a href="https://www.anthropic.com/news/confidential-draft-s1-sec">Anthropic confidentially submits draft S-1 to the SEC</a></td>
+            <td class="col-oneliner">Formal IPO process initiated. Post-money valuation ~$965B following $65B Series H. Annualized run rate crosses $47B. Target listing as early as October 2026. Wilson Sonsini as legal counsel.</td>
+          </tr>
+
+          <tr>
+            <td class="col-date">2026-06-02</td>
+            <td class="col-area"><span class="tag tag-news">NEWS</span></td>
+            <td class="col-title"><a href="https://www.anthropic.com/news/expanding-project-glasswing">Project Glasswing expanded to 150 new organizations</a></td>
+            <td class="col-oneliner">150 new partners across 15+ countries including Samsung and NATO. Sectors: power, water, healthcare, communications, hardware. Total partners ~200. 10,000+ high/critical security flaws found since launch. Mythos-class models coming to all customers "in the coming weeks."</td>
+          </tr>
+
+          <tr>
+            <td class="col-date">2026-06-02</td>
+            <td class="col-area"><span class="tag tag-code">CODE</span></td>
+            <td class="col-title"><a href="https://github.com/anthropics/claude-code/releases">Claude Code v2.1.161</a></td>
+            <td class="col-oneliner">OTEL_RESOURCE_ATTRIBUTES as metric labels. Agent view progress (done/total). MCP credential leak fix: secrets no longer printed by mcp list/get/add. Parallel batch failure isolation. Linux fullscreen clipboard.</td>
+          </tr>
+
+          <tr>
+            <td class="col-date">2026-06-02</td>
+            <td class="col-area"><span class="tag tag-code">CODE</span></td>
+            <td class="col-title"><a href="https://github.com/anthropics/claude-code/releases">Claude Code v2.1.160</a></td>
+            <td class="col-oneliner">Security: explicit approval before writing shell startup files and code-execution build configs. "Workflow keyword trigger" config. WSL clipboard fix (OSC 52). Windows keyboard under CPU load.</td>
+          </tr>
+
+          <tr>
+            <td class="col-date">2026-06-02</td>
+            <td class="col-area"><span class="tag tag-news">NEWS</span></td>
+            <td class="col-title"><a href="https://sqmagazine.co.uk/claude-ai-down-outage-june-2026/">Service disruption across Claude products (resolved)</a></td>
+            <td class="col-oneliner">Elevated error rates across Claude AI, Console, API, and Claude Code starting 2:19 AM ET June 2. Resolved same day. No post-mortem published.</td>
+          </tr>
+
+          <tr>
+            <td class="col-date">2026-05-31</td>
+            <td class="col-area"><span class="tag tag-code">CODE</span></td>
+            <td class="col-title"><a href="https://github.com/anthropics/claude-code/releases">Claude Code v2.1.159</a></td>
+            <td class="col-oneliner">Internal infrastructure build. No user-facing changes. Shipped 19:42 UTC May 31, just before the week-23 window opened.</td>
+          </tr>
+
+        </tbody>
+      </table>
+    </section>
+
+    <footer class="footer">
+      <p>Compiled 2026-06-03 &middot; Sources: daily pages 2026-06-01 and 2026-06-02 &middot; <a href="https://eddiebelaval.github.io/shipped/">Shipped.</a></p>
+    </footer>
+
+  </div>
+</body>
+</html>
