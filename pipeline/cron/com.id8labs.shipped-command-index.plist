@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<!--
+  Shipped. — The Command Index, weekly refresh (deterministic layer)
+  Runs every Friday at 08:40 local, 20 min before the Shipped ship window.
+  Re-scans installed plugins + custom commands/skills and re-renders
+  command-index.html. Does NOT publish or commit — staging is human-gated.
+
+  The Anthropic-built-in stream is refreshed separately by a /schedule routine
+  (see pipeline/scripts/command-index/refresh-builtins.md), which updates
+  builtins.json before this render runs.
+
+  Install via: bash pipeline/scripts/install-cron.sh  (or load this plist directly)
+-->
+<plist version="1.0">
+<dict>
+  <key>Label</key>
+  <string>com.id8labs.shipped-command-index</string>
+
+  <key>ProgramArguments</key>
+  <array>
+    <string>/bin/bash</string>
+    <string>/Users/eddiebelaval/Development/id8/shipped/pipeline/scripts/command-index/update.sh</string>
+  </array>
+
+  <key>StartCalendarInterval</key>
+  <dict>
+    <key>Weekday</key><integer>5</integer>
+    <key>Hour</key><integer>8</integer>
+    <key>Minute</key><integer>40</integer>
+  </dict>
+
+  <key>RunAtLoad</key>
+  <false/>
+
+  <key>StandardOutPath</key>
+  <string>/Users/eddiebelaval/Library/Logs/shipped/command-index-stdout.log</string>
+
+  <key>StandardErrorPath</key>
+  <string>/Users/eddiebelaval/Library/Logs/shipped/command-index-stderr.log</string>
+
+  <key>EnvironmentVariables</key>
+  <dict>
+    <key>PATH</key>
+    <string>/Users/eddiebelaval/.nvm/versions/node/v22.21.1/bin:/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin</string>
+    <key>HOME</key>
+    <string>/Users/eddiebelaval</string>
+  </dict>
+
+  <key>WorkingDirectory</key>
+  <string>/Users/eddiebelaval/Development/id8/shipped/pipeline</string>
+</dict>
+</plist>

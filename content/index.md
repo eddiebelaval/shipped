@@ -18,6 +18,14 @@ The frontier ships at building speed. This is the read that keeps you plugged in
 |---|---|---|---|
 | 00 | 2026-04-16 | [The Founding Issue — The Shadow Release](issue-00-the-founding.md) | Dry-run |
 
+## Reference
+
+Standing references that live alongside the issues. Not weekly reads, just always-current lookups.
+
+| Page | What | Updates |
+|---|---|---|
+| [The Command Index](command-index/) | Every slash command in the Claude Code install: Anthropic built-ins, plugin commands and skills, and id8Labs custom commands | Auto, weekly |
+
 ## How this series works
 
 - **Source.** Anthropic's news page, API release notes, Claude Code changelog, Claude Apps release notes, GitHub SDK releases, research publications.
