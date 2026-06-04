@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="color-scheme" content="light">
+  <title>Shipped. Daily, June 3, 2026</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Newsreader:ital,wght@1,400&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background: #FFFFFF;
+      color: #000000;
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      font-size: 16px;
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .page {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 5rem 2rem 7rem;
+    }
+
+    /* MASTHEAD */
+    .masthead {
+      margin-bottom: 3rem;
+      padding-bottom: 2rem;
+      border-bottom: 1px solid #E5E5E5;
+    }
+
+    .masthead-logo {
+      font-family: 'Newsreader', Georgia, 'Times New Roman', serif;
+      font-style: italic;
+      font-size: 2.75rem;
+      font-weight: 400;
+      color: #000000;
+      letter-spacing: -0.5px;
+      line-height: 1;
+      margin-bottom: 0.75rem;
+    }
+
+    .masthead-logo .period {
+      color: #FF6B35;
+    }
+
+    .masthead-dateline {
+      font-size: 0.6875rem;
+      font-weight: 600;
+      color: #666666;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+    }
+
+    /* SECTION FLAGS */
+    .section-flag {
+      font-size: 0.625rem;
+      font-weight: 600;
+      color: #666666;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      display: block;
+      margin-bottom: 0.875rem;
+    }
+
+    /* ONE-LINE READ */
+    .one-line {
+      margin-bottom: 3rem;
+      padding-bottom: 2.5rem;
+      border-bottom: 1px solid #E5E5E5;
+    }
+
+    .one-line-text {
+      font-size: 1.375rem;
+      font-weight: 500;
+      line-height: 1.4;
+      color: #000000;
+    }
+
+    /* LEAD SECTION */
+    .lead-section {
+      margin-bottom: 3rem;
+      padding-bottom: 3rem;
+      border-bottom: 1px solid #E5E5E5;
+    }
+
+    .lead-body {
+      font-size: 1rem;
+      line-height: 1.75;
+      color: #000000;
+    }
+
+    .lead-body p {
+      margin-bottom: 1.1em;
+    }
+
+    .lead-body p:last-child {
+      margin-bottom: 0;
+    }
+
+    .lead-body a {
+      color: inherit;
+      text-decoration: none;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.25);
+      transition: border-color 0.1s;
+    }
+
+    .lead-body a:hover {
+      border-bottom-color: #000000;
+    }
+
+    .lead-punchline {
+      font-style: italic;
+    }
+
+    /* RELEASE LOG */
+    .release-log {
+      margin-bottom: 3rem;
+      padding-bottom: 3rem;
+      border-bottom: 1px solid #E5E5E5;
+    }
+
+    .log-header {
+      font-size: 0.625rem;
+      font-weight: 600;
+      color: #000000;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      display: block;
+      padding-bottom: 0.875rem;
+      border-bottom: 1px solid #E5E5E5;
+      margin-bottom: 1.75rem;
+    }
+
+    .log-group {
+      margin-bottom: 2rem;
+    }
+
+    .log-group-label {
+      font-size: 0.5625rem;
+      font-weight: 600;
+      color: #666666;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      display: block;
+      margin-bottom: 0.875rem;
+    }
+
+    .log-entry {
+      padding: 1.25rem 0;
+      border-bottom: 1px solid #E5E5E5;
+    }
+
+    .log-entry:last-child {
+      border-bottom: none;
+      padding-bottom: 0;
+    }
+
+    .log-entry-meta {
+      display: flex;
+      align-items: center;
+      gap: 0.625rem;
+      margin-bottom: 0.5rem;
+      flex-wrap: wrap;
+    }
+
+    .log-entry-date {
+      font-size: 0.75rem;
+      font-weight: 500;
+      color: #666666;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .log-tag {
+      font-size: 0.5625rem;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      padding: 2px 7px;
+      border-radius: 3px;
+      background: #F0F0F0;
+      color: #333333;
+    }
+
+    .log-tag-code {
+      background: #1a1a1a;
+      color: #FFFFFF;
+    }
+
+    .log-tag-research {
+      background: #F0F0F0;
+      color: #333333;
+      border: 1px solid #E5E5E5;
+    }
+
+    .log-entry-title {
+      font-size: 0.9375rem;
+      font-weight: 600;
+      color: #000000;
+      line-height: 1.4;
+      margin-bottom: 0.625rem;
+    }
+
+    .log-entry-title a {
+      color: inherit;
+      text-decoration: none;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+      transition: border-color 0.1s;
+    }
+
+    .log-entry-title a:hover {
+      border-bottom-color: #000000;
+    }
+
+    .log-entry-body {
+      font-size: 0.9375rem;
+      line-height: 1.65;
+      color: #000000;
+    }
+
+    .log-entry-body p {
+      margin-bottom: 0.625rem;
+    }
+
+    .log-entry-body p:last-child {
+      margin-bottom: 0;
+    }
+
+    .log-entry-body a {
+      color: inherit;
+      text-decoration: none;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+    }
+
+    .log-entry-body a:hover {
+      border-bottom-color: #000000;
+    }
+
+    .log-entry-body ul {
+      margin: 0.5rem 0 0.625rem 1.25rem;
+    }
+
+    .log-entry-body li {
+      margin-bottom: 0.25rem;
+    }
+
+    .log-howto {
+      margin-top: 0.75rem;
+      font-size: 0.875rem;
+      color: #666666;
+    }
+
+    .log-howto strong {
+      color: #333333;
+      font-weight: 600;
+    }
+
+    code {
+      font-family: 'SFMono-Regular', 'Consolas', 'Liberation Mono', monospace;
+      font-size: 0.8125rem;
+      background: #F7F7F7;
+      color: #000000;
+      padding: 1px 5px;
+      border-radius: 3px;
+    }
+
+    /* QUIET ON THE WIRE */
+    .quiet-section {
+      margin-bottom: 3rem;
+      padding-bottom: 3rem;
+      border-bottom: 1px solid #E5E5E5;
+    }
+
+    .quiet-body {
+      font-size: 0.9375rem;
+      line-height: 1.65;
+      color: #666666;
+      padding-left: 1rem;
+      border-left: 2px solid #E5E5E5;
+    }
+
+    /* FOOTER */
+    .footer {
+      font-size: 0.75rem;
+      color: #666666;
+      line-height: 1.65;
+    }
+
+    .footer-ts {
+      font-weight: 500;
+      margin-bottom: 1.25rem;
+      display: block;
+    }
+
+    .footer-sources-label {
+      font-size: 0.5625rem;
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      display: block;
+      margin-bottom: 0.625rem;
+      color: #666666;
+    }
+
+    .footer-sources {
+      list-style: none;
+    }
+
+    .footer-sources li {
+      margin-bottom: 0.25rem;
+      word-break: break-all;
+    }
+
+    .footer-sources a {
+      color: #666666;
+      text-decoration: none;
+    }
+
+    .footer-sources a:hover {
+      text-decoration: underline;
+    }
+
+    .footer-note {
+      color: #999999;
+      font-style: italic;
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 580px) {
+      .page {
+        padding: 3rem 1.25rem 5rem;
+      }
+      .masthead-logo {
+        font-size: 2.25rem;
+      }
+      .one-line-text {
+        font-size: 1.1875rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+
+    <header class="masthead">
+      <div class="masthead-logo">Shipped<span class="period">.</span></div>
+      <div class="masthead-dateline">Daily &nbsp;&#183;&nbsp; Wednesday, June 3, 2026</div>
+    </header>
+
+    <div class="one-line">
+      <span class="section-flag">Today's read</span>
+      <p class="one-line-text">Three June 3 releases: a year of threat data mapped to MITRE ATT&amp;CK, partner network tiers formalized, and Claude Code at v2.1.162.</p>
+    </div>
+
+    <div class="lead-section">
+      <span class="section-flag">The Lead</span>
+      <div class="lead-body">
+        <p>Anthropic spent a year flagging accounts that used Claude for malicious purposes. Today they published what those <a href="https://www.anthropic.com/news/AI-enabled-cyber-threats-mitre-attack">832 accounts were actually doing</a>, mapped to MITRE ATT&amp;CK: AI use concentrates in the later-stage, more complex parts of attack chains, not reconnaissance. The activity is becoming more autonomous. Anthropic contributed the analysis to Verizon's 2026 Data Breach Investigations Report, landing it in the industry's canonical threat taxonomy.</p>
+        <p>The framing arrives the day after Anthropic expanded Glasswing to roughly 200 organizations. The threat paper is the other side of that coin: here is what AI-assisted attacks looked like across a full year in production, tracked before the defenders got their Mythos access.</p>
+        <p class="lead-punchline">The timing is not accidental.</p>
+      </div>
+    </div>
+
+    <div class="release-log">
+      <span class="log-header">Release Log</span>
+
+      <div class="log-group">
+        <span class="log-group-label">Research</span>
+
+        <div class="log-entry">
+          <div class="log-entry-meta">
+            <span class="log-entry-date">2026-06-03</span>
+            <span class="log-tag log-tag-research">RESEARCH</span>
+          </div>
+          <div class="log-entry-title">
+            <a href="https://www.anthropic.com/news/AI-enabled-cyber-threats-mitre-attack">What we learned mapping a year's worth of AI-enabled cyber threats</a>
+          </div>
+          <div class="log-entry-body">
+            <p>Analysis of 832 accounts banned for malicious cyber activity between March 2025 and March 2026, mapped to MITRE ATT&amp;CK. Three conclusions: AI use in attacks concentrates at later-stage, higher-complexity operations rather than the reconnaissance layer; attacks are becoming more autonomous; the old categories of attacker skill differentiation are dissolving. Anthropic contributed the analysis to Verizon's 2026 Data Breach Investigations Report.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="log-group">
+        <span class="log-group-label">News</span>
+
+        <div class="log-entry">
+          <div class="log-entry-meta">
+            <span class="log-entry-date">2026-06-03</span>
+            <span class="log-tag">NEWS</span>
+          </div>
+          <div class="log-entry-title">
+            <a href="https://www.anthropic.com/news/services-track-partner-hub">Introducing the Services Track and Partner Hub of the Claude Partner Network</a>
+          </div>
+          <div class="log-entry-body">
+            <p>Three months after launching the Claude Partner Network, Anthropic formalized it with tiers and a portal. The Services Track has three levels:</p>
+            <ul>
+              <li><strong>Select:</strong> 10 certified practitioners, 2 production deployments, 1 public endorsement</li>
+              <li><strong>Preferred:</strong> 100 certified practitioners, 15 active customers, 3 endorsements</li>
+              <li><strong>Global Premier:</strong> 1,000 certified practitioners, 100 customers across 3+ regions, 15 endorsements, joint executive-backed business plan</li>
+            </ul>
+            <p>The Claude Partner Hub gives partners a daily-refreshed view of where they stand against requirements. Customers use it to find qualified firms for their scope. Since the March 2026 launch: 40,000+ firms applied, 10,000+ consultants certified.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="log-group">
+        <span class="log-group-label">Claude Code</span>
+
+        <div class="log-entry">
+          <div class="log-entry-meta">
+            <span class="log-entry-date">2026-06-03</span>
+            <span class="log-tag log-tag-code">CODE</span>
+          </div>
+          <div class="log-entry-title">
+            <a href="https://github.com/anthropics/claude-code/releases/tag/v2.1.162">Claude Code v2.1.162</a>
+          </div>
+          <div class="log-entry-body">
+            <p><strong>New features:</strong> <code>claude agents --json</code> includes a <code>waitingFor</code> field showing what a waiting session is blocked on (e.g., a permission prompt); <code>--tools</code> with explicit Grep/Glob now provides dedicated native embedded search; <code>/effort</code> confirms when a chosen level will persist as default for new sessions; slash commands in the autocomplete menu now fill into the prompt rather than running immediately; Remote Control shows as a persistent footer pill with session link instead of a startup message. Windsurf renamed to Devin Desktop across the IDE menu, <code>/terminal-setup</code>, and <code>/scroll-speed</code>.</p>
+            <p><strong>Bug fixes:</strong> silent startup hang when the config directory is read-only or unwritable; WebFetch permission rules not applying to preapproved domains; Windows permission rules with backslashes or case-variant paths; Esc interrupt at turn start being silently dropped in stream-json and SDK sessions; API 400 errors for classifier queries and MCP server descriptions with emoji near truncation points; MCP <code>timeout</code> config values below 1000ms being floored to 1 second; LSP <code>workspaceSymbol</code> returning no results; <code>claude agents</code> status and session name truncation on wide terminals; Ctrl+V image paste not working in dispatch and reply boxes; background sessions losing conversation when the background service fails; cross-session messaging breaking with deep <code>CLAUDE_CODE_TMPDIR</code> paths; opening a running background session stalling for 5 seconds.</p>
+          </div>
+          <div class="log-howto"><strong>How to use:</strong> <code>claude update</code></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="quiet-section">
+      <span class="section-flag">Quiet on the Wire</span>
+      <p class="quiet-body">No model releases in the window. No new API release notes confirmed for June 3. SDK Python last released May 29 (v0.105.2). SDK TypeScript last released May 29 (v0.100.1). The Glasswing expansion and Mythos public-availability timeline were covered in yesterday's sweep. Anthropic's confidential S-1 filing to the SEC, submitted June 1, continues to do its thing.</p>
+    </div>
+
+    <footer class="footer">
+      <span class="footer-ts">Generated: 2026-06-04T01:00:26Z</span>
+      <span class="footer-sources-label">Sources</span>
+      <ul class="footer-sources">
+        <li><a href="https://www.anthropic.com/news/AI-enabled-cyber-threats-mitre-attack">anthropic.com/news/AI-enabled-cyber-threats-mitre-attack</a></li>
+        <li><a href="https://www.anthropic.com/news/services-track-partner-hub">anthropic.com/news/services-track-partner-hub</a></li>
+        <li><a href="https://github.com/anthropics/claude-code/releases/tag/v2.1.162">github.com/anthropics/claude-code/releases/tag/v2.1.162</a></li>
+        <li><a href="https://github.com/anthropics/claude-code/releases/tag/v2.1.161">github.com/anthropics/claude-code/releases/tag/v2.1.161</a></li>
+        <li><a href="https://techcrunch.com/2026/06/02/anthropic-scales-claude-mythos-to-critical-infrastructure-in-15-countries/">techcrunch.com - Glasswing expansion (2026-06-02)</a></li>
+        <li><a href="https://www.cnbc.com/2026/06/02/anthropic-mythos-ai-project-glasswing.html">cnbc.com - Project Glasswing (2026-06-02)</a></li>
+        <li><a href="https://www.pymnts.com/artificial-intelligence-2/2026/anthropic-updates-partner-program-as-enterprise-ai-adoption-grows/">pymnts.com - Claude Partner Network (2026-06-03)</a></li>
+        <li class="footer-note">docs.anthropic.com release notes (HTTP 403 at sweep time)</li>
+        <li class="footer-note">anthropic.com/news/expanding-project-glasswing (HTTP 403 at fetch time, covered via CNBC/TechCrunch)</li>
+      </ul>
+    </footer>
+
+  </div>
+</body>
+</html>
