@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="color-scheme" content="light">
+  <title>Shipped. Daily — June 04, 2026</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Newsreader:ital,wght@0,400;1,400;1,600&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html, body {
+      background: #FFFFFF;
+      color: #000000;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      font-size: 15px;
+      line-height: 1.65;
+      padding: 5rem 1.5rem 5rem;
+    }
+
+    .page {
+      max-width: 720px;
+      margin: 0 auto;
+    }
+
+    /* Masthead */
+    .masthead {
+      margin-bottom: 2.75rem;
+      padding-bottom: 1.5rem;
+      border-bottom: 1px solid #E5E5E5;
+    }
+
+    .masthead-name {
+      font-family: 'Newsreader', Georgia, serif;
+      font-style: italic;
+      font-weight: 600;
+      font-size: 2.4rem;
+      color: #000000;
+      letter-spacing: -0.02em;
+      line-height: 1;
+      display: block;
+      margin-bottom: 0.5rem;
+    }
+
+    .masthead-dateline {
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #666666;
+    }
+
+    /* One-line read */
+    .one-liner {
+      font-size: 18px;
+      font-weight: 400;
+      color: #000000;
+      line-height: 1.5;
+      margin-bottom: 2.75rem;
+      padding-bottom: 1.5rem;
+      border-bottom: 1px solid #E5E5E5;
+    }
+
+    /* Section flag */
+    .section-flag {
+      display: block;
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: #666666;
+      margin-bottom: 1rem;
+    }
+
+    /* Lead section */
+    .lead-section {
+      margin-bottom: 2.75rem;
+      padding-bottom: 2rem;
+      border-bottom: 1px solid #E5E5E5;
+    }
+
+    .lead-body {
+      font-size: 16px;
+      color: #000000;
+      line-height: 1.7;
+    }
+
+    .lead-body p {
+      margin-bottom: 1rem;
+    }
+
+    .lead-body p:last-child {
+      margin-bottom: 0;
+    }
+
+    /* Release log */
+    .release-log {
+      margin-bottom: 2.75rem;
+    }
+
+    .release-log-header {
+      padding-bottom: 0.75rem;
+      border-bottom: 1px solid #E5E5E5;
+      margin-bottom: 1.5rem;
+    }
+
+    .release-log-title {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: #000000;
+      display: block;
+    }
+
+    .release-log-sub {
+      font-size: 13px;
+      color: #666666;
+      margin-top: 0.2rem;
+    }
+
+    .area-header {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #333333;
+      padding: 0.6rem 0;
+      border-bottom: 1px solid #E5E5E5;
+      margin-bottom: 0;
+    }
+
+    .log-entry {
+      padding: 1.5rem 0;
+      border-bottom: 1px solid #E5E5E5;
+    }
+
+    .log-entry:last-child {
+      border-bottom: none;
+    }
+
+    .entry-meta {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-bottom: 0.4rem;
+      flex-wrap: wrap;
+    }
+
+    .entry-date {
+      font-size: 12px;
+      font-weight: 500;
+      color: #666666;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .tag {
+      display: inline-block;
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 2px 6px;
+      border-radius: 3px;
+      background: #F0F0F0;
+      color: #333333;
+    }
+
+    .tag-code {
+      background: #333333;
+      color: #FFFFFF;
+    }
+
+    .entry-title {
+      font-size: 15px;
+      font-weight: 600;
+      color: #000000;
+      letter-spacing: -0.01em;
+      line-height: 1.35;
+      margin-bottom: 0.6rem;
+    }
+
+    .entry-title a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .entry-title a:hover {
+      text-decoration: underline;
+    }
+
+    .entry-body {
+      font-size: 14px;
+      color: #333333;
+      line-height: 1.65;
+    }
+
+    .entry-body p {
+      margin-bottom: 0.65rem;
+    }
+
+    .entry-body p:last-child {
+      margin-bottom: 0;
+    }
+
+    code {
+      font-family: 'SF Mono', 'Fira Code', 'Cascadia Code', 'Courier New', monospace;
+      font-size: 12px;
+      background: #F7F7F7;
+      padding: 1px 5px;
+      border-radius: 3px;
+      color: #000000;
+    }
+
+    .how-to-use {
+      margin-top: 0.75rem;
+      font-size: 13px;
+      color: #555555;
+      line-height: 1.5;
+    }
+
+    .how-to-use strong {
+      color: #000000;
+      font-weight: 600;
+    }
+
+    /* Aside for adjacent-window release */
+    .aside-noted {
+      background: #F7F7F7;
+      border-left: 3px solid #DDDDDD;
+      padding: 0.85rem 1rem;
+      margin-top: 1.25rem;
+      font-size: 13px;
+      color: #555555;
+      line-height: 1.6;
+    }
+
+    .aside-noted strong {
+      color: #333333;
+    }
+
+    .aside-noted a {
+      color: #555555;
+    }
+
+    .aside-noted a:hover {
+      text-decoration: underline;
+    }
+
+    /* Quiet on the Wire */
+    .quiet-section {
+      padding-top: 1.75rem;
+      padding-left: 1.25rem;
+      margin-bottom: 2.75rem;
+    }
+
+    .quiet-body {
+      font-size: 14px;
+      color: #555555;
+      line-height: 1.65;
+    }
+
+    .quiet-body p {
+      margin-bottom: 0.65rem;
+    }
+
+    .quiet-body p:last-child {
+      margin-bottom: 0;
+    }
+
+    /* Footer */
+    .footer {
+      padding-top: 1.5rem;
+      border-top: 1px solid #E5E5E5;
+    }
+
+    .footer-label {
+      display: block;
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #666666;
+      margin-bottom: 0.75rem;
+    }
+
+    .footer-meta {
+      font-size: 12px;
+      color: #666666;
+      line-height: 1.8;
+    }
+
+    .footer-meta a {
+      color: #666666;
+      text-decoration: none;
+    }
+
+    .footer-meta a:hover {
+      text-decoration: underline;
+    }
+
+    .footer-meta .blocked {
+      color: #AAAAAA;
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+
+    <!-- Masthead -->
+    <header class="masthead">
+      <span class="masthead-name">Shipped.</span>
+      <span class="masthead-dateline">Daily &middot; Thursday, June 04, 2026</span>
+    </header>
+
+    <!-- One-line read -->
+    <p class="one-liner">One Claude Code release in the window: v2.1.163 ships managed version pinning, Bazel and EDR bash fixes, and a handful of hook and plugin improvements.</p>
+
+    <!-- Lead -->
+    <section class="lead-section">
+      <span class="section-flag">The Lead</span>
+      <div class="lead-body">
+        <p>Thursday, late in the UTC day. Claude Code v2.1.163 landed at 21:52 UTC with the feature managed-fleet operators have been waiting for since dynamic workflows shipped: version pinning. Two new settings, <code>requiredMinimumVersion</code> and <code>requiredMaximumVersion</code>, let organizations specify an allowed version range. Claude Code refuses to start outside that range. No override. For teams running Claude Code across hundreds of developer machines or in CI, this closes a real gap. The rest of the release is polish and fixes: a persistent Bazel and EDR bash failure, a <code>claude -p</code> hang on backgrounded-command-final-exit, and background agent sessions that now auto-update without a cold restart.</p>
+        <p>The version just before it, v2.1.162 (June 3 at 21:31 UTC, 3.5 hours before this window opened), added <code>waitingFor</code> to <code>claude agents --json</code>. That field tells automation what a blocked session is actually waiting on. Combined with today's version pinning, the week's Claude Code arc is clear: the team is building for fleets, not just individual developers.</p>
+      </div>
+    </section>
+
+    <!-- Release Log -->
+    <section class="release-log">
+      <div class="release-log-header">
+        <span class="release-log-title">Release Log</span>
+        <span class="release-log-sub">Confirmed releases, June 04, 2026 (past 24 hours, UTC)</span>
+      </div>
+
+      <div class="area-header">C. Claude Code</div>
+
+      <!-- v2.1.163 -->
+      <div class="log-entry">
+        <div class="entry-meta">
+          <span class="entry-date">2026-06-04</span>
+          <span class="tag tag-code">CODE</span>
+        </div>
+        <div class="entry-title">
+          <a href="https://github.com/anthropics/claude-code/releases" target="_self">Claude Code v2.1.163</a>
+        </div>
+        <div class="entry-body">
+          <p>Shipped June 4 at 21:52 UTC. Managed version pinning: <code>requiredMinimumVersion</code> and <code>requiredMaximumVersion</code> settings block startup outside the allowed range. Intended for organizations that need consistent tooling across developer fleets or CI pipelines.</p>
+          <p>Also ships: <code>/plugin list</code> with <code>--enabled</code> and <code>--disabled</code> filters. A "c to copy" shortcut inside <code>/btw</code> puts raw markdown on the clipboard. Hooks gain <code>hookSpecificOutput.additionalContext</code> on <code>Stop</code> and <code>SubagentStop</code>, so a hook can pass feedback back into the turn instead of just terminating it. Skills get <code>\$</code> escape syntax for literal dollar signs before digits in command bodies. <code>stdio</code> MCP servers now receive <code>CLAUDE_CODE_SESSION_ID</code> on <code>--resume</code>.</p>
+          <p>Bug fixes: <code>claude -p</code> no longer hangs after final result when backgrounded commands are slow to exit. Bash failures under Bazel and EDR-protected workflows resolved. Background agent sessions auto-update to new Claude Code versions without requiring a cold restart. Multiple terminal rendering and session-handling fixes included.</p>
+        </div>
+        <div class="how-to-use"><strong>How to use:</strong> <code>claude update</code> or reinstall. Managed version settings deploy via <code>managedSettings.json</code>.</div>
+
+        <div class="aside-noted">
+          <strong>Just outside the window (noted for completeness):</strong> <a href="https://github.com/anthropics/claude-code/releases" target="_self">v2.1.162</a>, June 3 at 21:31 UTC, added <code>waitingFor</code> to <code>claude agents --json</code> (shows what blocks a waiting session), fixed slash-command autocomplete filling vs. executing immediately, introduced Remote Control as a persistent footer pill, and resolved a silent startup hang on read-only config directories.
+        </div>
+      </div>
+    </section>
+
+    <!-- Quiet on the Wire -->
+    <section class="quiet-section">
+      <span class="section-flag">Quiet on the Wire</span>
+      <div class="quiet-body">
+        <p>No new model announcement. No confirmed API, Claude Apps, or system prompt release notes (documentation endpoints returned HTTP 403 during this sweep). Python SDK last shipped May 29 (v0.105.2). TypeScript SDK last shipped May 29 (v0.100.1). No research paper or blog post confirmed in the window.</p>
+        <p>The ambient story from earlier this week: Anthropic filed a draft S-1 with the SEC on June 1 and expanded Project Glasswing to 150 new partner organizations on June 2. Both are documented in the June 02 daily record. The operating context this week is IPO-track. The product sprint continues underneath it.</p>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <span class="footer-label">Sources</span>
+      <div class="footer-meta">
+        Generated: 2026-06-05T01:02:00Z<br><br>
+        <a href="https://github.com/anthropics/claude-code/releases" target="_self">github.com/anthropics/claude-code/releases</a> (fetched)<br>
+        <a href="https://github.com/anthropics/claude-code/blob/main/CHANGELOG.md" target="_self">github.com/anthropics/claude-code/blob/main/CHANGELOG.md</a> (fetched)<br>
+        <a href="https://github.com/anthropics/anthropic-sdk-python/releases" target="_self">github.com/anthropics/anthropic-sdk-python/releases</a> (fetched, last release May 29)<br>
+        <a href="https://github.com/anthropics/anthropic-sdk-typescript/releases" target="_self">github.com/anthropics/anthropic-sdk-typescript/releases</a> (fetched, last release May 29)<br>
+        <span class="blocked">https://www.anthropic.com/news (HTTP 403)</span><br>
+        <span class="blocked">https://docs.anthropic.com/en/release-notes/overview (HTTP 403)</span><br>
+        <span class="blocked">https://docs.anthropic.com/en/release-notes/api (HTTP 403)</span><br>
+        <span class="blocked">https://docs.anthropic.com/en/release-notes/claude-apps (HTTP 403)</span><br>
+        <span class="blocked">https://docs.anthropic.com/en/release-notes/claude-code (HTTP 403)</span><br>
+        <span class="blocked">https://docs.anthropic.com/en/release-notes/system-prompts (HTTP 403)</span><br>
+        <span class="blocked">https://www.anthropic.com/research (HTTP 403)</span>
+      </div>
+    </footer>
+
+  </div>
+</body>
+</html>
