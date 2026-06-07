@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="color-scheme" content="light">
+  <title>Shipped. Daily — June 06, 2026</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Newsreader:ital,wght@1,400;1,600&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: #FFFFFF;
+      color: #000000;
+      font-family: 'Inter', system-ui, sans-serif;
+      font-size: 15px;
+      line-height: 1.65;
+      padding: 5rem 1.5rem 5rem;
+    }
+
+    .container {
+      max-width: 720px;
+      margin: 0 auto;
+    }
+
+    /* Masthead */
+    .masthead {
+      margin-bottom: 1.75rem;
+    }
+    .masthead-title {
+      font-family: 'Newsreader', Georgia, 'Times New Roman', serif;
+      font-style: italic;
+      font-weight: 600;
+      font-size: 2.75rem;
+      color: #000000;
+      letter-spacing: -0.5px;
+      line-height: 1;
+    }
+    .masthead-dateline {
+      font-family: 'Inter', system-ui, sans-serif;
+      font-size: 11px;
+      font-weight: 500;
+      color: #666666;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-top: 0.6rem;
+    }
+
+    /* Rules */
+    .rule {
+      border: none;
+      border-top: 1px solid #E5E5E5;
+      margin: 1.75rem 0;
+    }
+    .rule-heavy {
+      border: none;
+      border-top: 1px solid #000000;
+      margin: 1.75rem 0;
+    }
+
+    /* One-line read */
+    .one-line-read {
+      font-size: 17px;
+      font-weight: 500;
+      color: #000000;
+      line-height: 1.5;
+    }
+
+    /* Section labels */
+    .section-label {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      color: #666666;
+      margin-bottom: 1rem;
+      display: block;
+    }
+
+    /* Lead */
+    .lead-block {
+      margin-bottom: 0.5rem;
+    }
+    .lead-text {
+      font-size: 16px;
+      color: #000000;
+      line-height: 1.75;
+    }
+    .lead-text a {
+      color: inherit;
+      text-decoration: underline;
+      text-underline-offset: 2px;
+    }
+    .lead-text a:hover {
+      color: #666666;
+    }
+
+    /* Release log */
+    .log-section {
+      margin-bottom: 2.25rem;
+    }
+    .log-section-header {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      color: #666666;
+      padding-bottom: 0.6rem;
+      border-bottom: 1px solid #E5E5E5;
+      margin-bottom: 0;
+      display: block;
+    }
+
+    .log-entry {
+      padding: 1.1rem 0;
+      border-bottom: 1px solid #E5E5E5;
+    }
+    .log-entry:last-child {
+      border-bottom: none;
+    }
+
+    .log-entry-meta {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      margin-bottom: 0.45rem;
+      flex-wrap: wrap;
+    }
+    .log-entry-date {
+      font-size: 11px;
+      font-weight: 500;
+      color: #666666;
+      font-variant-numeric: tabular-nums;
+      white-space: nowrap;
+    }
+    .tag {
+      display: inline-block;
+      font-size: 9px;
+      font-weight: 600;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      background: #F0F0F0;
+      color: #333333;
+      padding: 2px 7px;
+      border-radius: 3px;
+      white-space: nowrap;
+    }
+
+    .log-entry-title {
+      font-size: 15px;
+      font-weight: 600;
+      color: #000000;
+      line-height: 1.3;
+      margin-bottom: 0.5rem;
+    }
+    .log-entry-title a {
+      color: inherit;
+      text-decoration: none;
+      border-bottom: 1px solid rgba(0,0,0,0.15);
+    }
+    .log-entry-title a:hover {
+      border-bottom-color: #000000;
+    }
+
+    .log-entry-body {
+      font-size: 14px;
+      color: #333333;
+      line-height: 1.65;
+    }
+    .log-entry-body p {
+      margin-bottom: 0.4rem;
+    }
+    .log-entry-body p:last-child {
+      margin-bottom: 0;
+    }
+
+    .howto {
+      font-size: 13px;
+      color: #666666;
+      margin-top: 0.5rem;
+    }
+
+    code {
+      font-family: 'Courier New', Courier, monospace;
+      font-size: 12px;
+      background: #F7F7F7;
+      color: #333333;
+      padding: 1px 5px;
+      border-radius: 3px;
+    }
+
+    /* Footer */
+    .footer {
+      margin-top: 3rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid #E5E5E5;
+    }
+    .footer-timestamp {
+      font-size: 11px;
+      color: #666666;
+      margin-bottom: 1rem;
+    }
+    .footer-sources-label {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: #666666;
+      margin-bottom: 0.5rem;
+      display: block;
+    }
+    .footer-sources {
+      font-size: 12px;
+      line-height: 2;
+    }
+    .footer-sources a {
+      color: #666666;
+      text-decoration: none;
+    }
+    .footer-sources a:hover {
+      color: #000000;
+      text-decoration: underline;
+    }
+
+    @media (max-width: 600px) {
+      body { padding: 3rem 1rem 3rem; }
+      .masthead-title { font-size: 2.25rem; }
+      .one-line-read { font-size: 16px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+
+    <div class="masthead">
+      <div class="masthead-title">Shipped.</div>
+      <div class="masthead-dateline">Daily, Saturday, June 06, 2026</div>
+    </div>
+
+    <hr class="rule-heavy">
+
+    <p class="one-line-read">Opus 4.7 passes its first formal chemistry exam; Claude Code adds fallback model routing; both SDKs ship middleware support and mark Opus 4.1 for retirement.</p>
+
+    <hr class="rule">
+
+    <span class="section-label">Lead</span>
+    <div class="lead-block">
+      <p class="lead-text">Anthropic published "Making Claude a chemist" on June 5, measuring Opus 4.7 against NMR spectroscopy: the analytical task chemists run before any synthesis work begins. (<a href="https://www.anthropic.com/research/making-claude-a-chemist">source</a>) The model matches dedicated NMR software and beats it on some specific tasks. Anthropic chemist David Kamber led the evaluation. The scope is deliberately tight: one analytical workflow step, not a broad chemistry credential. The question Anthropic is asking is exactly where a general model can reduce dependence on specialist tools in a working lab.</p>
+    </div>
+
+    <hr class="rule">
+
+    <span class="section-label">Release Log</span>
+
+    <!-- RESEARCH -->
+    <div class="log-section">
+      <span class="log-section-header">Research</span>
+
+      <div class="log-entry">
+        <div class="log-entry-meta">
+          <span class="log-entry-date">2026-06-05</span>
+          <span class="tag">RESEARCH</span>
+        </div>
+        <div class="log-entry-title">
+          <a href="https://www.anthropic.com/research/making-claude-a-chemist">Making Claude a chemist</a>
+        </div>
+        <div class="log-entry-body">
+          <p>Opus 4.7 evaluated against NMR spectroscopy, the primary analytical task in chemistry: reading spectra to infer molecular structure. The model matches, and on some tasks beats, dedicated NMR software. Evaluation led by Anthropic chemist David Kamber. Scope is intentionally narrow: one specific lab workflow, not a general chemistry credential.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- CODE -->
+    <div class="log-section">
+      <span class="log-section-header">Claude Code</span>
+
+      <div class="log-entry">
+        <div class="log-entry-meta">
+          <span class="log-entry-date">2026-06-06</span>
+          <span class="tag">CODE</span>
+        </div>
+        <div class="log-entry-title">
+          <a href="https://github.com/anthropics/claude-code/releases">Claude Code v2.1.166</a>
+        </div>
+        <div class="log-entry-body">
+          <p>Adds <code>fallbackModel</code> setting to configure up to three fallback models when the primary is overloaded or unavailable. Also: glob pattern support in deny rules, hardened cross-session messaging, improved thinking token handling.</p>
+          <p class="howto">Update via <code>claude update</code>. Set <code>fallbackModel</code> in project or user config to name up to three backup models in priority order.</p>
+        </div>
+      </div>
+
+      <div class="log-entry">
+        <div class="log-entry-meta">
+          <span class="log-entry-date">2026-06-06</span>
+          <span class="tag">CODE</span>
+        </div>
+        <div class="log-entry-title">
+          <a href="https://github.com/anthropics/claude-code/releases">Claude Code v2.1.167</a>
+        </div>
+        <div class="log-entry-body">
+          <p>Bug fixes and reliability improvements.</p>
+        </div>
+      </div>
+
+      <div class="log-entry">
+        <div class="log-entry-meta">
+          <span class="log-entry-date">2026-06-05</span>
+          <span class="tag">CODE</span>
+        </div>
+        <div class="log-entry-title">
+          <a href="https://github.com/anthropics/claude-code/releases">Claude Code v2.1.165</a>
+        </div>
+        <div class="log-entry-body">
+          <p>Bug fixes and reliability improvements.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- SDK Python -->
+    <div class="log-section">
+      <span class="log-section-header">SDK — Python</span>
+
+      <div class="log-entry">
+        <div class="log-entry-meta">
+          <span class="log-entry-date">2026-06-06</span>
+          <span class="tag">SDK-PY</span>
+        </div>
+        <div class="log-entry-title">
+          <a href="https://github.com/anthropics/anthropic-sdk-python/releases">anthropic-sdk-python v0.107.0</a>
+        </div>
+        <div class="log-entry-body">
+          <p>Small updates to Managed Agents types.</p>
+          <p class="howto"><code>pip install --upgrade anthropic</code></p>
+        </div>
+      </div>
+    </div>
+
+    <!-- SDK TypeScript -->
+    <div class="log-section">
+      <span class="log-section-header">SDK — TypeScript</span>
+
+      <div class="log-entry">
+        <div class="log-entry-meta">
+          <span class="log-entry-date">2026-06-06</span>
+          <span class="tag">SDK-TS</span>
+        </div>
+        <div class="log-entry-title">
+          <a href="https://github.com/anthropics/anthropic-sdk-typescript/releases">anthropic-sdk-typescript v0.102.0 / bedrock-sdk v0.30.1 / aws-sdk v0.4.1</a>
+        </div>
+        <div class="log-entry-body">
+          <p>Managed Agents type updates in the main SDK. Bug fix across all three packages: middleware now runs before request signing rather than after. Applies to sdk, bedrock-sdk, and aws-sdk.</p>
+          <p class="howto"><code>npm install @anthropic-ai/sdk@latest</code></p>
+        </div>
+      </div>
+    </div>
+
+    <!-- NEWS -->
+    <div class="log-section">
+      <span class="log-section-header">News</span>
+
+      <div class="log-entry">
+        <div class="log-entry-meta">
+          <span class="log-entry-date">2026-06-05/06</span>
+          <span class="tag">NEWS</span>
+        </div>
+        <div class="log-entry-title">
+          <a href="https://www.anthropic.com/news">Code w/ Claude, Tokyo</a>
+        </div>
+        <div class="log-entry-body">
+          <p>First international installment of the Code w/ Claude conference series. Day 1 keynotes and all breakout sessions streamed live from Tokyo. The series launched in San Francisco; Tokyo is the third event.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+      <div class="footer-timestamp">Generated 2026-06-07T01:00:41Z</div>
+      <span class="footer-sources-label">Sources</span>
+      <div class="footer-sources">
+        <a href="https://www.anthropic.com/research/making-claude-a-chemist">anthropic.com/research/making-claude-a-chemist</a><br>
+        <a href="https://github.com/anthropics/claude-code/releases">github.com/anthropics/claude-code/releases</a><br>
+        <a href="https://github.com/anthropics/anthropic-sdk-python/releases">github.com/anthropics/anthropic-sdk-python/releases</a><br>
+        <a href="https://github.com/anthropics/anthropic-sdk-typescript/releases">github.com/anthropics/anthropic-sdk-typescript/releases</a><br>
+        <a href="https://www.anthropic.com/news">anthropic.com/news</a>
+      </div>
+    </div>
+
+  </div>
+</body>
+</html>
