@@ -22,19 +22,19 @@
 <style>
 
 /* ══════════════════════════════════════════
-   SHIPPED. — ISSUE 00 — TEMP-100 PASS
+   SHIPPED., ISSUE 00, TEMP-100 PASS
    Editorial brutalism meets print craft.
    ══════════════════════════════════════════ */
 
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html{font-size:16px;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;text-rendering:optimizeLegibility}
-body{background:#fafaf7;color:#0b0b0b;font-family:'Archivo',sans-serif;overflow-x:hidden}
+body{background:#FAF8F4;color:#0b0b0b;font-family:'Archivo',sans-serif;overflow-x:hidden}
 ::selection{background:#FF6B35;color:#fff}
 
 :root{
   --orange:#FF6B35;
   --ink:#0b0b0b;
-  --paper:#fafaf7;       /* warm paper white — magazines aren't pure #fff */
+  --paper:#FAF8F4;       /* warm paper white (uncoated stock), not pure white */
   --paper-shadow:#f2f0e8;
   --body:#2a2a2a;
   --muted:#5a5a5a;
@@ -48,7 +48,7 @@ body{background:#fafaf7;color:#0b0b0b;font-family:'Archivo',sans-serif;overflow-
   --mono:'JetBrains Mono', ui-monospace, monospace;
 }
 
-/* paper texture — subtle grain to sell the print feel */
+/* paper texture, subtle grain to sell the print feel */
 body::before{
   content:"";
   position:fixed;inset:0;pointer-events:none;z-index:1000;opacity:.28;mix-blend-mode:multiply;
@@ -56,7 +56,7 @@ body::before{
 }
 
 /* ─────────────────────────────────────────
-   PUBLICATION BAR — the spine running the whole book
+   PUBLICATION BAR, the spine running the whole book
    ───────────────────────────────────────── */
 .pub-bar{
   position:sticky;top:0;z-index:100;
@@ -82,7 +82,7 @@ body::before{
 .pub-bar-folio b{font-weight:600;color:var(--orange)}
 
 /* ─────────────────────────────────────────
-   FOLIO — the corner marker on every section.
+   FOLIO, the corner marker on every section.
    Print-magazine page number system.
    ───────────────────────────────────────── */
 .folio{
@@ -96,7 +96,7 @@ body::before{
 .folio .dot{color:var(--orange)}
 
 /* ─────────────────────────────────────────
-   COVER — the hero moment.
+   COVER, the hero moment.
    The "00" is the architecture. "Shipped." is the logo.
    ───────────────────────────────────────── */
 .cover{
@@ -142,7 +142,7 @@ body::before{
 }
 .cover-top-right b{color:var(--ink);font-weight:700}
 
-/* The big "00" — set behind the masthead, breaking its baseline */
+/* The big "00", set behind the masthead, breaking its baseline */
 .cover-stage{
   position:relative;flex:1;
   display:grid;
@@ -290,7 +290,7 @@ body::before{
 }
 
 /* ─────────────────────────────────────────
-   TABLE OF CONTENTS — the "what's in the book" wall
+   TABLE OF CONTENTS, the "what's in the book" wall
    ───────────────────────────────────────── */
 .toc-section{background:var(--paper)}
 .toc-head{
@@ -372,7 +372,7 @@ body::before{
 }
 
 /* ─────────────────────────────────────────
-   "THE OPEN" — intro essay
+   "THE OPEN", intro essay
    ───────────────────────────────────────── */
 .open-section{background:var(--paper)}
 .open-grid{
@@ -419,7 +419,7 @@ body::before{
 }
 
 /* ─────────────────────────────────────────
-   BY THE NUMBERS — the Bloomberg numerals.
+   BY THE NUMBERS, the Bloomberg numerals.
    Each stat gets the grid-breaking hero treatment.
    ───────────────────────────────────────── */
 .btn-section{background:var(--ink);color:var(--paper)}
@@ -491,7 +491,7 @@ body::before{
 }
 
 /* ─────────────────────────────────────────
-   FEATURE OPENER — vertical rotated label.
+   FEATURE OPENER, vertical rotated label.
    The magazine "FEATURE / INVESTIGATION / SURVEY" moment.
    ───────────────────────────────────────── */
 .feature-opener{
@@ -632,7 +632,7 @@ body::before{
 }
 .prose-aside b{color:var(--ink);font-weight:700}
 
-/* Drop cap — dramatic, breaking the baseline */
+/* Drop cap, dramatic, breaking the baseline */
 .drop-cap::first-letter{
   font-family:var(--disp);
   font-variation-settings:"opsz" 144;
@@ -657,7 +657,7 @@ body::before{
 }
 
 /* ─────────────────────────────────────────
-   FULL-SCREEN PULL QUOTE — the punchline moment
+   FULL-SCREEN PULL QUOTE, the punchline moment
    ───────────────────────────────────────── */
 .pq-full{
   background:var(--ink);color:var(--paper);
@@ -709,7 +709,7 @@ body::before{
 }
 
 /* ─────────────────────────────────────────
-   THE MYTHOS BAR — hero benchmark diagram
+   THE MYTHOS BAR, hero benchmark diagram
    ───────────────────────────────────────── */
 .hero-chart-section{
   background:var(--paper);
@@ -799,7 +799,7 @@ body::before{
 }
 
 /* ─────────────────────────────────────────
-   SIDEBAR BOX — editorial aside
+   SIDEBAR BOX, editorial aside
    ───────────────────────────────────────── */
 .sidebar-box{
   background:var(--paper);
@@ -854,7 +854,7 @@ body::before{
 .sidebar-box-list .yr em{font-style:italic;font-weight:400;font-size:14px;color:var(--muted)}
 
 /* ─────────────────────────────────────────
-   THE AGENT STACK — feature with code
+   THE AGENT STACK, feature with code
    ───────────────────────────────────────── */
 .code-block{
   margin:24px 0;
@@ -883,7 +883,7 @@ body::before{
 .code-block .c{color:var(--gray);font-style:italic}
 
 /* ─────────────────────────────────────────
-   TIMELINE — 21 days, 56 releases
+   TIMELINE, 21 days, 56 releases
    ───────────────────────────────────────── */
 .tl-section{padding:64px 28px 56px;max-width:1280px;margin:0 auto}
 .tl-head{
@@ -988,7 +988,7 @@ body::before{
 }
 
 /* ─────────────────────────────────────────
-   SURVEY — Claude Code
+   SURVEY, Claude Code
    ───────────────────────────────────────── */
 .survey-data{
   display:grid;grid-template-columns:repeat(12,1fr);gap:0;
@@ -1022,7 +1022,7 @@ body::before{
 }
 
 /* ─────────────────────────────────────────
-   TERM OF THE ISSUE — dictionary-style
+   TERM OF THE ISSUE, dictionary-style
    ───────────────────────────────────────── */
 .term-section{
   background:var(--paper);
@@ -1077,7 +1077,7 @@ body::before{
 }
 
 /* ─────────────────────────────────────────
-   THE CLOSE — three-beat
+   THE CLOSE, three-beat
    ───────────────────────────────────────── */
 .close-section{
   background:var(--ink);color:var(--paper);
@@ -1127,7 +1127,7 @@ body::before{
 }
 
 /* ─────────────────────────────────────────
-   RELEASE LOG — back of book
+   RELEASE LOG, back of book
    ───────────────────────────────────────── */
 .log-divider{
   background:var(--paper);
@@ -1305,7 +1305,7 @@ body::before{
 }
 
 /* ─────────────────────────────────────────
-   COLOPHON — print-magazine care
+   COLOPHON, print-magazine care
    ───────────────────────────────────────── */
 .colophon{
   background:var(--ink);color:var(--paper);
@@ -1386,7 +1386,7 @@ body::before{
 <body>
 
 <!-- ═════════════════════════════════════════
-     PUBLICATION BAR — persistent spine
+     PUBLICATION BAR, persistent spine
      ═════════════════════════════════════════ -->
 <nav class="pub-bar">
   <div class="pub-bar-left">
@@ -1559,7 +1559,7 @@ body::before{
     <input type="email" name="email" placeholder="your@email.com" required autocomplete="email" aria-label="Email address">
     <button type="submit" id="ship-sub-btn-issue">Subscribe →</button>
   </form>
-  <div class="ship-sub-meta">Next issue — {{next_issue_date}}</div>
+  <div class="ship-sub-meta">Next issue, {{next_issue_date}}</div>
   <div class="ship-sub-status" id="ship-sub-status-issue" aria-live="polite"></div>
 </section>
 <script>
@@ -1600,7 +1600,7 @@ body::before{
 </script>
 
 <!-- ═════════════════════════════════════════
-     THE RELEASE LOG — BACK OF BOOK
+     THE RELEASE LOG, BACK OF BOOK
      ═════════════════════════════════════════ -->
 <section class="log-divider" id="log">
   <div class="log-divider-kicker">Back of Book &nbsp;·&nbsp; p.21 →</div>
@@ -1637,7 +1637,7 @@ body::before{
       </div>
       <div class="colophon-col">
         <h4>Typography</h4>
-        <p><b>Display</b> Fraunces — optical sizes 9 – 144</p>
+        <p><b>Display</b> Fraunces, optical sizes 9 to 144</p>
         <p><b>Sans</b> Archivo</p>
         <p><b>Narrow</b> Archivo Narrow (kickers · flags · folios)</p>
         <p><b>Mono</b> JetBrains Mono</p>
@@ -1656,7 +1656,7 @@ body::before{
     <div class="colophon-foot">
       <span>© 2026 <a href="https://id8labs.app" class="colophon-link"><b>id8Labs</b></a> &nbsp;·&nbsp; All rights reserved</span>
       <span>Printed in pixels &nbsp;·&nbsp; Set in Fraunces &amp; Archivo &nbsp;·&nbsp; Press sheet by Iris</span>
-      <span class="hot">Next issue — {{next_issue_date}}</span>
+      <span class="hot">Next issue, {{next_issue_date}}</span>
     </div>
   </div>
 </footer>

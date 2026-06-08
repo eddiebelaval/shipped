@@ -10,6 +10,29 @@ The visual identity spec for `id8labs.app/shipped/`. Read this before touching a
 
 ## Revision History
 
+### Revision 5.0 — Type + Paper Reconciliation (AUTHORED 2026-06-08, Iris)
+
+A design pass before crystallizing the new auto-generated release cadence (Nightly / Weekly / Monthly Anthropic pages) caught a load-bearing drift: **the spec below describes a magazine that no longer ships.** The implementation in `pipeline/src/render/template.html` moved off Rev 4's entire type system and paper value during Issue 02/03 production, and the spec was never updated. The Rev 5 full-triangulation pass (see the PLANNED block below) is still open; this 5.0 block is the narrow, urgent reconciliation so no future session "fixes" the template back to a spec that is stale.
+
+**Canonical implementation.** `pipeline/src/render/template.html` is the single source of design truth. Every auto-generated release page (Nightly, Weekly, Monthly) now renders by lifting that file's `<style>` block verbatim, so whatever ships there IS the design. The Rev 4 sections below are SUPERSEDED on font-family and paper value; their size / weight / tracking / hierarchy logic still informs the type scale.
+
+**Type system drift (Rev 4 spec to current implementation):**
+
+| Role | Rev 4 spec (stale) | Shipping now (canonical) |
+|------|--------------------|--------------------------|
+| Display / headlines | Libre Baskerville | **Fraunces** (italic masthead, optical sizes 9 to 144) |
+| Body (front-of-book) | Inter / Libre Baskerville | **Archivo** |
+| Mechanical (tags, kickers, flags, datelines) | Barlow Condensed | **Archivo Narrow** |
+| Figures / code | JetBrains Mono | **JetBrains Mono** (unchanged) |
+
+**Paper.** Spec said `#FAF8F4`; the template had drifted to `#fafaf7` (a hair cooler). Reconciled to `#FAF8F4` in `template.html` on 2026-06-08 (warmer, the uncoated-stock value the spec always intended). Cards still float at `#ffffff`, `--paper-shadow #f2f0e8`, orange `#FF6B35`, ink `#0b0b0b`, paper grain via `feTurbulence`. The `.pub-bar` spine, orange `.dot` period, tag system, and hairline rules all hold.
+
+**No-dash hygiene.** All em and en dashes were purged from `template.html` on 2026-06-08, including three in visible body markup (`Next issue ...`, colophon) that had been shipping inside real issues in violation of the STYLE.md no-dash rule. The lifted style block is now dash-clean at the source.
+
+**RATIFIED (Eddie, 2026-06-08).** Fraunces (display), Archivo (body), Archivo Narrow (mechanical voice), and JetBrains Mono (figures) are the official Shipped. type identity. This supersedes Rev 4's Libre Baskerville / Barlow Condensed / Inter on font-family. The change had already shipped in every Issue 02/03 render and every release page; this ratification puts it on the record. Fraunces carries more editorial character than Libre Baskerville at display sizes, and Archivo is a cleaner systematic floor than Inter for this register. The full Rev 5 triangulation pass (PLANNED block below) remains open for the variant/constant furniture work; the type and paper identity is now settled.
+
+---
+
 ### Revision 5 — PLANNED (triggered after Issue 03 ships, 2026-05-01)
 
 Eddie's brief, captured Thu 2026-04-23 AM pre-Issue-02-lock:
@@ -1369,7 +1392,7 @@ Shipped.                   ← "Shipped" Libre Baskerville 40px 700 #1a1a1a,
                               "." color: #FF6B35
 A weekly magazine on what Anthropic is releasing.
                            ← Inter 17px 400, #6b6b6b
-Published every Friday at 5 PM ET.
+Published every Friday at 9 AM ET.
                            ← Inter 14px 400, #898989
 ```
 
