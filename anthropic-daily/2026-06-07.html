@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="color-scheme" content="light">
+  <title>Shipped. Daily — June 7, 2026</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Newsreader:ital,wght@1,400&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      padding: 5rem 1.5rem 5rem;
+      background: #FFFFFF;
+      color: #000000;
+      font-family: 'Inter', -apple-system, sans-serif;
+      font-size: 15px;
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .page {
+      max-width: 720px;
+      margin: 0 auto;
+    }
+
+    /* Masthead */
+    .masthead {
+      margin-bottom: 2.5rem;
+      padding-bottom: 1.5rem;
+      border-bottom: 1px solid #E5E5E5;
+    }
+
+    .masthead-name {
+      font-family: 'Newsreader', Georgia, serif;
+      font-style: italic;
+      font-size: 2.25rem;
+      font-weight: 400;
+      color: #000000;
+      line-height: 1;
+      margin: 0 0 0.6rem 0;
+      letter-spacing: -0.5px;
+    }
+
+    .masthead-dateline {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      color: #666666;
+    }
+
+    /* One-line read */
+    .one-line-read {
+      font-size: 1rem;
+      font-weight: 400;
+      color: #000000;
+      line-height: 1.65;
+      margin: 0 0 2.5rem 0;
+      padding: 1.1rem 1.25rem;
+      border-left: 3px solid #000000;
+      background: #F0F0F0;
+      border-radius: 0 3px 3px 0;
+    }
+
+    /* Section headers */
+    .section-header {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      color: #666666;
+      margin: 2.75rem 0 0 0;
+      padding-bottom: 0.6rem;
+      border-bottom: 1px solid #E5E5E5;
+    }
+
+    /* Log entries */
+    .log-entry {
+      padding: 1.25rem 0;
+      border-bottom: 1px solid #E5E5E5;
+    }
+
+    .log-entry:last-of-type {
+      border-bottom: none;
+    }
+
+    .log-entry-meta {
+      display: flex;
+      align-items: baseline;
+      gap: 0.625rem;
+      margin-bottom: 0.5rem;
+      flex-wrap: wrap;
+    }
+
+    .log-entry-date {
+      font-size: 11px;
+      font-weight: 500;
+      color: #666666;
+      font-variant-numeric: tabular-nums;
+      flex-shrink: 0;
+    }
+
+    .log-entry-title {
+      font-size: 15px;
+      font-weight: 600;
+      color: #000000;
+      line-height: 1.3;
+    }
+
+    .log-entry-title a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .log-entry-title a:hover {
+      text-decoration: underline;
+    }
+
+    /* Tags */
+    .tag {
+      display: inline-block;
+      font-size: 9px;
+      font-weight: 600;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      background: #F0F0F0;
+      color: #333333;
+      padding: 2px 7px;
+      border-radius: 3px;
+      flex-shrink: 0;
+    }
+
+    /* Entry body */
+    .log-entry-body {
+      font-size: 14px;
+      color: #333333;
+      line-height: 1.65;
+    }
+
+    .log-entry-body p {
+      margin: 0 0 0.7rem 0;
+    }
+
+    .log-entry-body p:last-child {
+      margin-bottom: 0;
+    }
+
+    .how-to-use {
+      margin-top: 0.625rem;
+      font-size: 13px;
+      color: #666666;
+    }
+
+    .how-to-use strong {
+      color: #333333;
+    }
+
+    /* Code inline */
+    code {
+      font-family: 'JetBrains Mono', 'Fira Mono', 'Cascadia Code', monospace;
+      font-size: 12px;
+      background: #F7F7F7;
+      color: #000000;
+      padding: 1px 5px;
+      border-radius: 3px;
+    }
+
+    /* Quiet section */
+    .quiet-body {
+      padding: 1.25rem 0 0.25rem 0;
+      font-size: 14px;
+      color: #666666;
+      line-height: 1.7;
+    }
+
+    .quiet-body p {
+      margin: 0 0 0.75rem 0;
+    }
+
+    /* Footer */
+    .footer {
+      margin-top: 3.5rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid #E5E5E5;
+      font-size: 11px;
+      color: #666666;
+      line-height: 1.9;
+    }
+
+    .footer-label {
+      font-weight: 600;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      font-size: 10px;
+      color: #666666;
+      display: block;
+      margin-bottom: 0.25rem;
+    }
+
+    .sources-list {
+      list-style: none;
+      margin: 0.25rem 0 0 0;
+      padding: 0;
+    }
+
+    .sources-list li {
+      margin-bottom: 0.2rem;
+    }
+
+    .sources-list a {
+      color: #666666;
+      text-decoration: none;
+    }
+
+    .sources-list a:hover {
+      text-decoration: underline;
+    }
+
+    @media (max-width: 600px) {
+      body { padding: 3rem 1.25rem 3rem; }
+      .masthead-name { font-size: 1.75rem; }
+    }
+  </style>
+</head>
+<body>
+<div class="page">
+
+  <header class="masthead">
+    <div class="masthead-name">Shipped.</div>
+    <div class="masthead-dateline">Daily &middot; Sunday, June 7, 2026</div>
+  </header>
+
+  <p class="one-line-read">Two items in the window: a Foundry auth header fixed in the Python SDK, and one more Claude Code maintenance drop.</p>
+
+  <!-- SDK (Python) -->
+  <p class="section-header">SDK (Python)</p>
+
+  <div class="log-entry">
+    <div class="log-entry-meta">
+      <span class="log-entry-date">2026-06-07</span>
+      <span class="log-entry-title">
+        <a href="https://github.com/anthropics/anthropic-sdk-python/releases">anthropic-sdk-python v0.107.1</a>
+      </span>
+      <span class="tag">SDK-PY</span>
+    </div>
+    <div class="log-entry-body">
+      <p>The Foundry client was not sending the <code>x-api-key</code> header for API key authentication. Operators running Claude on Foundry infrastructure with API keys were failing to authenticate. Fixed.</p>
+      <div class="how-to-use"><strong>How to use:</strong> <code>pip install --upgrade anthropic</code></div>
+    </div>
+  </div>
+
+  <!-- Claude Code -->
+  <p class="section-header">Claude Code</p>
+
+  <div class="log-entry">
+    <div class="log-entry-meta">
+      <span class="log-entry-date">2026-06-06</span>
+      <span class="log-entry-title">
+        <a href="https://github.com/anthropics/claude-code/releases">Claude Code v2.1.168</a>
+      </span>
+      <span class="tag">CODE</span>
+    </div>
+    <div class="log-entry-body">
+      <p>Bug fixes and reliability improvements. Released at 23:41 UTC. No changelog detail beyond that.</p>
+    </div>
+  </div>
+
+  <!-- Quiet on the Wire -->
+  <p class="section-header">Quiet on the Wire</p>
+
+  <div class="quiet-body">
+    <p>Anthropic.com news, research, and docs pages returned HTTP 403 during tonight's sweep. The last confirmed anthropic.com news post dates to June 3 (Claude Partner Network services track). No model releases, no API announcements, no research papers confirmed in the window.</p>
+    <p>The heavier SDK and Claude Code work from June 6: v2.1.166 (fallbackModel, ultracode keyword, cross-session security hardening), Python v0.107.0, and TypeScript v0.102.0. Those ran in yesterday's sweep.</p>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <span class="footer-label">Sources</span>
+    <ul class="sources-list">
+      <li><a href="https://github.com/anthropics/anthropic-sdk-python/releases">github.com/anthropics/anthropic-sdk-python/releases</a></li>
+      <li><a href="https://github.com/anthropics/anthropic-sdk-typescript/releases">github.com/anthropics/anthropic-sdk-typescript/releases</a></li>
+      <li><a href="https://github.com/anthropics/claude-code/releases">github.com/anthropics/claude-code/releases</a></li>
+      <li>docs.anthropic.com (HTTP 403 during sweep)</li>
+      <li>anthropic.com/news (HTTP 403 during sweep)</li>
+      <li>anthropic.com/research (HTTP 403 during sweep)</li>
+    </ul>
+    <div style="margin-top: 0.75rem;">Generated 2026-06-08T01:00:56Z</div>
+  </footer>
+
+</div>
+</body>
+</html>
