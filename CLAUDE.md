@@ -205,5 +205,7 @@ No secrets required for basic pipeline operation. All sources are public.
 
 Known inconsistencies to resolve:
 
-- `content/index.md` says "Friday 5 PM ET" — **stale**. Canonical time is **Friday 9 AM ET** per VISION.md and pipeline README.
+- ~~`content/index.md` says "Friday 5 PM ET"~~ — **resolved 2026-06-08**. Cadence corrected to **Friday 9 AM ET** in `content/index.md`, `content/DESIGN.md`. Canonical per VISION.md and pipeline README.
 - Issue 01 shipped from the pre-extraction repo (`id8/knowledge/series/shipped/`). Its canonical copy doesn't exist in `content/` yet. Issue 00 (`issue-00-the-founding.md`) is the founding dry-run.
+
+**Home of record (2026-06-08):** the canonical home is **id8labs.app/shipped** — see `HOME-OF-RECORD.md`. The `/writing` feed + homepage now derive from the hub archive via `pipeline/src/render/sync-manifest.ts` → `id8labs/lib/shipped/issues.data.ts` (auto-generated; do not hand-edit) so they can never drift from the hub.

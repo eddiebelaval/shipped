@@ -16,6 +16,7 @@ import { loadTemplate, render } from './template.js';
 import { renderSweepTable } from './charts.js';
 import { renderReleaseLog } from './release-log.js';
 import { updateArchive } from './archive.js';
+import { syncManifest } from './sync-manifest.js';
 import {
   renderOpen,
   renderByTheNumbers,
@@ -83,6 +84,17 @@ export async function renderIssue(
     await fs.mkdir(path.dirname(outputPath), { recursive: true });
     await fs.writeFile(outputPath, html, 'utf-8');
     await updateArchive(archivePath, issue, issueNum);
+    // Keep the id8labs /writing feed + homepage in lockstep with the hub
+    // archive. The hub is the single source of truth; this regenerates
+    // id8labs/lib/shipped/issues.data.ts from it so the feed can't drift.
+    try {
+      const result = await syncManifest({ deployRoot });
+      if (result) {
+        console.log(`[render] synced manifest (${result.count} issues) → ${result.manifestPath}`);
+      }
+    } catch (err) {
+      console.warn(`[render] manifest sync failed (non-fatal): ${(err as Error).message}`);
+    }
   }
 
   return {
