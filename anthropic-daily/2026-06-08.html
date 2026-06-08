@@ -6,13 +6,13 @@
 <meta name="color-scheme" content="light">
 <title>Shipped. Daily, Monday, June 08, 2026</title>
 <meta property="og:title" content="Shipped. Daily, Monday, June 08, 2026">
-<meta property="og:description" content="WWDC morning: iOS 27 betas already show Claude in the Extensions lineup. Plus a Python SDK patch for Foundry auth.">
+<meta property="og:description" content="WWDC 2026 opens with iOS 27 making Claude a user-selectable AI engine inside Siri. Python SDK v0.107.1 patch. Two items.">
 <meta property="og:type" content="article">
 <meta property="og:url" content="https://eddiebelaval.github.io/shipped/anthropic-daily/2026-06-08.html">
-<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Shipped. Daily, Monday, June 08, 2026">
-<meta name="twitter:description" content="WWDC morning: iOS 27 betas already show Claude in the Extensions lineup. Plus a Python SDK patch.">
-<meta name="description" content="WWDC morning: iOS 27 betas already show Claude in the Extensions lineup. Plus a Python SDK patch for Foundry auth.">
+<meta name="twitter:description" content="WWDC 2026: iOS 27 Extensions bring Claude to Siri. Python SDK v0.107.1 patch.">
+<meta name="description" content="Shipped. Daily for June 08, 2026. WWDC 2026 makes Claude a selectable AI engine in iOS 27 via Extensions. Python SDK v0.107.1 bug fix for Foundry authentication.">
 <meta name="author" content="Eddie Belaval">
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='75' cy='62' r='14' fill='%23FF6B35'/%3E%3Ctext x='10' y='75' font-family='Georgia,serif' font-weight='700' font-size='62' fill='%231a1a1a'%3ES%3C/text%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -20,20 +20,15 @@
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;0,9..144,900;1,9..144,300;1,9..144,400;1,9..144,500;1,9..144,700&family=Archivo:wght@300;400;500;600;700;800;900&family=Archivo+Narrow:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
 
-/* ══════════════════════════════════════════
-   SHIPPED. DAILY BUILD. TEMP-100 PASS
-   Editorial brutalism meets print craft.
-   ══════════════════════════════════════════ */
-
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html{font-size:16px;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;text-rendering:optimizeLegibility}
-body{background:#fafaf7;color:#0b0b0b;font-family:'Archivo',sans-serif;overflow-x:hidden}
+body{background:#FAF8F4;color:#0b0b0b;font-family:'Archivo',sans-serif;overflow-x:hidden}
 ::selection{background:#FF6B35;color:#fff}
 
 :root{
   --orange:#FF6B35;
   --ink:#0b0b0b;
-  --paper:#fafaf7;       /* warm paper white ,  magazines aren't pure #fff */
+  --paper:#FAF8F4;
   --paper-shadow:#f2f0e8;
   --body:#2a2a2a;
   --muted:#5a5a5a;
@@ -47,16 +42,12 @@ body{background:#fafaf7;color:#0b0b0b;font-family:'Archivo',sans-serif;overflow-
   --mono:'JetBrains Mono', ui-monospace, monospace;
 }
 
-/* paper texture ,  subtle grain to sell the print feel */
 body::before{
   content:"";
   position:fixed;inset:0;pointer-events:none;z-index:1000;opacity:.28;mix-blend-mode:multiply;
   background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='180' height='180'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' seed='3'/><feColorMatrix values='0 0 0 0 0.02  0 0 0 0 0.02  0 0 0 0 0.02  0 0 0 0.22 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
 }
 
-/* ─────────────────────────────────────────
-   PUBLICATION BAR ,  the spine running the whole book
-   ───────────────────────────────────────── */
 .pub-bar{
   position:sticky;top:0;z-index:100;
   background:var(--paper);
@@ -76,14 +67,9 @@ body::before{
 .pub-bar-link:hover{color:var(--orange)}
 .colophon-link{color:inherit;text-decoration:none;border-bottom:1px solid currentColor;transition:color .15s ease}
 .colophon-link:hover{color:var(--orange)}
-.colophon-foot .colophon-link b{color:var(--paper)}
 .pub-bar-folio{color:var(--ink)}
 .pub-bar-folio b{font-weight:600;color:var(--orange)}
 
-/* ─────────────────────────────────────────
-   FOLIO ,  the corner marker on every section.
-   Print-magazine page number system.
-   ───────────────────────────────────────── */
 .folio{
   font-family:var(--narrow);
   font-size:10px;font-weight:500;letter-spacing:.28em;
@@ -94,1039 +80,15 @@ body::before{
 .folio .ruler{width:28px;height:1px;background:var(--hair-hard)}
 .folio .dot{color:var(--orange)}
 
-/* ─────────────────────────────────────────
-   COVER ,  the hero moment.
-   The "00" is the architecture. "Shipped." is the logo.
-   ───────────────────────────────────────── */
-.cover{
-  position:relative;
-  padding:32px 28px 64px;
-  min-height:calc(100vh - 42px);
-  display:flex;flex-direction:column;
-  border-bottom:1px solid var(--hair);
-  overflow:hidden;
-}
-.cover-grid{
-  position:absolute;inset:0;
-  background-image:
-    linear-gradient(to right, var(--hair-soft) 1px, transparent 1px);
-  background-size: calc(100% / 12) 100%;
-  pointer-events:none;opacity:.55;
-}
-
-.cover-top{
-  position:relative;z-index:2;
-  display:flex;align-items:flex-start;justify-content:space-between;
-  gap:24px;padding-bottom:28px;
-  border-bottom:1px solid var(--ink);
-  margin-bottom:24px;
-}
-.cover-top-left{display:flex;flex-direction:column;gap:6px}
-.cover-top-kicker{
-  font-family:var(--narrow);
-  font-size:10px;font-weight:600;letter-spacing:.32em;
-  text-transform:uppercase;color:var(--ink);
-}
-.cover-top-kicker b{color:var(--orange)}
-.cover-top-sub{
-  font-family:var(--disp);font-style:italic;
-  font-size:13px;font-weight:400;color:var(--muted);
-}
-.cover-top-right{
-  text-align:right;
-  font-family:var(--narrow);
-  font-size:10px;font-weight:500;letter-spacing:.28em;
-  text-transform:uppercase;color:var(--muted);
-  line-height:1.7;
-}
-.cover-top-right b{color:var(--ink);font-weight:700}
-
-.cover-stage{
-  position:relative;flex:1;
-  display:grid;
-  grid-template-columns:minmax(0,1fr);
-  align-items:center;
-  padding:24px 0;
-  z-index:2;
-}
-.cover-huge-num{
-  position:absolute;
-  top:50%;left:50%;
-  transform:translate(-50%,-54%);
-  font-family:var(--disp);
-  font-weight:900;
-  font-variation-settings:"opsz" 144;
-  font-size:clamp(320px, 62vw, 780px);
-  line-height:.78;
-  color:var(--paper-shadow);
-  letter-spacing:-.06em;
-  z-index:1;pointer-events:none;
-  user-select:none;
-  -webkit-text-stroke:1px rgba(11,11,11,.08);
-}
-.cover-stack{
-  position:relative;z-index:2;
-  display:flex;flex-direction:column;
-  align-items:flex-start;
-  gap:clamp(16px,3vw,32px);
-  padding-left:clamp(0px,4vw,40px);
-}
-.cover-spine{
-  position:absolute;
-  left:-4px;top:50%;
-  transform:translateY(-50%) rotate(-90deg);
-  transform-origin:left center;
-  font-family:var(--narrow);
-  font-size:10px;font-weight:600;letter-spacing:.48em;
-  text-transform:uppercase;color:var(--gray);
-  white-space:nowrap;
-  display:none;
-}
-@media(min-width:980px){.cover-spine{display:block}}
-
-.masthead-cover{
-  font-family:var(--disp);
-  font-weight:500;
-  font-variation-settings:"opsz" 144;
-  font-size:clamp(92px, 18vw, 256px);
-  line-height:.84;
-  letter-spacing:-.045em;
-  color:var(--ink);
-  display:inline-block;
-  position:relative;
-}
-.masthead-cover .dot{
-  color:var(--orange);
-  display:inline-block;
-  transform:translateY(-.04em);
-}
-.masthead-cover::after{
-  content:"";
-  position:absolute;
-  left:0;right:0;bottom:-14px;
-  height:2px;background:var(--ink);
-}
-
-.cover-deck{
-  font-family:var(--disp);
-  font-style:italic;font-weight:400;
-  font-variation-settings:"opsz" 72;
-  font-size:clamp(28px,4.6vw,58px);
-  line-height:1.08;
-  letter-spacing:-.015em;
-  max-width:820px;
-  color:var(--ink);
-}
-.cover-deck em{font-style:normal;color:var(--orange);font-weight:500}
-
-.cover-deckline{
-  font-family:var(--sans);
-  font-size:15px;font-weight:400;
-  color:var(--muted);
-  max-width:540px;line-height:1.55;
-}
-
-.cover-bottom{
-  position:relative;z-index:2;
-  display:grid;
-  grid-template-columns:1fr 1fr 1fr 1fr;
-  gap:0;
-  border-top:1px solid var(--ink);
-  margin-top:32px;
-  padding-top:18px;
-}
-.cover-bottom-cell{
-  padding-right:16px;
-  border-right:1px solid var(--hair);
-  display:flex;flex-direction:column;gap:4px;
-}
-.cover-bottom-cell:last-child{border-right:none;padding-right:0}
-.cover-bottom-label{
-  font-family:var(--narrow);
-  font-size:9px;font-weight:600;letter-spacing:.28em;
-  text-transform:uppercase;color:var(--gray);
-}
-.cover-bottom-val{
-  font-family:var(--disp);
-  font-weight:500;font-size:18px;color:var(--ink);
-  letter-spacing:-.01em;
-  font-variation-settings:"opsz" 72;
-}
-.cover-bottom-val b{font-weight:700;color:var(--orange)}
-
-@media(max-width:720px){
-  .cover-top-right{font-size:9px}
-  .cover-bottom{grid-template-columns:1fr 1fr;gap:14px 0}
-  .cover-bottom-cell:nth-child(2){border-right:none}
-  .cover-bottom-cell{padding-bottom:12px;border-bottom:1px solid var(--hair-soft)}
-  .cover-bottom-cell:nth-child(3),.cover-bottom-cell:nth-child(4){border-bottom:none}
-}
-
-/* ─────────────────────────────────────────
-   SECTION WRAPPER + FOLIO HEADER
-   ───────────────────────────────────────── */
 .section{
   position:relative;
   padding:64px 28px 40px;
   max-width:1280px;margin:0 auto;
 }
-.section-folio{
-  display:flex;align-items:center;justify-content:space-between;
-  padding-bottom:18px;
-  border-bottom:1px solid var(--ink);
-  margin-bottom:44px;
-}
-.section-folio-left{display:flex;align-items:center;gap:14px}
-.section-folio-label{
-  font-family:var(--narrow);
-  font-size:11px;font-weight:700;letter-spacing:.28em;
-  text-transform:uppercase;color:var(--ink);
-}
-.section-folio-sub{
-  font-family:var(--disp);font-style:italic;
-  font-size:13px;color:var(--muted);
-}
 
-/* ─────────────────────────────────────────
-   TABLE OF CONTENTS ,  the "what's in the book" wall
-   ───────────────────────────────────────── */
-.toc-section{background:var(--paper)}
-.toc-head{
-  display:grid;grid-template-columns:auto 1fr auto;
-  align-items:end;gap:24px;
-  padding-bottom:18px;
-  border-bottom:1px solid var(--ink);
-  margin-bottom:0;
-}
-.toc-head-num{
-  font-family:var(--disp);font-weight:700;
-  font-variation-settings:"opsz" 144;
-  font-size:clamp(72px,10vw,128px);line-height:.8;
-  color:var(--ink);letter-spacing:-.04em;
-}
-.toc-head-title{
-  font-family:var(--disp);font-style:italic;font-weight:400;
-  font-size:clamp(24px,3vw,40px);line-height:1;
-  color:var(--ink);
-}
-.toc-head-meta{
-  font-family:var(--narrow);
-  font-size:10px;font-weight:600;letter-spacing:.28em;
-  text-transform:uppercase;color:var(--muted);
-  text-align:right;line-height:1.8;
-}
-.toc-head-meta b{color:var(--ink);font-weight:700}
-
-.toc-grid{
-  display:grid;
-  grid-template-columns:repeat(12,1fr);
-  column-gap:24px;
-}
-.toc-entry{
-  grid-column:span 6;
-  padding:24px 0 22px;
-  border-bottom:1px solid var(--hair);
-  display:grid;
-  grid-template-columns:auto 1fr auto;
-  gap:18px;align-items:baseline;
-  text-decoration:none;color:inherit;
-  transition:background .12s ease;
-}
-.toc-entry:hover{background:var(--paper-shadow)}
-.toc-entry-n{
-  font-family:var(--narrow);font-weight:700;
-  font-size:10px;letter-spacing:.22em;color:var(--orange);
-  text-transform:uppercase;min-width:40px;
-}
-.toc-entry-body{display:flex;flex-direction:column;gap:6px;min-width:0}
-.toc-entry-kicker{
-  font-family:var(--narrow);font-weight:700;
-  font-size:9px;letter-spacing:.32em;
-  text-transform:uppercase;color:var(--muted);
-}
-.toc-entry-title{
-  font-family:var(--disp);font-weight:500;
-  font-variation-settings:"opsz" 72;
-  font-size:clamp(20px,2vw,28px);
-  letter-spacing:-.018em;line-height:1.1;color:var(--ink);
-}
-.toc-entry-tease{
-  font-family:var(--disp);font-style:italic;
-  font-size:14px;line-height:1.45;color:var(--muted);
-}
-.toc-entry-page{
-  font-family:var(--narrow);font-weight:700;
-  font-size:14px;color:var(--ink);letter-spacing:.04em;
-  text-align:right;min-width:40px;
-  font-variant-numeric:tabular-nums;
-}
-.toc-entry:hover .toc-entry-title{color:var(--orange)}
-
-@media(max-width:720px){
-  .toc-entry{grid-column:span 12;grid-template-columns:1fr auto;gap:8px 12px}
-  .toc-entry-n{grid-column:1;grid-row:1}
-  .toc-entry-page{grid-column:2;grid-row:1}
-  .toc-entry-body{grid-column:1 / -1;grid-row:2}
-}
-
-/* ─────────────────────────────────────────
-   "THE OPEN" ,  intro essay
-   ───────────────────────────────────────── */
-.open-section{background:var(--paper)}
-.open-grid{
-  display:grid;
-  grid-template-columns:repeat(12,1fr);
-  gap:32px;
-}
-.open-lead{
-  grid-column:2 / span 7;
-}
-.open-quote{
-  font-family:var(--disp);
-  font-variation-settings:"opsz" 144;
-  font-weight:500;font-size:clamp(36px,5vw,72px);
-  line-height:1.02;letter-spacing:-.025em;
-  color:var(--ink);
-  margin-bottom:36px;
-  padding-bottom:28px;
-  border-bottom:1px solid var(--hair-hard);
-}
-.open-quote em{font-style:italic;color:var(--orange);font-weight:500}
-.open-prose{
-  font-family:var(--disp);
-  font-variation-settings:"opsz" 14;
-  font-weight:400;font-size:18px;line-height:1.68;
-  color:var(--body);
-  max-width:620px;
-}
-.open-prose p{margin-bottom:22px}
-.open-prose em{font-style:italic;color:var(--ink)}
-.open-aside{
-  grid-column:10 / span 3;
-  border-top:1px solid var(--ink);
-  padding-top:16px;
-  font-family:var(--narrow);
-  font-size:11px;font-weight:500;letter-spacing:.16em;
-  text-transform:uppercase;color:var(--muted);
-  line-height:1.9;
-}
-.open-aside b{color:var(--ink);font-weight:700}
-@media(max-width:860px){
-  .open-lead{grid-column:1 / -1}
-  .open-aside{grid-column:1 / -1;margin-top:16px}
-}
-
-/* ─────────────────────────────────────────
-   BY THE NUMBERS ,  the Bloomberg numerals.
-   ───────────────────────────────────────── */
-.btn-section{background:var(--ink);color:var(--paper)}
-.btn-section .section-folio{border-bottom-color:var(--paper)}
-.btn-section .section-folio-label{color:var(--paper)}
-.btn-section .section-folio-sub{color:rgba(250,250,247,.6)}
-.btn-section .folio{color:rgba(250,250,247,.6)}
-.btn-section .folio b{color:var(--paper)}
-
-.btn-head{
-  font-family:var(--disp);font-style:italic;font-weight:400;
-  font-variation-settings:"opsz" 144;
-  font-size:clamp(40px,6vw,84px);
-  line-height:1;letter-spacing:-.03em;
-  color:var(--paper);
-  margin-bottom:48px;
-  max-width:820px;
-}
-.btn-head em{color:var(--orange);font-style:normal;font-weight:500}
-
-.btn-grid{
-  display:grid;
-  grid-template-columns:repeat(12,1fr);
-  gap:1px;
-  background:rgba(250,250,247,.14);
-  border-top:1px solid rgba(250,250,247,.14);
-  border-bottom:1px solid rgba(250,250,247,.14);
-}
-.btn-cell{
-  background:var(--ink);
-  padding:32px 24px 28px;
-  display:flex;flex-direction:column;gap:6px;
-  position:relative;
-}
-.btn-cell.s6{grid-column:span 6}
-.btn-cell.s4{grid-column:span 4}
-.btn-cell.s3{grid-column:span 3}
-.btn-cell.s12{grid-column:span 12}
-.btn-cell.s8{grid-column:span 8}
-.btn-label{
-  font-family:var(--narrow);
-  font-size:13px;font-weight:600;letter-spacing:.16em;
-  text-transform:uppercase;color:rgba(250,250,247,.78);
-  line-height:1.35;
-}
-.btn-num{
-  font-family:var(--disp);
-  font-weight:700;
-  font-variation-settings:"opsz" 96;
-  font-size:clamp(56px,7.5vw,120px);
-  line-height:.92;letter-spacing:-.04em;
-  color:var(--paper);
-}
-.btn-num.accent{color:var(--orange)}
-.btn-note{
-  font-family:var(--disp);font-style:italic;
-  font-size:15px;line-height:1.4;color:rgba(250,250,247,.8);
-  margin-top:6px;
-}
-
-@media(max-width:860px){
-  .btn-cell.s6,.btn-cell.s4,.btn-cell.s8{grid-column:span 6}
-  .btn-cell.s3{grid-column:span 6}
-  .btn-cell.s12{grid-column:span 12}
-}
-@media(max-width:520px){
-  .btn-cell{grid-column:span 12 !important}
-  .btn-num{font-size:64px}
-}
-
-/* ─────────────────────────────────────────
-   FEATURE OPENER ,  vertical rotated label.
-   ───────────────────────────────────────── */
-.feature-opener{
-  display:grid;
-  grid-template-columns:72px 1fr minmax(0,320px);
-  gap:32px;
-  padding:56px 28px 40px;
-  max-width:1280px;margin:0 auto;
-  position:relative;
-  border-top:2px solid var(--ink);
-}
-.feature-opener::before{
-  content:"";
-  position:absolute;
-  left:100px;top:0;bottom:0;
-  width:1px;background:var(--hair);
-}
-.vert-label{
-  position:relative;
-  writing-mode:vertical-rl;
-  transform:rotate(180deg);
-  font-family:var(--narrow);
-  font-size:13px;font-weight:700;letter-spacing:.48em;
-  text-transform:uppercase;color:var(--ink);
-  align-self:start;
-  padding-top:12px;
-  white-space:nowrap;
-}
-.vert-label .vert-num{
-  color:var(--orange);
-  font-family:var(--disp);
-  font-style:italic;font-weight:500;
-  letter-spacing:-.02em;
-  margin-top:12px;display:inline-block;
-  writing-mode:horizontal-tb;
-  transform:rotate(180deg);
-  font-size:20px;
-}
-.feature-heading{min-width:0}
-.feature-kicker{
-  font-family:var(--narrow);
-  font-size:10px;font-weight:700;letter-spacing:.32em;
-  text-transform:uppercase;color:var(--orange);
-  margin-bottom:20px;
-}
-.feature-title{
-  font-family:var(--disp);font-weight:700;
-  font-variation-settings:"opsz" 144;
-  font-size:clamp(52px,8vw,128px);
-  line-height:.9;letter-spacing:-.042em;
-  color:var(--ink);
-  margin-bottom:24px;
-}
-.feature-title em{font-style:italic;font-weight:400;color:var(--ink)}
-.feature-deck{
-  font-family:var(--disp);font-weight:400;
-  font-variation-settings:"opsz" 72;
-  font-size:clamp(20px,2.4vw,28px);
-  line-height:1.3;letter-spacing:-.01em;
-  color:var(--muted);
-  max-width:640px;
-  margin-bottom:24px;
-}
-.feature-meta{
-  padding-top:18px;
-  border-top:1px solid var(--hair);
-  font-family:var(--narrow);
-  font-size:10px;font-weight:600;letter-spacing:.24em;
-  text-transform:uppercase;color:var(--muted);
-  line-height:1.8;
-}
-.feature-meta b{color:var(--ink);font-weight:700}
-.feature-right{
-  padding-top:28px;
-  border-top:1px solid var(--hair);
-  font-family:var(--disp);font-style:italic;
-  font-size:15px;line-height:1.55;color:var(--muted);
-}
-.feature-right-label{
-  display:block;
-  font-family:var(--narrow);font-style:normal;
-  font-size:10px;font-weight:700;letter-spacing:.28em;
-  text-transform:uppercase;color:var(--ink);
-  margin-bottom:10px;
-}
-@media(max-width:860px){
-  .feature-opener{grid-template-columns:1fr;gap:16px}
-  .feature-opener::before{display:none}
-  .vert-label{writing-mode:horizontal-tb;transform:none;font-size:11px}
-  .vert-label .vert-num{writing-mode:horizontal-tb;transform:none;margin-left:16px}
-  .feature-right{grid-column:1 / -1}
-}
-
-/* ─────────────────────────────────────────
-   EDITORIAL PROSE + DROP CAPS
-   ───────────────────────────────────────── */
-.prose-well{
-  max-width:1280px;margin:0 auto;padding:0 28px 56px;
-  display:grid;grid-template-columns:72px 1fr minmax(0,320px);
-  gap:32px;position:relative;
-}
-.prose-well::before{
-  content:"";position:absolute;left:100px;top:0;bottom:0;
-  width:1px;background:var(--hair);
-}
-.prose-marginalia{
-  grid-column:1;
-  font-family:var(--narrow);
-  font-size:10px;font-weight:600;letter-spacing:.26em;
-  text-transform:uppercase;color:var(--gray);
-  writing-mode:vertical-rl;transform:rotate(180deg);
-  align-self:start;padding-top:8px;
-  white-space:nowrap;
-}
-.prose{
-  grid-column:2;
-  font-family:var(--disp);
-  font-variation-settings:"opsz" 14;
-  font-weight:400;font-size:19px;line-height:1.66;
-  color:var(--body);
-  max-width:640px;
-}
-.prose p{margin-bottom:24px}
-.prose em{font-style:italic;color:var(--ink)}
-.prose strong{font-weight:600;color:var(--ink)}
-.prose code{
-  font-family:var(--mono);font-size:.86em;
-  background:var(--paper-shadow);padding:1px 6px;
-  border-radius:3px;color:var(--ink);
-}
-.prose-aside{
-  grid-column:3;
-  font-family:var(--narrow);
-  font-size:11px;font-weight:500;letter-spacing:.14em;
-  text-transform:uppercase;color:var(--muted);
-  border-top:1px solid var(--ink);padding-top:14px;
-  line-height:1.8;
-}
-.prose-aside b{color:var(--ink);font-weight:700}
-
-.drop-cap::first-letter{
-  font-family:var(--disp);
-  font-variation-settings:"opsz" 144;
-  font-weight:700;
-  font-size:9.2em;
-  float:left;line-height:.78;
-  padding:.02em 12px 0 0;
-  margin:.02em 4px -.1em -2px;
-  color:var(--ink);
-}
-.drop-cap-orange::first-letter{
-  color:var(--orange);
-}
-
-@media(max-width:860px){
-  .prose-well{grid-template-columns:1fr;padding-left:20px;padding-right:20px}
-  .prose-well::before{display:none}
-  .prose-marginalia{display:none}
-  .prose{grid-column:1}
-  .prose-aside{grid-column:1;margin-top:20px}
-  .drop-cap::first-letter{font-size:6.6em}
-}
-
-/* ─────────────────────────────────────────
-   FULL-SCREEN PULL QUOTE ,  the punchline moment
-   ───────────────────────────────────────── */
-.pq-full{
-  background:var(--ink);color:var(--paper);
-  padding:120px 28px;
-  position:relative;
-  border-top:1px solid var(--ink);
-  border-bottom:1px solid var(--ink);
-}
-.pq-full-inner{
-  max-width:1280px;margin:0 auto;
-  display:grid;grid-template-columns:repeat(12,1fr);gap:24px;
-  align-items:center;
-}
-.pq-quote-mark{
-  grid-column:1 / span 2;
-  font-family:var(--disp);font-weight:900;
-  font-variation-settings:"opsz" 144;
-  font-size:clamp(180px,24vw,360px);
-  line-height:.6;color:var(--orange);
-  letter-spacing:-.05em;
-  align-self:start;
-}
-.pq-body{
-  grid-column:3 / span 9;
-}
-.pq-text{
-  font-family:var(--disp);font-weight:400;
-  font-variation-settings:"opsz" 144;
-  font-style:italic;
-  font-size:clamp(36px,5vw,68px);
-  line-height:1.1;letter-spacing:-.022em;
-  color:var(--paper);
-  margin-bottom:28px;
-}
-.pq-text em{color:var(--orange);font-style:normal;font-weight:500}
-.pq-att{
-  font-family:var(--narrow);
-  font-size:11px;font-weight:600;letter-spacing:.24em;
-  text-transform:uppercase;color:rgba(250,250,247,.55);
-  border-top:1px solid rgba(250,250,247,.25);
-  padding-top:14px;
-  display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;
-}
-.pq-att b{color:var(--paper)}
-@media(max-width:720px){
-  .pq-full{padding:64px 20px}
-  .pq-quote-mark{grid-column:1 / -1;font-size:120px;line-height:.7;margin-bottom:-30px}
-  .pq-body{grid-column:1 / -1}
-}
-
-/* ─────────────────────────────────────────
-   THE MYTHOS BAR ,  hero benchmark diagram
-   ───────────────────────────────────────── */
-.hero-chart-section{
-  background:var(--paper);
-  padding:64px 28px 56px;max-width:1280px;margin:0 auto;
-}
-.hero-chart-head{
-  display:grid;grid-template-columns:1fr auto;
-  gap:24px;align-items:end;
-  padding-bottom:18px;
-  border-bottom:1px solid var(--ink);
-  margin-bottom:36px;
-}
-.hero-chart-head-title{
-  font-family:var(--disp);font-weight:700;
-  font-variation-settings:"opsz" 144;
-  font-size:clamp(36px,5vw,64px);
-  line-height:.95;letter-spacing:-.03em;color:var(--ink);
-}
-.hero-chart-head-title em{font-style:italic;color:var(--orange);font-weight:500}
-.hero-chart-head-meta{
-  font-family:var(--narrow);
-  font-size:10px;font-weight:600;letter-spacing:.28em;
-  text-transform:uppercase;color:var(--muted);
-  text-align:right;line-height:1.8;
-}
-.hero-chart-head-meta b{color:var(--ink);font-weight:700}
-
-.hero-chart-bars{
-  display:flex;flex-direction:column;gap:0;
-}
-.hero-chart-row{
-  display:grid;
-  grid-template-columns:minmax(160px,220px) 1fr 90px;
-  gap:24px;align-items:center;
-  padding:18px 0;
-  border-bottom:1px solid var(--hair);
-}
-.hero-chart-row:last-child{border-bottom:1px solid var(--ink)}
-.hero-chart-name{
-  font-family:var(--disp);font-weight:500;
-  font-variation-settings:"opsz" 72;
-  font-size:20px;color:var(--ink);letter-spacing:-.01em;
-}
-.hero-chart-name .tag{
-  display:inline-block;margin-left:8px;
-  font-family:var(--narrow);font-size:9px;font-weight:700;
-  letter-spacing:.24em;text-transform:uppercase;
-  color:var(--orange);vertical-align:2px;
-}
-.hero-chart-bar{
-  height:16px;background:var(--paper-shadow);
-  position:relative;overflow:hidden;
-  border:1px solid var(--hair);
-}
-.hero-chart-bar-fill{
-  position:absolute;left:0;top:0;bottom:0;
-  background:var(--ink);
-}
-.hero-chart-row.frontier .hero-chart-bar-fill{background:var(--orange)}
-.hero-chart-row.frontier{background:rgba(255,107,53,.04)}
-.hero-chart-row.frontier .hero-chart-name{color:var(--ink)}
-.hero-chart-score{
-  font-family:var(--disp);font-weight:700;
-  font-variation-settings:"opsz" 72;
-  font-size:28px;letter-spacing:-.02em;
-  color:var(--ink);text-align:right;
-  font-variant-numeric:tabular-nums;
-}
-.hero-chart-row.frontier .hero-chart-score{color:var(--orange)}
-.hero-chart-caption{
-  margin-top:20px;
-  display:grid;grid-template-columns:auto 1fr;gap:16px;align-items:start;
-  font-family:var(--disp);font-style:italic;
-  font-size:14px;line-height:1.5;color:var(--muted);
-}
-.hero-chart-caption-num{
-  font-family:var(--narrow);font-style:normal;
-  font-size:10px;font-weight:700;letter-spacing:.28em;
-  text-transform:uppercase;color:var(--orange);
-  padding-top:2px;white-space:nowrap;
-}
-@media(max-width:720px){
-  .hero-chart-row{grid-template-columns:1fr auto;gap:6px 12px}
-  .hero-chart-bar{grid-column:1 / -1;order:3}
-  .hero-chart-name{grid-column:1;grid-row:1}
-  .hero-chart-score{grid-column:2;grid-row:1}
-}
-
-/* ─────────────────────────────────────────
-   SIDEBAR BOX ,  editorial aside
-   ───────────────────────────────────────── */
-.sidebar-box{
-  background:var(--paper);
-  border:1px solid var(--ink);
-  border-top:4px solid var(--ink);
-  padding:28px 28px 24px;
-  margin:48px auto;
-  max-width:820px;
-  position:relative;
-}
-.sidebar-box.accent{border-top-color:var(--orange)}
-.sidebar-box-kicker{
-  font-family:var(--narrow);
-  font-size:10px;font-weight:700;letter-spacing:.32em;
-  text-transform:uppercase;color:var(--orange);
-  margin-bottom:8px;
-}
-.sidebar-box-title{
-  font-family:var(--disp);font-weight:500;font-style:italic;
-  font-variation-settings:"opsz" 72;
-  font-size:28px;letter-spacing:-.015em;
-  color:var(--ink);
-  padding-bottom:16px;
-  border-bottom:1px solid var(--hair);
-  margin-bottom:20px;
-}
-.sidebar-box-body{
-  font-family:var(--sans);font-size:15px;line-height:1.65;color:var(--body);
-}
-.sidebar-box-body p{margin-bottom:12px}
-.sidebar-box-body p:last-child{margin-bottom:0}
-.sidebar-box-list{
-  list-style:none;padding:0;margin:16px 0 0;
-  display:flex;flex-direction:column;
-  border-top:1px solid var(--hair);
-}
-.sidebar-box-list li{
-  padding:14px 0;
-  border-bottom:1px solid var(--hair);
-  display:grid;
-  grid-template-columns:80px 1fr auto;
-  gap:16px;align-items:baseline;
-  font-family:var(--sans);font-size:14px;color:var(--body);
-  line-height:1.5;
-}
-.sidebar-box-list .yr{
-  font-family:var(--disp);font-weight:700;
-  font-variation-settings:"opsz" 72;
-  font-size:22px;color:var(--orange);
-  letter-spacing:-.01em;
-}
-.sidebar-box-list .yr em{font-style:italic;font-weight:400;font-size:14px;color:var(--muted)}
-
-/* ─────────────────────────────────────────
-   THE AGENT STACK ,  feature with code
-   ───────────────────────────────────────── */
-.code-block{
-  margin:24px 0;
-  border:1px solid var(--ink);
-  background:var(--paper);
-  font-family:var(--mono);font-size:12.5px;line-height:1.55;
-  color:var(--ink);
-  position:relative;
-  overflow:hidden;
-}
-.code-block-head{
-  display:flex;justify-content:space-between;align-items:center;
-  padding:10px 16px;
-  border-bottom:1px solid var(--ink);
-  background:var(--ink);color:var(--paper);
-  font-family:var(--narrow);
-  font-size:10px;font-weight:700;letter-spacing:.28em;
-  text-transform:uppercase;
-}
-.code-block-head span:last-child{color:var(--orange)}
-.code-block pre{
-  padding:20px 24px;overflow-x:auto;white-space:pre;margin:0;
-}
-.code-block .k{color:var(--orange)}
-.code-block .s{color:var(--muted);font-style:italic}
-.code-block .c{color:var(--gray);font-style:italic}
-
-/* ─────────────────────────────────────────
-   TIMELINE ,  21 days, 56 releases
-   ───────────────────────────────────────── */
-.tl-section{padding:64px 28px 56px;max-width:1280px;margin:0 auto}
-.tl-head{
-  display:grid;grid-template-columns:1fr auto;
-  gap:24px;align-items:end;
-  padding-bottom:18px;border-bottom:1px solid var(--ink);
-  margin-bottom:36px;
-}
-.tl-title{
-  font-family:var(--disp);font-weight:700;
-  font-variation-settings:"opsz" 144;
-  font-size:clamp(40px,6vw,72px);line-height:.95;letter-spacing:-.03em;
-}
-.tl-title em{font-style:italic;color:var(--orange);font-weight:500}
-.tl-count{
-  font-family:var(--disp);font-weight:900;
-  font-variation-settings:"opsz" 144;
-  font-size:clamp(72px,10vw,160px);line-height:.8;letter-spacing:-.05em;
-  color:var(--ink);
-}
-.tl-count .slash{color:var(--orange);font-style:italic;font-weight:400}
-
-.tl-grid{
-  display:grid;
-  grid-template-columns:repeat(21, minmax(0, 1fr));
-  gap:2px;
-  margin-bottom:40px;
-  border-top:1px solid var(--ink);padding-top:20px;
-}
-.tl-day{
-  display:flex;flex-direction:column;gap:2px;align-items:stretch;
-  min-height:140px;
-}
-.tl-date{
-  font-family:var(--narrow);
-  font-size:9px;font-weight:600;letter-spacing:.08em;
-  text-transform:uppercase;color:var(--muted);
-  text-align:center;
-  font-variant-numeric:tabular-nums;
-}
-.tl-stack{
-  display:flex;flex-direction:column;gap:2px;align-items:stretch;
-  flex:1;justify-content:flex-end;
-}
-.tl-dot{
-  height:8px;background:var(--ink);
-  display:block;
-}
-.tl-dot.big{background:var(--orange);height:18px}
-.tl-dot.minor{background:var(--hair-hard)}
-.tl-weekend{opacity:.35}
-
-@media(max-width:860px){
-  .tl-grid{grid-template-columns:repeat(7, minmax(0, 1fr));grid-auto-rows:auto}
-  .tl-day{min-height:100px}
-}
-
-.tl-legend{
-  display:flex;gap:24px;flex-wrap:wrap;
-  font-family:var(--narrow);font-size:10px;font-weight:600;
-  letter-spacing:.24em;text-transform:uppercase;color:var(--muted);
-  padding-top:18px;border-top:1px solid var(--hair);
-}
-.tl-legend-item{display:flex;align-items:center;gap:8px}
-.tl-legend-dot{width:12px;height:8px;background:var(--ink)}
-.tl-legend-dot.big{background:var(--orange);height:14px}
-.tl-legend-dot.minor{background:var(--hair-hard)}
-
-.tl-list{
-  margin-top:32px;
-  display:grid;grid-template-columns:repeat(12,1fr);gap:0;
-  border-top:1px solid var(--ink);
-}
-.tl-list-item{
-  grid-column:span 6;
-  padding:18px 0;
-  border-bottom:1px solid var(--hair);
-  display:grid;
-  grid-template-columns:60px 1fr;gap:18px;
-}
-.tl-list-item:nth-child(odd){padding-right:24px;border-right:1px solid var(--hair)}
-.tl-list-item:nth-child(even){padding-left:24px}
-.tl-list-date{
-  font-family:var(--narrow);
-  font-size:10px;font-weight:700;letter-spacing:.24em;
-  text-transform:uppercase;color:var(--orange);
-  padding-top:3px;
-}
-.tl-list-title{
-  font-family:var(--disp);font-weight:500;
-  font-variation-settings:"opsz" 72;
-  font-size:17px;letter-spacing:-.01em;
-  color:var(--ink);line-height:1.25;
-  margin-bottom:4px;
-}
-.tl-list-desc{
-  font-family:var(--sans);font-size:13px;color:var(--muted);
-  line-height:1.5;
-}
-@media(max-width:720px){
-  .tl-list-item{grid-column:span 12;padding:16px 0 !important;border-right:none !important;padding-left:0 !important;padding-right:0 !important}
-}
-
-/* ─────────────────────────────────────────
-   SURVEY ,  Claude Code
-   ───────────────────────────────────────── */
-.survey-data{
-  display:grid;grid-template-columns:repeat(12,1fr);gap:0;
-  margin:32px 0;
-  border-top:1px solid var(--ink);border-bottom:1px solid var(--ink);
-}
-.survey-cell{
-  grid-column:span 3;
-  padding:24px 20px;
-  border-right:1px solid var(--hair);
-  display:flex;flex-direction:column;gap:6px;
-}
-.survey-cell:last-child{border-right:none}
-.survey-label{
-  font-family:var(--narrow);
-  font-size:9px;font-weight:700;letter-spacing:.28em;
-  text-transform:uppercase;color:var(--muted);
-}
-.survey-num{
-  font-family:var(--disp);font-weight:700;
-  font-variation-settings:"opsz" 144;
-  font-size:64px;line-height:.9;letter-spacing:-.04em;color:var(--ink);
-}
-.survey-num em{color:var(--orange);font-style:italic;font-weight:500}
-.survey-note{
-  font-family:var(--disp);font-style:italic;
-  font-size:13px;color:var(--muted);line-height:1.4;
-}
-@media(max-width:720px){
-  .survey-cell{grid-column:span 6;border-bottom:1px solid var(--hair)}
-}
-
-/* ─────────────────────────────────────────
-   TERM OF THE ISSUE ,  dictionary-style
-   ───────────────────────────────────────── */
-.term-section{
-  background:var(--paper);
-  padding:80px 28px;max-width:1280px;margin:0 auto;
-  display:grid;grid-template-columns:repeat(12,1fr);gap:24px;
-}
-.term-kicker{
-  grid-column:1 / -1;
-  font-family:var(--narrow);
-  font-size:10px;font-weight:700;letter-spacing:.32em;
-  text-transform:uppercase;color:var(--orange);
-  margin-bottom:32px;padding-bottom:16px;
-  border-bottom:1px solid var(--ink);
-}
-.term-word{
-  grid-column:1 / span 6;
-  font-family:var(--disp);font-weight:400;font-style:italic;
-  font-variation-settings:"opsz" 144;
-  font-size:clamp(72px,11vw,168px);
-  line-height:.9;letter-spacing:-.04em;
-  color:var(--ink);
-}
-.term-word .part{
-  display:block;
-  font-family:var(--narrow);font-style:normal;font-weight:600;
-  font-size:14px;letter-spacing:.28em;
-  text-transform:uppercase;color:var(--muted);
-  margin-top:14px;
-}
-.term-word .part em{font-style:italic;color:var(--ink);font-family:var(--disp);font-weight:400}
-.term-def{
-  grid-column:8 / -1;
-  font-family:var(--disp);font-weight:400;
-  font-variation-settings:"opsz" 24;
-  font-size:19px;line-height:1.6;color:var(--body);
-  padding-top:24px;
-  border-top:1px solid var(--ink);
-}
-.term-def p{margin-bottom:18px}
-.term-def p:last-child{margin-bottom:0}
-.term-def em{font-style:italic;color:var(--ink)}
-.term-def strong{font-weight:600;color:var(--ink)}
-.term-usage{
-  margin-top:24px;padding-top:20px;
-  border-top:1px solid var(--hair);
-  font-family:var(--disp);font-style:italic;font-size:16px;color:var(--muted);
-}
-.term-usage b{font-style:normal;font-family:var(--narrow);font-size:10px;font-weight:700;letter-spacing:.24em;text-transform:uppercase;color:var(--orange);display:block;margin-bottom:6px}
-@media(max-width:860px){
-  .term-word{grid-column:1 / -1}
-  .term-def{grid-column:1 / -1}
-}
-
-/* ─────────────────────────────────────────
-   THE CLOSE ,  three-beat
-   ───────────────────────────────────────── */
-.close-section{
-  background:var(--ink);color:var(--paper);
-  padding:120px 28px 140px;
-  position:relative;
-  text-align:center;
-}
-.close-kicker{
-  font-family:var(--narrow);
-  font-size:11px;font-weight:700;letter-spacing:.38em;
-  text-transform:uppercase;color:rgba(250,250,247,.5);
-  margin-bottom:48px;
-}
-.close-stack{
-  max-width:780px;margin:0 auto;
-  display:flex;flex-direction:column;gap:32px;
-}
-.close-line{
-  font-family:var(--disp);font-weight:400;
-  font-variation-settings:"opsz" 96;
-  font-size:clamp(26px,3.6vw,46px);
-  line-height:1.18;letter-spacing:-.018em;
-  color:var(--paper);
-}
-.close-line em{font-style:italic;color:var(--orange);font-weight:500}
-.close-final{
-  font-style:italic;color:var(--orange);
-  font-size:clamp(18px,2.2vw,26px);
-  line-height:1.5;letter-spacing:0;
-  max-width:580px;margin:0 auto;
-  font-variation-settings:"opsz" 36;
-}
-.close-coda-start{
-  margin-top:48px;position:relative;
-}
-.close-coda-start::before{
-  content:"";display:block;
-  width:32px;height:1px;
-  background:rgba(217,107,73,.45);
-  margin:0 auto 36px;
-}
-.close-mark{
-  margin-top:72px;
-  font-family:var(--disp);
-  font-size:48px;color:rgba(250,250,247,.3);
-  letter-spacing:.8em;
-}
-
-/* ─────────────────────────────────────────
-   RELEASE LOG ,  back of book
-   ───────────────────────────────────────── */
 .log-divider{
   background:var(--paper);
-  padding:96px 28px 48px;
+  padding:72px 28px 40px;
   text-align:center;
   border-top:3px double var(--ink);
   border-bottom:1px solid var(--ink);
@@ -1141,14 +103,14 @@ body::before{
 .log-divider-title{
   font-family:var(--disp);font-weight:700;
   font-variation-settings:"opsz" 144;
-  font-size:clamp(56px,10vw,144px);
+  font-size:clamp(48px,8vw,112px);
   line-height:.9;letter-spacing:-.045em;color:var(--ink);
   margin-bottom:16px;
 }
 .log-divider-title em{font-style:italic;font-weight:400}
 .log-divider-sub{
   font-family:var(--disp);font-style:italic;
-  font-size:18px;color:var(--muted);max-width:640px;margin:0 auto;line-height:1.5;
+  font-size:17px;color:var(--muted);max-width:560px;margin:0 auto;line-height:1.5;
 }
 
 .log-section{
@@ -1162,11 +124,10 @@ body::before{
   border-bottom:1px solid var(--ink);
   margin-bottom:0;
 }
-.log-cat-letter{display:none}
 .log-cat-name{
   font-family:var(--disp);font-weight:600;font-style:italic;
   font-variation-settings:"opsz" 96;
-  font-size:clamp(36px,5vw,56px);
+  font-size:clamp(32px,4vw,48px);
   letter-spacing:-.02em;color:var(--ink);line-height:1;
 }
 .log-cat-count{
@@ -1176,22 +137,6 @@ body::before{
   text-align:right;
 }
 .log-cat-count b{color:var(--ink);font-weight:700;font-size:13px;display:block}
-
-.log-cat-deck{
-  font-family:var(--disp);
-  font-style:italic;
-  font-weight:400;
-  font-variation-settings:"opsz" 24;
-  font-size:18px;
-  line-height:1.45;
-  color:var(--muted);
-  margin-top:14px;
-  margin-bottom:8px;
-  max-width:760px;
-  letter-spacing:-.005em;
-}
-.log-cat-deck b{color:var(--ink);font-weight:600;font-style:normal}
-.log-cat-deck em{color:var(--orange);font-style:normal;font-weight:500}
 
 .log-entries{display:flex;flex-direction:column}
 .log-entry{
@@ -1240,13 +185,15 @@ body::before{
   padding-top:12px;border-top:1px solid var(--hair-soft);
 }
 .log-entry-how b{font-family:var(--narrow);font-size:10px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--ink);display:block;margin-bottom:6px}
-.log-entry-why{
-  font-family:var(--disp);font-style:italic;
-  font-size:14px;color:var(--muted);line-height:1.55;
-  margin-top:10px;padding-left:14px;
-  border-left:2px solid var(--orange);
+.log-entry-how a{color:var(--muted);text-decoration:none;border-bottom:1px solid var(--hair-hard)}
+.log-entry-how a:hover{color:var(--orange);border-bottom-color:var(--orange)}
+.log-entry-how code{font-family:var(--mono);font-size:.86em;background:var(--paper-shadow);padding:2px 7px;border-radius:3px;color:var(--ink)}
+
+.ornament{
+  text-align:center;margin:48px auto;
+  font-family:var(--disp);font-size:16px;color:var(--hair-hard);
+  letter-spacing:1.2em;
 }
-.log-entry-why b{font-style:normal;font-family:var(--narrow);font-size:10px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--orange);display:block;margin-bottom:4px}
 
 @media(max-width:720px){
   .log-entry{grid-template-columns:1fr;gap:12px}
@@ -1255,394 +202,243 @@ body::before{
 }
 
 /* ─────────────────────────────────────────
-   ORNAMENT
+   DAILY PAGE EXTRAS
    ───────────────────────────────────────── */
-.ornament{
-  text-align:center;margin:64px auto;
-  font-family:var(--disp);font-size:16px;color:var(--hair-hard);
-  letter-spacing:1.2em;
-}
-.ornament.bold{color:var(--orange);letter-spacing:.8em;font-size:20px}
-
-/* ─────────────────────────────────────────
-   QUIET ON THE WIRE
-   ───────────────────────────────────────── */
-.quiet-section{
-  max-width:1280px;margin:0 auto;padding:64px 28px 24px;
-  display:grid;grid-template-columns:repeat(12,1fr);gap:24px;
-}
-.quiet-head{
-  grid-column:1 / span 3;
-}
-.quiet-title{
-  font-family:var(--disp);font-style:italic;font-weight:400;
-  font-variation-settings:"opsz" 72;
-  font-size:32px;line-height:1;letter-spacing:-.02em;
-  color:var(--ink);
-}
-.quiet-title em{color:var(--orange);font-style:normal;font-weight:500}
-.quiet-kicker{
-  font-family:var(--narrow);
-  font-size:10px;font-weight:700;letter-spacing:.32em;
-  text-transform:uppercase;color:var(--muted);
-  margin-bottom:10px;
-}
-.quiet-body{
-  grid-column:5 / -1;
-  font-family:var(--disp);font-size:17px;line-height:1.65;color:var(--body);
-  padding-left:24px;border-left:1px solid var(--ink);
-}
-.quiet-body p{margin-bottom:16px}
-.quiet-body strong{font-weight:600;color:var(--ink)}
-@media(max-width:860px){
-  .quiet-head,.quiet-body{grid-column:1 / -1}
-  .quiet-body{padding-left:0;border-left:none;border-top:1px solid var(--ink);padding-top:18px}
-}
-
-/* ─────────────────────────────────────────
-   COLOPHON ,  print-magazine care
-   ───────────────────────────────────────── */
-.colophon{
-  background:var(--ink);color:var(--paper);
-  padding:80px 28px 64px;
-  border-top:2px solid var(--orange);
-}
-.colophon-inner{
-  max-width:1280px;margin:0 auto;
-  display:grid;grid-template-columns:repeat(12,1fr);gap:32px;
-}
-.colophon-mast{
-  grid-column:1 / span 5;
-}
-.colophon-word{
-  font-family:var(--disp);font-weight:500;
-  font-variation-settings:"opsz" 144;
-  font-size:clamp(72px,10vw,120px);
-  line-height:.9;letter-spacing:-.04em;color:var(--paper);
-}
-.colophon-word .dot{color:var(--orange)}
-.colophon-tag{
-  margin-top:14px;
-  font-family:var(--disp);font-style:italic;font-size:18px;
-  color:rgba(250,250,247,.65);line-height:1.4;max-width:360px;
-}
-
-.colophon-body{
-  grid-column:6 / -1;
-  display:grid;grid-template-columns:repeat(3,1fr);gap:32px;
-}
-.colophon-col{}
-.colophon-col h4{
-  font-family:var(--narrow);
-  font-size:10px;font-weight:700;letter-spacing:.32em;
-  text-transform:uppercase;color:var(--orange);
-  margin-bottom:12px;padding-bottom:10px;
-  border-bottom:1px solid rgba(250,250,247,.2);
-}
-.colophon-col p,.colophon-col li{
-  font-family:var(--sans);font-size:13px;line-height:1.6;
-  color:rgba(250,250,247,.75);
-  margin-bottom:8px;list-style:none;
-}
-.colophon-col b{color:var(--paper);font-weight:600}
-.colophon-col em{font-style:italic;color:rgba(250,250,247,.9)}
-
-.colophon-foot{
-  grid-column:1 / -1;
-  margin-top:32px;padding-top:24px;
-  border-top:1px solid rgba(250,250,247,.2);
-  display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap;
-  font-family:var(--narrow);font-size:10px;font-weight:600;
-  letter-spacing:.28em;text-transform:uppercase;color:rgba(250,250,247,.5);
-}
-.colophon-foot b{color:var(--paper);font-weight:700}
-.colophon-foot .hot{color:var(--orange)}
-
-@media(max-width:860px){
-  .colophon-mast,.colophon-body{grid-column:1 / -1}
-  .colophon-body{grid-template-columns:1fr;gap:24px}
-}
-
-/* ─────────────────────────────────────────
-   MOBILE FINAL
-   ───────────────────────────────────────── */
-@media(max-width:600px){
-  .section,.log-section,.hero-chart-section,.tl-section,.feature-opener,.prose-well{padding-left:20px;padding-right:20px}
-  .open-grid{gap:20px}
-  .open-lead{grid-column:1 / -1}
-  .btn-grid{grid-template-columns:repeat(4,1fr)}
-  .cover{padding:24px 20px 48px}
-  .cover-top{flex-direction:column;gap:12px;align-items:flex-start}
-  .cover-top-right{text-align:left}
-  .btn-num{font-size:54px}
-}
-
-/* ─────────────────────────────────────────
-   DAILY PAGE ADDITIONS
-   ───────────────────────────────────────── */
-
-/* Generic inline code */
-code{
-  font-family:var(--mono);font-size:.88em;
-  background:var(--paper-shadow);padding:2px 7px;
-  border-radius:3px;color:var(--ink);
-}
-
-/* Daily cover header */
-.daily-cover{
-  padding:72px 28px 56px;
-  border-bottom:2px solid var(--ink);
-  max-width:1280px;margin:0 auto;
+.daily-masthead{
+  padding:56px 28px 48px;
+  max-width:1280px;
+  margin:0 auto;
+  border-bottom:1px solid var(--hair);
 }
 .daily-kicker{
   font-family:var(--narrow);
-  font-size:10px;font-weight:700;letter-spacing:.32em;
+  font-size:10px;font-weight:700;letter-spacing:.38em;
   text-transform:uppercase;color:var(--orange);
-  margin-bottom:28px;
+  margin-bottom:16px;
 }
-.daily-masthead{
-  font-family:var(--disp);
-  font-style:italic;font-weight:500;
+.daily-head{
+  font-family:var(--disp);font-weight:500;font-style:italic;
   font-variation-settings:"opsz" 144;
-  font-size:clamp(88px,16vw,220px);
+  font-size:clamp(56px,10vw,120px);
   line-height:.88;letter-spacing:-.04em;
   color:var(--ink);
-  margin-bottom:20px;
+  display:inline-block;
 }
-.daily-masthead .dot{color:var(--orange)}
+.daily-head .dot{color:var(--orange)}
 .daily-dateline{
+  display:block;
   font-family:var(--narrow);
-  font-size:13px;font-weight:700;letter-spacing:.24em;
+  font-size:11px;font-weight:600;letter-spacing:.28em;
   text-transform:uppercase;color:var(--muted);
-  padding-bottom:24px;
+  margin-top:12px;margin-bottom:28px;
+  padding-bottom:22px;
   border-bottom:1px solid var(--ink);
-  margin-bottom:28px;
 }
-.daily-one-read{
-  font-family:var(--disp);
-  font-style:italic;font-weight:400;
-  font-variation-settings:"opsz" 24;
-  font-size:clamp(18px,2.4vw,26px);line-height:1.55;
-  color:var(--body);
-  max-width:700px;
+.daily-lede{
+  font-family:var(--disp);font-style:italic;font-weight:400;
+  font-variation-settings:"opsz" 36;
+  font-size:clamp(22px,3vw,34px);
+  line-height:1.28;letter-spacing:-.012em;
+  color:var(--ink);
+  max-width:720px;
+  margin-top:28px;
 }
-@media(max-width:600px){
-  .daily-cover{padding:40px 20px 40px}
-}
-
-/* Sources section */
-.sources-section{
-  padding:40px 28px 48px;
+.daily-lead-section{
+  padding:48px 28px 44px;
   max-width:1280px;margin:0 auto;
-  border-top:1px solid var(--hair);
-}
-.sources-head{
-  font-family:var(--narrow);
-  font-size:10px;font-weight:700;letter-spacing:.32em;
-  text-transform:uppercase;color:var(--muted);
-  margin-bottom:16px;padding-bottom:10px;
   border-bottom:1px solid var(--hair);
 }
-.sources-list{
-  list-style:none;padding:0;
-  font-family:var(--mono);font-size:11px;
-  line-height:1.9;color:var(--muted);
-}
-.sources-list li{
-  padding:5px 0;
-  border-bottom:1px solid var(--hair-soft);
-}
-.sources-list a{
-  color:var(--ink);text-decoration:none;
-  border-bottom:1px solid var(--hair-hard);
-}
-.sources-list a:hover{color:var(--orange);border-bottom-color:var(--orange)}
-.daily-timestamp{
+.daily-lead-kicker{
   font-family:var(--narrow);
-  font-size:10px;font-weight:600;letter-spacing:.22em;
+  font-size:10px;font-weight:700;letter-spacing:.32em;
+  text-transform:uppercase;color:var(--orange);
+  margin-bottom:14px;
+}
+.daily-lead-body{
+  font-family:var(--disp);
+  font-variation-settings:"opsz" 14;
+  font-weight:400;font-size:18px;line-height:1.66;
+  color:var(--body);max-width:640px;
+}
+.daily-lead-body p{margin-bottom:22px}
+.daily-lead-body p:last-child{margin-bottom:0}
+.daily-lead-body a{color:var(--ink);text-decoration:none;border-bottom:1px solid var(--hair-hard)}
+.daily-lead-body a:hover{color:var(--orange);border-bottom-color:var(--orange)}
+.daily-footer{
+  padding:56px 28px 48px;
+  max-width:1280px;margin:0 auto;
+  border-top:2px solid var(--orange);
+  display:grid;
+  grid-template-columns:repeat(12,1fr);
+  gap:24px;align-items:start;
+}
+.daily-footer-mast{grid-column:1 / span 4}
+.daily-footer-word{
+  font-family:var(--disp);font-weight:500;font-style:italic;
+  font-variation-settings:"opsz" 144;
+  font-size:clamp(40px,6vw,72px);
+  line-height:.9;letter-spacing:-.04em;color:var(--ink);
+}
+.daily-footer-word .dot{color:var(--orange)}
+.daily-footer-tagline{
+  font-family:var(--disp);font-style:italic;
+  font-size:14px;color:var(--muted);line-height:1.45;
+  margin-top:12px;max-width:280px;
+}
+.daily-footer-tagline a{color:var(--muted);text-decoration:none;border-bottom:1px solid var(--hair-hard)}
+.daily-footer-tagline a:hover{color:var(--orange)}
+.daily-footer-meta{
+  grid-column:6 / -1;
+  font-family:var(--narrow);
+  font-size:10px;font-weight:500;letter-spacing:.18em;
+  text-transform:uppercase;color:var(--muted);
+  line-height:2;
+  border-top:1px solid var(--ink);
+  padding-top:14px;
+}
+.daily-footer-meta b{color:var(--ink);font-weight:700}
+.daily-footer-meta a{color:var(--muted);text-decoration:none;border-bottom:1px solid var(--hair-hard)}
+.daily-footer-meta a:hover{color:var(--orange)}
+.daily-footer-stamp{
+  grid-column:1 / -1;
+  margin-top:8px;padding-top:16px;
+  border-top:1px solid var(--hair);
+  font-family:var(--narrow);
+  font-size:9px;font-weight:600;letter-spacing:.22em;
   text-transform:uppercase;color:var(--gray);
-  margin-top:18px;
+  display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;
+}
+.daily-footer-stamp a{color:var(--gray);text-decoration:none;border-bottom:1px solid var(--hair)}
+.daily-footer-stamp a:hover{color:var(--orange)}
+@media(max-width:860px){
+  .daily-footer-mast,.daily-footer-meta{grid-column:1 / -1}
+}
+@media(max-width:600px){
+  .daily-masthead,.daily-lead-section,.log-section,.log-divider{padding-left:20px;padding-right:20px}
+  .daily-footer{padding-left:20px;padding-right:20px}
 }
 </style>
 </head>
 <body>
 
-<!-- ═══════════════════════════════════════════
-     PUBLICATION BAR
-     ═══════════════════════════════════════════ -->
+<!-- PUBLICATION BAR -->
 <nav class="pub-bar">
   <div class="pub-bar-left">
     <span class="pub-bar-mark">Shipped<span class="dot">.</span></span>
     <span class="pub-bar-sep"></span>
-    <span class="pub-bar-meta">Nightly sweep by <a href="https://id8labs.app" class="pub-bar-link">id8Labs</a></span>
+    <span class="pub-bar-meta">Daily dispatch by <a href="https://id8labs.app" class="pub-bar-link">id8Labs</a></span>
   </div>
   <div class="pub-bar-right">
-    <span class="pub-bar-folio"><b>Daily</b></span>
+    <span class="pub-bar-folio"><b>Monday</b></span>
     <span class="pub-bar-sep"></span>
-    <span class="pub-bar-meta">Mon, Jun 08, 2026</span>
+    <span class="pub-bar-meta">June 08, 2026</span>
   </div>
 </nav>
 
-<!-- ═══════════════════════════════════════════
-     DAILY COVER
-     ═══════════════════════════════════════════ -->
-<header class="daily-cover" id="top">
-  <div class="daily-kicker">Nightly Sweep &nbsp;·&nbsp; Anthropic Releases &nbsp;·&nbsp; 24-Hour Window</div>
-  <h1 class="daily-masthead">Shipped<span class="dot">.</span></h1>
-  <div class="daily-dateline">Daily, Monday, June 08, 2026</div>
-  <p class="daily-one-read">WWDC morning: iOS 27 betas already show Claude in the Extensions lineup before Tim Cook takes the stage.</p>
-</header>
-
-<!-- ═══════════════════════════════════════════
-     RELEASE LOG HEADER
-     ═══════════════════════════════════════════ -->
-<section class="log-divider" id="log">
-  <div class="log-divider-kicker">Window: June 07 to June 08, 2026 &nbsp;·&nbsp; 24 Hours</div>
-  <h2 class="log-divider-title">Release <em>Log</em></h2>
-  <p class="log-divider-sub">All confirmed items in the window. Pre-keynote items labeled. Nothing fabricated.</p>
+<!-- DAILY MASTHEAD -->
+<section class="daily-masthead">
+  <div class="daily-kicker">Anthropic Daily &nbsp;·&nbsp; 24-Hour Sweep</div>
+  <h1 class="daily-head">Shipped<span class="dot">.</span></h1>
+  <span class="daily-dateline">Monday, June 08, 2026 &nbsp;·&nbsp; Window: June 07 to June 08, 2026</span>
+  <p class="daily-lede">WWDC 2026 opened this morning with iOS 27 making Claude a user-selectable AI engine inside Siri. One SDK patch. Two items total.</p>
 </section>
 
-<!-- ═══════════════════════════════════════════
-     NEWS: WWDC / iOS 27 Extensions
-     ═══════════════════════════════════════════ -->
+<!-- LEAD -->
+<section class="daily-lead-section">
+  <div class="daily-lead-kicker">Lead</div>
+  <div class="daily-lead-body">
+    <p>Apple opened WWDC 2026 on June 8 with iOS 27's new Extensions framework: users can now designate Claude, Gemini, or ChatGPT as their preferred AI engine for Siri, Writing Tools, and Image Playground. Gemini holds the native default at a reported $1 billion annual contract with Google; Claude arrives as a user-installed extension layered on top. iOS 27, iPadOS 27, and macOS 27 ship fall 2026.</p>
+    <p>Gemini has the advantage of native integration and custom model tuning. Claude gets reach. Whether reach converts to daily usage depends on how many iPhone owners actively switch their AI engine in Settings. Apple's default wins that race, but being in the lineup is a different kind of win.</p>
+  </div>
+</section>
+
+<!-- RELEASE LOG DIVIDER -->
+<div class="log-divider">
+  <div class="log-divider-kicker">Release Log &nbsp;·&nbsp; 24h Sweep</div>
+  <h2 class="log-divider-title">The <em>Daily</em> Log</h2>
+  <p class="log-divider-sub">2 confirmed items. June 07 to June 08, 2026.</p>
+</div>
+
+<!-- LOG: NEWS AND PARTNERSHIPS -->
 <section class="log-section">
   <div class="log-cat-head">
-    <div>
-      <div class="log-cat-name">News</div>
-      <div class="log-cat-deck">Reported via iOS 27 beta documentation and third-party tech press. Anthropic has not issued a press release. WWDC keynote starts 17:00 UTC (after sweep time).</div>
-    </div>
-    <div class="log-cat-count"><b>1</b><br>item</div>
+    <div class="log-cat-name">News and Partnerships</div>
+    <div class="log-cat-count"><b>1</b> item</div>
   </div>
   <div class="log-entries">
-    <article class="log-entry">
+
+    <div class="log-entry">
       <div class="log-entry-left">
         <div class="log-entry-date">2026-06-08</div>
-        <span class="log-tag news">NEWS</span>
+        <span class="log-tag news">news</span>
       </div>
       <div>
         <div class="log-entry-title">
-          <a href="https://9to5mac.com/2026/05/05/ios-27-will-let-you-choose-between-gemini-claude-and-more-for-ai-features-report/">Claude in iOS 27 Extensions (reported by 9to5Mac, MacRumors, Tom's Guide)</a>
+          <a href="https://www.tomsguide.com/news/live/wwdc-2026-live-news-updates" target="_blank" rel="noopener">Apple WWDC 2026: iOS 27 Extensions bring Claude to Siri</a>
         </div>
         <div class="log-entry-body">
-          iOS 27 developer betas document a new Extensions framework letting users choose between AI providers for Siri, Writing Tools, and Image Playground. Claude is in the initial lineup alongside Gemini and ChatGPT. Providers integrate via their installed iOS apps. Gemini holds the native default slot, backed by a reported $1&nbsp;billion annual Apple agreement. Claude and ChatGPT appear as user-selectable alternatives in the Apple Intelligence and Siri section of Settings. iOS&nbsp;27, iPadOS&nbsp;27, and macOS&nbsp;27 ship fall 2026.
+          iOS 27 introduces an Extensions framework letting users select Claude, Gemini, or ChatGPT as the AI model for Siri, Writing Tools, and Image Playground. Gemini is the native default, backed by a reported $1 billion annual Apple-Google contract. Claude and ChatGPT arrive as user-installed extensions; users with the Claude app installed designate it in Settings under Apple Intelligence. iOS 27, iPadOS 27, and macOS 27 ship fall 2026.
         </div>
-        <div class="log-entry-why">
-          <b>Sourcing note</b>
-          WWDC 2026 keynote begins 17:00 UTC. This sweep ran at 15:47 UTC, before the keynote. Story confirmed via iOS 27 beta code and pre-keynote reporting (9to5Mac, MacRumors, Tom's Guide). Not yet officially announced by Apple or Anthropic at sweep time. This is a third-party platform story; Anthropic has not issued a press release.
+        <div class="log-entry-how">
+          <b>Reporting</b>
+          <a href="https://www.tomsguide.com/news/live/wwdc-2026-live-news-updates" target="_blank" rel="noopener">Tom's Guide WWDC 2026 live updates</a>; <a href="https://www.techtimes.com/articles/317985/20260608/apple-wwdc-2026-siri-rebuilt-gemini-homeos-previewed-cook-farewell-keynote.htm" target="_blank" rel="noopener">TechTimes keynote recap</a>. No Anthropic press release at time of writing.
         </div>
       </div>
-    </article>
+    </div>
+
   </div>
 </section>
 
-<!-- ═══════════════════════════════════════════
-     SDK-PY: v0.107.1
-     ═══════════════════════════════════════════ -->
-<section class="log-section" style="border-top:1px solid var(--hair)">
+<!-- LOG: AGENT SDKS -->
+<section class="log-section">
   <div class="log-cat-head">
-    <div>
-      <div class="log-cat-name">Agent SDKs</div>
-      <div class="log-cat-deck">Python SDK patch. One confirmed release in window.</div>
-    </div>
-    <div class="log-cat-count"><b>1</b><br>release</div>
+    <div class="log-cat-name">Agent SDKs</div>
+    <div class="log-cat-count"><b>1</b> item</div>
   </div>
   <div class="log-entries">
-    <article class="log-entry">
+
+    <div class="log-entry">
       <div class="log-entry-left">
         <div class="log-entry-date">2026-06-07</div>
-        <span class="log-tag sdk-py">SDK-PY</span>
+        <span class="log-tag sdk-py">sdk-py</span>
       </div>
       <div>
         <div class="log-entry-title">
-          <a href="https://github.com/anthropics/anthropic-sdk-python/releases/tag/v0.107.1">anthropic-sdk-python: v0.107.1 (Jun 07, 17:18 UTC)</a>
+          <a href="https://github.com/anthropics/anthropic-sdk-python/releases/tag/v0.107.1" target="_blank" rel="noopener">anthropic-sdk-python v0.107.1</a>
         </div>
         <div class="log-entry-body">
-          Patch release. The Foundry module was not sending the <code>x-api-key</code> header for API-key authentication, causing auth failures for anyone routing Claude through Microsoft Azure AI Foundry. Single fix. Closes GitHub issue #1661.
+          One bug fix: the Foundry client was not sending the x-api-key header for API-key authentication. Released 17:18 UTC.
         </div>
         <div class="log-entry-how">
           <b>How to use</b>
-          <code>pip install anthropic==0.107.1</code>
+          <code>pip install --upgrade anthropic</code>
         </div>
       </div>
-    </article>
+    </div>
+
   </div>
 </section>
 
-<!-- ═══════════════════════════════════════════
-     QUIET ON THE WIRE
-     ═══════════════════════════════════════════ -->
-<section class="quiet-section">
-  <div class="quiet-head">
-    <div class="quiet-kicker">On the Radar</div>
-    <div class="quiet-title">Quiet <em>on</em><br>the Wire</div>
+<!-- ORNAMENT -->
+<div class="ornament">* * *</div>
+
+<!-- DAILY FOOTER -->
+<footer class="daily-footer">
+  <div class="daily-footer-mast">
+    <div class="daily-footer-word">Shipped<span class="dot">.</span></div>
+    <div class="daily-footer-tagline">A daily dispatch on what Anthropic is releasing. Published by <a href="https://id8labs.app">id8Labs</a>.</div>
   </div>
-  <div class="quiet-body">
-    <p><strong>Claude Code:</strong> v2.1.168 landed June 6 at 23:41 UTC, just before this window opened. The substantive drop was v2.1.166 (June 6, 00:55 UTC): fallback model configuration for overloaded primaries, deny-rule glob patterns, and hardened cross-session messaging. Relayed SendMessage calls from other Claude sessions no longer carry user authority. Relevant if you run multi-agent setups.</p>
-    <p><strong>SDK TypeScript:</strong> v0.102.0 also June 6. Managed Agents type updates. Middleware now runs before request signing.</p>
-    <p><strong>anthropic.com sources:</strong> news page and all docs release-notes pages returned HTTP 403 at sweep time. Search fallback found no additional items with confirmed June 7 or June 8 publication dates.</p>
+  <div class="daily-footer-meta">
+    <p><b>Sources drawn from</b></p>
+    <p><a href="https://www.tomsguide.com/news/live/wwdc-2026-live-news-updates" target="_blank" rel="noopener">Tom's Guide WWDC 2026 live updates</a></p>
+    <p><a href="https://www.techtimes.com/articles/317985/20260608/apple-wwdc-2026-siri-rebuilt-gemini-homeos-previewed-cook-farewell-keynote.htm" target="_blank" rel="noopener">TechTimes keynote recap, June 08, 2026</a></p>
+    <p><a href="https://www.macrumors.com/guide/wwdc-2026-what-to-expect/" target="_blank" rel="noopener">MacRumors WWDC 2026 guide</a></p>
+    <p><a href="https://github.com/anthropics/anthropic-sdk-python/releases/tag/v0.107.1" target="_blank" rel="noopener">anthropic-sdk-python v0.107.1 release</a></p>
   </div>
-</section>
-
-<div class="ornament bold">· · ·</div>
-
-<!-- ═══════════════════════════════════════════
-     SOURCES
-     ═══════════════════════════════════════════ -->
-<section class="sources-section">
-  <div class="sources-head">Sources Swept</div>
-  <ul class="sources-list">
-    <li><a href="https://github.com/anthropics/anthropic-sdk-python/releases/tag/v0.107.1">github.com/anthropics/anthropic-sdk-python: v0.107.1 (June 07, 17:18 UTC, confirmed)</a></li>
-    <li><a href="https://9to5mac.com/2026/05/05/ios-27-will-let-you-choose-between-gemini-claude-and-more-for-ai-features-report/">9to5Mac: iOS 27 will let you choose between Gemini, Claude, and more (May 05, 2026)</a></li>
-    <li><a href="https://www.macrumors.com/guide/wwdc-2026-what-to-expect/">MacRumors: What to Expect from WWDC 2026</a></li>
-    <li><a href="https://www.tomsguide.com/phones/iphones/wwdc-2026-7-biggest-announcements-we-expect">Tom's Guide: WWDC 2026 biggest announcements expected</a></li>
-    <li><a href="https://github.com/anthropics/claude-code/releases">github.com/anthropics/claude-code releases (most recent: v2.1.168, June 06)</a></li>
-    <li><a href="https://github.com/anthropics/anthropic-sdk-typescript/releases">github.com/anthropics/anthropic-sdk-typescript releases (most recent: v0.102.0, June 06)</a></li>
-    <li>anthropic.com/news (HTTP 403 at sweep time)</li>
-    <li>docs.anthropic.com/en/release-notes/api (HTTP 403 at sweep time)</li>
-    <li>docs.anthropic.com/en/release-notes/claude-code (HTTP 403 at sweep time)</li>
-    <li>docs.anthropic.com/en/release-notes/claude-apps (HTTP 403 at sweep time)</li>
-    <li>anthropic.com/research (HTTP 403 at sweep time)</li>
-  </ul>
-  <div class="daily-timestamp">Generated: 2026-06-08T15:47:37Z</div>
-</section>
-
-<!-- ═══════════════════════════════════════════
-     COLOPHON
-     ═══════════════════════════════════════════ -->
-<footer class="colophon">
-  <div class="colophon-inner">
-    <div class="colophon-mast">
-      <div class="colophon-word">Shipped<span class="dot">.</span></div>
-      <div class="colophon-tag">Nightly Anthropic release sweep by <a href="https://id8labs.app" class="colophon-link">id8Labs</a>. Published to GitHub Pages.</div>
-    </div>
-    <div class="colophon-body">
-      <div class="colophon-col">
-        <h4>About</h4>
-        <p><b>Editor</b> Eddie Belaval</p>
-        <p><b>Reporting</b> Claude (nightly routine)</p>
-        <p><b>Voice</b> <em>STYLE.md</em></p>
-        <p><b>Design</b> per DESIGN.md (Iris)</p>
-      </div>
-      <div class="colophon-col">
-        <h4>Window</h4>
-        <p><b>Date</b> 2026-06-08</p>
-        <p><b>Period</b> June 07 to June 08, 2026</p>
-        <p><b>Generated</b> 15:47:37 UTC</p>
-        <p><b>Confirmed releases</b> 1</p>
-      </div>
-      <div class="colophon-col">
-        <h4>Typography</h4>
-        <p><b>Display</b> Fraunces</p>
-        <p><b>Sans</b> Archivo</p>
-        <p><b>Narrow</b> Archivo Narrow</p>
-        <p><b>Mono</b> JetBrains Mono</p>
-      </div>
-    </div>
-    <div class="colophon-foot">
-      <span>One patch. One keynote, pending. The page was already written.</span>
-      <span>© 2026 <a href="https://id8labs.app" class="colophon-link"><b>id8Labs</b></a></span>
-      <span class="hot">Next nightly: 2026-06-09 21:00 ET</span>
-    </div>
+  <div class="daily-footer-stamp">
+    <span>Generated 2026-06-08T16:30:16Z</span>
+    <span><a href="https://id8labs.app/shipped">id8labs.app/shipped</a> &nbsp;·&nbsp; <a href="https://eddiebelaval.github.io/shipped/anthropic-daily/2026-06-08.html">this page</a></span>
+    <span>Next sweep, 2026-06-09</span>
   </div>
 </footer>
 
