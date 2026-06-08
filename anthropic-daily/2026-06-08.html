@@ -1,0 +1,612 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light">
+<title>Shipped. Daily — Monday, June 08, 2026</title>
+<meta property="og:title" content="Shipped. Daily — Monday, June 08, 2026">
+<meta property="og:description" content="Apple opened WWDC 2026 with iOS 27 Extensions: users will be able to choose Claude as their AI model for Siri. The iPhone gains a Claude option for the first time.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://eddiebelaval.github.io/shipped/anthropic-daily/2026-06-08.html">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Shipped. Daily — Monday, June 08, 2026">
+<meta name="twitter:description" content="Apple opened WWDC 2026 with iOS 27 Extensions: users will be able to choose Claude as their AI model for Siri.">
+<meta name="description" content="Apple opened WWDC 2026 with iOS 27 Extensions: users will be able to choose Claude as their AI model for Siri. The iPhone gains a Claude option for the first time.">
+<meta name="author" content="Eddie Belaval">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='75' cy='62' r='14' fill='%23FF6B35'/%3E%3Ctext x='10' y='75' font-family='Georgia,serif' font-weight='700' font-size='62' fill='%231a1a1a'%3ES%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;0,9..144,900;1,9..144,300;1,9..144,400;1,9..144,500;1,9..144,700&family=Archivo:wght@300;400;500;600;700;800;900&family=Archivo+Narrow:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+
+/* ══════════════════════════════════════════
+   SHIPPED. — DAILY — CANONICAL LIGHT DESIGN
+   Editorial brutalism meets print craft.
+   ══════════════════════════════════════════ */
+
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{font-size:16px;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;text-rendering:optimizeLegibility}
+body{background:#fafaf7;color:#0b0b0b;font-family:'Archivo',sans-serif;overflow-x:hidden}
+::selection{background:#FF6B35;color:#fff}
+
+:root{
+  --orange:#FF6B35;
+  --ink:#0b0b0b;
+  --paper:#fafaf7;
+  --paper-shadow:#f2f0e8;
+  --body:#2a2a2a;
+  --muted:#5a5a5a;
+  --gray:#8a8a8a;
+  --hair:rgba(11,11,11,0.12);
+  --hair-soft:rgba(11,11,11,0.06);
+  --hair-hard:rgba(11,11,11,0.22);
+  --disp:'Fraunces', 'Times New Roman', serif;
+  --sans:'Archivo', system-ui, sans-serif;
+  --narrow:'Archivo Narrow', 'Archivo', sans-serif;
+  --mono:'JetBrains Mono', ui-monospace, monospace;
+}
+
+/* paper texture */
+body::before{
+  content:"";
+  position:fixed;inset:0;pointer-events:none;z-index:1000;opacity:.28;mix-blend-mode:multiply;
+  background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='180' height='180'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' seed='3'/><feColorMatrix values='0 0 0 0 0.02  0 0 0 0 0.02  0 0 0 0 0.02  0 0 0 0.22 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+}
+
+/* PUBLICATION BAR */
+.pub-bar{
+  position:sticky;top:0;z-index:100;
+  background:var(--paper);
+  border-bottom:1px solid var(--hair);
+  padding:0 28px;height:42px;
+  display:flex;align-items:center;justify-content:space-between;
+  font-family:var(--narrow);
+  font-size:11px;font-weight:600;letter-spacing:.22em;
+  text-transform:uppercase;color:var(--ink);
+}
+.pub-bar-left,.pub-bar-right{display:flex;align-items:center;gap:16px}
+.pub-bar-mark{font-family:var(--disp);font-weight:500;font-size:16px;letter-spacing:-.01em;text-transform:none;font-style:italic}
+.pub-bar-mark .dot{color:var(--orange)}
+.pub-bar-sep{width:1px;height:12px;background:var(--hair-hard)}
+.pub-bar-meta{color:var(--muted)}
+.pub-bar-link{color:inherit;text-decoration:none;border-bottom:1px solid currentColor;transition:color .15s ease}
+.pub-bar-link:hover{color:var(--orange)}
+.pub-bar-folio{color:var(--ink)}
+.pub-bar-folio b{font-weight:600;color:var(--orange)}
+
+/* SECTION */
+.section{
+  position:relative;
+  padding:64px 28px 40px;
+  max-width:1280px;margin:0 auto;
+}
+.section-folio{
+  display:flex;align-items:center;justify-content:space-between;
+  padding-bottom:18px;
+  border-bottom:1px solid var(--ink);
+  margin-bottom:44px;
+}
+.section-folio-left{display:flex;align-items:center;gap:14px}
+.section-folio-label{
+  font-family:var(--narrow);
+  font-size:11px;font-weight:700;letter-spacing:.28em;
+  text-transform:uppercase;color:var(--ink);
+}
+.section-folio-sub{
+  font-family:var(--disp);font-style:italic;
+  font-size:13px;color:var(--muted);
+}
+
+/* DAILY HEADER */
+.daily-header{
+  padding:48px 28px 40px;
+  max-width:1280px;margin:0 auto;
+  border-bottom:1px solid var(--ink);
+}
+.daily-kicker{
+  font-family:var(--narrow);
+  font-size:10px;font-weight:700;letter-spacing:.36em;
+  text-transform:uppercase;color:var(--orange);
+  margin-bottom:18px;
+}
+.daily-masthead{
+  font-family:var(--disp);
+  font-weight:500;
+  font-variation-settings:"opsz" 144;
+  font-size:clamp(56px,10vw,128px);
+  line-height:.88;
+  letter-spacing:-.04em;
+  color:var(--ink);
+  display:inline-block;
+  margin-bottom:28px;
+  font-style:italic;
+}
+.daily-masthead .dot{
+  color:var(--orange);
+}
+.daily-dateline{
+  font-family:var(--narrow);
+  font-size:13px;font-weight:600;letter-spacing:.18em;
+  text-transform:uppercase;color:var(--muted);
+  margin-bottom:24px;
+  padding-bottom:24px;
+  border-bottom:1px solid var(--hair);
+}
+.daily-oneliner{
+  font-family:var(--disp);
+  font-style:italic;
+  font-variation-settings:"opsz" 72;
+  font-weight:400;
+  font-size:clamp(22px,3vw,34px);
+  line-height:1.22;
+  letter-spacing:-.015em;
+  color:var(--ink);
+  max-width:760px;
+}
+.daily-oneliner em{font-style:normal;color:var(--orange);font-weight:500}
+
+/* PROSE */
+.prose-well{
+  max-width:1280px;margin:0 auto;padding:48px 28px 56px;
+  display:grid;grid-template-columns:72px 1fr minmax(0,300px);
+  gap:32px;position:relative;
+}
+.prose-well::before{
+  content:"";position:absolute;left:100px;top:0;bottom:0;
+  width:1px;background:var(--hair);
+}
+.prose-marginalia{
+  grid-column:1;
+  font-family:var(--narrow);
+  font-size:10px;font-weight:600;letter-spacing:.26em;
+  text-transform:uppercase;color:var(--gray);
+  writing-mode:vertical-rl;transform:rotate(180deg);
+  align-self:start;padding-top:8px;
+  white-space:nowrap;
+}
+.prose{
+  grid-column:2;
+  font-family:var(--disp);
+  font-variation-settings:"opsz" 14;
+  font-weight:400;font-size:19px;line-height:1.66;
+  color:var(--body);
+  max-width:640px;
+}
+.prose p{margin-bottom:24px}
+.prose em{font-style:italic;color:var(--ink)}
+.prose strong{font-weight:600;color:var(--ink)}
+.prose a{color:inherit;border-bottom:1px solid var(--hair-hard);text-decoration:none;transition:border-color .15s}
+.prose a:hover{border-bottom-color:var(--orange);color:var(--orange)}
+.prose-aside{
+  grid-column:3;
+  font-family:var(--narrow);
+  font-size:11px;font-weight:500;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--muted);
+  border-top:1px solid var(--ink);padding-top:14px;
+  line-height:1.8;
+}
+.prose-aside b{color:var(--ink);font-weight:700}
+@media(max-width:860px){
+  .prose-well{grid-template-columns:1fr;padding-left:20px;padding-right:20px}
+  .prose-well::before{display:none}
+  .prose-marginalia{display:none}
+  .prose{grid-column:1;max-width:100%}
+  .prose-aside{grid-column:1;margin-top:20px}
+}
+
+/* RELEASE LOG */
+.log-divider{
+  background:var(--paper);
+  padding:64px 28px 32px;
+  text-align:center;
+  border-top:3px double var(--ink);
+  border-bottom:1px solid var(--ink);
+  max-width:1280px;margin:0 auto;
+}
+.log-divider-kicker{
+  font-family:var(--narrow);
+  font-size:11px;font-weight:700;letter-spacing:.48em;
+  text-transform:uppercase;color:var(--orange);
+  margin-bottom:14px;
+}
+.log-divider-title{
+  font-family:var(--disp);font-weight:700;
+  font-variation-settings:"opsz" 144;
+  font-size:clamp(40px,7vw,96px);
+  line-height:.9;letter-spacing:-.045em;color:var(--ink);
+  margin-bottom:12px;
+}
+.log-divider-title em{font-style:italic;font-weight:400}
+.log-divider-sub{
+  font-family:var(--disp);font-style:italic;
+  font-size:16px;color:var(--muted);max-width:580px;margin:0 auto;line-height:1.5;
+}
+
+.log-section{
+  padding:40px 28px;max-width:1280px;margin:0 auto;
+}
+.log-cat-head{
+  display:grid;
+  grid-template-columns:1fr auto;
+  gap:24px;align-items:baseline;
+  padding-bottom:18px;
+  border-bottom:1px solid var(--ink);
+  margin-bottom:0;
+}
+.log-cat-name{
+  font-family:var(--disp);font-weight:600;font-style:italic;
+  font-variation-settings:"opsz" 96;
+  font-size:clamp(28px,4vw,44px);
+  letter-spacing:-.02em;color:var(--ink);line-height:1;
+}
+.log-cat-count{
+  font-family:var(--narrow);
+  font-size:10px;font-weight:600;letter-spacing:.28em;
+  text-transform:uppercase;color:var(--muted);
+  text-align:right;
+}
+.log-cat-count b{color:var(--ink);font-weight:700;font-size:13px;display:block}
+.log-entries{display:flex;flex-direction:column}
+.log-entry{
+  padding:24px 0;
+  border-bottom:1px solid var(--hair);
+  display:grid;
+  grid-template-columns:120px 1fr;gap:28px;
+}
+.log-entry-left{
+  display:flex;flex-direction:column;gap:8px;
+}
+.log-entry-date{
+  font-family:var(--narrow);
+  font-size:10px;font-weight:700;letter-spacing:.22em;
+  text-transform:uppercase;color:var(--ink);
+  font-variant-numeric:tabular-nums;
+}
+.log-tag{
+  font-family:var(--narrow);
+  font-size:9px;font-weight:700;letter-spacing:.22em;
+  text-transform:uppercase;padding:3px 7px;
+  display:inline-block;line-height:1.3;width:fit-content;
+}
+.log-tag.model{background:var(--orange);color:var(--paper)}
+.log-tag.api{background:var(--ink);color:var(--paper)}
+.log-tag.code{background:#3a3a3a;color:var(--paper)}
+.log-tag.apps{background:#5a5a5a;color:var(--paper)}
+.log-tag.sdk-py,.log-tag.sdk-ts{background:var(--paper);color:var(--ink);border:1px solid var(--ink)}
+.log-tag.research,.log-tag.news{background:var(--paper);color:var(--muted);border:1px solid var(--hair-hard)}
+.log-entry-title{
+  font-family:var(--disp);font-weight:500;
+  font-variation-settings:"opsz" 72;
+  font-size:20px;letter-spacing:-.012em;
+  color:var(--ink);line-height:1.25;
+  margin-bottom:10px;
+}
+.log-entry-title a{color:inherit;text-decoration:none;border-bottom:1px solid var(--hair-hard)}
+.log-entry-title a:hover{border-bottom-color:var(--orange);color:var(--orange)}
+.log-entry-body{
+  font-family:var(--sans);font-size:14.5px;line-height:1.6;color:var(--body);
+  margin-bottom:12px;
+}
+.log-entry-body a{color:var(--muted);text-decoration:none;border-bottom:1px solid var(--hair);transition:color .15s,border-color .15s}
+.log-entry-body a:hover{color:var(--orange);border-color:var(--orange)}
+.log-entry-how{
+  font-family:var(--sans);font-size:13.5px;line-height:1.6;color:var(--muted);
+  padding-top:12px;border-top:1px solid var(--hair-soft);
+}
+.log-entry-how b{font-family:var(--narrow);font-size:10px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--ink);display:block;margin-bottom:6px}
+.log-entry-how code{font-family:var(--mono);font-size:.88em;background:var(--paper-shadow);padding:1px 5px;border-radius:3px}
+.log-entry-why{
+  font-family:var(--disp);font-style:italic;
+  font-size:14px;color:var(--muted);line-height:1.55;
+  margin-top:10px;padding-left:14px;
+  border-left:2px solid var(--orange);
+}
+.log-entry-why b{font-style:normal;font-family:var(--narrow);font-size:10px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--orange);display:block;margin-bottom:4px}
+@media(max-width:720px){
+  .log-entry{grid-template-columns:1fr;gap:12px}
+  .log-cat-count{grid-column:1 / -1;text-align:left;padding-top:8px;border-top:1px solid var(--hair)}
+}
+
+/* QUIET ON THE WIRE */
+.quiet-section{
+  max-width:1280px;margin:0 auto;padding:64px 28px 40px;
+  display:grid;grid-template-columns:repeat(12,1fr);gap:24px;
+  border-top:1px solid var(--ink);
+}
+.quiet-head{grid-column:1 / span 3}
+.quiet-title{
+  font-family:var(--disp);font-style:italic;font-weight:400;
+  font-variation-settings:"opsz" 72;
+  font-size:32px;line-height:1;letter-spacing:-.02em;
+  color:var(--ink);
+}
+.quiet-title em{color:var(--orange);font-style:normal;font-weight:500}
+.quiet-kicker{
+  font-family:var(--narrow);
+  font-size:10px;font-weight:700;letter-spacing:.32em;
+  text-transform:uppercase;color:var(--muted);
+  margin-bottom:10px;
+}
+.quiet-body{
+  grid-column:5 / -1;
+  font-family:var(--disp);font-size:17px;line-height:1.65;color:var(--body);
+  padding-left:24px;border-left:1px solid var(--ink);
+}
+.quiet-body p{margin-bottom:16px}
+.quiet-body a{color:var(--muted);text-decoration:none;border-bottom:1px solid var(--hair);transition:color .15s,border-color .15s}
+.quiet-body a:hover{color:var(--orange);border-color:var(--orange)}
+.quiet-body strong{font-weight:600;color:var(--ink)}
+@media(max-width:860px){
+  .quiet-head,.quiet-body{grid-column:1 / -1}
+  .quiet-body{padding-left:0;border-left:none;border-top:1px solid var(--ink);padding-top:18px}
+}
+
+/* CLOSE */
+.close-section{
+  background:var(--ink);color:var(--paper);
+  padding:96px 28px 112px;
+  position:relative;
+  text-align:center;
+}
+.close-kicker{
+  font-family:var(--narrow);
+  font-size:11px;font-weight:700;letter-spacing:.38em;
+  text-transform:uppercase;color:rgba(250,250,247,.5);
+  margin-bottom:40px;
+}
+.close-stack{
+  max-width:680px;margin:0 auto;
+  display:flex;flex-direction:column;gap:28px;
+}
+.close-line{
+  font-family:var(--disp);font-weight:400;
+  font-variation-settings:"opsz" 96;
+  font-size:clamp(22px,3vw,38px);
+  line-height:1.2;letter-spacing:-.015em;
+  color:var(--paper);
+}
+.close-line em{font-style:italic;color:var(--orange);font-weight:500}
+.close-final{
+  font-style:italic;color:var(--orange);
+  font-size:clamp(16px,2vw,22px);
+  line-height:1.5;letter-spacing:0;
+  max-width:520px;margin:0 auto;
+  font-variation-settings:"opsz" 36;
+  font-family:var(--disp);
+}
+
+/* COLOPHON */
+.colophon{
+  background:var(--ink);color:var(--paper);
+  padding:64px 28px 48px;
+  border-top:2px solid var(--orange);
+}
+.colophon-inner{
+  max-width:1280px;margin:0 auto;
+  display:grid;grid-template-columns:repeat(12,1fr);gap:32px;
+}
+.colophon-mast{
+  grid-column:1 / span 4;
+}
+.colophon-word{
+  font-family:var(--disp);font-weight:500;
+  font-variation-settings:"opsz" 144;
+  font-size:clamp(48px,7vw,80px);
+  line-height:.9;letter-spacing:-.04em;color:var(--paper);
+  font-style:italic;
+}
+.colophon-word .dot{color:var(--orange)}
+.colophon-tag{
+  margin-top:12px;
+  font-family:var(--disp);font-style:italic;font-size:15px;
+  color:rgba(250,250,247,.65);line-height:1.4;max-width:320px;
+}
+.colophon-body{
+  grid-column:5 / -1;
+  display:grid;grid-template-columns:repeat(2,1fr);gap:32px;
+}
+.colophon-col h4{
+  font-family:var(--narrow);
+  font-size:10px;font-weight:700;letter-spacing:.32em;
+  text-transform:uppercase;color:var(--orange);
+  margin-bottom:12px;padding-bottom:10px;
+  border-bottom:1px solid rgba(250,250,247,.2);
+}
+.colophon-col p,.colophon-col li{
+  font-family:var(--sans);font-size:12px;line-height:1.6;
+  color:rgba(250,250,247,.75);
+  margin-bottom:6px;list-style:none;
+}
+.colophon-col a{color:rgba(250,250,247,.65);text-decoration:none;border-bottom:1px solid rgba(250,250,247,.25);transition:color .15s}
+.colophon-col a:hover{color:var(--orange)}
+.colophon-col b{color:var(--paper);font-weight:600}
+.colophon-foot{
+  grid-column:1 / -1;
+  margin-top:24px;padding-top:20px;
+  border-top:1px solid rgba(250,250,247,.2);
+  display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap;
+  font-family:var(--narrow);font-size:10px;font-weight:600;
+  letter-spacing:.28em;text-transform:uppercase;color:rgba(250,250,247,.5);
+}
+.colophon-foot b{color:var(--paper);font-weight:700}
+.colophon-foot .hot{color:var(--orange)}
+@media(max-width:860px){
+  .colophon-mast,.colophon-body{grid-column:1 / -1}
+  .colophon-body{grid-template-columns:1fr;gap:20px}
+}
+@media(max-width:600px){
+  .daily-header,.section,.log-section,.quiet-section{padding-left:20px;padding-right:20px}
+}
+</style>
+</head>
+<body>
+
+<!-- PUBLICATION BAR -->
+<nav class="pub-bar">
+  <div class="pub-bar-left">
+    <span class="pub-bar-mark">Shipped<span class="dot">.</span></span>
+    <span class="pub-bar-sep"></span>
+    <span class="pub-bar-meta">Daily by <a href="https://id8labs.app" class="pub-bar-link">id8Labs</a></span>
+  </div>
+  <div class="pub-bar-right">
+    <span class="pub-bar-folio"><b>Daily</b></span>
+    <span class="pub-bar-sep"></span>
+    <span class="pub-bar-meta">June 08, 2026</span>
+  </div>
+</nav>
+
+<!-- DAILY HEADER -->
+<header class="daily-header">
+  <div class="daily-kicker">Shipped. Daily &nbsp;·&nbsp; Monday, June 08, 2026 &nbsp;·&nbsp; 24-hour Anthropic sweep</div>
+  <div class="daily-masthead">Shipped<span class="dot">.</span></div>
+  <div class="daily-dateline">Monday &nbsp;·&nbsp; June 08, 2026 &nbsp;·&nbsp; Window: June 07 – June 08, 2026</div>
+  <p class="daily-oneliner">Apple opened WWDC this morning with iOS&nbsp;27 Extensions: users will choose Claude as their AI model for Siri. The iPhone gains a Claude option for the <em>first time.</em></p>
+</header>
+
+<!-- LEAD -->
+<div class="prose-well">
+  <div class="prose-marginalia">Lead Story</div>
+  <div class="prose">
+    <p>WWDC 2026 opened Monday at Apple's Cupertino campus with the announcement that defined the morning: iOS 27 introduces an Extensions framework, and Claude is in the first-party lineup. Users who install Claude's iOS app can designate it as their preferred AI engine for Siri queries, Writing Tools, and Image Playground. When Claude handles a Siri request, the response comes in a distinct voice so users know which model answered.</p>
+    <p>The arrangement is not equal. Google's Gemini holds the native integration slot backed by a reported $1 billion annual agreement with Apple. Claude and ChatGPT enter as user-installed providers layered on top of that foundation. Gemini runs the house. Claude comes in through the front door, but Gemini cut its own key.</p>
+    <p>iOS 27, iPadOS 27, and macOS 27 ship fall 2026. Reported by <a href="https://9to5mac.com/2026/05/05/ios-27-will-let-you-choose-between-gemini-claude-and-more-for-ai-features-report/">9to5Mac</a> and confirmed at WWDC per <a href="https://www.techtimes.com/articles/317902/20260606/wwdc-2026-opens-monday-gemini-powers-rebuilt-siri-iphone-11-faces-ios-27-cut.htm">TechTimes</a>. Anthropic has not issued a press release as of sweep time.</p>
+  </div>
+  <div class="prose-aside">
+    <b>Area</b><br>NEWS<br><br>
+    <b>Source</b><br>9to5Mac (reported)<br>TechTimes (WWDC)<br><br>
+    <b>Ships</b><br>Fall 2026<br>iOS 27, iPadOS 27, macOS 27<br><br>
+    <b>Also in window</b><br>SDK-PY v0.107.1<br>Foundry bug fix
+  </div>
+</div>
+
+<!-- RELEASE LOG DIVIDER -->
+<div class="log-divider">
+  <div class="log-divider-kicker">24-hour window &nbsp;·&nbsp; June 07 – June 08, 2026</div>
+  <h2 class="log-divider-title">Release <em>Log</em></h2>
+  <p class="log-divider-sub">Every confirmed Anthropic release in the window. Quiet items noted at bottom.</p>
+</div>
+
+<!-- LOG: NEWS -->
+<div class="log-section">
+  <div class="log-cat-head">
+    <div class="log-cat-name">News</div>
+    <div class="log-cat-count"><b>1</b> item</div>
+  </div>
+  <div class="log-entries">
+    <div class="log-entry">
+      <div class="log-entry-left">
+        <div class="log-entry-date">Jun 08<br>2026</div>
+        <span class="log-tag news">NEWS</span>
+      </div>
+      <div class="log-entry-right">
+        <div class="log-entry-title">
+          <a href="https://9to5mac.com/2026/05/05/ios-27-will-let-you-choose-between-gemini-claude-and-more-for-ai-features-report/" target="_blank" rel="noopener">WWDC 2026: Apple iOS 27 Extensions add Claude as selectable AI model for Siri</a>
+        </div>
+        <div class="log-entry-body">
+          Apple announced iOS 27 Extensions at WWDC 2026 on Monday. The framework lets users choose between multiple AI providers for Siri, Writing Tools, and Image Playground. Claude is in the initial lineup alongside Google Gemini and OpenAI's ChatGPT. Providers integrate via their existing iOS apps. Google Gemini holds the native integration position via a separate multi-year partnership. iOS 27 ships fall 2026.
+          <br><br>
+          Reported by <a href="https://9to5mac.com/2026/05/05/ios-27-will-let-you-choose-between-gemini-claude-and-more-for-ai-features-report/" target="_blank" rel="noopener">9to5Mac</a> (rumor, May 5, 2026); confirmed at WWDC per <a href="https://www.techtimes.com/articles/317902/20260606/wwdc-2026-opens-monday-gemini-powers-rebuilt-siri-iphone-11-faces-ios-27-cut.htm" target="_blank" rel="noopener">TechTimes</a>. Anthropic has not issued a press release as of sweep time (14:52 UTC).
+        </div>
+        <div class="log-entry-why">
+          <b>Why it matters</b>
+          First time Claude can handle system-level requests on an iPhone. The iOS installed base is over one billion devices. User-selected, not default, but still on the lock screen.
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- LOG: SDK-PY -->
+<div class="log-section" style="padding-top:0">
+  <div class="log-cat-head">
+    <div class="log-cat-name">SDK (Python)</div>
+    <div class="log-cat-count"><b>1</b> item</div>
+  </div>
+  <div class="log-entries">
+    <div class="log-entry">
+      <div class="log-entry-left">
+        <div class="log-entry-date">Jun 07<br>2026</div>
+        <span class="log-tag sdk-py">SDK-PY</span>
+      </div>
+      <div class="log-entry-right">
+        <div class="log-entry-title">
+          <a href="https://github.com/anthropics/anthropic-sdk-python/releases" target="_blank" rel="noopener">anthropic-sdk-python v0.107.1</a>
+        </div>
+        <div class="log-entry-body">
+          Bug fix: the Foundry client was not sending the <code style="font-family:'JetBrains Mono',monospace;font-size:.88em;background:#f2f0e8;padding:1px 5px;border-radius:3px">x-api-key</code> header for API key authentication, causing authentication failures for Foundry endpoint operators. Released 17:18 UTC. Also covered in yesterday's sweep (June 07); included here for 24-hour window completeness.
+        </div>
+        <div class="log-entry-how">
+          <b>How to use</b>
+          <code style="font-family:'JetBrains Mono',monospace;font-size:.88em;background:#f2f0e8;padding:1px 5px;border-radius:3px">pip install --upgrade anthropic</code>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- QUIET ON THE WIRE -->
+<div class="quiet-section">
+  <div class="quiet-head">
+    <div class="quiet-kicker">Signal watch</div>
+    <div class="quiet-title">Quiet on the <em>Wire</em></div>
+  </div>
+  <div class="quiet-body">
+    <p><strong>Claude Sonnet 4.8.</strong> Has not shipped. An accidental model reference embedded in code released March 31 keeps fueling speculation that it arrives before June 30. Anthropic has not confirmed a timeline or name.</p>
+    <p><strong>Pentagon contracts.</strong> The Pentagon confirmed it is testing OpenAI and Google models as potential replacements for Claude in classified systems. Not an Anthropic announcement; no primary-source statement from Anthropic.</p>
+    <p><strong>Source access at sweep time.</strong> Anthropic.com news pages, research, and all docs.anthropic.com release-notes pages returned HTTP 403 during this sweep. The WWDC news was confirmed through third-party reporting (9to5Mac, TechTimes). Last confirmed direct Anthropic release-notes entries: API (June 6, advisor tool max_tokens and no-billing-on-refusal), Claude Code (June 6, v2.1.168), TypeScript SDK (June 6, v0.102.0).</p>
+  </div>
+</div>
+
+<!-- CLOSE -->
+<section class="close-section">
+  <div class="close-kicker">Shipped. Daily &nbsp;·&nbsp; June 08, 2026</div>
+  <div class="close-stack">
+    <div class="close-line">The iPhone's AI layer opened today. Claude is in the lineup.</div>
+    <div class="close-line">Not the default. Not the native integration. Still on the lock screen.</div>
+    <div class="close-final">A billion devices. One side door. That counts.</div>
+  </div>
+</section>
+
+<!-- COLOPHON / SOURCES -->
+<footer class="colophon">
+  <div class="colophon-inner">
+    <div class="colophon-mast">
+      <div class="colophon-word">Shipped<span class="dot">.</span></div>
+      <div class="colophon-tag">A daily Anthropic sweep by id8Labs. Weekly magazine ships Fridays at 9 AM ET.</div>
+    </div>
+    <div class="colophon-body">
+      <div class="colophon-col">
+        <h4>Sources checked</h4>
+        <li><a href="https://www.anthropic.com/news" target="_blank" rel="noopener">anthropic.com/news</a> — HTTP 403</li>
+        <li><a href="https://www.anthropic.com/research" target="_blank" rel="noopener">anthropic.com/research</a> — HTTP 403</li>
+        <li><a href="https://docs.anthropic.com/en/release-notes/api" target="_blank" rel="noopener">release-notes/api</a> — HTTP 403</li>
+        <li><a href="https://docs.anthropic.com/en/release-notes/claude-code" target="_blank" rel="noopener">release-notes/claude-code</a> — HTTP 403</li>
+        <li><a href="https://docs.anthropic.com/en/release-notes/claude-apps" target="_blank" rel="noopener">release-notes/claude-apps</a> — HTTP 403</li>
+        <li><a href="https://docs.anthropic.com/en/release-notes/system-prompts" target="_blank" rel="noopener">release-notes/system-prompts</a> — HTTP 403</li>
+        <li><a href="https://github.com/anthropics/anthropic-sdk-python/releases" target="_blank" rel="noopener">sdk-python releases</a> — v0.107.1 (Jun 07)</li>
+        <li><a href="https://github.com/anthropics/anthropic-sdk-typescript/releases" target="_blank" rel="noopener">sdk-typescript releases</a> — last: v0.102.0 (Jun 06)</li>
+        <li><a href="https://github.com/anthropics/claude-code/releases" target="_blank" rel="noopener">claude-code releases</a> — last: v2.1.168 (Jun 06)</li>
+      </div>
+      <div class="colophon-col">
+        <h4>Third-party reporting</h4>
+        <li><a href="https://9to5mac.com/2026/05/05/ios-27-will-let-you-choose-between-gemini-claude-and-more-for-ai-features-report/" target="_blank" rel="noopener">9to5Mac: iOS 27 Claude/Gemini report</a></li>
+        <li><a href="https://www.techtimes.com/articles/317902/20260606/wwdc-2026-opens-monday-gemini-powers-rebuilt-siri-iphone-11-faces-ios-27-cut.htm" target="_blank" rel="noopener">TechTimes: WWDC 2026 preview</a></li>
+        <br>
+        <h4>Masthead</h4>
+        <p><b>Editor</b> Eddie Belaval</p>
+        <p><b>Sweep</b> Shipped. nightly routine</p>
+        <p><b>Generated</b> 2026-06-08T14:52:33Z</p>
+        <p><b>Window</b> Jun 07 14:52 UTC – Jun 08 14:52 UTC</p>
+      </div>
+    </div>
+    <div class="colophon-foot">
+      <span>© 2026 <b>id8Labs</b> &nbsp;·&nbsp; All rights reserved</span>
+      <span>Set in Fraunces &amp; Archivo</span>
+      <span class="hot">Next issue: Shipped. Weekly, Friday June 12, 2026</span>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
