@@ -197,6 +197,18 @@ function stripSidebar(content: string): string {
   return [...lines.slice(0, s), ...lines.slice(e + 1)].join('\n');
 }
 
+function renderBlockquote(block: string): string {
+  const lines = block.split('\n').map((l) => l.replace(/^>\s?/, ''));
+  const quoteLineIdx = lines.findIndex((l) => /^\*"/.test(l));
+  const attrLineIdx = lines.findIndex((l) => /^[—\-]/.test(l));
+  if (quoteLineIdx >= 0 && attrLineIdx > quoteLineIdx) {
+    const text = lines[quoteLineIdx]!.replace(/^\*"/, '').replace(/"\*$/, '').trim();
+    const attribution = lines[attrLineIdx]!.replace(/^[—\-]\s*/, '').trim();
+    return renderQuote({ text, attribution }, 'orange');
+  }
+  return `    <blockquote>${inlineMarkdown(lines.join(' '))}</blockquote>`;
+}
+
 function paragraphs(body: string): string {
   const blocks = body
     .replace(/\r\n/g, '\n')
@@ -207,10 +219,13 @@ function paragraphs(body: string): string {
         b.length > 0 &&
         !/^-{3,}$/.test(b) &&
         !b.startsWith('#') &&
-        !b.startsWith('>') &&
+        !b.startsWith('> #') &&
         !b.startsWith('|'),
     );
   return blocks
-    .map((b) => `    <p>${inlineMarkdown(b.replace(/\n/g, ' '))}</p>`)
+    .map((b) => {
+      if (b.startsWith('>')) return renderBlockquote(b);
+      return `    <p>${inlineMarkdown(b.replace(/\n/g, ' '))}</p>`;
+    })
     .join('\n');
 }
