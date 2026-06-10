@@ -1,0 +1,906 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light">
+<title>Shipped. Daily, Tuesday, June 09, 2026</title>
+<meta property="og:title" content="Shipped. Daily, Tuesday, June 09, 2026">
+<meta property="og:description" content="Anthropic ships Claude Fable 5 and Mythos 5. Mythos-class intelligence goes public. 9 SDK releases, 2 Claude Code versions, and Claude for Apple Foundation Models.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://eddiebelaval.github.io/shipped/anthropic-daily/2026-06-09.html">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Shipped. Daily, Tuesday, June 09, 2026">
+<meta name="twitter:description" content="Anthropic ships Claude Fable 5 and Mythos 5. Mythos-class intelligence goes public.">
+<meta name="description" content="Anthropic ships Claude Fable 5 and Mythos 5. Mythos-class intelligence goes public. 9 SDK releases, 2 Claude Code versions, and Claude for Apple Foundation Models.">
+<meta name="author" content="Shipped. Daily by id8Labs">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='75' cy='62' r='14' fill='%23FF6B35'/%3E%3Ctext x='10' y='75' font-family='Georgia,serif' font-weight='700' font-size='62' fill='%231a1a1a'%3ES%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;0,9..144,900;1,9..144,300;1,9..144,400;1,9..144,500;1,9..144,700&family=Archivo:wght@300;400;500;600;700;800;900&family=Archivo+Narrow:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{font-size:16px;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;text-rendering:optimizeLegibility}
+body{background:#FAF8F4;color:#0b0b0b;font-family:'Archivo',sans-serif;overflow-x:hidden}
+::selection{background:#FF6B35;color:#fff}
+
+:root{
+  --orange:#FF6B35;
+  --ink:#0b0b0b;
+  --paper:#FAF8F4;
+  --paper-shadow:#f2f0e8;
+  --body:#2a2a2a;
+  --muted:#5a5a5a;
+  --gray:#8a8a8a;
+  --hair:rgba(11,11,11,0.12);
+  --hair-soft:rgba(11,11,11,0.06);
+  --hair-hard:rgba(11,11,11,0.22);
+  --disp:'Fraunces', 'Times New Roman', serif;
+  --sans:'Archivo', system-ui, sans-serif;
+  --narrow:'Archivo Narrow', 'Archivo', sans-serif;
+  --mono:'JetBrains Mono', ui-monospace, monospace;
+}
+
+body::before{
+  content:"";
+  position:fixed;inset:0;pointer-events:none;z-index:1000;opacity:.28;mix-blend-mode:multiply;
+  background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='180' height='180'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' seed='3'/><feColorMatrix values='0 0 0 0 0.02  0 0 0 0 0.02  0 0 0 0 0.02  0 0 0 0.22 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+}
+
+.pub-bar{
+  position:sticky;top:0;z-index:100;
+  background:var(--paper);
+  border-bottom:1px solid var(--hair);
+  padding:0 28px;height:42px;
+  display:flex;align-items:center;justify-content:space-between;
+  font-family:var(--narrow);
+  font-size:11px;font-weight:600;letter-spacing:.22em;
+  text-transform:uppercase;color:var(--ink);
+}
+.pub-bar-left,.pub-bar-right{display:flex;align-items:center;gap:16px}
+.pub-bar-mark{font-family:var(--disp);font-weight:500;font-size:16px;letter-spacing:-.01em;text-transform:none;font-style:italic}
+.pub-bar-mark .dot{color:var(--orange)}
+.pub-bar-sep{width:1px;height:12px;background:var(--hair-hard)}
+.pub-bar-meta{color:var(--muted)}
+.pub-bar-link{color:inherit;text-decoration:none;border-bottom:1px solid currentColor;transition:color .15s ease}
+.pub-bar-link:hover{color:var(--orange)}
+.pub-bar-folio{color:var(--ink)}
+.pub-bar-folio b{font-weight:600;color:var(--orange)}
+
+.folio{
+  font-family:var(--narrow);
+  font-size:10px;font-weight:500;letter-spacing:.28em;
+  text-transform:uppercase;color:var(--gray);
+  display:flex;align-items:center;gap:10px;
+}
+.folio b{color:var(--ink);font-weight:700}
+.folio .ruler{width:28px;height:1px;background:var(--hair-hard)}
+.folio .dot{color:var(--orange)}
+
+.section{
+  position:relative;
+  padding:64px 28px 40px;
+  max-width:1280px;margin:0 auto;
+}
+.section-folio{
+  display:flex;align-items:center;justify-content:space-between;
+  padding-bottom:18px;
+  border-bottom:1px solid var(--ink);
+  margin-bottom:44px;
+}
+.section-folio-left{display:flex;align-items:center;gap:14px}
+.section-folio-label{
+  font-family:var(--narrow);
+  font-size:11px;font-weight:700;letter-spacing:.28em;
+  text-transform:uppercase;color:var(--ink);
+}
+.section-folio-sub{
+  font-family:var(--disp);font-style:italic;
+  font-size:13px;color:var(--muted);
+}
+
+.prose-well{
+  max-width:1280px;margin:0 auto;padding:0 28px 56px;
+  display:grid;grid-template-columns:72px 1fr minmax(0,320px);
+  gap:32px;position:relative;
+}
+.prose-well::before{
+  content:"";position:absolute;left:100px;top:0;bottom:0;
+  width:1px;background:var(--hair);
+}
+.prose-marginalia{
+  grid-column:1;
+  font-family:var(--narrow);
+  font-size:10px;font-weight:600;letter-spacing:.26em;
+  text-transform:uppercase;color:var(--gray);
+  writing-mode:vertical-rl;transform:rotate(180deg);
+  align-self:start;padding-top:8px;
+  white-space:nowrap;
+}
+.prose{
+  grid-column:2;
+  font-family:var(--disp);
+  font-variation-settings:"opsz" 14;
+  font-weight:400;font-size:19px;line-height:1.66;
+  color:var(--body);
+  max-width:640px;
+}
+.prose p{margin-bottom:24px}
+.prose em{font-style:italic;color:var(--ink)}
+.prose strong{font-weight:600;color:var(--ink)}
+.prose code{
+  font-family:var(--mono);font-size:.86em;
+  background:var(--paper-shadow);padding:1px 6px;
+  border-radius:3px;color:var(--ink);
+}
+.prose a{color:var(--ink);border-bottom:1px solid var(--hair-hard);text-decoration:none}
+.prose a:hover{color:var(--orange);border-bottom-color:var(--orange)}
+.prose-aside{
+  grid-column:3;
+  font-family:var(--narrow);
+  font-size:11px;font-weight:500;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--muted);
+  border-top:1px solid var(--ink);padding-top:14px;
+  line-height:1.8;
+}
+.prose-aside b{color:var(--ink);font-weight:700}
+
+.drop-cap::first-letter{
+  font-family:var(--disp);
+  font-variation-settings:"opsz" 144;
+  font-weight:700;
+  font-size:9.2em;
+  float:left;line-height:.78;
+  padding:.02em 12px 0 0;
+  margin:.02em 4px -.1em -2px;
+  color:var(--ink);
+}
+
+.ornament{
+  text-align:center;margin:64px auto;
+  font-family:var(--disp);font-size:16px;color:var(--hair-hard);
+  letter-spacing:1.2em;
+}
+.ornament.bold{color:var(--orange);letter-spacing:.8em;font-size:20px}
+
+.log-divider{
+  background:var(--paper);
+  padding:96px 28px 48px;
+  text-align:center;
+  border-top:3px double var(--ink);
+  border-bottom:1px solid var(--ink);
+  max-width:1280px;margin:0 auto;
+}
+.log-divider-kicker{
+  font-family:var(--narrow);
+  font-size:11px;font-weight:700;letter-spacing:.48em;
+  text-transform:uppercase;color:var(--orange);
+  margin-bottom:14px;
+}
+.log-divider-title{
+  font-family:var(--disp);font-weight:700;
+  font-variation-settings:"opsz" 144;
+  font-size:clamp(56px,10vw,144px);
+  line-height:.9;letter-spacing:-.045em;color:var(--ink);
+  margin-bottom:16px;
+}
+.log-divider-title em{font-style:italic;font-weight:400}
+.log-divider-sub{
+  font-family:var(--disp);font-style:italic;
+  font-size:18px;color:var(--muted);max-width:640px;margin:0 auto;line-height:1.5;
+}
+
+.log-section{
+  padding:48px 28px;max-width:1280px;margin:0 auto;
+}
+.log-cat-head{
+  display:grid;
+  grid-template-columns:1fr auto;
+  gap:24px;align-items:baseline;
+  padding-bottom:18px;
+  border-bottom:1px solid var(--ink);
+  margin-bottom:0;
+}
+.log-cat-name{
+  font-family:var(--disp);font-weight:600;font-style:italic;
+  font-variation-settings:"opsz" 96;
+  font-size:clamp(36px,5vw,56px);
+  letter-spacing:-.02em;color:var(--ink);line-height:1;
+}
+.log-cat-count{
+  font-family:var(--narrow);
+  font-size:10px;font-weight:600;letter-spacing:.28em;
+  text-transform:uppercase;color:var(--muted);
+  text-align:right;
+}
+.log-cat-count b{color:var(--ink);font-weight:700;font-size:13px;display:block}
+
+.log-entries{display:flex;flex-direction:column}
+.log-entry{
+  padding:24px 0;
+  border-bottom:1px solid var(--hair);
+  display:grid;
+  grid-template-columns:120px 1fr;gap:28px;
+}
+.log-entry-left{
+  display:flex;flex-direction:column;gap:8px;
+}
+.log-entry-date{
+  font-family:var(--narrow);
+  font-size:10px;font-weight:700;letter-spacing:.22em;
+  text-transform:uppercase;color:var(--ink);
+  font-variant-numeric:tabular-nums;
+}
+.log-tag{
+  font-family:var(--narrow);
+  font-size:9px;font-weight:700;letter-spacing:.22em;
+  text-transform:uppercase;padding:3px 7px;
+  display:inline-block;line-height:1.3;width:fit-content;
+}
+.log-tag.model{background:var(--orange);color:var(--paper)}
+.log-tag.api{background:var(--ink);color:var(--paper)}
+.log-tag.code{background:#3a3a3a;color:var(--paper)}
+.log-tag.apps{background:#5a5a5a;color:var(--paper)}
+.log-tag.sdk-py,.log-tag.sdk-ts{background:var(--paper);color:var(--ink);border:1px solid var(--ink)}
+.log-tag.research,.log-tag.news{background:var(--paper);color:var(--muted);border:1px solid var(--hair-hard)}
+.log-tag.deprecation{background:var(--paper-shadow);color:var(--muted);border:1px solid var(--hair-hard)}
+.log-entry-title{
+  font-family:var(--disp);font-weight:500;
+  font-variation-settings:"opsz" 72;
+  font-size:20px;letter-spacing:-.012em;
+  color:var(--ink);line-height:1.25;
+  margin-bottom:10px;
+}
+.log-entry-title a{color:inherit;text-decoration:none;border-bottom:1px solid var(--hair-hard)}
+.log-entry-title a:hover{border-bottom-color:var(--orange);color:var(--orange)}
+.log-entry-body{
+  font-family:var(--sans);font-size:14.5px;line-height:1.6;color:var(--body);
+  margin-bottom:12px;
+}
+.log-entry-body a{color:var(--ink);text-decoration:none;border-bottom:1px solid var(--hair-hard)}
+.log-entry-body a:hover{color:var(--orange);border-bottom-color:var(--orange)}
+.log-entry-body code{
+  font-family:var(--mono);font-size:.86em;
+  background:var(--paper-shadow);padding:1px 5px;
+  border-radius:2px;color:var(--ink);
+}
+.log-entry-how{
+  font-family:var(--sans);font-size:13.5px;line-height:1.6;color:var(--muted);
+  padding-top:12px;border-top:1px solid var(--hair-soft);
+}
+.log-entry-how b{font-family:var(--narrow);font-size:10px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--ink);display:block;margin-bottom:6px}
+.log-entry-how code{
+  font-family:var(--mono);font-size:.86em;
+  background:var(--paper-shadow);padding:1px 5px;
+  border-radius:2px;color:var(--ink);
+}
+.log-entry-why{
+  font-family:var(--disp);font-style:italic;
+  font-size:14px;color:var(--muted);line-height:1.55;
+  margin-top:10px;padding-left:14px;
+  border-left:2px solid var(--orange);
+}
+.log-entry-why b{font-style:normal;font-family:var(--narrow);font-size:10px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--orange);display:block;margin-bottom:4px}
+
+.code-block{
+  margin:16px 0;
+  border:1px solid var(--ink);
+  background:var(--paper);
+  font-family:var(--mono);font-size:12.5px;line-height:1.55;
+  color:var(--ink);
+  position:relative;
+  overflow:hidden;
+}
+.code-block-head{
+  display:flex;justify-content:space-between;align-items:center;
+  padding:10px 16px;
+  border-bottom:1px solid var(--ink);
+  background:var(--ink);color:var(--paper);
+  font-family:var(--narrow);
+  font-size:10px;font-weight:700;letter-spacing:.28em;
+  text-transform:uppercase;
+}
+.code-block pre{
+  padding:16px 20px;overflow-x:auto;white-space:pre;margin:0;
+}
+
+.sidebar-box{
+  background:var(--paper);
+  border:1px solid var(--ink);
+  border-top:4px solid var(--ink);
+  padding:28px 28px 24px;
+  margin:48px auto;
+  max-width:820px;
+  position:relative;
+}
+.sidebar-box.accent{border-top-color:var(--orange)}
+.sidebar-box-kicker{
+  font-family:var(--narrow);
+  font-size:10px;font-weight:700;letter-spacing:.32em;
+  text-transform:uppercase;color:var(--orange);
+  margin-bottom:8px;
+}
+.sidebar-box-title{
+  font-family:var(--disp);font-weight:500;font-style:italic;
+  font-variation-settings:"opsz" 72;
+  font-size:28px;letter-spacing:-.015em;
+  color:var(--ink);
+  padding-bottom:16px;
+  border-bottom:1px solid var(--hair);
+  margin-bottom:20px;
+}
+.sidebar-box-body{
+  font-family:var(--sans);font-size:15px;line-height:1.65;color:var(--body);
+}
+.sidebar-box-body p{margin-bottom:12px}
+.sidebar-box-body p:last-child{margin-bottom:0}
+
+@media(max-width:720px){
+  .log-entry{grid-template-columns:1fr;gap:12px}
+  .log-cat-head{grid-template-columns:auto 1fr}
+  .log-cat-count{grid-column:1 / -1;text-align:left;padding-top:8px;border-top:1px solid var(--hair)}
+}
+@media(max-width:860px){
+  .prose-well{grid-template-columns:1fr;padding-left:20px;padding-right:20px}
+  .prose-well::before{display:none}
+  .prose-marginalia{display:none}
+  .prose{grid-column:1}
+  .prose-aside{grid-column:1;margin-top:20px}
+  .drop-cap::first-letter{font-size:6.6em}
+}
+@media(max-width:600px){
+  .section,.log-section,.prose-well{padding-left:20px;padding-right:20px}
+}
+
+/* Daily-specific components */
+.daily-masthead{
+  padding:56px 28px 48px;
+  max-width:1280px;margin:0 auto;
+  border-bottom:2px solid var(--ink);
+}
+.daily-masthead-top{
+  display:flex;align-items:baseline;gap:24px;
+  margin-bottom:28px;
+}
+.daily-wordmark{
+  font-family:var(--disp);
+  font-style:italic;font-weight:500;
+  font-variation-settings:"opsz" 144;
+  font-size:clamp(64px,10vw,120px);
+  line-height:.88;letter-spacing:-.04em;
+  color:var(--ink);
+}
+.daily-wordmark .dot{color:var(--orange)}
+.daily-kicker{
+  font-family:var(--narrow);
+  font-size:11px;font-weight:700;letter-spacing:.38em;
+  text-transform:uppercase;color:var(--muted);
+  padding-bottom:4px;
+}
+.daily-dateline{
+  display:flex;align-items:center;justify-content:space-between;
+  padding-top:18px;border-top:1px solid var(--hair);
+  margin-top:20px;
+}
+.daily-date{
+  font-family:var(--disp);font-style:italic;
+  font-variation-settings:"opsz" 72;
+  font-size:20px;color:var(--muted);letter-spacing:-.01em;
+}
+.daily-sweep-label{
+  font-family:var(--narrow);
+  font-size:10px;font-weight:600;letter-spacing:.28em;
+  text-transform:uppercase;color:var(--gray);
+}
+
+.daily-oneliner{
+  padding:32px 28px;max-width:1280px;margin:0 auto;
+  border-bottom:1px solid var(--hair);
+}
+.daily-oneliner-text{
+  font-family:var(--disp);
+  font-variation-settings:"opsz" 72;
+  font-style:italic;font-weight:400;
+  font-size:clamp(22px,3vw,32px);
+  line-height:1.25;letter-spacing:-.015em;
+  color:var(--muted);
+  max-width:800px;
+}
+.daily-oneliner-text strong{color:var(--ink);font-style:normal;font-weight:600}
+
+.daily-lead{
+  max-width:1280px;margin:0 auto;
+  padding:48px 28px 0;
+  display:grid;
+  grid-template-columns:72px 1fr minmax(0,280px);
+  gap:32px;
+  position:relative;
+}
+.daily-lead::before{
+  content:"";position:absolute;left:100px;top:0;bottom:0;
+  width:1px;background:var(--hair);
+}
+.daily-lead-label{
+  grid-column:1;
+  font-family:var(--narrow);
+  font-size:10px;font-weight:600;letter-spacing:.26em;
+  text-transform:uppercase;color:var(--gray);
+  writing-mode:vertical-rl;transform:rotate(180deg);
+  align-self:start;padding-top:8px;
+  white-space:nowrap;
+}
+.daily-lead-body{
+  grid-column:2;
+}
+.daily-lead-kicker{
+  font-family:var(--narrow);
+  font-size:10px;font-weight:700;letter-spacing:.32em;
+  text-transform:uppercase;color:var(--orange);
+  margin-bottom:14px;
+}
+.daily-lead-title{
+  font-family:var(--disp);font-weight:700;
+  font-variation-settings:"opsz" 96;
+  font-size:clamp(32px,4vw,52px);
+  line-height:.96;letter-spacing:-.03em;
+  color:var(--ink);
+  margin-bottom:24px;
+  padding-bottom:20px;
+  border-bottom:1px solid var(--hair);
+}
+.daily-lead-prose{
+  font-family:var(--disp);
+  font-variation-settings:"opsz" 14;
+  font-weight:400;font-size:19px;line-height:1.66;
+  color:var(--body);
+}
+.daily-lead-prose p{margin-bottom:20px}
+.daily-lead-prose p:last-child{margin-bottom:0}
+.daily-lead-prose code{
+  font-family:var(--mono);font-size:.86em;
+  background:var(--paper-shadow);padding:1px 6px;
+  border-radius:3px;color:var(--ink);
+}
+.daily-lead-prose a{color:var(--ink);text-decoration:none;border-bottom:1px solid var(--hair-hard)}
+.daily-lead-prose a:hover{color:var(--orange);border-bottom-color:var(--orange)}
+.daily-lead-aside{
+  grid-column:3;
+  padding-top:4px;
+  border-top:1px solid var(--ink);
+  font-family:var(--narrow);
+  font-size:11px;font-weight:500;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--muted);
+  line-height:1.9;
+}
+.daily-lead-aside b{color:var(--ink);font-weight:700}
+
+@media(max-width:860px){
+  .daily-lead{grid-template-columns:1fr;padding-left:20px;padding-right:20px}
+  .daily-lead::before{display:none}
+  .daily-lead-label{display:none}
+  .daily-lead-body{grid-column:1}
+  .daily-lead-aside{grid-column:1;margin-top:16px;border-top:1px solid var(--hair)}
+  .daily-masthead-top{flex-direction:column;gap:8px}
+  .daily-dateline{flex-direction:column;align-items:flex-start;gap:8px}
+}
+
+.daily-footer{
+  background:var(--paper);
+  padding:64px 28px 48px;
+  border-top:2px solid var(--orange);
+  max-width:1280px;margin:0 auto;
+}
+.daily-footer-inner{
+  display:grid;grid-template-columns:1fr 1fr;gap:48px;
+  padding-bottom:32px;border-bottom:1px solid var(--hair);
+  margin-bottom:24px;
+}
+.daily-footer-mark{
+  font-family:var(--disp);font-style:italic;font-weight:500;
+  font-variation-settings:"opsz" 144;
+  font-size:56px;line-height:.9;letter-spacing:-.04em;color:var(--ink);
+  margin-bottom:12px;
+}
+.daily-footer-mark .dot{color:var(--orange)}
+.daily-footer-tag{
+  font-family:var(--disp);font-style:italic;font-size:15px;
+  color:var(--muted);line-height:1.4;max-width:340px;
+}
+.daily-footer-sources{}
+.daily-footer-sources h4{
+  font-family:var(--narrow);
+  font-size:10px;font-weight:700;letter-spacing:.32em;
+  text-transform:uppercase;color:var(--orange);
+  margin-bottom:12px;padding-bottom:10px;
+  border-bottom:1px solid var(--hair);
+}
+.daily-footer-sources ul{list-style:none;padding:0}
+.daily-footer-sources li{
+  font-family:var(--sans);font-size:12px;
+  line-height:1.55;color:var(--muted);
+  margin-bottom:6px;
+  word-break:break-all;
+}
+.daily-footer-sources li a{color:var(--ink);text-decoration:none;border-bottom:1px solid var(--hair)}
+.daily-footer-sources li a:hover{color:var(--orange)}
+.daily-footer-meta{
+  font-family:var(--narrow);font-size:10px;font-weight:600;
+  letter-spacing:.28em;text-transform:uppercase;color:var(--gray);
+  display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap;
+}
+.daily-footer-meta b{color:var(--ink)}
+
+@media(max-width:720px){
+  .daily-footer-inner{grid-template-columns:1fr}
+  .daily-footer-meta{flex-direction:column;gap:8px}
+}
+</style>
+</head>
+<body>
+
+<nav class="pub-bar">
+  <div class="pub-bar-left">
+    <span class="pub-bar-mark">Shipped<span class="dot">.</span></span>
+    <span class="pub-bar-sep"></span>
+    <span class="pub-bar-meta">A daily sweep by <a href="https://id8labs.app" class="pub-bar-link">id8Labs</a></span>
+  </div>
+  <div class="pub-bar-right">
+    <span class="pub-bar-folio">Daily &nbsp;&#183;&nbsp; <b>Jun 09</b></span>
+    <span class="pub-bar-sep"></span>
+    <span class="pub-bar-meta">Nightly Anthropic sweep</span>
+  </div>
+</nav>
+
+<header class="daily-masthead">
+  <div class="daily-masthead-top">
+    <span class="daily-wordmark">Shipped<span class="dot">.</span></span>
+    <span class="daily-kicker">Daily</span>
+  </div>
+  <div class="daily-dateline">
+    <span class="daily-date">Tuesday, June 09, 2026</span>
+    <span class="daily-sweep-label">24-hour Anthropic sweep &nbsp;&#183;&nbsp; 9:00 PM ET</span>
+  </div>
+</header>
+
+<div class="daily-oneliner">
+  <p class="daily-oneliner-text">Mythos went public today, renamed <strong>Fable 5</strong>, with per-session safety routing that fires in less than one in twenty sessions.</p>
+</div>
+
+<div class="daily-lead" id="lead">
+  <div class="daily-lead-label">Lead Story</div>
+  <div class="daily-lead-body">
+    <div class="daily-lead-kicker">Models</div>
+    <h2 class="daily-lead-title">The Public Frontier</h2>
+    <div class="daily-lead-prose">
+      <p>Fable 5 posts 80.3% on SWE-Bench Pro, eleven points clear of the field, and spatial reasoning that nearly tripled over Opus 4.8. Stripe estimated two-plus months of engineering time on a 50-million-line Ruby migration; Fable 5 finished in a day. The underlying model is Mythos 5, filtered through safeguards that route roughly one in twenty sessions to Opus 4.8 when queries touch high-risk territory (cybersecurity, biology). Model ID: <code>claude-fable-5</code>. Pricing: $10/$50 per million tokens. Free on paid plans through June 22, then usage credits until capacity catches up.</p>
+      <p>Mythos 5 is the same model with some safeguards lifted, deployed through Project Glasswing for authorized cyberdefenders and infrastructure providers. The public gets Fable. The cyberdefense community gets Mythos.</p>
+      <p>Source: <a href="https://www.anthropic.com/news/claude-fable-5-mythos-5">Anthropic announcement</a></p>
+    </div>
+  </div>
+  <div class="daily-lead-aside">
+    <b>Items today</b><br>
+    1 model launch<br>
+    2 Claude Code versions<br>
+    1 Claude Apps item<br>
+    9 SDK releases<br>
+    2 partnership items<br>
+    <br>
+    <b>Lead area</b><br>
+    MODEL<br>
+    <br>
+    <b>Window</b><br>
+    Jun 08 to Jun 09, 2026
+  </div>
+</div>
+
+<div class="ornament bold">&#183;&nbsp;&#183;&nbsp;&#183;</div>
+
+<div class="log-divider" id="log">
+  <div class="log-divider-kicker">Release Log &nbsp;&#183;&nbsp; June 09, 2026</div>
+  <h2 class="log-divider-title">The <em>Release</em> Log</h2>
+  <p class="log-divider-sub">Every confirmed Anthropic release in the past 24 hours. Primary sources only.</p>
+</div>
+
+<!-- A. Models -->
+<section class="log-section" id="models">
+  <div class="log-cat-head">
+    <span class="log-cat-name">Models</span>
+    <div class="log-cat-count"><b>1</b> release</div>
+  </div>
+  <div class="log-entries">
+
+    <div class="log-entry">
+      <div class="log-entry-left">
+        <div class="log-entry-date">Jun 09</div>
+        <span class="log-tag model">Model</span>
+      </div>
+      <div class="log-entry-right">
+        <div class="log-entry-title"><a href="https://www.anthropic.com/news/claude-fable-5-mythos-5">Claude Fable 5 and Claude Mythos 5</a></div>
+        <div class="log-entry-body">
+          Anthropic's strongest publicly available model, built on Mythos-class intelligence with safeguards active. Safeguards fire in less than 5% of sessions; affected queries fall back to Opus 4.8. Mythos 5 is the same model with some safeguards lifted, deployed through Project Glasswing for authorized cyberdefenders and infrastructure providers.
+          <br><br>
+          SWE-Bench Pro: 80.3% (next model: 69.4%). FrontierCode Diamond: 29.3% vs 13.4% for Opus 4.8. Spatial reasoning: 38.6% vs 14.5%. Pricing: $10/$50 per MTok input/output. Free on Pro, Max, Team, and Enterprise through June 22, then usage credits.
+        </div>
+        <div class="log-entry-how">
+          <b>How to use</b>
+          <code>model="claude-fable-5"</code> on the Claude API. Available on Amazon Bedrock; Vertex AI and Foundry to follow.
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- C. Claude Code -->
+<section class="log-section" id="claude-code">
+  <div class="log-cat-head">
+    <span class="log-cat-name">Claude Code</span>
+    <div class="log-cat-count"><b>2</b> releases</div>
+  </div>
+  <div class="log-entries">
+
+    <div class="log-entry">
+      <div class="log-entry-left">
+        <div class="log-entry-date">Jun 09</div>
+        <span class="log-tag code">Code</span>
+      </div>
+      <div class="log-entry-right">
+        <div class="log-entry-title"><a href="https://github.com/anthropics/claude-code/releases">Claude Code v2.1.170</a></div>
+        <div class="log-entry-body">
+          Adds Fable 5 access. Fixes session transcript saving for sessions launched from VS Code integrated terminal or shells with inherited Claude Code environment variables (they now appear in <code>--resume</code>).
+        </div>
+        <div class="log-entry-how">
+          <b>How to use</b>
+          <code>claude update</code> or reinstall.
+        </div>
+      </div>
+    </div>
+
+    <div class="log-entry">
+      <div class="log-entry-left">
+        <div class="log-entry-date">Jun 08</div>
+        <span class="log-tag code">Code</span>
+      </div>
+      <div class="log-entry-right">
+        <div class="log-entry-title"><a href="https://github.com/anthropics/claude-code/releases">Claude Code v2.1.169</a></div>
+        <div class="log-entry-body">
+          Safe mode, directory change, and bundled skills controls. The new <code>--safe-mode</code> flag (and <code>CLAUDE_CODE_SAFE_MODE</code> env var) disables all customizations (CLAUDE.md, plugins, skills, hooks, MCP servers) for clean troubleshooting. <code>/cd</code> moves a session to a new working directory without breaking the prompt cache. <code>disableBundledSkills</code> setting hides bundled skills and slash commands from the model.
+          <br><br>
+          Bug fixes: enterprise MCP policy enforcement on reconnect, Up/Down arrow navigation in long wrapped lines, macOS UI stall for claude.ai-authenticated users, Windows slash-command scan slowness, Remote Control stuck on reconnecting after session resume, Git Credential Manager popups on Windows startup, stale permission prompts on remote reattachment, background agents ignoring project-level env values, MCPB plugin cache spurious invalidation on Windows, untrusted project settings bypassing OTEL trust confirmation. Reduced CPU during streaming. Restored 5-minute idle timeout on Vertex/Foundry.
+        </div>
+        <div class="log-entry-how">
+          <b>How to use</b>
+          <code>claude update</code>. Set <code>CLAUDE_CODE_SAFE_MODE=1</code> to enforce safe mode in all sessions. Set <code>API_FORCE_IDLE_TIMEOUT=0</code> to opt out of the Vertex/Foundry idle timeout.
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- D. Claude Apps -->
+<section class="log-section" id="claude-apps">
+  <div class="log-cat-head">
+    <span class="log-cat-name">Claude Apps</span>
+    <div class="log-cat-count"><b>1</b> release</div>
+  </div>
+  <div class="log-entries">
+
+    <div class="log-entry">
+      <div class="log-entry-left">
+        <div class="log-entry-date">Jun 09</div>
+        <span class="log-tag apps">Apps</span>
+      </div>
+      <div class="log-entry-right">
+        <div class="log-entry-title"><a href="https://claude.com/blog/claude-for-foundation-models">Claude for Apple Foundation Models framework (announced)</a></div>
+        <div class="log-entry-body">
+          A Swift package that makes Claude available as a server-side language model in Apple's Foundation Models framework. Conforms to the <code>LanguageModel</code> protocol so developers can drive it with <code>LanguageModelSession</code> alongside Apple's on-device model. Supports multi-step reasoning, code generation, web search, code execution, and SwiftUI streaming. Targets iOS 27, iPadOS 27, macOS 27, visionOS 27, watchOS 27. Announced June 9, available June 10.
+        </div>
+        <div class="log-entry-how">
+          <b>How to use</b>
+          Add the Swift package. Docs: <a href="https://platform.claude.com/docs/en/cli-sdks-libraries/libraries/apple-foundation-models">Apple Foundation Models (Claude API Docs)</a>.
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- E. Agent SDKs -->
+<section class="log-section" id="sdks">
+  <div class="log-cat-head">
+    <span class="log-cat-name">Agent SDKs</span>
+    <div class="log-cat-count"><b>9</b> releases</div>
+  </div>
+  <div class="log-entries">
+
+    <div class="log-entry">
+      <div class="log-entry-left">
+        <div class="log-entry-date">Jun 09</div>
+        <span class="log-tag sdk-py">SDK-PY</span>
+      </div>
+      <div class="log-entry-right">
+        <div class="log-entry-title"><a href="https://github.com/anthropics/anthropic-sdk-python/releases">anthropic-sdk-python v0.109.1</a></div>
+        <div class="log-entry-body">
+          Bug fix: adds <code>frontier_llm</code> refusal category.
+        </div>
+        <div class="log-entry-how">
+          <b>How to use</b>
+          <code>pip install anthropic==0.109.1</code>
+        </div>
+      </div>
+    </div>
+
+    <div class="log-entry">
+      <div class="log-entry-left">
+        <div class="log-entry-date">Jun 09</div>
+        <span class="log-tag sdk-py">SDK-PY</span>
+      </div>
+      <div class="log-entry-right">
+        <div class="log-entry-title"><a href="https://github.com/anthropics/anthropic-sdk-python/releases">anthropic-sdk-python v0.109.0</a></div>
+        <div class="log-entry-body">
+          Adds support for Managed Agents deployments and environment variable credentials.
+        </div>
+        <div class="log-entry-how">
+          <b>How to use</b>
+          <code>pip install anthropic==0.109.0</code>
+        </div>
+      </div>
+    </div>
+
+    <div class="log-entry">
+      <div class="log-entry-left">
+        <div class="log-entry-date">Jun 09</div>
+        <span class="log-tag sdk-py">SDK-PY</span>
+      </div>
+      <div class="log-entry-right">
+        <div class="log-entry-title"><a href="https://github.com/anthropics/anthropic-sdk-python/releases">anthropic-sdk-python v0.108.0</a></div>
+        <div class="log-entry-body">
+          Adds <code>claude-fable-5</code> and <code>claude-mythos-5</code> model identifiers. Server-side fallbacks on refusal. Client-side fallbacks middleware for providers that do not support server-side fallbacks.
+        </div>
+        <div class="log-entry-how">
+          <b>How to use</b>
+          <code>pip install anthropic==0.108.0</code>
+        </div>
+      </div>
+    </div>
+
+    <div class="log-entry">
+      <div class="log-entry-left">
+        <div class="log-entry-date">Jun 09</div>
+        <span class="log-tag sdk-ts">SDK-TS</span>
+      </div>
+      <div class="log-entry-right">
+        <div class="log-entry-title"><a href="https://github.com/anthropics/anthropic-sdk-typescript/releases">anthropic-sdk-typescript v0.104.1</a></div>
+        <div class="log-entry-body">
+          Bug fix: adds <code>frontier_llm</code> refusal category.
+        </div>
+        <div class="log-entry-how">
+          <b>How to use</b>
+          <code>npm install @anthropic-ai/sdk@0.104.1</code>
+        </div>
+      </div>
+    </div>
+
+    <div class="log-entry">
+      <div class="log-entry-left">
+        <div class="log-entry-date">Jun 09</div>
+        <span class="log-tag sdk-ts">SDK-TS</span>
+      </div>
+      <div class="log-entry-right">
+        <div class="log-entry-title"><a href="https://github.com/anthropics/anthropic-sdk-typescript/releases">anthropic-sdk-typescript v0.104.0</a></div>
+        <div class="log-entry-body">
+          Adds support for Managed Agents deployments and environment variable credentials.
+        </div>
+        <div class="log-entry-how">
+          <b>How to use</b>
+          <code>npm install @anthropic-ai/sdk@0.104.0</code>
+        </div>
+      </div>
+    </div>
+
+    <div class="log-entry">
+      <div class="log-entry-left">
+        <div class="log-entry-date">Jun 09</div>
+        <span class="log-tag sdk-ts">SDK-TS</span>
+      </div>
+      <div class="log-entry-right">
+        <div class="log-entry-title"><a href="https://github.com/anthropics/anthropic-sdk-typescript/releases">anthropic-sdk-typescript v0.103.0</a></div>
+        <div class="log-entry-body">
+          Adds <code>claude-fable-5</code> and <code>claude-mythos-5</code> model identifiers. Server-side fallbacks on refusal. Client-side fallbacks middleware. <code>ctx.logger</code> in middleware. Fixes 3p middleware ordering.
+        </div>
+        <div class="log-entry-how">
+          <b>How to use</b>
+          <code>npm install @anthropic-ai/sdk@0.103.0</code>
+        </div>
+      </div>
+    </div>
+
+    <div class="log-entry">
+      <div class="log-entry-left">
+        <div class="log-entry-date">Jun 09</div>
+        <span class="log-tag sdk-ts">SDK-TS</span>
+      </div>
+      <div class="log-entry-right">
+        <div class="log-entry-title"><a href="https://github.com/anthropics/anthropic-sdk-typescript/releases">Platform SDKs: vertex v0.17.1, foundry v0.3.1, bedrock v0.30.2, aws v0.4.2</a></div>
+        <div class="log-entry-body">
+          All four platform TypeScript SDKs fix 3p middleware ordering, released simultaneously at 16:36 to 16:37 UTC.
+        </div>
+        <div class="log-entry-how">
+          <b>How to use</b>
+          Update the relevant SDK package to the tagged version.
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- G. News and Partnerships -->
+<section class="log-section" id="news">
+  <div class="log-cat-head">
+    <span class="log-cat-name">News and Partnerships</span>
+    <div class="log-cat-count"><b>2</b> items</div>
+  </div>
+  <div class="log-entries">
+
+    <div class="log-entry">
+      <div class="log-entry-left">
+        <div class="log-entry-date">Jun 09</div>
+        <span class="log-tag news">News</span>
+      </div>
+      <div class="log-entry-right">
+        <div class="log-entry-title"><a href="https://github.blog/changelog/2026-06-09-claude-fable-5-is-generally-available-for-github-copilot/">Claude Fable 5 generally available on GitHub Copilot</a></div>
+        <div class="log-entry-body">
+          GitHub Copilot subscribers can select Claude Fable 5 as their model in the Copilot interface as of June 9, 2026.
+        </div>
+      </div>
+    </div>
+
+    <div class="log-entry">
+      <div class="log-entry-left">
+        <div class="log-entry-date">Jun 09</div>
+        <span class="log-tag news">News</span>
+      </div>
+      <div class="log-entry-right">
+        <div class="log-entry-title"><a href="https://aws.amazon.com/blogs/aws/anthropic-claude-fable-5-on-aws-mythos-class-capabilities-with-built-in-safeguards-now-available/">Claude Fable 5 on Amazon Bedrock</a></div>
+        <div class="log-entry-body">
+          Fable 5 is available through Amazon Bedrock. Reported by AWS as "Mythos-class capabilities with built-in safeguards."
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<div class="ornament">&#183;&nbsp;&#183;&nbsp;&#183;</div>
+
+<footer class="daily-footer">
+  <div class="daily-footer-inner">
+    <div>
+      <div class="daily-footer-mark">Shipped<span class="dot">.</span></div>
+      <div class="daily-footer-tag">A nightly Anthropic release sweep by <a href="https://id8labs.app" style="color:var(--ink);text-decoration:none;border-bottom:1px solid var(--hair);">id8Labs</a>. Published to the <code style="font-family:var(--mono);font-size:.88em;">daily-pages</code> branch.</div>
+    </div>
+    <div class="daily-footer-sources">
+      <h4>Sources</h4>
+      <ul>
+        <li><a href="https://www.anthropic.com/news/claude-fable-5-mythos-5">anthropic.com/news/claude-fable-5-mythos-5</a></li>
+        <li><a href="https://github.com/anthropics/claude-code/releases">github.com/anthropics/claude-code/releases</a></li>
+        <li><a href="https://github.com/anthropics/anthropic-sdk-python/releases">github.com/anthropics/anthropic-sdk-python/releases</a></li>
+        <li><a href="https://github.com/anthropics/anthropic-sdk-typescript/releases">github.com/anthropics/anthropic-sdk-typescript/releases</a></li>
+        <li><a href="https://github.blog/changelog/2026-06-09-claude-fable-5-is-generally-available-for-github-copilot/">github.blog changelog, Jun 09</a></li>
+        <li><a href="https://aws.amazon.com/blogs/aws/anthropic-claude-fable-5-on-aws-mythos-class-capabilities-with-built-in-safeguards-now-available/">aws.amazon.com blog</a></li>
+        <li><a href="https://claude.com/blog/claude-for-foundation-models">claude.com/blog/claude-for-foundation-models</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="daily-footer-meta">
+    <span>Generated <b>2026-06-10T01:00:51Z</b></span>
+    <span>&#169; 2026 <b>id8Labs</b> &nbsp;&#183;&nbsp; All rights reserved</span>
+    <span>Next sweep: <b>Jun 10 at 21:00 ET</b></span>
+  </div>
+</footer>
+
+</body>
+</html>
