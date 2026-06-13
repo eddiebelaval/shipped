@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light">
+<title>Shipped. Daily, Friday, June 12, 2026</title>
+<meta property="og:title" content="Shipped. Daily, Friday, June 12, 2026">
+<meta property="og:description" content="Four Claude Code releases, five-deep sub-agent nesting, and DXC puts Fable 5 at the center of its managed services platform.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://eddiebelaval.github.io/shipped/anthropic-daily/2026-06-12.html">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Shipped. Daily, Friday, June 12, 2026">
+<meta name="twitter:description" content="Four Claude Code releases, five-deep sub-agent nesting, and DXC puts Fable 5 at the center of its managed services platform.">
+<meta name="description" content="Four Claude Code releases, five-deep sub-agent nesting, and DXC puts Fable 5 at the center of its managed services platform for banks, airlines, and government agencies.">
+<meta name="author" content="Shipped. by id8Labs">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='75' cy='62' r='14' fill='%23FF6B35'/%3E%3Ctext x='10' y='75' font-family='Georgia,serif' font-weight='700' font-size='62' fill='%231a1a1a'%3ES%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;0,9..144,900;1,9..144,300;1,9..144,400;1,9..144,500;1,9..144,700&family=Archivo:wght@300;400;500;600;700;800;900&family=Archivo+Narrow:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{font-size:16px;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;text-rendering:optimizeLegibility}
+body{background:#FAF8F4;color:#0b0b0b;font-family:'Archivo',sans-serif;overflow-x:hidden}
+::selection{background:#FF6B35;color:#fff}
+
+:root{
+  --orange:#FF6B35;
+  --ink:#0b0b0b;
+  --paper:#FAF8F4;
+  --paper-shadow:#f2f0e8;
+  --body:#2a2a2a;
+  --muted:#5a5a5a;
+  --gray:#8a8a8a;
+  --hair:rgba(11,11,11,0.12);
+  --hair-soft:rgba(11,11,11,0.06);
+  --hair-hard:rgba(11,11,11,0.22);
+  --disp:'Fraunces', 'Times New Roman', serif;
+  --sans:'Archivo', system-ui, sans-serif;
+  --narrow:'Archivo Narrow', 'Archivo', sans-serif;
+  --mono:'JetBrains Mono', ui-monospace, monospace;
+}
+
+body::before{
+  content:"";
+  position:fixed;inset:0;pointer-events:none;z-index:1000;opacity:.28;mix-blend-mode:multiply;
+  background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='180' height='180'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' seed='3'/><feColorMatrix values='0 0 0 0 0.02  0 0 0 0 0.02  0 0 0 0 0.02  0 0 0 0.22 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+}
+
+.pub-bar{
+  position:sticky;top:0;z-index:100;
+  background:var(--paper);
+  border-bottom:1px solid var(--hair);
+  padding:0 28px;height:42px;
+  display:flex;align-items:center;justify-content:space-between;
+  font-family:var(--narrow);
+  font-size:11px;font-weight:600;letter-spacing:.22em;
+  text-transform:uppercase;color:var(--ink);
+}
+.pub-bar-left,.pub-bar-right{display:flex;align-items:center;gap:16px}
+.pub-bar-mark{font-family:var(--disp);font-weight:500;font-size:16px;letter-spacing:-.01em;text-transform:none;font-style:italic}
+.pub-bar-mark .dot{color:var(--orange)}
+.pub-bar-sep{width:1px;height:12px;background:var(--hair-hard)}
+.pub-bar-meta{color:var(--muted)}
+
+.daily-cover{
+  padding:56px 28px 48px;
+  border-bottom:1px solid var(--ink);
+  max-width:1280px;margin:0 auto;
+}
+.daily-kicker{
+  font-family:var(--narrow);
+  font-size:11px;font-weight:700;letter-spacing:.38em;
+  text-transform:uppercase;color:var(--orange);
+  margin-bottom:16px;
+}
+.daily-masthead{
+  font-family:var(--disp);
+  font-weight:500;font-style:italic;
+  font-size:clamp(52px,9vw,104px);
+  line-height:.9;letter-spacing:-.035em;
+  color:var(--ink);
+  margin-bottom:0;
+}
+.daily-masthead .dot{color:var(--orange)}
+.daily-date{
+  font-family:var(--narrow);
+  font-size:12px;font-weight:600;letter-spacing:.28em;
+  text-transform:uppercase;color:var(--muted);
+  padding-top:20px;
+  margin-top:20px;
+  border-top:1px solid var(--ink);
+  margin-bottom:28px;
+}
+.daily-deck{
+  font-family:var(--disp);font-style:italic;
+  font-weight:400;font-size:clamp(19px,2.4vw,27px);
+  line-height:1.35;letter-spacing:-.01em;
+  color:var(--ink);max-width:720px;
+}
+
+.lead-section{
+  padding:56px 28px 48px;
+  border-bottom:1px solid var(--hair);
+  max-width:1280px;margin:0 auto;
+}
+.lead-kicker{
+  font-family:var(--narrow);
+  font-size:10px;font-weight:700;letter-spacing:.36em;
+  text-transform:uppercase;color:var(--orange);
+  margin-bottom:14px;
+}
+.lead-title{
+  font-family:var(--disp);font-weight:600;
+  font-variation-settings:"opsz" 96;
+  font-size:clamp(28px,4vw,48px);
+  line-height:1.03;letter-spacing:-.025em;
+  color:var(--ink);
+  padding-bottom:20px;
+  border-bottom:1px solid var(--hair);
+  margin-bottom:28px;
+}
+.lead-prose{
+  font-family:var(--disp);
+  font-variation-settings:"opsz" 14;
+  font-weight:400;font-size:19px;line-height:1.66;
+  color:var(--body);max-width:640px;
+}
+.lead-prose p{margin-bottom:22px}
+.lead-prose p:last-child{margin-bottom:0}
+.lead-prose a{color:var(--ink);text-decoration:none;border-bottom:1px solid var(--hair-hard)}
+.lead-prose a:hover{color:var(--orange);border-bottom-color:var(--orange)}
+
+.log-divider{
+  background:var(--paper);
+  padding:64px 28px 40px;
+  text-align:center;
+  border-top:3px double var(--ink);
+  border-bottom:1px solid var(--ink);
+  max-width:1280px;margin:0 auto;
+}
+.log-divider-kicker{
+  font-family:var(--narrow);
+  font-size:11px;font-weight:700;letter-spacing:.48em;
+  text-transform:uppercase;color:var(--orange);
+  margin-bottom:12px;
+}
+.log-divider-title{
+  font-family:var(--disp);font-weight:700;
+  font-variation-settings:"opsz" 144;
+  font-size:clamp(40px,7vw,96px);
+  line-height:.9;letter-spacing:-.045em;color:var(--ink);
+  margin-bottom:12px;
+}
+.log-divider-title em{font-style:italic;font-weight:400}
+
+.log-section{
+  padding:48px 28px;max-width:1280px;margin:0 auto;
+}
+.log-section.no-top{padding-top:0}
+.log-cat-head{
+  display:grid;
+  grid-template-columns:1fr auto;
+  gap:24px;align-items:baseline;
+  padding-bottom:18px;
+  border-bottom:1px solid var(--ink);
+  margin-bottom:0;
+}
+.log-cat-name{
+  font-family:var(--disp);font-weight:600;font-style:italic;
+  font-variation-settings:"opsz" 96;
+  font-size:clamp(28px,4vw,44px);
+  letter-spacing:-.02em;color:var(--ink);line-height:1;
+}
+.log-cat-count{
+  font-family:var(--narrow);
+  font-size:10px;font-weight:600;letter-spacing:.28em;
+  text-transform:uppercase;color:var(--muted);
+  text-align:right;
+}
+.log-cat-count b{color:var(--ink);font-weight:700;font-size:13px;display:block}
+
+.log-entries{display:flex;flex-direction:column}
+.log-entry{
+  padding:24px 0;
+  border-bottom:1px solid var(--hair);
+  display:grid;
+  grid-template-columns:120px 1fr;gap:28px;
+}
+.log-entry-left{
+  display:flex;flex-direction:column;gap:8px;
+}
+.log-entry-date{
+  font-family:var(--narrow);
+  font-size:10px;font-weight:700;letter-spacing:.22em;
+  text-transform:uppercase;color:var(--ink);
+  font-variant-numeric:tabular-nums;
+}
+.log-tag{
+  font-family:var(--narrow);
+  font-size:9px;font-weight:700;letter-spacing:.22em;
+  text-transform:uppercase;padding:3px 7px;
+  display:inline-block;line-height:1.3;width:fit-content;
+}
+.log-tag.model{background:var(--orange);color:var(--paper)}
+.log-tag.api{background:var(--ink);color:var(--paper)}
+.log-tag.code{background:#3a3a3a;color:var(--paper)}
+.log-tag.apps{background:#5a5a5a;color:var(--paper)}
+.log-tag.sdk-py,.log-tag.sdk-ts{background:var(--paper);color:var(--ink);border:1px solid var(--ink)}
+.log-tag.research,.log-tag.news{background:var(--paper);color:var(--muted);border:1px solid var(--hair-hard)}
+.log-tag.deprecation{background:var(--paper-shadow);color:var(--muted);border:1px solid var(--hair-hard)}
+
+.log-entry-title{
+  font-family:var(--disp);font-weight:500;
+  font-variation-settings:"opsz" 72;
+  font-size:20px;letter-spacing:-.012em;
+  color:var(--ink);line-height:1.25;
+  margin-bottom:10px;
+}
+.log-entry-title a{color:inherit;text-decoration:none;border-bottom:1px solid var(--hair-hard)}
+.log-entry-title a:hover{border-bottom-color:var(--orange);color:var(--orange)}
+.log-entry-body{
+  font-family:var(--sans);font-size:14.5px;line-height:1.6;color:var(--body);
+  margin-bottom:10px;
+}
+.log-entry-how{
+  font-family:var(--sans);font-size:13.5px;line-height:1.6;color:var(--muted);
+  padding-top:12px;border-top:1px solid var(--hair-soft);
+}
+.log-entry-how b{font-family:var(--narrow);font-size:10px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--ink);display:block;margin-bottom:6px}
+.log-entry-body code,
+.log-entry-how code{
+  font-family:var(--mono);font-size:.86em;
+  background:var(--paper-shadow);padding:1px 6px;
+  border-radius:3px;color:var(--ink);
+}
+
+@media(max-width:720px){
+  .log-entry{grid-template-columns:1fr;gap:12px}
+  .log-cat-head{grid-template-columns:auto 1fr}
+  .log-cat-count{grid-column:1 / -1;text-align:left;padding-top:8px;border-top:1px solid var(--hair)}
+}
+
+.colophon{
+  background:var(--ink);color:var(--paper);
+  padding:64px 28px 56px;
+  border-top:2px solid var(--orange);
+  margin-top:32px;
+}
+.colophon-inner{
+  max-width:1280px;margin:0 auto;
+  display:grid;grid-template-columns:auto 1fr;gap:40px;
+  align-items:start;
+}
+.colophon-word{
+  font-family:var(--disp);font-weight:500;font-style:italic;
+  font-variation-settings:"opsz" 96;
+  font-size:clamp(56px,8vw,88px);
+  line-height:.9;letter-spacing:-.04em;color:var(--paper);
+}
+.colophon-word .dot{color:var(--orange)}
+.colophon-meta{
+  font-family:var(--sans);font-size:13px;line-height:1.75;
+  color:rgba(250,250,247,.72);
+  padding-top:6px;
+}
+.colophon-meta b{color:var(--paper)}
+.colophon-meta a{color:rgba(250,250,247,.8);text-decoration:none;border-bottom:1px solid rgba(250,250,247,.25)}
+.colophon-meta a:hover{color:var(--orange)}
+.colophon-sources{
+  margin-top:16px;
+  font-family:var(--narrow);font-size:10px;font-weight:500;
+  letter-spacing:.18em;text-transform:uppercase;
+  color:rgba(250,250,247,.42);
+  padding-top:16px;border-top:1px solid rgba(250,250,247,.14);
+  line-height:2;
+}
+.colophon-sources a{color:rgba(250,250,247,.58);text-decoration:none}
+.colophon-sources a:hover{color:var(--orange)}
+
+@media(max-width:720px){
+  .colophon-inner{grid-template-columns:1fr;gap:24px}
+  .daily-cover,.lead-section,.log-divider,.log-section{padding-left:20px;padding-right:20px}
+}
+</style>
+</head>
+<body>
+
+<nav class="pub-bar">
+  <div class="pub-bar-left">
+    <span class="pub-bar-mark">Shipped<span class="dot">.</span></span>
+    <span class="pub-bar-sep"></span>
+    <span class="pub-bar-meta">Daily</span>
+    <span class="pub-bar-sep"></span>
+    <span class="pub-bar-meta">Jun 12, 2026</span>
+  </div>
+  <div class="pub-bar-right">
+    <span class="pub-bar-meta">24h sweep</span>
+  </div>
+</nav>
+
+<div class="daily-cover">
+  <div class="daily-kicker">Daily Sweep</div>
+  <div class="daily-masthead">Shipped<span class="dot">.</span> Daily</div>
+  <div class="daily-date">Friday, June 12, 2026</div>
+  <div class="daily-deck">Four Claude Code patch releases tightened enterprise model governance and unlocked five-deep sub-agent nesting, while DXC deployed Fable 5 as the default model inside its managed services platform for banks, airlines, and government agencies.</div>
+</div>
+
+<div class="lead-section">
+  <div class="lead-kicker">Lead Story</div>
+  <div class="lead-title">DXC goes all in</div>
+  <div class="lead-prose">
+    <p>DXC Technology, the managed services firm running back-office infrastructure for banks, airlines, insurers, and government agencies, announced a multi-year global alliance with Anthropic on June 11. DXC tested Claude across its 115,000-person workforce in 70 countries before rolling it to clients. Claude wrote more than 95% of the code for <a href="https://www.anthropic.com/news/dxc-anthropic-alliance">DXC OASIS</a>, its new AI-native orchestration platform, with Fable 5 as the default foundation model.</p>
+    <p>DXC is training tens of thousands of Claude-certified forward-deployed engineers to install Claude inside the systems regulated industries have trusted for decades. This is not a new product launch. This is an established firm putting Claude at the center of what it sells.</p>
+  </div>
+</div>
+
+<div class="log-divider">
+  <div class="log-divider-kicker">Release Log</div>
+  <div class="log-divider-title">June <em>12,</em> 2026</div>
+</div>
+
+<div class="log-section">
+  <div class="log-cat-head">
+    <div class="log-cat-name">Claude Code</div>
+    <div class="log-cat-count"><b>4</b> releases</div>
+  </div>
+  <div class="log-entries">
+
+    <div class="log-entry">
+      <div class="log-entry-left">
+        <div class="log-entry-date">Jun 12</div>
+        <span class="log-tag code">CODE</span>
+      </div>
+      <div>
+        <div class="log-entry-title">
+          <a href="https://github.com/anthropics/claude-code/blob/main/CHANGELOG.md">Claude Code v2.1.175</a>
+        </div>
+        <div class="log-entry-body">Added <code>enforceAvailableModels</code> managed setting. When enabled, the <code>availableModels</code> allowlist also governs which model Default resolves to, giving organizations tighter control over model access across the org.</div>
+        <div class="log-entry-how">
+          <b>How to use</b>
+          Set <code>enforceAvailableModels: true</code> in your managed settings. The Default model will be constrained to models in your <code>availableModels</code> allowlist. Update via <code>claude update</code>.
+        </div>
+      </div>
+    </div>
+
+    <div class="log-entry">
+      <div class="log-entry-left">
+        <div class="log-entry-date">Jun 12</div>
+        <span class="log-tag code">CODE</span>
+      </div>
+      <div>
+        <div class="log-entry-title">
+          <a href="https://github.com/anthropics/claude-code/blob/main/CHANGELOG.md">Claude Code v2.1.174</a>
+        </div>
+        <div class="log-entry-body">Added <code>wheelScrollAccelerationEnabled</code> setting to disable mouse-wheel scroll acceleration in fullscreen mode. Fixed the /model picker hiding the model family that Default resolves to.</div>
+      </div>
+    </div>
+
+    <div class="log-entry">
+      <div class="log-entry-left">
+        <div class="log-entry-date">Jun 11</div>
+        <span class="log-tag code">CODE</span>
+      </div>
+      <div>
+        <div class="log-entry-title">
+          <a href="https://github.com/anthropics/claude-code/blob/main/CHANGELOG.md">Claude Code v2.1.173</a>
+        </div>
+        <div class="log-entry-body">Fixed Fable 5 model names with a <code>[1m]</code> suffix not being normalized. Fable 5 ships with 1M context by default, so the suffix is now stripped automatically. Fixed a spurious "sandbox dependencies missing" startup warning on Windows when sandbox was enabled in settings.</div>
+      </div>
+    </div>
+
+    <div class="log-entry">
+      <div class="log-entry-left">
+        <div class="log-entry-date">Jun 11</div>
+        <span class="log-tag code">CODE</span>
+      </div>
+      <div>
+        <div class="log-entry-title">
+          <a href="https://github.com/anthropics/claude-code/blob/main/CHANGELOG.md">Claude Code v2.1.172</a>
+        </div>
+        <div class="log-entry-body">Sub-agents can now spawn their own sub-agents, up to 5 levels deep. Amazon Bedrock reads the AWS region from <code>~/.aws</code> config files when <code>AWS_REGION</code> is not set, matching AWS SDK precedence. Added a search bar when browsing marketplace plugins in <code>/plugin</code>. Fixed: sessions using 1M context without usage credits getting permanently stuck; JetBrains terminal flicker via synchronized output; Shift+non-ASCII drops in Kitty keyboard protocol terminals; PowerShell command validation hang on Windows.</div>
+        <div class="log-entry-how">
+          <b>How to use</b>
+          Update via <code>claude update</code>. Nested sub-agents are on by default. Bedrock region resolution requires no config change, just ensure your <code>~/.aws/config</code> has the region set.
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div class="log-section no-top">
+  <div class="log-cat-head">
+    <div class="log-cat-name">News and Partnerships</div>
+    <div class="log-cat-count"><b>1</b> release</div>
+  </div>
+  <div class="log-entries">
+
+    <div class="log-entry">
+      <div class="log-entry-left">
+        <div class="log-entry-date">Jun 11</div>
+        <span class="log-tag news">NEWS</span>
+      </div>
+      <div>
+        <div class="log-entry-title">
+          <a href="https://www.anthropic.com/news/dxc-anthropic-alliance">DXC Technology multi-year global alliance</a>
+        </div>
+        <div class="log-entry-body">DXC Technology will integrate Claude into the enterprise systems banks, airlines, insurers, manufacturers, and government agencies have relied on for decades. DXC tested Claude across its 115,000-person workforce in 70 countries before rolling out to clients, and collaborated with Claude to write more than 95% of the code for DXC OASIS, its AI-native orchestration platform for managed services. Fable 5 is the default foundation model on OASIS. DXC is training tens of thousands of Claude-certified forward-deployed engineers.</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<footer class="colophon">
+  <div class="colophon-inner">
+    <div class="colophon-word">Shipped<span class="dot">.</span></div>
+    <div>
+      <div class="colophon-meta">
+        <p><b>Shipped. Daily</b> is a nightly 24h sweep of Anthropic releases, published by <a href="https://id8labs.app">id8Labs</a>. Generated 2026-06-13T01:04:56Z.</p>
+        <p><b>Editor:</b> Eddie Belaval &nbsp; <b>Voice:</b> STYLE.md &nbsp; <b>Design:</b> Canonical Shipped. light</p>
+      </div>
+      <div class="colophon-sources">
+        Sources used:
+        <a href="https://www.anthropic.com/news/dxc-anthropic-alliance">anthropic.com/news/dxc-anthropic-alliance</a>
+        &nbsp;&#183;&nbsp;
+        <a href="https://github.com/anthropics/claude-code/blob/main/CHANGELOG.md">github.com/anthropics/claude-code CHANGELOG</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
