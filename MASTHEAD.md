@@ -49,7 +49,7 @@ Each desk is one primitive. **In** is what it must receive. **Out** is what it m
 
 ### 3 · DIG — the Staff Writer (Draft)
 
-- **Job:** Write the front-of-book. Run every assigned item through The Dig's five levers — mechanism, blast radius, pattern, the read, the move (see DAILY.md).
+- **Job:** Write the front-of-book. Run every assigned item through The Dig's six levers — mechanism, blast radius, pattern, the read, the contrast, the move (see DAILY.md).
 - **In:** `issue plan` + `signal facts`.
 - **Out:** `draft prose` — lead, dug items, the read, quiet-on-the-wire, in the issue's markdown.
 - **Eval:** each dug item shows mechanism + stakes + a builder move; word floors met; depth came from the levers, not padding.

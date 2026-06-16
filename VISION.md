@@ -6,11 +6,11 @@
 
 ## One-liner
 
-**Shipped. is a weekly magazine for builders who can't — or won't — stay glued to social media, aggregating the week's Anthropic releases into one read that's worth the time.**
+**Shipped. is a weekly magazine for builders who can't — or won't — stay glued to social media, aggregating the week's frontier-lab releases — Anthropic, OpenAI, Google DeepMind, and the rest — into one read that's worth the time.**
 
 ## Who it's for
 
-Builders using Anthropic's platform (Claude API, Claude Code, the SDKs, the research) who:
+Builders working across the frontier platforms (Claude, GPT, Gemini, and the rest — the APIs, the coding agents, the SDKs, the research) who:
 
 - Step away from X/Twitter for 30 minutes and come back feeling behind.
 - Don't want to turn their feed into a release tracker.

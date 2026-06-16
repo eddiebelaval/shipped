@@ -10,13 +10,13 @@ Authored by Eddie Belaval. First draft 2026-04-16. See changelog at bottom for r
 
 ## Masthead
 
-**Shipped.** — A weekly magazine on what Anthropic is releasing.
+**Shipped.** — A weekly magazine on what the frontier AI labs are shipping.
 
 The period is part of the name. Always render with the period.
 
 ## Mission
 
-Stay plugged in to the frontier without drowning in changelogs. Cover Anthropic's releases — models, features, Claude Code, SDKs, research, docs — with editorial weight. Rolling Stone meets Wired. Personality, not press release.
+Stay plugged in to the frontier without drowning in changelogs. Cover the frontier labs' releases — Anthropic, OpenAI, Google DeepMind, Meta, Mistral, xAI: models, features, coding agents, SDKs, research, docs — with editorial weight, and read each move against the others. Rolling Stone meets Wired. Personality, not press release.
 
 ## Audience
 

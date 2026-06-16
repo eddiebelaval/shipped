@@ -7,7 +7,7 @@
 
 ## What this project is
 
-**Shipped.** is a weekly magazine covering Anthropic releases. Published by id8Labs. Ships every Friday at 9 AM ET.
+**Shipped.** is a weekly magazine covering the frontier AI labs — Anthropic (the anchor), OpenAI, Google DeepMind, Meta, Mistral, and xAI. Published by id8Labs. Ships every Friday at 9 AM ET. The beat is data: `pipeline/src/scrape/sources.ts`.
 
 The pipeline scrapes, the front-of-book is written, the verifier prevents lies, and the human pushes git. That sequence does not change.
 

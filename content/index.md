@@ -1,6 +1,6 @@
 ---
 series: Shipped.
-beat: Anthropic releases — models, features, Claude Code, SDK, research, docs
+beat: Frontier-lab releases — Anthropic, OpenAI, Google DeepMind, Meta, Mistral, xAI
 cadence: Weekly, Friday 9 AM ET
 voice: Rolling Stone × Wired
 created: 2026-04-16
@@ -8,7 +8,7 @@ created: 2026-04-16
 
 # Shipped. — Series Archive
 
-A weekly magazine on what Anthropic is releasing.
+A weekly magazine on what the frontier AI labs are shipping.
 
 The frontier ships at building speed. This is the read that keeps you plugged in.
 
