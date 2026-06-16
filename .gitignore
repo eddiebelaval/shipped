@@ -12,3 +12,4 @@ pipeline/.api-cache.json
 # IDE
 .vscode/
 .idea/
+.gstack/
