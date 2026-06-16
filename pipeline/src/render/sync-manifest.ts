@@ -164,7 +164,14 @@ export async function syncManifest(
 
   let hubHtml: string;
   try {
-    hubHtml = await fs.readFile(path.join(deployRoot, 'index.html'), 'utf-8');
+    // The hub archive moved from index.html -> archive.html when the dynamic
+    // /shipped App Router page took over the index slot. Prefer archive.html;
+    // fall back to index.html for older deploys.
+    try {
+      hubHtml = await fs.readFile(path.join(deployRoot, 'archive.html'), 'utf-8');
+    } catch {
+      hubHtml = await fs.readFile(path.join(deployRoot, 'index.html'), 'utf-8');
+    }
   } catch {
     console.warn(`[sync-manifest] hub archive not found under ${deployRoot} (skipping)`);
     return null;
