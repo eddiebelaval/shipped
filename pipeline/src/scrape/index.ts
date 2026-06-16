@@ -11,7 +11,7 @@
  */
 
 import { NitterClient } from './nitter.js';
-import { writeScrapeResult } from './output.js';
+import { writeScrapeResult, outputDirForUser } from './output.js';
 import {
   DEFAULT_SCRAPE_OPTIONS,
   type ScrapeOptions,
@@ -118,7 +118,9 @@ export async function scrapeClaudedevs(
   let outputPath: string | null = null;
   if (!options.dry) {
     try {
-      outputPath = await writeScrapeResult(result);
+      outputPath = await writeScrapeResult(result, {
+        outputDir: outputDirForUser(opts.username),
+      });
       log(`[scrape] Wrote ${outputPath}`);
     } catch (err) {
       log(`[scrape] Failed to write output: ${describeError(err)}`);

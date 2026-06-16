@@ -14,16 +14,30 @@ import { dirname, join, resolve } from 'node:path';
 
 import type { ScrapeResult } from './types.js';
 
-/**
- * Default output directory, relative to the scrapers/shipped package root.
- * Resolves to scrapers/shipped/output/x-claudedevs/.
- */
-export function defaultOutputDir(): string {
+/** Package root (scrapers/shipped/), resolved from this file's location. */
+function pkgRoot(): string {
   // import.meta.url => file:///.../scrapers/shipped/src/scrape/output.ts
   const here = new URL(import.meta.url).pathname;
   // Walk: src/scrape/output.ts -> src/scrape -> src -> shipped
-  const pkgRoot = resolve(dirname(here), '..', '..');
-  return join(pkgRoot, 'output', 'x-claudedevs');
+  return resolve(dirname(here), '..', '..');
+}
+
+/**
+ * Output directory for a given feed handle: output/x-{handle}/. Each lab on
+ * the beat (see scrape/sources.ts) writes to its own dir so the Editor-in-Chief
+ * can sweep across all of them.
+ */
+export function outputDirForUser(username: string): string {
+  const handle = username.replace(/^@/, '').toLowerCase();
+  return join(pkgRoot(), 'output', `x-${handle}`);
+}
+
+/**
+ * Default output directory. Resolves to scrapers/shipped/output/x-claudedevs/
+ * (Anthropic, the anchor) for backward compatibility.
+ */
+export function defaultOutputDir(): string {
+  return outputDirForUser('claudedevs');
 }
 
 export interface WriteOptions {

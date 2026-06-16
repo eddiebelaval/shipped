@@ -16,7 +16,7 @@ import { parseIssue } from '../src/render/parse.js';
 import { renderIssue } from '../src/render/index.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
-const MD_PATH = path.resolve(__dirname, '../../../../knowledge/series/shipped/issue-00-the-founding.md');
+const MD_PATH = path.resolve(__dirname, '../../content/issue-00-the-founding.md');
 const HAND_BUILT = path.resolve(__dirname, '../../../../id8labs/public/shipped/01/index.html');
 
 // ────────────────────────────────────────────────────────────────────

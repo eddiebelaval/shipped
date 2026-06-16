@@ -30,6 +30,7 @@ import { spawn } from 'node:child_process';
 import { resolve, basename } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { dirname } from 'node:path';
+import { beatHandles } from '../scrape/sources.js';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const PIPELINE_ROOT = resolve(__dirname, '..', '..');
@@ -141,12 +142,21 @@ async function main() {
   // Stage 1 — Scrape (unless skipped)
   // ───────────────────────────────────────────
   if (!opts.skipScrape) {
-    log.step(1, 4, 'Scrape — refresh @claudedevs feed');
-    const scrapeExit = await runStep('scrape', 'pnpm', ['scrape', '--days', '7']);
-    if (scrapeExit !== 0) {
-      log.warn('Scraper exited non-zero. Continuing — X feed is supplemental, not blocking.');
+    const handles = beatHandles();
+    log.step(1, 4, `Scrape — sweep the frontier-labs beat (${handles.length} feeds)`);
+    let reached = 0;
+    for (const handle of handles) {
+      const exit = await runStep(`scrape:${handle}`, 'pnpm', ['scrape', '--user', handle, '--days', '7']);
+      if (exit !== 0) {
+        log.warn(`@${handle} scrape exited non-zero — continuing (X feed is supplemental, not blocking).`);
+      } else {
+        reached += 1;
+      }
+    }
+    if (reached > 0) {
+      log.ok(`Scraper output refreshed (${reached}/${handles.length} feeds reachable)`);
     } else {
-      log.ok('Scraper output refreshed');
+      log.warn('No feeds reachable this run — proceeding on existing output.');
     }
   } else {
     log.step(1, 4, 'Scrape — SKIPPED (--skip-scrape)');

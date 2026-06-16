@@ -1,0 +1,10 @@
+{
+  "_doc": "Shipped. release distribution list. Add friends here to have the release routines stage them a copy. See pipeline/DISTRIBUTION.md.",
+  "updated": "2026-06-08",
+  "send_mode": "draft",
+  "_send_mode_values": "draft = routine creates a Gmail DRAFT to the list (Eddie hits send). off = no distribution. send = auto-send (do NOT use until Eddie explicitly enables).",
+  "from": "eb@id8labs.tech",
+  "recipients": [
+    { "name": "Eddie Belaval", "email": "eddie.belaval@gmail.com", "cadences": ["nightly", "weekly", "monthly"] }
+  ]
+}
