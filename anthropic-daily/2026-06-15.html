@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light">
+<title>Shipped. Daily, Monday, June 15, 2026</title>
+<meta property="og:title" content="Shipped. Daily, Monday, June 15, 2026">
+<meta property="og:description" content="Two model retirements and a billing restructuring hit the API simultaneously. June 15 was a date Anthropic had circled since April.">
+<meta property="og:type" content="article">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Shipped. Daily, Monday, June 15, 2026">
+<meta name="twitter:description" content="Two model retirements and a billing restructuring hit the API simultaneously. June 15 was a date Anthropic had circled since April.">
+<meta name="description" content="Two model retirements and a billing restructuring hit the API simultaneously. June 15 was a date Anthropic had circled since April.">
+<meta name="author" content="id8Labs">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='75' cy='62' r='14' fill='%23FF6B35'/%3E%3Ctext x='10' y='75' font-family='Georgia,serif' font-weight='700' font-size='62' fill='%231a1a1a'%3ES%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;0,9..144,900;1,9..144,300;1,9..144,400;1,9..144,500;1,9..144,700&family=Archivo:wght@300;400;500;600;700;800;900&family=Archivo+Narrow:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{font-size:16px;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;text-rendering:optimizeLegibility}
+body{background:#FAF8F4;color:#0b0b0b;font-family:'Archivo',sans-serif;overflow-x:hidden}
+::selection{background:#FF6B35;color:#fff}
+
+:root{
+  --orange:#FF6B35;
+  --ink:#0b0b0b;
+  --paper:#FAF8F4;
+  --paper-shadow:#f2f0e8;
+  --body:#2a2a2a;
+  --muted:#5a5a5a;
+  --gray:#8a8a8a;
+  --hair:rgba(11,11,11,0.12);
+  --hair-soft:rgba(11,11,11,0.06);
+  --hair-hard:rgba(11,11,11,0.22);
+  --disp:'Fraunces', 'Times New Roman', serif;
+  --sans:'Archivo', system-ui, sans-serif;
+  --narrow:'Archivo Narrow', 'Archivo', sans-serif;
+  --mono:'JetBrains Mono', ui-monospace, monospace;
+}
+
+body::before{
+  content:"";
+  position:fixed;inset:0;pointer-events:none;z-index:1000;opacity:.28;mix-blend-mode:multiply;
+  background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='180' height='180'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' seed='3'/><feColorMatrix values='0 0 0 0 0.02  0 0 0 0 0.02  0 0 0 0 0.02  0 0 0 0.22 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+}
+
+.pub-bar{
+  position:sticky;top:0;z-index:100;
+  background:var(--paper);
+  border-bottom:1px solid var(--hair);
+  padding:0 28px;height:42px;
+  display:flex;align-items:center;justify-content:space-between;
+  font-family:var(--narrow);
+  font-size:11px;font-weight:600;letter-spacing:.22em;
+  text-transform:uppercase;color:var(--ink);
+}
+.pub-bar-left,.pub-bar-right{display:flex;align-items:center;gap:16px}
+.pub-bar-mark{font-family:var(--disp);font-weight:500;font-size:16px;letter-spacing:-.01em;text-transform:none;font-style:italic}
+.pub-bar-mark .dot{color:var(--orange)}
+.pub-bar-sep{width:1px;height:12px;background:var(--hair-hard)}
+.pub-bar-meta{color:var(--muted)}
+.pub-bar-link{color:inherit;text-decoration:none;border-bottom:1px solid currentColor;transition:color .15s ease}
+.pub-bar-link:hover{color:var(--orange)}
+.colophon-link{color:inherit;text-decoration:none;border-bottom:1px solid currentColor;transition:color .15s ease}
+.colophon-link:hover{color:var(--orange)}
+.pub-bar-folio{color:var(--ink)}
+.pub-bar-folio b{font-weight:600;color:var(--orange)}
+
+.folio{
+  font-family:var(--narrow);
+  font-size:10px;font-weight:500;letter-spacing:.28em;
+  text-transform:uppercase;color:var(--gray);
+  display:flex;align-items:center;gap:10px;
+}
+.folio b{color:var(--ink);font-weight:700}
+.folio .ruler{width:28px;height:1px;background:var(--hair-hard)}
+.folio .dot{color:var(--orange)}
+
+.section{
+  position:relative;
+  padding:64px 28px 40px;
+  max-width:1280px;margin:0 auto;
+}
+.section-folio{
+  display:flex;align-items:center;justify-content:space-between;
+  padding-bottom:18px;
+  border-bottom:1px solid var(--ink);
+  margin-bottom:44px;
+}
+.section-folio-left{display:flex;align-items:center;gap:14px}
+.section-folio-label{
+  font-family:var(--narrow);
+  font-size:11px;font-weight:700;letter-spacing:.28em;
+  text-transform:uppercase;color:var(--ink);
+}
+.section-folio-sub{
+  font-family:var(--disp);font-style:italic;
+  font-size:13px;color:var(--muted);
+}
+
+.open-prose{
+  font-family:var(--disp);
+  font-variation-settings:"opsz" 14;
+  font-weight:400;font-size:18px;line-height:1.68;
+  color:var(--body);
+  max-width:620px;
+}
+.open-prose p{margin-bottom:22px}
+.open-prose em{font-style:italic;color:var(--ink)}
+
+.prose{
+  font-family:var(--disp);
+  font-variation-settings:"opsz" 14;
+  font-weight:400;font-size:19px;line-height:1.66;
+  color:var(--body);
+  max-width:640px;
+}
+.prose p{margin-bottom:24px}
+.prose em{font-style:italic;color:var(--ink)}
+.prose strong{font-weight:600;color:var(--ink)}
+.prose code{
+  font-family:var(--mono);font-size:.86em;
+  background:var(--paper-shadow);padding:1px 6px;
+  border-radius:3px;color:var(--ink);
+}
+
+.code-block{
+  margin:24px 0;
+  border:1px solid var(--ink);
+  background:var(--paper);
+  font-family:var(--mono);font-size:12.5px;line-height:1.55;
+  color:var(--ink);
+  position:relative;overflow:hidden;
+}
+.code-block-head{
+  display:flex;justify-content:space-between;align-items:center;
+  padding:10px 16px;
+  border-bottom:1px solid var(--ink);
+  background:var(--ink);color:var(--paper);
+  font-family:var(--narrow);
+  font-size:10px;font-weight:700;letter-spacing:.28em;
+  text-transform:uppercase;
+}
+.code-block-head span:last-child{color:var(--orange)}
+.code-block pre{padding:20px 24px;overflow-x:auto;white-space:pre;margin:0;}
+
+.ornament{
+  text-align:center;margin:64px auto;
+  font-family:var(--disp);font-size:16px;color:var(--hair-hard);
+  letter-spacing:1.2em;
+}
+.ornament.bold{color:var(--orange);letter-spacing:.8em;font-size:20px}
+
+.log-divider{
+  background:var(--paper);
+  padding:80px 28px 48px;
+  text-align:center;
+  border-top:3px double var(--ink);
+  border-bottom:1px solid var(--ink);
+  max-width:1280px;margin:0 auto;
+}
+.log-divider-kicker{
+  font-family:var(--narrow);
+  font-size:11px;font-weight:700;letter-spacing:.48em;
+  text-transform:uppercase;color:var(--orange);
+  margin-bottom:14px;
+}
+.log-divider-title{
+  font-family:var(--disp);font-weight:700;
+  font-variation-settings:"opsz" 144;
+  font-size:clamp(56px,10vw,144px);
+  line-height:.9;letter-spacing:-.045em;color:var(--ink);
+  margin-bottom:16px;
+}
+.log-divider-title em{font-style:italic;font-weight:400}
+.log-divider-sub{
+  font-family:var(--disp);font-style:italic;
+  font-size:18px;color:var(--muted);max-width:640px;margin:0 auto;line-height:1.5;
+}
+
+.log-section{
+  padding:48px 28px;max-width:1280px;margin:0 auto;
+}
+.log-cat-head{
+  display:grid;
+  grid-template-columns:1fr auto;
+  gap:24px;align-items:baseline;
+  padding-bottom:18px;
+  border-bottom:1px solid var(--ink);
+  margin-bottom:0;
+}
+.log-cat-name{
+  font-family:var(--disp);font-weight:600;font-style:italic;
+  font-variation-settings:"opsz" 96;
+  font-size:clamp(36px,5vw,56px);
+  letter-spacing:-.02em;color:var(--ink);line-height:1;
+}
+.log-cat-count{
+  font-family:var(--narrow);
+  font-size:10px;font-weight:600;letter-spacing:.28em;
+  text-transform:uppercase;color:var(--muted);
+  text-align:right;
+}
+.log-cat-count b{color:var(--ink);font-weight:700;font-size:13px;display:block}
+.log-cat-deck{
+  font-family:var(--disp);font-style:italic;font-weight:400;
+  font-variation-settings:"opsz" 24;
+  font-size:18px;line-height:1.45;color:var(--muted);
+  margin-top:14px;margin-bottom:8px;
+  max-width:760px;letter-spacing:-.005em;
+}
+.log-cat-deck b{color:var(--ink);font-weight:600;font-style:normal}
+.log-cat-deck em{color:var(--orange);font-style:normal;font-weight:500}
+
+.log-entries{display:flex;flex-direction:column}
+.log-entry{
+  padding:24px 0;
+  border-bottom:1px solid var(--hair);
+  display:grid;
+  grid-template-columns:120px 1fr;gap:28px;
+}
+.log-entry-left{
+  display:flex;flex-direction:column;gap:8px;
+}
+.log-entry-date{
+  font-family:var(--narrow);
+  font-size:10px;font-weight:700;letter-spacing:.22em;
+  text-transform:uppercase;color:var(--ink);
+  font-variant-numeric:tabular-nums;
+}
+.log-tag{
+  font-family:var(--narrow);
+  font-size:9px;font-weight:700;letter-spacing:.22em;
+  text-transform:uppercase;padding:3px 7px;
+  display:inline-block;line-height:1.3;width:fit-content;
+}
+.log-tag.model{background:var(--orange);color:var(--paper)}
+.log-tag.api{background:var(--ink);color:var(--paper)}
+.log-tag.code{background:#3a3a3a;color:var(--paper)}
+.log-tag.apps{background:#5a5a5a;color:var(--paper)}
+.log-tag.sdk-py,.log-tag.sdk-ts{background:var(--paper);color:var(--ink);border:1px solid var(--ink)}
+.log-tag.research,.log-tag.news{background:var(--paper);color:var(--muted);border:1px solid var(--hair-hard)}
+.log-tag.deprecation{background:var(--paper-shadow);color:var(--muted);border:1px solid var(--hair-hard)}
+.log-entry-title{
+  font-family:var(--disp);font-weight:500;
+  font-variation-settings:"opsz" 72;
+  font-size:20px;letter-spacing:-.012em;
+  color:var(--ink);line-height:1.25;
+  margin-bottom:10px;
+}
+.log-entry-title a{color:inherit;text-decoration:none;border-bottom:1px solid var(--hair-hard)}
+.log-entry-title a:hover{border-bottom-color:var(--orange);color:var(--orange)}
+.log-entry-body{
+  font-family:var(--sans);font-size:14.5px;line-height:1.6;color:var(--body);
+  margin-bottom:12px;
+}
+.log-entry-how{
+  font-family:var(--sans);font-size:13.5px;line-height:1.6;color:var(--muted);
+  padding-top:12px;border-top:1px solid var(--hair-soft);
+}
+.log-entry-how b{font-family:var(--narrow);font-size:10px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--ink);display:block;margin-bottom:6px}
+.log-entry-why{
+  font-family:var(--disp);font-style:italic;
+  font-size:14px;color:var(--muted);line-height:1.55;
+  margin-top:10px;padding-left:14px;
+  border-left:2px solid var(--orange);
+}
+.log-entry-why b{font-style:normal;font-family:var(--narrow);font-size:10px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--orange);display:block;margin-bottom:4px}
+
+@media(max-width:720px){
+  .log-entry{grid-template-columns:1fr;gap:12px}
+  .log-cat-head{grid-template-columns:auto 1fr}
+  .log-cat-count{grid-column:1 / -1;text-align:left;padding-top:8px;border-top:1px solid var(--hair)}
+}
+
+/* ---- Daily page specific ---- */
+
+code {
+  font-family: var(--mono);
+  font-size: .86em;
+  background: var(--paper-shadow);
+  padding: 1px 6px;
+  border-radius: 3px;
+  color: var(--ink);
+}
+
+.daily-head {
+  padding: 52px 28px 56px;
+  border-bottom: 2px solid var(--ink);
+  max-width: 1280px;
+  margin: 0 auto;
+}
+.daily-kicker {
+  font-family: var(--narrow);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .38em;
+  text-transform: uppercase;
+  color: var(--orange);
+  margin-bottom: 28px;
+}
+.daily-masthead {
+  font-family: var(--disp);
+  font-style: italic;
+  font-weight: 500;
+  font-variation-settings: "opsz" 144;
+  font-size: clamp(80px, 15vw, 200px);
+  line-height: .86;
+  letter-spacing: -.045em;
+  color: var(--ink);
+  margin-bottom: 32px;
+  display: block;
+}
+.daily-masthead .dot {
+  color: var(--orange);
+  display: inline-block;
+  transform: translateY(-.04em);
+}
+.daily-dateline {
+  font-family: var(--narrow);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: .28em;
+  text-transform: uppercase;
+  color: var(--muted);
+  padding-top: 20px;
+  margin-top: 20px;
+  border-top: 1px solid var(--hair-hard);
+  margin-bottom: 32px;
+}
+.daily-oneliner {
+  font-family: var(--disp);
+  font-style: italic;
+  font-weight: 400;
+  font-variation-settings: "opsz" 72;
+  font-size: clamp(22px, 3vw, 36px);
+  line-height: 1.2;
+  letter-spacing: -.012em;
+  color: var(--body);
+  max-width: 780px;
+}
+.daily-lead {
+  padding: 52px 28px 48px;
+  max-width: 1280px;
+  margin: 0 auto;
+  border-bottom: 1px solid var(--hair);
+}
+.daily-lead-kicker {
+  font-family: var(--narrow);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .38em;
+  text-transform: uppercase;
+  color: var(--orange);
+  margin-bottom: 20px;
+}
+.daily-lead-prose {
+  font-family: var(--disp);
+  font-variation-settings: "opsz" 14;
+  font-weight: 400;
+  font-size: 19px;
+  line-height: 1.66;
+  color: var(--body);
+  max-width: 640px;
+}
+.daily-lead-prose p { margin-bottom: 22px; }
+.daily-lead-prose p:last-child { margin-bottom: 0; }
+.daily-foot {
+  padding: 40px 28px 56px;
+  max-width: 1280px;
+  margin: 0 auto;
+  border-top: 1px solid var(--hair-hard);
+  font-family: var(--narrow);
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  color: var(--muted);
+  line-height: 2;
+}
+.daily-foot a {
+  color: var(--muted);
+  text-decoration: none;
+  border-bottom: 1px solid var(--hair-hard);
+}
+.daily-foot a:hover { color: var(--orange); }
+.daily-foot b { color: var(--ink); font-weight: 700; }
+
+@media(max-width:600px){
+  .daily-head,.daily-lead,.log-section,.log-divider{padding-left:20px;padding-right:20px}
+  .daily-foot{padding-left:20px;padding-right:20px}
+}
+
+</style>
+</head>
+<body>
+
+<!-- Publication bar -->
+<nav class="pub-bar">
+  <div class="pub-bar-left">
+    <span class="pub-bar-mark">Shipped<span class="dot">.</span></span>
+    <span class="pub-bar-sep"></span>
+    <span class="pub-bar-meta">Daily &middot; <a href="https://id8labs.app" class="pub-bar-link">id8Labs</a></span>
+  </div>
+  <div class="pub-bar-right">
+    <span class="pub-bar-meta">Monday, June 15, 2026</span>
+  </div>
+</nav>
+
+<!-- Daily masthead -->
+<div class="daily-head">
+  <div class="daily-kicker">Shipped. Daily &nbsp;&middot;&nbsp; Anthropic Release Sweep</div>
+  <span class="daily-masthead">Shipped<span class="dot">.</span></span>
+  <div class="daily-dateline">Monday, June 15, 2026 &nbsp;&middot;&nbsp; Anthropic Sweep &nbsp;&middot;&nbsp; id8Labs</div>
+  <p class="daily-oneliner">Two model retirements and a billing restructuring hit simultaneously. June 15 was a date Anthropic had circled since April.</p>
+</div>
+
+<!-- Lead -->
+<div class="daily-lead">
+  <div class="daily-lead-kicker">Lead</div>
+  <div class="daily-lead-prose">
+    <p>June 15 arrives pre-loaded. Since April 14, two retirement clocks have been running down on <code>claude-sonnet-4-20250514</code> and <code>claude-opus-4-20250514</code>. Today both expire. Requests to the old model IDs now return errors. The recommended paths are <code>claude-sonnet-4-6</code> for Sonnet and <code>claude-opus-4-8</code> for Opus.</p>
+    <p>Running alongside it: the billing restructuring Anthropic announced May 14. Starting today, Agent SDK and headless <code>claude -p</code> calls pull from a separate metered credit, no longer bundled with subscription rate limits. Pro plans get $20 per month. Max 5x gets $100. Max 20x gets $200. Credits do not roll over.</p>
+    <p>Two coordinated changes, same date. The message is coherent: interactive usage is subscription, programmatic usage is metered. The SDK cleanup follows the same logic. Python v0.109.2 and TypeScript v0.104.2 shipped today, both removing the retired model IDs from their type definitions.</p>
+  </div>
+</div>
+
+<!-- Release Log -->
+<div class="log-divider" id="log">
+  <div class="log-divider-kicker">Release Log &nbsp;&middot;&nbsp; June 15, 2026</div>
+  <h2 class="log-divider-title">June <em>15</em></h2>
+  <p class="log-divider-sub">Every confirmed Anthropic release in the past 24 hours. Five entries across four areas.</p>
+</div>
+
+<!-- Models -->
+<div class="log-section">
+  <div class="log-cat-head">
+    <div class="log-cat-name">Models</div>
+    <div class="log-cat-count"><b>1</b>&nbsp;entry</div>
+  </div>
+  <div class="log-cat-deck">Retirement events and model lifecycle.</div>
+  <div class="log-entries">
+
+    <div class="log-entry">
+      <div class="log-entry-left">
+        <div class="log-entry-date">Jun 15</div>
+        <span class="log-tag deprecation">DEPRECATION</span>
+      </div>
+      <div>
+        <div class="log-entry-title">
+          <a href="https://docs.anthropic.com/en/docs/about-claude/model-deprecations">Sonnet 4 and Opus 4 retire</a>
+        </div>
+        <div class="log-entry-body">
+          <code>claude-sonnet-4-20250514</code> and <code>claude-opus-4-20250514</code> reach end of life today. Both were deprecated April 14 with a 60-day notice window. Requests to these model IDs now return errors.
+        </div>
+        <div class="log-entry-how">
+          <b>How to migrate</b>
+          Swap <code>claude-sonnet-4-20250514</code> for <code>claude-sonnet-4-6</code>, and <code>claude-opus-4-20250514</code> for <code>claude-opus-4-8</code>. Also note: <code>claude-opus-4-1</code> is separately deprecated, with retirement August 5, 2026.
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- API and Platform -->
+<div class="log-section">
+  <div class="log-cat-head">
+    <div class="log-cat-name">API and Platform</div>
+    <div class="log-cat-count"><b>1</b>&nbsp;entry</div>
+  </div>
+  <div class="log-cat-deck">Billing restructuring effective today.</div>
+  <div class="log-entries">
+
+    <div class="log-entry">
+      <div class="log-entry-left">
+        <div class="log-entry-date">Jun 15</div>
+        <span class="log-tag api">API</span>
+      </div>
+      <div>
+        <div class="log-entry-title">
+          <a href="https://www.anthropic.com/news">Programmatic credit billing goes live</a>
+        </div>
+        <div class="log-entry-body">
+          Agent SDK and headless <code>claude -p</code> usage now draws from a dedicated monthly credit metered at standard API list prices. It no longer shares the subscription rate-limit pool. Credits reset each billing cycle and do not roll over. Announced May 14; effective today.
+        </div>
+        <div class="log-entry-how">
+          <b>Credit amounts by plan</b>
+          Pro: $20/mo. Max 5x: $100/mo. Max 20x: $200/mo. Interactive Claude Code terminal sessions and Claude.ai chat are not affected and continue drawing from standard subscription limits.
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- Claude Code -->
+<div class="log-section">
+  <div class="log-cat-head">
+    <div class="log-cat-name">Claude Code</div>
+    <div class="log-cat-count"><b>1</b>&nbsp;entry</div>
+  </div>
+  <div class="log-entries">
+
+    <div class="log-entry">
+      <div class="log-entry-left">
+        <div class="log-entry-date">Jun 15</div>
+        <span class="log-tag code">CODE</span>
+      </div>
+      <div>
+        <div class="log-entry-title">
+          <a href="https://github.com/anthropics/claude-code/releases">Claude Code v2.1.178</a>
+        </div>
+        <div class="log-entry-body">
+          Adds <code>Tool(param:value)</code> syntax for permission rules to match tool input parameters with wildcard support. Write <code>Agent(model:opus)</code> to block Opus subagents, for instance. Nested <code>.claude/skills</code> directories load when working on files in that directory, surfacing as <code>dir:name</code> on name collisions. Closest-wins resolution now applies to nested <code>.claude/</code> directories (agent, workflow, output-style). Auto mode classifies each subagent spawn before launch. <code>/doctor</code> command gets a consistent flat tree layout with clearer section status icons.
+        </div>
+        <div class="log-entry-how">
+          <b>How to use</b>
+          <code>claude update</code> or reinstall. Run <code>/doctor</code> to verify setup status.
+        </div>
+        <div class="log-entry-why">
+          <b>Also fixed in this release</b>
+          Subagent transcript viewing, authentication and session management bugs, MCP server-level specs in subagent <code>disallowedTools</code> being ignored, vim mode undo behavior, and VSCode CJK IME candidate window dismissal canceling Claude tasks.
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- SDKs -->
+<div class="log-section">
+  <div class="log-cat-head">
+    <div class="log-cat-name">Agent SDKs</div>
+    <div class="log-cat-count"><b>2</b>&nbsp;entries</div>
+  </div>
+  <div class="log-cat-deck">Maintenance releases coordinated with today's model retirements.</div>
+  <div class="log-entries">
+
+    <div class="log-entry">
+      <div class="log-entry-left">
+        <div class="log-entry-date">Jun 15</div>
+        <span class="log-tag sdk-py">SDK-PY</span>
+      </div>
+      <div>
+        <div class="log-entry-title">
+          <a href="https://github.com/anthropics/anthropic-sdk-python/releases">anthropic-sdk-python v0.109.2</a>
+        </div>
+        <div class="log-entry-body">
+          Removes <code>claude-sonnet-4-20250514</code> and <code>claude-opus-4-20250514</code> from the SDK's type definitions, aligned with today's model retirements.
+        </div>
+        <div class="log-entry-how">
+          <b>How to update</b>
+          <code>pip install --upgrade anthropic</code>
+        </div>
+      </div>
+    </div>
+
+    <div class="log-entry">
+      <div class="log-entry-left">
+        <div class="log-entry-date">Jun 15</div>
+        <span class="log-tag sdk-ts">SDK-TS</span>
+      </div>
+      <div>
+        <div class="log-entry-title">
+          <a href="https://github.com/anthropics/anthropic-sdk-typescript/releases">anthropic-sdk-typescript v0.104.2</a>
+        </div>
+        <div class="log-entry-body">
+          Removes retired model IDs from the TypeScript SDK's type definitions, aligned with today's model retirements.
+        </div>
+        <div class="log-entry-how">
+          <b>How to update</b>
+          <code>npm install @anthropic-ai/sdk@latest</code>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div class="ornament">* * *</div>
+
+<!-- Light footer -->
+<div class="daily-foot">
+  <b>Sources</b><br>
+  <a href="https://github.com/anthropics/anthropic-sdk-python/releases">github.com/anthropics/anthropic-sdk-python/releases</a> &nbsp;&middot;&nbsp;
+  <a href="https://github.com/anthropics/anthropic-sdk-typescript/releases">github.com/anthropics/anthropic-sdk-typescript/releases</a> &nbsp;&middot;&nbsp;
+  <a href="https://github.com/anthropics/claude-code/releases">github.com/anthropics/claude-code/releases</a> &nbsp;&middot;&nbsp;
+  <a href="https://docs.anthropic.com/en/docs/about-claude/model-deprecations">docs.anthropic.com: model-deprecations</a> &nbsp;&middot;&nbsp;
+  <a href="https://www.anthropic.com/news">anthropic.com/news</a>
+  <br><br>
+  <b>Generated</b> 2026-06-16T01:10:00Z by claude.ai routine &nbsp;&middot;&nbsp; Shipped. Daily by <a href="https://id8labs.app">id8Labs</a>
+</div>
+
+</body>
+</html>
