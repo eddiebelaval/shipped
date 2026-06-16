@@ -1369,7 +1369,7 @@ Shipped.                   ← "Shipped" Libre Baskerville 40px 700 #1a1a1a,
                               "." color: #FF6B35
 A weekly magazine on what Anthropic is releasing.
                            ← Inter 17px 400, #6b6b6b
-Published every Friday at 5 PM ET.
+Published every Friday at 9 AM ET.
                            ← Inter 14px 400, #898989
 ```
 
