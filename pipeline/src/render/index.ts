@@ -66,7 +66,7 @@ export async function renderIssue(
   const outputPath =
     options.outputPath ?? path.join(deployRoot, issueNum, 'index.html');
   const archivePath =
-    options.archivePath ?? path.join(deployRoot, 'index.html');
+    options.archivePath ?? path.join(deployRoot, 'archive.html');
   const scratchPath =
     options.scratchPath ?? '/tmp/shipped-render-output.html';
 
