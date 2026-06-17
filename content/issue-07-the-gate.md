@@ -5,7 +5,7 @@ title: "The Gate"
 date: 2026-05-29
 period: 2026-05-24 to 2026-05-29
 masthead: Shipped.
-deck: "The model Anthropic held back found 10,000 bugs, flickered into Claude Code, then got a release date — the same week a $65B raise valued the company at $965B."
+deck: "The model Anthropic held back found 10,000 bugs, flickered into Claude Code, then got a release date, the same week the largest raise in the company's history landed."
 byline: Edited by Eddie Belaval. Reported with the assistance of Claude.
 term_of_issue: The Gate
 status: draft
@@ -25,9 +25,9 @@ log_content: reference
 
 ## The Open
 
-There is a model you cannot buy. It is called Mythos, and for two months Anthropic has kept it behind a gate, handing it only to about fifty vetted partners on the grounds that it can find and exploit vulnerabilities in every major operating system and browser when you point it at one.
+There is a model you cannot buy. It is called Mythos, and since April Anthropic has kept it behind a gate, handing it to roughly fifty vetted partners on the stated grounds that it can find and exploit vulnerabilities in every major operating system and browser when you point it at one. The product line has a shadow, and the shadow does not have a price.
 
-This week the gate started to swing. On Monday, the model's track record posted: more than 10,000 high- and critical-severity bugs in a single month. The same day, "claude-mythos-1-preview" flickered into Claude Code's model picker, then vanished. On Thursday, a flagship you can buy. On Friday, a $65 billion check and a sentence that reframed the whole week: Mythos is coming to everyone in "coming weeks."
+This week the gate started to swing on its hinges. On Monday, the model's track record posted: more than 10,000 high- and critical-severity bugs in a single month. The same day, "claude-mythos-1-preview" flickered into Claude Code's model picker, then vanished before anyone could click it. On Thursday, Anthropic shipped a flagship you can actually buy, Opus 4.8, at the old price. On Friday, the largest raise in the company's history, a record valuation, and a single sentence that reorganized the whole week: Mythos is coming to everyone in "coming weeks."
 
 The week was never about the model that shipped. It was about the one that's about to.
 
@@ -41,17 +41,33 @@ The week was never about the model that shipped. It was about the one that's abo
 
 The most consequential release of the week is one Anthropic hasn't shipped yet.
 
-Start with the evidence. On Monday, Anthropic published its first formal update on Project Glasswing, the program that lets a gated model — Claude Mythos Preview — loose on real software ([Anthropic](https://www.anthropic.com/research/glasswing-initial-update)). The numbers are not subtle. Roughly fifty partners found more than 10,000 high- or critical-severity vulnerabilities in the program's first month. Cloudflare alone reported 2,000 bugs, 400 of them high or critical, at a false-positive rate its own team rated better than human testers. Mozilla fixed 271 vulnerabilities in Firefox 150 — ten times the rate it got from an earlier Claude model. Anthropic's own scan of more than 1,000 open-source projects turned up an estimated 6,202 high- and critical-severity findings out of 23,019 total.
+Start with the evidence, because the evidence is what changed. On Monday, Anthropic published its first formal update on Project Glasswing, the program that lets a gated model — Claude Mythos Preview — loose on real software ([Anthropic](https://www.anthropic.com/research/glasswing-initial-update)). The numbers are not subtle. Roughly fifty partners found more than 10,000 high- or critical-severity vulnerabilities in the program's first month. Cloudflare alone reported 2,000 bugs, 400 of them high or critical, at a false-positive rate its own team rated better than human testers. Mozilla fixed 271 vulnerabilities in Firefox 150, ten times the rate it got from an earlier Claude model. Anthropic's own parallel scan of more than 1,000 open-source projects turned up an estimated 6,202 high- and critical-severity findings out of 23,019 total. That is one model, one month, one corner of the software supply chain, and it found bugs faster than fifty security teams could close them.
 
-Anthropic named the problem in its own words: "The relative ease of finding vulnerabilities compared with the difficulty of fixing them amounts to a major challenge for cybersecurity." Translation: the tool that finds the holes is now far ahead of the labor that patches them.
+Anthropic named the mechanism of the problem in its own words: "The relative ease of finding vulnerabilities compared with the difficulty of fixing them amounts to a major challenge for cybersecurity." Read that slowly. The finder is automated and the fixer is not. A model that surfaces 6,202 critical findings across a thousand projects does not come with 6,202 engineers to patch them. The capability that makes Mythos a defensive tool in the right hands is the same capability that makes it a weapon in the wrong ones, and the asymmetry runs against the defenders. That is the safety argument Anthropic has been making since April, and this week it put a number on it.
 
-Then the slip. The same Monday, users spotted "claude-mythos-1-preview" in Claude Code's model picker and in Claude Security, alongside a string in the source: "Access to the Claude Mythos model in Claude Code and Claude Security" ([BleepingComputer](https://www.bleepingcomputer.com/news/artificial-intelligence/anthropics-restricted-claude-mythos-model-may-be-coming-to-claude-code/)). Both vanished fast. Anthropic said nothing. Not a release — a seam showing.
+Then the slip. The same Monday, users spotted "claude-mythos-1-preview" in Claude Code's model picker and in Claude Security, alongside a string sitting in the source: "Access to the Claude Mythos model in Claude Code and Claude Security" ([BleepingComputer](https://www.bleepingcomputer.com/news/artificial-intelligence/anthropics-restricted-claude-mythos-model-may-be-coming-to-claude-code/)). Both appearances were removed quickly. Anthropic said nothing. This was not a release. It was a seam showing — the kind of thing that gets wired into a client build weeks before the marketing is ready, then surfaces by accident when someone forgets to feature-flag it. You do not find a model's identifier in a shipping binary unless someone, somewhere in the org, is preparing to turn it on.
 
-The seam closed into a date on Friday. In the same window it announced a $65 billion raise, Anthropic told customers it had made "swift progress" on safety safeguards and would release Mythos-level models to all customers in "coming weeks," first reported by Bloomberg ([Insurance Journal](https://www.insurancejournal.com/news/national/2026/05/29/871703.htm)). The first public timeline on a model the company previously said it was holding back because it could exploit every major OS and browser when directed.
+The seam closed into a date on Friday. In the same window it announced its Series H, the largest raise in the company's history ([Anthropic](https://www.anthropic.com/news/series-h)), Anthropic told customers it had made "swift progress" on safety safeguards and would release Mythos-level models to all customers in "coming weeks," first reported by Bloomberg ([Insurance Journal](https://www.insurancejournal.com/news/national/2026/05/29/871703.htm)). This is the first public timeline on a model the company previously described only as too dangerous to sell because it could exploit every major OS and browser when directed. The story arc went from "we are holding this back for safety" to "coming weeks" without an intervening "here is what changed in the safeguards." The phrase doing the load-bearing work is "swift progress," and "swift progress" is not a date and not a mechanism. It is a posture.
 
-Read the three beats together. The capability is proven at scale. The plumbing already has Mythos wired in. The timeline is now weeks, not "someday." The gate didn't open this week. It got a hinge.
+Read the three beats together. The capability is proven at scale: 10,000 bugs, fifty partners, one month. The plumbing already has Mythos wired in, briefly visible in a production picker. The timeline is now weeks, not someday, attached to the same press cycle as the largest raise in the company's history. None of those three facts is the story. The story is the order they arrived in. A lab does not publish a capability report, ship the wiring, and announce a timeline in five days by accident; it does it when the decision is already made and the only remaining question is sequencing. The gate didn't open this week. It got a hinge, and the hinge got a calendar.
+
+There is a contrast here the single-model framing misses. Every frontier lab is sitting on capabilities it has decided not to ship at full power, and the way each one talks about that decision is a tell. Anthropic's move this week was to make the withholding legible — to publish the bug count, concede the asymmetry, and then attach a timeline anyway. That is a company arguing that the safe thing and the shippable thing have converged, on its own schedule, in its own framing, with no external auditor in the sentence. Whether the safeguards actually caught up to a model that can pop every browser on the market, or whether the market caught up to the safeguards, is the question the word "swift" is built to skate past. The honest read: this week Anthropic stopped selling Mythos as a model it was protecting the world from, and started selling it as a product with a ship date. Those require different safety stories. We got the second one.
 
 ---
+
+---
+
+## Investigation
+
+# The week the docs went dark
+
+There is a detail in every daily this week that never made a headline, and it is the kind of detail that does the most work. Through every sweep from Sunday to Friday, Anthropic's own documentation endpoints returned a forbidden error on direct fetch — the API release notes, the Claude Code release notes, the Claude Apps notes, the system-prompts page, and at points the news and research pages too ([daily, 2026-05-29](https://github.com/anthropics/claude-code/blob/main/CHANGELOG.md)). For the single most consequential product week of the year, the primary source of record was unreachable.
+
+That matters more than a broken link. It means the canonical account of what Opus 4.8 actually does, what the new API surface allows, and what changed in Claude Code lived this week not on Anthropic's docs but on GitHub release notes, third-party reporting, and a model launch page. The release log at the back of this issue is built from GitHub and announcements precisely because the docs were dark. When a company ships a flagship, a new API capability, six CLI releases, and the largest raise in its history in five days while its own documentation goes dark, the result is that the most authoritative narrator of the week is everyone except the company itself. BleepingComputer found the Mythos string. Bloomberg got the timeline. Fortune and Simon Willison carried the raise. Anthropic shipped the news and the press wrote it down.
+
+Set that against the channel Anthropic spent the same week standing up. On Wednesday at 8:30 AM it held The First Broadcast, its inaugural partner webinar, and used it to launch the Anthropic Partner Academy with a new Claude Partner Certification going live alongside it ([Anthropic](https://www.anthropic.com/webinars/the-first-broadcast)). A global replay was scheduled for May 28 at 11:00 AM SGT. No product shipped in that webinar — the signal is the apparatus. A company that builds a certified partner program is a company that expects other people to sell on its behalf at scale, and a company that certifies a channel is a company planning to push a lot of product through it. Hold that next to a model with a "coming weeks" timeline, and the partner academy stops looking like a training initiative and starts looking like distribution scaffolding.
+
+So here is the gap a careful reader should sit with. The docs that explain the products were unreachable all week. The channel that will resell the products got a formal launch the same week. The model that can exploit every major browser got a ship date the same week. None of those is sinister on its own. Together they describe a company moving faster on go-to-market than on its own published record — shipping the capability, building the channel, and leaving the documentation to catch up. The verifier discipline behind this magazine flagged the same thing the dailies did: this week, you could not check Anthropic's claims against Anthropic's docs. You could only check them against everyone who wrote them down first.
 
 ---
 
@@ -59,7 +75,7 @@ Read the three beats together. The capability is proven at scale. The plumbing a
 
 ### Opus 4.8, at the old price
 
-On Thursday Anthropic shipped Claude Opus 4.8, and the honesty numbers carry it: it's the first Claude model to score 0% on uncritically accepting and reporting flawed results, with overconfidence more than tenfold lower than 4.7 ([Anthropic](https://www.anthropic.com/news/claude-opus-4-8)). USAMO 2026 jumped from 69.3% to 96.7%; SWE-bench Pro went from 64.3% to 69.2%; long-context F1 at 1M tokens nearly doubled to 68.1%. Pricing held at $5/$25 per MTok, and Fast mode got cheaper too: the same 2.5x speed now costs less of a premium than it did on 4.7. The flagship got better and didn't get more expensive — which, in a week measured in billions, is its own kind of statement.
+On Thursday Anthropic shipped Claude Opus 4.8, and the honesty numbers carry it: it's the first Claude model to score 0% on uncritically accepting and reporting flawed results, with overconfidence more than tenfold lower than 4.7 ([Anthropic](https://www.anthropic.com/news/claude-opus-4-8)). The math benchmark is the one that jumps off the page — USAMO 2026 moved from 69.3% to 96.7%, twenty-seven points overnight. SWE-bench Pro went from 64.3% to 69.2%, SWE-bench Verified inched to 88.6% from 87.6%, and GraphWalks long-context F1 at one million tokens nearly doubled, 40.3% to 68.1%. Pricing held flat at $5/$25 per MTok. Fast mode got materially cheaper at the same time: the speed premium fell sharply from where it sat on 4.7 ([daily, 2026-05-28](https://www.anthropic.com/news/claude-opus-4-8)). The flagship got better, got faster for less, and didn't get more expensive. In a week measured in billions, the most disciplined number Anthropic shipped was the one that didn't move.
 
 ### Dynamic workflows turn one task into hundreds of agents
 
@@ -93,7 +109,7 @@ Sunday, May 24, held all the way to the sweep — no model news, no API change, 
 
 The deliberate hold a frontier lab places between a capability it has proven and the customers it sells to — opened not when the model is ready, but when the safeguards (and the market) are. A model behind the gate is a fact about capability; a model with a release date is a fact about strategy. The distance between them is where the safety argument lives.
 
-**First observable** 2026-05-29, the week Anthropic's withheld Mythos model posted a 10,000-bug month, flickered into Claude Code, and got a "coming weeks" timeline in the same window as a $65B raise.
+**First observable** 2026-05-29, the week Anthropic's withheld Mythos model posted a 10,000-bug month, flickered into Claude Code, and got a "coming weeks" timeline in the same window as the largest raise in the company's history.
 
 **Usage** *"They didn't ship the model this week. They shipped the date."*
 
@@ -216,7 +232,7 @@ Anthropic and approximately 50 partners found more than ten thousand high- or cr
 
 *4 entries in window.*
 
-#### 2026-05-29 - Anthropic raises $65B Series H at $965B valuation ([Anthropic](https://www.anthropic.com/news/series-h))
+#### 2026-05-29 - Anthropic raises its Series H, the largest in company history ([Anthropic](https://www.anthropic.com/news/series-h))
 `[NEWS]`
 
 Round led by Altimeter Capital, Dragoneer, Greenoaks, and Sequoia. Post-money valuation: $965 billion, surpassing OpenAI as the most valuable private AI company. Run-rate revenue: $47 billion, with growth attributed to Claude Code. Prior milestones: $9B ARR at end of 2025, $14B at Series G close (February), $30B in April — a three-times revenue jump in three months. Reported by [Fortune](https://fortune.com/2026/05/29/anthropic-raises-65-billion-at-record-965-billion-valuation-promises-mythos-ai-model-in-wide-release-in-coming-weeks-releases-claude-opus-4-8/) and [Simon Willison](https://simonwillison.net/2026/May/29/anthropic/).

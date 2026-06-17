@@ -20,12 +20,12 @@ Every weekly issue has two halves: **front-of-book** (editorial, written) and **
 | # | Section | Word budget | Input needed |
 |---|---|---|---|
 | 1 | Cover Line | masthead + issue # + date + 1-sentence subhead | none |
-| 2 | The Open | 80–150 | none (editorial hook) |
-| 3 | The Lead Story | 200–300 distilled | 1 source article (~800–1,200w) |
-| 4 | Also Shipped | 3–5 items × 60–100w each | 3–5 source articles (~300–500w each) |
-| 5 | Quiet on the Wire | 50–80 | compiled from signal report |
-| 6 | The Close | 3-beat rhythm closer | none (editorial) |
-| 7 | Release Log | unbounded (per-entry 150w cap) | scraper output |
+| 2 | The Open | 150–300 | none (editorial hook) |
+| 3 | The Lead Story | 600–1,000, fully dug | the week's dailies for the lead thread |
+| 4 | Also Shipped | 4–6 items × 200–350w each, each run through the relevant Dig levers | the week's dailies |
+| 5 | Quiet on the Wire | 100–180 | compiled from the week's dailies |
+| 6 | The Close | 3-beat rhythm closer, 120–220 | none (editorial) |
+| 7 | Release Log | unbounded (per-entry 150w cap) | the week's dailies |
 
 ### Optional shelf — include only when the week earns the slot
 
@@ -33,17 +33,19 @@ Every weekly issue has two halves: **front-of-book** (editorial, written) and **
 |---|---|---|---|
 | By the Numbers | Week has ≥3 releases with publishable stats | ~15 bullet stats | compiled from signal + scrape |
 | Companion to the Lead | Lead story has comparable cross-model/cross-product data worth tabling | 150–250 | 1 data table + ~3 paragraphs |
-| Feature | A product family shipped a coherent multi-release arc (like Apr 8–9 agent stack in Issue 00) | 400–700 | 1 source article (~800–1,500w) |
-| Investigation | A multi-source story with a reporting angle beyond "what shipped" — breaches, leaks, policy shifts | 400–700 | 1 source article (~1,000–1,500w) + ≥3 primary sources |
-| Term of the Issue | The week has a new concept worth naming (e.g., "shadow release" in Issue 00, candidate "presence" in Issue 02) | 100–150 definition block | none (editorial naming act) |
+| Feature | A product family shipped a coherent multi-release arc (like Apr 8–9 agent stack in Issue 00) | 700–1,200 | the week's dailies for the arc |
+| Investigation | A multi-source story with a reporting angle beyond "what shipped" — breaches, leaks, policy shifts, the cross-lab contrast | 700–1,200 | the week's dailies + ≥3 primary sources |
+| Term of the Issue | The week has a new concept worth naming (e.g., "shadow release" in Issue 00, candidate "presence" in Issue 02) | 150–250 definition block | none (editorial naming act) |
 
-**Rule of thumb:** a typical weekly uses **mandatory core + 1–2 shelf items**. Issue 00 used the full shelf because it covered three weeks. Lean weeks may ship with just the core.
+**Rule of thumb:** a typical weekly now runs **mandatory core + 2–3 shelf items**. The frontier-labs beat means most weeks have a coherent arc (Feature) or a cross-lab/policy story (Investigation) worth a full slot, plus By the Numbers. Reach for the shelf by default; a core-only issue is the lean exception, not the target. The depth comes from the six Dig levers (DAILY.md) run on every real item — more mechanism, blast radius, pattern, read, contrast, move — never from padding.
 
-### Front-of-book length ceilings (from STYLE.md)
+### Front-of-book length targets
 
-- Lean week: **600–800 words**
-- Heavy week: **1,000–1,400 words**
-- Hard ceiling: **1,500 words**
+The beat is six frontier labs and the dailies are deep; the weekly is a feature read, not a digest. These are the targets now (raised 2026-06-16 — the old 600–1,500 band shipped issues that read short):
+
+- Lean week: **1,800–2,400 words**
+- Heavy week: **2,800–4,000 words**
+- Hard ceiling: **4,500 words**. If the week needs more, split into a sidebar or a second issue.
 
 If the week needs more, split into a sidebar. If the sidebar also overflows, something should have been a separate post.
 

@@ -108,10 +108,10 @@ Every issue has two halves: a **front-of-book** (editorial, opinionated, narrati
 
 ```
 1. COVER LINE — masthead, issue number, date, one-sentence subhead
-2. OPEN — 80-150 words. Use an opening-line pattern. End with a turn.
-3. THE LEAD STORY — the week's biggest release. 200-300 words. Editorial.
-4. ALSO SHIPPED — 3-5 short sections. 60-100 words each. One release per section.
-5. QUIET ON THE WIRE — what's rumored, hinted, expected. 50-80 words.
+2. OPEN — 150-300 words. Use an opening-line pattern. End with a turn.
+3. THE LEAD STORY — the week's biggest release, fully dug. 600-1,000 words. Editorial, all six levers.
+4. ALSO SHIPPED — 4-6 sections. 200-350 words each, each run through the relevant Dig levers. One release per section.
+5. QUIET ON THE WIRE — what's rumored, hinted, expected. 100-180 words.
 6. THE CLOSE — rhythm closer. Three short beats. Period after each.
 ```
 
@@ -214,9 +214,9 @@ Anthropic on using LLMs to scale scalable oversight — alignment work performed
 
 ## Length target
 
-- **Front-of-book lean week:** 600-800 words
-- **Front-of-book heavy week:** 1,000-1,400 words
-- **Front-of-book hard ceiling:** 1,500 words. If the week needs more, split into a sidebar.
+- **Front-of-book lean week:** 1,800-2,400 words
+- **Front-of-book heavy week:** 2,800-4,000 words
+- **Front-of-book hard ceiling:** 4,500 words. If the week needs more, split into a sidebar or a second issue. (Targets raised 2026-06-16: the six-lab beat is a feature read, and the old 600-1,500 band shipped issues that read short.)
 - **Release Log:** no word ceiling. As comprehensive as the week requires. Per-entry cap: 150 words including code blocks.
 
 ## Tone defaults

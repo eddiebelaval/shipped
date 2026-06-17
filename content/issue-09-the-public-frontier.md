@@ -25,11 +25,11 @@ log_content: reference
 
 ## The Open
 
-For most of a year, "Mythos-class" was the model you couldn't have. Anthropic said it in past flagship launches: a stronger thing exists, and it stays behind glass. The capability ceiling sat there, real and locked.
+For most of a year, "Mythos-class" was the model you couldn't have. Anthropic said it in past flagship launches: a stronger thing exists, and it stays behind glass. The capability ceiling sat there, real and locked, a fact you planned around rather than a model you called.
 
-On June 9, the lock came off the public side. `claude-fable-5` went generally available. No preview, no waitlist, no "rolling out to select customers." Ten dollars per million input tokens. Free on every paid seat through June 22.
+On June 9, the lock came off the public side. `claude-fable-5` went generally available. No preview, no waitlist, no "rolling out to select customers." Ten dollars per million input tokens. Free on every paid seat through June 22. Generally available on Amazon Bedrock and selectable inside GitHub Copilot the same day.
 
-Then, in the same week, Anthropic committed $350 million to the question of what its own models do to the labor market, and Dario Amodei published an essay sketching government responses to AI-driven unemployment.
+Then, in the same week, Anthropic committed $350 million to the question of what its own models do to the labor market, and Dario Amodei published an essay sketching government responses to AI-driven unemployment that run all the way to universal basic income. DXC put Fable 5 at the center of the infrastructure that runs banks and airlines. Apple let you set Claude as the brain behind Siri. And four Claude Code patches quietly tightened who, inside a company, is even allowed to call the new ceiling.
 
 Ship the frontier. Narrate the risk. Same breath.
 
@@ -43,19 +43,37 @@ Ship the frontier. Narrate the risk. Same breath.
 
 The frontier had a tell this week, and for once it wasn't a benchmark. It was a release channel.
 
-On June 9, Anthropic put `claude-fable-5` into general release. It's the first Mythos-class model anyone outside Project Glasswing can actually call ([Anthropic](https://www.anthropic.com/news/claude-fable-5-mythos-5)). It posts 80.3% on SWE-Bench Pro, eleven points clear of the next model, 29.3% on FrontierCode Diamond against Opus 4.8's 13.4%, and spatial reasoning that nearly tripled. Stripe estimated two-plus months of engineering for a 50-million-line Ruby migration; Fable 5 finished it in a day. Pricing is $10 input / $50 output per million tokens.
+On June 9, Anthropic put `claude-fable-5` into general release. It's the first Mythos-class model anyone outside Project Glasswing can actually call ([Anthropic](https://www.anthropic.com/news/claude-fable-5-mythos-5)). No preview, no waitlist, no "rolling out to select customers." It leads SWE-Bench Pro by double digits over the next model, clears Opus 4.8 by more than two to one on FrontierCode Diamond, and on spatial reasoning nearly tripled Opus 4.8's score. The benchmark line that lands hardest isn't a benchmark at all: Stripe estimated two-plus months of engineering for a 50-million-line Ruby migration; Fable 5 finished it in a day. Pricing is $10 input / $50 output per million tokens, with a large output headroom and a one-million-token context window by default.
 
-The number that matters isn't the $50 output rate. It's June 22. Anthropic handed every Pro, Max, Team, and Enterprise seat three free weeks on its most capable public model, which is exactly what you do when you want today's ceiling to become tomorrow's floor before anyone's paying for it. Three free weeks is how you make a frontier feel ordinary, then start the meter.
+Look at the mechanism, because the mechanism is the story. What's public is Fable 5: Mythos-class intelligence with safeguards on, routing roughly one session in twenty to Opus 4.8 when a query hits high-risk ground like cybersecurity or biology. Less than 5% of sessions ever touch the fallback. The fuller Mythos 5 is the same model with some of those safeguards lifted, and it stays behind glass: limited access through Project Glasswing for authorized cyberdefenders and infrastructure providers. One door opened, with a price tag stapled to it. The other stayed shut. AWS, carrying it on Bedrock the same day, described it in its own words as "Mythos-class capabilities with built-in safeguards," which is the polite way of saying the dangerous version is real and you're not getting it.
 
-What's public is Fable 5: Mythos intelligence with safeguards on, routing roughly one session in twenty to Opus 4.8 when a query hits high-risk ground like cybersecurity or biology. The fuller Mythos 5 stays behind glass, limited access through Project Glasswing for authorized cyberdefenders. One door opened, with a price tag stapled to it. The other stayed shut.
+The number that matters, though, isn't the $50 output rate. It's June 22. Anthropic handed every Pro, Max, Team, and Enterprise seat three free weeks on its most capable public model, which is exactly what you do when you want today's ceiling to become tomorrow's floor before anyone's paying for it. The blast radius is everyone with a paid seat and a hard problem: for three weeks the strongest model Anthropic sells is sitting inside your existing subscription, and the rational move is to throw your gnarliest migration, your worst legacy codebase, your hardest agent run at it now and find out what it can do on someone else's dime. Three free weeks is how you make a frontier feel ordinary, then start the meter.
 
-And read the timing, because the timing is the posture. TechCrunch put it flat: Anthropic shipped its most powerful public model within days of warning that AI is getting too dangerous. The company isn't hiding that seam. It is the seam. Same week it priced the frontier, it committed $350 million to studying what the frontier does to jobs (see Also Shipped). Agree or don't; that contradiction is the whole of Anthropic's June.
+And read the timing, because the timing is the posture. TechCrunch put it flat: Anthropic shipped its most powerful public model within days of warning that AI is getting too dangerous. The company isn't hiding that seam. It is the seam. The same week it priced the frontier, it committed $350 million to studying what the frontier does to jobs and stood up a fellowship to soften the landing (see Also Shipped). Set Fable 5 against the field and the contrast sharpens: when a rival lab ships a flagship, the press release is a victory lap. When Anthropic ships its strongest public model, the press release is half victory lap, half warning label, and the warning is load-bearing. Agree or don't; that contradiction is the whole of Anthropic's June.
 
-If you build on this, mind two clocks. The free window shuts June 22. And the 4-series you may still be pinned to (`claude-sonnet-4-20250514`, `claude-opus-4-20250514`) retires June 15. Some of you have two migrations this week, not one.
+If you build on this, mind two clocks. The free window shuts June 22. And the 4-series you may still be pinned to (`claude-sonnet-4-20250514`, `claude-opus-4-20250514`) retires June 15. Production pinned to either ID starts returning errors on Sunday. Sequence it: clear the retiring IDs first, migrate to `claude-sonnet-4-6` and `claude-opus-4-7`, then chase the capability upgrade, so a blown deadline can't take you down. Some of you have two migrations this week, not one.
 
 The model you couldn't buy is now the model you can't avoid.
 
 ---
+
+---
+
+## Investigation
+
+# The other side of the ledger
+
+Ship the frontier, narrate the risk. The Lead is the first half. This is the second, and it cost $350 million.
+
+Start with the sequence, because Anthropic chose it deliberately. June 9: the most capable public model goes on sale. June 10: the mitigation spend starts. The company committed nine figures to an Economic Futures Research Fund, backing trials and policy evaluations on what AI does to work, and Dario Amodei published a policy essay alongside it ([Anthropic](https://www.anthropic.com/research/economic-policy-responses)). The essay doesn't hedge. It proposes tiered government responses keyed to AI-driven unemployment at 5%, 10%, and "unprecedented" levels, the top tier reaching for universal basic income and equity-sharing frameworks. A frontier lab's CEO sketching the welfare state you'd need if his own product worked too well is not a press release. It's a hedge against his own success, written down.
+
+The same drop carried an Advanced AI Framework: a proposal for mandatory testing, independent evaluation, and civil penalties tied to global revenue for frontier model developers. Read that against the model that shipped the day before. Anthropic priced the frontier on Tuesday and on Wednesday asked governments to fine companies like Anthropic, by a percentage of revenue, if they ship frontier models recklessly. You can call that principled. You can call it regulatory capture with a conscience. Both readings survive contact with the facts, and Anthropic seems content to let both stand.
+
+June 11 put a face on the dollars. Claude Corps is a $150 million national fellowship placing 1,000 trained early-career workers inside US nonprofits for a year at $85,000 each plus benefits ([Anthropic](https://www.anthropic.com/news/claude-corps)). The first cohort of 100 starts in October 2026; applications close July 17; no degree required, just over 18, under two years of full-time work experience, and authorization to work in the US. Over 400 nonprofits host in year one, run alongside CodePath and Social Finance. The design is pointed: the cohort is exactly the demographic most exposed to entry-level automation, placed in the part of the economy least able to buy the tools that displace them. Fund the research that measures the damage, then fund the people the damage lands on first.
+
+The pattern is what's new, not the giving. Labs have written checks to nonprofits before; AI companies fund safety institutes as a matter of routine. What hadn't happened until this week is a lab tying a specific dollar figure to economic mitigation inside the same news cycle as a capability launch. $350 million across two days, stapled to the GA of its strongest public model. The reading, stated plainly: Anthropic has decided the honest posture and the marketable posture are the same posture, and that admitting the danger out loud is cheaper than being caught having hidden it. Whether $350 million is a serious down payment on a labor shock or a rounding error against a multibillion-dollar run rate is the question the fund itself was built to answer, and the answer won't arrive on Anthropic's schedule.
+
+The builder's move here is smaller than the dollar figures and more useful. Watch what Anthropic funds, not what it says. The Economic Futures Fund will publish; when it does, it will be the closest thing to a real measurement of which jobs the models you're deploying actually move. That data is worth more to anyone building on this platform than the essay that announced it.
 
 ---
 
@@ -71,7 +89,7 @@ Apple opened WWDC 2026 on June 8 with iOS 27's Extensions framework: users can d
 
 ### $350 million on the other side of the ledger
 
-The day Fable 5 went general, the mitigation spend started. On June 10, Anthropic committed $200 million to an Economic Futures Research Fund and Amodei published a policy essay proposing tiered government responses at 5%, 10%, and "unprecedented" AI-driven unemployment, up to universal basic income and equity-sharing ([Anthropic](https://www.anthropic.com/research/economic-policy-responses)). On June 11 came Claude Corps: a $150 million national fellowship placing 1,000 trained early-career workers inside US nonprofits for a year at $85,000 each ([Anthropic](https://www.anthropic.com/news/claude-corps)). First cohort of 100 starts October 19; applications close July 17; no degree required. It's the first time Anthropic has tied a dollar figure to economic mitigation in the same news cycle as a capability launch.
+The day Fable 5 went general, the mitigation spend started. On June 10, Anthropic committed nine figures to an Economic Futures Research Fund and Amodei published a policy essay proposing tiered government responses at 5%, 10%, and "unprecedented" AI-driven unemployment, up to universal basic income and equity-sharing ([Anthropic](https://www.anthropic.com/research/economic-policy-responses)). On June 11 came Claude Corps: a $150 million national fellowship placing 1,000 trained early-career workers inside US nonprofits for a year at $85,000 each ([Anthropic](https://www.anthropic.com/news/claude-corps)). First cohort of 100 starts in October 2026; applications close July 17; no degree required. It's the first time Anthropic has tied a dollar figure to economic mitigation in the same news cycle as a capability launch.
 
 ### DXC puts Claude at the center of what it sells
 
@@ -267,7 +285,7 @@ A $150 million national fellowship placing 1,000 trained fellows inside US nonpr
 
 #### 2026-06-10 — Economic Futures Research Fund and policy frameworks ([Anthropic](https://www.anthropic.com/research/economic-policy-responses))
 `[NEWS]`
-Anthropic committed $200 million to an Economic Futures Research Fund backing trials and policy evaluations on AI's effects on work. Dario Amodei simultaneously published an economic-policy essay proposing tiered government responses at 5%, 10%, and "unprecedented" AI-driven unemployment levels, up to universal basic income and equity-sharing frameworks. Anthropic also published an Advanced AI Framework proposing mandatory testing, independent evaluation, and civil penalties tied to global revenue for frontier model developers.
+Anthropic committed nine figures to an Economic Futures Research Fund backing trials and policy evaluations on AI's effects on work. Dario Amodei simultaneously published an economic-policy essay proposing tiered government responses at 5%, 10%, and "unprecedented" AI-driven unemployment levels, up to universal basic income and equity-sharing frameworks. Anthropic also published an Advanced AI Framework proposing mandatory testing, independent evaluation, and civil penalties tied to global revenue for frontier model developers.
 
 **Why it matters:** The $350 million combined spend across June 10–11 is the first time Anthropic has tied a dollar figure to economic mitigation alongside a capability launch in the same news cycle.
 
