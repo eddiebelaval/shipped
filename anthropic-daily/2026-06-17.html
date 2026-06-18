@@ -1,0 +1,632 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light">
+<title>Shipped. Daily, Wednesday, June 17, 2026</title>
+<meta property="og:title" content="Shipped. Daily, Wednesday, June 17, 2026">
+<meta property="og:description" content="Claude Code v2.1.181 ships a new in-prompt config command and a 30-fix maintenance pass.">
+<meta property="og:type" content="article">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Shipped. Daily, Wednesday, June 17, 2026">
+<meta name="twitter:description" content="Claude Code v2.1.181 ships a new in-prompt config command and a 30-fix maintenance pass.">
+<meta name="description" content="Claude Code v2.1.181 ships a new in-prompt config command and a 30-fix maintenance pass.">
+<meta name="author" content="Eddie Belaval">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='75' cy='62' r='14' fill='%23FF6B35'/%3E%3Ctext x='10' y='75' font-family='Georgia,serif' font-weight='700' font-size='62' fill='%231a1a1a'%3ES%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;0,9..144,900;1,9..144,300;1,9..144,400;1,9..144,500;1,9..144,700&family=Archivo:wght@300;400;500;600;700;800;900&family=Archivo+Narrow:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{font-size:16px;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;text-rendering:optimizeLegibility}
+body{background:#FAF8F4;color:#0b0b0b;font-family:'Archivo',sans-serif;overflow-x:hidden}
+::selection{background:#FF6B35;color:#fff}
+
+:root{
+  --orange:#FF6B35;
+  --ink:#0b0b0b;
+  --paper:#FAF8F4;
+  --paper-shadow:#f2f0e8;
+  --body:#2a2a2a;
+  --muted:#5a5a5a;
+  --gray:#8a8a8a;
+  --hair:rgba(11,11,11,0.12);
+  --hair-soft:rgba(11,11,11,0.06);
+  --hair-hard:rgba(11,11,11,0.22);
+  --disp:'Fraunces', 'Times New Roman', serif;
+  --sans:'Archivo', system-ui, sans-serif;
+  --narrow:'Archivo Narrow', 'Archivo', sans-serif;
+  --mono:'JetBrains Mono', ui-monospace, monospace;
+}
+
+body::before{
+  content:"";
+  position:fixed;inset:0;pointer-events:none;z-index:1000;opacity:.28;mix-blend-mode:multiply;
+  background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='180' height='180'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' seed='3'/><feColorMatrix values='0 0 0 0 0.02  0 0 0 0 0.02  0 0 0 0 0.02  0 0 0 0.22 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+}
+
+.pub-bar{
+  position:sticky;top:0;z-index:100;
+  background:var(--paper);
+  border-bottom:1px solid var(--hair);
+  padding:0 28px;height:42px;
+  display:flex;align-items:center;justify-content:space-between;
+  font-family:var(--narrow);
+  font-size:11px;font-weight:600;letter-spacing:.22em;
+  text-transform:uppercase;color:var(--ink);
+}
+.pub-bar-left,.pub-bar-right{display:flex;align-items:center;gap:16px}
+.pub-bar-mark{font-family:var(--disp);font-weight:500;font-size:16px;letter-spacing:-.01em;text-transform:none;font-style:italic}
+.pub-bar-mark .dot{color:var(--orange)}
+.pub-bar-sep{width:1px;height:12px;background:var(--hair-hard)}
+.pub-bar-meta{color:var(--muted)}
+.pub-bar-link{color:inherit;text-decoration:none;border-bottom:1px solid currentColor;transition:color .15s ease}
+.pub-bar-link:hover{color:var(--orange)}
+.colophon-link{color:inherit;text-decoration:none;border-bottom:1px solid currentColor;transition:color .15s ease}
+.colophon-link:hover{color:var(--orange)}
+.pub-bar-folio{color:var(--ink)}
+.pub-bar-folio b{font-weight:600;color:var(--orange)}
+
+.folio{
+  font-family:var(--narrow);
+  font-size:10px;font-weight:500;letter-spacing:.28em;
+  text-transform:uppercase;color:var(--gray);
+  display:flex;align-items:center;gap:10px;
+}
+.folio b{color:var(--ink);font-weight:700}
+.folio .ruler{width:28px;height:1px;background:var(--hair-hard)}
+.folio .dot{color:var(--orange)}
+
+.section{
+  position:relative;
+  padding:64px 28px 40px;
+  max-width:1280px;margin:0 auto;
+}
+.section-folio{
+  display:flex;align-items:center;justify-content:space-between;
+  padding-bottom:18px;
+  border-bottom:1px solid var(--ink);
+  margin-bottom:44px;
+}
+.section-folio-left{display:flex;align-items:center;gap:14px}
+.section-folio-label{
+  font-family:var(--narrow);
+  font-size:11px;font-weight:700;letter-spacing:.28em;
+  text-transform:uppercase;color:var(--ink);
+}
+.section-folio-sub{
+  font-family:var(--disp);font-style:italic;
+  font-size:13px;color:var(--muted);
+}
+
+.open-section{background:var(--paper)}
+.open-grid{
+  display:grid;
+  grid-template-columns:repeat(12,1fr);
+  gap:32px;
+}
+.open-lead{
+  grid-column:2 / span 7;
+}
+.open-quote{
+  font-family:var(--disp);
+  font-variation-settings:"opsz" 144;
+  font-weight:500;font-size:clamp(36px,5vw,72px);
+  line-height:1.02;letter-spacing:-.025em;
+  color:var(--ink);
+  margin-bottom:36px;
+  padding-bottom:28px;
+  border-bottom:1px solid var(--hair-hard);
+}
+.open-quote em{font-style:italic;color:var(--orange);font-weight:500}
+.open-prose{
+  font-family:var(--disp);
+  font-variation-settings:"opsz" 14;
+  font-weight:400;font-size:18px;line-height:1.68;
+  color:var(--body);
+  max-width:620px;
+}
+.open-prose p{margin-bottom:22px}
+.open-prose em{font-style:italic;color:var(--ink)}
+.open-aside{
+  grid-column:10 / span 3;
+  border-top:1px solid var(--ink);
+  padding-top:16px;
+  font-family:var(--narrow);
+  font-size:11px;font-weight:500;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--muted);
+  line-height:1.9;
+}
+.open-aside b{color:var(--ink);font-weight:700}
+@media(max-width:860px){
+  .open-lead{grid-column:1 / -1}
+  .open-aside{grid-column:1 / -1;margin-top:16px}
+}
+
+.prose{
+  font-family:var(--disp);
+  font-variation-settings:"opsz" 14;
+  font-weight:400;font-size:19px;line-height:1.66;
+  color:var(--body);
+  max-width:640px;
+}
+.prose p{margin-bottom:24px}
+.prose em{font-style:italic;color:var(--ink)}
+.prose strong{font-weight:600;color:var(--ink)}
+.prose code{
+  font-family:var(--mono);font-size:.86em;
+  background:var(--paper-shadow);padding:1px 6px;
+  border-radius:3px;color:var(--ink);
+}
+
+.code-block{
+  margin:24px 0;
+  border:1px solid var(--ink);
+  background:var(--paper);
+  font-family:var(--mono);font-size:12.5px;line-height:1.55;
+  color:var(--ink);
+  position:relative;
+  overflow:hidden;
+}
+.code-block-head{
+  display:flex;justify-content:space-between;align-items:center;
+  padding:10px 16px;
+  border-bottom:1px solid var(--ink);
+  background:var(--ink);color:var(--paper);
+  font-family:var(--narrow);
+  font-size:10px;font-weight:700;letter-spacing:.28em;
+  text-transform:uppercase;
+}
+.code-block-head span:last-child{color:var(--orange)}
+.code-block pre{
+  padding:20px 24px;overflow-x:auto;white-space:pre;margin:0;
+}
+
+.quiet-section{
+  max-width:1280px;margin:0 auto;padding:64px 28px 24px;
+  display:grid;grid-template-columns:repeat(12,1fr);gap:24px;
+}
+.quiet-head{
+  grid-column:1 / span 3;
+}
+.quiet-title{
+  font-family:var(--disp);font-style:italic;font-weight:400;
+  font-variation-settings:"opsz" 72;
+  font-size:32px;line-height:1;letter-spacing:-.02em;
+  color:var(--ink);
+}
+.quiet-title em{color:var(--orange);font-style:normal;font-weight:500}
+.quiet-kicker{
+  font-family:var(--narrow);
+  font-size:10px;font-weight:700;letter-spacing:.32em;
+  text-transform:uppercase;color:var(--muted);
+  margin-bottom:10px;
+}
+.quiet-body{
+  grid-column:5 / -1;
+  font-family:var(--disp);font-size:17px;line-height:1.65;color:var(--body);
+  padding-left:24px;border-left:1px solid var(--ink);
+}
+.quiet-body p{margin-bottom:16px}
+.quiet-body strong{font-weight:600;color:var(--ink)}
+@media(max-width:860px){
+  .quiet-head,.quiet-body{grid-column:1 / -1}
+  .quiet-body{padding-left:0;border-left:none;border-top:1px solid var(--ink);padding-top:18px}
+}
+
+.ornament{
+  text-align:center;margin:64px auto;
+  font-family:var(--disp);font-size:16px;color:var(--hair-hard);
+  letter-spacing:1.2em;
+}
+
+.log-divider{
+  background:var(--paper);
+  padding:96px 28px 48px;
+  text-align:center;
+  border-top:3px double var(--ink);
+  border-bottom:1px solid var(--ink);
+  max-width:1280px;margin:0 auto;
+}
+.log-divider-kicker{
+  font-family:var(--narrow);
+  font-size:11px;font-weight:700;letter-spacing:.48em;
+  text-transform:uppercase;color:var(--orange);
+  margin-bottom:14px;
+}
+.log-divider-title{
+  font-family:var(--disp);font-weight:700;
+  font-variation-settings:"opsz" 144;
+  font-size:clamp(56px,10vw,144px);
+  line-height:.9;letter-spacing:-.045em;color:var(--ink);
+  margin-bottom:16px;
+}
+.log-divider-title em{font-style:italic;font-weight:400}
+.log-divider-sub{
+  font-family:var(--disp);font-style:italic;
+  font-size:18px;color:var(--muted);max-width:640px;margin:0 auto;line-height:1.5;
+}
+
+.log-section{
+  padding:48px 28px;max-width:1280px;margin:0 auto;
+}
+.log-cat-head{
+  display:grid;
+  grid-template-columns:1fr auto;
+  gap:24px;align-items:baseline;
+  padding-bottom:18px;
+  border-bottom:1px solid var(--ink);
+  margin-bottom:0;
+}
+.log-cat-name{
+  font-family:var(--disp);font-weight:600;font-style:italic;
+  font-variation-settings:"opsz" 96;
+  font-size:clamp(36px,5vw,56px);
+  letter-spacing:-.02em;color:var(--ink);line-height:1;
+}
+.log-cat-count{
+  font-family:var(--narrow);
+  font-size:10px;font-weight:600;letter-spacing:.28em;
+  text-transform:uppercase;color:var(--muted);
+  text-align:right;
+}
+.log-cat-count b{color:var(--ink);font-weight:700;font-size:13px;display:block}
+
+.log-cat-deck{
+  font-family:var(--disp);
+  font-style:italic;
+  font-weight:400;
+  font-variation-settings:"opsz" 24;
+  font-size:18px;
+  line-height:1.45;
+  color:var(--muted);
+  margin-top:14px;
+  margin-bottom:8px;
+  max-width:760px;
+  letter-spacing:-.005em;
+}
+
+.log-entries{display:flex;flex-direction:column}
+.log-entry{
+  padding:24px 0;
+  border-bottom:1px solid var(--hair);
+  display:grid;
+  grid-template-columns:120px 1fr;gap:28px;
+}
+.log-entry-left{
+  display:flex;flex-direction:column;gap:8px;
+}
+.log-entry-date{
+  font-family:var(--narrow);
+  font-size:10px;font-weight:700;letter-spacing:.22em;
+  text-transform:uppercase;color:var(--ink);
+  font-variant-numeric:tabular-nums;
+}
+.log-tag{
+  font-family:var(--narrow);
+  font-size:9px;font-weight:700;letter-spacing:.22em;
+  text-transform:uppercase;padding:3px 7px;
+  display:inline-block;line-height:1.3;width:fit-content;
+}
+.log-tag.model{background:var(--orange);color:var(--paper)}
+.log-tag.api{background:var(--ink);color:var(--paper)}
+.log-tag.code{background:#3a3a3a;color:var(--paper)}
+.log-tag.apps{background:#5a5a5a;color:var(--paper)}
+.log-tag.sdk-py,.log-tag.sdk-ts{background:var(--paper);color:var(--ink);border:1px solid var(--ink)}
+.log-tag.research,.log-tag.news{background:var(--paper);color:var(--muted);border:1px solid var(--hair-hard)}
+.log-tag.deprecation{background:var(--paper-shadow);color:var(--muted);border:1px solid var(--hair-hard)}
+.log-entry-title{
+  font-family:var(--disp);font-weight:500;
+  font-variation-settings:"opsz" 72;
+  font-size:20px;letter-spacing:-.012em;
+  color:var(--ink);line-height:1.25;
+  margin-bottom:10px;
+}
+.log-entry-title a{color:inherit;text-decoration:none;border-bottom:1px solid var(--hair-hard)}
+.log-entry-title a:hover{border-bottom-color:var(--orange);color:var(--orange)}
+.log-entry-body{
+  font-family:var(--sans);font-size:14.5px;line-height:1.6;color:var(--body);
+  margin-bottom:12px;
+}
+.log-entry-how{
+  font-family:var(--sans);font-size:13.5px;line-height:1.6;color:var(--muted);
+  padding-top:12px;border-top:1px solid var(--hair-soft);
+}
+.log-entry-how b{font-family:var(--narrow);font-size:10px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--ink);display:block;margin-bottom:6px}
+.log-entry-why{
+  font-family:var(--disp);font-style:italic;
+  font-size:14px;color:var(--muted);line-height:1.55;
+  margin-top:10px;padding-left:14px;
+  border-left:2px solid var(--orange);
+}
+
+@media(max-width:720px){
+  .log-entry{grid-template-columns:1fr;gap:12px}
+  .log-cat-head{grid-template-columns:auto 1fr}
+  .log-cat-count{grid-column:1 / -1;text-align:left;padding-top:8px;border-top:1px solid var(--hair)}
+}
+
+.colophon{
+  background:var(--ink);color:var(--paper);
+  padding:80px 28px 64px;
+  border-top:2px solid var(--orange);
+}
+.colophon-inner{
+  max-width:1280px;margin:0 auto;
+  display:grid;grid-template-columns:repeat(12,1fr);gap:32px;
+}
+.colophon-mast{
+  grid-column:1 / span 5;
+}
+.colophon-word{
+  font-family:var(--disp);font-weight:500;
+  font-variation-settings:"opsz" 144;
+  font-size:clamp(72px,10vw,120px);
+  line-height:.9;letter-spacing:-.04em;color:var(--paper);
+}
+.colophon-word .dot{color:var(--orange)}
+.colophon-tag{
+  margin-top:14px;
+  font-family:var(--disp);font-style:italic;font-size:18px;
+  color:rgba(250,250,247,.65);line-height:1.4;max-width:360px;
+}
+.colophon-body{
+  grid-column:6 / -1;
+  display:grid;grid-template-columns:repeat(2,1fr);gap:32px;
+}
+.colophon-col h4{
+  font-family:var(--narrow);
+  font-size:10px;font-weight:700;letter-spacing:.32em;
+  text-transform:uppercase;color:var(--orange);
+  margin-bottom:12px;padding-bottom:10px;
+  border-bottom:1px solid rgba(250,250,247,.2);
+}
+.colophon-col p,.colophon-col li{
+  font-family:var(--sans);font-size:13px;line-height:1.6;
+  color:rgba(250,250,247,.75);
+  margin-bottom:8px;list-style:none;
+}
+.colophon-col b{color:var(--paper);font-weight:600}
+.colophon-col em{font-style:italic;color:rgba(250,250,247,.9)}
+.colophon-col a{color:rgba(250,250,247,.75);text-decoration:none;border-bottom:1px solid rgba(250,250,247,.3)}
+.colophon-col a:hover{color:var(--orange);border-bottom-color:var(--orange)}
+.colophon-foot{
+  grid-column:1 / -1;
+  margin-top:32px;padding-top:24px;
+  border-top:1px solid rgba(250,250,247,.2);
+  display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap;
+  font-family:var(--narrow);font-size:10px;font-weight:600;
+  letter-spacing:.28em;text-transform:uppercase;color:rgba(250,250,247,.5);
+}
+.colophon-foot b{color:var(--paper);font-weight:700}
+.colophon-foot .hot{color:var(--orange)}
+@media(max-width:860px){
+  .colophon-mast,.colophon-body{grid-column:1 / -1}
+  .colophon-body{grid-template-columns:1fr;gap:24px}
+}
+
+/* Daily-specific styles */
+.daily-header{
+  padding:56px 28px 48px;
+  max-width:1280px;margin:0 auto;
+  border-bottom:1px solid var(--hair);
+}
+.daily-kicker{
+  font-family:var(--narrow);
+  font-size:10px;font-weight:700;letter-spacing:.42em;
+  text-transform:uppercase;color:var(--orange);
+  margin-bottom:20px;
+}
+.daily-masthead{
+  font-family:var(--disp);
+  font-weight:500;font-style:italic;
+  font-variation-settings:"opsz" 96;
+  font-size:clamp(64px,12vw,140px);
+  line-height:.88;letter-spacing:-.04em;
+  color:var(--ink);
+  margin-bottom:24px;
+  display:inline-block;
+}
+.daily-masthead .dot{color:var(--orange)}
+.daily-dateline{
+  font-family:var(--narrow);
+  font-size:12px;font-weight:600;letter-spacing:.28em;
+  text-transform:uppercase;color:var(--muted);
+  padding-top:20px;
+  border-top:1px solid var(--ink);
+  margin-bottom:32px;
+}
+.daily-one-line{
+  font-family:var(--disp);
+  font-variation-settings:"opsz" 36;
+  font-weight:400;font-size:clamp(20px,2.8vw,32px);
+  line-height:1.3;letter-spacing:-.015em;
+  color:var(--ink);
+  max-width:760px;
+}
+.daily-one-line strong{font-weight:600;color:var(--orange)}
+
+.daily-lead{
+  padding:48px 28px 32px;
+  max-width:1280px;margin:0 auto;
+  display:grid;
+  grid-template-columns:1fr minmax(0,280px);
+  gap:48px;
+}
+.daily-lead-prose{
+  font-family:var(--disp);
+  font-variation-settings:"opsz" 14;
+  font-weight:400;font-size:19px;line-height:1.68;
+  color:var(--body);
+  max-width:640px;
+}
+.daily-lead-prose p{margin-bottom:24px}
+.daily-lead-prose p:last-child{margin-bottom:0}
+.daily-lead-prose code{
+  font-family:var(--mono);font-size:.86em;
+  background:var(--paper-shadow);padding:1px 6px;
+  border-radius:3px;color:var(--ink);
+}
+.daily-lead-aside{
+  border-top:1px solid var(--ink);
+  padding-top:16px;
+  font-family:var(--narrow);
+  font-size:11px;font-weight:500;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--muted);
+  line-height:1.9;
+  align-self:start;
+}
+.daily-lead-aside b{color:var(--ink);font-weight:700;display:block;margin-bottom:4px}
+.daily-lead-aside .aside-item{margin-bottom:16px}
+@media(max-width:860px){
+  .daily-lead{grid-template-columns:1fr}
+  .daily-lead-aside{margin-top:8px}
+}
+@media(max-width:600px){
+  .daily-header{padding:32px 20px 36px}
+  .daily-lead{padding:32px 20px 24px}
+  .log-section{padding:32px 20px}
+  .quiet-section{padding:32px 20px 16px}
+}
+</style>
+</head>
+<body>
+
+<!-- PUBLICATION BAR -->
+<nav class="pub-bar">
+  <div class="pub-bar-left">
+    <span class="pub-bar-mark">Shipped<span class="dot">.</span></span>
+    <span class="pub-bar-sep"></span>
+    <span class="pub-bar-meta">Nightly briefing by <a href="https://id8labs.app" class="pub-bar-link">id8Labs</a></span>
+  </div>
+  <div class="pub-bar-right">
+    <span class="pub-bar-folio">Daily</span>
+    <span class="pub-bar-sep"></span>
+    <span class="pub-bar-meta">Jun 17, 2026</span>
+  </div>
+</nav>
+
+<!-- DAILY HEADER -->
+<header class="daily-header">
+  <div class="daily-kicker">Anthropic Release Watch</div>
+  <div class="daily-masthead">Shipped<span class="dot">.</span></div>
+  <div class="daily-dateline">Wednesday, June 17, 2026</div>
+  <p class="daily-one-line">Claude Code v2.1.181 ships a new in-prompt config command and a 30-fix maintenance pass.</p>
+</header>
+
+<!-- LEAD -->
+<div class="daily-lead">
+  <div class="daily-lead-prose">
+    <p>The day's confirmed release is Claude Code v2.1.181, which ships <code>/config key=value</code> as a new in-session command. Set <code>thinking=false</code>, switch effort levels, or change the model without leaving the prompt. Works in interactive, <code>-p</code>, and Remote Control modes.</p>
+    <p>Two startup issues are patched. A regression from 2.1.169 was adding roughly 120ms per launch in fresh environments, silently eating time on every session open. A second blocker could freeze the terminal for up to 15 seconds when the account settings fetch stalled on a degraded network.</p>
+    <p>Prompt caching on Foundry and custom <code>ANTHROPIC_BASE_URL</code> endpoints is also fixed, a quiet but operationally important patch for anyone routing Claude through a custom gateway. Foreground subagents now respect the same five-level nesting cap as background subagents, closing an unbounded-chain correctness issue that could surface in complex agentic workflows.</p>
+  </div>
+  <aside class="daily-lead-aside">
+    <div class="aside-item">
+      <b>Releases today</b>
+      1 confirmed
+    </div>
+    <div class="aside-item">
+      <b>Area</b>
+      Claude Code
+    </div>
+    <div class="aside-item">
+      <b>Window</b>
+      Jun 16 to Jun 17, 2026
+    </div>
+    <div class="aside-item">
+      <b>Source</b>
+      github.com/anthropics/claude-code/releases
+    </div>
+  </aside>
+</div>
+
+<!-- RELEASE LOG HEADER -->
+<div class="log-divider" id="log">
+  <div class="log-divider-kicker">June 17, 2026</div>
+  <h2 class="log-divider-title">The <em>Release</em> Log</h2>
+  <p class="log-divider-sub">Every confirmed Anthropic release in the past 24 hours. Primary sources only.</p>
+</div>
+
+<!-- CLAUDE CODE LOG SECTION -->
+<div class="log-section">
+  <div class="log-cat-head">
+    <div class="log-cat-name">Claude Code</div>
+    <div class="log-cat-count">
+      <b>1</b>
+      release
+    </div>
+  </div>
+  <div class="log-cat-deck">Bug-fix pass with new productivity hooks.</div>
+
+  <div class="log-entries">
+    <div class="log-entry">
+      <div class="log-entry-left">
+        <div class="log-entry-date">Jun 17</div>
+        <span class="log-tag code">CODE</span>
+      </div>
+      <div class="log-entry-right">
+        <div class="log-entry-title">
+          <a href="https://github.com/anthropics/claude-code/releases" target="_blank" rel="noopener">Claude Code v2.1.181</a>
+        </div>
+        <div class="log-entry-body">
+          New: <code style="font-family:'JetBrains Mono',monospace;font-size:.88em;background:#f2f0e8;padding:1px 5px;border-radius:3px">/config key=value</code> sets any setting from the prompt in interactive, <code style="font-family:'JetBrains Mono',monospace;font-size:.88em;background:#f2f0e8;padding:1px 5px;border-radius:3px">-p</code>, and Remote Control modes. <code style="font-family:'JetBrains Mono',monospace;font-size:.88em;background:#f2f0e8;padding:1px 5px;border-radius:3px">sandbox.allowAppleEvents</code> opt-in for macOS Apple Events. <code style="font-family:'JetBrains Mono',monospace;font-size:.88em;background:#f2f0e8;padding:1px 5px;border-radius:3px">CLAUDE_CLIENT_PRESENCE_FILE</code> env var suppresses mobile push notifications. Bun runtime upgraded to 1.4. Streaming of long paragraphs is now line-by-line. API connection drops mid-thinking now auto-retry. Subagent panel auto-hides idle agents after 30 seconds, caps at five rows with scroll hints. MCP OAuth browser page matches Claude Code visual style and auto-closes on success.
+        </div>
+        <div class="log-entry-body">
+          Fixed: prompt caching on custom <code style="font-family:'JetBrains Mono',monospace;font-size:.88em;background:#f2f0e8;padding:1px 5px;border-radius:3px">ANTHROPIC_BASE_URL</code> and Foundry. Write/Edit producing zero-byte or truncated files on network drives and cloud-synced folders. Apple Events entitlement issues on macOS. Startup regression from 2.1.169 (~120ms per launch in fresh environments). Startup blocking for up to 15 seconds on degraded networks. Startup crash when <code style="font-family:'JetBrains Mono',monospace;font-size:.88em;background:#f2f0e8;padding:1px 5px;border-radius:3px">.claude.json</code> contains corrupted null entries. macOS TUI freezing when Spotlight is reindexing. Idle session history lost when the 30-day cleanup process runs. Foreground subagents now capped at five nesting levels. <code style="font-family:'JetBrains Mono',monospace;font-size:.88em;background:#f2f0e8;padding:1px 5px;border-radius:3px">/recap</code> and conversation forks using the previous model after a switch. AWS credential refresh loops. <code style="font-family:'JetBrains Mono',monospace;font-size:.88em;background:#f2f0e8;padding:1px 5px;border-radius:3px">/stats</code> date display off by one day in UTC-negative timezones. Thirty-plus additional UI, clipboard, and window management fixes.
+        </div>
+        <div class="log-entry-how">
+          <b>How to use</b>
+          Run <code style="font-family:'JetBrains Mono',monospace;font-size:.88em;background:#f2f0e8;padding:1px 5px;border-radius:3px">claude update</code> or reinstall. The <code style="font-family:'JetBrains Mono',monospace;font-size:.88em;background:#f2f0e8;padding:1px 5px;border-radius:3px">/config</code> command is immediately available. Example: <code style="font-family:'JetBrains Mono',monospace;font-size:.88em;background:#f2f0e8;padding:1px 5px;border-radius:3px">/config thinking=false</code>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- QUIET ON THE WIRE -->
+<section class="quiet-section">
+  <div class="quiet-head">
+    <div class="quiet-kicker">Also</div>
+    <h3 class="quiet-title">Quiet on the <em>Wire</em></h3>
+  </div>
+  <div class="quiet-body">
+    <p>No API platform, Claude Apps, model, or SDK releases confirmed in the June 17 window. The SDK Python (v0.109.2) and TypeScript (v0.104.2) releases from June 15 removed retired models from the available-models list; both fall outside this window but are worth noting if you are on an older SDK pinning deprecated model IDs.</p>
+  </div>
+</section>
+
+<div class="ornament">* * *</div>
+
+<!-- COLOPHON / FOOTER -->
+<footer class="colophon">
+  <div class="colophon-inner">
+    <div class="colophon-mast">
+      <div class="colophon-word">Shipped<span class="dot">.</span></div>
+      <div class="colophon-tag">Nightly Anthropic release watch. Part of Shipped., a weekly magazine by <a href="https://id8labs.app" class="colophon-link">id8Labs</a>.</div>
+    </div>
+    <div class="colophon-body">
+      <div class="colophon-col">
+        <h4>This page</h4>
+        <p><b>Date</b> Wednesday, June 17, 2026</p>
+        <p><b>Window</b> Jun 16 to Jun 17, 2026</p>
+        <p><b>Releases</b> 1 confirmed</p>
+        <p><b>Generated</b> 2026-06-18T01:04Z</p>
+        <p><b>Status</b> draft</p>
+      </div>
+      <div class="colophon-col">
+        <h4>Sources</h4>
+        <p><a href="https://github.com/anthropics/claude-code/releases">github.com/anthropics/claude-code/releases</a></p>
+      </div>
+    </div>
+    <div class="colophon-foot">
+      <span>&copy; 2026 <b>id8Labs</b> &middot; All rights reserved</span>
+      <span>Printed in pixels &middot; Set in Fraunces &amp; Archivo</span>
+      <span class="hot">Next issue, Friday June 20, 2026</span>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
