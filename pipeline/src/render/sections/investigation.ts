@@ -15,10 +15,10 @@ export function renderInvestigation(section: Section): string {
   const ratio = extractRatioChart(section.content);
   const ratioHtml = ratio && ratio.kind === 'ratio' ? renderRatio(ratio.data) : '';
 
-  // Generic investigation body: the full prose block. Quotes render inline
-  // via blockquote formatting. No per-issue hardcoded consortium table or
-  // money-aside (those were Issue 00 Glasswing-specific).
-  const prose = paragraphs(stripSidebar(section.content));
+  // Generic investigation body: the full prose block. Blockquote-style quote
+  // cards (> *"..."* \n> — Name) are rendered as styled quote elements rather
+  // than being silently dropped.
+  const prose = renderProseWithBlockquotes(stripSidebar(section.content));
 
   return `<div class="feature-opener" id="investigation">
   <span class="vert-label">Investigation</span>
@@ -195,6 +195,38 @@ function stripSidebar(content: string): string {
   let e = start;
   while (e < lines.length - 1 && lines[e + 1]!.startsWith('>')) e++;
   return [...lines.slice(0, s), ...lines.slice(e + 1)].join('\n');
+}
+
+function renderProseWithBlockquotes(body: string): string {
+  const blocks = body
+    .replace(/\r\n/g, '\n')
+    .split(/\n{2,}/)
+    .map((b) => b.trim())
+    .filter(
+      (b) =>
+        b.length > 0 &&
+        !/^-{3,}$/.test(b) &&
+        !b.startsWith('#') &&
+        !b.startsWith('|'),
+    );
+  return blocks
+    .map((b) => {
+      if (!b.startsWith('>')) {
+        return `    <p>${inlineMarkdown(b.replace(/\n/g, ' '))}</p>`;
+      }
+      // Blockquote block: strip leading `> ` from each line, then detect
+      // whether it's a styled quote card (> *"..."* \n> — Attribution).
+      const lines = b.split('\n').map((l) => l.replace(/^>\s?/, ''));
+      const quoteMatch = lines[0]?.match(/^\*"(.+?)"\*\s*$/);
+      if (quoteMatch && quoteMatch[1]) {
+        const attrLine = lines.slice(1).find((l) => /^[—\-]/.test(l.trim()));
+        const attr = attrLine ? attrLine.replace(/^[—\-]\s*/, '').trim() : '';
+        return renderQuote({ text: quoteMatch[1], attribution: attr }, 'orange');
+      }
+      // Generic blockquote (stats callout, table caption, etc.) — render as <p>
+      return `    <p>${inlineMarkdown(lines.join(' ').trim())}</p>`;
+    })
+    .join('\n');
 }
 
 function paragraphs(body: string): string {
