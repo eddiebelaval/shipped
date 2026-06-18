@@ -15,10 +15,14 @@ export function renderInvestigation(section: Section): string {
   const ratio = extractRatioChart(section.content);
   const ratioHtml = ratio && ratio.kind === 'ratio' ? renderRatio(ratio.data) : '';
 
-  // Generic investigation body: the full prose block. Quotes render inline
-  // via blockquote formatting. No per-issue hardcoded consortium table or
-  // money-aside (those were Issue 00 Glasswing-specific).
+  // Generic investigation body: prose paragraphs + extracted quote cards.
+  // paragraphs() strips blockquotes, so we extract quotes separately and
+  // append them so attributions are never silently dropped.
   const prose = paragraphs(stripSidebar(section.content));
+  const quotes = extractQuotes(section.content);
+  const quotesHtml = quotes
+    .map((q, i) => renderQuote(q, i === 0 ? 'orange' : 'ink'))
+    .join('\n');
 
   return `<div class="feature-opener" id="investigation">
   <span class="vert-label">Investigation</span>
@@ -31,6 +35,7 @@ export function renderInvestigation(section: Section): string {
 <div class="prose-well">
   <div class="prose drop-cap">
 ${prose}
+${quotesHtml}
   </div>
 </div>
 
