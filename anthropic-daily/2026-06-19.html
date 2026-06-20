@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light">
+<title>Shipped. Daily, Friday, June 19, 2026</title>
+<meta property="og:title" content="Shipped. Daily, Friday, June 19, 2026">
+<meta property="og:description" content="Claude Code Artifacts, enterprise MCP auth with Okta, Claude Code v2.1.183, Python SDK v0.110.0 and v0.111.0, TypeScript SDK v0.105.0.">
+<meta property="og:type" content="article">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Shipped. Daily, Friday, June 19, 2026">
+<meta name="twitter:description" content="Claude Code Artifacts, enterprise MCP auth with Okta, Claude Code v2.1.183, Python SDK v0.110.0 and v0.111.0, TypeScript SDK v0.105.0.">
+<meta name="description" content="Anthropic daily sweep for June 19, 2026: Claude Code Artifacts, enterprise MCP auth with Okta, Claude Code v2.1.183, and SDK releases.">
+<meta name="author" content="Shipped. by id8Labs">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='75' cy='62' r='14' fill='%23FF6B35'/%3E%3Ctext x='10' y='75' font-family='Georgia,serif' font-weight='700' font-size='62' fill='%231a1a1a'%3ES%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;0,9..144,900;1,9..144,300;1,9..144,400;1,9..144,500;1,9..144,700&family=Archivo:wght@300;400;500;600;700;800;900&family=Archivo+Narrow:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{font-size:16px;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;text-rendering:optimizeLegibility}
+body{background:#FAF8F4;color:#0b0b0b;font-family:'Archivo',sans-serif;overflow-x:hidden}
+::selection{background:#FF6B35;color:#fff}
+
+:root{
+  --orange:#FF6B35;
+  --ink:#0b0b0b;
+  --paper:#FAF8F4;
+  --paper-shadow:#f2f0e8;
+  --body:#2a2a2a;
+  --muted:#5a5a5a;
+  --gray:#8a8a8a;
+  --hair:rgba(11,11,11,0.12);
+  --hair-soft:rgba(11,11,11,0.06);
+  --hair-hard:rgba(11,11,11,0.22);
+  --disp:'Fraunces', 'Times New Roman', serif;
+  --sans:'Archivo', system-ui, sans-serif;
+  --narrow:'Archivo Narrow', 'Archivo', sans-serif;
+  --mono:'JetBrains Mono', ui-monospace, monospace;
+}
+
+body::before{
+  content:"";
+  position:fixed;inset:0;pointer-events:none;z-index:1000;opacity:.28;mix-blend-mode:multiply;
+  background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='180' height='180'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' seed='3'/><feColorMatrix values='0 0 0 0 0.02  0 0 0 0 0.02  0 0 0 0 0.02  0 0 0 0.22 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+}
+
+.pub-bar{
+  position:sticky;top:0;z-index:100;
+  background:var(--paper);
+  border-bottom:1px solid var(--hair);
+  padding:0 28px;height:42px;
+  display:flex;align-items:center;justify-content:space-between;
+  font-family:var(--narrow);
+  font-size:11px;font-weight:600;letter-spacing:.22em;
+  text-transform:uppercase;color:var(--ink);
+}
+.pub-bar-left,.pub-bar-right{display:flex;align-items:center;gap:16px}
+.pub-bar-mark{font-family:var(--disp);font-weight:500;font-size:16px;letter-spacing:-.01em;text-transform:none;font-style:italic}
+.pub-bar-mark .dot{color:var(--orange)}
+.pub-bar-sep{width:1px;height:12px;background:var(--hair-hard)}
+.pub-bar-meta{color:var(--muted)}
+.pub-bar-link{color:inherit;text-decoration:none;border-bottom:1px solid currentColor;transition:color .15s ease}
+.pub-bar-link:hover{color:var(--orange)}
+
+.log-section{
+  padding:48px 28px;max-width:1280px;margin:0 auto;
+}
+.log-cat-head{
+  display:grid;
+  grid-template-columns:1fr auto;
+  gap:24px;align-items:baseline;
+  padding-bottom:18px;
+  border-bottom:1px solid var(--ink);
+  margin-bottom:0;
+}
+.log-cat-name{
+  font-family:var(--disp);font-weight:600;font-style:italic;
+  font-variation-settings:"opsz" 96;
+  font-size:clamp(36px,5vw,56px);
+  letter-spacing:-.02em;color:var(--ink);line-height:1;
+}
+.log-cat-count{
+  font-family:var(--narrow);
+  font-size:10px;font-weight:600;letter-spacing:.28em;
+  text-transform:uppercase;color:var(--muted);
+  text-align:right;
+}
+.log-cat-count b{color:var(--ink);font-weight:700;font-size:13px;display:block}
+
+.log-entries{display:flex;flex-direction:column}
+.log-entry{
+  padding:24px 0;
+  border-bottom:1px solid var(--hair);
+  display:grid;
+  grid-template-columns:120px 1fr;gap:28px;
+}
+.log-entry-left{
+  display:flex;flex-direction:column;gap:8px;
+}
+.log-entry-date{
+  font-family:var(--narrow);
+  font-size:10px;font-weight:700;letter-spacing:.22em;
+  text-transform:uppercase;color:var(--ink);
+  font-variant-numeric:tabular-nums;
+}
+.log-tag{
+  font-family:var(--narrow);
+  font-size:9px;font-weight:700;letter-spacing:.22em;
+  text-transform:uppercase;padding:3px 7px;
+  display:inline-block;line-height:1.3;width:fit-content;
+}
+.log-tag.model{background:var(--orange);color:var(--paper)}
+.log-tag.api{background:var(--ink);color:var(--paper)}
+.log-tag.code{background:#3a3a3a;color:var(--paper)}
+.log-tag.apps{background:#5a5a5a;color:var(--paper)}
+.log-tag.sdk-py,.log-tag.sdk-ts{background:var(--paper);color:var(--ink);border:1px solid var(--ink)}
+.log-tag.research,.log-tag.news{background:var(--paper);color:var(--muted);border:1px solid var(--hair-hard)}
+.log-tag.deprecation{background:var(--paper-shadow);color:var(--muted);border:1px solid var(--hair-hard)}
+.log-entry-title{
+  font-family:var(--disp);font-weight:500;
+  font-variation-settings:"opsz" 72;
+  font-size:20px;letter-spacing:-.012em;
+  color:var(--ink);line-height:1.25;
+  margin-bottom:10px;
+}
+.log-entry-title a{color:inherit;text-decoration:none;border-bottom:1px solid var(--hair-hard)}
+.log-entry-title a:hover{border-bottom-color:var(--orange);color:var(--orange)}
+.log-entry-body{
+  font-family:var(--sans);font-size:14.5px;line-height:1.6;color:var(--body);
+  margin-bottom:12px;
+}
+.log-entry-how{
+  font-family:var(--sans);font-size:13.5px;line-height:1.6;color:var(--muted);
+  padding-top:12px;border-top:1px solid var(--hair-soft);
+}
+.log-entry-how b{font-family:var(--narrow);font-size:10px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--ink);display:block;margin-bottom:6px}
+.log-entry-why{
+  font-family:var(--disp);font-style:italic;
+  font-size:14px;color:var(--muted);line-height:1.55;
+  margin-top:10px;padding-left:14px;
+  border-left:2px solid var(--orange);
+}
+.log-entry-why b{font-style:normal;font-family:var(--narrow);font-size:10px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--orange);display:block;margin-bottom:4px}
+.log-entry-note{
+  font-family:var(--sans);font-size:13px;line-height:1.6;color:var(--muted);
+  margin-top:10px;
+}
+
+code{
+  font-family:var(--mono);font-size:.86em;
+  background:var(--paper-shadow);padding:1px 6px;
+  border-radius:3px;color:var(--ink);
+}
+
+@media(max-width:720px){
+  .log-entry{grid-template-columns:1fr;gap:12px}
+  .log-cat-head{grid-template-columns:auto 1fr}
+  .log-cat-count{grid-column:1 / -1;text-align:left;padding-top:8px;border-top:1px solid var(--hair)}
+}
+@media(max-width:600px){
+  .log-section{padding-left:20px;padding-right:20px}
+}
+
+.daily-wrap{
+  max-width:1280px;margin:0 auto;padding:48px 28px 40px;
+  border-bottom:3px double var(--ink);
+}
+.daily-kicker{
+  font-family:var(--narrow);
+  font-size:10px;font-weight:700;letter-spacing:.32em;
+  text-transform:uppercase;color:var(--orange);
+  margin-bottom:18px;
+}
+.daily-masthead{
+  font-family:var(--disp);
+  font-style:italic;
+  font-weight:400;
+  font-variation-settings:"opsz" 72;
+  font-size:clamp(32px,5vw,58px);
+  line-height:1.05;
+  letter-spacing:-.02em;
+  color:var(--ink);
+  margin-bottom:6px;
+}
+.daily-masthead .mark{font-style:normal;font-weight:700}
+.daily-masthead .dot{color:var(--orange)}
+.daily-dateline{
+  font-family:var(--narrow);
+  font-size:10px;font-weight:600;letter-spacing:.26em;
+  text-transform:uppercase;color:var(--muted);
+  margin-bottom:32px;
+}
+.daily-oneliner{
+  font-family:var(--disp);
+  font-variation-settings:"opsz" 24;
+  font-size:19px;
+  line-height:1.55;
+  color:var(--ink);
+  max-width:780px;
+  padding-top:24px;
+  border-top:1px solid var(--hair-hard);
+  margin-bottom:22px;
+}
+.daily-lead{
+  font-family:var(--disp);
+  font-variation-settings:"opsz" 14;
+  font-weight:400;
+  font-size:17px;
+  line-height:1.68;
+  color:var(--body);
+  max-width:700px;
+}
+.daily-lead p{margin-bottom:16px}
+
+.daily-foot{
+  background:var(--paper);
+  border-top:2px solid var(--orange);
+  padding:48px 28px 72px;
+}
+.daily-foot-inner{max-width:1280px;margin:0 auto}
+.daily-foot-mark{
+  font-family:var(--disp);
+  font-weight:500;font-style:italic;
+  font-variation-settings:"opsz" 72;
+  font-size:36px;
+  color:var(--ink);
+  margin-bottom:16px;
+}
+.daily-foot-mark .dot{color:var(--orange)}
+.daily-foot-meta{
+  font-family:var(--narrow);
+  font-size:11px;font-weight:500;letter-spacing:.18em;
+  text-transform:uppercase;color:var(--muted);
+  line-height:2.1;
+  margin-bottom:28px;
+}
+.daily-foot-meta a{color:var(--muted);text-decoration:none;border-bottom:1px solid currentColor}
+.daily-foot-meta a:hover{color:var(--orange)}
+.daily-foot-sources-label{
+  font-family:var(--narrow);font-size:10px;font-weight:700;letter-spacing:.28em;
+  text-transform:uppercase;color:var(--ink);
+  display:block;margin-bottom:12px;
+  padding-bottom:10px;border-bottom:1px solid var(--hair-hard);
+}
+.daily-foot-sources{
+  font-family:var(--sans);font-size:12.5px;color:var(--muted);line-height:2;
+}
+.daily-foot-sources a{
+  color:var(--muted);text-decoration:none;border-bottom:1px solid var(--hair);
+}
+.daily-foot-sources a:hover{color:var(--orange);border-bottom-color:var(--orange)}
+@media(max-width:600px){
+  .daily-wrap,.daily-foot{padding-left:20px;padding-right:20px}
+}
+</style>
+</head>
+<body>
+
+<nav class="pub-bar">
+  <div class="pub-bar-left">
+    <span class="pub-bar-mark">Shipped<span class="dot">.</span></span>
+    <span class="pub-bar-sep"></span>
+    <span class="pub-bar-meta">Daily digest by <a href="https://id8labs.app" class="pub-bar-link">id8Labs</a></span>
+  </div>
+  <div class="pub-bar-right">
+    <span class="pub-bar-meta">Anthropic</span>
+    <span class="pub-bar-sep"></span>
+    <span class="pub-bar-meta">Jun 19, 2026</span>
+  </div>
+</nav>
+
+<div class="daily-wrap">
+  <div class="daily-kicker">Anthropic &nbsp;&nbsp;&#183;&nbsp;&nbsp; Nightly Sweep</div>
+  <div class="daily-masthead"><span class="mark">Shipped<span class="dot">.</span></span> Daily, Friday, June 19, 2026</div>
+  <div class="daily-dateline">Generated 2026-06-20T01:04:03Z</div>
+  <div class="daily-oneliner">Claude Code turns sessions into shareable live pages, enterprise MCP gets zero-touch Okta auth, and both Python and TypeScript SDKs add the code execution tool.</div>
+  <div class="daily-lead">
+    <p>A Friday that moved on two tracks. On the product side: Claude Code Artifacts ships in beta for Team and Enterprise accounts, turning any agent session into a live, interactive web page that updates as the agent works, shareable within the org via URL. On the infrastructure side: Enterprise-Managed Authorization for MCP connectors stabilizes, meaning IT admins provision access once through Okta and employees inherit every approved connector on first login with no OAuth queue.</p>
+    <p>Both features land for the same tier. Both are in beta. Two bets landing the same day.</p>
+  </div>
+</div>
+
+<div style="background:var(--paper);">
+
+  <div class="log-section">
+    <div class="log-cat-head">
+      <div class="log-cat-name">Apps</div>
+      <div class="log-cat-count"><b>2</b> items</div>
+    </div>
+    <div class="log-entries">
+
+      <div class="log-entry">
+        <div class="log-entry-left">
+          <div class="log-entry-date">Jun 18, 2026</div>
+          <span class="log-tag apps">APPS</span>
+        </div>
+        <div>
+          <div class="log-entry-title">
+            <a href="https://venturebeat.com/data/anthropics-claude-code-artifacts-update-brings-live-shared-dashboards-and-interactive-workspaces-to-enterprises">Claude Code Artifacts: live, shareable HTML pages from agent sessions</a>
+          </div>
+          <div class="log-entry-body">Claude Code can now surface its work as an interactive, shareable web page, live-updating as the agent and connected data sources change. Teams can use them for PR walkthroughs, incident dashboards, internal tools, and checklists. Pages are private to the org. Version history is in beta. Restricted to Team and Enterprise accounts.</div>
+          <div class="log-entry-how"><b>How to use</b>Available in Claude Code for Team and Enterprise subscribers. No additional configuration required. Start a Claude Code session and look for the Artifacts option to publish the session as a shareable URL.</div>
+          <div class="log-entry-why"><b>Why it matters</b>Turns an ephemeral terminal session into a persistent, shareable record. The terminal is private by default; this makes it collaborative on demand.</div>
+          <div class="log-entry-note">Reported by <a href="https://venturebeat.com/data/anthropics-claude-code-artifacts-update-brings-live-shared-dashboards-and-interactive-workspaces-to-enterprises">VentureBeat</a>, via Anthropic release notes.</div>
+        </div>
+      </div>
+
+      <div class="log-entry">
+        <div class="log-entry-left">
+          <div class="log-entry-date">Jun 18, 2026</div>
+          <span class="log-tag apps">APPS</span>
+        </div>
+        <div>
+          <div class="log-entry-title">
+            <a href="https://blog.modelcontextprotocol.io/posts/enterprise-managed-auth/">Enterprise-Managed Authorization for MCP connectors, with Okta</a>
+          </div>
+          <div class="log-entry-body">Admins can now provision MCP server access through their identity provider once and employees inherit that access on first login with no per-app OAuth prompts. Works across Claude, Claude Code, and Cowork for Team and Enterprise accounts. Seven MCP providers support the standard at launch: Asana, Atlassian, Canva, Figma, Granola, Linear, and Supabase. Okta is the first supported identity provider.</div>
+          <div class="log-entry-how"><b>How to use</b>Configure your identity provider (Okta) in Claude admin settings. Provision MCP connectors once. Users inherit access on first login. Beta for Team and Enterprise. Full setup at <a href="https://blog.modelcontextprotocol.io/posts/enterprise-managed-auth/">blog.modelcontextprotocol.io</a>.</div>
+          <div class="log-entry-why"><b>Why it matters</b>Per-user OAuth prompts were the largest friction point blocking enterprise-scale MCP adoption. Centralized provisioning removes that entirely.</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="log-section" style="border-top:1px solid var(--hair);">
+    <div class="log-cat-head">
+      <div class="log-cat-name">Claude Code</div>
+      <div class="log-cat-count"><b>1</b> item</div>
+    </div>
+    <div class="log-entries">
+
+      <div class="log-entry">
+        <div class="log-entry-left">
+          <div class="log-entry-date">Jun 19, 2026</div>
+          <span class="log-tag code">CODE</span>
+        </div>
+        <div>
+          <div class="log-entry-title">
+            <a href="https://code.claude.com/docs/en/changelog">Claude Code v2.1.183: auto mode safety, model deprecation warnings, attribution setting</a>
+          </div>
+          <div class="log-entry-body">Auto mode now blocks destructive git commands (<code>git reset --hard</code>, <code>git checkout -- .</code>, <code>git clean -fd</code>, <code>git stash drop</code>) unless you explicitly asked to discard local work. <code>git commit --amend</code> is blocked for commits the agent did not make this session. Terraform, Pulumi, and CDK destroy commands require explicit request per stack. Model deprecation warnings now appear in print mode (<code>-p</code>) and for models set in agent frontmatter.</div>
+          <div class="log-entry-how"><b>How to use</b>Update Claude Code (<code>claude update</code> or reinstall). Safety gates are automatic in auto mode. New setting: <code>attribution.sessionUrl</code> (set to <code>false</code> to omit the claude.ai session link from commits and PRs in web and Remote Control sessions). Run <code>/config --help</code> to list available shorthand config keys.</div>
+          <div class="log-entry-note" style="margin-top:10px;">Additional fixes: thinking block display errors, WebSearch in subagents, terminal cursor positioning, fullscreen corruption on Windows Terminal. Background task and webhook trigger handling. Subagent tmux pane launch and focus mode improvements.</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="log-section" style="border-top:1px solid var(--hair);">
+    <div class="log-cat-head">
+      <div class="log-cat-name">Python SDK</div>
+      <div class="log-cat-count"><b>2</b> items</div>
+    </div>
+    <div class="log-entries">
+
+      <div class="log-entry">
+        <div class="log-entry-left">
+          <div class="log-entry-date">Jun 18, 2026</div>
+          <span class="log-tag sdk-py">SDK-PY</span>
+        </div>
+        <div>
+          <div class="log-entry-title">
+            <a href="https://github.com/anthropics/anthropic-sdk-python/releases/tag/v0.111.0">anthropic-sdk-python v0.111.0</a>
+          </div>
+          <div class="log-entry-body">Tags refusal-fallback middleware requests with a <code>fallback-refusal-middleware</code> marker, making it easier to trace which requests hit the fallback path.</div>
+          <div class="log-entry-how"><b>How to use</b><code>pip install anthropic==0.111.0</code></div>
+        </div>
+      </div>
+
+      <div class="log-entry">
+        <div class="log-entry-left">
+          <div class="log-entry-date">Jun 18, 2026</div>
+          <span class="log-tag sdk-py">SDK-PY</span>
+        </div>
+        <div>
+          <div class="log-entry-title">
+            <a href="https://github.com/anthropics/anthropic-sdk-python/releases/tag/v0.110.0">anthropic-sdk-python v0.110.0</a>
+          </div>
+          <div class="log-entry-body">Adds support for the <code>code_execution_20260120</code> tool. Fixes <code>x-stainless-helper</code> header merging (no longer clobbers across multiple header merge calls). Preserves Bedrock stream event types correctly.</div>
+          <div class="log-entry-how"><b>How to use</b><code>pip install anthropic==0.110.0</code> &nbsp;&#183;&nbsp; Use <code>code_execution_20260120</code> as the tool type in your tool definitions.</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="log-section" style="border-top:1px solid var(--hair);">
+    <div class="log-cat-head">
+      <div class="log-cat-name">TypeScript SDK</div>
+      <div class="log-cat-count"><b>5</b> items</div>
+    </div>
+    <div class="log-entries">
+
+      <div class="log-entry">
+        <div class="log-entry-left">
+          <div class="log-entry-date">Jun 18, 2026</div>
+          <span class="log-tag sdk-ts">SDK-TS</span>
+        </div>
+        <div>
+          <div class="log-entry-title">
+            <a href="https://github.com/anthropics/anthropic-sdk-typescript/releases/tag/sdk%2Fv0.105.0">anthropic-sdk-typescript sdk/v0.105.0</a>
+          </div>
+          <div class="log-entry-body">Adds support for <code>code_execution_20260120</code> tool. Adds lazy parsing of partial tool JSON input, reducing overhead during streaming tool calls.</div>
+          <div class="log-entry-how"><b>How to use</b><code>npm install @anthropic-ai/sdk@0.105.0</code></div>
+        </div>
+      </div>
+
+      <div class="log-entry">
+        <div class="log-entry-left">
+          <div class="log-entry-date">Jun 18, 2026</div>
+          <span class="log-tag sdk-ts">SDK-TS</span>
+        </div>
+        <div>
+          <div class="log-entry-title">
+            <a href="https://github.com/anthropics/anthropic-sdk-typescript/releases">TypeScript SDK variants: vertex-sdk v0.18.0, foundry-sdk v0.4.0, bedrock-sdk v0.31.0, aws-sdk v0.5.0</a>
+          </div>
+          <div class="log-entry-body">All four variant SDKs add lazy parsing of partial tool JSON input. vertex-sdk and bedrock-sdk also stop referencing deprecated models.</div>
+          <div class="log-entry-how"><b>How to use</b>Update whichever variant you use to the latest version listed above. No API changes required.</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</div>
+
+<footer class="daily-foot">
+  <div class="daily-foot-inner">
+    <div class="daily-foot-mark">Shipped<span class="dot">.</span> Daily</div>
+    <div class="daily-foot-meta">
+      Generated: 2026-06-20T01:04:03Z<br>
+      Nightly sweep: Anthropic sources, past 24 hours<br>
+      Published by <a href="https://id8labs.app">id8Labs</a>
+    </div>
+    <span class="daily-foot-sources-label">Sources</span>
+    <div class="daily-foot-sources">
+      <a href="https://blog.modelcontextprotocol.io/posts/enterprise-managed-auth/">blog.modelcontextprotocol.io: Enterprise-Managed Authorization for MCP (Jun 18, 2026)</a><br>
+      <a href="https://code.claude.com/docs/en/changelog">code.claude.com: Claude Code changelog (v2.1.183, Jun 19, 2026)</a><br>
+      <a href="https://github.com/anthropics/anthropic-sdk-python/releases">github.com/anthropics/anthropic-sdk-python: releases (v0.110.0, v0.111.0, Jun 18, 2026)</a><br>
+      <a href="https://github.com/anthropics/anthropic-sdk-typescript/releases">github.com/anthropics/anthropic-sdk-typescript: releases (sdk/v0.105.0 and variants, Jun 18, 2026)</a><br>
+      <a href="https://venturebeat.com/data/anthropics-claude-code-artifacts-update-brings-live-shared-dashboards-and-interactive-workspaces-to-enterprises">VentureBeat: Claude Code Artifacts reporting (Jun 18, 2026)</a>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
