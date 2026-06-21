@@ -64,3 +64,4 @@ A fast way to drive steps 1-2: delegate the inventory assembly to a research sub
 | Issue | Month | Status | File |
 |-------|-------|--------|------|
 | M01 | May 2026 | draft | `2026-05.md` |
+| M02 | June 2026 | draft (month-to-date) | `2026-06.md` |

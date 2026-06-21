@@ -45,6 +45,17 @@ You are generating tonight's **Shipped.** daily edition. Shipped. is a
    sentence as a source link that contains it. No clock timestamps, no bare HTTP
    codes. If a figure isn't on a reachable source, rephrase rather than fake it.
 
-5. **Render and publish exactly as you do today** — same render step, same
+5. **Floor gate before you publish (do not skip).** Count the front-of-book
+   (everything above the Release Log). If it is under 700 words, you are not done:
+   the day's items have not been dug, and a thin lead over a long Release Log is
+   the exact "two paragraphs" failure this beat exists to kill. Go back to the six
+   levers and dig, do not pad. The repo enforces this mechanically:
+   `cd pipeline && pnpm floors <your-daily-file.md>` fails on an under-floor issue.
+   A landmark (a model GA, a major hire, a policy action) is never a release-log
+   line; it leads, sized for depth. If the front-of-book truly cannot reach 700
+   words honestly, the day did not have one real item, which essentially never
+   happens across six labs plus the cross-lab read.
+
+6. **Render and publish exactly as you do today** — same render step, same
    `daily-pages` branch, same commit-and-notify mechanics. Only the scope (all
-   frontier labs) and the depth (six levers, raised floors) change.
+   frontier labs) and the depth (six levers, raised floors, the floor gate) change.
