@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light">
+<title>Shipped. Daily, Saturday, June 20, 2026</title>
+<meta property="og:title" content="Shipped. Daily, Saturday, June 20, 2026">
+<meta property="og:description" content="AlphaFold Nobel laureate John Jumper joins Anthropic. Claude Code ships auto-mode safety guards and a calmer stream-stall message.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://eddiebelaval.github.io/shipped/anthropic-daily/2026-06-20.html">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Shipped. Daily, Saturday, June 20, 2026">
+<meta name="twitter:description" content="AlphaFold Nobel laureate John Jumper joins Anthropic. Claude Code ships auto-mode safety guards and a calmer stream-stall message.">
+<meta name="description" content="AlphaFold Nobel laureate John Jumper joins Anthropic. Claude Code ships auto-mode safety guards and a calmer stream-stall message.">
+<meta name="author" content="Shipped.">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='75' cy='62' r='14' fill='%23FF6B35'/%3E%3Ctext x='10' y='75' font-family='Georgia,serif' font-weight='700' font-size='62' fill='%231a1a1a'%3ES%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;0,9..144,900;1,9..144,300;1,9..144,400;1,9..144,500;1,9..144,700&family=Archivo:wght@300;400;500;600;700;800;900&family=Archivo+Narrow:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{font-size:16px;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;text-rendering:optimizeLegibility}
+body{background:#FAF8F4;color:#0b0b0b;font-family:'Archivo',sans-serif;overflow-x:hidden}
+::selection{background:#FF6B35;color:#fff}
+
+:root{
+  --orange:#FF6B35;
+  --ink:#0b0b0b;
+  --paper:#FAF8F4;
+  --paper-shadow:#f2f0e8;
+  --body:#2a2a2a;
+  --muted:#5a5a5a;
+  --gray:#8a8a8a;
+  --hair:rgba(11,11,11,0.12);
+  --hair-soft:rgba(11,11,11,0.06);
+  --hair-hard:rgba(11,11,11,0.22);
+  --disp:'Fraunces', 'Times New Roman', serif;
+  --sans:'Archivo', system-ui, sans-serif;
+  --narrow:'Archivo Narrow', 'Archivo', sans-serif;
+  --mono:'JetBrains Mono', ui-monospace, monospace;
+}
+
+body::before{
+  content:"";
+  position:fixed;inset:0;pointer-events:none;z-index:1000;opacity:.28;mix-blend-mode:multiply;
+  background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='180' height='180'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' seed='3'/><feColorMatrix values='0 0 0 0 0.02  0 0 0 0 0.02  0 0 0 0 0.02  0 0 0 0.22 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+}
+
+.pub-bar{
+  position:sticky;top:0;z-index:100;
+  background:var(--paper);
+  border-bottom:1px solid var(--hair);
+  padding:0 28px;height:42px;
+  display:flex;align-items:center;justify-content:space-between;
+  font-family:var(--narrow);
+  font-size:11px;font-weight:600;letter-spacing:.22em;
+  text-transform:uppercase;color:var(--ink);
+}
+.pub-bar-left,.pub-bar-right{display:flex;align-items:center;gap:16px}
+.pub-bar-mark{font-family:var(--disp);font-weight:500;font-size:16px;letter-spacing:-.01em;text-transform:none;font-style:italic}
+.pub-bar-mark .dot{color:var(--orange)}
+.pub-bar-sep{width:1px;height:12px;background:var(--hair-hard)}
+.pub-bar-meta{color:var(--muted)}
+.pub-bar-link{color:inherit;text-decoration:none;border-bottom:1px solid currentColor;transition:color .15s ease}
+.pub-bar-link:hover{color:var(--orange)}
+.pub-bar-folio{color:var(--ink)}
+.pub-bar-folio b{font-weight:600;color:var(--orange)}
+
+.folio{
+  font-family:var(--narrow);
+  font-size:10px;font-weight:500;letter-spacing:.28em;
+  text-transform:uppercase;color:var(--gray);
+  display:flex;align-items:center;gap:10px;
+}
+.folio b{color:var(--ink);font-weight:700}
+.folio .ruler{width:28px;height:1px;background:var(--hair-hard)}
+.folio .dot{color:var(--orange)}
+
+.section{
+  position:relative;
+  padding:64px 28px 40px;
+  max-width:1280px;margin:0 auto;
+}
+.section-folio{
+  display:flex;align-items:center;justify-content:space-between;
+  padding-bottom:18px;
+  border-bottom:1px solid var(--ink);
+  margin-bottom:44px;
+}
+.section-folio-left{display:flex;align-items:center;gap:14px}
+.section-folio-label{
+  font-family:var(--narrow);
+  font-size:11px;font-weight:700;letter-spacing:.28em;
+  text-transform:uppercase;color:var(--ink);
+}
+.section-folio-sub{
+  font-family:var(--disp);font-style:italic;
+  font-size:13px;color:var(--muted);
+}
+
+.prose{
+  font-family:var(--disp);
+  font-variation-settings:"opsz" 14;
+  font-weight:400;font-size:19px;line-height:1.66;
+  color:var(--body);
+  max-width:640px;
+}
+.prose p{margin-bottom:24px}
+.prose em{font-style:italic;color:var(--ink)}
+.prose strong{font-weight:600;color:var(--ink)}
+.prose code{
+  font-family:var(--mono);font-size:.86em;
+  background:var(--paper-shadow);padding:1px 6px;
+  border-radius:3px;color:var(--ink);
+}
+
+.log-divider{
+  background:var(--paper);
+  padding:96px 28px 48px;
+  text-align:center;
+  border-top:3px double var(--ink);
+  border-bottom:1px solid var(--ink);
+  max-width:1280px;margin:0 auto;
+}
+.log-divider-kicker{
+  font-family:var(--narrow);
+  font-size:11px;font-weight:700;letter-spacing:.48em;
+  text-transform:uppercase;color:var(--orange);
+  margin-bottom:14px;
+}
+.log-divider-title{
+  font-family:var(--disp);font-weight:700;
+  font-variation-settings:"opsz" 144;
+  font-size:clamp(56px,10vw,144px);
+  line-height:.9;letter-spacing:-.045em;color:var(--ink);
+  margin-bottom:16px;
+}
+.log-divider-title em{font-style:italic;font-weight:400}
+.log-divider-sub{
+  font-family:var(--disp);font-style:italic;
+  font-size:18px;color:var(--muted);max-width:640px;margin:0 auto;line-height:1.5;
+}
+
+.log-section{
+  padding:48px 28px;max-width:1280px;margin:0 auto;
+}
+.log-cat-head{
+  display:grid;
+  grid-template-columns:1fr auto;
+  gap:24px;align-items:baseline;
+  padding-bottom:18px;
+  border-bottom:1px solid var(--ink);
+  margin-bottom:0;
+}
+.log-cat-name{
+  font-family:var(--disp);font-weight:600;font-style:italic;
+  font-variation-settings:"opsz" 96;
+  font-size:clamp(36px,5vw,56px);
+  letter-spacing:-.02em;color:var(--ink);line-height:1;
+}
+.log-cat-count{
+  font-family:var(--narrow);
+  font-size:10px;font-weight:600;letter-spacing:.28em;
+  text-transform:uppercase;color:var(--muted);
+  text-align:right;
+}
+.log-cat-count b{color:var(--ink);font-weight:700;font-size:13px;display:block}
+
+.log-entries{display:flex;flex-direction:column}
+.log-entry{
+  padding:24px 0;
+  border-bottom:1px solid var(--hair);
+  display:grid;
+  grid-template-columns:120px 1fr;gap:28px;
+}
+.log-entry-left{
+  display:flex;flex-direction:column;gap:8px;
+}
+.log-entry-date{
+  font-family:var(--narrow);
+  font-size:10px;font-weight:700;letter-spacing:.22em;
+  text-transform:uppercase;color:var(--ink);
+  font-variant-numeric:tabular-nums;
+}
+.log-tag{
+  font-family:var(--narrow);
+  font-size:9px;font-weight:700;letter-spacing:.22em;
+  text-transform:uppercase;padding:3px 7px;
+  display:inline-block;line-height:1.3;width:fit-content;
+}
+.log-tag.model{background:var(--orange);color:var(--paper)}
+.log-tag.api{background:var(--ink);color:var(--paper)}
+.log-tag.code{background:#3a3a3a;color:var(--paper)}
+.log-tag.apps{background:#5a5a5a;color:var(--paper)}
+.log-tag.sdk-py,.log-tag.sdk-ts{background:var(--paper);color:var(--ink);border:1px solid var(--ink)}
+.log-tag.research,.log-tag.news{background:var(--paper);color:var(--muted);border:1px solid var(--hair-hard)}
+.log-tag.deprecation{background:var(--paper-shadow);color:var(--muted);border:1px solid var(--hair-hard)}
+.log-entry-title{
+  font-family:var(--disp);font-weight:500;
+  font-variation-settings:"opsz" 72;
+  font-size:20px;letter-spacing:-.012em;
+  color:var(--ink);line-height:1.25;
+  margin-bottom:10px;
+}
+.log-entry-title a{color:inherit;text-decoration:none;border-bottom:1px solid var(--hair-hard)}
+.log-entry-title a:hover{border-bottom-color:var(--orange);color:var(--orange)}
+.log-entry-body{
+  font-family:var(--sans);font-size:14.5px;line-height:1.6;color:var(--body);
+  margin-bottom:12px;
+}
+.log-entry-how{
+  font-family:var(--sans);font-size:13.5px;line-height:1.6;color:var(--muted);
+  padding-top:12px;border-top:1px solid var(--hair-soft);
+}
+.log-entry-how b{font-family:var(--narrow);font-size:10px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--ink);display:block;margin-bottom:6px}
+.log-entry-why{
+  font-family:var(--disp);font-style:italic;
+  font-size:14px;color:var(--muted);line-height:1.55;
+  margin-top:10px;padding-left:14px;
+  border-left:2px solid var(--orange);
+}
+.log-entry-why b{font-style:normal;font-family:var(--narrow);font-size:10px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--orange);display:block;margin-bottom:4px}
+
+@media(max-width:720px){
+  .log-entry{grid-template-columns:1fr;gap:12px}
+  .log-cat-head{grid-template-columns:auto 1fr}
+  .log-cat-count{grid-column:1 / -1;text-align:left;padding-top:8px;border-top:1px solid var(--hair)}
+}
+
+.quiet-section{
+  max-width:1280px;margin:0 auto;padding:64px 28px 48px;
+  display:grid;grid-template-columns:repeat(12,1fr);gap:24px;
+}
+.quiet-head{
+  grid-column:1 / span 3;
+}
+.quiet-title{
+  font-family:var(--disp);font-style:italic;font-weight:400;
+  font-variation-settings:"opsz" 72;
+  font-size:32px;line-height:1;letter-spacing:-.02em;
+  color:var(--ink);
+}
+.quiet-title em{color:var(--orange);font-style:normal;font-weight:500}
+.quiet-kicker{
+  font-family:var(--narrow);
+  font-size:10px;font-weight:700;letter-spacing:.32em;
+  text-transform:uppercase;color:var(--muted);
+  margin-bottom:10px;
+}
+.quiet-body{
+  grid-column:5 / -1;
+  font-family:var(--disp);font-size:17px;line-height:1.65;color:var(--body);
+  padding-left:24px;border-left:1px solid var(--ink);
+}
+.quiet-body p{margin-bottom:16px}
+.quiet-body strong{font-weight:600;color:var(--ink)}
+@media(max-width:860px){
+  .quiet-head,.quiet-body{grid-column:1 / -1}
+  .quiet-body{padding-left:0;border-left:none;border-top:1px solid var(--ink);padding-top:18px}
+}
+
+.colophon{
+  background:var(--ink);color:var(--paper);
+  padding:80px 28px 64px;
+  border-top:2px solid var(--orange);
+}
+.colophon-inner{
+  max-width:1280px;margin:0 auto;
+  display:grid;grid-template-columns:repeat(12,1fr);gap:32px;
+}
+.colophon-mast{
+  grid-column:1 / span 5;
+}
+.colophon-word{
+  font-family:var(--disp);font-weight:500;
+  font-variation-settings:"opsz" 144;
+  font-size:clamp(72px,10vw,120px);
+  line-height:.9;letter-spacing:-.04em;color:var(--paper);
+}
+.colophon-word .dot{color:var(--orange)}
+.colophon-tag{
+  margin-top:14px;
+  font-family:var(--disp);font-style:italic;font-size:18px;
+  color:rgba(250,250,247,.65);line-height:1.4;max-width:360px;
+}
+.colophon-body{
+  grid-column:6 / -1;
+  display:grid;grid-template-columns:repeat(2,1fr);gap:32px;
+}
+.colophon-col h4{
+  font-family:var(--narrow);
+  font-size:10px;font-weight:700;letter-spacing:.32em;
+  text-transform:uppercase;color:var(--orange);
+  margin-bottom:12px;padding-bottom:10px;
+  border-bottom:1px solid rgba(250,250,247,.2);
+}
+.colophon-col p,.colophon-col li{
+  font-family:var(--sans);font-size:13px;line-height:1.6;
+  color:rgba(250,250,247,.75);
+  margin-bottom:8px;list-style:none;
+}
+.colophon-col b{color:var(--paper);font-weight:600}
+.colophon-col em{font-style:italic;color:rgba(250,250,247,.9)}
+.colophon-col a{color:rgba(250,250,247,.75);text-decoration:none;border-bottom:1px solid rgba(250,250,247,.3)}
+.colophon-col a:hover{color:var(--orange)}
+.colophon-foot{
+  grid-column:1 / -1;
+  margin-top:32px;padding-top:24px;
+  border-top:1px solid rgba(250,250,247,.2);
+  display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap;
+  font-family:var(--narrow);font-size:10px;font-weight:600;
+  letter-spacing:.28em;text-transform:uppercase;color:rgba(250,250,247,.5);
+}
+.colophon-foot b{color:var(--paper);font-weight:700}
+.colophon-foot .hot{color:var(--orange)}
+@media(max-width:860px){
+  .colophon-mast,.colophon-body{grid-column:1 / -1}
+  .colophon-body{grid-template-columns:1fr;gap:24px}
+}
+
+/* DAILY PAGE SPECIFIC */
+.daily-header{
+  padding:52px 28px 56px;
+  max-width:1280px;margin:0 auto;
+  border-bottom:1px solid var(--ink);
+}
+.daily-kicker{
+  font-family:var(--narrow);
+  font-size:10px;font-weight:700;letter-spacing:.38em;
+  text-transform:uppercase;color:var(--orange);
+  margin-bottom:22px;
+}
+.daily-masthead{
+  font-family:var(--disp);
+  font-style:italic;
+  font-weight:500;
+  font-variation-settings:"opsz" 144;
+  font-size:clamp(72px,16vw,172px);
+  line-height:.88;
+  letter-spacing:-.04em;
+  color:var(--ink);
+  margin-bottom:22px;
+  display:inline-block;
+}
+.daily-masthead .dot{color:var(--orange)}
+.daily-dateline{
+  font-family:var(--narrow);
+  font-size:11px;font-weight:600;letter-spacing:.28em;
+  text-transform:uppercase;color:var(--muted);
+  margin-bottom:32px;
+  padding-bottom:24px;
+  border-bottom:1px solid var(--hair);
+}
+.daily-one-line{
+  font-family:var(--disp);
+  font-variation-settings:"opsz" 72;
+  font-style:italic;
+  font-size:clamp(20px,2.8vw,34px);
+  line-height:1.3;letter-spacing:-.01em;
+  color:var(--body);
+  max-width:780px;
+}
+
+.daily-lead{
+  max-width:1280px;margin:0 auto;
+  padding:56px 28px 48px;
+  border-bottom:2px solid var(--ink);
+}
+.daily-lead-label{
+  font-family:var(--narrow);
+  font-size:10px;font-weight:700;letter-spacing:.38em;
+  text-transform:uppercase;color:var(--orange);
+  margin-bottom:14px;
+}
+.daily-lead-hed{
+  font-family:var(--disp);font-weight:600;
+  font-variation-settings:"opsz" 96;
+  font-size:clamp(28px,4.5vw,52px);
+  line-height:1.05;letter-spacing:-.025em;
+  color:var(--ink);
+  margin-bottom:24px;
+  padding-bottom:24px;
+  border-bottom:1px solid var(--hair);
+}
+.daily-lead-body{
+  font-family:var(--disp);
+  font-variation-settings:"opsz" 14;
+  font-size:18px;line-height:1.68;
+  color:var(--body);
+  max-width:620px;
+}
+.daily-lead-body p{margin-bottom:20px}
+.daily-lead-body p:last-child{margin-bottom:0}
+.daily-lead-source{
+  font-family:var(--narrow);
+  font-size:10px;font-weight:600;letter-spacing:.2em;
+  text-transform:uppercase;color:var(--muted);
+  margin-top:24px;
+  padding-top:16px;
+  border-top:1px solid var(--hair-soft);
+}
+.daily-lead-source a{color:var(--muted);text-decoration:none;border-bottom:1px solid var(--hair)}
+.daily-lead-source a:hover{color:var(--orange)}
+
+.daily-footer{
+  max-width:1280px;margin:0 auto;
+  padding:48px 28px 56px;
+}
+.daily-footer-label{
+  font-family:var(--narrow);
+  font-size:10px;font-weight:700;letter-spacing:.32em;
+  text-transform:uppercase;color:var(--muted);
+  margin-bottom:12px;
+  padding-bottom:10px;
+  border-bottom:1px solid var(--hair);
+}
+.daily-footer-ts{
+  font-family:var(--mono);
+  font-size:12px;color:var(--muted);
+  margin-bottom:20px;
+  margin-top:10px;
+}
+.daily-footer-sources{
+  list-style:none;padding:0;
+  display:flex;flex-direction:column;gap:6px;
+}
+.daily-footer-sources li{
+  font-family:var(--sans);
+  font-size:13px;line-height:1.7;color:var(--muted);
+}
+.daily-footer-sources a{
+  color:var(--muted);
+  text-decoration:none;
+  border-bottom:1px solid var(--hair);
+  word-break:break-all;
+}
+.daily-footer-sources a:hover{color:var(--orange)}
+
+@media(max-width:600px){
+  .daily-header,.daily-lead,.daily-footer,.log-section,.quiet-section{padding-left:20px;padding-right:20px}
+}
+</style>
+</head>
+<body>
+
+<nav class="pub-bar">
+  <div class="pub-bar-left">
+    <span class="pub-bar-mark">Shipped<span class="dot">.</span></span>
+    <span class="pub-bar-sep"></span>
+    <span class="pub-bar-meta">Anthropic Daily by <a href="https://id8labs.app" class="pub-bar-link">id8Labs</a></span>
+  </div>
+  <div class="pub-bar-right">
+    <span class="pub-bar-folio"><b>Daily</b></span>
+    <span class="pub-bar-sep"></span>
+    <span class="pub-bar-meta">Jun 20, 2026</span>
+  </div>
+</nav>
+
+<header class="daily-header">
+  <div class="daily-kicker">Anthropic Daily &nbsp;·&nbsp; June 20, 2026</div>
+  <div class="daily-masthead">Shipped<span class="dot">.</span></div>
+  <div class="daily-dateline">Saturday, June 20, 2026</div>
+  <p class="daily-one-line">AlphaFold's Nobel laureate moved from DeepMind to Anthropic, and Claude Code added auto-mode safety guards plus a quieter stream-stall message.</p>
+</header>
+
+<section class="daily-lead">
+  <div class="daily-lead-label">Lead</div>
+  <h1 class="daily-lead-hed">John Jumper Joins Anthropic</h1>
+  <div class="daily-lead-body">
+    <p>John Jumper, 2024 Nobel Prize in Chemistry laureate and co-creator of AlphaFold, announced June 19 that he is leaving Google DeepMind after nearly nine years to join Anthropic. Bloomberg and CNBC reported the move on June 19; TechCrunch covered it on June 20. No title or start date has been announced.</p>
+    <p>AlphaFold solved protein structure prediction. Jumper is the scientist most identified with that achievement. He is now at Anthropic.</p>
+  </div>
+  <div class="daily-lead-source">Reported by <a href="https://techcrunch.com/2026/06/20/nobel-laureate-john-jumper-is-leaving-deepmind-for-rival-anthropic/">TechCrunch</a>, <a href="https://www.bloomberg.com/news/articles/2026-06-19/nobel-winner-john-jumper-to-leave-google-deepmind-for-anthropic">Bloomberg</a>, <a href="https://www.cnbc.com/2026/06/19/john-jumper-to-leave-google-deepmind-for-anthropic.html">CNBC</a>, June 19 to June 20, 2026</div>
+</section>
+
+<section class="log-divider" id="log">
+  <div class="log-divider-kicker">Release Log &nbsp;·&nbsp; June 20, 2026</div>
+  <h2 class="log-divider-title">The <em>Release</em> Log</h2>
+  <p class="log-divider-sub">Every confirmed Anthropic release in the past 24 hours. Grouped by area.</p>
+</section>
+
+<section class="log-section">
+  <div class="log-cat-head">
+    <div class="log-cat-name">G. News</div>
+    <div class="log-cat-count"><b>1</b> item</div>
+  </div>
+  <div class="log-entries">
+
+    <div class="log-entry">
+      <div class="log-entry-left">
+        <div class="log-entry-date">Jun 19 to Jun 20</div>
+        <span class="log-tag news">NEWS</span>
+      </div>
+      <div>
+        <div class="log-entry-title"><a href="https://techcrunch.com/2026/06/20/nobel-laureate-john-jumper-is-leaving-deepmind-for-rival-anthropic/">John Jumper joins Anthropic</a></div>
+        <div class="log-entry-body">2024 Nobel Prize in Chemistry laureate and AlphaFold co-creator John Jumper is leaving Google DeepMind after approximately nine years to join Anthropic. Reported by Bloomberg and CNBC on June 19 and by TechCrunch on June 20. No specific role or start date has been confirmed.</div>
+        <div class="log-entry-why"><b>Why it matters</b>AlphaFold made protein structure prediction tractable. The scientist most responsible for that is now at the lab directly competing with DeepMind on frontier AI.</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section class="log-section" style="border-top:1px solid var(--hair-soft)">
+  <div class="log-cat-head">
+    <div class="log-cat-name">C. Claude Code</div>
+    <div class="log-cat-count"><b>2</b> items</div>
+  </div>
+  <div class="log-entries">
+
+    <div class="log-entry">
+      <div class="log-entry-left">
+        <div class="log-entry-date">Jun 19</div>
+        <span class="log-tag code">CODE</span>
+      </div>
+      <div>
+        <div class="log-entry-title"><a href="https://github.com/anthropics/claude-code/releases">Claude Code v2.1.183</a></div>
+        <div class="log-entry-body">Auto-mode safety tightened: destructive git commands (<code>git reset --hard</code>, <code>git checkout -- .</code>, <code>git clean -fd</code>, <code>git stash drop</code>) are now blocked unless the request explicitly asked to discard local work. <code>git commit --amend</code> is blocked when the commit was not made by the current agent session. <code>terraform destroy</code>, <code>pulumi destroy</code>, and <code>cdk destroy</code> are blocked unless that specific stack was named in the request. Adds a deprecation warning when the requested model is being automatically upgraded. Adds <code>attribution.sessionUrl</code> setting to omit the claude.ai session link from commit and PR metadata. Adds <code>/config --help</code>. Bug fixes cover WebSearch in subagents, terminal cursor behavior, fullscreen TUI corruption, and MCP server auth exposure.</div>
+        <div class="log-entry-how"><b>How to use</b><code>claude update</code> or reinstall from npm. New auto-mode safety rules are on by default.</div>
+      </div>
+    </div>
+
+    <div class="log-entry">
+      <div class="log-entry-left">
+        <div class="log-entry-date">Jun 20</div>
+        <span class="log-tag code">CODE</span>
+      </div>
+      <div>
+        <div class="log-entry-title"><a href="https://github.com/anthropics/claude-code/releases">Claude Code v2.1.185</a></div>
+        <div class="log-entry-body">Stream-stall feedback updated: the indicator now reads "Waiting for API response, will retry in..." rather than "No response from API, Retrying in..." and triggers after 20 seconds of silence instead of 10. Single UX message change; no behavior change.</div>
+        <div class="log-entry-how"><b>How to use</b><code>claude update</code>. The new wording takes effect immediately.</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section class="quiet-section" style="border-top:1px solid var(--hair-soft)">
+  <div class="quiet-head">
+    <div class="quiet-kicker">Also watched</div>
+    <div class="quiet-title">Quiet <em>on the</em> wire.</div>
+  </div>
+  <div class="quiet-body">
+    <p>No API platform, Claude Apps, SDK, or Anthropic research releases confirmed for June 19 to June 20, 2026. The wire was otherwise quiet.</p>
+  </div>
+</section>
+
+<div class="daily-footer">
+  <div class="daily-footer-label">Sources and timestamp</div>
+  <div class="daily-footer-ts">Generated 2026-06-21T01:03:54Z</div>
+  <ul class="daily-footer-sources">
+    <li><a href="https://github.com/anthropics/claude-code/releases">github.com/anthropics/claude-code/releases</a></li>
+    <li><a href="https://techcrunch.com/2026/06/20/nobel-laureate-john-jumper-is-leaving-deepmind-for-rival-anthropic/">techcrunch.com: Nobel laureate John Jumper is leaving DeepMind for rival Anthropic</a></li>
+    <li><a href="https://www.bloomberg.com/news/articles/2026-06-19/nobel-winner-john-jumper-to-leave-google-deepmind-for-anthropic">bloomberg.com: Nobel Laureate Jumper Departs DeepMind, Joins Rival AI Firm Anthropic</a></li>
+    <li><a href="https://www.cnbc.com/2026/06/19/john-jumper-to-leave-google-deepmind-for-anthropic.html">cnbc.com: John Jumper to leave Google DeepMind for Anthropic</a></li>
+  </ul>
+</div>
+
+<footer class="colophon">
+  <div class="colophon-inner">
+    <div class="colophon-mast">
+      <div class="colophon-word">Shipped<span class="dot">.</span></div>
+      <div class="colophon-tag">Anthropic Daily. What shipped in the last 24 hours, in Shipped. voice. Published by <a href="https://id8labs.app">id8Labs</a>.</div>
+    </div>
+    <div class="colophon-body">
+      <div class="colophon-col">
+        <h4>This page</h4>
+        <p><b>Date</b> June 20, 2026</p>
+        <p><b>Type</b> Anthropic Daily</p>
+        <p><b>Items</b> 3 releases</p>
+        <p><b>Status</b> Draft</p>
+      </div>
+      <div class="colophon-col">
+        <h4>Typography</h4>
+        <p><b>Display</b> Fraunces</p>
+        <p><b>Sans</b> Archivo</p>
+        <p><b>Narrow</b> Archivo Narrow</p>
+        <p><b>Mono</b> JetBrains Mono</p>
+      </div>
+    </div>
+    <div class="colophon-foot">
+      <span>&copy; 2026 <b>id8Labs</b> &nbsp;·&nbsp; All rights reserved</span>
+      <span>Generated 2026-06-21T01:03:54Z</span>
+      <span class="hot">id8labs.app/shipped</span>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
