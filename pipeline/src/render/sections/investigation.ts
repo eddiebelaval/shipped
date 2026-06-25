@@ -198,7 +198,7 @@ function stripSidebar(content: string): string {
 }
 
 function paragraphs(body: string): string {
-  const blocks = body
+  return body
     .replace(/\r\n/g, '\n')
     .split(/\n{2,}/)
     .map((b) => b.trim())
@@ -207,10 +207,23 @@ function paragraphs(body: string): string {
         b.length > 0 &&
         !/^-{3,}$/.test(b) &&
         !b.startsWith('#') &&
-        !b.startsWith('>') &&
         !b.startsWith('|'),
-    );
-  return blocks
-    .map((b) => `    <p>${inlineMarkdown(b.replace(/\n/g, ' '))}</p>`)
+    )
+    .map((b) => {
+      if (!b.startsWith('>')) {
+        return `    <p>${inlineMarkdown(b.replace(/\n/g, ' '))}</p>`;
+      }
+      const bLines = b.split('\n').map((l) => l.replace(/^>\s?/, ''));
+      const joined = bLines.join(' ');
+      const textMatch = joined.match(/\*"(.+?)"\*/);
+      const attrMatch = bLines.join('\n').match(/^[—\-]\s*(.+)$/m);
+      if (textMatch) {
+        return renderQuote(
+          { text: textMatch[1]!, attribution: attrMatch ? attrMatch[1]!.trim() : '' },
+          'orange',
+        );
+      }
+      return `    <blockquote>${inlineMarkdown(joined)}</blockquote>`;
+    })
     .join('\n');
 }
