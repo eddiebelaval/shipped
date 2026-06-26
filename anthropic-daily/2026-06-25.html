@@ -1,0 +1,629 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light">
+<title>Shipped. Daily, Thursday, June 25, 2026</title>
+<meta property="og:title" content="Shipped. Daily, Thursday, June 25, 2026">
+<meta property="og:description" content="Anthropic accused Alibaba of extracting Claude capabilities via fraudulent accounts. Claude Code v2.1.193 shipped the same evening.">
+<meta property="og:type" content="article">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Shipped. Daily, Thursday, June 25, 2026">
+<meta name="twitter:description" content="Anthropic accused Alibaba of extracting Claude capabilities via fraudulent accounts. Claude Code v2.1.193 shipped the same evening.">
+<meta name="description" content="Anthropic accused Alibaba of extracting Claude capabilities via fraudulent accounts. Claude Code v2.1.193 shipped the same evening.">
+<meta name="author" content="Shipped. by id8Labs">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='75' cy='62' r='14' fill='%23FF6B35'/%3E%3Ctext x='10' y='75' font-family='Georgia,serif' font-weight='700' font-size='62' fill='%231a1a1a'%3ES%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;0,9..144,900;1,9..144,300;1,9..144,400;1,9..144,500;1,9..144,700&family=Archivo:wght@300;400;500;600;700;800;900&family=Archivo+Narrow:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{font-size:16px;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;text-rendering:optimizeLegibility}
+body{background:#FAF8F4;color:#0b0b0b;font-family:'Archivo',sans-serif;overflow-x:hidden}
+::selection{background:#FF6B35;color:#fff}
+
+:root{
+  --orange:#FF6B35;
+  --ink:#0b0b0b;
+  --paper:#FAF8F4;
+  --paper-shadow:#f2f0e8;
+  --body:#2a2a2a;
+  --muted:#5a5a5a;
+  --gray:#8a8a8a;
+  --hair:rgba(11,11,11,0.12);
+  --hair-soft:rgba(11,11,11,0.06);
+  --hair-hard:rgba(11,11,11,0.22);
+  --disp:'Fraunces', 'Times New Roman', serif;
+  --sans:'Archivo', system-ui, sans-serif;
+  --narrow:'Archivo Narrow', 'Archivo', sans-serif;
+  --mono:'JetBrains Mono', ui-monospace, monospace;
+}
+
+body::before{
+  content:"";
+  position:fixed;inset:0;pointer-events:none;z-index:1000;opacity:.28;mix-blend-mode:multiply;
+  background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='180' height='180'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' seed='3'/><feColorMatrix values='0 0 0 0 0.02  0 0 0 0 0.02  0 0 0 0 0.02  0 0 0 0.22 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+}
+
+.pub-bar{
+  position:sticky;top:0;z-index:100;
+  background:var(--paper);
+  border-bottom:1px solid var(--hair);
+  padding:0 28px;height:42px;
+  display:flex;align-items:center;justify-content:space-between;
+  font-family:var(--narrow);
+  font-size:11px;font-weight:600;letter-spacing:.22em;
+  text-transform:uppercase;color:var(--ink);
+}
+.pub-bar-left,.pub-bar-right{display:flex;align-items:center;gap:16px}
+.pub-bar-mark{font-family:var(--disp);font-weight:500;font-size:16px;letter-spacing:-.01em;text-transform:none;font-style:italic}
+.pub-bar-mark .dot{color:var(--orange)}
+.pub-bar-sep{width:1px;height:12px;background:var(--hair-hard)}
+.pub-bar-meta{color:var(--muted)}
+.pub-bar-link{color:inherit;text-decoration:none;border-bottom:1px solid currentColor;transition:color .15s ease}
+.pub-bar-link:hover{color:var(--orange)}
+.colophon-link{color:inherit;text-decoration:none;border-bottom:1px solid currentColor;transition:color .15s ease}
+.colophon-link:hover{color:var(--orange)}
+.pub-bar-folio{color:var(--ink)}
+.pub-bar-folio b{font-weight:600;color:var(--orange)}
+
+.folio{
+  font-family:var(--narrow);
+  font-size:10px;font-weight:500;letter-spacing:.28em;
+  text-transform:uppercase;color:var(--gray);
+  display:flex;align-items:center;gap:10px;
+}
+.folio b{color:var(--ink);font-weight:700}
+.folio .ruler{width:28px;height:1px;background:var(--hair-hard)}
+.folio .dot{color:var(--orange)}
+
+.section{
+  position:relative;
+  padding:64px 28px 40px;
+  max-width:1280px;margin:0 auto;
+}
+.section-folio{
+  display:flex;align-items:center;justify-content:space-between;
+  padding-bottom:18px;
+  border-bottom:1px solid var(--ink);
+  margin-bottom:44px;
+}
+.section-folio-left{display:flex;align-items:center;gap:14px}
+.section-folio-label{
+  font-family:var(--narrow);
+  font-size:11px;font-weight:700;letter-spacing:.28em;
+  text-transform:uppercase;color:var(--ink);
+}
+.section-folio-sub{
+  font-family:var(--disp);font-style:italic;
+  font-size:13px;color:var(--muted);
+}
+
+.prose-well{
+  max-width:1280px;margin:0 auto;padding:0 28px 56px;
+  display:grid;grid-template-columns:72px 1fr minmax(0,320px);
+  gap:32px;position:relative;
+}
+.prose-well::before{
+  content:"";position:absolute;left:100px;top:0;bottom:0;
+  width:1px;background:var(--hair);
+}
+.prose-marginalia{
+  grid-column:1;
+  font-family:var(--narrow);
+  font-size:10px;font-weight:600;letter-spacing:.26em;
+  text-transform:uppercase;color:var(--gray);
+  writing-mode:vertical-rl;transform:rotate(180deg);
+  align-self:start;padding-top:8px;
+  white-space:nowrap;
+}
+.prose{
+  grid-column:2;
+  font-family:var(--disp);
+  font-variation-settings:"opsz" 14;
+  font-weight:400;font-size:19px;line-height:1.66;
+  color:var(--body);
+  max-width:640px;
+}
+.prose p{margin-bottom:24px}
+.prose em{font-style:italic;color:var(--ink)}
+.prose strong{font-weight:600;color:var(--ink)}
+.prose code{
+  font-family:var(--mono);font-size:.86em;
+  background:var(--paper-shadow);padding:1px 6px;
+  border-radius:3px;color:var(--ink);
+}
+.prose-aside{
+  grid-column:3;
+  font-family:var(--narrow);
+  font-size:11px;font-weight:500;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--muted);
+  border-top:1px solid var(--ink);padding-top:14px;
+  line-height:1.8;
+}
+.prose-aside b{color:var(--ink);font-weight:700}
+
+.code-block{
+  margin:24px 0;
+  border:1px solid var(--ink);
+  background:var(--paper);
+  font-family:var(--mono);font-size:12.5px;line-height:1.55;
+  color:var(--ink);
+  position:relative;
+  overflow:hidden;
+}
+.code-block-head{
+  display:flex;justify-content:space-between;align-items:center;
+  padding:10px 16px;
+  border-bottom:1px solid var(--ink);
+  background:var(--ink);color:var(--paper);
+  font-family:var(--narrow);
+  font-size:10px;font-weight:700;letter-spacing:.28em;
+  text-transform:uppercase;
+}
+.code-block-head span:last-child{color:var(--orange)}
+.code-block pre{
+  padding:20px 24px;overflow-x:auto;white-space:pre;margin:0;
+}
+
+.sidebar-box{
+  background:var(--paper);
+  border:1px solid var(--ink);
+  border-top:4px solid var(--ink);
+  padding:28px 28px 24px;
+  margin:48px auto;
+  max-width:820px;
+  position:relative;
+}
+.sidebar-box.accent{border-top-color:var(--orange)}
+.sidebar-box-kicker{
+  font-family:var(--narrow);
+  font-size:10px;font-weight:700;letter-spacing:.32em;
+  text-transform:uppercase;color:var(--orange);
+  margin-bottom:8px;
+}
+.sidebar-box-title{
+  font-family:var(--disp);font-weight:500;font-style:italic;
+  font-variation-settings:"opsz" 72;
+  font-size:28px;letter-spacing:-.015em;
+  color:var(--ink);
+  padding-bottom:16px;
+  border-bottom:1px solid var(--hair);
+  margin-bottom:20px;
+}
+.sidebar-box-body{
+  font-family:var(--sans);font-size:15px;line-height:1.65;color:var(--body);
+}
+.sidebar-box-body p{margin-bottom:12px}
+.sidebar-box-body p:last-child{margin-bottom:0}
+
+.ornament{
+  text-align:center;margin:64px auto;
+  font-family:var(--disp);font-size:16px;color:var(--hair-hard);
+  letter-spacing:1.2em;
+}
+.ornament.bold{color:var(--orange);letter-spacing:.8em;font-size:20px}
+
+.quiet-section{
+  max-width:1280px;margin:0 auto;padding:64px 28px 24px;
+  display:grid;grid-template-columns:repeat(12,1fr);gap:24px;
+}
+.quiet-head{
+  grid-column:1 / span 3;
+}
+.quiet-title{
+  font-family:var(--disp);font-style:italic;font-weight:400;
+  font-variation-settings:"opsz" 72;
+  font-size:32px;line-height:1;letter-spacing:-.02em;
+  color:var(--ink);
+}
+.quiet-title em{color:var(--orange);font-style:normal;font-weight:500}
+.quiet-kicker{
+  font-family:var(--narrow);
+  font-size:10px;font-weight:700;letter-spacing:.32em;
+  text-transform:uppercase;color:var(--muted);
+  margin-bottom:10px;
+}
+.quiet-body{
+  grid-column:5 / -1;
+  font-family:var(--disp);font-size:17px;line-height:1.65;color:var(--body);
+  padding-left:24px;border-left:1px solid var(--ink);
+}
+.quiet-body p{margin-bottom:16px}
+.quiet-body strong{font-weight:600;color:var(--ink)}
+@media(max-width:860px){
+  .quiet-head,.quiet-body{grid-column:1 / -1}
+  .quiet-body{padding-left:0;border-left:none;border-top:1px solid var(--ink);padding-top:18px}
+}
+
+.log-section{
+  padding:48px 28px;max-width:1100px;margin:0 auto;
+}
+.log-cat-head{
+  display:grid;
+  grid-template-columns:1fr auto;
+  gap:24px;align-items:baseline;
+  padding-bottom:18px;
+  border-bottom:1px solid var(--ink);
+  margin-bottom:0;
+}
+.log-cat-name{
+  font-family:var(--disp);font-weight:600;font-style:italic;
+  font-variation-settings:"opsz" 96;
+  font-size:clamp(36px,5vw,56px);
+  letter-spacing:-.02em;color:var(--ink);line-height:1;
+}
+.log-cat-count{
+  font-family:var(--narrow);
+  font-size:10px;font-weight:600;letter-spacing:.28em;
+  text-transform:uppercase;color:var(--muted);
+  text-align:right;
+}
+.log-cat-count b{color:var(--ink);font-weight:700;font-size:13px;display:block}
+
+.log-cat-deck{
+  font-family:var(--disp);
+  font-style:italic;
+  font-weight:400;
+  font-variation-settings:"opsz" 24;
+  font-size:18px;
+  line-height:1.45;
+  color:var(--muted);
+  margin-top:14px;
+  margin-bottom:8px;
+  max-width:760px;
+  letter-spacing:-.005em;
+}
+
+.log-entries{display:flex;flex-direction:column}
+.log-entry{
+  padding:24px 0;
+  border-bottom:1px solid var(--hair);
+  display:grid;
+  grid-template-columns:120px 1fr;gap:28px;
+}
+.log-entry-left{
+  display:flex;flex-direction:column;gap:8px;
+}
+.log-entry-date{
+  font-family:var(--narrow);
+  font-size:10px;font-weight:700;letter-spacing:.22em;
+  text-transform:uppercase;color:var(--ink);
+  font-variant-numeric:tabular-nums;
+}
+.log-tag{
+  font-family:var(--narrow);
+  font-size:9px;font-weight:700;letter-spacing:.22em;
+  text-transform:uppercase;padding:3px 7px;
+  display:inline-block;line-height:1.3;width:fit-content;
+}
+.log-tag.model{background:var(--orange);color:var(--paper)}
+.log-tag.api{background:var(--ink);color:var(--paper)}
+.log-tag.code{background:#3a3a3a;color:var(--paper)}
+.log-tag.apps{background:#5a5a5a;color:var(--paper)}
+.log-tag.sdk-py,.log-tag.sdk-ts{background:var(--paper);color:var(--ink);border:1px solid var(--ink)}
+.log-tag.research,.log-tag.news{background:var(--paper);color:var(--muted);border:1px solid var(--hair-hard)}
+.log-tag.deprecation{background:var(--paper-shadow);color:var(--muted);border:1px solid var(--hair-hard)}
+.log-entry-title{
+  font-family:var(--disp);font-weight:500;
+  font-variation-settings:"opsz" 72;
+  font-size:20px;letter-spacing:-.012em;
+  color:var(--ink);line-height:1.25;
+  margin-bottom:10px;
+}
+.log-entry-title a{color:inherit;text-decoration:none;border-bottom:1px solid var(--hair-hard)}
+.log-entry-title a:hover{border-bottom-color:var(--orange);color:var(--orange)}
+.log-entry-body{
+  font-family:var(--sans);font-size:14.5px;line-height:1.6;color:var(--body);
+  margin-bottom:12px;
+}
+.log-entry-body code{
+  font-family:var(--mono);font-size:.86em;
+  background:var(--paper-shadow);padding:1px 6px;
+  border-radius:3px;color:var(--ink);
+}
+.log-entry-how{
+  font-family:var(--sans);font-size:13.5px;line-height:1.6;color:var(--muted);
+  padding-top:12px;border-top:1px solid var(--hair-soft);
+}
+.log-entry-how b{font-family:var(--narrow);font-size:10px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--ink);display:block;margin-bottom:6px}
+.log-entry-how code{
+  font-family:var(--mono);font-size:.86em;
+  background:var(--paper-shadow);padding:1px 6px;
+  border-radius:3px;color:var(--ink);
+}
+.log-entry-why{
+  font-family:var(--disp);font-style:italic;
+  font-size:14px;color:var(--muted);line-height:1.55;
+  margin-top:10px;padding-left:14px;
+  border-left:2px solid var(--orange);
+}
+.log-entry-why b{font-style:normal;font-family:var(--narrow);font-size:10px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--orange);display:block;margin-bottom:4px}
+
+@media(max-width:720px){
+  .log-entry{grid-template-columns:1fr;gap:12px}
+  .log-cat-head{grid-template-columns:auto 1fr}
+  .log-cat-count{grid-column:1 / -1;text-align:left;padding-top:8px;border-top:1px solid var(--hair)}
+}
+
+@media(max-width:600px){
+  .log-section{padding-left:20px;padding-right:20px}
+}
+
+/* ---- DAILY EDITION STYLES ---- */
+
+.daily-header{
+  padding:52px 28px 44px;
+  max-width:1100px;
+  margin:0 auto;
+  border-bottom:2px solid var(--ink);
+}
+.daily-kicker{
+  font-family:var(--narrow);
+  font-size:10px;font-weight:700;letter-spacing:.36em;
+  text-transform:uppercase;color:var(--muted);
+  margin-bottom:22px;
+  display:flex;align-items:center;gap:10px;
+}
+.daily-kicker .dot{color:var(--orange)}
+.daily-masthead-word{
+  font-family:var(--disp);
+  font-style:italic;
+  font-weight:500;
+  font-variation-settings:"opsz" 96;
+  font-size:clamp(64px,12vw,140px);
+  line-height:.88;
+  letter-spacing:-.04em;
+  color:var(--ink);
+  margin-bottom:22px;
+  display:inline-block;
+}
+.daily-masthead-word .dot{color:var(--orange)}
+.daily-edition-label{
+  font-family:var(--narrow);
+  font-size:10px;font-weight:700;letter-spacing:.36em;
+  text-transform:uppercase;color:var(--orange);
+  margin-bottom:24px;
+}
+.daily-dateline{
+  font-family:var(--narrow);
+  font-size:11px;font-weight:600;letter-spacing:.28em;
+  text-transform:uppercase;color:var(--muted);
+  margin-bottom:28px;
+}
+.daily-oneliner{
+  font-family:var(--disp);
+  font-style:italic;
+  font-weight:400;
+  font-variation-settings:"opsz" 36;
+  font-size:clamp(19px,2.8vw,26px);
+  line-height:1.38;
+  color:var(--body);
+  max-width:740px;
+}
+
+.daily-lead{
+  max-width:1100px;
+  margin:0 auto;
+  padding:40px 28px 0;
+}
+.daily-lead-body{
+  font-family:var(--disp);
+  font-variation-settings:"opsz" 14;
+  font-weight:400;
+  font-size:18px;
+  line-height:1.68;
+  color:var(--body);
+  max-width:720px;
+}
+.daily-lead-body p{margin-bottom:20px}
+.daily-lead-body p:last-child{margin-bottom:0}
+.daily-lead-body a{color:var(--ink);text-decoration:none;border-bottom:1px solid var(--hair-hard)}
+.daily-lead-body a:hover{color:var(--orange);border-bottom-color:var(--orange)}
+
+.daily-log-header{
+  max-width:1100px;
+  margin:60px auto 0;
+  padding:0 28px 20px;
+  border-bottom:3px double var(--ink);
+}
+.daily-log-header-inner{
+  display:flex;align-items:baseline;justify-content:space-between;gap:24px;
+}
+.daily-log-header h2{
+  font-family:var(--disp);font-weight:700;
+  font-variation-settings:"opsz" 96;
+  font-size:clamp(32px,5vw,52px);
+  letter-spacing:-.03em;
+  color:var(--ink);
+  line-height:.95;
+}
+.daily-log-header h2 em{
+  font-style:italic;
+  color:var(--orange);
+  font-weight:400;
+}
+.daily-log-count{
+  font-family:var(--narrow);
+  font-size:10px;font-weight:600;letter-spacing:.28em;
+  text-transform:uppercase;color:var(--muted);
+  white-space:nowrap;
+}
+
+.daily-footer{
+  background:var(--paper);
+  border-top:2px solid var(--orange);
+  padding:48px 28px 64px;
+  margin-top:64px;
+}
+.daily-footer-inner{
+  max-width:1100px;
+  margin:0 auto;
+}
+.daily-footer-mark{
+  font-family:var(--disp);
+  font-style:italic;
+  font-weight:500;
+  font-size:28px;
+  color:var(--ink);
+  margin-bottom:14px;
+  letter-spacing:-.02em;
+}
+.daily-footer-mark .dot{color:var(--orange)}
+.daily-footer-meta{
+  font-family:var(--narrow);
+  font-size:10px;font-weight:600;letter-spacing:.22em;
+  text-transform:uppercase;color:var(--muted);
+  line-height:1.9;
+  margin-bottom:20px;
+}
+.daily-footer-meta a{color:inherit;text-decoration:none;border-bottom:1px solid var(--hair-hard)}
+.daily-footer-meta a:hover{color:var(--orange)}
+.daily-footer-sources-label{
+  font-family:var(--narrow);
+  font-size:10px;font-weight:700;letter-spacing:.28em;
+  text-transform:uppercase;color:var(--ink);
+  margin-bottom:8px;
+}
+.daily-footer-sources{
+  font-family:var(--sans);
+  font-size:13px;
+  color:var(--muted);
+  line-height:1.8;
+}
+.daily-footer-sources a{
+  color:var(--ink);
+  text-decoration:none;
+  border-bottom:1px solid var(--hair);
+  display:inline-block;
+}
+.daily-footer-sources a:hover{color:var(--orange);border-bottom-color:var(--orange)}
+.daily-hr{
+  max-width:1100px;
+  margin:0 auto;
+  padding:0 28px;
+}
+.daily-hr hr{
+  border:none;
+  border-top:1px solid var(--hair);
+  margin:0;
+}
+
+@media(max-width:720px){
+  .daily-header{padding:36px 20px 32px}
+  .daily-lead{padding:28px 20px 0}
+  .daily-log-header{padding:0 20px 16px;margin-top:40px}
+  .daily-footer{padding:36px 20px 48px}
+}
+</style>
+</head>
+<body>
+
+<nav class="pub-bar">
+  <div class="pub-bar-left">
+    <span class="pub-bar-mark">Shipped<span class="dot">.</span></span>
+    <span class="pub-bar-sep"></span>
+    <span class="pub-bar-meta">Daily edition by <a href="https://id8labs.app" class="pub-bar-link">id8Labs</a></span>
+  </div>
+  <div class="pub-bar-right">
+    <span class="pub-bar-folio">Daily</span>
+    <span class="pub-bar-sep"></span>
+    <span class="pub-bar-meta">June 25, 2026</span>
+  </div>
+</nav>
+
+<header class="daily-header">
+  <div class="daily-kicker">Anthropic coverage <span class="dot">·</span> Thursday, June 25, 2026</div>
+  <div class="daily-masthead-word">Shipped<span class="dot">.</span></div>
+  <div class="daily-edition-label">Daily</div>
+  <p class="daily-oneliner">Anthropic accused Alibaba of extracting Claude capabilities via fraudulent accounts; Claude Code v2.1.193 shipped the same evening.</p>
+</header>
+
+<div class="daily-lead">
+  <div class="daily-lead-body">
+    <p>Anthropic formally accused <a href="https://www.bloomberg.com/news/articles/2026-06-25/alibaba-drops-after-anthropic-accuses-firm-of-accessing-ai-model" rel="noopener noreferrer">Alibaba's Qwen AI lab</a> of running a large-scale campaign to extract Claude's capabilities in software engineering and agentic reasoning, using thousands of fraudulent accounts. The accusations arrived in a letter to US senators and White House officials, first reported by CNBC on June 24 and followed by Bloomberg on June 25.</p>
+    <p>Alibaba ADRs fell to a 16-month low in Hong Kong following the disclosure. Anthropic has not published the letter publicly.</p>
+    <p>Separately, Claude Code v2.1.193 shipped at 21:45 UTC: auto-mode routing broadened, an OpenTelemetry response event added, and three backgrounding bugs fixed that had been leaving phantom agents in sessions.</p>
+  </div>
+</div>
+
+<div class="daily-log-header">
+  <div class="daily-log-header-inner">
+    <h2>Release <em>Log</em></h2>
+    <div class="daily-log-count">2 items, June 25</div>
+  </div>
+</div>
+
+<section class="log-section">
+  <div class="log-cat-head">
+    <div class="log-cat-name">Code</div>
+    <div class="log-cat-count"><b>1</b> entry</div>
+  </div>
+  <div class="log-entries">
+    <div class="log-entry">
+      <div class="log-entry-left">
+        <div class="log-entry-date">Jun 25</div>
+        <span class="log-tag code">CODE</span>
+      </div>
+      <div>
+        <div class="log-entry-title">
+          <a href="https://github.com/anthropics/claude-code/releases" rel="noopener noreferrer">Claude Code v2.1.193</a>
+        </div>
+        <div class="log-entry-body">
+          Auto-mode gets a new <code>autoMode.classifyAllShell</code> setting that routes all Bash and PowerShell commands through the classifier, not just arbitrary-code-execution patterns. A new <code>claude_code.assistant_response</code> OpenTelemetry log event emits model response text as a structured log, redacted by default and opt-in via <code>OTEL_LOG_ASSISTANT_RESPONSES=1</code>. Live file path autocomplete lands in bash mode (<code>!</code> prefix). Idle background shell commands now auto-reap under memory pressure (disable with <code>CLAUDE_CODE_DISABLE_BG_SHELL_PRESSURE_REAP=1</code>). Three backgrounding bugs fixed: spurious cancellation warnings on exit, phantom "general-purpose (resumed)" subagent spawned on main turn backgrounding, and pinned agents being re-prompted after auto-update.
+        </div>
+        <div class="log-entry-how">
+          <b>How to use</b>
+          Run <code>claude update</code> or reinstall. Set <code>autoMode.classifyAllShell: true</code> in your Claude settings to route all shell commands through the auto-mode classifier. Set <code>OTEL_LOG_ASSISTANT_RESPONSES=1</code> in your environment to enable response logging for your observability pipeline.
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="log-section">
+  <div class="log-cat-head">
+    <div class="log-cat-name">News</div>
+    <div class="log-cat-count"><b>1</b> entry</div>
+  </div>
+  <div class="log-entries">
+    <div class="log-entry">
+      <div class="log-entry-left">
+        <div class="log-entry-date">Jun 25</div>
+        <span class="log-tag news">NEWS</span>
+      </div>
+      <div>
+        <div class="log-entry-title">
+          <a href="https://www.bloomberg.com/news/articles/2026-06-25/alibaba-drops-after-anthropic-accuses-firm-of-accessing-ai-model" rel="noopener noreferrer">Anthropic accuses Alibaba of illicit model access</a>
+        </div>
+        <div class="log-entry-body">
+          Anthropic sent a formal letter to US senators and White House officials accusing Alibaba's Qwen AI lab of running a coordinated campaign to extract Claude's capabilities in software engineering and agentic reasoning, using thousands of fraudulent accounts. Alibaba ADRs fell to a 16-month low in Hong Kong trading following the disclosure. Anthropic has not published the letter publicly; the story was confirmed by <a href="https://www.bloomberg.com/news/articles/2026-06-25/alibaba-drops-after-anthropic-accuses-firm-of-accessing-ai-model" rel="noopener noreferrer">Bloomberg</a> and <a href="https://www.cnbc.com/2026/06/24/anthropic-alibaba-distillation-campaign.html" rel="noopener noreferrer">CNBC</a>.
+        </div>
+        <div class="log-entry-why">
+          <b>Why it matters</b>
+          Anthropic escalated via Congress rather than courts, which suggests the complaint is partly political. The capabilities named as targets (software engineering, agentic reasoning) are exactly where Claude leads commercially. Expect regulatory coverage.
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="daily-footer">
+  <div class="daily-footer-inner">
+    <div class="daily-footer-mark">Shipped<span class="dot">.</span> Daily</div>
+    <div class="daily-footer-meta">
+      Generated 2026-06-26T01:03:57Z &nbsp;·&nbsp; Anthropic coverage &nbsp;·&nbsp; by <a href="https://id8labs.app">id8Labs</a>
+    </div>
+    <div class="daily-footer-sources-label">Sources</div>
+    <div class="daily-footer-sources">
+      <a href="https://github.com/anthropics/claude-code/releases" rel="noopener noreferrer">github.com/anthropics/claude-code/releases</a><br>
+      <a href="https://www.bloomberg.com/news/articles/2026-06-25/alibaba-drops-after-anthropic-accuses-firm-of-accessing-ai-model" rel="noopener noreferrer">bloomberg.com: Alibaba drops after Anthropic accuses firm of accessing AI model (June 25, 2026)</a><br>
+      <a href="https://www.cnbc.com/2026/06/24/anthropic-alibaba-distillation-campaign.html" rel="noopener noreferrer">cnbc.com: Anthropic accuses Alibaba of campaign to extract AI capabilities (June 24, 2026)</a>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
