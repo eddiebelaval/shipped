@@ -43,6 +43,8 @@ import { runNumberAttestation } from "./gates/number-attestation.js";
 import { runQuoteAttestation } from "./gates/quote-attestation.js";
 import { runDateAttestation } from "./gates/date-attestation.js";
 import { runVoiceGate } from "./gates/voice.js";
+import { runDepthGate } from "./gates/depth.js";
+import { runLabCoverageGate } from "./gates/lab-coverage.js";
 import type {
   Source,
   VerifyOptions,
@@ -68,6 +70,12 @@ export async function runVerification(
 
   // Voice gate -- sync, never blocked.
   allResults.push(...runVoiceGate(raw));
+
+  // Depth + lab-coverage -- sync, no network. Enforce the doctrine floors that
+  // were previously only documented: a collapsed (one-paragraph) issue FAILs,
+  // a single-lab issue WARNs.
+  allResults.push(...runDepthGate(parsed.content, parsed.data));
+  allResults.push(...runLabCoverageGate(parsed.content, parsed.data));
 
   if (options.offline) {
     return finalizeReport(markdownPath, startedAt, allResults);

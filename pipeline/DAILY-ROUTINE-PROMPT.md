@@ -14,6 +14,14 @@ made to repo files (DAILY.md, scrape/sources.ts, FORMULA.md) that the routine di
 not read. The routine kept running its own old "Anthropic sweep, ~1,200 words"
 instructions. The generator is the prompt. Change the prompt.
 
+What changed 2026-06-27: the floors are no longer advisory. The verifier now has a
+**depth gate** and a **lab-coverage gate** (`pipeline/src/verify/gates/`). A daily
+whose front-of-book (everything before the Release Log) falls below ~1,000 words
+**FAILs verification and cannot publish** — padding the Release Log does not help,
+the gate measures the front-of-book only. A single-lab daily draws a coverage
+**warning**. Step 6 below makes the routine run that gate on itself before it
+commits, so a collapsed daily never reaches the branch again.
+
 ---
 
 ## The prompt
@@ -29,13 +37,16 @@ You are generating tonight's **Shipped.** daily edition. Shipped. is a
    SDKs, research, pricing, policy — each with a primary-source URL. Use web
    search and the scraper output under `pipeline/output/x-*/`.
 
-2. **Depth per `content/DAILY.md`.** Run every real item through the SIX Dig
-   levers: mechanism, blast radius, pattern, the read, **the contrast** (what a
-   move says against the other labs — this is the lead lever now), and the move.
-   Hit the DAILY.md word floors: one real item 700, quiet day 1,000–1,400, normal
-   day 1,400–2,000, heavy day up to 2,800. A quiet Anthropic day is not a thin
-   daily, because the frontier is six labs wide — lead with whatever moved the
-   frontier most, regardless of which lab.
+2. **Depth per `content/DAILY.md` (enforced floor).** Run every real item through
+   the SIX Dig levers: mechanism, blast radius, pattern, the read, **the contrast**
+   (what a move says against the other labs — this is the lead lever now), and the
+   move. Hit the DAILY.md word floors: one real item 700, quiet day 1,000–1,400,
+   normal day 1,400–2,000, heavy day up to 2,800. **The 1,000-word front-of-book
+   floor is now a hard gate** — measured before the Release Log, so the Release Log
+   does not count toward it. A quiet Anthropic day is not a thin daily, because the
+   frontier is six labs wide — lead with whatever moved the frontier most,
+   regardless of which lab. If you are tempted to ship two paragraphs, dig; that is
+   the exact failure this floor exists to stop.
 
 3. **Voice per `content/STYLE.md`.** Dry, confident, Rolling Stone × Wired. No
    forbidden phrases, max one "X isn't Y, it's Z," no em dashes in prose,
@@ -45,6 +56,22 @@ You are generating tonight's **Shipped.** daily edition. Shipped. is a
    sentence as a source link that contains it. No clock timestamps, no bare HTTP
    codes. If a figure isn't on a reachable source, rephrase rather than fake it.
 
-5. **Render and publish exactly as you do today** — same render step, same
+5. **Self-verify before you commit (do not skip).** After writing the daily
+   markdown, run the verifier on it:
+
+   ```
+   cd pipeline && pnpm verify ../content/anthropic-daily/<YYYY-MM-DD>.md --offline
+   ```
+
+   If the verdict is **FAIL** (the depth gate will say "Issue too short:
+   front-of-book Nw"), the daily is too thin to publish — go back to step 2, dig
+   the items deeper, and re-run until it passes. Do not commit a FAIL. If you get a
+   single-lab **WARN**, either work in the cross-lab contrast or keep it only if
+   Anthropic genuinely owned the day; say so in one honest line. The full
+   `pnpm publish` path runs this same gate, so a thin daily will be rejected there
+   too — catching it here saves the round trip.
+
+6. **Render and publish exactly as you do today** — same render step, same
    `daily-pages` branch, same commit-and-notify mechanics. Only the scope (all
-   frontier labs) and the depth (six levers, raised floors) change.
+   frontier labs), the depth (six levers, enforced floors), and the self-verify
+   step change.

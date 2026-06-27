@@ -18,6 +18,8 @@ import { resolve } from "node:path";
 import { extractClaims } from "../src/verify/extract.js";
 import { runUrlLiveness } from "../src/verify/gates/url-liveness.js";
 import { runVoiceGate } from "../src/verify/gates/voice.js";
+import { runDepthGate } from "../src/verify/gates/depth.js";
+import { runLabCoverageGate } from "../src/verify/gates/lab-coverage.js";
 import { runVerification, formatReport } from "../src/verify/index.js";
 import type { Claim } from "../src/verify/types.js";
 import { numberVariants } from "../src/verify/gates/number-attestation.js";
@@ -139,6 +141,65 @@ test("runVoiceGate ignores forbidden phrases inside fenced code blocks", () => {
   const results = runVoiceGate(md);
   const fails = results.filter((r) => !r.passed);
   assert.equal(fails.length, 0, `expected 0 fails inside code fence, got ${JSON.stringify(fails)}`);
+});
+
+// ---------------------------------------------------------------------------
+// 3b. Depth gate -- the "one paragraph shipped" failure.
+// ---------------------------------------------------------------------------
+
+test("runDepthGate FAILs a collapsed one-paragraph daily", () => {
+  const md = [
+    "---",
+    "type: anthropic-daily",
+    "---",
+    "",
+    "Shipped. Daily.",
+    "",
+    "## Lead",
+    "A single short paragraph went out and nothing else did.",
+    "",
+    "## Release Log",
+    "### Code",
+    "Lots and lots of release log words ".repeat(80),
+  ].join("\n");
+
+  const results = runDepthGate(md, { type: "anthropic-daily" });
+  const fail = results.find((r) => !r.passed && r.severity === "fail");
+  assert.ok(fail, `expected a depth FAIL, got ${JSON.stringify(results)}`);
+  // Release Log padding must NOT rescue a thin front-of-book.
+  assert.ok(fail!.details.includes("front-of-book"), fail!.details);
+});
+
+test("runDepthGate passes a daily that clears the floor", () => {
+  const para = "Word ".repeat(1100);
+  const md = ["---", "type: anthropic-daily", "---", "", "## Lead", para].join("\n");
+  const results = runDepthGate(md, { type: "anthropic-daily" });
+  assert.ok(results.every((r) => r.passed), JSON.stringify(results));
+});
+
+test("runDepthGate applies the heavier issue floor to weekly/issue docs", () => {
+  const para = "Word ".repeat(1200); // clears daily floor, under issue floor
+  const md = ["## Lead", para].join("\n");
+  const results = runDepthGate(md, { issue: 5 });
+  const fail = results.find((r) => !r.passed && r.severity === "fail");
+  assert.ok(fail, `expected issue-floor FAIL at 1200w, got ${JSON.stringify(results)}`);
+});
+
+// ---------------------------------------------------------------------------
+// 3c. Lab-coverage gate -- the single-lab failure.
+// ---------------------------------------------------------------------------
+
+test("runLabCoverageGate WARNs on an Anthropic-only issue", () => {
+  const md = "Claude shipped a point release. Anthropic also published a report.";
+  const results = runLabCoverageGate(md);
+  const warn = results.find((r) => !r.passed && r.severity === "warn");
+  assert.ok(warn, `expected single-lab WARN, got ${JSON.stringify(results)}`);
+});
+
+test("runLabCoverageGate passes when multiple labs appear", () => {
+  const md = "Claude shipped; meanwhile OpenAI cut GPT pricing and Gemini answered.";
+  const results = runLabCoverageGate(md);
+  assert.ok(results.every((r) => r.passed), JSON.stringify(results));
 });
 
 // ---------------------------------------------------------------------------
