@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light">
+<title>Shipped. Daily, Friday, June 26, 2026</title>
+<meta property="og:title" content="Shipped. Daily, Friday, June 26, 2026">
+<meta property="og:description" content="A Claude Code point release and a research report on how people actually use Claude.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://eddiebelaval.github.io/shipped/anthropic-daily/2026-06-26.html">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Shipped. Daily, Friday, June 26, 2026">
+<meta name="twitter:description" content="A Claude Code point release and a research report on how people actually use Claude.">
+<meta name="description" content="A Claude Code point release and a research report on how people actually use Claude.">
+<meta name="author" content="Shipped.">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='75' cy='62' r='14' fill='%23FF6B35'/%3E%3Ctext x='10' y='75' font-family='Georgia,serif' font-weight='700' font-size='62' fill='%231a1a1a'%3ES%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;0,9..144,900;1,9..144,300;1,9..144,400;1,9..144,500;1,9..144,700&family=Archivo:wght@300;400;500;600;700;800;900&family=Archivo+Narrow:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{font-size:16px;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;text-rendering:optimizeLegibility}
+body{background:#FAF8F4;color:#0b0b0b;font-family:'Archivo',sans-serif;overflow-x:hidden}
+::selection{background:#FF6B35;color:#fff}
+
+:root{
+  --orange:#FF6B35;
+  --ink:#0b0b0b;
+  --paper:#FAF8F4;
+  --paper-shadow:#f2f0e8;
+  --body:#2a2a2a;
+  --muted:#5a5a5a;
+  --gray:#8a8a8a;
+  --hair:rgba(11,11,11,0.12);
+  --hair-soft:rgba(11,11,11,0.06);
+  --hair-hard:rgba(11,11,11,0.22);
+  --disp:'Fraunces', 'Times New Roman', serif;
+  --sans:'Archivo', system-ui, sans-serif;
+  --narrow:'Archivo Narrow', 'Archivo', sans-serif;
+  --mono:'JetBrains Mono', ui-monospace, monospace;
+}
+
+body::before{
+  content:"";
+  position:fixed;inset:0;pointer-events:none;z-index:1000;opacity:.28;mix-blend-mode:multiply;
+  background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='180' height='180'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' seed='3'/><feColorMatrix values='0 0 0 0 0.02  0 0 0 0 0.02  0 0 0 0 0.02  0 0 0 0.22 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+}
+
+/* ─────────────────────────────────────────
+   PUBLICATION BAR
+   ───────────────────────────────────────── */
+.pub-bar{
+  position:sticky;top:0;z-index:100;
+  background:var(--paper);
+  border-bottom:1px solid var(--hair);
+  padding:0 28px;height:42px;
+  display:flex;align-items:center;justify-content:space-between;
+  font-family:var(--narrow);
+  font-size:11px;font-weight:600;letter-spacing:.22em;
+  text-transform:uppercase;color:var(--ink);
+}
+.pub-bar-left,.pub-bar-right{display:flex;align-items:center;gap:16px}
+.pub-bar-mark{font-family:var(--disp);font-weight:500;font-size:16px;letter-spacing:-.01em;text-transform:none;font-style:italic}
+.pub-bar-mark .dot{color:var(--orange)}
+.pub-bar-sep{width:1px;height:12px;background:var(--hair-hard)}
+.pub-bar-meta{color:var(--muted)}
+.pub-bar-link{color:inherit;text-decoration:none;border-bottom:1px solid currentColor;transition:color .15s ease}
+.pub-bar-link:hover{color:var(--orange)}
+.pub-bar-folio{color:var(--ink)}
+.pub-bar-folio b{font-weight:600;color:var(--orange)}
+
+/* ─────────────────────────────────────────
+   FOLIO
+   ───────────────────────────────────────── */
+.folio{
+  font-family:var(--narrow);
+  font-size:10px;font-weight:500;letter-spacing:.28em;
+  text-transform:uppercase;color:var(--gray);
+  display:flex;align-items:center;gap:10px;
+}
+.folio b{color:var(--ink);font-weight:700}
+.folio .ruler{width:28px;height:1px;background:var(--hair-hard)}
+.folio .dot{color:var(--orange)}
+
+/* ─────────────────────────────────────────
+   SECTION WRAPPER
+   ───────────────────────────────────────── */
+.section{
+  position:relative;
+  padding:64px 28px 40px;
+  max-width:1280px;margin:0 auto;
+}
+.section-folio{
+  display:flex;align-items:center;justify-content:space-between;
+  padding-bottom:18px;
+  border-bottom:1px solid var(--ink);
+  margin-bottom:44px;
+}
+.section-folio-left{display:flex;align-items:center;gap:14px}
+.section-folio-label{
+  font-family:var(--narrow);
+  font-size:11px;font-weight:700;letter-spacing:.28em;
+  text-transform:uppercase;color:var(--ink);
+}
+.section-folio-sub{
+  font-family:var(--disp);font-style:italic;
+  font-size:13px;color:var(--muted);
+}
+
+/* ─────────────────────────────────────────
+   PROSE
+   ───────────────────────────────────────── */
+.prose{
+  font-family:var(--disp);
+  font-variation-settings:"opsz" 14;
+  font-weight:400;font-size:19px;line-height:1.66;
+  color:var(--body);
+  max-width:640px;
+}
+.prose p{margin-bottom:24px}
+.prose em{font-style:italic;color:var(--ink)}
+.prose strong{font-weight:600;color:var(--ink)}
+.prose code{
+  font-family:var(--mono);font-size:.86em;
+  background:var(--paper-shadow);padding:1px 6px;
+  border-radius:3px;color:var(--ink);
+}
+
+/* ─────────────────────────────────────────
+   RELEASE LOG
+   ───────────────────────────────────────── */
+.log-section{
+  padding:48px 28px;max-width:1280px;margin:0 auto;
+}
+.log-cat-head{
+  display:grid;
+  grid-template-columns:1fr auto;
+  gap:24px;align-items:baseline;
+  padding-bottom:18px;
+  border-bottom:1px solid var(--ink);
+  margin-bottom:0;
+}
+.log-cat-name{
+  font-family:var(--disp);font-weight:600;font-style:italic;
+  font-variation-settings:"opsz" 96;
+  font-size:clamp(36px,5vw,56px);
+  letter-spacing:-.02em;color:var(--ink);line-height:1;
+}
+.log-cat-count{
+  font-family:var(--narrow);
+  font-size:10px;font-weight:600;letter-spacing:.28em;
+  text-transform:uppercase;color:var(--muted);
+  text-align:right;
+}
+.log-cat-count b{color:var(--ink);font-weight:700;font-size:13px;display:block}
+
+.log-entries{display:flex;flex-direction:column}
+.log-entry{
+  padding:24px 0;
+  border-bottom:1px solid var(--hair);
+  display:grid;
+  grid-template-columns:120px 1fr;gap:28px;
+}
+.log-entry-left{
+  display:flex;flex-direction:column;gap:8px;
+}
+.log-entry-date{
+  font-family:var(--narrow);
+  font-size:10px;font-weight:700;letter-spacing:.22em;
+  text-transform:uppercase;color:var(--ink);
+  font-variant-numeric:tabular-nums;
+}
+.log-tag{
+  font-family:var(--narrow);
+  font-size:9px;font-weight:700;letter-spacing:.22em;
+  text-transform:uppercase;padding:3px 7px;
+  display:inline-block;line-height:1.3;width:fit-content;
+}
+.log-tag.model{background:var(--orange);color:var(--paper)}
+.log-tag.api{background:var(--ink);color:var(--paper)}
+.log-tag.code{background:#3a3a3a;color:var(--paper)}
+.log-tag.apps{background:#5a5a5a;color:var(--paper)}
+.log-tag.sdk-py,.log-tag.sdk-ts{background:var(--paper);color:var(--ink);border:1px solid var(--ink)}
+.log-tag.research,.log-tag.news{background:var(--paper);color:var(--muted);border:1px solid var(--hair-hard)}
+.log-tag.deprecation{background:var(--paper-shadow);color:var(--muted);border:1px solid var(--hair-hard)}
+.log-entry-title{
+  font-family:var(--disp);font-weight:500;
+  font-variation-settings:"opsz" 72;
+  font-size:20px;letter-spacing:-.012em;
+  color:var(--ink);line-height:1.25;
+  margin-bottom:10px;
+}
+.log-entry-title a{color:inherit;text-decoration:none;border-bottom:1px solid var(--hair-hard)}
+.log-entry-title a:hover{border-bottom-color:var(--orange);color:var(--orange)}
+.log-entry-body{
+  font-family:var(--sans);font-size:14.5px;line-height:1.6;color:var(--body);
+  margin-bottom:12px;
+}
+.log-entry-body code{
+  font-family:var(--mono);font-size:.86em;
+  background:var(--paper-shadow);padding:1px 6px;
+  border-radius:3px;color:var(--ink);
+}
+.log-entry-how{
+  font-family:var(--sans);font-size:13.5px;line-height:1.6;color:var(--muted);
+  padding-top:12px;border-top:1px solid var(--hair-soft);
+}
+.log-entry-how b{font-family:var(--narrow);font-size:10px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--ink);display:block;margin-bottom:6px}
+.log-entry-how code{
+  font-family:var(--mono);font-size:.88em;
+  background:var(--paper-shadow);padding:1px 5px;
+  border-radius:3px;color:var(--ink);
+}
+.log-entry-how a{color:var(--ink);text-decoration:none;border-bottom:1px solid var(--hair-hard)}
+.log-entry-how a:hover{color:var(--orange)}
+
+@media(max-width:720px){
+  .log-entry{grid-template-columns:1fr;gap:12px}
+  .log-cat-head{grid-template-columns:auto 1fr}
+  .log-cat-count{grid-column:1 / -1;text-align:left;padding-top:8px;border-top:1px solid var(--hair)}
+}
+
+/* ─────────────────────────────────────────
+   ORNAMENT
+   ───────────────────────────────────────── */
+.ornament{
+  text-align:center;margin:48px auto;
+  font-family:var(--disp);font-size:16px;color:var(--hair-hard);
+  letter-spacing:1.2em;
+}
+
+/* ─────────────────────────────────────────
+   DAILY PAGE COMPONENTS
+   ───────────────────────────────────────── */
+.daily-header{
+  padding:56px 28px 48px;
+  border-bottom:3px double var(--ink);
+  max-width:1280px;
+  margin:0 auto;
+}
+.daily-area-tag{
+  font-family:var(--narrow);
+  font-size:10px;font-weight:700;letter-spacing:.38em;
+  text-transform:uppercase;color:var(--orange);
+  margin-bottom:20px;
+}
+.daily-masthead{
+  font-family:var(--disp);
+  font-style:italic;
+  font-weight:500;
+  font-variation-settings:"opsz" 144;
+  font-size:clamp(72px,14vw,160px);
+  line-height:.9;
+  letter-spacing:-.04em;
+  color:var(--ink);
+  margin-bottom:4px;
+  display:inline-block;
+}
+.daily-masthead .dot{color:var(--orange)}
+.daily-sub-label{
+  font-family:var(--narrow);
+  font-size:11px;font-weight:700;letter-spacing:.38em;
+  text-transform:uppercase;color:var(--ink);
+  margin-top:12px;margin-bottom:4px;
+}
+.daily-dateline{
+  font-family:var(--disp);
+  font-style:italic;
+  font-size:19px;
+  color:var(--muted);
+  padding-bottom:28px;
+  border-bottom:1px solid var(--hair-hard);
+  margin-bottom:28px;
+}
+.daily-oneliner{
+  font-family:var(--disp);
+  font-weight:400;
+  font-variation-settings:"opsz" 72;
+  font-size:clamp(22px,2.8vw,32px);
+  line-height:1.18;
+  letter-spacing:-.01em;
+  color:var(--ink);
+  max-width:780px;
+}
+
+.daily-lead{
+  padding:48px 28px 44px;
+  max-width:1280px;
+  margin:0 auto;
+  border-bottom:1px solid var(--hair);
+}
+.daily-lead-kicker{
+  font-family:var(--narrow);
+  font-size:10px;font-weight:700;letter-spacing:.32em;
+  text-transform:uppercase;color:var(--orange);
+  margin-bottom:20px;
+  padding-bottom:14px;
+  border-bottom:1px solid var(--ink);
+}
+.daily-lead-prose{
+  font-family:var(--disp);
+  font-variation-settings:"opsz" 14;
+  font-weight:400;
+  font-size:18px;
+  line-height:1.68;
+  color:var(--body);
+  max-width:680px;
+}
+.daily-lead-prose p{margin-bottom:20px}
+.daily-lead-prose p:last-child{margin-bottom:0}
+.daily-lead-prose a{color:var(--ink);text-decoration:none;border-bottom:1px solid var(--hair-hard)}
+.daily-lead-prose a:hover{color:var(--orange);border-bottom-color:var(--orange)}
+
+.daily-footer{
+  background:var(--paper);
+  border-top:2px solid var(--orange);
+  padding:52px 28px 64px;
+  max-width:1280px;
+  margin:0 auto;
+}
+.daily-footer-mark{
+  font-family:var(--disp);
+  font-weight:500;font-style:italic;
+  font-variation-settings:"opsz" 144;
+  font-size:42px;
+  line-height:.9;
+  letter-spacing:-.04em;
+  color:var(--ink);
+  margin-bottom:18px;
+}
+.daily-footer-mark .dot{color:var(--orange)}
+.daily-footer-meta{
+  font-family:var(--narrow);
+  font-size:10px;font-weight:600;letter-spacing:.22em;
+  text-transform:uppercase;color:var(--muted);
+  line-height:2.0;
+  margin-bottom:20px;
+}
+.daily-footer-meta a{
+  color:var(--muted);
+  text-decoration:none;
+  border-bottom:1px solid currentColor;
+}
+.daily-footer-meta a:hover{color:var(--orange)}
+.daily-footer-sources{
+  margin-top:4px;
+  padding-top:18px;
+  border-top:1px solid var(--hair);
+  font-family:var(--narrow);
+  font-size:10px;font-weight:600;
+  letter-spacing:.22em;
+  text-transform:uppercase;
+  color:var(--muted);
+  line-height:1.6;
+}
+.daily-footer-sources .sources-label{
+  display:block;margin-bottom:10px;color:var(--ink);
+}
+.daily-footer-sources a{
+  display:block;
+  color:var(--ink);
+  text-decoration:none;
+  border-bottom:none;
+  font-family:var(--mono);
+  font-size:11px;
+  font-weight:400;
+  letter-spacing:0;
+  text-transform:none;
+  margin-bottom:4px;
+  border-left:2px solid var(--orange);
+  padding-left:8px;
+}
+.daily-footer-sources a:hover{color:var(--orange)}
+
+@media(max-width:600px){
+  .daily-header,.daily-lead,.log-section,.daily-footer{padding-left:20px;padding-right:20px}
+  .daily-masthead{font-size:clamp(56px,20vw,100px)}
+}
+
+</style>
+</head>
+<body>
+
+<!-- PUBLICATION BAR -->
+<nav class="pub-bar">
+  <div class="pub-bar-left">
+    <span class="pub-bar-mark">Shipped<span class="dot">.</span></span>
+    <span class="pub-bar-sep"></span>
+    <span class="pub-bar-meta">Anthropic Daily by <a href="https://id8labs.app" class="pub-bar-link">id8Labs</a></span>
+  </div>
+  <div class="pub-bar-right">
+    <span class="pub-bar-folio"><b>Daily</b></span>
+    <span class="pub-bar-sep"></span>
+    <span class="pub-bar-meta">June 26, 2026</span>
+  </div>
+</nav>
+
+<!-- DAILY HEADER -->
+<header class="daily-header">
+  <div class="daily-area-tag">Anthropic &nbsp;&#183;&nbsp; Nightly Sweep</div>
+  <h1 class="daily-masthead">Shipped<span class="dot">.</span></h1>
+  <div class="daily-sub-label">Daily</div>
+  <div class="daily-dateline">Friday, June 26, 2026</div>
+  <p class="daily-oneliner">A Claude Code point release and a research report on how people actually use Claude.</p>
+</header>
+
+<!-- LEAD -->
+<div class="daily-lead">
+  <div class="daily-lead-kicker">Lead</div>
+  <div class="daily-lead-prose">
+    <p>The <a href="https://www.anthropic.com/research/economic-index-june-2026-report">Anthropic Economic Index: Cadences</a> landed Friday, the third quarterly report in Anthropic's running study of how roughly 9,700 survey respondents relate to their Claude usage. The headline finding is structural rather than surprising: Claude usage tracks the rhythms of the outside world. Work queries thin out on weekends, less sharply for the highest-paid occupations. News peaks in the morning. Sleep advice peaks near 5 AM. Tax questions surge around April deadlines. Anthropic linked survey responses to actual usage data via privacy-preserving methods, making this the most empirically grounded picture yet of when and how people actually reach for Claude.</p>
+  </div>
+</div>
+
+<!-- RELEASE LOG -->
+<section class="log-section" id="log">
+
+  <div style="padding-bottom:18px; border-bottom:1px solid var(--ink); margin-bottom:44px; display:flex; align-items:center; justify-content:space-between;">
+    <div style="display:flex; align-items:center; gap:14px;">
+      <span style="font-family:var(--narrow); font-size:11px; font-weight:700; letter-spacing:.28em; text-transform:uppercase; color:var(--ink);">Release Log</span>
+      <span style="font-family:var(--disp); font-style:italic; font-size:13px; color:var(--muted);">June 26, 2026</span>
+    </div>
+    <span style="font-family:var(--narrow); font-size:10px; font-weight:600; letter-spacing:.22em; text-transform:uppercase; color:var(--muted);">2 items</span>
+  </div>
+
+  <!-- CODE -->
+  <div class="log-cat-head" style="margin-bottom:0;">
+    <div class="log-cat-name">Code</div>
+    <div class="log-cat-count"><b>1</b> release</div>
+  </div>
+  <div class="log-entries">
+    <div class="log-entry">
+      <div class="log-entry-left">
+        <div class="log-entry-date">Jun 26</div>
+        <span class="log-tag code">CODE</span>
+      </div>
+      <div>
+        <div class="log-entry-title">
+          <a href="https://github.com/anthropics/claude-code/releases">Claude Code v2.1.195</a>
+        </div>
+        <div class="log-entry-body">
+          Point release with three main fixes: a new <code>CLAUDE_CODE_DISABLE_MOUSE_CLICKS</code> environment variable disables click interactions in fullscreen mode while preserving wheel scroll; hook matchers with hyphenated identifiers now use exact matching instead of substring matching; voice dictation on macOS is repaired, including auto-submit for languages without spaces. Voice mode on Linux improved; Remote session startup adds a provisioning checklist.
+        </div>
+        <div class="log-entry-how">
+          <b>How to use</b>
+          Run <code>claude update</code> or reinstall from the <a href="https://github.com/anthropics/claude-code/releases">GitHub releases page</a>.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="ornament">&#183; &#183; &#183;</div>
+
+  <!-- RESEARCH -->
+  <div class="log-cat-head" style="margin-bottom:0;">
+    <div class="log-cat-name">Research</div>
+    <div class="log-cat-count"><b>1</b> publication</div>
+  </div>
+  <div class="log-entries">
+    <div class="log-entry">
+      <div class="log-entry-left">
+        <div class="log-entry-date">Jun 26</div>
+        <span class="log-tag research">RESEARCH</span>
+      </div>
+      <div>
+        <div class="log-entry-title">
+          <a href="https://www.anthropic.com/research/economic-index-june-2026-report">Anthropic Economic Index: Cadences</a>
+        </div>
+        <div class="log-entry-body">
+          Third quarterly Anthropic Economic Index report, drawing on a linked survey-and-usage dataset of approximately 9,700 respondents. Key finding: Claude usage maps to real-world rhythms. Work queries drop on weekends (less dramatically for top earners), news queries peak in the morning, sleep advice peaks around 5 AM, tax queries surge around filing deadlines. The report also examines what concrete outputs people take from Claude sessions, finding variation by product. Survey launched April 2026; usage data from mid-May to early June linked via privacy-preserving methods.
+        </div>
+      </div>
+    </div>
+  </div>
+
+</section>
+
+<!-- DAILY FOOTER -->
+<footer>
+  <div class="daily-footer">
+    <div class="daily-footer-mark">Shipped<span class="dot">.</span></div>
+    <div class="daily-footer-meta">
+      Generated 2026-06-27T01:03:56Z &nbsp;&#183;&nbsp; Anthropic Daily &nbsp;&#183;&nbsp; by <a href="https://id8labs.app">id8Labs</a><br>
+      Nightly sweep, 21:00 ET
+    </div>
+    <div class="daily-footer-sources">
+      <span class="sources-label">Sources consulted</span>
+      <a href="https://github.com/anthropics/claude-code/releases">github.com/anthropics/claude-code/releases</a>
+      <a href="https://www.anthropic.com/research/economic-index-june-2026-report">anthropic.com/research/economic-index-june-2026-report</a>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
