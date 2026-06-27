@@ -1,0 +1,86 @@
+name: verify-content
+
+# Enforces the depth + lab-coverage floors on any content markdown that lands —
+# especially the nightly daily, which is committed by an out-of-repo claude.ai
+# routine that does not run the verifier itself. A collapsed (one-paragraph) or
+# single-lab daily/issue fails this check instead of shipping silently.
+#
+# Runs the verifier OFFLINE on purpose: the offline path runs the sync gates
+# (voice, depth, lab-coverage) without network, so the short/single-lab guard
+# is fast and never flakes on a slow source. The attestation gates (URL, number,
+# quote, date) still run locally via `pnpm publish` before the human pushes.
+
+on:
+  push:
+    branches: ["**"]
+    paths:
+      - "content/anthropic-daily/*.md"
+      - "content/anthropic-weekly/*.md"
+      - "content/issue-*.md"
+      - "pipeline/src/verify/**"
+  pull_request:
+    paths:
+      - "content/anthropic-daily/*.md"
+      - "content/anthropic-weekly/*.md"
+      - "content/issue-*.md"
+      - "pipeline/src/verify/**"
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 10
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: pnpm
+          cache-dependency-path: pipeline/pnpm-lock.yaml
+
+      - name: Install pipeline deps
+        working-directory: pipeline
+        run: pnpm install --frozen-lockfile
+
+      - name: Verify changed content
+        env:
+          BASE_SHA: ${{ github.event.pull_request.base.sha }}
+          BEFORE_SHA: ${{ github.event.before }}
+        run: |
+          set -euo pipefail
+
+          # Resolve a base commit to diff against; fall back to the previous commit.
+          base="${BASE_SHA:-$BEFORE_SHA}"
+          if [ -z "$base" ] || ! git cat-file -e "${base}^{commit}" 2>/dev/null; then
+            base="$(git rev-parse HEAD~1 2>/dev/null || git rev-parse HEAD)"
+          fi
+
+          mapfile -t files < <(git diff --name-only --diff-filter=AM "$base" HEAD -- \
+            'content/anthropic-daily/*.md' \
+            'content/anthropic-weekly/*.md' \
+            'content/issue-*.md' | sort -u)
+
+          if [ "${#files[@]}" -eq 0 ]; then
+            echo "No content markdown changed; nothing to verify."
+            exit 0
+          fi
+
+          echo "Verifying ${#files[@]} changed file(s):"
+          printf '  %s\n' "${files[@]}"
+
+          failed=0
+          for f in "${files[@]}"; do
+            echo "::group::verify $f"
+            if ! pnpm --dir pipeline verify "$GITHUB_WORKSPACE/$f" --offline; then
+              echo "::error file=$f::verification failed (see depth / lab-coverage / voice gate output above)"
+              failed=1
+            fi
+            echo "::endgroup::"
+          done
+
+          exit "$failed"
