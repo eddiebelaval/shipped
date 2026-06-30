@@ -345,6 +345,7 @@ export function normalizeTweet(
     date: t.created_at ?? new Date(0).toISOString(),
     text: t.text,
     url: `https://x.com/${username}/status/${t.id}`,
+    author: username,
     links,
     hashtags,
     attachments,
