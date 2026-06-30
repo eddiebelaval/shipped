@@ -197,6 +197,28 @@ function stripSidebar(content: string): string {
   return [...lines.slice(0, s), ...lines.slice(e + 1)].join('\n');
 }
 
+function renderInlineBlockquote(block: string): string {
+  const lines = block.split('\n');
+  const textParts: string[] = [];
+  let attribution = '';
+  for (const l of lines) {
+    const attrMatch = l.match(/^>\s*[—-]\s*(.+)$/);
+    if (attrMatch) { attribution = attrMatch[1]!.trim(); continue; }
+    const formalMatch = l.match(/^>\s*\*"(.+)"\*\s*$/);
+    if (formalMatch) { textParts.push(formalMatch[1]!); continue; }
+    const plainMatch = l.match(/^>\s*(.+)$/);
+    if (plainMatch) textParts.push(plainMatch[1]!);
+  }
+  const text = textParts.join(' ');
+  if (!text) return '';
+  const attrHtml = attribution
+    ? `\n      <span style="font-family:var(--narrow);font-size:11px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:var(--muted)">— ${inlineMarkdown(attribution)}</span>`
+    : '';
+  return `    <blockquote style="margin:32px 0;padding:0;border-left:3px solid var(--ink);padding-left:20px">
+      <p style="font-style:italic;font-size:22px;line-height:1.35;color:var(--ink);margin-bottom:12px">&ldquo;${inlineMarkdown(text)}&rdquo;</p>${attrHtml}
+    </blockquote>`;
+}
+
 function paragraphs(body: string): string {
   const blocks = body
     .replace(/\r\n/g, '\n')
@@ -207,10 +229,13 @@ function paragraphs(body: string): string {
         b.length > 0 &&
         !/^-{3,}$/.test(b) &&
         !b.startsWith('#') &&
-        !b.startsWith('>') &&
         !b.startsWith('|'),
     );
   return blocks
-    .map((b) => `    <p>${inlineMarkdown(b.replace(/\n/g, ' '))}</p>`)
+    .map((b) =>
+      b.startsWith('>')
+        ? renderInlineBlockquote(b)
+        : `    <p>${inlineMarkdown(b.replace(/\n/g, ' '))}</p>`,
+    )
     .join('\n');
 }
