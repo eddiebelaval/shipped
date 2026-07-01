@@ -207,10 +207,18 @@ function paragraphs(body: string): string {
         b.length > 0 &&
         !/^-{3,}$/.test(b) &&
         !b.startsWith('#') &&
-        !b.startsWith('>') &&
         !b.startsWith('|'),
     );
   return blocks
-    .map((b) => `    <p>${inlineMarkdown(b.replace(/\n/g, ' '))}</p>`)
+    .map((b) => {
+      if (b.startsWith('>')) {
+        // Chart blocks are extracted separately; skip them here.
+        if (/^>\s*###/.test(b)) return '';
+        const inner = b.replace(/^>\s*/gm, '').trim();
+        return `    <blockquote>${inlineMarkdown(inner.replace(/\n/g, '<br>'))}</blockquote>`;
+      }
+      return `    <p>${inlineMarkdown(b.replace(/\n/g, ' '))}</p>`;
+    })
+    .filter(Boolean)
     .join('\n');
 }
