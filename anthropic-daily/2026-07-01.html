@@ -1,0 +1,744 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light">
+<title>Shipped. Daily, Tuesday, July 1, 2026</title>
+<meta property="og:title" content="Shipped. Daily, Tuesday, July 1, 2026">
+<meta property="og:description" content="Fable 5 returns globally after 19 days of export control. Claude Science opens in beta. Glasswing adds 150 orgs. Claude Code v2.1.198 ships Chrome as GA.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://eddiebelaval.github.io/shipped/anthropic-daily/2026-07-01.html">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Shipped. Daily, Tuesday, July 1, 2026">
+<meta name="twitter:description" content="Fable 5 returns globally after 19 days of export control. Claude Science opens in beta. Glasswing adds 150 orgs. Claude Code v2.1.198 ships Chrome as GA.">
+<meta name="description" content="Fable 5 returns globally after 19 days of export control. Claude Science opens in beta. Glasswing adds 150 orgs. Claude Code v2.1.198 ships Chrome as GA.">
+<meta name="author" content="Eddie Belaval, id8Labs">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='75' cy='62' r='14' fill='%23FF6B35'/%3E%3Ctext x='10' y='75' font-family='Georgia,serif' font-weight='700' font-size='62' fill='%231a1a1a'%3ES%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;0,9..144,900;1,9..144,300;1,9..144,400;1,9..144,500;1,9..144,700&family=Archivo:wght@300;400;500;600;700;800;900&family=Archivo+Narrow:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{font-size:16px;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;text-rendering:optimizeLegibility}
+body{background:#FAF8F4;color:#0b0b0b;font-family:'Archivo',sans-serif;overflow-x:hidden}
+::selection{background:#FF6B35;color:#fff}
+
+:root{
+  --orange:#FF6B35;
+  --ink:#0b0b0b;
+  --paper:#FAF8F4;
+  --paper-shadow:#f2f0e8;
+  --body:#2a2a2a;
+  --muted:#5a5a5a;
+  --gray:#8a8a8a;
+  --hair:rgba(11,11,11,0.12);
+  --hair-soft:rgba(11,11,11,0.06);
+  --hair-hard:rgba(11,11,11,0.22);
+  --disp:'Fraunces', 'Times New Roman', serif;
+  --sans:'Archivo', system-ui, sans-serif;
+  --narrow:'Archivo Narrow', 'Archivo', sans-serif;
+  --mono:'JetBrains Mono', ui-monospace, monospace;
+}
+
+body::before{
+  content:"";
+  position:fixed;inset:0;pointer-events:none;z-index:1000;opacity:.28;mix-blend-mode:multiply;
+  background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='180' height='180'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' seed='3'/><feColorMatrix values='0 0 0 0 0.02  0 0 0 0 0.02  0 0 0 0 0.02  0 0 0 0.22 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+}
+
+.pub-bar{
+  position:sticky;top:0;z-index:100;
+  background:var(--paper);
+  border-bottom:1px solid var(--hair);
+  padding:0 28px;height:42px;
+  display:flex;align-items:center;justify-content:space-between;
+  font-family:var(--narrow);
+  font-size:11px;font-weight:600;letter-spacing:.22em;
+  text-transform:uppercase;color:var(--ink);
+}
+.pub-bar-left,.pub-bar-right{display:flex;align-items:center;gap:16px}
+.pub-bar-mark{font-family:var(--disp);font-weight:500;font-size:16px;letter-spacing:-.01em;text-transform:none;font-style:italic}
+.pub-bar-mark .dot{color:var(--orange)}
+.pub-bar-sep{width:1px;height:12px;background:var(--hair-hard)}
+.pub-bar-meta{color:var(--muted)}
+.pub-bar-link{color:inherit;text-decoration:none;border-bottom:1px solid currentColor;transition:color .15s ease}
+.pub-bar-link:hover{color:var(--orange)}
+.pub-bar-folio{color:var(--ink)}
+.pub-bar-folio b{font-weight:600;color:var(--orange)}
+
+.folio{
+  font-family:var(--narrow);
+  font-size:10px;font-weight:500;letter-spacing:.28em;
+  text-transform:uppercase;color:var(--gray);
+  display:flex;align-items:center;gap:10px;
+}
+.folio b{color:var(--ink);font-weight:700}
+.folio .ruler{width:28px;height:1px;background:var(--hair-hard)}
+.folio .dot{color:var(--orange)}
+
+.section{
+  position:relative;
+  padding:64px 28px 40px;
+  max-width:1280px;margin:0 auto;
+}
+.section-folio{
+  display:flex;align-items:center;justify-content:space-between;
+  padding-bottom:18px;
+  border-bottom:1px solid var(--ink);
+  margin-bottom:44px;
+}
+.section-folio-left{display:flex;align-items:center;gap:14px}
+.section-folio-label{
+  font-family:var(--narrow);
+  font-size:11px;font-weight:700;letter-spacing:.28em;
+  text-transform:uppercase;color:var(--ink);
+}
+.section-folio-sub{
+  font-family:var(--disp);font-style:italic;
+  font-size:13px;color:var(--muted);
+}
+
+.open-section{background:var(--paper)}
+.open-grid{
+  display:grid;
+  grid-template-columns:repeat(12,1fr);
+  gap:32px;
+}
+.open-lead{
+  grid-column:2 / span 7;
+}
+.open-quote{
+  font-family:var(--disp);
+  font-variation-settings:"opsz" 144;
+  font-weight:500;font-size:clamp(36px,5vw,72px);
+  line-height:1.02;letter-spacing:-.025em;
+  color:var(--ink);
+  margin-bottom:36px;
+  padding-bottom:28px;
+  border-bottom:1px solid var(--hair-hard);
+}
+.open-quote em{font-style:italic;color:var(--orange);font-weight:500}
+.open-prose{
+  font-family:var(--disp);
+  font-variation-settings:"opsz" 14;
+  font-weight:400;font-size:18px;line-height:1.68;
+  color:var(--body);
+  max-width:620px;
+}
+.open-prose p{margin-bottom:22px}
+.open-prose em{font-style:italic;color:var(--ink)}
+.open-aside{
+  grid-column:10 / span 3;
+  border-top:1px solid var(--ink);
+  padding-top:16px;
+  font-family:var(--narrow);
+  font-size:11px;font-weight:500;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--muted);
+  line-height:1.9;
+}
+.open-aside b{color:var(--ink);font-weight:700}
+@media(max-width:860px){
+  .open-lead{grid-column:1 / -1}
+  .open-aside{grid-column:1 / -1;margin-top:16px}
+}
+
+.prose-well{
+  max-width:1280px;margin:0 auto;padding:0 28px 56px;
+  display:grid;grid-template-columns:72px 1fr minmax(0,320px);
+  gap:32px;position:relative;
+}
+.prose-well::before{
+  content:"";position:absolute;left:100px;top:0;bottom:0;
+  width:1px;background:var(--hair);
+}
+.prose-marginalia{
+  grid-column:1;
+  font-family:var(--narrow);
+  font-size:10px;font-weight:600;letter-spacing:.26em;
+  text-transform:uppercase;color:var(--gray);
+  writing-mode:vertical-rl;transform:rotate(180deg);
+  align-self:start;padding-top:8px;
+  white-space:nowrap;
+}
+.prose{
+  grid-column:2;
+  font-family:var(--disp);
+  font-variation-settings:"opsz" 14;
+  font-weight:400;font-size:19px;line-height:1.66;
+  color:var(--body);
+  max-width:640px;
+}
+.prose p{margin-bottom:24px}
+.prose em{font-style:italic;color:var(--ink)}
+.prose strong{font-weight:600;color:var(--ink)}
+.prose code{
+  font-family:var(--mono);font-size:.86em;
+  background:var(--paper-shadow);padding:1px 6px;
+  border-radius:3px;color:var(--ink);
+}
+.prose-aside{
+  grid-column:3;
+  font-family:var(--narrow);
+  font-size:11px;font-weight:500;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--muted);
+  border-top:1px solid var(--ink);padding-top:14px;
+  line-height:1.8;
+}
+.prose-aside b{color:var(--ink);font-weight:700}
+
+@media(max-width:860px){
+  .prose-well{grid-template-columns:1fr;padding-left:20px;padding-right:20px}
+  .prose-well::before{display:none}
+  .prose-marginalia{display:none}
+  .prose{grid-column:1}
+  .prose-aside{grid-column:1;margin-top:20px}
+}
+
+.sidebar-box{
+  background:var(--paper);
+  border:1px solid var(--ink);
+  border-top:4px solid var(--ink);
+  padding:28px 28px 24px;
+  margin:48px auto;
+  max-width:820px;
+  position:relative;
+}
+.sidebar-box.accent{border-top-color:var(--orange)}
+.sidebar-box-kicker{
+  font-family:var(--narrow);
+  font-size:10px;font-weight:700;letter-spacing:.32em;
+  text-transform:uppercase;color:var(--orange);
+  margin-bottom:8px;
+}
+.sidebar-box-title{
+  font-family:var(--disp);font-weight:500;font-style:italic;
+  font-variation-settings:"opsz" 72;
+  font-size:28px;letter-spacing:-.015em;
+  color:var(--ink);
+  padding-bottom:16px;
+  border-bottom:1px solid var(--hair);
+  margin-bottom:20px;
+}
+.sidebar-box-body{
+  font-family:var(--sans);font-size:15px;line-height:1.65;color:var(--body);
+}
+.sidebar-box-body p{margin-bottom:12px}
+.sidebar-box-body p:last-child{margin-bottom:0}
+
+.code-block{
+  margin:24px 0;
+  border:1px solid var(--ink);
+  background:var(--paper);
+  font-family:var(--mono);font-size:12.5px;line-height:1.55;
+  color:var(--ink);
+  position:relative;
+  overflow:hidden;
+}
+.code-block-head{
+  display:flex;justify-content:space-between;align-items:center;
+  padding:10px 16px;
+  border-bottom:1px solid var(--ink);
+  background:var(--ink);color:var(--paper);
+  font-family:var(--narrow);
+  font-size:10px;font-weight:700;letter-spacing:.28em;
+  text-transform:uppercase;
+}
+.code-block-head span:last-child{color:var(--orange)}
+.code-block pre{
+  padding:20px 24px;overflow-x:auto;white-space:pre;margin:0;
+}
+
+.ornament{
+  text-align:center;margin:64px auto;
+  font-family:var(--disp);font-size:16px;color:var(--hair-hard);
+  letter-spacing:1.2em;
+}
+.ornament.bold{color:var(--orange);letter-spacing:.8em;font-size:20px}
+
+.quiet-section{
+  max-width:1280px;margin:0 auto;padding:64px 28px 24px;
+  display:grid;grid-template-columns:repeat(12,1fr);gap:24px;
+}
+.quiet-head{
+  grid-column:1 / span 3;
+}
+.quiet-title{
+  font-family:var(--disp);font-style:italic;font-weight:400;
+  font-variation-settings:"opsz" 72;
+  font-size:32px;line-height:1;letter-spacing:-.02em;
+  color:var(--ink);
+}
+.quiet-title em{color:var(--orange);font-style:normal;font-weight:500}
+.quiet-kicker{
+  font-family:var(--narrow);
+  font-size:10px;font-weight:700;letter-spacing:.32em;
+  text-transform:uppercase;color:var(--muted);
+  margin-bottom:10px;
+}
+.quiet-body{
+  grid-column:5 / -1;
+  font-family:var(--disp);font-size:17px;line-height:1.65;color:var(--body);
+  padding-left:24px;border-left:1px solid var(--ink);
+}
+.quiet-body p{margin-bottom:16px}
+.quiet-body strong{font-weight:600;color:var(--ink)}
+@media(max-width:860px){
+  .quiet-head,.quiet-body{grid-column:1 / -1}
+  .quiet-body{padding-left:0;border-left:none;border-top:1px solid var(--ink);padding-top:18px}
+}
+
+.log-divider{
+  background:var(--paper);
+  padding:64px 28px 40px;
+  text-align:center;
+  border-top:3px double var(--ink);
+  border-bottom:1px solid var(--ink);
+  max-width:1280px;margin:0 auto;
+}
+.log-divider-kicker{
+  font-family:var(--narrow);
+  font-size:11px;font-weight:700;letter-spacing:.48em;
+  text-transform:uppercase;color:var(--orange);
+  margin-bottom:14px;
+}
+.log-divider-title{
+  font-family:var(--disp);font-weight:700;
+  font-variation-settings:"opsz" 144;
+  font-size:clamp(40px,8vw,96px);
+  line-height:.9;letter-spacing:-.045em;color:var(--ink);
+  margin-bottom:16px;
+}
+.log-divider-title em{font-style:italic;font-weight:400}
+.log-divider-sub{
+  font-family:var(--disp);font-style:italic;
+  font-size:16px;color:var(--muted);max-width:600px;margin:0 auto;line-height:1.5;
+}
+
+.log-section{
+  padding:40px 28px;max-width:1280px;margin:0 auto;
+  border-bottom:1px solid var(--hair);
+}
+.log-cat-head{
+  display:grid;
+  grid-template-columns:1fr auto;
+  gap:24px;align-items:baseline;
+  padding-bottom:18px;
+  border-bottom:1px solid var(--ink);
+  margin-bottom:0;
+}
+.log-cat-name{
+  font-family:var(--disp);font-weight:600;font-style:italic;
+  font-variation-settings:"opsz" 96;
+  font-size:clamp(28px,4vw,44px);
+  letter-spacing:-.02em;color:var(--ink);line-height:1;
+}
+.log-cat-count{
+  font-family:var(--narrow);
+  font-size:10px;font-weight:600;letter-spacing:.28em;
+  text-transform:uppercase;color:var(--muted);
+  text-align:right;
+}
+.log-cat-count b{color:var(--ink);font-weight:700;font-size:13px;display:block}
+
+.log-entries{display:flex;flex-direction:column}
+.log-entry{
+  padding:24px 0;
+  border-bottom:1px solid var(--hair);
+  display:grid;
+  grid-template-columns:120px 1fr;gap:28px;
+}
+.log-entry:last-child{border-bottom:none}
+.log-entry-left{
+  display:flex;flex-direction:column;gap:8px;
+}
+.log-entry-date{
+  font-family:var(--narrow);
+  font-size:10px;font-weight:700;letter-spacing:.22em;
+  text-transform:uppercase;color:var(--ink);
+  font-variant-numeric:tabular-nums;
+}
+.log-tag{
+  font-family:var(--narrow);
+  font-size:9px;font-weight:700;letter-spacing:.22em;
+  text-transform:uppercase;padding:3px 7px;
+  display:inline-block;line-height:1.3;width:fit-content;
+}
+.log-tag.model{background:var(--orange);color:var(--paper)}
+.log-tag.api{background:var(--ink);color:var(--paper)}
+.log-tag.code{background:#3a3a3a;color:var(--paper)}
+.log-tag.apps{background:#5a5a5a;color:var(--paper)}
+.log-tag.sdk-py,.log-tag.sdk-ts{background:var(--paper);color:var(--ink);border:1px solid var(--ink)}
+.log-tag.research,.log-tag.news{background:var(--paper);color:var(--muted);border:1px solid var(--hair-hard)}
+.log-tag.deprecation{background:var(--paper-shadow);color:var(--muted);border:1px solid var(--hair-hard)}
+.log-entry-title{
+  font-family:var(--disp);font-weight:500;
+  font-variation-settings:"opsz" 72;
+  font-size:20px;letter-spacing:-.012em;
+  color:var(--ink);line-height:1.25;
+  margin-bottom:10px;
+}
+.log-entry-title a{color:inherit;text-decoration:none;border-bottom:1px solid var(--hair-hard)}
+.log-entry-title a:hover{border-bottom-color:var(--orange);color:var(--orange)}
+.log-entry-body{
+  font-family:var(--sans);font-size:14.5px;line-height:1.6;color:var(--body);
+  margin-bottom:12px;
+}
+.log-entry-body code{
+  font-family:var(--mono);font-size:.86em;
+  background:var(--paper-shadow);padding:1px 5px;border-radius:3px;color:var(--ink);
+}
+.log-entry-how{
+  font-family:var(--sans);font-size:13.5px;line-height:1.6;color:var(--muted);
+  padding-top:12px;border-top:1px solid var(--hair-soft);
+  margin-bottom:8px;
+}
+.log-entry-how b{font-family:var(--narrow);font-size:10px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--ink);display:block;margin-bottom:6px}
+.log-entry-how code{
+  font-family:var(--mono);font-size:.86em;
+  background:var(--paper-shadow);padding:1px 5px;border-radius:3px;color:var(--ink);
+}
+.log-entry-why{
+  font-family:var(--disp);font-style:italic;
+  font-size:14px;color:var(--muted);line-height:1.55;
+  margin-top:10px;padding-left:14px;
+  border-left:2px solid var(--orange);
+}
+.log-entry-why b{font-style:normal;font-family:var(--narrow);font-size:10px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--orange);display:block;margin-bottom:4px}
+
+@media(max-width:720px){
+  .log-entry{grid-template-columns:1fr;gap:12px}
+  .log-cat-head{grid-template-columns:auto 1fr}
+  .log-cat-count{grid-column:1 / -1;text-align:left;padding-top:8px;border-top:1px solid var(--hair)}
+}
+
+.colophon{
+  background:var(--ink);color:var(--paper);
+  padding:80px 28px 64px;
+  border-top:2px solid var(--orange);
+}
+.colophon-inner{
+  max-width:1280px;margin:0 auto;
+  display:grid;grid-template-columns:repeat(12,1fr);gap:32px;
+}
+.colophon-mast{
+  grid-column:1 / span 5;
+}
+.colophon-word{
+  font-family:var(--disp);font-weight:500;
+  font-variation-settings:"opsz" 144;
+  font-size:clamp(72px,10vw,120px);
+  line-height:.9;letter-spacing:-.04em;color:var(--paper);
+}
+.colophon-word .dot{color:var(--orange)}
+.colophon-tag{
+  margin-top:14px;
+  font-family:var(--disp);font-style:italic;font-size:16px;
+  color:rgba(250,250,247,.65);line-height:1.4;max-width:360px;
+}
+.colophon-body{
+  grid-column:6 / -1;
+  display:grid;grid-template-columns:repeat(2,1fr);gap:32px;
+}
+.colophon-col h4{
+  font-family:var(--narrow);
+  font-size:10px;font-weight:700;letter-spacing:.32em;
+  text-transform:uppercase;color:var(--orange);
+  margin-bottom:12px;padding-bottom:10px;
+  border-bottom:1px solid rgba(250,250,247,.2);
+}
+.colophon-col p,.colophon-col li{
+  font-family:var(--sans);font-size:13px;line-height:1.6;
+  color:rgba(250,250,247,.75);
+  margin-bottom:8px;list-style:none;
+}
+.colophon-col b{color:var(--paper);font-weight:600}
+.colophon-col em{font-style:italic;color:rgba(250,250,247,.9)}
+.colophon-col a{color:rgba(250,250,247,.7);text-decoration:none;border-bottom:1px solid rgba(250,250,247,.3)}
+.colophon-col a:hover{color:var(--orange)}
+.colophon-foot{
+  grid-column:1 / -1;
+  margin-top:32px;padding-top:24px;
+  border-top:1px solid rgba(250,250,247,.2);
+  display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap;
+  font-family:var(--narrow);font-size:10px;font-weight:600;
+  letter-spacing:.28em;text-transform:uppercase;color:rgba(250,250,247,.5);
+}
+.colophon-foot b{color:var(--paper);font-weight:700}
+.colophon-foot .hot{color:var(--orange)}
+@media(max-width:860px){
+  .colophon-mast,.colophon-body{grid-column:1 / -1}
+  .colophon-body{grid-template-columns:1fr;gap:24px}
+}
+
+/* Daily page layout */
+.daily-head{
+  padding:52px 28px 44px;
+  border-bottom:1px solid var(--hair);
+  max-width:1280px;margin:0 auto;
+}
+.daily-edition{
+  font-family:var(--narrow);
+  font-size:10px;font-weight:700;letter-spacing:.36em;
+  text-transform:uppercase;color:var(--orange);
+  margin-bottom:20px;
+}
+.daily-masthead{
+  font-family:var(--disp);
+  font-style:italic;font-weight:500;
+  font-size:clamp(72px,12vw,144px);
+  line-height:.88;letter-spacing:-.04em;
+  color:var(--ink);
+  display:inline-block;
+  margin-bottom:20px;
+}
+.daily-masthead .dot{color:var(--orange)}
+.daily-dateline{
+  font-family:var(--narrow);
+  font-size:11px;font-weight:600;letter-spacing:.28em;
+  text-transform:uppercase;color:var(--muted);
+  margin-bottom:28px;
+}
+.daily-oneliner{
+  font-family:var(--disp);font-style:italic;
+  font-size:18px;line-height:1.55;
+  color:var(--body);
+  max-width:780px;
+  padding-top:22px;
+  border-top:1px solid var(--hair);
+}
+.daily-lead{
+  max-width:1280px;margin:0 auto;
+  padding:44px 28px 36px;
+  border-bottom:1px solid var(--hair);
+}
+.daily-lead-kicker{
+  font-family:var(--narrow);
+  font-size:10px;font-weight:700;letter-spacing:.32em;
+  text-transform:uppercase;color:var(--orange);
+  margin-bottom:16px;padding-bottom:16px;
+  border-bottom:1px solid var(--ink);
+  display:inline-block;
+}
+.daily-lead-prose{
+  font-family:var(--disp);
+  font-weight:400;font-size:19px;line-height:1.68;
+  color:var(--body);
+  max-width:640px;
+}
+.daily-lead-prose p{margin-bottom:22px}
+.daily-lead-prose p:last-child{margin-bottom:0}
+.daily-lead-prose em{font-style:italic;color:var(--ink)}
+.daily-lead-prose strong{font-weight:600;color:var(--ink)}
+
+@media(max-width:600px){
+  .daily-head,.daily-lead,.log-section,.log-divider{padding-left:20px;padding-right:20px}
+  .daily-masthead{font-size:72px}
+}
+</style>
+</head>
+<body>
+
+<nav class="pub-bar">
+  <div class="pub-bar-left">
+    <span class="pub-bar-mark">Shipped<span class="dot">.</span></span>
+    <span class="pub-bar-sep"></span>
+    <span class="pub-bar-meta">Daily, <a href="https://id8labs.app/shipped" class="pub-bar-link">id8Labs</a></span>
+  </div>
+  <div class="pub-bar-right">
+    <span class="pub-bar-folio"><b>Jul 1</b></span>
+    <span class="pub-bar-sep"></span>
+    <span class="pub-bar-meta">2026</span>
+  </div>
+</nav>
+
+<div class="daily-head">
+  <div class="daily-edition">Shipped. Daily</div>
+  <div class="daily-masthead">Shipped<span class="dot">.</span></div>
+  <div class="daily-dateline">Tuesday, July 1, 2026</div>
+  <p class="daily-oneliner">Fable 5 returns globally after 19 days of export control. Claude Science opens in beta for researchers. Project Glasswing adds 150 orgs. Claude Code v2.1.198 ships Claude in Chrome as GA.</p>
+</div>
+
+<div class="daily-lead">
+  <div class="daily-lead-kicker">Lead</div>
+  <div class="daily-lead-prose">
+    <p>Fable 5 came back today.</p>
+    <p>Anthropic redeployed it globally starting July 1 across Claude.ai, the Claude Platform, Claude Code, and Claude Cowork, after the US lifted the export restrictions imposed June 12. Pro, Max, Team, and select Enterprise plans get it within weekly usage limits, capped at 50% through July 7. After that, usage credits.</p>
+    <p>Nineteen days off the shelf. The controls went on without ceremony. They came off the same way.</p>
+  </div>
+</div>
+
+<section class="log-divider" id="log">
+  <div class="log-divider-kicker">Anthropic daily sweep, July 1, 2026</div>
+  <h2 class="log-divider-title">Release <em>Log</em></h2>
+  <p class="log-divider-sub">Confirmed releases with primary source URLs. Sourced from anthropic.com, official GitHub releases.</p>
+</section>
+
+<section class="log-section">
+  <div class="log-cat-head">
+    <div>
+      <span class="log-cat-name">News</span>
+    </div>
+    <div class="log-cat-count"><b>3</b> items</div>
+  </div>
+  <div class="log-entries">
+
+    <div class="log-entry">
+      <div class="log-entry-left">
+        <div class="log-entry-date">Jul 01</div>
+        <span class="log-tag news">NEWS</span>
+      </div>
+      <div>
+        <div class="log-entry-title"><a href="https://www.anthropic.com/news/redeploying-fable-5">Redeploying Claude Fable 5</a></div>
+        <div class="log-entry-body">Claude Fable 5 is available globally as of July 1 across Claude.ai, the Claude Platform, Claude Code, and Claude Cowork. The US reversed the export restrictions imposed June 12. On Pro, Max, Team, and select Enterprise plans, usage counts toward up to 50% of weekly limits through July 7; after that, usage credits apply.</div>
+        <div class="log-entry-why"><b>Why it matters</b>The restrictions lasted 19 days. Frontier AI subject to export control is the new ceiling test for Anthropic's most capable public models.</div>
+      </div>
+    </div>
+
+    <div class="log-entry">
+      <div class="log-entry-left">
+        <div class="log-entry-date">Jun 30</div>
+        <span class="log-tag apps">APPS</span>
+      </div>
+      <div>
+        <div class="log-entry-title"><a href="https://www.anthropic.com/news/claude-science-ai-workbench">Claude Science, an AI workbench for scientists (beta)</a></div>
+        <div class="log-entry-body">A specialized research workbench in beta for Pro, Max, Team, and Enterprise users. A coordinating agent connects to 60+ curated skills and domain connectors pre-configured for genomics, single-cell, proteomics, structural biology, and cheminformatics. Produces auditable artifacts with flexible access to computing resources.</div>
+        <div class="log-entry-how"><b>How to use</b>Access at <a href="https://claude.com/science">claude.com/science</a>. Anthropic is supporting up to 50 AI for Science grant projects with $30,000 in credits each; applications close July 15, with projects running September 1 to December 1.</div>
+      </div>
+    </div>
+
+    <div class="log-entry">
+      <div class="log-entry-left">
+        <div class="log-entry-date">Jul 01</div>
+        <span class="log-tag news">NEWS</span>
+      </div>
+      <div>
+        <div class="log-entry-title"><a href="https://www.anthropic.com/news/expanding-project-glasswing">Expanding Project Glasswing</a></div>
+        <div class="log-entry-body">Project Glasswing adds 150 new organizations across 15+ countries, extending into sectors not well represented in the initial cohort: power, water, healthcare, communications, and hardware. Partners have surfaced more than 10,000 high or critical severity security flaws. Anthropic is proposing a cross-industry jailbreak severity rubric alongside Amazon, Microsoft, and Google, built on four criteria: capability gain, breadth of capability gain, ease of weaponization, and discoverability.</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section class="log-section">
+  <div class="log-cat-head">
+    <div>
+      <span class="log-cat-name">Models</span>
+    </div>
+    <div class="log-cat-count"><b>1</b> item</div>
+  </div>
+  <div class="log-entries">
+
+    <div class="log-entry">
+      <div class="log-entry-left">
+        <div class="log-entry-date">Jun 30</div>
+        <span class="log-tag model">MODEL</span>
+      </div>
+      <div>
+        <div class="log-entry-title"><a href="https://www.anthropic.com/news/claude-sonnet-5">Introducing Claude Sonnet 5</a></div>
+        <div class="log-entry-body">Anthropic's most agentic Sonnet to date. 1M-token context window, 128k max output tokens, significant gains in reasoning, tool use, coding, and knowledge work over Sonnet 4.6. Priority Tier not available. Introductory pricing: $2/$10 per MTok through August 31, 2026, then $3/$15.</div>
+        <div class="log-entry-how"><b>How to use</b>Set <code>model: "claude-sonnet-5-20260630"</code> in the Messages API. Became the default model in Claude Code with v2.1.197 (June 30).</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section class="log-section">
+  <div class="log-cat-head">
+    <div>
+      <span class="log-cat-name">Claude Code</span>
+    </div>
+    <div class="log-cat-count"><b>1</b> item</div>
+  </div>
+  <div class="log-entries">
+
+    <div class="log-entry">
+      <div class="log-entry-left">
+        <div class="log-entry-date">Jul 01</div>
+        <span class="log-tag code">CODE</span>
+      </div>
+      <div>
+        <div class="log-entry-title"><a href="https://github.com/anthropics/claude-code/releases">Claude Code v2.1.198</a></div>
+        <div class="log-entry-body">Claude in Chrome is now generally available. Background agents gain two lifecycle events: <code>agent_needs_input</code> and <code>agent_completed</code>, exposed in the SDK for programmatic monitoring. Background agents now auto-commit, push, and open draft PRs rather than waiting for user input. New <code>/dataviz</code> skill for chart and dashboard design. Focus mode shows subagent activity summaries. Syntax highlighting upgraded to highlight.js 11.</div>
+        <div class="log-entry-how"><b>Key fixes</b>Network drops mid-response with retry backoff. Background classifier over-requesting. Task panels stuck on "Running". Agent teams error handling and reconnection. Various UI fixes in diff panel, markdown tables, and fullscreen mode.</div>
+        <div class="log-entry-how"><b>How to use</b><code>claude update</code> or reinstall to get v2.1.198.</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section class="log-section">
+  <div class="log-cat-head">
+    <div>
+      <span class="log-cat-name">Agent SDKs</span>
+    </div>
+    <div class="log-cat-count"><b>2</b> items</div>
+  </div>
+  <div class="log-entries">
+
+    <div class="log-entry">
+      <div class="log-entry-left">
+        <div class="log-entry-date">Jul 01</div>
+        <span class="log-tag sdk-py">SDK-PY</span>
+      </div>
+      <div>
+        <div class="log-entry-title"><a href="https://github.com/anthropics/anthropic-sdk-python/releases">anthropic-sdk-python v0.115.1</a></div>
+        <div class="log-entry-body">Minor cleanup: removes nonfunctional types that shipped in v0.115.0. The v0.115.0 release (June 30) added Managed Agents event delta streaming, agent overrides, reverse pagination, vault credential injection scoping, and agent and deployment webhook events.</div>
+        <div class="log-entry-how"><b>How to use</b><code>pip install --upgrade anthropic</code></div>
+      </div>
+    </div>
+
+    <div class="log-entry">
+      <div class="log-entry-left">
+        <div class="log-entry-date">Jul 01</div>
+        <span class="log-tag sdk-ts">SDK-TS</span>
+      </div>
+      <div>
+        <div class="log-entry-title"><a href="https://github.com/anthropics/anthropic-sdk-typescript/releases">anthropic-sdk-typescript v0.109.1</a></div>
+        <div class="log-entry-body">Parallel patch to Python v0.115.1. Removes nonfunctional types. The v0.109.0 release (June 30) shipped the same Managed Agents additions as the Python package.</div>
+        <div class="log-entry-how"><b>How to use</b><code>npm install @anthropic-ai/sdk@latest</code></div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<footer class="colophon">
+  <div class="colophon-inner">
+    <div class="colophon-mast">
+      <div class="colophon-word">Shipped<span class="dot">.</span></div>
+      <div class="colophon-tag">A daily sweep of what Anthropic shipped. Published by <a href="https://id8labs.app" style="color:rgba(250,250,247,.7);text-decoration:none;border-bottom:1px solid rgba(250,250,247,.3)">id8Labs</a>.</div>
+    </div>
+    <div class="colophon-body">
+      <div class="colophon-col">
+        <h4>This edition</h4>
+        <p><b>Date</b> Tuesday, July 1, 2026</p>
+        <p><b>Window</b> Past 24 hours ET</p>
+        <p><b>Generated</b> 2026-07-02T01:00:41Z</p>
+        <p><b>Edition type</b> Anthropic Daily</p>
+      </div>
+      <div class="colophon-col">
+        <h4>Sources</h4>
+        <p><a href="https://www.anthropic.com/news/redeploying-fable-5">anthropic.com/news/redeploying-fable-5</a></p>
+        <p><a href="https://www.anthropic.com/news/claude-science-ai-workbench">anthropic.com/news/claude-science-ai-workbench</a></p>
+        <p><a href="https://www.anthropic.com/news/expanding-project-glasswing">anthropic.com/news/expanding-project-glasswing</a></p>
+        <p><a href="https://www.anthropic.com/news/claude-sonnet-5">anthropic.com/news/claude-sonnet-5</a></p>
+        <p><a href="https://github.com/anthropics/claude-code/releases">github.com/anthropics/claude-code/releases</a></p>
+        <p><a href="https://github.com/anthropics/anthropic-sdk-python/releases">github.com/anthropics/anthropic-sdk-python/releases</a></p>
+        <p><a href="https://github.com/anthropics/anthropic-sdk-typescript/releases">github.com/anthropics/anthropic-sdk-typescript/releases</a></p>
+      </div>
+    </div>
+    <div class="colophon-foot">
+      <span>© 2026 <b>id8Labs</b></span>
+      <span>Set in Fraunces and Archivo</span>
+      <span class="hot">Shipped. Daily, July 1, 2026</span>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
