@@ -66,9 +66,9 @@ test('renders Issue 01 with key strings present', async () => {
   assert.match(html, /Mythos Preview/, 'Mythos Preview bar label');
   assert.match(html, /93\.9%/, 'Mythos Preview score');
 
-  // Glasswing investigation header
+  // Glasswing investigation header + consortium prose
   assert.match(html, /Glasswing/, 'Glasswing investigation present');
-  assert.match(html, /Igor Tsyganskiy/, 'Microsoft quote attribution');
+  assert.match(html, /twelve organizations/, 'investigation consortium prose');
 
   // Term of the issue
   assert.match(html, /shadow/i, 'shadow release term present');
