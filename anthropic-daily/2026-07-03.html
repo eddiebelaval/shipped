@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light">
+<title>Shipped. Daily, Thursday, July 3, 2026</title>
+<meta property="og:title" content="Shipped. Daily, Thursday, July 3, 2026">
+<meta property="og:description" content="Claude Code flips the default permission mode to Manual. Both SDKs pre-wire agent memory for July 22.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://eddiebelaval.github.io/shipped/anthropic-daily/2026-07-03.html">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Shipped. Daily, Thursday, July 3, 2026">
+<meta name="twitter:description" content="Claude Code flips the default permission mode to Manual. Both SDKs pre-wire agent memory for July 22.">
+<meta name="description" content="Claude Code flips the default permission mode to Manual. Both SDKs pre-wire agent memory for July 22.">
+<meta name="author" content="Shipped. by id8Labs">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='75' cy='62' r='14' fill='%23FF6B35'/%3E%3Ctext x='10' y='75' font-family='Georgia,serif' font-weight='700' font-size='62' fill='%231a1a1a'%3ES%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;0,9..144,900;1,9..144,300;1,9..144,400;1,9..144,500;1,9..144,700&family=Archivo:wght@300;400;500;600;700;800;900&family=Archivo+Narrow:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{font-size:16px;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;text-rendering:optimizeLegibility}
+body{background:#FAF8F4;color:#0b0b0b;font-family:'Archivo',sans-serif;overflow-x:hidden}
+::selection{background:#FF6B35;color:#fff}
+
+:root{
+  --orange:#FF6B35;
+  --ink:#0b0b0b;
+  --paper:#FAF8F4;
+  --paper-shadow:#f2f0e8;
+  --body:#2a2a2a;
+  --muted:#5a5a5a;
+  --gray:#8a8a8a;
+  --hair:rgba(11,11,11,0.12);
+  --hair-soft:rgba(11,11,11,0.06);
+  --hair-hard:rgba(11,11,11,0.22);
+  --disp:'Fraunces', 'Times New Roman', serif;
+  --sans:'Archivo', system-ui, sans-serif;
+  --narrow:'Archivo Narrow', 'Archivo', sans-serif;
+  --mono:'JetBrains Mono', ui-monospace, monospace;
+}
+
+body::before{
+  content:"";
+  position:fixed;inset:0;pointer-events:none;z-index:1000;opacity:.28;mix-blend-mode:multiply;
+  background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='180' height='180'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' seed='3'/><feColorMatrix values='0 0 0 0 0.02  0 0 0 0 0.02  0 0 0 0 0.02  0 0 0 0.22 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+}
+
+.pub-bar{
+  position:sticky;top:0;z-index:100;
+  background:var(--paper);
+  border-bottom:1px solid var(--hair);
+  padding:0 28px;height:42px;
+  display:flex;align-items:center;justify-content:space-between;
+  font-family:var(--narrow);
+  font-size:11px;font-weight:600;letter-spacing:.22em;
+  text-transform:uppercase;color:var(--ink);
+}
+.pub-bar-left,.pub-bar-right{display:flex;align-items:center;gap:16px}
+.pub-bar-mark{font-family:var(--disp);font-weight:500;font-size:16px;letter-spacing:-.01em;text-transform:none;font-style:italic}
+.pub-bar-mark .dot{color:var(--orange)}
+.pub-bar-sep{width:1px;height:12px;background:var(--hair-hard)}
+.pub-bar-meta{color:var(--muted)}
+.pub-bar-link{color:inherit;text-decoration:none;border-bottom:1px solid currentColor;transition:color .15s ease}
+.pub-bar-link:hover{color:var(--orange)}
+
+.log-section{padding:48px 28px;max-width:1280px;margin:0 auto}
+.log-cat-head{
+  display:grid;grid-template-columns:1fr auto;
+  gap:24px;align-items:baseline;
+  padding-bottom:18px;border-bottom:1px solid var(--ink);margin-bottom:0;
+}
+.log-cat-name{
+  font-family:var(--disp);font-weight:600;font-style:italic;
+  font-variation-settings:"opsz" 96;
+  font-size:clamp(36px,5vw,56px);letter-spacing:-.02em;color:var(--ink);line-height:1;
+}
+.log-cat-count{
+  font-family:var(--narrow);font-size:10px;font-weight:600;letter-spacing:.28em;
+  text-transform:uppercase;color:var(--muted);text-align:right;
+}
+.log-cat-count b{color:var(--ink);font-weight:700;font-size:13px;display:block}
+.log-cat-deck{
+  font-family:var(--disp);font-style:italic;font-weight:400;
+  font-variation-settings:"opsz" 24;
+  font-size:18px;line-height:1.45;color:var(--muted);
+  margin-top:14px;margin-bottom:8px;max-width:760px;letter-spacing:-.005em;
+}
+.log-entries{display:flex;flex-direction:column}
+.log-entry{
+  padding:24px 0;border-bottom:1px solid var(--hair);
+  display:grid;grid-template-columns:120px 1fr;gap:28px;
+}
+.log-entry-left{display:flex;flex-direction:column;gap:8px}
+.log-entry-right{}
+.log-entry-date{
+  font-family:var(--narrow);font-size:10px;font-weight:700;letter-spacing:.22em;
+  text-transform:uppercase;color:var(--ink);font-variant-numeric:tabular-nums;
+}
+.log-tag{
+  font-family:var(--narrow);font-size:9px;font-weight:700;letter-spacing:.22em;
+  text-transform:uppercase;padding:3px 7px;display:inline-block;line-height:1.3;width:fit-content;
+}
+.log-tag.model{background:var(--orange);color:var(--paper)}
+.log-tag.api{background:var(--ink);color:var(--paper)}
+.log-tag.code{background:#3a3a3a;color:var(--paper)}
+.log-tag.apps{background:#5a5a5a;color:var(--paper)}
+.log-tag.sdk-py,.log-tag.sdk-ts{background:var(--paper);color:var(--ink);border:1px solid var(--ink)}
+.log-tag.research,.log-tag.news{background:var(--paper);color:var(--muted);border:1px solid var(--hair-hard)}
+.log-tag.deprecation{background:var(--paper-shadow);color:var(--muted);border:1px solid var(--hair-hard)}
+.log-entry-title{
+  font-family:var(--disp);font-weight:500;font-variation-settings:"opsz" 72;
+  font-size:20px;letter-spacing:-.012em;color:var(--ink);line-height:1.25;margin-bottom:10px;
+}
+.log-entry-title a{color:inherit;text-decoration:none;border-bottom:1px solid var(--hair-hard)}
+.log-entry-title a:hover{border-bottom-color:var(--orange);color:var(--orange)}
+.log-entry-body{
+  font-family:var(--sans);font-size:14.5px;line-height:1.6;color:var(--body);margin-bottom:12px;
+}
+.log-entry-body code{
+  font-family:var(--mono);font-size:.86em;background:var(--paper-shadow);
+  padding:1px 6px;border-radius:3px;color:var(--ink);
+}
+.log-entry-how{
+  font-family:var(--sans);font-size:13.5px;line-height:1.6;color:var(--muted);
+  padding-top:12px;border-top:1px solid var(--hair-soft);
+}
+.log-entry-how b{
+  font-family:var(--narrow);font-size:10px;font-weight:700;letter-spacing:.22em;
+  text-transform:uppercase;color:var(--ink);display:block;margin-bottom:6px;
+}
+.log-entry-why{
+  font-family:var(--disp);font-style:italic;font-size:14px;color:var(--muted);
+  line-height:1.55;margin-top:10px;padding-left:14px;border-left:2px solid var(--orange);
+}
+.log-entry-why b{
+  font-style:normal;font-family:var(--narrow);font-size:10px;font-weight:700;
+  letter-spacing:.22em;text-transform:uppercase;color:var(--orange);display:block;margin-bottom:4px;
+}
+
+@media(max-width:720px){
+  .log-entry{grid-template-columns:1fr;gap:12px}
+  .log-cat-head{grid-template-columns:auto 1fr}
+  .log-cat-count{grid-column:1 / -1;text-align:left;padding-top:8px;border-top:1px solid var(--hair)}
+}
+
+/* Daily-specific */
+.d-header{
+  padding:48px 28px 40px;
+  max-width:1280px;margin:0 auto;
+  border-bottom:1px solid var(--ink);
+}
+.d-kicker{
+  font-family:var(--narrow);font-size:10px;font-weight:600;letter-spacing:.32em;
+  text-transform:uppercase;color:var(--orange);margin-bottom:16px;
+}
+.d-mast{
+  font-family:var(--disp);font-style:italic;font-weight:500;
+  font-size:clamp(72px,12vw,140px);line-height:.88;letter-spacing:-.04em;
+  color:var(--ink);margin-bottom:24px;
+}
+.d-mast .dot{color:var(--orange)}
+.d-date{
+  font-family:var(--narrow);font-size:11px;font-weight:600;letter-spacing:.28em;
+  text-transform:uppercase;color:var(--muted);
+  padding-bottom:20px;border-bottom:1px solid var(--hair-hard);margin-bottom:24px;
+}
+.d-read{
+  font-family:var(--disp);font-style:italic;
+  font-size:clamp(20px,2.8vw,30px);line-height:1.35;letter-spacing:-.01em;
+  color:var(--body);max-width:720px;
+}
+.d-lead{
+  padding:48px 28px;max-width:1280px;margin:0 auto;
+}
+.d-lead-label{
+  font-family:var(--narrow);font-size:10px;font-weight:700;letter-spacing:.32em;
+  text-transform:uppercase;color:var(--orange);margin-bottom:20px;
+}
+.d-lead-body{
+  font-family:var(--disp);font-variation-settings:"opsz" 14;
+  font-size:18px;line-height:1.68;color:var(--body);max-width:640px;
+}
+.d-lead-body p{margin-bottom:22px}
+.d-lead-body p:last-child{margin-bottom:0}
+.d-lead-body code{
+  font-family:var(--mono);font-size:.86em;background:var(--paper-shadow);
+  padding:1px 6px;border-radius:3px;color:var(--ink);
+}
+.d-log-divider{
+  padding:56px 28px 32px;max-width:1280px;margin:0 auto;
+  border-top:3px double var(--ink);text-align:center;
+}
+.d-log-divider-kicker{
+  font-family:var(--narrow);font-size:11px;font-weight:700;letter-spacing:.48em;
+  text-transform:uppercase;color:var(--orange);margin-bottom:10px;
+}
+.d-log-divider-title{
+  font-family:var(--disp);font-weight:700;font-variation-settings:"opsz" 144;
+  font-size:clamp(48px,8vw,96px);line-height:.9;letter-spacing:-.045em;color:var(--ink);
+}
+.d-log-divider-title em{font-style:italic;font-weight:400}
+.d-footer{
+  background:var(--ink);color:var(--paper);
+  padding:48px 28px 64px;border-top:2px solid var(--orange);
+  margin-top:64px;
+}
+.d-footer-inner{max-width:1280px;margin:0 auto}
+.d-footer-ts{
+  font-family:var(--narrow);font-size:10px;font-weight:600;letter-spacing:.28em;
+  text-transform:uppercase;color:rgba(250,250,247,.5);margin-bottom:24px;
+}
+.d-footer-sources-label{
+  font-family:var(--narrow);font-size:10px;font-weight:700;letter-spacing:.32em;
+  text-transform:uppercase;color:var(--orange);margin-bottom:10px;
+}
+.d-footer-sources{
+  font-family:var(--sans);font-size:13px;line-height:1.9;
+  color:rgba(250,250,247,.7);margin-bottom:40px;
+}
+.d-footer-sources a{
+  color:rgba(250,250,247,.7);text-decoration:none;
+  border-bottom:1px solid rgba(250,250,247,.3);
+}
+.d-footer-sources a:hover{color:var(--orange);border-bottom-color:var(--orange)}
+.d-footer-mark{
+  font-family:var(--disp);font-style:italic;font-weight:500;
+  font-size:48px;letter-spacing:-.04em;color:rgba(250,250,247,.25);margin-top:32px;
+}
+.d-footer-mark .dot{color:var(--orange);opacity:.7}
+</style>
+</head>
+<body>
+
+<nav class="pub-bar">
+  <div class="pub-bar-left">
+    <span class="pub-bar-mark">Shipped<span class="dot">.</span></span>
+    <span class="pub-bar-sep"></span>
+    <span class="pub-bar-meta">Daily by <a href="https://id8labs.app" class="pub-bar-link">id8Labs</a></span>
+  </div>
+  <div class="pub-bar-right">
+    <span class="pub-bar-meta">Thursday, July 3, 2026</span>
+    <span class="pub-bar-sep"></span>
+    <span class="pub-bar-meta">Anthropic</span>
+  </div>
+</nav>
+
+<header class="d-header">
+  <div class="d-kicker">Anthropic Daily</div>
+  <div class="d-mast">Shipped<span class="dot">.</span></div>
+  <div class="d-date">Thursday, July 3, 2026</div>
+  <p class="d-read">Claude Code flips the default permission mode to Manual. Both SDKs pre-wire an agent-memory beta header dated July 22.</p>
+</header>
+
+<section class="d-lead">
+  <div class="d-lead-label">Lead</div>
+  <div class="d-lead-body">
+    <p>Claude Code v2.1.200, shipping July 3 at 16:52 UTC, moves the default permission mode to Manual across CLI, VS Code, and JetBrains. Claude now stops and asks before acting, where it previously did not. The companion change lands in the same build: <code>AskUserQuestion</code> dialogs no longer auto-continue. The idle timeout is opt-in, via <code>/config</code>. Eight additional fixes cover background session stability after sleep/wake, daemon handover, rate-limited subagents, and tmux 3.4+ rendering flicker.</p>
+    <p>v2.1.201 followed at 23:50 UTC with a single item: Sonnet 5 sessions no longer inject mid-conversation system role messages for harness reminders. v2.1.199, shipping the previous day at 23:35 UTC, added stacked slash-skill invocations (up to five in one call) and resolved several streaming and background-agent reliability issues.</p>
+    <p>Both SDKs shipped July 2 with one addition each: the <code>agent-memory-2026-07-22</code> beta header. The date embedded in that string is July 22, 2026. Something is landing in three weeks.</p>
+  </div>
+</section>
+
+<div class="d-log-divider">
+  <div class="d-log-divider-kicker">Release Log</div>
+  <div class="d-log-divider-title">The <em>Daily</em> Log</div>
+</div>
+
+<section class="log-section">
+  <div class="log-cat-head">
+    <div class="log-cat-name">Claude Code</div>
+    <div class="log-cat-count"><b>3</b>releases today</div>
+  </div>
+  <div class="log-cat-deck">Three builds in the window. v2.1.200 is the architectural one.</div>
+  <div class="log-entries">
+
+    <div class="log-entry">
+      <div class="log-entry-left">
+        <div class="log-entry-date">Jul 03</div>
+        <span class="log-tag code">CODE</span>
+      </div>
+      <div class="log-entry-right">
+        <div class="log-entry-title">
+          <a href="https://github.com/anthropics/claude-code/releases">Claude Code v2.1.201</a>
+        </div>
+        <div class="log-entry-body">
+          Claude Sonnet 5 sessions no longer use the mid-conversation system role for harness reminders.
+        </div>
+      </div>
+    </div>
+
+    <div class="log-entry">
+      <div class="log-entry-left">
+        <div class="log-entry-date">Jul 03</div>
+        <span class="log-tag code">CODE</span>
+      </div>
+      <div class="log-entry-right">
+        <div class="log-entry-title">
+          <a href="https://github.com/anthropics/claude-code/releases">Claude Code v2.1.200</a>
+        </div>
+        <div class="log-entry-body">
+          Default permission mode changed to "Manual" across CLI, VS Code, and JetBrains. <code>AskUserQuestion</code> dialogs no longer auto-continue by default; opt in via <code>/config</code>. Eight bug fixes: background sessions no longer silently stop after sleep/wake; background-agent daemon handover and roster issues resolved; subagents cut off by rate limits fixed; tmux 3.4+ rendering flicker fixed; startup crash on non-array <code>disabledMcpServers</code>/<code>enabledMcpServers</code> fixed; screen-reader output and install script messaging improved.
+        </div>
+        <div class="log-entry-how">
+          <b>How to use</b>
+          Update Claude Code. Manual mode takes effect immediately on update. To restore idle auto-continue, run <code>/config</code> and enable the timeout option.
+        </div>
+      </div>
+    </div>
+
+    <div class="log-entry">
+      <div class="log-entry-left">
+        <div class="log-entry-date">Jul 02</div>
+        <span class="log-tag code">CODE</span>
+      </div>
+      <div class="log-entry-right">
+        <div class="log-entry-title">
+          <a href="https://github.com/anthropics/claude-code/releases">Claude Code v2.1.199</a>
+        </div>
+        <div class="log-entry-body">
+          Stacked slash-skill invocations: <code>/skill-a /skill-b do XYZ</code> now loads all leading skills (up to 5). SSL certificate errors now fail immediately with fix hints instead of burning retries. Streaming responses no longer discard partial output on mid-stream errors. Background-agent daemon corruption on Linux fixed. macOS SSH background agent sessions ("Could not switch to audit session") fixed. <code>claude stop</code> no longer undone by background-agent respawn. Background job progress indicators no longer stall. Session transcript file corruption and growth issues resolved.
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section class="log-section" style="border-top:1px solid var(--hair)">
+  <div class="log-cat-head">
+    <div class="log-cat-name">Agent SDKs</div>
+    <div class="log-cat-count"><b>2</b>releases</div>
+  </div>
+  <div class="log-cat-deck">Python and TypeScript in lockstep, same addition: the agent-memory beta header dated July 22.</div>
+  <div class="log-entries">
+
+    <div class="log-entry">
+      <div class="log-entry-left">
+        <div class="log-entry-date">Jul 02</div>
+        <span class="log-tag sdk-py">SDK-PY</span>
+      </div>
+      <div class="log-entry-right">
+        <div class="log-entry-title">
+          <a href="https://github.com/anthropics/anthropic-sdk-python/releases">anthropic-sdk-python v0.116.0</a>
+        </div>
+        <div class="log-entry-body">
+          Added <code>agent-memory-2026-07-22</code> beta header support.
+        </div>
+        <div class="log-entry-why">
+          <b>Why it matters</b>
+          The date in that header string is July 22, 2026. Agent memory as a platform feature appears to be three weeks out. Watch the docs and the Python changelog for the formal announcement.
+        </div>
+      </div>
+    </div>
+
+    <div class="log-entry">
+      <div class="log-entry-left">
+        <div class="log-entry-date">Jul 02</div>
+        <span class="log-tag sdk-ts">SDK-TS</span>
+      </div>
+      <div class="log-entry-right">
+        <div class="log-entry-title">
+          <a href="https://github.com/anthropics/anthropic-sdk-typescript/releases">anthropic-sdk-typescript v0.110.0</a>
+        </div>
+        <div class="log-entry-body">
+          Added <code>agent-memory-2026-07-22</code> beta header support.
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<footer class="d-footer">
+  <div class="d-footer-inner">
+    <div class="d-footer-ts">Generated 2026-07-04T01:00:26Z</div>
+    <div class="d-footer-sources-label">Sources</div>
+    <div class="d-footer-sources">
+      <a href="https://github.com/anthropics/claude-code/releases">github.com/anthropics/claude-code/releases</a><br>
+      <a href="https://github.com/anthropics/anthropic-sdk-python/releases">github.com/anthropics/anthropic-sdk-python/releases</a><br>
+      <a href="https://github.com/anthropics/anthropic-sdk-typescript/releases">github.com/anthropics/anthropic-sdk-typescript/releases</a>
+    </div>
+    <div class="d-footer-mark">Shipped<span class="dot">.</span></div>
+  </div>
+</footer>
+
+</body>
+</html>
