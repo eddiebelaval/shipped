@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light">
+<title>Shipped. Daily, Saturday, July 05, 2026</title>
+<meta property="og:title" content="Shipped. Daily, Saturday, July 05, 2026">
+<meta property="og:description" content="The wire is quiet. US Independence Day weekend, and nothing new from Anthropic in the past 24 hours.">
+<meta property="og:type" content="article">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Shipped. Daily, Saturday, July 05, 2026">
+<meta name="twitter:description" content="The wire is quiet. US Independence Day weekend, and nothing new from Anthropic in the past 24 hours.">
+<meta name="description" content="The wire is quiet. US Independence Day weekend, and nothing new from Anthropic in the past 24 hours.">
+<meta name="author" content="Shipped. by id8Labs">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='75' cy='62' r='14' fill='%23FF6B35'/%3E%3Ctext x='10' y='75' font-family='Georgia,serif' font-weight='700' font-size='62' fill='%231a1a1a'%3ES%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;0,9..144,900;1,9..144,300;1,9..144,400;1,9..144,500;1,9..144,700&family=Archivo:wght@300;400;500;600;700;800;900&family=Archivo+Narrow:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{font-size:16px;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;text-rendering:optimizeLegibility}
+body{background:#FAF8F4;color:#0b0b0b;font-family:'Archivo',sans-serif;overflow-x:hidden}
+::selection{background:#FF6B35;color:#fff}
+
+:root{
+  --orange:#FF6B35;
+  --ink:#0b0b0b;
+  --paper:#FAF8F4;
+  --paper-shadow:#f2f0e8;
+  --body:#2a2a2a;
+  --muted:#5a5a5a;
+  --gray:#8a8a8a;
+  --hair:rgba(11,11,11,0.12);
+  --hair-soft:rgba(11,11,11,0.06);
+  --hair-hard:rgba(11,11,11,0.22);
+  --disp:'Fraunces', 'Times New Roman', serif;
+  --sans:'Archivo', system-ui, sans-serif;
+  --narrow:'Archivo Narrow', 'Archivo', sans-serif;
+  --mono:'JetBrains Mono', ui-monospace, monospace;
+}
+
+body::before{
+  content:"";
+  position:fixed;inset:0;pointer-events:none;z-index:1000;opacity:.28;mix-blend-mode:multiply;
+  background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='180' height='180'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' seed='3'/><feColorMatrix values='0 0 0 0 0.02  0 0 0 0 0.02  0 0 0 0 0.02  0 0 0 0.22 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+}
+
+.pub-bar{
+  position:sticky;top:0;z-index:100;
+  background:var(--paper);
+  border-bottom:1px solid var(--hair);
+  padding:0 28px;height:42px;
+  display:flex;align-items:center;justify-content:space-between;
+  font-family:var(--narrow);
+  font-size:11px;font-weight:600;letter-spacing:.22em;
+  text-transform:uppercase;color:var(--ink);
+}
+.pub-bar-left,.pub-bar-right{display:flex;align-items:center;gap:16px}
+.pub-bar-mark{font-family:var(--disp);font-weight:500;font-size:16px;letter-spacing:-.01em;text-transform:none;font-style:italic}
+.pub-bar-mark .dot{color:var(--orange)}
+.pub-bar-sep{width:1px;height:12px;background:var(--hair-hard)}
+.pub-bar-meta{color:var(--muted)}
+.pub-bar-link{color:inherit;text-decoration:none;border-bottom:1px solid currentColor;transition:color .15s ease}
+.pub-bar-link:hover{color:var(--orange)}
+.pub-bar-folio{color:var(--ink)}
+.pub-bar-folio b{font-weight:600;color:var(--orange)}
+
+/* Daily masthead */
+.daily-header{
+  border-bottom:2px solid var(--ink);
+  padding:56px 28px 48px;
+  max-width:1280px;
+  margin:0 auto;
+}
+.daily-kicker{
+  font-family:var(--narrow);
+  font-size:10px;font-weight:700;letter-spacing:.38em;
+  text-transform:uppercase;color:var(--orange);
+  margin-bottom:20px;
+}
+.daily-masthead{
+  display:flex;align-items:flex-end;gap:0;
+  margin-bottom:10px;
+}
+.daily-shipped{
+  font-family:var(--disp);
+  font-weight:500;
+  font-style:italic;
+  font-variation-settings:"opsz" 144;
+  font-size:clamp(64px, 12vw, 144px);
+  line-height:.9;
+  letter-spacing:-.04em;
+  color:var(--ink);
+}
+.daily-dot{
+  color:var(--orange);
+}
+.daily-label{
+  font-family:var(--narrow);
+  font-size:clamp(18px, 3vw, 28px);
+  font-weight:600;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+  color:var(--muted);
+  padding-bottom:6px;
+  padding-left:14px;
+  align-self:flex-end;
+}
+.daily-dateline{
+  font-family:var(--narrow);
+  font-size:11px;font-weight:600;letter-spacing:.28em;
+  text-transform:uppercase;color:var(--muted);
+  margin-bottom:28px;
+  padding-top:8px;
+  border-top:1px solid var(--hair);
+}
+.daily-oneliner{
+  font-family:var(--disp);
+  font-style:italic;
+  font-weight:400;
+  font-variation-settings:"opsz" 72;
+  font-size:clamp(20px, 3vw, 32px);
+  line-height:1.25;
+  letter-spacing:-.012em;
+  color:var(--body);
+  max-width:760px;
+}
+
+/* Quiet section */
+.quiet-wrap{
+  max-width:1280px;
+  margin:0 auto;
+  padding:64px 28px 80px;
+  display:grid;
+  grid-template-columns:240px 1fr;
+  gap:48px;
+}
+.quiet-label-col{
+  padding-top:4px;
+}
+.quiet-area-tag{
+  display:inline-block;
+  font-family:var(--narrow);
+  font-size:10px;font-weight:700;letter-spacing:.28em;
+  text-transform:uppercase;
+  color:var(--orange);
+  border-top:2px solid var(--orange);
+  padding-top:10px;
+  margin-bottom:16px;
+}
+.quiet-section-title{
+  font-family:var(--disp);
+  font-style:italic;
+  font-weight:400;
+  font-variation-settings:"opsz" 72;
+  font-size:clamp(28px, 4vw, 40px);
+  line-height:1;
+  letter-spacing:-.02em;
+  color:var(--ink);
+}
+.quiet-body-col{
+  font-family:var(--disp);
+  font-variation-settings:"opsz" 14;
+  font-weight:400;
+  font-size:18px;
+  line-height:1.68;
+  color:var(--body);
+  border-left:1px solid var(--ink);
+  padding-left:40px;
+}
+.quiet-body-col p{
+  margin-bottom:22px;
+}
+.quiet-body-col p:last-child{margin-bottom:0}
+
+/* Source footer */
+.daily-foot{
+  background:var(--paper-shadow);
+  border-top:1px solid var(--hair);
+  padding:48px 28px 56px;
+}
+.daily-foot-inner{
+  max-width:1280px;
+  margin:0 auto;
+  display:grid;
+  grid-template-columns:auto 1fr;
+  gap:40px;
+  align-items:start;
+}
+.daily-foot-mark{
+  font-family:var(--disp);
+  font-weight:500;
+  font-style:italic;
+  font-variation-settings:"opsz" 144;
+  font-size:64px;
+  line-height:.9;
+  letter-spacing:-.04em;
+  color:var(--ink);
+}
+.daily-foot-mark .dot{color:var(--orange)}
+.daily-foot-meta{
+  padding-top:6px;
+}
+.daily-foot-meta h4{
+  font-family:var(--narrow);
+  font-size:10px;font-weight:700;letter-spacing:.32em;
+  text-transform:uppercase;color:var(--orange);
+  margin-bottom:10px;
+  padding-bottom:8px;
+  border-bottom:1px solid var(--hair-hard);
+}
+.daily-foot-meta p{
+  font-family:var(--sans);
+  font-size:12px;
+  line-height:1.65;
+  color:var(--muted);
+  margin-bottom:6px;
+}
+.daily-foot-meta p b{color:var(--ink);font-weight:600}
+.daily-foot-sources{
+  margin-top:16px;
+  font-family:var(--mono);
+  font-size:11px;
+  line-height:1.6;
+  color:var(--gray);
+}
+.daily-foot-sources a{
+  color:var(--muted);
+  text-decoration:none;
+  border-bottom:1px solid var(--hair-hard);
+}
+.daily-foot-sources a:hover{color:var(--orange)}
+
+@media(max-width:860px){
+  .quiet-wrap{grid-template-columns:1fr;gap:24px}
+  .quiet-body-col{border-left:none;padding-left:0;border-top:1px solid var(--ink);padding-top:24px}
+  .daily-foot-inner{grid-template-columns:1fr}
+  .daily-foot-mark{font-size:48px}
+}
+@media(max-width:520px){
+  .daily-header{padding:40px 20px 36px}
+  .quiet-wrap{padding:40px 20px 56px}
+  .daily-foot{padding:36px 20px 48px}
+}
+</style>
+</head>
+<body>
+
+<nav class="pub-bar">
+  <div class="pub-bar-left">
+    <span class="pub-bar-mark">Shipped<span class="dot">.</span></span>
+    <span class="pub-bar-sep"></span>
+    <span class="pub-bar-meta">Daily by <a href="https://id8labs.app" class="pub-bar-link">id8Labs</a></span>
+  </div>
+  <div class="pub-bar-right">
+    <span class="pub-bar-folio"><b>Saturday</b></span>
+    <span class="pub-bar-sep"></span>
+    <span class="pub-bar-meta">July 05, 2026</span>
+  </div>
+</nav>
+
+<header class="daily-header">
+  <div class="daily-kicker">Anthropic Daily</div>
+  <div class="daily-masthead">
+    <span class="daily-shipped">Shipped<span class="daily-dot">.</span></span>
+    <span class="daily-label">Daily</span>
+  </div>
+  <div class="daily-dateline">Saturday, July 05, 2026 &nbsp;·&nbsp; 24-hour window: July 04 to July 05, 2026</div>
+  <p class="daily-oneliner">The wire is quiet. US Independence Day weekend, and nothing new from Anthropic in the past 24 hours.</p>
+</header>
+
+<div class="quiet-wrap">
+  <div class="quiet-label-col">
+    <div class="quiet-area-tag">Quiet on the Wire</div>
+    <div class="quiet-section-title">July 4 to 5</div>
+  </div>
+  <div class="quiet-body-col">
+    <p>Saturday, July 5. The trailing edge of Independence Day weekend.</p>
+    <p>Nothing shipped in the past 24 hours from Anthropic's news desk, release-notes feeds, or SDK repositories. The July 4 federal holiday fell squarely inside the window, and the Saturday either side of it was quiet.</p>
+    <p>The 72 hours before the window were heavy: Claude Sonnet 5 landed June 30, Fable 5 returned globally July 1, and Claude Code ran four point releases between June 30 and July 3 (v2.1.197 to v2.1.201), capping with Manual as the new default permission mode and AskUserQuestion dialogs that no longer auto-continue. Then the weekend settled in.</p>
+    <p>The next cycle starts Monday.</p>
+  </div>
+</div>
+
+<footer class="daily-foot">
+  <div class="daily-foot-inner">
+    <div class="daily-foot-mark">Shipped<span class="dot">.</span></div>
+    <div class="daily-foot-meta">
+      <h4>Generation Record</h4>
+      <p><b>Generated:</b> 2026-07-06T01:00:27Z</p>
+      <p><b>Window:</b> July 04, 2026 21:00 ET to July 05, 2026 21:00 ET (UTC: July 05, 01:00 to July 06, 01:00)</p>
+      <p><b>Result:</b> No confirmed in-window releases. Wire is quiet.</p>
+      <div class="daily-foot-sources">
+        Sources checked (no in-window items confirmed):<br>
+        <a href="https://www.anthropic.com/news">anthropic.com/news</a> &nbsp;·&nbsp;
+        <a href="https://docs.anthropic.com/en/release-notes/api">docs.anthropic.com/en/release-notes/api</a> &nbsp;·&nbsp;
+        <a href="https://docs.anthropic.com/en/release-notes/claude-apps">release-notes/claude-apps</a> &nbsp;·&nbsp;
+        <a href="https://docs.anthropic.com/en/release-notes/claude-code">release-notes/claude-code</a> &nbsp;·&nbsp;
+        <a href="https://docs.anthropic.com/en/release-notes/system-prompts">release-notes/system-prompts</a> &nbsp;·&nbsp;
+        <a href="https://www.anthropic.com/research">anthropic.com/research</a> &nbsp;·&nbsp;
+        <a href="https://github.com/anthropics/anthropic-sdk-python/releases">anthropic-sdk-python/releases</a> &nbsp;·&nbsp;
+        <a href="https://github.com/anthropics/anthropic-sdk-typescript/releases">anthropic-sdk-typescript/releases</a> &nbsp;·&nbsp;
+        <a href="https://github.com/anthropics/claude-code/blob/main/CHANGELOG.md">claude-code/CHANGELOG.md</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
