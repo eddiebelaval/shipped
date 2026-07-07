@@ -1,0 +1,891 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light">
+<title>Shipped. Daily, Tuesday, July 07, 2026</title>
+<meta property="og:title" content="Shipped. Daily, Tuesday, July 07, 2026">
+<meta property="og:description" content="SpaceXAI completes its rebrand, OpenAI ships voice API updates, Anthropic publishes global workspace interpretability research, and Claude Code v2.1.202 patches 15-plus bugs.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://eddiebelaval.github.io/shipped/anthropic-daily/2026-07-07.html">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Shipped. Daily, Tuesday, July 07, 2026">
+<meta name="twitter:description" content="SpaceXAI completes its rebrand. OpenAI ships voice API infrastructure. Anthropic publishes interpretability research on how models reason.">
+<meta name="description" content="SpaceXAI completes its rebrand, OpenAI ships voice API updates, Anthropic publishes global workspace interpretability research, and Claude Code v2.1.202 patches 15-plus bugs.">
+<meta name="author" content="Eddie Belaval">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='75' cy='62' r='14' fill='%23FF6B35'/%3E%3Ctext x='10' y='75' font-family='Georgia,serif' font-weight='700' font-size='62' fill='%231a1a1a'%3ES%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;0,9..144,900;1,9..144,300;1,9..144,400;1,9..144,500;1,9..144,700&family=Archivo:wght@300;400;500;600;700;800;900&family=Archivo+Narrow:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{font-size:16px;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;text-rendering:optimizeLegibility}
+body{background:#FAF8F4;color:#0b0b0b;font-family:'Archivo',sans-serif;overflow-x:hidden}
+::selection{background:#FF6B35;color:#fff}
+
+:root{
+  --orange:#FF6B35;
+  --ink:#0b0b0b;
+  --paper:#FAF8F4;
+  --paper-shadow:#f2f0e8;
+  --body:#2a2a2a;
+  --muted:#5a5a5a;
+  --gray:#8a8a8a;
+  --hair:rgba(11,11,11,0.12);
+  --hair-soft:rgba(11,11,11,0.06);
+  --hair-hard:rgba(11,11,11,0.22);
+  --disp:'Fraunces', 'Times New Roman', serif;
+  --sans:'Archivo', system-ui, sans-serif;
+  --narrow:'Archivo Narrow', 'Archivo', sans-serif;
+  --mono:'JetBrains Mono', ui-monospace, monospace;
+}
+
+body::before{
+  content:"";
+  position:fixed;inset:0;pointer-events:none;z-index:1000;opacity:.28;mix-blend-mode:multiply;
+  background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='180' height='180'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' seed='3'/><feColorMatrix values='0 0 0 0 0.02  0 0 0 0 0.02  0 0 0 0 0.02  0 0 0 0.22 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+}
+
+.pub-bar{
+  position:sticky;top:0;z-index:100;
+  background:var(--paper);
+  border-bottom:1px solid var(--hair);
+  padding:0 28px;height:42px;
+  display:flex;align-items:center;justify-content:space-between;
+  font-family:var(--narrow);
+  font-size:11px;font-weight:600;letter-spacing:.22em;
+  text-transform:uppercase;color:var(--ink);
+}
+.pub-bar-left,.pub-bar-right{display:flex;align-items:center;gap:16px}
+.pub-bar-mark{font-family:var(--disp);font-weight:500;font-size:16px;letter-spacing:-.01em;text-transform:none;font-style:italic}
+.pub-bar-mark .dot{color:var(--orange)}
+.pub-bar-sep{width:1px;height:12px;background:var(--hair-hard)}
+.pub-bar-meta{color:var(--muted)}
+.pub-bar-link{color:inherit;text-decoration:none;border-bottom:1px solid currentColor;transition:color .15s ease}
+.pub-bar-link:hover{color:var(--orange)}
+.pub-bar-folio{color:var(--ink)}
+.pub-bar-folio b{font-weight:600;color:var(--orange)}
+
+.section{
+  position:relative;
+  padding:64px 28px 40px;
+  max-width:1280px;margin:0 auto;
+}
+.section-folio{
+  display:flex;align-items:center;justify-content:space-between;
+  padding-bottom:18px;
+  border-bottom:1px solid var(--ink);
+  margin-bottom:44px;
+}
+.section-folio-left{display:flex;align-items:center;gap:14px}
+.section-folio-label{
+  font-family:var(--narrow);
+  font-size:11px;font-weight:700;letter-spacing:.28em;
+  text-transform:uppercase;color:var(--ink);
+}
+.section-folio-sub{
+  font-family:var(--disp);font-style:italic;
+  font-size:13px;color:var(--muted);
+}
+
+.prose-well{
+  max-width:1280px;margin:0 auto;padding:0 28px 56px;
+  display:grid;grid-template-columns:72px 1fr minmax(0,320px);
+  gap:32px;position:relative;
+}
+.prose-well::before{
+  content:"";position:absolute;left:100px;top:0;bottom:0;
+  width:1px;background:var(--hair);
+}
+.prose-marginalia{
+  grid-column:1;
+  font-family:var(--narrow);
+  font-size:10px;font-weight:600;letter-spacing:.26em;
+  text-transform:uppercase;color:var(--gray);
+  writing-mode:vertical-rl;transform:rotate(180deg);
+  align-self:start;padding-top:8px;
+  white-space:nowrap;
+}
+.prose{
+  grid-column:2;
+  font-family:var(--disp);
+  font-variation-settings:"opsz" 14;
+  font-weight:400;font-size:19px;line-height:1.66;
+  color:var(--body);
+  max-width:640px;
+}
+.prose p{margin-bottom:24px}
+.prose em{font-style:italic;color:var(--ink)}
+.prose strong{font-weight:600;color:var(--ink)}
+.prose a{color:var(--ink);text-decoration:none;border-bottom:1px solid var(--hair-hard)}
+.prose a:hover{border-bottom-color:var(--orange);color:var(--orange)}
+.prose code{
+  font-family:var(--mono);font-size:.86em;
+  background:var(--paper-shadow);padding:1px 6px;
+  border-radius:3px;color:var(--ink);
+}
+.prose-aside{
+  grid-column:3;
+  font-family:var(--narrow);
+  font-size:11px;font-weight:500;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--muted);
+  border-top:1px solid var(--ink);padding-top:14px;
+  line-height:1.8;
+}
+.prose-aside b{color:var(--ink);font-weight:700}
+
+.drop-cap::first-letter{
+  font-family:var(--disp);
+  font-variation-settings:"opsz" 144;
+  font-weight:700;
+  font-size:9.2em;
+  float:left;line-height:.78;
+  padding:.02em 12px 0 0;
+  margin:.02em 4px -.1em -2px;
+  color:var(--ink);
+}
+
+@media(max-width:860px){
+  .prose-well{grid-template-columns:1fr;padding-left:20px;padding-right:20px}
+  .prose-well::before{display:none}
+  .prose-marginalia{display:none}
+  .prose{grid-column:1}
+  .prose-aside{grid-column:1;margin-top:20px}
+  .drop-cap::first-letter{font-size:6.6em}
+}
+
+.quiet-section{
+  max-width:1280px;margin:0 auto;padding:64px 28px 24px;
+  display:grid;grid-template-columns:repeat(12,1fr);gap:24px;
+}
+.quiet-head{grid-column:1 / span 3;}
+.quiet-title{
+  font-family:var(--disp);font-style:italic;font-weight:400;
+  font-variation-settings:"opsz" 72;
+  font-size:32px;line-height:1;letter-spacing:-.02em;
+  color:var(--ink);
+}
+.quiet-title em{color:var(--orange);font-style:normal;font-weight:500}
+.quiet-kicker{
+  font-family:var(--narrow);
+  font-size:10px;font-weight:700;letter-spacing:.32em;
+  text-transform:uppercase;color:var(--muted);
+  margin-bottom:10px;
+}
+.quiet-body{
+  grid-column:5 / -1;
+  font-family:var(--disp);font-size:17px;line-height:1.65;color:var(--body);
+  padding-left:24px;border-left:1px solid var(--ink);
+}
+.quiet-body p{margin-bottom:16px}
+.quiet-body strong{font-weight:600;color:var(--ink)}
+@media(max-width:860px){
+  .quiet-head,.quiet-body{grid-column:1 / -1}
+  .quiet-body{padding-left:0;border-left:none;border-top:1px solid var(--ink);padding-top:18px}
+}
+
+.log-divider{
+  background:var(--paper);
+  padding:96px 28px 48px;
+  text-align:center;
+  border-top:3px double var(--ink);
+  border-bottom:1px solid var(--ink);
+  max-width:1280px;margin:0 auto;
+}
+.log-divider-kicker{
+  font-family:var(--narrow);
+  font-size:11px;font-weight:700;letter-spacing:.48em;
+  text-transform:uppercase;color:var(--orange);
+  margin-bottom:14px;
+}
+.log-divider-title{
+  font-family:var(--disp);font-weight:700;
+  font-variation-settings:"opsz" 144;
+  font-size:clamp(56px,10vw,144px);
+  line-height:.9;letter-spacing:-.045em;color:var(--ink);
+  margin-bottom:16px;
+}
+.log-divider-title em{font-style:italic;font-weight:400}
+.log-divider-sub{
+  font-family:var(--disp);font-style:italic;
+  font-size:18px;color:var(--muted);max-width:640px;margin:0 auto;line-height:1.5;
+}
+
+.log-section{padding:48px 28px;max-width:1280px;margin:0 auto;}
+.log-cat-head{
+  display:grid;grid-template-columns:1fr auto;
+  gap:24px;align-items:baseline;
+  padding-bottom:18px;border-bottom:1px solid var(--ink);margin-bottom:0;
+}
+.log-cat-name{
+  font-family:var(--disp);font-weight:600;font-style:italic;
+  font-variation-settings:"opsz" 96;
+  font-size:clamp(28px,4vw,48px);letter-spacing:-.02em;color:var(--ink);line-height:1;
+}
+.log-cat-count{
+  font-family:var(--narrow);font-size:10px;font-weight:600;letter-spacing:.28em;
+  text-transform:uppercase;color:var(--muted);text-align:right;
+}
+.log-cat-count b{color:var(--ink);font-weight:700;font-size:13px;display:block}
+.log-entries{display:flex;flex-direction:column}
+.log-entry{
+  padding:24px 0;border-bottom:1px solid var(--hair);
+  display:grid;grid-template-columns:120px 1fr;gap:28px;
+}
+.log-entry-left{display:flex;flex-direction:column;gap:8px;}
+.log-entry-date{
+  font-family:var(--narrow);font-size:10px;font-weight:700;letter-spacing:.22em;
+  text-transform:uppercase;color:var(--ink);font-variant-numeric:tabular-nums;
+}
+.log-entry-lab{
+  font-family:var(--narrow);font-size:9px;font-weight:600;letter-spacing:.18em;
+  text-transform:uppercase;color:var(--muted);
+}
+.log-tag{
+  font-family:var(--narrow);font-size:9px;font-weight:700;letter-spacing:.22em;
+  text-transform:uppercase;padding:3px 7px;display:inline-block;line-height:1.3;width:fit-content;
+}
+.log-tag.model{background:var(--orange);color:var(--paper)}
+.log-tag.api{background:var(--ink);color:var(--paper)}
+.log-tag.code{background:#3a3a3a;color:var(--paper)}
+.log-tag.apps{background:#5a5a5a;color:var(--paper)}
+.log-tag.sdk-py,.log-tag.sdk-ts{background:var(--paper);color:var(--ink);border:1px solid var(--ink)}
+.log-tag.research,.log-tag.news{background:var(--paper);color:var(--muted);border:1px solid var(--hair-hard)}
+.log-entry-title{
+  font-family:var(--disp);font-weight:500;
+  font-variation-settings:"opsz" 72;
+  font-size:20px;letter-spacing:-.012em;color:var(--ink);line-height:1.25;margin-bottom:10px;
+}
+.log-entry-title a{color:inherit;text-decoration:none;border-bottom:1px solid var(--hair-hard)}
+.log-entry-title a:hover{border-bottom-color:var(--orange);color:var(--orange)}
+.log-entry-body{
+  font-family:var(--sans);font-size:14.5px;line-height:1.6;color:var(--body);margin-bottom:12px;
+}
+.log-entry-how{
+  font-family:var(--sans);font-size:13.5px;line-height:1.6;color:var(--muted);
+  padding-top:12px;border-top:1px solid var(--hair-soft);
+}
+.log-entry-how b{font-family:var(--narrow);font-size:10px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--ink);display:block;margin-bottom:6px}
+.log-entry-why{
+  font-family:var(--disp);font-style:italic;font-size:14px;color:var(--muted);
+  line-height:1.55;margin-top:10px;padding-left:14px;border-left:2px solid var(--orange);
+}
+.log-entry-why b{font-style:normal;font-family:var(--narrow);font-size:10px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--orange);display:block;margin-bottom:4px}
+@media(max-width:720px){
+  .log-entry{grid-template-columns:1fr;gap:12px}
+}
+
+.colophon{
+  background:var(--ink);color:var(--paper);
+  padding:80px 28px 64px;border-top:2px solid var(--orange);
+}
+.colophon-inner{max-width:1280px;margin:0 auto;display:grid;grid-template-columns:repeat(12,1fr);gap:32px;}
+.colophon-mast{grid-column:1 / span 5;}
+.colophon-word{
+  font-family:var(--disp);font-weight:500;
+  font-variation-settings:"opsz" 144;
+  font-size:clamp(64px,9vw,108px);
+  line-height:.9;letter-spacing:-.04em;color:var(--paper);
+}
+.colophon-word .dot{color:var(--orange)}
+.colophon-tag{
+  margin-top:14px;font-family:var(--disp);font-style:italic;font-size:17px;
+  color:rgba(250,250,247,.65);line-height:1.4;max-width:360px;
+}
+.colophon-body{grid-column:6 / -1;display:grid;grid-template-columns:repeat(3,1fr);gap:32px;}
+.colophon-col h4{
+  font-family:var(--narrow);font-size:10px;font-weight:700;letter-spacing:.32em;
+  text-transform:uppercase;color:var(--orange);
+  margin-bottom:12px;padding-bottom:10px;border-bottom:1px solid rgba(250,250,247,.2);
+}
+.colophon-col p,.colophon-col li{
+  font-family:var(--sans);font-size:13px;line-height:1.6;
+  color:rgba(250,250,247,.75);margin-bottom:8px;list-style:none;
+}
+.colophon-col b{color:var(--paper);font-weight:600}
+.colophon-col em{font-style:italic;color:rgba(250,250,247,.9)}
+.colophon-foot{
+  grid-column:1 / -1;margin-top:32px;padding-top:24px;
+  border-top:1px solid rgba(250,250,247,.2);
+  display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap;
+  font-family:var(--narrow);font-size:10px;font-weight:600;
+  letter-spacing:.28em;text-transform:uppercase;color:rgba(250,250,247,.5);
+}
+.colophon-foot b{color:var(--paper);font-weight:700}
+.colophon-foot .hot{color:var(--orange)}
+.colophon-link{color:inherit;text-decoration:none;border-bottom:1px solid currentColor}
+.colophon-link:hover{color:var(--orange)}
+@media(max-width:860px){
+  .colophon-mast,.colophon-body{grid-column:1 / -1}
+  .colophon-body{grid-template-columns:1fr;gap:24px}
+}
+
+.ornament{text-align:center;margin:64px auto;font-family:var(--disp);font-size:16px;color:var(--hair-hard);letter-spacing:1.2em;}
+
+/* ---- DAILY-SPECIFIC STYLES ---- */
+.daily-header{
+  border-bottom:3px solid var(--ink);
+  padding:56px 28px 48px;
+  max-width:1280px;margin:0 auto;
+}
+.daily-kicker{
+  font-family:var(--narrow);font-size:10px;font-weight:700;letter-spacing:.38em;
+  text-transform:uppercase;color:var(--orange);margin-bottom:14px;
+}
+.daily-masthead{
+  font-family:var(--disp);font-weight:500;font-style:italic;
+  font-variation-settings:"opsz" 144;
+  font-size:clamp(72px,14vw,180px);
+  line-height:.88;letter-spacing:-.04em;color:var(--ink);
+  margin-bottom:20px;
+  display:inline-block;
+}
+.daily-masthead .dot{color:var(--orange)}
+.daily-date{
+  font-family:var(--narrow);font-size:13px;font-weight:700;letter-spacing:.26em;
+  text-transform:uppercase;color:var(--muted);
+  margin-bottom:32px;
+  padding-bottom:20px;
+  border-bottom:1px solid var(--hair);
+}
+.daily-read-block{
+  max-width:720px;
+}
+.daily-read-label{
+  font-family:var(--narrow);font-size:10px;font-weight:700;letter-spacing:.32em;
+  text-transform:uppercase;color:var(--orange);margin-bottom:10px;
+}
+.daily-read-text{
+  font-family:var(--disp);font-weight:400;font-style:italic;
+  font-variation-settings:"opsz" 72;
+  font-size:clamp(22px,3vw,34px);line-height:1.2;letter-spacing:-.015em;color:var(--ink);
+}
+.daily-labs{
+  margin-top:20px;display:flex;flex-wrap:wrap;gap:8px;
+}
+.daily-lab-tag{
+  font-family:var(--narrow);font-size:9px;font-weight:700;letter-spacing:.22em;
+  text-transform:uppercase;padding:4px 9px;border:1px solid var(--hair-hard);color:var(--muted);
+}
+.daily-lab-tag.anchor{background:var(--orange);color:var(--paper);border-color:var(--orange)}
+
+.article-section{
+  max-width:1280px;margin:0 auto;padding:56px 28px 0;
+}
+.article-section-folio{
+  display:flex;align-items:center;gap:16px;
+  padding-bottom:16px;border-bottom:1px solid var(--ink);
+  margin-bottom:36px;
+}
+.article-section-label{
+  font-family:var(--narrow);font-size:11px;font-weight:700;letter-spacing:.28em;
+  text-transform:uppercase;color:var(--muted);
+}
+.article-area-tag{
+  font-family:var(--narrow);font-size:9px;font-weight:700;letter-spacing:.22em;
+  text-transform:uppercase;padding:3px 8px;background:var(--orange);color:var(--paper);
+}
+.article-area-tag.code{background:#3a3a3a}
+.article-area-tag.research{background:var(--paper);color:var(--muted);border:1px solid var(--hair-hard)}
+.article-area-tag.news{background:var(--paper);color:var(--muted);border:1px solid var(--hair-hard)}
+.article-area-tag.api{background:var(--ink);color:var(--paper)}
+
+.lead-title{
+  font-family:var(--disp);font-weight:700;
+  font-variation-settings:"opsz" 144;
+  font-size:clamp(40px,6vw,84px);
+  line-height:.95;letter-spacing:-.04em;color:var(--ink);
+  margin-bottom:12px;max-width:800px;
+}
+.lead-deck{
+  font-family:var(--disp);font-style:italic;font-weight:400;
+  font-variation-settings:"opsz" 72;
+  font-size:clamp(18px,2.2vw,26px);line-height:1.3;letter-spacing:-.01em;
+  color:var(--muted);max-width:640px;margin-bottom:32px;
+}
+.lead-source{
+  font-family:var(--narrow);font-size:10px;font-weight:600;letter-spacing:.24em;
+  text-transform:uppercase;color:var(--muted);margin-bottom:40px;
+  padding-bottom:20px;border-bottom:1px solid var(--hair);
+}
+.lead-source a{color:inherit;text-decoration:none;border-bottom:1px solid currentColor}
+.lead-source a:hover{color:var(--orange)}
+
+.dig-title{
+  font-family:var(--disp);font-weight:600;
+  font-variation-settings:"opsz" 96;
+  font-size:clamp(28px,3.6vw,48px);line-height:1;letter-spacing:-.025em;
+  color:var(--ink);margin-bottom:8px;
+}
+.dig-source{
+  font-family:var(--narrow);font-size:10px;font-weight:600;letter-spacing:.24em;
+  text-transform:uppercase;color:var(--muted);margin-bottom:32px;
+  padding-bottom:16px;border-top:1px solid var(--hair);padding-top:12px;
+}
+.dig-source a{color:inherit;text-decoration:none;border-bottom:1px solid currentColor}
+.dig-source a:hover{color:var(--orange)}
+
+.dig-spacer{
+  max-width:1280px;margin:0 auto;padding:0 28px;
+}
+.dig-rule{
+  border:none;border-top:1px solid var(--hair);margin:40px 0;
+}
+
+.three-beat{
+  max-width:1280px;margin:0 auto;padding:64px 28px 80px;
+  border-top:1px solid var(--ink);
+}
+.three-beat-kicker{
+  font-family:var(--narrow);font-size:10px;font-weight:700;letter-spacing:.38em;
+  text-transform:uppercase;color:var(--muted);margin-bottom:32px;
+}
+.three-beat-lines{display:flex;flex-direction:column;gap:16px;max-width:640px;}
+.three-beat-line{
+  font-family:var(--disp);font-weight:400;
+  font-variation-settings:"opsz" 72;
+  font-size:clamp(22px,3vw,36px);line-height:1.2;letter-spacing:-.018em;color:var(--ink);
+}
+.three-beat-line.final{
+  font-style:italic;color:var(--orange);font-weight:500;
+  font-size:clamp(18px,2.4vw,28px);
+}
+
+@media(max-width:720px){
+  .daily-header{padding:36px 20px 32px}
+  .article-section{padding:40px 20px 0}
+  .dig-spacer{padding:0 20px}
+  .three-beat{padding:48px 20px 56px}
+  .log-section{padding:32px 20px}
+  .log-divider{padding:64px 20px 36px}
+}
+</style>
+</head>
+<body>
+
+<nav class="pub-bar">
+  <div class="pub-bar-left">
+    <span class="pub-bar-mark">Shipped<span class="dot">.</span></span>
+    <span class="pub-bar-sep"></span>
+    <span class="pub-bar-meta">Frontier daily by <a href="https://id8labs.app" class="pub-bar-link">id8Labs</a></span>
+  </div>
+  <div class="pub-bar-right">
+    <span class="pub-bar-folio"><b>Daily</b></span>
+    <span class="pub-bar-sep"></span>
+    <span class="pub-bar-meta">Tuesday, July 07, 2026</span>
+  </div>
+</nav>
+
+<header class="daily-header">
+  <div class="daily-kicker">Frontier Daily&nbsp;&nbsp;·&nbsp;&nbsp;Six Labs&nbsp;&nbsp;·&nbsp;&nbsp;24-Hour Sweep</div>
+  <div class="daily-masthead">Shipped<span class="dot">.</span></div>
+  <div class="daily-date">Tuesday, July 07, 2026&nbsp;&nbsp;·&nbsp;&nbsp;Window: July 06 to July 07, 2026</div>
+  <div class="daily-read-block">
+    <div class="daily-read-label">The Read</div>
+    <div class="daily-read-text">The frontier ran three separate races Tuesday: a corporate consolidation that changed competitive geometry, a voice API upgrade that moved latency at the tail, and interpretability research that got one level below what models produce.</div>
+    <div class="daily-labs">
+      <span class="daily-lab-tag anchor">Anthropic (anchor)</span>
+      <span class="daily-lab-tag">OpenAI</span>
+      <span class="daily-lab-tag">Google DeepMind</span>
+      <span class="daily-lab-tag">Mistral</span>
+      <span class="daily-lab-tag">xAI / SpaceXAI</span>
+    </div>
+  </div>
+</header>
+
+<!-- LEAD -->
+<div class="article-section">
+  <div class="article-section-folio">
+    <span class="article-section-label">Lead</span>
+    <span class="article-area-tag news">News</span>
+    <span class="article-area-tag news">Structural</span>
+  </div>
+  <h1 class="lead-title">xAI Becomes SpaceXAI</h1>
+  <p class="lead-deck">Five months after the all-stock SpaceX acquisition, the rebrand is complete. The competitive geometry just changed.</p>
+  <div class="lead-source">
+    Sources: <a href="https://www.engadget.com/2209300/xai-now-officially-spacexai/" target="_blank" rel="noopener">Engadget</a>&nbsp;&nbsp;·&nbsp;&nbsp;<a href="https://dataconomy.com/2026/07/07/elon-musk-rebrands-merged-xai-and-spacex-as-spacexai/" target="_blank" rel="noopener">Dataconomy</a>&nbsp;&nbsp;·&nbsp;&nbsp;@SpaceXAI on X
+  </div>
+</div>
+
+<div class="prose-well">
+  <div class="prose-marginalia">Lead</div>
+  <div class="prose drop-cap">
+    <p>Five months after the all-stock SpaceX acquisition closed in February, xAI formally completed its transformation into SpaceXAI on July 6. The @SpaceXAI handle went live on X, the new logo dropped, and a corporate holding becomes a consumer-facing brand.</p>
+    <p>Call it what it is. Not a rebrand. A completion. The February acquisition assembled, under one corporate structure: a frontier model (Grok), the platform it trained on and now distributes through (X, with roughly 300 million active users), and a launch and satellite infrastructure company (SpaceX, the only commercial operator putting significant mass into low-earth orbit at scale and pace). That combination has no precedent among the frontier AI labs. Anthropic, OpenAI, and Google DeepMind are all, at their core, software companies that distribute through cloud providers they do not control. SpaceXAI is a vertically integrated infrastructure play that does not need them.</p>
+    <p>The blast radius unfolds on two timescales. Near term: Grok's distribution through X is now structurally more stable. The social network and the model sit inside the same corporate entity, which removes a category of counterparty risk and simplifies monetization for any product that routes through both. Longer term: SpaceX's Starlink constellation gives SpaceXAI a compute and delivery infrastructure that does not route through Amazon Web Services, Google Cloud, or Microsoft Azure. Orbital compute is still early, but the company that controls the satellites controls that lane. None of the other frontier labs are building it.</p>
+    <p>The pattern across 2026 has been consolidation at every level. OpenAI completed its equity restructuring. Anthropic deepened its Amazon partnership. Google integrated DeepMind tighter into Alphabet's core operations. Those are capital and partnership moves. SpaceXAI is a structural move: it changes competitive geometry rather than just competitive position. One entity now controls training data (X's social graph), distribution (X plus Starlink), compute infrastructure (SpaceX's satellite network and terrestrial data centers), and a frontier model (Grok), all under the same C-suite.</p>
+    <p><strong>The read:</strong> every other lab now competes on infrastructure it doesn't own. SpaceXAI doesn't have that problem. Whether Grok's current model quality matches the consolidated advantage is a separate question, and one that currently favors the other labs. But structural advantages compound. The orbital compute roadmap is worth watching alongside the benchmark leaderboard.</p>
+    <p><strong>Builder's move:</strong> if you're building on the Grok API, the platform stability argument just got stronger. If you're building anything that depends on cloud providers for AI inference at scale, think about what infrastructure concentration in SpaceXAI means for your leverage five years out.</p>
+  </div>
+  <div class="prose-aside">
+    <b>Lab</b><br>xAI (now SpaceXAI)<br><br>
+    <b>Area</b><br>NEWS · Structural<br><br>
+    <b>Date</b><br>July 06, 2026<br><br>
+    <b>Context</b><br>SpaceX all-stock acquisition closed February 2026<br><br>
+    <b>Live on</b><br>x.ai · @SpaceXAI
+  </div>
+</div>
+
+<!-- THE DIG -->
+<div class="article-section">
+  <div class="article-section-folio">
+    <span class="article-section-label">The Dig</span>
+    <span class="article-area-tag api">Model / API</span>
+  </div>
+  <h2 class="dig-title">OpenAI Ships Voice Infrastructure</h2>
+  <div class="dig-source">
+    Sources: <a href="https://community.openai.com/t/new-realtime-models-on-the-api-gpt-realtime-2-1-and-gpt-realtime-2-1-mini/1385896" target="_blank" rel="noopener">OpenAI Community</a>&nbsp;&nbsp;·&nbsp;&nbsp;<a href="https://www.marktechpost.com/2026/07/06/openai-gpt-realtime-2-1-mini-reasoning-realtime-api/" target="_blank" rel="noopener">MarkTechPost, July 06, 2026</a>&nbsp;&nbsp;·&nbsp;&nbsp;<b>OpenAI</b>
+  </div>
+</div>
+
+<div class="prose-well">
+  <div class="prose-marginalia">Dig 1</div>
+  <div class="prose">
+    <p>OpenAI released gpt-realtime-2.1 and gpt-realtime-2.1-mini on July 6, cutting p95 latency by at least 25 percent for the Realtime API and adding improved noise handling, stronger reasoning, better tool use, and tighter instruction following.</p>
+    <p>The mechanism: p95 latency is the 95th-percentile response time. It is the number that tells you how bad the tail experience gets. For voice applications, the threshold that breaks conversational flow sits around 400 milliseconds. A 25 percent reduction at p95 means the worst responses a typical user encounters got meaningfully faster, not just the median case. The mini variant extends the same improvements to latency-critical, cost-sensitive applications, covering the latency and cost tradeoff that most real-time voice and multimodal developers need to optimize for.</p>
+    <p>The blast radius: every developer building on the Realtime API. The voice product surface has been growing steadily since launch, and latency improvements at p95 reach the installed base immediately.</p>
+    <p>The contrast with Tuesday's other big move is instructive. On the same day OpenAI shipped voice plumbing, Anthropic published fundamental interpretability research. Different bets on what the next 18 months require: one lab building the API infrastructure for voice-first applications, the other publishing science about whether models can be observed thinking. Both are coherent bets. Which pays out faster depends on what actually gets built.</p>
+    <p><strong>Builder's move:</strong> test gpt-realtime-2.1-mini before defaulting to the full model for latency-sensitive features. The p95 improvement matters most in consumer-facing, conversational applications where tail latency is the user experience.</p>
+  </div>
+  <div class="prose-aside">
+    <b>Lab</b><br>OpenAI<br><br>
+    <b>Models</b><br>gpt-realtime-2.1<br>gpt-realtime-2.1-mini<br><br>
+    <b>Key metric</b><br>25% lower p95 latency<br><br>
+    <b>Date</b><br>July 06, 2026
+  </div>
+</div>
+
+<div class="dig-spacer"><hr class="dig-rule"></div>
+
+<div class="article-section">
+  <div class="article-section-folio">
+    <span class="article-section-label">The Dig</span>
+    <span class="article-area-tag research">Research</span>
+  </div>
+  <h2 class="dig-title">Anthropic Finds a Global Workspace</h2>
+  <div class="dig-source">
+    Source: <a href="https://www.anthropic.com/research/global-workspace" target="_blank" rel="noopener">Anthropic Research, July 06, 2026</a>&nbsp;&nbsp;·&nbsp;&nbsp;<b>Anthropic</b>
+  </div>
+</div>
+
+<div class="prose-well">
+  <div class="prose-marginalia">Dig 2</div>
+  <div class="prose">
+    <p>Anthropic's interpretability team published "A global workspace in language models" on July 6, presenting evidence that modern large language models have developed an internal mechanism analogous to the cognitive science concept of a global workspace: a central information-sharing layer where intermediate reasoning becomes observable and, under the right conditions, manipulable.</p>
+    <p>The cognitive science background, briefly: global workspace theory, proposed by Bernard Baars in the 1980s, describes consciousness as a central workspace that broadcasts information to specialized processors throughout the brain. The claim in Anthropic's paper is not that Claude is conscious. It is that Claude's architecture has converged on a similar functional organization, where a central mechanism integrates information from specialized sub-processes to produce coherent output.</p>
+    <p>The tool they built to find it is called the J-lens. It gives researchers access to what the paper calls stepping stones: intermediate reasoning states Claude passes through between receiving a prompt and producing an answer. Those stepping stones can be identified, observed, and nudged. Researchers can modify intermediate states to steer reasoning before it surfaces in output.</p>
+    <p>That last part is qualitatively different from most prior interpretability work, which produces static maps of where concepts live in activation space. The J-lens surfaces a process: a sequence of internal states in temporal order, each influencing the next. That kind of access is a precondition for the class of safety intervention that has been theoretically attractive but practically out of reach: catching a wrong-direction inference before it completes, rather than detecting a bad output after it has already been produced.</p>
+    <p>The blast radius is currently the research community. This is not a production feature. But the long-range implication is real: if stepping stones are observable and manipulable, real-time correction of model reasoning moves from philosophical ambition to tractable engineering problem.</p>
+    <p><strong>The read:</strong> Anthropic is the only frontier lab with an active published research agenda on the internal structure of reasoning, not just capabilities benchmarks. The global workspace paper is the most technically significant interpretability result they have published this year.</p>
+    <p><strong>Builder's move:</strong> follow the J-lens development as a leading indicator of Anthropic's safety-via-interpretability roadmap, not as immediate tooling. The research is two to three years upstream of any production application.</p>
+  </div>
+  <div class="prose-aside">
+    <b>Lab</b><br>Anthropic<br><br>
+    <b>Tool</b><br>J-lens<br><br>
+    <b>Concept</b><br>Global workspace theory (Baars, 1988)<br><br>
+    <b>Date</b><br>July 06, 2026<br><br>
+    <b>Area</b><br>Interpretability / Safety
+  </div>
+</div>
+
+<div class="dig-spacer"><hr class="dig-rule"></div>
+
+<div class="article-section">
+  <div class="article-section-folio">
+    <span class="article-section-label">The Dig</span>
+    <span class="article-area-tag code">Claude Code</span>
+  </div>
+  <h2 class="dig-title">Claude Code v2.1.202</h2>
+  <div class="dig-source">
+    Source: <a href="https://github.com/anthropics/claude-code/blob/main/CHANGELOG.md" target="_blank" rel="noopener">CHANGELOG, July 06, 2026</a>&nbsp;&nbsp;·&nbsp;&nbsp;<b>Anthropic</b>
+  </div>
+</div>
+
+<div class="prose-well">
+  <div class="prose-marginalia">Dig 3</div>
+  <div class="prose">
+    <p>Claude Code v2.1.202 shipped July 6 with two new capabilities and fifteen-plus resolved bugs.</p>
+    <p>New: a "Dynamic workflow size" option in /config, and OpenTelemetry workflow.run_id and workflow.name attributes for workflow observability. The OpenTelemetry addition targets developers running Claude Code in production agentic pipelines who need to trace workflow execution end-to-end across distributed systems.</p>
+    <p>The bug fixes are where the real infrastructure work shows. Resolved: mTLS handshake failures in Remote Control connections. Voice dictation unbounded retry loops that never terminated. Worktree-heavy session resume slowness. Ctrl+R history search crashes. Silent file and image drops during context building. /rename revert failures on background sessions. Sign-in URL hyperlink wrapping over SSH. Unicode corruption in workflow execution. Installer and updater mid-download aborts.</p>
+    <p>The mechanism on the mTLS fix: anyone authenticating to Claude Code Remote Control with mutual TLS was getting handshake failures that presented as client certificate errors. The fix resolves server-side header handling. If you have spent the past several days debugging what looks like a certificate configuration issue on your end, v2.1.202 is likely the answer.</p>
+    <p>The voice dictation loop fix matters for any developer using voice input in extended sessions. The retry logic had no exit condition on network interruption, which meant a dropped dictation could lock the voice input thread indefinitely without surfacing an error the user could act on.</p>
+    <p>Blast radius: all Claude Code Remote Control users hitting auth issues since the bug was introduced, all voice dictation users hitting silent hangs, all developers running multi-worktree sessions with slow resume times. These are production failure modes. The kind you blame your own infrastructure for before you find the release note.</p>
+    <p>Pattern: Claude Code has shipped substantive patch releases on a consistent cadence since v2.0. The v2.1.202 issue list reflects a product with enough active production users to surface complex interaction failures quickly and specifically. The mTLS and worktree failures in particular suggest enterprise-scale deployment patterns.</p>
+    <p><strong>Builder's move:</strong> update to v2.1.202 now. Run <code>claude update</code> or reinstall. The mTLS fix and voice dictation fix are the most critical. If you are running Remote Control and have been getting auth errors, this is the update.</p>
+  </div>
+  <div class="prose-aside">
+    <b>Lab</b><br>Anthropic<br><br>
+    <b>Version</b><br>v2.1.202<br><br>
+    <b>Date</b><br>July 06, 2026 (22:51 UTC)<br><br>
+    <b>Key fixes</b><br>mTLS auth<br>Voice dictation loop<br>Worktree resume<br>Unicode corruption<br><br>
+    <b>Update</b><br><code>claude update</code>
+  </div>
+</div>
+
+<div class="dig-spacer"><hr class="dig-rule"></div>
+
+<div class="article-section">
+  <div class="article-section-folio">
+    <span class="article-section-label">The Dig</span>
+    <span class="article-area-tag news">Cross-Lab</span>
+  </div>
+  <h2 class="dig-title">Elsewhere on the Frontier</h2>
+  <div class="dig-source">
+    Sources: <a href="https://www.geeky-gadgets.com/gemini-pro-scraps-base-model/" target="_blank" rel="noopener">Geeky Gadgets</a>&nbsp;&nbsp;·&nbsp;&nbsp;<a href="https://www.techtimes.com/articles/319798/20260706/mistral-ai-targets-frontier-gap-open-weight-model-entering-july-early-access.htm" target="_blank" rel="noopener">TechTimes, July 06, 2026</a>&nbsp;&nbsp;·&nbsp;&nbsp;<a href="https://www.anthropic.com/news/alberta-government-claude-cybersecurity" target="_blank" rel="noopener">Anthropic News, July 06, 2026</a>
+  </div>
+</div>
+
+<div class="prose-well">
+  <div class="prose-marginalia">Dig 4</div>
+  <div class="prose">
+    <p>Three more data points from the July 6 to July 7 window:</p>
+    <p><strong>Google DeepMind's Gemini 3.5 Pro</strong> has been delayed to July 17 after a full architectural rebuild. The prior version was scrapped. The rebuilt model targets math reasoning, SVG generation, and long-horizon agentic tasks. This is circulating via insider reporting confirmed through multiple technology outlets; Google has not issued an official statement. If the reporting is accurate, DeepMind is running three-plus weeks behind a June target on its most competitive general-purpose model, having discarded a full model iteration in the process. The competitive implication: GPT-5.5 and Claude Sonnet 5 both reached general availability earlier. Gemini 3.5 Pro arriving mid-July, rebuilt from scratch, will need to ship meaningfully better than either to close the narrative gap it opened by slipping.</p>
+    <p><strong>Mistral CEO Arthur Mensch</strong> confirmed a new open-weight Mixture-of-Experts model is entering early access in July. He described it as "fat but sparse," meaning a large total parameter count with a small active parameter footprint per inference. The positioning targets the frontier performance gap, with comparison points Llama and Gemma rather than Claude or GPT-5. No model name, no benchmark, no weight count. This is an announcement of an announcement. Mistral has consistently shipped competitive open-weight models on or near schedule, and the early-access framing suggests a narrow partner preview before broader release. The ARR figure Mistral confirmed alongside this news (above $400 million) gives the announcement more structural weight than a startup teaser.</p>
+    <p><strong>The Government of Alberta</strong> used Claude Code to scan 466 million lines of code across government systems in 20 hours, identifying and remediating cybersecurity vulnerabilities. Anthropic published both a case study and a technical white paper intended for other governments to replicate the methodology. The scale is not a proof-of-concept number. 466 million lines in a single agentic sweep reframes the conversation about what automated code review at government scale actually looks like, and it is the kind of customer story that moves enterprise procurement conversations in ways no benchmark does.</p>
+  </div>
+  <div class="prose-aside">
+    <b>Google DeepMind</b><br>Gemini 3.5 Pro<br>Target: July 17, 2026<br>Architecture: rebuilt<br>Status: unconfirmed by Google<br><br>
+    <b>Mistral</b><br>Open-weight MoE<br>Status: early access<br>ARR: above $400M<br><br>
+    <b>Alberta Gov</b><br>466M lines scanned<br>20 hours<br>Via Claude Code
+  </div>
+</div>
+
+<!-- QUIET ON THE WIRE -->
+<div class="quiet-section">
+  <div class="quiet-head">
+    <div class="quiet-kicker">Section</div>
+    <div class="quiet-title">Quiet on<br>the <em>Wire</em></div>
+  </div>
+  <div class="quiet-body">
+    <p><strong>Claude Fable 5 pricing transition:</strong> Fable 5 exits its free-inclusion period for Pro, Max, Team, and Enterprise subscriptions tomorrow, July 8. Running Fable 5 from tomorrow will consume usage credits at $10 per million input tokens and $50 per million output tokens. The transition was announced July 1. If you are on a plan that has automated workflows running Fable 5, audit tonight. The change takes effect with tomorrow's billing cycle.</p>
+    <p><strong>OpenAI Workspace Agents pricing:</strong> the transition from free preview to credit-based billing took effect today, July 6. Typical agent runs consume 5 to 25 credits depending on GPT-5.5 token usage. ChatGPT Enterprise and Edu plans are affected.</p>
+    <p><strong>Mistral OCR 4 webinar:</strong> Mistral ran an "OCR4 in Production" session on July 7 covering mistral-ocr-4 capabilities, including bounding boxes, block classification, inline confidence scores, 170-language support, and a self-hosted container option. Technical demo, not a launch. The model is already generally available.</p>
+    <p><strong>Expected next:</strong> Gemini 3.5 Pro is targeted for July 17. Mistral's open-weight MoE is in early access with no announced GA date. GPT-5.6 Sol/Terra/Luna remains in limited API preview with no confirmed general availability date as of this sweep.</p>
+  </div>
+</div>
+
+<!-- THE CLOSE -->
+<div class="three-beat">
+  <div class="three-beat-kicker">The Close</div>
+  <div class="three-beat-lines">
+    <div class="three-beat-line">SpaceXAI has the satellites and the social graph.</div>
+    <div class="three-beat-line">OpenAI has the voice pipes and the latency lead.</div>
+    <div class="three-beat-line final">Anthropic has a lens that watches its models think. Three different bets on what the frontier needs next. All three might be right.</div>
+  </div>
+</div>
+
+<!-- RELEASE LOG -->
+<div class="log-divider" id="log">
+  <div class="log-divider-kicker">Back of Page&nbsp;&nbsp;·&nbsp;&nbsp;Release Log</div>
+  <h2 class="log-divider-title">The <em>Release</em> Log</h2>
+  <p class="log-divider-sub">All confirmed items in the July 06 to July 07, 2026 window, grouped by category.</p>
+</div>
+
+<div class="log-section">
+  <div class="log-cat-head">
+    <div class="log-cat-name">A. Models</div>
+    <div class="log-cat-count"><b>2</b> entries</div>
+  </div>
+  <div class="log-entries">
+
+    <div class="log-entry">
+      <div class="log-entry-left">
+        <div class="log-entry-date">Jul 07</div>
+        <div class="log-entry-lab">OpenAI</div>
+        <span class="log-tag model">MODEL</span>
+      </div>
+      <div class="log-entry-right">
+        <div class="log-entry-title"><a href="https://help.openai.com/en/articles/6825453-chatgpt-release-notes" target="_blank" rel="noopener">GPT-5.5 Instant Mini deployed as ChatGPT fallback model</a></div>
+        <div class="log-entry-body">OpenAI rolled out GPT-5.5 Instant Mini as the new rate-limit fallback model in ChatGPT, replacing GPT-5.3 Instant Mini. Improvements include better intent tracking, tone calibration, and fewer factual errors in fallback-triggered responses.</div>
+      </div>
+    </div>
+
+    <div class="log-entry">
+      <div class="log-entry-left">
+        <div class="log-entry-date">Jul 06</div>
+        <div class="log-entry-lab">OpenAI</div>
+        <span class="log-tag model">MODEL</span>
+      </div>
+      <div class="log-entry-right">
+        <div class="log-entry-title"><a href="https://community.openai.com/t/new-realtime-models-on-the-api-gpt-realtime-2-1-and-gpt-realtime-2-1-mini/1385896" target="_blank" rel="noopener">gpt-realtime-2.1 and gpt-realtime-2.1-mini released</a></div>
+        <div class="log-entry-body">Two new Realtime API models with at least 25 percent lower p95 latency, improved noise handling, stronger reasoning, better tool use, and tighter instruction following for low-latency voice and multimodal applications.</div>
+        <div class="log-entry-how"><b>How to use</b>Specify <code>gpt-realtime-2.1</code> or <code>gpt-realtime-2.1-mini</code> in your Realtime API calls. The mini variant is recommended for cost-sensitive, latency-critical use cases.</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div class="log-section">
+  <div class="log-cat-head">
+    <div class="log-cat-name">B. API and Platform</div>
+    <div class="log-cat-count"><b>1</b> entry</div>
+  </div>
+  <div class="log-entries">
+
+    <div class="log-entry">
+      <div class="log-entry-left">
+        <div class="log-entry-date">Jul 06</div>
+        <div class="log-entry-lab">OpenAI</div>
+        <span class="log-tag api">API</span>
+      </div>
+      <div class="log-entry-right">
+        <div class="log-entry-title"><a href="https://openai.com/index/introducing-workspace-agents-in-chatgpt/" target="_blank" rel="noopener">Workspace Agents credit-based pricing effective</a></div>
+        <div class="log-entry-body">ChatGPT Enterprise, Edu, and Business workspace agent runs moved from free preview to credit-based pricing. Typical runs consume 5 to 25 credits depending on GPT-5.5 token usage. Previously pre-announced in June 2026.</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div class="log-section">
+  <div class="log-cat-head">
+    <div class="log-cat-name">C. Claude Code</div>
+    <div class="log-cat-count"><b>1</b> entry</div>
+  </div>
+  <div class="log-entries">
+
+    <div class="log-entry">
+      <div class="log-entry-left">
+        <div class="log-entry-date">Jul 06</div>
+        <div class="log-entry-lab">Anthropic</div>
+        <span class="log-tag code">CODE</span>
+      </div>
+      <div class="log-entry-right">
+        <div class="log-entry-title"><a href="https://github.com/anthropics/claude-code/blob/main/CHANGELOG.md" target="_blank" rel="noopener">Claude Code v2.1.202</a></div>
+        <div class="log-entry-body">Adds Dynamic workflow size /config setting and OpenTelemetry workflow.run_id and workflow.name attributes. Resolves 15-plus bugs: mTLS handshake failures in Remote Control, voice dictation unbounded retry loops, worktree-heavy session resume slowness, Ctrl+R history search crashes, silent file and image drops, /rename revert on background sessions, sign-in URL wrapping over SSH, unicode corruption in workflow execution, and installer mid-download aborts.</div>
+        <div class="log-entry-how"><b>How to use</b>Run <code>claude update</code> or reinstall. The mTLS and voice dictation fixes are the most critical for production deployments.</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div class="log-section">
+  <div class="log-cat-head">
+    <div class="log-cat-name">F. Research and Publications</div>
+    <div class="log-cat-count"><b>1</b> entry</div>
+  </div>
+  <div class="log-entries">
+
+    <div class="log-entry">
+      <div class="log-entry-left">
+        <div class="log-entry-date">Jul 06</div>
+        <div class="log-entry-lab">Anthropic</div>
+        <span class="log-tag research">RESEARCH</span>
+      </div>
+      <div class="log-entry-right">
+        <div class="log-entry-title"><a href="https://www.anthropic.com/research/global-workspace" target="_blank" rel="noopener">A global workspace in language models</a></div>
+        <div class="log-entry-body">Interpretability researchers present evidence that modern LLMs have developed an internal global workspace mechanism enabling observable, manipulable stepping-stone reasoning. The J-lens tool surfaces intermediate reasoning states between input and output. Demonstrates that those states can be identified, observed, and modified before output is produced.</div>
+        <div class="log-entry-why"><b>Why it matters</b>First published evidence of a process-level (not just spatial) interpretability tool for frontier models. Precondition for real-time reasoning correction rather than post-hoc output filtering.</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div class="log-section">
+  <div class="log-cat-head">
+    <div class="log-cat-name">G. News and Partnerships</div>
+    <div class="log-cat-count"><b>4</b> entries</div>
+  </div>
+  <div class="log-entries">
+
+    <div class="log-entry">
+      <div class="log-entry-left">
+        <div class="log-entry-date">Jul 06</div>
+        <div class="log-entry-lab">Anthropic</div>
+        <span class="log-tag news">NEWS</span>
+      </div>
+      <div class="log-entry-right">
+        <div class="log-entry-title"><a href="https://www.anthropic.com/news/alberta-government-claude-cybersecurity" target="_blank" rel="noopener">Government of Alberta uses Claude to find and fix cybersecurity vulnerabilities</a></div>
+        <div class="log-entry-body">Alberta's Ministry of Technology and Innovation used Claude Code to scan 466 million lines of code in 20 hours, remediating security vulnerabilities across government systems. Technical white paper published for government replication. Reported by Anthropic.</div>
+      </div>
+    </div>
+
+    <div class="log-entry">
+      <div class="log-entry-left">
+        <div class="log-entry-date">Jul 06</div>
+        <div class="log-entry-lab">xAI</div>
+        <span class="log-tag news">NEWS</span>
+      </div>
+      <div class="log-entry-right">
+        <div class="log-entry-title"><a href="https://dataconomy.com/2026/07/07/elon-musk-rebrands-merged-xai-and-spacex-as-spacexai/" target="_blank" rel="noopener">xAI rebrands to SpaceXAI</a></div>
+        <div class="log-entry-body">xAI completed its transformation to SpaceXAI five months after the all-stock SpaceX acquisition closed in February 2026. The @SpaceXAI handle and new logo went live on X. Grok, the X platform, and planned orbital AI compute satellites now operate under the SpaceXAI umbrella. Reported by Engadget, Dataconomy, and others.</div>
+      </div>
+    </div>
+
+    <div class="log-entry">
+      <div class="log-entry-left">
+        <div class="log-entry-date">~Jul 2026</div>
+        <div class="log-entry-lab">Google DeepMind</div>
+        <span class="log-tag news">NEWS</span>
+      </div>
+      <div class="log-entry-right">
+        <div class="log-entry-title"><a href="https://www.geeky-gadgets.com/gemini-pro-scraps-base-model/" target="_blank" rel="noopener">Gemini 3.5 Pro delayed to July 17, architectural rebuild (unconfirmed by Google)</a></div>
+        <div class="log-entry-body">Insider reporting indicates Google DeepMind scrapped the existing Gemini 3.5 Pro architecture and pushed the launch from a June target to July 17, 2026, rebuilding to improve math reasoning, SVG generation, and long-horizon agentic tasks. Google has not officially confirmed. Reported via multiple technology outlets; no official Google statement.</div>
+      </div>
+    </div>
+
+    <div class="log-entry">
+      <div class="log-entry-left">
+        <div class="log-entry-date">Jul 06</div>
+        <div class="log-entry-lab">Mistral</div>
+        <span class="log-tag news">NEWS</span>
+      </div>
+      <div class="log-entry-right">
+        <div class="log-entry-title"><a href="https://www.techtimes.com/articles/319798/20260706/mistral-ai-targets-frontier-gap-open-weight-model-entering-july-early-access.htm" target="_blank" rel="noopener">Mistral open-weight MoE model enters early access</a></div>
+        <div class="log-entry-body">Mistral CEO Arthur Mensch confirmed a new "fat but sparse" Mixture-of-Experts open-weight model is entering early access in July 2026. No model name, benchmarks, or weight count released. ARR confirmed above $400 million. Targeting frontier performance gap vs. Llama and Gemma. Reported by TechTimes, AI Weekly.</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div class="ornament">* * *</div>
+
+<!-- COLOPHON -->
+<footer class="colophon">
+  <div class="colophon-inner">
+    <div class="colophon-mast">
+      <div class="colophon-word">Shipped<span class="dot">.</span></div>
+      <div class="colophon-tag">A frontier daily and weekly magazine covering Anthropic, OpenAI, Google DeepMind, Meta, Mistral, and xAI. Published by <a href="https://id8labs.app" class="colophon-link">id8Labs</a>.</div>
+    </div>
+    <div class="colophon-body">
+      <div class="colophon-col">
+        <h4>This Issue</h4>
+        <p><b>Type</b> Frontier Daily</p>
+        <p><b>Date</b> July 07, 2026</p>
+        <p><b>Window</b> July 06 to July 07, 2026</p>
+        <p><b>Labs covered</b> Anthropic, OpenAI, Google DeepMind, Mistral, xAI</p>
+        <p><b>Status</b> Draft</p>
+      </div>
+      <div class="colophon-col">
+        <h4>Sources</h4>
+        <p><b>Anthropic</b> anthropic.com/news, anthropic.com/research, GitHub CHANGELOG</p>
+        <p><b>OpenAI</b> OpenAI Community, ChatGPT release notes, MarkTechPost</p>
+        <p><b>Google DeepMind</b> Geeky Gadgets, BigGo Finance (secondary)</p>
+        <p><b>Mistral</b> TechTimes, AI Weekly (secondary)</p>
+        <p><b>xAI</b> Engadget, Dataconomy (secondary)</p>
+      </div>
+      <div class="colophon-col">
+        <h4>Masthead</h4>
+        <p><b>Editor</b> Eddie Belaval</p>
+        <p><b>Reporting</b> with the assistance of Claude</p>
+        <p><b>Voice</b> <em>STYLE.md</em></p>
+        <p><b>Generated by</b> nightly routine</p>
+        <p><b>Typography</b> Fraunces, Archivo, Archivo Narrow, JetBrains Mono</p>
+      </div>
+    </div>
+    <div class="colophon-foot">
+      <span>&copy; 2026 <a href="https://id8labs.app" class="colophon-link"><b>id8Labs</b></a>&nbsp;&nbsp;·&nbsp;&nbsp;All rights reserved</span>
+      <span>Printed in pixels&nbsp;&nbsp;·&nbsp;&nbsp;Set in Fraunces and Archivo</span>
+      <span class="hot">Weekly issue ships Friday 9 AM ET</span>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
