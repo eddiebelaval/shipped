@@ -4,15 +4,28 @@ This is the canonical prompt for the claude.ai cloud routine that generates the
 nightly Shipped. daily (`trig_01Pevcq2DMteCYHW8dnYFXpT`, fires ~21:00 ET, commits
 the rendered page to the `daily-pages` branch).
 
-**This file is the source of truth for what the routine should do.** The routine
-prompt itself lives in the claude.ai UI; paste the block below into it (preserving
-whatever render/publish/commit steps the routine already runs) whenever this file
-changes.
+**This file is the intent doc. The live generator is the claude.ai routine's own
+prompt** (`trig_01Pevcq2DMteCYHW8dnYFXpT`), edited directly via the remote-trigger
+API, not by pasting from here.
 
-Why this exists: every prior "make the dailies beefier / go multi-lab" change was
-made to repo files (DAILY.md, scrape/sources.ts, FORMULA.md) that the routine did
-not read. The routine kept running its own old "Anthropic sweep, ~1,200 words"
-instructions. The generator is the prompt. Change the prompt.
+**STATUS 2026-07-07 (length fix):** the routine prompt was rewritten in place to
+(1) sweep all six frontier labs, not Anthropic only; (2) **read `content/DAILY.md`
+as its BINDING depth authority** so future depth/floor edits to that file actually
+take effect; and (3) enforce a **hard word-floor gate** (a `wc -w` self-audit that
+refuses to publish under the tier floor and loops back to dig, mirroring the dash
+self-audit). Diagnosis: the old routine had zero word floor and Anthropic-only
+scope, so a quiet day faithfully produced two paragraphs (445 words on 07-06).
+
+**Where to make changes now:**
+- Depth / word floors / the six Dig levers -> edit `content/DAILY.md`. The routine
+  reads it live every run, so the change lands with no routine edit.
+- Scope, render, publish, or distribution mechanics -> edit the routine prompt via
+  the API (`RemoteTrigger update trig_01Pevcq2DMteCYHW8dnYFXpT`) and mirror it here.
+
+Why this history matters: every prior "make the dailies beefier / go multi-lab"
+change was made to repo files (DAILY.md, scrape/sources.ts, FORMULA.md) that the
+routine did not read. The routine kept running its own old "Anthropic sweep"
+instructions. The generator is the prompt. That is now fixed by binding DAILY.md.
 
 What changed 2026-06-27: the floors are no longer advisory. The verifier now has a
 **depth gate** and a **lab-coverage gate** (`pipeline/src/verify/gates/`). A daily
