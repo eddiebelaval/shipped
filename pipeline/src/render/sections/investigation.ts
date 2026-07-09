@@ -207,10 +207,21 @@ function paragraphs(body: string): string {
         b.length > 0 &&
         !/^-{3,}$/.test(b) &&
         !b.startsWith('#') &&
-        !b.startsWith('>') &&
         !b.startsWith('|'),
     );
   return blocks
-    .map((b) => `    <p>${inlineMarkdown(b.replace(/\n/g, ' '))}</p>`)
+    .map((b) => {
+      if (b.startsWith('>')) {
+        const textMatch = b.match(/^>\s*\*"(.+?)"\*\s*$/m);
+        if (textMatch && textMatch[1]) {
+          const attrMatch = b.match(/^>\s*[-—]\s*(.+)$/m);
+          const attribution = attrMatch ? attrMatch[1]!.trim() : '';
+          return renderQuote({ text: textMatch[1], attribution }, 'orange');
+        }
+        const content = b.split('\n').map((l) => l.replace(/^>\s*/, '')).join(' ');
+        return `    <blockquote>${inlineMarkdown(content)}</blockquote>`;
+      }
+      return `    <p>${inlineMarkdown(b.replace(/\n/g, ' '))}</p>`;
+    })
     .join('\n');
 }
