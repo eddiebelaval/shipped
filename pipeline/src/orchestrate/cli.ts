@@ -144,9 +144,14 @@ async function main() {
   if (!opts.skipScrape) {
     const handles = beatHandles();
     log.step(1, 4, `Scrape — sweep the frontier-labs beat (${handles.length} feeds)`);
+    // --enrich runs the X MCP search sweep per feed; a graceful no-op unless
+    // X_MCP_URL is set. Skip with SHIPPED_X_ENRICH=off if you want timeline-only.
+    const enrich = (process.env['SHIPPED_X_ENRICH'] ?? 'on').toLowerCase() !== 'off';
     let reached = 0;
     for (const handle of handles) {
-      const exit = await runStep(`scrape:${handle}`, 'pnpm', ['scrape', '--user', handle, '--days', '7']);
+      const scrapeArgs = ['scrape', '--user', handle, '--days', '7'];
+      if (enrich) scrapeArgs.push('--enrich');
+      const exit = await runStep(`scrape:${handle}`, 'pnpm', scrapeArgs);
       if (exit !== 0) {
         log.warn(`@${handle} scrape exited non-zero — continuing (X feed is supplemental, not blocking).`);
       } else {
