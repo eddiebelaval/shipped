@@ -15,16 +15,38 @@ const GH_API  = 'https://api.github.com';
 const ORIGINS = ['https://id8labs.app', 'https://eddiebelaval.github.io'];
 const CADENCES = new Set(['nightly', 'weekly', 'monthly']);
 
+// Ceiling on list size — a runaway bot can't grow the file (and main's commit
+// history) unbounded. Raise deliberately once the list legitimately nears it.
+const MAX_RECIPIENTS = 500;
+
 // ── helpers ──────────────────────────────────────────────────────────────────
 
 function corsHeaders(origin: string): Record<string, string> {
   const allowed = ORIGINS.some(o => origin === o || origin.startsWith(o + '/'));
-  if (!allowed) return {};
+  if (!allowed) return { Vary: 'Origin' };
   return {
     'Access-Control-Allow-Origin': origin,
     'Access-Control-Allow-Methods': 'POST, OPTIONS',
     'Access-Control-Allow-Headers': 'Content-Type',
+    Vary: 'Origin',
   };
+}
+
+// atob/btoa alone are Latin-1 only: names outside that range make btoa throw,
+// and anything non-ASCII already in the file gets mangled on the atob round
+// trip. Bridge through TextEncoder/TextDecoder so the file stays valid UTF-8.
+function b64ToUtf8(b64: string): string {
+  const bytes = Uint8Array.from(atob(b64), c => c.charCodeAt(0));
+  return new TextDecoder().decode(bytes);
+}
+
+function utf8ToB64(str: string): string {
+  const bytes = new TextEncoder().encode(str);
+  let bin = '';
+  for (let i = 0; i < bytes.length; i += 0x8000) {
+    bin += String.fromCharCode(...bytes.subarray(i, i + 0x8000));
+  }
+  return btoa(bin);
 }
 
 function json(body: unknown, status = 200, extra: Record<string, string> = {}): Response {
@@ -48,6 +70,12 @@ export default async function handler(req: Request): Promise<Response> {
   try { body = await req.json(); }
   catch { return json({ error: 'Invalid JSON' }, 400, cors); }
 
+  // Honeypot — hidden "website" field in the form; humans never see it, bots
+  // fill it. Report success so the bot doesn't learn it was filtered.
+  if (String(body.website ?? '').trim()) {
+    return json({ ok: true }, 200, cors);
+  }
+
   // Validate + sanitize email
   const email = String(body.email ?? '').toLowerCase().trim();
   if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
@@ -63,6 +91,9 @@ export default async function handler(req: Request): Promise<Response> {
     .filter((c): c is string => typeof c === 'string' && CADENCES.has(c));
   if (!cadences.length) cadences.push('nightly', 'weekly');
 
+  // Signup provenance, e.g. "shipped-issue-02" (optional)
+  const source = String(body.source ?? '').trim().slice(0, 60);
+
   const token = process.env.GITHUB_TOKEN;
   if (!token) return json({ error: 'Server configuration error.' }, 500, cors);
 
@@ -77,26 +108,39 @@ export default async function handler(req: Request): Promise<Response> {
   if (!fileRes.ok) return json({ error: 'Could not read distribution list.' }, 502, cors);
 
   const fileData = await fileRes.json() as { content: string; sha: string };
-  const list = JSON.parse(atob(fileData.content.replace(/\n/g, '')));
+  let list: { recipients?: unknown; updated?: string };
+  try { list = JSON.parse(b64ToUtf8(fileData.content.replace(/\n/g, ''))); }
+  catch { return json({ error: 'Could not read distribution list.' }, 502, cors); }
+
+  const recipients = list.recipients;
+  if (!Array.isArray(recipients)) {
+    return json({ error: 'Could not read distribution list.' }, 502, cors);
+  }
 
   // Deduplicate — return 200 so the UI can show a friendly "already subscribed" message
-  if ((list.recipients as Array<{ email: string }>).some(r => r.email.toLowerCase() === email)) {
+  if (recipients.some((r: { email?: unknown }) =>
+    typeof r?.email === 'string' && r.email.toLowerCase() === email)) {
     return json({ ok: true, alreadySubscribed: true }, 200, cors);
   }
 
+  if (recipients.length >= MAX_RECIPIENTS) {
+    return json({ error: 'Subscriptions are temporarily closed.' }, 503, cors);
+  }
+
   // Append new subscriber
-  list.recipients.push({
+  recipients.push({
     name,
     email,
     cadences,
     subscribed: new Date().toISOString().slice(0, 10),
+    ...(source && { source }),
   });
   list.updated = new Date().toISOString().slice(0, 10);
 
   // Write back via GitHub Contents API
   // If two requests race on the same SHA, GitHub returns 409 and the second caller
   // gets a 502 with "Try again" — rare enough not to warrant a retry loop here.
-  const newContent = btoa(JSON.stringify(list, null, 2) + '\n');
+  const newContent = utf8ToB64(JSON.stringify(list, null, 2) + '\n');
   const writeRes = await fetch(`${GH_API}/repos/${REPO}/contents/${FILE}`, {
     method: 'PUT',
     headers: { ...ghHeaders, 'Content-Type': 'application/json' },

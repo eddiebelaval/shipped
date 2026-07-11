@@ -1527,6 +1527,14 @@ body::before{
     transition: border-color 0.15s;
   }
   .ship-sub-name:focus { border-color: rgba(255,107,53,.45); outline: none; }
+  /* Honeypot — off-screen, not display:none, so naive bots still fill it */
+  .ship-sub-hp {
+    position: absolute !important;
+    left: -9999px !important;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+  }
   .ship-sub-form button {
     background: var(--orange);
     color: var(--ink);
@@ -1602,6 +1610,7 @@ body::before{
       <button type="submit" id="ship-sub-btn-issue">Subscribe &#x2192;</button>
     </div>
     <input type="text" name="sub_name" placeholder="Name (optional)" autocomplete="name" aria-label="Name" class="ship-sub-name">
+    <input type="text" name="website" class="ship-sub-hp" tabindex="-1" autocomplete="off" aria-hidden="true">
     <div class="ship-sub-cadences">
       <label class="ship-sub-cadence"><input type="checkbox" name="cadences" value="nightly" checked> Daily digest</label>
       <label class="ship-sub-cadence"><input type="checkbox" name="cadences" value="weekly" checked> Weekly magazine</label>
@@ -1631,7 +1640,7 @@ body::before{
       var res = await fetch('https://id8labs.app/api/newsletter/subscribe', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email: email, name: name, cadences: cadences, source: 'shipped-issue-{{issue_num}}' })
+        body: JSON.stringify({ email: email, name: name, cadences: cadences, source: 'shipped-issue-{{issue_num}}', website: (form.website && form.website.value) || '' })
       });
       var data = await res.json().catch(function(){ return {}; });
       if (res.ok) {
