@@ -4,26 +4,17 @@ The release routines (Nightly / Weekly / Monthly Anthropic sweeps) publish to th
 `daily-pages` branch and deploy via GitHub Pages. They can also stage a copy to a
 list of people who asked to follow along.
 
-## The list — two files, one merge
+## The list
 
-The list lives in two places because this repo is **public** and subscriber
-names + emails are not:
+**Self-serve signups do NOT land here.** The subscribe form on issue pages posts
+to `https://id8labs.app/api/newsletter/subscribe` — a Supabase-backed endpoint in
+the id8labs repo (`app/api/newsletter/subscribe/route.ts`, table
+`newsletter_subscribers`, list tag `shipped`). That system also owns
+unsubscribe/resubscribe, rate limiting, and the send-side "daily launcher".
+Before building anything subscription-shaped, check id8labs first — this
+file is only the small manual list below.
 
-1. **`pipeline/recipients.json`** (this repo, public) — distribution config
-   (`send_mode`, `from`) plus manual entries. Only add someone here with their
-   explicit OK; git history is permanent.
-2. **`eddiebelaval/shipped-subscribers` → `recipients.json`** (private repo) —
-   the self-serve list. The subscribe endpoint
-   (`pipeline/api/newsletter/subscribe.ts`, deployed to Vercel) commits new
-   subscribers here. It bootstraps the file on first subscribe, so the private
-   repo just has to exist.
-
-`distribute-local.py` fetches both and merges them: recipients dedupe by email
-(private wins), and a `send_mode`/`from` set in the private file overrides the
-public one. Either file alone is enough — if the private repo is unreachable
-the job logs it and runs on the public file only.
-
-Shared shape:
+`pipeline/recipients.json`:
 
 ```json
 {
@@ -35,7 +26,7 @@ Shared shape:
 }
 ```
 
-- **`recipients[]`** — `name`, `email`, and which `cadences` they want
+- **`recipients[]`** — add a friend with `name`, `email`, and which `cadences` they want
   (`nightly`, `weekly`, `monthly`). Weekly-only is the sane default for most people;
   nightly is firehose.
 - **`send_mode`**:
@@ -62,9 +53,8 @@ distribution is Half 2.
 launchd (`com.id8labs.shipped-distribute`, daily ~22:45 ET, after the nightly 21:00 and
 weekly Fri 22:00 routines publish). It:
 
-1. `git fetch` (no checkout) and reads the public `recipients.json` from `origin/main`,
-   the private list from `shipped-subscribers` (same git auth as origin, SSH or HTTPS
-   to match), and the latest page stem per cadence from `origin/daily-pages`.
+1. `git fetch` (no checkout) and reads `recipients.json` from `origin/main` and the latest
+   page stem per cadence from `origin/daily-pages`.
 2. For each cadence with a NEW page (tracked in `~/.shipped-distribution/seen.json` so it
    never double-drafts) and at least one matching recipient, builds the public URL.
 3. Stages a Mail.app DRAFT via `shipped-draft.applescript` (sender = the `from` field,
