@@ -1,5 +1,5 @@
 {
-  "_doc": "Shipped. release distribution list. Add friends here to have the release routines stage them a copy. See pipeline/DISTRIBUTION.md.",
+  "_doc": "Shipped. distribution config + manual entries. This repo is PUBLIC — never add anyone here without their OK; self-serve subscribers land in the private eddiebelaval/shipped-subscribers repo and distribute-local.py merges both. See pipeline/DISTRIBUTION.md.",
   "updated": "2026-06-08",
   "send_mode": "draft",
   "_send_mode_values": "draft = routine creates a Gmail DRAFT to the list (Eddie hits send). off = no distribution. send = auto-send (do NOT use until Eddie explicitly enables).",

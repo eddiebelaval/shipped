@@ -20,6 +20,11 @@ import sys
 from datetime import datetime, timezone
 
 REPO = os.path.expanduser("~/Development/id8/shipped")
+# Self-serve subscribers live in a PRIVATE repo (written by the subscribe
+# endpoint); the public pipeline/recipients.json keeps config + manual entries.
+# Both are merged in read_recipients(). Fetched with Eddie's local git auth.
+SUBSCRIBERS_REPO = "eddiebelaval/shipped-subscribers"
+SUBSCRIBERS_REF = "refs/remotes/shipped-subscribers/main"
 HOME = os.path.expanduser("~/.shipped-distribution")
 STATE_PATH = os.path.join(HOME, "seen.json")
 APPLESCRIPT = os.path.join(HOME, "shipped-draft.applescript")
@@ -64,16 +69,56 @@ def save_state(state):
         json.dump(state, f, indent=2)
 
 
-def read_recipients():
-    r = git("show", "origin/main:pipeline/recipients.json")
+def read_json_at(ref_path):
+    r = git("show", ref_path)
     if r.returncode != 0:
-        log(f"recipients.json not readable on origin/main: {r.stderr.strip()}")
+        log(f"{ref_path} not readable: {r.stderr.strip()}")
         return None
     try:
         return json.loads(r.stdout)
     except ValueError as e:
-        log(f"recipients.json parse error: {e}")
+        log(f"{ref_path} parse error: {e}")
         return None
+
+
+def subscribers_url():
+    """Match the transport (SSH vs HTTPS) of origin so existing auth works."""
+    r = git("remote", "get-url", "origin")
+    origin = r.stdout.strip() if r.returncode == 0 else ""
+    if origin.startswith("git@"):
+        return f"git@github.com:{SUBSCRIBERS_REPO}.git"
+    return f"https://github.com/{SUBSCRIBERS_REPO}.git"
+
+
+def read_recipients():
+    """Public file (config + manual entries) merged with the private
+    self-serve list. Either source alone is enough; private wins on
+    conflicts, dedupe is by email."""
+    base = read_json_at("origin/main:pipeline/recipients.json")
+
+    priv = None
+    r = git("fetch", subscribers_url(), f"+main:{SUBSCRIBERS_REF}", "--quiet")
+    if r.returncode != 0:
+        log(f"private subscriber list not fetchable (using public only): {r.stderr.strip()}")
+    else:
+        priv = read_json_at(f"{SUBSCRIBERS_REF}:recipients.json")
+
+    if base is None and priv is None:
+        return None
+    if priv is None:
+        return base
+
+    merged = dict(base or {})
+    for key in ("send_mode", "from"):
+        if priv.get(key):
+            merged[key] = priv[key]
+    by_email = {}
+    for rec in (base or {}).get("recipients", []) + priv.get("recipients", []):
+        email = (rec.get("email") or "").strip().lower()
+        if email:
+            by_email[email] = rec
+    merged["recipients"] = list(by_email.values())
+    return merged
 
 
 def latest_stem(subdir):

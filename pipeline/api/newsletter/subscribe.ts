@@ -3,14 +3,19 @@
 // Deploy to:  id8labs/api/newsletter/subscribe.ts
 // Runtime:    Vercel Edge (V8 isolate — Web APIs: fetch, atob, btoa, Request, Response)
 // Env var:    GITHUB_TOKEN
-//   A GitHub fine-grained PAT scoped to eddiebelaval/shipped, Contents: Read+Write.
-//   Add it in Vercel → Settings → Environment Variables.
+//   A GitHub fine-grained PAT scoped to eddiebelaval/shipped-subscribers,
+//   Contents: Read+Write. Add it in Vercel → Settings → Environment Variables.
+//
+// The list lives in a PRIVATE repo — subscriber names and emails must never
+// land in the public shipped repo (its git history is permanent and scraped).
+// If recipients.json doesn't exist yet the endpoint bootstraps it, so the
+// private repo only needs to exist; no manual seeding.
 // ──────────────────────────────────────────────────────────────────────────────
 
 export const config = { runtime: 'edge' };
 
-const REPO    = 'eddiebelaval/shipped';
-const FILE    = 'pipeline/recipients.json';
+const REPO    = 'eddiebelaval/shipped-subscribers';
+const FILE    = 'recipients.json';
 const GH_API  = 'https://api.github.com';
 const ORIGINS = ['https://id8labs.app', 'https://eddiebelaval.github.io'];
 const CADENCES = new Set(['nightly', 'weekly', 'monthly']);
@@ -103,14 +108,27 @@ export default async function handler(req: Request): Promise<Response> {
     'User-Agent': 'shipped-subscribe/1.0',
   };
 
-  // Read current recipients.json from GitHub
+  // Read current recipients.json from GitHub. A 404 means the file doesn't
+  // exist yet in the private repo — bootstrap it (a PUT without a sha creates
+  // the file), so the repo only needs to exist, no manual seeding.
   const fileRes = await fetch(`${GH_API}/repos/${REPO}/contents/${FILE}`, { headers: ghHeaders });
-  if (!fileRes.ok) return json({ error: 'Could not read distribution list.' }, 502, cors);
 
-  const fileData = await fileRes.json() as { content: string; sha: string };
   let list: { recipients?: unknown; updated?: string };
-  try { list = JSON.parse(b64ToUtf8(fileData.content.replace(/\n/g, ''))); }
-  catch { return json({ error: 'Could not read distribution list.' }, 502, cors); }
+  let sha: string | undefined;
+
+  if (fileRes.status === 404) {
+    list = {
+      _doc: 'Shipped. self-serve subscriber list — written by the subscribe endpoint. Merged with the public pipeline/recipients.json by distribute-local.py. PRIVATE: never move this into a public repo.',
+      recipients: [],
+    } as typeof list;
+  } else if (!fileRes.ok) {
+    return json({ error: 'Could not read distribution list.' }, 502, cors);
+  } else {
+    const fileData = await fileRes.json() as { content: string; sha: string };
+    sha = fileData.sha;
+    try { list = JSON.parse(b64ToUtf8(fileData.content.replace(/\n/g, ''))); }
+    catch { return json({ error: 'Could not read distribution list.' }, 502, cors); }
+  }
 
   const recipients = list.recipients;
   if (!Array.isArray(recipients)) {
@@ -147,7 +165,7 @@ export default async function handler(req: Request): Promise<Response> {
     body: JSON.stringify({
       message: `chore(subscribers): add ${email}`,
       content: newContent,
-      sha: fileData.sha,
+      ...(sha && { sha }),
     }),
   });
 
