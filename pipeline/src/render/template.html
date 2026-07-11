@@ -1485,7 +1485,7 @@ body::before{
     margin-right: auto;
   }
   .ship-sub h3 em { font-style: normal; color: var(--orange); }
-  .ship-sub p {
+  .ship-sub > p {
     font-family: var(--sans);
     font-size: 15px;
     color: rgba(250,250,247,.7);
@@ -1495,14 +1495,19 @@ body::before{
   }
   .ship-sub-form {
     display: flex;
+    flex-direction: column;
     max-width: 480px;
     margin: 0 auto;
+  }
+  .ship-sub-row {
+    display: flex;
     background: rgba(255,255,255,0.06);
     border: 1px solid rgba(255,255,255,0.12);
     transition: border-color 0.15s;
   }
-  .ship-sub-form:focus-within { border-color: var(--orange); }
-  .ship-sub-form input[type="email"] {
+  .ship-sub-row:focus-within { border-color: var(--orange); }
+  .ship-sub-form input[type="email"],
+  .ship-sub-form input[type="text"] {
     flex: 1;
     background: transparent;
     border: none;
@@ -1512,8 +1517,16 @@ body::before{
     font-size: 15px;
     padding: 16px 20px;
     -webkit-appearance: none;
+    min-width: 0;
   }
-  .ship-sub-form input[type="email"]::placeholder { color: rgba(250,250,247,.4); }
+  .ship-sub-form input::placeholder { color: rgba(250,250,247,.4); }
+  .ship-sub-name {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-top: none;
+    transition: border-color 0.15s;
+  }
+  .ship-sub-name:focus { border-color: rgba(255,107,53,.45); outline: none; }
   .ship-sub-form button {
     background: var(--orange);
     color: var(--ink);
@@ -1526,9 +1539,38 @@ body::before{
     padding: 0 28px;
     cursor: pointer;
     transition: background 0.15s;
+    white-space: nowrap;
   }
   .ship-sub-form button:hover { background: #ff5722; }
   .ship-sub-form button:disabled { opacity: 0.5; cursor: wait; }
+  .ship-sub-cadences {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    margin-top: 16px;
+  }
+  .ship-sub-cadence {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    font-family: var(--narrow);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    color: rgba(250,250,247,.6);
+    cursor: pointer;
+    transition: color 0.15s;
+  }
+  .ship-sub-cadence:hover { color: rgba(250,250,247,.9); }
+  .ship-sub-cadence input[type="checkbox"] {
+    accent-color: var(--orange);
+    width: 14px;
+    height: 14px;
+    cursor: pointer;
+    flex-shrink: 0;
+  }
   .ship-sub-meta {
     margin-top: 16px;
     font-family: var(--narrow);
@@ -1547,17 +1589,24 @@ body::before{
   .ship-sub-status.error { color: #ff8b6b; }
   @media (max-width: 540px) {
     .ship-sub { padding: 56px 24px; margin: 32px auto; }
-    .ship-sub-form { flex-direction: column; }
-    .ship-sub-form button { padding: 16px 28px; }
+    .ship-sub-cadences { gap: 14px; }
   }
 </style>
 <section class="ship-sub">
-  <div class="ship-sub-kicker">Don't miss the next issue</div>
-  <h3>Get <em>Shipped.</em> in your inbox every Friday at 9 AM ET.</h3>
-  <p>One read on what Anthropic shipped this week. Editorial up front, comprehensive Release Log in back. No spam, unsubscribe one click.</p>
+  <div class="ship-sub-kicker">Stay on the frontier</div>
+  <h3>Get <em>Shipped.</em> in your inbox.</h3>
+  <p>Daily digest at 9 PM ET. Weekly magazine every Friday morning. Six labs, one feed. No spam, one-click unsubscribe.</p>
   <form class="ship-sub-form" id="ship-sub-form-issue">
-    <input type="email" name="email" placeholder="your@email.com" required autocomplete="email" aria-label="Email address">
-    <button type="submit" id="ship-sub-btn-issue">Subscribe →</button>
+    <div class="ship-sub-row">
+      <input type="email" name="email" placeholder="your@email.com" required autocomplete="email" aria-label="Email address">
+      <button type="submit" id="ship-sub-btn-issue">Subscribe &#x2192;</button>
+    </div>
+    <input type="text" name="sub_name" placeholder="Name (optional)" autocomplete="name" aria-label="Name" class="ship-sub-name">
+    <div class="ship-sub-cadences">
+      <label class="ship-sub-cadence"><input type="checkbox" name="cadences" value="nightly" checked> Daily digest</label>
+      <label class="ship-sub-cadence"><input type="checkbox" name="cadences" value="weekly" checked> Weekly magazine</label>
+      <label class="ship-sub-cadence"><input type="checkbox" name="cadences" value="monthly"> Monthly roundup</label>
+    </div>
   </form>
   <div class="ship-sub-meta">Next issue, {{next_issue_date}}</div>
   <div class="ship-sub-status" id="ship-sub-status-issue" aria-live="polite"></div>
@@ -1572,19 +1621,22 @@ body::before{
     e.preventDefault();
     var email = form.email.value.trim();
     if (!email) return;
+    var name = (form.sub_name && form.sub_name.value.trim()) || '';
+    var cadences = Array.from(form.querySelectorAll('input[name="cadences"]:checked')).map(function(el) { return el.value; });
+    if (!cadences.length) cadences = ['nightly', 'weekly'];
     btn.disabled = true;
-    status.classList.remove('error');
+    status.className = 'ship-sub-status';
     status.textContent = 'Subscribing\u2026';
     try {
-      var res = await fetch('/api/newsletter/subscribe', {
+      var res = await fetch('https://id8labs.app/api/newsletter/subscribe', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email: email, source: 'shipped-magazine-issue-{{issue_num}}' })
+        body: JSON.stringify({ email: email, name: name, cadences: cadences, source: 'shipped-issue-{{issue_num}}' })
       });
       var data = await res.json().catch(function(){ return {}; });
       if (res.ok) {
-        status.textContent = 'You\u2019re in. {{next_issue_label}} lands {{next_issue_date_long}}.';
-        form.reset();
+        status.textContent = data.alreadySubscribed ? 'Already on the list.' : 'You\u2019re in. Next edition lands soon.';
+        if (!data.alreadySubscribed) form.reset();
       } else {
         status.classList.add('error');
         status.textContent = (data && data.error) || 'Something went wrong. Try again in a moment.';
