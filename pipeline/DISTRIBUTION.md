@@ -6,6 +6,14 @@ list of people who asked to follow along.
 
 ## The list
 
+**Self-serve signups do NOT land here.** The subscribe form on issue pages posts
+to `https://id8labs.app/api/newsletter/subscribe` — a Supabase-backed endpoint in
+the id8labs repo (`app/api/newsletter/subscribe/route.ts`, table
+`newsletter_subscribers`, list tag `shipped`). That system also owns
+unsubscribe/resubscribe, rate limiting, and the send-side "daily launcher".
+Before building anything subscription-shaped, check id8labs first — this
+file is only the small manual list below.
+
 `pipeline/recipients.json`:
 
 ```json
