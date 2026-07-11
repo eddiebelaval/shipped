@@ -12,6 +12,7 @@
     "build": "tsc",
     "assemble": "tsx src/assemble.ts",
     "render": "tsx src/render/cli.ts",
+    "render:email": "tsx src/render/email-cli.ts",
     "verify": "tsx src/verify/cli.ts",
     "preflight": "tsx src/preflight/index.ts",
     "og": "tsx src/og/generate.ts",
