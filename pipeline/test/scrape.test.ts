@@ -680,6 +680,29 @@ test('XMcpClient.searchPosts attributes the real third-party author', async () =
   assert.equal(hits[0]?.url, 'https://x.com/simonw/status/777');
 });
 
+test('XMcpClient keeps undated posts instead of dropping them at the cutoff', async () => {
+  // A post with no date field is stamped at the epoch by normalizeMcpPost;
+  // it must survive the window filter rather than look like schema drift = 0 posts.
+  const fetchStub = makeMcpFetch({
+    tools: {
+      get_user_posts: () => ({ posts: [{ id: '55', text: 'no date field here' }] }),
+    },
+  });
+  const client = new XMcpClient({
+    url: 'https://mcp.test/',
+    fetchImpl: fetchStub,
+    delayMs: 0,
+  });
+  const tweets = await client.fetchTimeline({
+    username: 'claudedevs',
+    sinceDays: 7,
+    includeReplies: false,
+    includeRetweets: false,
+  });
+  assert.equal(tweets.length, 1);
+  assert.equal(tweets[0]?.id, '55');
+});
+
 test('parseRpcBody parses both plain JSON and SSE framing', () => {
   const plain = parseRpcBody<{ ok: boolean }>(
     '{"jsonrpc":"2.0","id":1,"result":{"ok":true}}',

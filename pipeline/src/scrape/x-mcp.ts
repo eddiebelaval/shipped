@@ -292,39 +292,49 @@ export class XMcpClient {
     if (this.token) headers['Authorization'] = `Bearer ${this.token}`;
     if (this.sessionId) headers['Mcp-Session-Id'] = this.sessionId;
 
+    // The abort timer must stay armed through the *body* read, not just the
+    // header round-trip. On a Streamable HTTP / SSE response `fetch` resolves
+    // as soon as headers arrive, so clearing the timer right after would leave
+    // a stalled or never-closing stream to hang `safeReadText` forever — and,
+    // because the MCP call would then never reject, suppress fallback to the X
+    // API / Nitter. Keep one timer over the whole exchange; on timeout the
+    // abort collapses the body read to '' and surfaces as an error the caller
+    // can fall back from.
     const controller = new AbortController();
     const timer = setTimeout(() => controller.abort(), this.timeoutMs);
-    let res: Response;
     try {
-      res = await this.fetchImpl(this.url, {
-        method: 'POST',
-        headers,
-        body: JSON.stringify(message),
-        signal: controller.signal,
-      });
-    } catch (err) {
-      throw new XMcpError(`X MCP request failed: ${(err as Error).message}`);
+      let res: Response;
+      try {
+        res = await this.fetchImpl(this.url, {
+          method: 'POST',
+          headers,
+          body: JSON.stringify(message),
+          signal: controller.signal,
+        });
+      } catch (err) {
+        throw new XMcpError(`X MCP request failed: ${(err as Error).message}`);
+      }
+
+      const sid = res.headers.get('mcp-session-id');
+      if (sid) this.sessionId = sid;
+
+      if (!res.ok) {
+        const body = await safeReadText(res);
+        throw new XMcpError(
+          `X MCP HTTP ${res.status}: ${res.statusText}`,
+          res.status,
+          body,
+        );
+      }
+
+      const body = await safeReadText(res);
+      if (!body && !opts.tolerateEmpty) {
+        throw new XMcpError('X MCP returned an empty body', res.status);
+      }
+      return body;
     } finally {
       clearTimeout(timer);
     }
-
-    const sid = res.headers.get('mcp-session-id');
-    if (sid) this.sessionId = sid;
-
-    if (!res.ok) {
-      const body = await safeReadText(res);
-      throw new XMcpError(
-        `X MCP HTTP ${res.status}: ${res.statusText}`,
-        res.status,
-        body,
-      );
-    }
-
-    const body = await safeReadText(res);
-    if (!body && !opts.tolerateEmpty) {
-      throw new XMcpError('X MCP returned an empty body', res.status);
-    }
-    return body;
   }
 
   private async throttle(): Promise<void> {
@@ -348,8 +358,12 @@ export class XMcpClient {
       const tweet = normalizeMcpPost(p, fallbackHandle);
       if (!tweet) continue;
       const ts = Date.parse(tweet.date);
-      // Keep undated posts (epoch) — better to surface than silently drop.
-      if (Number.isFinite(ts) && ts < cutoff) continue;
+      // Drop only posts with a *real* date older than the window. Undated posts
+      // (schema drift / a renamed date field) are stamped at the epoch by
+      // normalizeMcpPost; keep those rather than treat drift as an empty week,
+      // which would also mask the fallback to X API / Nitter. `ts > 0` excludes
+      // that epoch sentinel from the cutoff.
+      if (Number.isFinite(ts) && ts > 0 && ts < cutoff) continue;
       out.push(tweet);
     }
     const seen = new Set<string>();
