@@ -33,7 +33,7 @@ DASH_OUT="$(pnpm dashboard 2>&1)" || {
 
 echo "$DASH_OUT" >> "$LOG"
 
-SUMMARY=$(echo "$DASH_OUT" | grep -E "Issue [0-9]+ . ship " | head -1 | sed 's/^[[:space:]]*//')
+SUMMARY=$(echo "$DASH_OUT" | grep -E "Issue [0-9]+.*% ready" | head -1 | sed 's/^[[:space:]]*//' || true)  # locale-proof: em dash is multibyte, "." missed it under launchd C locale
 GAPS=$(echo "$DASH_OUT" | grep -E "^[[:space:]]*Gaps:" | head -1 | awk -F': ' '{print $2}' | tr -d '[:space:]')
 ARTICLES=$(echo "$DASH_OUT" | grep -E "^[[:space:]]*Articles:" | head -1 | sed 's/^[[:space:]]*//')
 
