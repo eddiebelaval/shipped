@@ -1,0 +1,1039 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light">
+<title>Shipped. Daily, Monday, July 14, 2026</title>
+<meta property="og:title" content="Shipped. Daily, Monday, July 14, 2026">
+<meta property="og:description" content="xAI's Grok Build uploaded your entire repository. Anthropic launched Claude for Teachers. DeepMind's CEO called for a FINRA for frontier AI. Six labs, one Monday.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://eddiebelaval.github.io/shipped/anthropic-daily/2026-07-14.html">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Shipped. Daily, Monday, July 14, 2026">
+<meta name="twitter:description" content="xAI's Grok Build uploaded your entire repository. Anthropic launched Claude for Teachers. DeepMind's CEO called for a FINRA for frontier AI.">
+<meta name="description" content="Frontier AI daily digest for July 14, 2026. xAI Grok Build security incident, Anthropic Claude for Teachers, Artifacts multiplayer, Hassabis calls for FINRA-style AI body, Gemini 3.5 Pro delay, Meta Muse Image pulled. Six labs, one read.">
+<meta name="author" content="Shipped. by id8Labs">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='75' cy='62' r='14' fill='%23FF6B35'/%3E%3Ctext x='10' y='75' font-family='Georgia,serif' font-weight='700' font-size='62' fill='%231a1a1a'%3ES%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;0,9..144,900;1,9..144,300;1,9..144,400;1,9..144,500;1,9..144,700&family=Archivo:wght@300;400;500;600;700;800;900&family=Archivo+Narrow:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{font-size:16px;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;text-rendering:optimizeLegibility}
+body{background:#FAF8F4;color:#0b0b0b;font-family:'Archivo',sans-serif;overflow-x:hidden}
+::selection{background:#FF6B35;color:#fff}
+
+:root{
+  --orange:#FF6B35;
+  --ink:#0b0b0b;
+  --paper:#FAF8F4;
+  --paper-shadow:#f2f0e8;
+  --body:#2a2a2a;
+  --muted:#5a5a5a;
+  --gray:#8a8a8a;
+  --hair:rgba(11,11,11,0.12);
+  --hair-soft:rgba(11,11,11,0.06);
+  --hair-hard:rgba(11,11,11,0.22);
+  --disp:'Fraunces', 'Times New Roman', serif;
+  --sans:'Archivo', system-ui, sans-serif;
+  --narrow:'Archivo Narrow', 'Archivo', sans-serif;
+  --mono:'JetBrains Mono', ui-monospace, monospace;
+}
+
+body::before{
+  content:"";
+  position:fixed;inset:0;pointer-events:none;z-index:1000;opacity:.28;mix-blend-mode:multiply;
+  background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='180' height='180'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' seed='3'/><feColorMatrix values='0 0 0 0 0.02  0 0 0 0 0.02  0 0 0 0 0.02  0 0 0 0.22 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+}
+
+.pub-bar{
+  position:sticky;top:0;z-index:100;
+  background:var(--paper);
+  border-bottom:1px solid var(--hair);
+  padding:0 28px;height:42px;
+  display:flex;align-items:center;justify-content:space-between;
+  font-family:var(--narrow);
+  font-size:11px;font-weight:600;letter-spacing:.22em;
+  text-transform:uppercase;color:var(--ink);
+}
+.pub-bar-left,.pub-bar-right{display:flex;align-items:center;gap:16px}
+.pub-bar-mark{font-family:var(--disp);font-weight:500;font-size:16px;letter-spacing:-.01em;text-transform:none;font-style:italic}
+.pub-bar-mark .dot{color:var(--orange)}
+.pub-bar-sep{width:1px;height:12px;background:var(--hair-hard)}
+.pub-bar-meta{color:var(--muted)}
+.pub-bar-link{color:inherit;text-decoration:none;border-bottom:1px solid currentColor;transition:color .15s ease}
+.pub-bar-link:hover{color:var(--orange)}
+.pub-bar-folio{color:var(--ink)}
+.pub-bar-folio b{font-weight:600;color:var(--orange)}
+
+.folio{
+  font-family:var(--narrow);
+  font-size:10px;font-weight:500;letter-spacing:.28em;
+  text-transform:uppercase;color:var(--gray);
+  display:flex;align-items:center;gap:10px;
+}
+.folio b{color:var(--ink);font-weight:700}
+.folio .ruler{width:28px;height:1px;background:var(--hair-hard)}
+.folio .dot{color:var(--orange)}
+
+/* Daily masthead, lighter than the weekly cover */
+.daily-header{
+  padding:52px 28px 40px;
+  border-bottom:2px solid var(--ink);
+  position:relative;
+  overflow:hidden;
+}
+.daily-header-grid{
+  position:absolute;inset:0;
+  background-image:linear-gradient(to right, var(--hair-soft) 1px, transparent 1px);
+  background-size:calc(100% / 12) 100%;
+  pointer-events:none;opacity:.55;
+}
+.daily-kicker{
+  font-family:var(--narrow);
+  font-size:10px;font-weight:700;letter-spacing:.38em;
+  text-transform:uppercase;color:var(--orange);
+  margin-bottom:20px;
+  position:relative;z-index:2;
+}
+.daily-masthead{
+  font-family:var(--disp);
+  font-style:italic;font-weight:500;
+  font-variation-settings:"opsz" 144;
+  font-size:clamp(64px,12vw,160px);
+  line-height:.88;letter-spacing:-.04em;
+  color:var(--ink);
+  position:relative;z-index:2;
+  margin-bottom:12px;
+}
+.daily-masthead .dot{color:var(--orange)}
+.daily-dateline{
+  font-family:var(--narrow);
+  font-size:11px;font-weight:600;letter-spacing:.28em;
+  text-transform:uppercase;color:var(--muted);
+  position:relative;z-index:2;
+  margin-bottom:36px;
+  padding-bottom:24px;
+  border-bottom:1px solid var(--hair-hard);
+}
+.daily-read-label{
+  font-family:var(--narrow);
+  font-size:10px;font-weight:700;letter-spacing:.32em;
+  text-transform:uppercase;color:var(--muted);
+  margin-bottom:10px;
+  position:relative;z-index:2;
+}
+.daily-read{
+  font-family:var(--disp);
+  font-style:italic;font-weight:400;
+  font-variation-settings:"opsz" 72;
+  font-size:clamp(22px,3vw,36px);
+  line-height:1.22;letter-spacing:-.012em;
+  color:var(--ink);
+  max-width:860px;
+  position:relative;z-index:2;
+}
+.daily-labs{
+  margin-top:28px;
+  display:flex;flex-wrap:wrap;gap:8px;
+  position:relative;z-index:2;
+}
+.daily-lab-flag{
+  font-family:var(--narrow);
+  font-size:9px;font-weight:700;letter-spacing:.22em;
+  text-transform:uppercase;
+  padding:4px 10px;
+  border:1px solid var(--ink);
+  color:var(--ink);
+  background:transparent;
+}
+.daily-lab-flag.anchor{background:var(--ink);color:var(--paper)}
+
+.section{
+  position:relative;
+  padding:64px 28px 40px;
+  max-width:1280px;margin:0 auto;
+}
+.section-folio{
+  display:flex;align-items:center;justify-content:space-between;
+  padding-bottom:18px;
+  border-bottom:1px solid var(--ink);
+  margin-bottom:44px;
+}
+.section-folio-left{display:flex;align-items:center;gap:14px}
+.section-folio-label{
+  font-family:var(--narrow);
+  font-size:11px;font-weight:700;letter-spacing:.28em;
+  text-transform:uppercase;color:var(--ink);
+}
+.section-folio-sub{
+  font-family:var(--disp);font-style:italic;
+  font-size:13px;color:var(--muted);
+}
+
+.prose-well{
+  max-width:1280px;margin:0 auto;padding:0 28px 56px;
+  display:grid;grid-template-columns:72px 1fr minmax(0,300px);
+  gap:32px;position:relative;
+}
+.prose-well::before{
+  content:"";position:absolute;left:100px;top:0;bottom:0;
+  width:1px;background:var(--hair);
+}
+.prose-marginalia{
+  grid-column:1;
+  font-family:var(--narrow);
+  font-size:10px;font-weight:600;letter-spacing:.26em;
+  text-transform:uppercase;color:var(--gray);
+  writing-mode:vertical-rl;transform:rotate(180deg);
+  align-self:start;padding-top:8px;
+  white-space:nowrap;
+}
+.prose{
+  grid-column:2;
+  font-family:var(--disp);
+  font-variation-settings:"opsz" 14;
+  font-weight:400;font-size:18px;line-height:1.68;
+  color:var(--body);
+  max-width:640px;
+}
+.prose p{margin-bottom:22px}
+.prose em{font-style:italic;color:var(--ink)}
+.prose strong{font-weight:600;color:var(--ink)}
+.prose a{color:var(--ink);text-decoration:none;border-bottom:1px solid var(--hair-hard)}
+.prose a:hover{color:var(--orange);border-bottom-color:var(--orange)}
+.prose code{
+  font-family:var(--mono);font-size:.85em;
+  background:var(--paper-shadow);padding:1px 6px;
+  border-radius:3px;color:var(--ink);
+}
+.prose-aside{
+  grid-column:3;
+  font-family:var(--narrow);
+  font-size:11px;font-weight:500;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--muted);
+  border-top:1px solid var(--ink);padding-top:14px;
+  line-height:1.8;
+  align-self:start;
+  position:sticky;top:58px;
+}
+.prose-aside b{color:var(--ink);font-weight:700}
+.prose-aside a{color:inherit;text-decoration:none;border-bottom:1px solid currentColor}
+.prose-aside a:hover{color:var(--orange)}
+
+@media(max-width:860px){
+  .prose-well{grid-template-columns:1fr;padding-left:20px;padding-right:20px}
+  .prose-well::before{display:none}
+  .prose-marginalia{display:none}
+  .prose{grid-column:1;font-size:17px}
+  .prose-aside{grid-column:1;margin-top:20px;position:static}
+}
+
+/* Article header inside section */
+.article-flag-row{
+  display:flex;align-items:center;gap:10px;
+  margin-bottom:12px;
+}
+.area-tag{
+  font-family:var(--narrow);
+  font-size:9px;font-weight:700;letter-spacing:.22em;
+  text-transform:uppercase;padding:3px 8px;
+  display:inline-block;line-height:1.3;
+}
+.area-tag.news{background:var(--paper-shadow);color:var(--muted);border:1px solid var(--hair-hard)}
+.area-tag.apps{background:#5a5a5a;color:var(--paper)}
+.area-tag.code{background:#3a3a3a;color:var(--paper)}
+.area-tag.api{background:var(--ink);color:var(--paper)}
+.area-tag.model{background:var(--orange);color:var(--paper)}
+.area-tag.research{background:var(--paper-shadow);color:var(--muted);border:1px solid var(--hair-hard)}
+.area-tag.security{background:#c0392b;color:#fff}
+
+.lab-label{
+  font-family:var(--narrow);
+  font-size:10px;font-weight:700;letter-spacing:.22em;
+  text-transform:uppercase;color:var(--orange);
+}
+
+.article-hed{
+  font-family:var(--disp);font-weight:700;
+  font-variation-settings:"opsz" 96;
+  font-size:clamp(28px,4vw,52px);
+  line-height:1.02;letter-spacing:-.025em;
+  color:var(--ink);
+  margin-bottom:20px;
+  max-width:760px;
+}
+.article-hed em{font-style:italic;font-weight:400}
+.article-hed.lead{font-size:clamp(32px,5vw,64px)}
+
+.article-deck{
+  font-family:var(--disp);font-style:italic;font-weight:400;
+  font-variation-settings:"opsz" 36;
+  font-size:clamp(17px,2vw,22px);
+  line-height:1.45;letter-spacing:-.008em;
+  color:var(--muted);max-width:640px;
+  margin-bottom:32px;
+}
+
+.hairline{
+  border:none;
+  border-top:1px solid var(--hair);
+  margin:48px 0;
+}
+.hairline.heavy{border-top:1px solid var(--hair-hard)}
+.hairline.black{border-top:1px solid var(--ink)}
+
+/* Pull quote inline */
+.pull-quote{
+  border-left:3px solid var(--orange);
+  padding-left:20px;
+  margin:28px 0;
+  font-family:var(--disp);font-style:italic;
+  font-size:clamp(18px,2.2vw,24px);
+  line-height:1.4;letter-spacing:-.01em;
+  color:var(--ink);
+}
+
+/* Builder's move callout */
+.builders-move{
+  background:var(--paper-shadow);
+  border-left:3px solid var(--ink);
+  padding:16px 20px;
+  margin:24px 0;
+  font-family:var(--sans);
+  font-size:14px;line-height:1.6;color:var(--body);
+}
+.builders-move b{
+  display:block;
+  font-family:var(--narrow);
+  font-size:10px;font-weight:700;letter-spacing:.24em;
+  text-transform:uppercase;color:var(--orange);
+  margin-bottom:6px;
+}
+
+/* Dig section header */
+.dig-head{
+  font-family:var(--disp);font-weight:600;
+  font-variation-settings:"opsz" 72;
+  font-size:clamp(22px,3vw,34px);
+  line-height:1.08;letter-spacing:-.02em;
+  color:var(--ink);
+  margin-bottom:12px;
+}
+
+/* Quiet on the wire */
+.quiet-section{
+  max-width:1280px;margin:0 auto;padding:64px 28px 24px;
+  display:grid;grid-template-columns:repeat(12,1fr);gap:24px;
+}
+.quiet-head{grid-column:1 / span 3;}
+.quiet-title{
+  font-family:var(--disp);font-style:italic;font-weight:400;
+  font-variation-settings:"opsz" 72;
+  font-size:32px;line-height:1;letter-spacing:-.02em;
+  color:var(--ink);
+}
+.quiet-title em{color:var(--orange);font-style:normal;font-weight:500}
+.quiet-kicker{
+  font-family:var(--narrow);
+  font-size:10px;font-weight:700;letter-spacing:.32em;
+  text-transform:uppercase;color:var(--muted);
+  margin-bottom:10px;
+}
+.quiet-body{
+  grid-column:5 / -1;
+  font-family:var(--disp);font-size:17px;line-height:1.65;color:var(--body);
+  padding-left:24px;border-left:1px solid var(--ink);
+}
+.quiet-body p{margin-bottom:16px}
+.quiet-body strong{font-weight:600;color:var(--ink)}
+.quiet-body a{color:var(--ink);text-decoration:none;border-bottom:1px solid var(--hair-hard)}
+.quiet-body a:hover{color:var(--orange)}
+@media(max-width:860px){
+  .quiet-head,.quiet-body{grid-column:1 / -1}
+  .quiet-body{padding-left:0;border-left:none;border-top:1px solid var(--ink);padding-top:18px}
+}
+
+/* Release log */
+.log-divider{
+  background:var(--paper);
+  padding:80px 28px 48px;
+  text-align:center;
+  border-top:3px double var(--ink);
+  border-bottom:1px solid var(--ink);
+  max-width:1280px;margin:0 auto;
+}
+.log-divider-kicker{
+  font-family:var(--narrow);
+  font-size:11px;font-weight:700;letter-spacing:.48em;
+  text-transform:uppercase;color:var(--orange);
+  margin-bottom:14px;
+}
+.log-divider-title{
+  font-family:var(--disp);font-weight:700;
+  font-variation-settings:"opsz" 144;
+  font-size:clamp(48px,8vw,112px);
+  line-height:.9;letter-spacing:-.045em;color:var(--ink);
+  margin-bottom:16px;
+}
+.log-divider-title em{font-style:italic;font-weight:400}
+.log-divider-sub{
+  font-family:var(--disp);font-style:italic;
+  font-size:17px;color:var(--muted);max-width:600px;margin:0 auto;line-height:1.5;
+}
+
+.log-section{padding:48px 28px;max-width:1280px;margin:0 auto;}
+.log-cat-head{
+  display:grid;
+  grid-template-columns:1fr auto;
+  gap:24px;align-items:baseline;
+  padding-bottom:18px;
+  border-bottom:1px solid var(--ink);
+  margin-bottom:0;
+}
+.log-cat-name{
+  font-family:var(--disp);font-weight:600;font-style:italic;
+  font-variation-settings:"opsz" 96;
+  font-size:clamp(28px,4vw,48px);
+  letter-spacing:-.02em;color:var(--ink);line-height:1;
+}
+.log-cat-count{
+  font-family:var(--narrow);
+  font-size:10px;font-weight:600;letter-spacing:.28em;
+  text-transform:uppercase;color:var(--muted);
+  text-align:right;
+}
+.log-cat-count b{color:var(--ink);font-weight:700;font-size:13px;display:block}
+
+.log-entries{display:flex;flex-direction:column}
+.log-entry{
+  padding:24px 0;
+  border-bottom:1px solid var(--hair);
+  display:grid;
+  grid-template-columns:120px 1fr;gap:28px;
+}
+.log-entry-left{display:flex;flex-direction:column;gap:8px;}
+.log-entry-date{
+  font-family:var(--narrow);
+  font-size:10px;font-weight:700;letter-spacing:.22em;
+  text-transform:uppercase;color:var(--ink);
+  font-variant-numeric:tabular-nums;
+}
+.log-tag{
+  font-family:var(--narrow);
+  font-size:9px;font-weight:700;letter-spacing:.22em;
+  text-transform:uppercase;padding:3px 7px;
+  display:inline-block;line-height:1.3;width:fit-content;
+}
+.log-tag.model{background:var(--orange);color:var(--paper)}
+.log-tag.api{background:var(--ink);color:var(--paper)}
+.log-tag.code{background:#3a3a3a;color:var(--paper)}
+.log-tag.apps{background:#5a5a5a;color:var(--paper)}
+.log-tag.sdk-py,.log-tag.sdk-ts{background:var(--paper);color:var(--ink);border:1px solid var(--ink)}
+.log-tag.research,.log-tag.news{background:var(--paper-shadow);color:var(--muted);border:1px solid var(--hair-hard)}
+.log-tag.security{background:#c0392b;color:#fff}
+.log-entry-title{
+  font-family:var(--disp);font-weight:500;
+  font-variation-settings:"opsz" 72;
+  font-size:19px;letter-spacing:-.012em;
+  color:var(--ink);line-height:1.25;
+  margin-bottom:10px;
+}
+.log-entry-title a{color:inherit;text-decoration:none;border-bottom:1px solid var(--hair-hard)}
+.log-entry-title a:hover{border-bottom-color:var(--orange);color:var(--orange)}
+.log-entry-body{
+  font-family:var(--sans);font-size:14px;line-height:1.6;color:var(--body);
+  margin-bottom:12px;
+}
+.log-entry-how{
+  font-family:var(--sans);font-size:13px;line-height:1.6;color:var(--muted);
+  padding-top:12px;border-top:1px solid var(--hair-soft);
+}
+.log-entry-how b{font-family:var(--narrow);font-size:10px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--ink);display:block;margin-bottom:6px}
+.log-entry-why{
+  font-family:var(--disp);font-style:italic;
+  font-size:14px;color:var(--muted);line-height:1.55;
+  margin-top:10px;padding-left:14px;
+  border-left:2px solid var(--orange);
+}
+.log-entry-lab{
+  font-family:var(--narrow);
+  font-size:9px;font-weight:600;letter-spacing:.18em;
+  text-transform:uppercase;color:var(--gray);
+  margin-top:4px;
+}
+@media(max-width:720px){
+  .log-entry{grid-template-columns:1fr;gap:12px}
+}
+
+/* Colophon */
+.colophon{
+  background:var(--ink);color:var(--paper);
+  padding:72px 28px 56px;
+  border-top:2px solid var(--orange);
+}
+.colophon-inner{
+  max-width:1280px;margin:0 auto;
+  display:grid;grid-template-columns:repeat(12,1fr);gap:32px;
+}
+.colophon-mast{grid-column:1 / span 5;}
+.colophon-word{
+  font-family:var(--disp);font-weight:500;font-style:italic;
+  font-variation-settings:"opsz" 144;
+  font-size:clamp(60px,8vw,100px);
+  line-height:.9;letter-spacing:-.04em;color:var(--paper);
+}
+.colophon-word .dot{color:var(--orange)}
+.colophon-tag{
+  margin-top:12px;
+  font-family:var(--disp);font-style:italic;font-size:16px;
+  color:rgba(250,250,247,.65);line-height:1.4;max-width:320px;
+}
+.colophon-body{
+  grid-column:6 / -1;
+  display:grid;grid-template-columns:repeat(3,1fr);gap:28px;
+}
+.colophon-col h4{
+  font-family:var(--narrow);
+  font-size:10px;font-weight:700;letter-spacing:.32em;
+  text-transform:uppercase;color:var(--orange);
+  margin-bottom:10px;padding-bottom:8px;
+  border-bottom:1px solid rgba(250,250,247,.2);
+}
+.colophon-col p,.colophon-col li{
+  font-family:var(--sans);font-size:12px;line-height:1.6;
+  color:rgba(250,250,247,.75);margin-bottom:6px;list-style:none;
+}
+.colophon-col b{color:var(--paper);font-weight:600}
+.colophon-foot{
+  grid-column:1 / -1;
+  margin-top:28px;padding-top:20px;
+  border-top:1px solid rgba(250,250,247,.2);
+  display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap;
+  font-family:var(--narrow);font-size:10px;font-weight:600;
+  letter-spacing:.28em;text-transform:uppercase;color:rgba(250,250,247,.5);
+}
+.colophon-foot b{color:var(--paper);font-weight:700}
+.colophon-foot .hot{color:var(--orange)}
+.colophon-link{color:rgba(250,250,247,.75);text-decoration:none;border-bottom:1px solid rgba(250,250,247,.3)}
+.colophon-link:hover{color:var(--paper)}
+@media(max-width:860px){
+  .colophon-mast,.colophon-body{grid-column:1 / -1}
+  .colophon-body{grid-template-columns:1fr;gap:20px}
+}
+
+/* Sources section */
+.sources-section{
+  max-width:1280px;margin:0 auto;
+  padding:48px 28px;
+  border-top:1px solid var(--hair);
+}
+.sources-kicker{
+  font-family:var(--narrow);
+  font-size:10px;font-weight:700;letter-spacing:.32em;
+  text-transform:uppercase;color:var(--muted);
+  margin-bottom:16px;padding-bottom:12px;
+  border-bottom:1px solid var(--hair-hard);
+}
+.sources-list{
+  display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));
+  gap:10px 32px;
+  font-family:var(--sans);font-size:13px;line-height:1.55;color:var(--muted);
+  list-style:none;
+}
+.sources-list li a{color:var(--body);text-decoration:none;border-bottom:1px solid var(--hair)}
+.sources-list li a:hover{color:var(--orange);border-bottom-color:var(--orange)}
+.sources-list li strong{font-weight:600;color:var(--ink);display:block;font-family:var(--narrow);font-size:10px;letter-spacing:.18em;text-transform:uppercase}
+
+@media(max-width:600px){
+  .pub-bar{padding:0 16px}
+  .daily-header{padding:36px 20px 28px}
+  .section,.log-section,.quiet-section,.sources-section{padding-left:16px;padding-right:16px}
+}
+</style>
+</head>
+<body>
+
+<!-- PUBLICATION BAR -->
+<nav class="pub-bar">
+  <div class="pub-bar-left">
+    <span class="pub-bar-mark">Shipped<span class="dot">.</span></span>
+    <span class="pub-bar-sep"></span>
+    <span class="pub-bar-meta">Frontier daily by <a href="https://id8labs.app" class="pub-bar-link">id8Labs</a></span>
+  </div>
+  <div class="pub-bar-right">
+    <span class="pub-bar-folio">Daily <b>2026.07.14</b></span>
+  </div>
+</nav>
+
+<!-- DAILY MASTHEAD -->
+<header class="daily-header">
+  <div class="daily-header-grid"></div>
+  <div class="daily-kicker">Frontier Daily &nbsp;&#xb7;&nbsp; Six Labs &nbsp;&#xb7;&nbsp; One Read</div>
+  <div class="daily-masthead">Shipped<span class="dot">.</span></div>
+  <div class="daily-dateline">Monday, July 14, 2026 &nbsp;&#xb7;&nbsp; 24-Hour Window</div>
+  <div class="daily-read-label">The Read</div>
+  <div class="daily-read">A coding tool was uploading your entire codebase to xAI&#8217;s cloud. The privacy toggle did something else entirely. On the same Monday, Anthropic launched a classroom product where data protection is the headline; DeepMind&#8217;s CEO called for a referee before the final whistle.</div>
+  <div class="daily-labs">
+    <span class="daily-lab-flag anchor">Anthropic</span>
+    <span class="daily-lab-flag">xAI</span>
+    <span class="daily-lab-flag">Google DeepMind</span>
+    <span class="daily-lab-flag">Meta AI</span>
+    <span class="daily-lab-flag">OpenAI</span>
+  </div>
+</header>
+
+<!-- LEAD STORY -->
+<div class="section" style="padding-bottom:0">
+  <div class="section-folio">
+    <div class="section-folio-left">
+      <span class="section-folio-label">Lead</span>
+      <span class="section-folio-sub">The item that carries the day</span>
+    </div>
+    <div class="folio"><span class="ruler"></span><b>xAI</b></div>
+  </div>
+</div>
+
+<div class="prose-well">
+  <div class="prose-marginalia">Lead Story</div>
+  <div class="prose">
+    <div class="article-flag-row">
+      <span class="area-tag security">Security</span>
+      <span class="area-tag news">News</span>
+      <span class="lab-label">xAI</span>
+    </div>
+    <h2 class="article-hed lead">xAI&#8217;s Grok Build uploaded your entire repository</h2>
+    <p>A security researcher at CerebLabs published a wire-level analysis on July 12 that proved xAI&#8217;s Grok Build CLI had been packaging developers&#8217; entire git repositories, full commit history, all tracked files, and shipping them to a Google Cloud Storage bucket controlled by xAI through a separate channel from the model-turn stream. Not just the files a coding task needed to read. The entire repository.</p>
+    <p>The mechanism is specific. On a 12 GB test repository, Grok Build&#8217;s model-turn channel at <code>/v1/responses</code> moved approximately 192 KB: the actual coding context. A parallel storage channel at <code>/v1/storage</code> moved 5.10 gigabytes in 73 chunks of roughly 75 MB each. The ratio between what the model needed and what left the machine was approximately 27,800 to one. A tracked <code>.env</code> file containing canary <code>API_KEY</code> and <code>DB_PASSWORD</code> values went with it, unredacted.</p>
+    <p>The blast radius covers every developer who ran Grok Build CLI version 0.2.93 against any git repository that had committed credentials, configuration secrets, or proprietary code. This is not a theoretical exposure. The data moved to a cloud bucket xAI controls. The <code>/privacy</code> toggle, the setting that tells xAI not to retain your data, operated only on post-session retention. It had no effect on what left your machine during the session. The control did not do what the label implied.</p>
+    <p>The pattern is not new, but the stakes are high. AI coding tools see more sensitive material than almost any other product category: API keys, database schemas, internal service URLs, committed secrets that engineers meant to clean up later. The gap between &#8220;this tool reads the files you point it at&#8221; and &#8220;this tool ships your entire repository to our storage&#8221; is wide. Discovering that gap from a wire-level audit, not from a vendor disclosure, is the worst possible way to find it.</p>
+    <p>The response was silent. On July 13, the day after the researcher published, the same 0.2.93 binary stopped making storage requests. The server began returning <code>disable_codebase_upload: true</code>. xAI issued no statement, posted no announcement, sent no notification to affected users. The analysis hit the front page of Hacker News on July 14. Elon Musk, in a post on X, promised deletion of all previously uploaded user data.</p>
+    <div class="pull-quote">Deletion after discovery is not the same as not uploading.</div>
+    <div class="builders-move">
+      <b>Builder&#8217;s Move</b>
+      If you ran Grok Build against any repository containing committed credentials, rotate those credentials now. Treat them as exposed. The data is in xAI&#8217;s possession regardless of what the privacy toggle said. Audit your repository history for <code>.env</code> files, hardcoded API keys, database passwords, and internal service endpoints. Check git history, not just the current working tree.
+    </div>
+  </div>
+  <div class="prose-aside">
+    <b>Sources</b><br>
+    <a href="https://thehackernews.com/2026/07/grok-build-uploads-entire-git.html">Hacker News: Grok Build uploads entire git repos</a><br><br>
+    <a href="https://cybersecuritynews.com/xai-grok-build-cloud-storage/">Cybersecurity News: .env secrets in xAI storage</a><br><br>
+    <a href="https://www.techtimes.com/articles/320420/20260714/grok-build-shipped-entire-codebases-xai-cloud-privacy-toggle-did-nothing.htm">TechTimes: Privacy toggle did nothing</a><br><br>
+    <a href="https://www.theregister.com/ai-and-ml/2026/07/14/musk-promises-purge-after-grok-build-caught-sending-entire-repos-to-the-cloud/5271123">The Register: Musk promises purge</a>
+  </div>
+</div>
+
+<!-- THE DIG -->
+<div class="section" style="padding-bottom:0;padding-top:24px">
+  <div class="section-folio">
+    <div class="section-folio-left">
+      <span class="section-folio-label">The Dig</span>
+      <span class="section-folio-sub">Secondary items, each run through the levers that apply</span>
+    </div>
+    <div class="folio"><span class="ruler"></span><b>July 14</b></div>
+  </div>
+</div>
+
+<!-- Dig 1: Claude for Teachers -->
+<div class="prose-well">
+  <div class="prose-marginalia">Anthropic</div>
+  <div class="prose">
+    <div class="article-flag-row">
+      <span class="area-tag apps">Apps</span>
+      <span class="area-tag news">News</span>
+      <span class="lab-label">Anthropic</span>
+    </div>
+    <h3 class="dig-head">Claude for Teachers</h3>
+    <p>Anthropic on Monday <a href="https://www.anthropic.com/news/claude-for-teachers">launched Claude for Teachers</a>, offering verified K-12 educators in the United States free access to premium Claude capabilities through June 30, 2027. The product includes Claude Code and Cowork, access to evidence-based curricula mapped to academic standards across all 50 states, and the ability to schedule recurring tasks: reviewing exit tickets at 4 PM each school day, adapting the next lesson plan based on what the class understood today.</p>
+    <p>The collaboration with the American Federation of Teachers is notable for who Anthropic went to first. Union before district administration. Teachers before procurement officers. The AFT represents 1.7 million members; getting the union&#8217;s backing shapes distribution and trust in a way that a district-level deal does not.</p>
+    <p><em>Training is off for verified teacher accounts.</em> Anthropic said this explicitly in the announcement. That sentence is doing meaningful work today given everything else on the wire: it is the structural opposite of what xAI&#8217;s privacy toggle was implying while doing something different. One lab launched a product with privacy as the headline feature. Another silently patched a tool that had been exfiltrating codebases for weeks.</p>
+    <p>The blast radius covers approximately 3.7 million public school teachers in the United States who have been priced out of or locked out of enterprise AI products. Free full-year access, verified through an individual signup, no institutional procurement required. Claude for Teachers joins Google, OpenAI, and Khan Academy in targeting K-12 educators directly. The difference is the AFT partnership and the depth on curriculum and scheduling work.</p>
+    <div class="builders-move">
+      <b>Builder&#8217;s Move (if you are a teacher)</b>
+      Sign up at anthropic.com/claude-for-teachers. Individual verification; no district IT involvement required. Training is off. Your classroom data does not train the model.
+    </div>
+  </div>
+  <div class="prose-aside">
+    <b>Source</b><br>
+    <a href="https://www.anthropic.com/news/claude-for-teachers">Anthropic: Claude for Teachers</a><br><br>
+    <a href="https://www.chalkbeat.org/2026/07/14/anthropic-launches-claude-for-teachers-as-ai-companies-battle-for-classrooms/">Chalkbeat coverage</a>
+  </div>
+</div>
+
+<hr class="hairline" style="max-width:1232px;margin:0 auto 0">
+
+<!-- Dig 2: Artifacts multiplayer -->
+<div class="prose-well" style="padding-top:40px">
+  <div class="prose-marginalia">Anthropic</div>
+  <div class="prose">
+    <div class="article-flag-row">
+      <span class="area-tag apps">Apps</span>
+      <span class="lab-label">Anthropic</span>
+    </div>
+    <h3 class="dig-head">Artifacts go multiplayer, live in Slack</h3>
+    <p>Claude now supports public sharing of Artifacts (no Claude account required to view a shared link), collaborative editing by multiple team members within a single Artifact, and creation of Artifacts directly from Slack via Claude Tag. Microsoft 365 integration is also shipping this week.</p>
+    <p>The mechanism: Claude Tag lets you summon Claude with @Claude in any Slack channel, where it carries shared organizational context and tool access. Claude can automatically create a persistent Artifact from the discussion. The Artifact is then editable by the team and shareable publicly via link. Admins retain control over who can access what through organization-wide settings.</p>
+    <p>The read: Anthropic is building toward Claude as the production layer for team deliverables, not just a chat interface. Artifacts that live outside the conversation, are editable by the team, and are publicly shareable without a login requirement are a different product category. It is a lightweight document and publishing layer with AI at the center. Microsoft 365 integration puts it inside both halves of enterprise communication.</p>
+    <div class="builders-move">
+      <b>Builder&#8217;s Move</b>
+      Share an Artifact via the &#8220;Share&#8221; button to generate a public link. Tag @Claude in a Slack channel to invoke Claude Tag. Workspace admins: review Artifact sharing permissions before the week is out.
+    </div>
+  </div>
+  <div class="prose-aside">
+    <b>Source</b><br>
+    <a href="https://www.progressiverobot.com/2026/07/14/anthropic-enables-public-artifact-sharing-and-team-editing-in-claude/">Progressive Robot: Anthropic Artifacts</a><br><br>
+    <a href="https://www.techrepublic.com/article/news-anthropic-claude-tag-ai-agent-slack/">TechRepublic: Claude Tag in Slack</a>
+  </div>
+</div>
+
+<hr class="hairline" style="max-width:1232px;margin:0 auto 0">
+
+<!-- Dig 3: Hassabis FINRA -->
+<div class="prose-well" style="padding-top:40px">
+  <div class="prose-marginalia">DeepMind</div>
+  <div class="prose">
+    <div class="article-flag-row">
+      <span class="area-tag news">News</span>
+      <span class="area-tag research">Policy</span>
+      <span class="lab-label">Google DeepMind</span>
+    </div>
+    <h3 class="dig-head">Hassabis wants a FINRA for frontier AI</h3>
+    <p>Google DeepMind CEO Demis Hassabis <a href="https://www.cnbc.com/2026/07/14/google-deepmind-demis-hassabis-us-led-ai-standards-body.html">published a manifesto on July 14</a> calling for the United States to establish a regulatory body for frontier AI models, modeled specifically on FINRA, the financial industry&#8217;s self-regulatory organization. The body would test advanced models for dangerous capabilities: cyber, biological, deception. It would have authority to coordinate an industry-wide slowdown if threat levels mount. Hassabis told Axios he wants the body operational within months, ideally before the end of 2026, and described early conversations with the Trump administration as yielding positive signals.</p>
+    <p>The structure of the proposal is precise. FINRA is self-regulatory in the sense that the industry funds and participates in it, but it carries binding authority over member behavior. The AI equivalent Hassabis describes is a two-step test-then-gate model: an independent body tests for dangerous capabilities as models approach release. If a model crosses a threshold, the body can require a coordinated slowdown across all participating labs simultaneously. This matters because it avoids the competitive asymmetry of unilateral pauses: one lab slowing down while competitors do not is a bet that costs billions. A coordinated pause costs everyone the same amount, so it can be enforced without defection.</p>
+    <p>Hassabis has publicly placed AGI at 2030 plus or minus a year. The manifesto and the timeline are not coincidental. He is proposing the institution before he believes the hardest moment arrives.</p>
+    <p>The cross-lab read: Hassabis published this on the same day xAI silently patched a product that had been exfiltrating developer codebases without consent, and roughly three days after Meta pulled an AI image feature that had auto-enrolled users into something they did not know about. The proposal addresses the model-capability tier of risk. The product-behavior tier, where the violations are quieter and the blast radius is everyone who ran your CLI last week, has no proposed solution on the table today. No one has yet proposed a FINRA for AI product behavior, only for AI model capabilities.</p>
+  </div>
+  <div class="prose-aside">
+    <b>Sources</b><br>
+    <a href="https://www.cnbc.com/2026/07/14/google-deepmind-demis-hassabis-us-led-ai-standards-body.html">CNBC: Hassabis AI standards body</a><br><br>
+    <a href="https://www.axios.com/2026/07/14/demis-hassabis-ai-regulation-google-deepmind">Axios (exclusive interview)</a><br><br>
+    <a href="https://thenextweb.com/news/demis-hassabis-frontier-ai-standards-body-finra">The Next Web: FINRA referee</a>
+  </div>
+</div>
+
+<hr class="hairline" style="max-width:1232px;margin:0 auto 0">
+
+<!-- Dig 4: Gemini 3.5 Pro delay -->
+<div class="prose-well" style="padding-top:40px">
+  <div class="prose-marginalia">DeepMind</div>
+  <div class="prose">
+    <div class="article-flag-row">
+      <span class="area-tag model">Model</span>
+      <span class="lab-label">Google DeepMind</span>
+    </div>
+    <h3 class="dig-head">Gemini 3.5 Pro pushed to July 17 after a full rebuild</h3>
+    <p>Google DeepMind pushed the Gemini 3.5 Pro release to July 17, following a decision to scrap the 2.5 Pro architecture entirely and rebuild from scratch. Engineers found structural failures in recursive tool-calling and SVG generation. The rebuilt model carries a 2 million token context window and a new Deep Think Reasoning Layer.</p>
+    <p>Scrapping a pre-training run at the frontier is not a routine engineering decision. The cost is in the hundreds of millions of dollars and months of development time. The decision to announce the rebuild publicly, rather than quietly shipping a model with known weaknesses, is itself a communication choice. Google is betting on a clean July 17 launch rather than a launch-and-patch cycle.</p>
+    <p>The pattern: Gemini went through the 2.0 to 2.5 transition with visible benchmark gaps that OpenAI and Anthropic pressed. Rebuilding rather than incrementing is an acknowledgment that an incremental 3.5 Pro would not close the gap with GPT-5.6 Sol and Fable 5. Three days from now will confirm whether the rebuild actually delivered what the press release promises.</p>
+    <div class="builders-move">
+      <b>Builder&#8217;s Move</b>
+      If you are building on Gemini 2.5 Pro, the migration window opens July 17. The 2M token context is a significant jump: applications that currently split large documents across multiple requests may be able to consolidate. Hold on migration until release notes confirm feature compatibility.
+    </div>
+  </div>
+  <div class="prose-aside">
+    <b>Sources</b><br>
+    <a href="https://finance.biggo.com/news/6f0c6bb2-795f-4c57-9d09-6db691d7638a">BigGo Finance: Gemini 3.5 Pro delay</a><br><br>
+    <a href="https://hackernoon.com/google-delays-gemini-35-pro-to-july-17-the-strategic-play-behind-the-scrapped-base-model">HackerNoon: The strategic play</a>
+  </div>
+</div>
+
+<hr class="hairline" style="max-width:1232px;margin:0 auto 0">
+
+<!-- Dig 5: Meta Muse Image -->
+<div class="prose-well" style="padding-top:40px">
+  <div class="prose-marginalia">Meta AI</div>
+  <div class="prose">
+    <div class="article-flag-row">
+      <span class="area-tag news">News</span>
+      <span class="lab-label">Meta AI</span>
+    </div>
+    <h3 class="dig-head">Meta pulls Muse Image after Instagram users discovered they were in it</h3>
+    <p>Meta launched Muse Image on Instagram as an AI photo generation tool. It automatically opted in every public account: every user&#8217;s photos could be referenced by anyone generating an image, with no notification to the person whose photos were used. SAG-AFTRA, talent agency CAA, and actors including Hannah Einbinder pushed back publicly. Meta pulled the feature from Instagram within days, admitting they &#8220;missed the mark.&#8221; Muse Image remains live in the Meta AI app and WhatsApp; only the Instagram surface is gone.</p>
+    <p>The mechanism of failure is structurally identical to xAI&#8217;s Grok Build: a system behaved in a way that exceeded what users understood they had consented to, and the correction came after discovery under public pressure, not before deployment. Meta&#8217;s team knew the feature auto-enrolled users. It shipped anyway. &#8220;Missed the mark&#8221; is what you say when the thing you shipped was not accidental.</p>
+    <div class="builders-move">
+      <b>Note</b>
+      Muse Image remains active in the Meta AI app and WhatsApp. If you have a public Instagram account and are concerned about your images being referenced in Meta AI-generated content, this is unresolved: the Instagram surface was removed, but the underlying model continues to run on other Meta surfaces.
+    </div>
+  </div>
+  <div class="prose-aside">
+    <b>Sources</b><br>
+    <a href="https://techcrunch.com/2026/07/10/meta-removes-controversial-ai-feature-on-instagram-after-backlash/">TechCrunch: Meta removes Muse Image</a><br><br>
+    <a href="https://deadline.com/2026/07/meta-removes-muse-image-ai-feature-backlash-1236979605/">Deadline: SAG-AFTRA, CAA backlash</a>
+  </div>
+</div>
+
+<hr class="hairline" style="max-width:1232px;margin:0 auto 0">
+
+<!-- The Cross-Lab Picture -->
+<div class="prose-well" style="padding-top:40px">
+  <div class="prose-marginalia">Cross-Lab</div>
+  <div class="prose">
+    <div class="article-flag-row">
+      <span class="area-tag news">Analysis</span>
+      <span class="lab-label">All Labs</span>
+    </div>
+    <h3 class="dig-head">The consent crisis is not an xAI problem</h3>
+    <p>July 14 has a recurring structure across three labs. Systems handling user data behaved differently from what users were told or assumed. xAI&#8217;s Grok Build uploaded entire codebases while a privacy toggle addressed something else entirely. Meta&#8217;s Muse Image auto-enrolled every public Instagram account into AI image generation, allowing anyone to generate images using your photos, with no notification. Both were discovered after deployment. Both were corrected under public pressure. Both were framed, afterward, as misunderstandings.</p>
+    <p>The inference available to builders today: the stated privacy posture of an AI tool and its actual data handling are two different things, and they require independent verification. The researcher who caught Grok Build did not find it through documentation or privacy policies. They captured the network traffic. That is the verification mechanism that worked.</p>
+    <p>Hassabis is proposing a regulatory body for the model-capability tier of risk. The product-behavior tier, where an AI coding tool uploads your entire codebase while displaying a toggle that implies otherwise, has no proposed solution on the table. No one has yet proposed a mechanism for auditing that tier at scale. The CerebLabs researcher did it for one product, manually, once. That is not a system.</p>
+  </div>
+  <div class="prose-aside">
+    <b>The Read</b><br>
+    <br>
+    Three labs in four days. Three corrections under pressure. Zero disclosures before the fact. The frontier has a stated-vs-actual problem at the product layer, and the only people auditing it are individual researchers with packet captures.
+  </div>
+</div>
+
+<hr class="hairline" style="max-width:1232px;margin:0 auto 0">
+
+<!-- Dig: Claude Code v2.1.208 -->
+<div class="prose-well" style="padding-top:40px">
+  <div class="prose-marginalia">Anthropic</div>
+  <div class="prose">
+    <div class="article-flag-row">
+      <span class="area-tag code">Code</span>
+      <span class="lab-label">Anthropic</span>
+    </div>
+    <h3 class="dig-head">Claude Code v2.1.208</h3>
+    <p>Anthropic shipped Claude Code v2.1.208 on July 14. New features: screen reader mode (opt-in via <code>--ax-screen-reader</code> flag or <code>axScreenReader: true</code> in settings), vim insert-mode remaps via the <code>vimInsertModeRemaps</code> setting (maps two-key sequences like <code>jj</code> to Escape), and <code>CLAUDE_CODE_PROCESS_WRAPPER</code> support for corporate launcher requirements. Mouse-click support added for multi-select menus in fullscreen mode.</p>
+    <p>The process wrapper addition is notable for enterprise deployments. Every Claude Code self-spawn now honors a required wrapper executable, which satisfies locked-down environments where all processes must route through a central audited launcher. This is the kind of feature that turns Claude Code from &#8220;blocked by IT&#8221; to &#8220;approvable&#8221; in enterprise contexts.</p>
+    <p>Bug fixes include: fast mode restoration after switching back to a model that supports it (was incorrectly staying off), <code>/release-notes</code> no longer injects the full changelog into model context (was inflating every subsequent request in the session), and memory leak patches for long sessions including MCP stdio server stderr accumulation and LSP documents staying open after file closure.</p>
+    <div class="builders-move">
+      <b>Builder&#8217;s Move</b>
+      Run <code>claude update</code> or reinstall. Screen reader mode: <code>claude --ax-screen-reader</code> or set <code>CLAUDE_AX_SCREEN_READER=1</code>. Corporate wrapper: set <code>CLAUDE_CODE_PROCESS_WRAPPER</code> to your required launcher executable path. The <code>/release-notes</code> memory fix is worth the update alone in long sessions.
+    </div>
+  </div>
+  <div class="prose-aside">
+    <b>Source</b><br>
+    <a href="https://github.com/anthropics/claude-code/blob/main/CHANGELOG.md">Claude Code CHANGELOG</a>
+  </div>
+</div>
+
+<!-- QUIET ON THE WIRE -->
+<section class="quiet-section" style="border-top:1px solid var(--ink);margin-top:24px">
+  <div class="quiet-head">
+    <div class="quiet-kicker">What&#8217;s Next</div>
+    <div class="quiet-title">Quiet on<br>the <em>Wire</em></div>
+  </div>
+  <div class="quiet-body">
+    <p><strong>Gemini 3.5 Pro ships Thursday, July 17.</strong> The architectural rebuild targets recursive tool-calling and SVG failures in the 2.5 Pro base. Watch the release notes carefully; the 2M token context window is a significant jump and pipeline compatibility with 2.5 Pro is unconfirmed until the release lands.</p>
+    <p><strong>OpenAI ChatGPT Work continues rolling out</strong> to Plus, Pro, Business, Enterprise, and Edu subscribers on web and mobile this week, following the July 9 desktop launch. Powered by GPT-5.6 (three flavors: Sol, Terra, Luna). The Atlas agentic browser tool is scheduled for deprecation August 9 as its capabilities fold into Codex and the main ChatGPT client.</p>
+    <p><strong>Anthropic&#8217;s S-1 is confidentially filed</strong> with the SEC, originally submitted June 1. The public version is expected this summer, with an October Nasdaq listing the current target. Goldman Sachs, JPMorgan, and Morgan Stanley are leading. Raise target: more than $60 billion. Post-money valuation from the May Series H: $965 billion. No share price or listing date is set.</p>
+    <p><strong>Anthropic in early discussions with Samsung</strong> about manufacturing a custom AI chip at 2nm process, per The Information. Samsung participated in the May Series H as a strategic infrastructure partner; the chip talks are the next chapter of that relationship. Plans are exploratory: Anthropic is still determining what the chip should do and where it fits in a server stack.</p>
+    <p><strong>Mistral&#8217;s Connectors enterprise update</strong> shipped June 24: scoped API keys, per-workspace admin controls, multi-account connectors, a connector debugger, and connector support in Vibe Code (GA) and Workflows (public preview). Over 60 pre-built integrations now available.</p>
+  </div>
+</section>
+
+<!-- RELEASE LOG -->
+<div class="log-divider">
+  <div class="log-divider-kicker">Back of Book &nbsp;&#xb7;&nbsp; Reference</div>
+  <h2 class="log-divider-title">The <em>Release</em> Log</h2>
+  <p class="log-divider-sub">Every confirmed item in the 24-hour window. Grouped A to G per category. One-liners for items that did not survive the dig.</p>
+</div>
+
+<!-- C. Claude Code -->
+<div class="log-section">
+  <div class="log-cat-head">
+    <div class="log-cat-name">C. Claude Code</div>
+    <div class="log-cat-count"><b>1</b> entry</div>
+  </div>
+  <div class="log-entries">
+    <div class="log-entry">
+      <div class="log-entry-left">
+        <div class="log-entry-date">2026-07-14</div>
+        <span class="log-tag code">Code</span>
+        <div class="log-entry-lab">Anthropic</div>
+      </div>
+      <div class="log-entry-right">
+        <div class="log-entry-title"><a href="https://github.com/anthropics/claude-code/blob/main/CHANGELOG.md">Claude Code v2.1.208</a></div>
+        <div class="log-entry-body">Screen reader mode (opt-in, <code>--ax-screen-reader</code> or <code>CLAUDE_AX_SCREEN_READER=1</code>). Vim insert-mode remaps via <code>vimInsertModeRemaps</code>. <code>CLAUDE_CODE_PROCESS_WRAPPER</code> for corporate launcher requirements. Mouse-click support for multi-select menus in fullscreen mode. Bug fixes: fast mode restoration after model switch, <code>/release-notes</code> no longer injects full changelog into model context, memory leak patches for long sessions (MCP stdio stderr, LSP document accumulation).</div>
+        <div class="log-entry-how">
+          <b>How to use</b>
+          Run <code>claude update</code> or reinstall. Screen reader: <code>claude --ax-screen-reader</code>. Corporate wrapper: set <code>CLAUDE_CODE_PROCESS_WRAPPER</code> env var to your launcher executable path.
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- D. Claude Apps -->
+<div class="log-section" style="padding-top:0">
+  <div class="log-cat-head">
+    <div class="log-cat-name">D. Claude Apps</div>
+    <div class="log-cat-count"><b>2</b> entries</div>
+  </div>
+  <div class="log-entries">
+    <div class="log-entry">
+      <div class="log-entry-left">
+        <div class="log-entry-date">2026-07-14</div>
+        <span class="log-tag apps">Apps</span>
+        <div class="log-entry-lab">Anthropic</div>
+      </div>
+      <div class="log-entry-right">
+        <div class="log-entry-title"><a href="https://www.anthropic.com/news/claude-for-teachers">Claude for Teachers</a></div>
+        <div class="log-entry-body">Free full-year access for verified K-12 educators in the US through June 30, 2027. Includes Claude Code and Cowork, lesson-planning tools, exit-ticket review automation on a recurring schedule, and evidence-based curricula mapped to academic standards in all 50 states. Developed in collaboration with the American Federation of Teachers. Training is off for verified teacher accounts.</div>
+        <div class="log-entry-how">
+          <b>How to use</b>
+          Sign up at anthropic.com/claude-for-teachers. Individual verification. No institutional procurement or district IT approval required.
+        </div>
+        <div class="log-entry-why">Student data does not train the model on verified teacher accounts. The AFT partnership is the distribution mechanism; Anthropic went union-first, not district-first.</div>
+      </div>
+    </div>
+    <div class="log-entry">
+      <div class="log-entry-left">
+        <div class="log-entry-date">2026-07-14</div>
+        <span class="log-tag apps">Apps</span>
+        <div class="log-entry-lab">Anthropic</div>
+      </div>
+      <div class="log-entry-right">
+        <div class="log-entry-title"><a href="https://www.progressiverobot.com/2026/07/14/anthropic-enables-public-artifact-sharing-and-team-editing-in-claude/">Artifacts: public sharing, multiplayer editing, Claude Tag in Slack</a></div>
+        <div class="log-entry-body">Artifacts now support public sharing via link (no Claude account required to view), collaborative editing by multiple team members, and creation directly from Slack via Claude Tag. Microsoft 365 integration also shipping this week. Admins can control sharing permissions at the workspace level.</div>
+        <div class="log-entry-how">
+          <b>How to use</b>
+          Click &#8220;Share&#8221; on any Artifact for a public link. Tag @Claude in a Slack channel to invoke Claude Tag. Workspace admins: review sharing settings before the week ends.
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- G. News and Cross-Lab -->
+<div class="log-section" style="padding-top:0">
+  <div class="log-cat-head">
+    <div class="log-cat-name">G. News and Cross-Lab</div>
+    <div class="log-cat-count"><b>5</b> entries</div>
+  </div>
+  <div class="log-entries">
+    <div class="log-entry">
+      <div class="log-entry-left">
+        <div class="log-entry-date">2026-07-14</div>
+        <span class="log-tag security">Security</span>
+        <div class="log-entry-lab">xAI</div>
+      </div>
+      <div class="log-entry-right">
+        <div class="log-entry-title"><a href="https://thehackernews.com/2026/07/grok-build-uploads-entire-git.html">Grok Build CLI uploaded entire git repositories to xAI cloud storage</a></div>
+        <div class="log-entry-body">CerebLabs wire-level analysis (published July 12) proved Grok Build CLI v0.2.93 was uploading entire repositories, full git history and committed secrets included, to an xAI-controlled Google Cloud Storage bucket at 27,800x the volume the model needed. The <code>/privacy</code> toggle controlled post-session retention only; it did not prevent the upload. Silent patch July 13 (same binary, server now returns <code>disable_codebase_upload: true</code>). Musk promised deletion of all uploaded data July 14. No formal statement from xAI as of publication.</div>
+        <div class="log-entry-how">
+          <b>Immediate action</b>
+          Rotate any credentials that were committed to repositories you ran Grok Build against. Treat those credentials as exposed.
+        </div>
+      </div>
+    </div>
+    <div class="log-entry">
+      <div class="log-entry-left">
+        <div class="log-entry-date">2026-07-14</div>
+        <span class="log-tag news">News</span>
+        <div class="log-entry-lab">Google DeepMind</div>
+      </div>
+      <div class="log-entry-right">
+        <div class="log-entry-title"><a href="https://www.axios.com/2026/07/14/demis-hassabis-ai-regulation-google-deepmind">Hassabis manifesto: US-led FINRA-style body to test frontier models</a></div>
+        <div class="log-entry-body">Demis Hassabis published a manifesto calling for a US-led public-private regulatory body modeled on FINRA to test advanced models for dangerous capabilities (cyber, biological, deception) and coordinate industry-wide slowdowns if threat thresholds are crossed. Target: operational by end of 2026. Conversations with the Trump administration described as positive. AGI timeline per Hassabis: 2030, plus or minus a year.</div>
+      </div>
+    </div>
+    <div class="log-entry">
+      <div class="log-entry-left">
+        <div class="log-entry-date">2026-07-13</div>
+        <span class="log-tag model">Model</span>
+        <div class="log-entry-lab">Google DeepMind</div>
+      </div>
+      <div class="log-entry-right">
+        <div class="log-entry-title"><a href="https://finance.biggo.com/news/6f0c6bb2-795f-4c57-9d09-6db691d7638a">Gemini 3.5 Pro delayed to July 17 after full architectural rebuild</a></div>
+        <div class="log-entry-body">Gemini 2.5 Pro architecture scrapped after engineers found structural failures in recursive tool-calling and SVG generation. Rebuilt model: 2M token context window, Deep Think Reasoning Layer. Target launch: July 17, 2026.</div>
+        <div class="log-entry-how">
+          <b>Migration</b>
+          Hold on migration from Gemini 2.5 Pro until release notes confirm feature compatibility on July 17.
+        </div>
+      </div>
+    </div>
+    <div class="log-entry">
+      <div class="log-entry-left">
+        <div class="log-entry-date">2026-07-13</div>
+        <span class="log-tag news">News</span>
+        <div class="log-entry-lab">Meta AI</div>
+      </div>
+      <div class="log-entry-right">
+        <div class="log-entry-title"><a href="https://techcrunch.com/2026/07/10/meta-removes-controversial-ai-feature-on-instagram-after-backlash/">Meta pulls Muse Image from Instagram after auto-opt-in backlash</a></div>
+        <div class="log-entry-body">Muse Image launched with automatic enrollment for all public Instagram accounts, allowing third parties to generate AI images referencing any user&#8217;s photos without notification. Pulled after backlash from SAG-AFTRA, CAA, and public figures. Meta said they &#8220;missed the mark.&#8221; Feature remains live in Meta AI app and WhatsApp.</div>
+      </div>
+    </div>
+    <div class="log-entry">
+      <div class="log-entry-left">
+        <div class="log-entry-date">Ongoing</div>
+        <span class="log-tag apps">Apps</span>
+        <div class="log-entry-lab">OpenAI</div>
+      </div>
+      <div class="log-entry-right">
+        <div class="log-entry-title"><a href="https://help.openai.com/en/articles/6825453-chatgpt-release-notes">ChatGPT Work rolling out to Plus, Pro, Business, Enterprise, Edu</a></div>
+        <div class="log-entry-body">ChatGPT Work (powered by GPT-5.6) rolling out to all paid tiers on web and mobile this week, following the July 9 desktop-first launch. Turns notes and drafts into finished documents, spreadsheets, and presentations across connected apps. Atlas deprecated August 9 as agentic capabilities fold into Codex and main ChatGPT.</div>
+        <div class="log-entry-how">
+          <b>GPT-5.6 pricing</b>
+          Sol: $5 input / $30 output per MTok. Terra: $2.50 / $15. Luna: $1 / $6.
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Sources -->
+<div class="sources-section">
+  <div class="sources-kicker">Sources drawn on for this edition</div>
+  <ul class="sources-list">
+    <li><strong>Anthropic</strong><a href="https://www.anthropic.com/news/claude-for-teachers">Claude for Teachers announcement</a></li>
+    <li><strong>GitHub</strong><a href="https://github.com/anthropics/claude-code/blob/main/CHANGELOG.md">Claude Code CHANGELOG</a></li>
+    <li><strong>Hacker News / CerebLabs</strong><a href="https://thehackernews.com/2026/07/grok-build-uploads-entire-git.html">Grok Build repository upload analysis</a></li>
+    <li><strong>The Register</strong><a href="https://www.theregister.com/ai-and-ml/2026/07/14/musk-promises-purge-after-grok-build-caught-sending-entire-repos-to-the-cloud/5271123">Musk promises purge</a></li>
+    <li><strong>Axios</strong><a href="https://www.axios.com/2026/07/14/demis-hassabis-ai-regulation-google-deepmind">Hassabis on AI regulation (exclusive)</a></li>
+    <li><strong>CNBC</strong><a href="https://www.cnbc.com/2026/07/14/google-deepmind-demis-hassabis-us-led-ai-standards-body.html">Hassabis calls for US-led AI body</a></li>
+    <li><strong>TechCrunch</strong><a href="https://techcrunch.com/2026/07/10/meta-removes-controversial-ai-feature-on-instagram-after-backlash/">Meta removes Muse Image</a></li>
+    <li><strong>Deadline</strong><a href="https://deadline.com/2026/07/meta-removes-muse-image-ai-feature-backlash-1236979605/">SAG-AFTRA, CAA backlash</a></li>
+    <li><strong>BigGo Finance</strong><a href="https://finance.biggo.com/news/6f0c6bb2-795f-4c57-9d09-6db691d7638a">Gemini 3.5 Pro delay</a></li>
+    <li><strong>Chalkbeat</strong><a href="https://www.chalkbeat.org/2026/07/14/anthropic-launches-claude-for-teachers-as-ai-companies-battle-for-classrooms/">Claude for Teachers in classrooms</a></li>
+    <li><strong>TechRepublic</strong><a href="https://www.techrepublic.com/article/news-anthropic-claude-tag-ai-agent-slack/">Claude Tag in Slack</a></li>
+    <li><strong>OpenAI Help Center</strong><a href="https://help.openai.com/en/articles/6825453-chatgpt-release-notes">ChatGPT release notes</a></li>
+  </ul>
+</div>
+
+<!-- COLOPHON -->
+<footer class="colophon">
+  <div class="colophon-inner">
+    <div class="colophon-mast">
+      <div class="colophon-word">Shipped<span class="dot">.</span></div>
+      <div class="colophon-tag">A frontier daily from id8Labs. Six labs, one read. Generated nightly at 9 PM ET. Weekly magazine every Friday.</div>
+    </div>
+    <div class="colophon-body">
+      <div class="colophon-col">
+        <h4>This Edition</h4>
+        <p><b>Date</b> Monday, July 14, 2026</p>
+        <p><b>Window</b> Past 24 hours</p>
+        <p><b>Labs covered</b> Anthropic, xAI, Google DeepMind, Meta AI, OpenAI</p>
+        <p><b>Lead</b> xAI Grok Build security</p>
+        <p><b>Status</b> Draft</p>
+      </div>
+      <div class="colophon-col">
+        <h4>Masthead</h4>
+        <p><b>Editor</b> Eddie Belaval</p>
+        <p><b>Reporting</b> with the assistance of Claude</p>
+        <p><b>Voice</b> STYLE.md</p>
+        <p><b>Design</b> Canonical Shipped. light</p>
+        <p><b>Generated by</b> Nightly routine</p>
+      </div>
+      <div class="colophon-col">
+        <h4>Typography</h4>
+        <p><b>Display</b> Fraunces, optical sizes 9 to 144</p>
+        <p><b>Sans</b> Archivo</p>
+        <p><b>Narrow</b> Archivo Narrow</p>
+        <p><b>Mono</b> JetBrains Mono</p>
+        <p><b>Archive</b> <a class="colophon-link" href="https://eddiebelaval.github.io/shipped/anthropic-daily/">eddiebelaval.github.io/shipped/anthropic-daily/</a></p>
+      </div>
+    </div>
+    <div class="colophon-foot">
+      <span>&#169; 2026 <b>id8Labs</b> &nbsp;&#xb7;&nbsp; All rights reserved</span>
+      <span>Printed in pixels &nbsp;&#xb7;&nbsp; Set in Fraunces and Archivo</span>
+      <span class="hot">Next edition: Tuesday, July 15, 2026 at 9 PM ET</span>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
