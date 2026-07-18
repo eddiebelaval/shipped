@@ -16,9 +16,9 @@ export function renderInvestigation(section: Section): string {
   const ratioHtml = ratio && ratio.kind === 'ratio' ? renderRatio(ratio.data) : '';
 
   // Generic investigation body: the full prose block. Quotes render inline
-  // via blockquote formatting. No per-issue hardcoded consortium table or
-  // money-aside (those were Issue 00 Glasswing-specific).
-  const prose = paragraphs(stripSidebar(section.content));
+  // via blockquote formatting. Chart blockquotes are extracted separately
+  // and stripped here to avoid double-rendering.
+  const prose = paragraphs(stripChartBlocks(stripSidebar(section.content)));
 
   return `<div class="feature-opener" id="investigation">
   <span class="vert-label">Investigation</span>
@@ -197,6 +197,17 @@ function stripSidebar(content: string): string {
   return [...lines.slice(0, s), ...lines.slice(e + 1)].join('\n');
 }
 
+function stripChartBlocks(content: string): string {
+  const lines = content.split('\n');
+  const start = lines.findIndex((l) => /^>\s*###\s+CHART/.test(l));
+  if (start < 0) return content;
+  let s = start;
+  while (s > 0 && lines[s - 1]!.startsWith('>')) s--;
+  let e = start;
+  while (e < lines.length - 1 && lines[e + 1]!.startsWith('>')) e++;
+  return [...lines.slice(0, s), ...lines.slice(e + 1)].join('\n');
+}
+
 function paragraphs(body: string): string {
   const blocks = body
     .replace(/\r\n/g, '\n')
@@ -207,10 +218,20 @@ function paragraphs(body: string): string {
         b.length > 0 &&
         !/^-{3,}$/.test(b) &&
         !b.startsWith('#') &&
-        !b.startsWith('>') &&
         !b.startsWith('|'),
     );
   return blocks
-    .map((b) => `    <p>${inlineMarkdown(b.replace(/\n/g, ' '))}</p>`)
+    .map((b) => {
+      if (b.startsWith('>')) {
+        const inner = b
+          .split('\n')
+          .map((l) => l.replace(/^>\s?/, '').trim())
+          .filter((l) => l.length > 0)
+          .map((l) => `<p>${inlineMarkdown(l)}</p>`)
+          .join('\n        ');
+        return `    <blockquote>${inner}</blockquote>`;
+      }
+      return `    <p>${inlineMarkdown(b.replace(/\n/g, ' '))}</p>`;
+    })
     .join('\n');
 }
