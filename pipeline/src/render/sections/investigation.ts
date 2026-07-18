@@ -207,10 +207,21 @@ function paragraphs(body: string): string {
         b.length > 0 &&
         !/^-{3,}$/.test(b) &&
         !b.startsWith('#') &&
-        !b.startsWith('>') &&
+        !/^>\s*###/.test(b) && // chart/heading blocks rendered separately
         !b.startsWith('|'),
     );
   return blocks
-    .map((b) => `    <p>${inlineMarkdown(b.replace(/\n/g, ' '))}</p>`)
+    .map((b) => {
+      if (b.startsWith('>')) {
+        const inner = b
+          .split('\n')
+          .map((l) => l.replace(/^>\s*/, '').trim())
+          .filter((l) => l.length > 0 && !/^-{3,}$/.test(l))
+          .map((l) => `<p>${inlineMarkdown(l)}</p>`)
+          .join('\n');
+        return `<blockquote style="margin:28px 0;padding:0 0 0 16px;border-left:3px solid var(--hair-hard)">\n${inner}\n</blockquote>`;
+      }
+      return `    <p>${inlineMarkdown(b.replace(/\n/g, ' '))}</p>`;
+    })
     .join('\n');
 }
