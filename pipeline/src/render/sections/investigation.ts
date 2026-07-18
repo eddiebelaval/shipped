@@ -207,10 +207,24 @@ function paragraphs(body: string): string {
         b.length > 0 &&
         !/^-{3,}$/.test(b) &&
         !b.startsWith('#') &&
-        !b.startsWith('>') &&
         !b.startsWith('|'),
     );
   return blocks
-    .map((b) => `    <p>${inlineMarkdown(b.replace(/\n/g, ' '))}</p>`)
+    .map((b) => {
+      if (b.startsWith('>')) {
+        // Skip structural markers (charts, code fences) — rendered elsewhere
+        const firstLine = b.split('\n')[0]!.replace(/^>\s*/, '').trim();
+        if (/^#{1,3}\s/.test(firstLine) || firstLine.startsWith('```')) return '';
+        // Render blockquote blocks (quotes, attributions) as paragraph text
+        const inner = b
+          .split('\n')
+          .map((l) => l.replace(/^>\s?/, ''))
+          .join(' ')
+          .trim();
+        return `    <p>${inlineMarkdown(inner)}</p>`;
+      }
+      return `    <p>${inlineMarkdown(b.replace(/\n/g, ' '))}</p>`;
+    })
+    .filter((s) => s.length > 0)
     .join('\n');
 }
