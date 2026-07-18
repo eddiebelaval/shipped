@@ -1,0 +1,891 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light">
+<title>Shipped. Daily, Friday, July 17, 2026</title>
+<meta property="og:title" content="Shipped. Daily, Friday, July 17, 2026">
+<meta property="og:description" content="xAI open-sourced Grok Build after a security incident, then launched Automations with connectors to GitHub and Slack. Anthropic shipped Claude Code v2.1.212 with session caps and background routing. OpenAI's CFO introduced a new enterprise metric. DeepMind went biosecurity.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://eddiebelaval.github.io/shipped/anthropic-daily/2026-07-17.html">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Shipped. Daily, Friday, July 17, 2026">
+<meta name="twitter:description" content="xAI open-sourced Grok Build after a data exfiltration scare, Anthropic shipped Claude Code session caps, OpenAI's CFO invented a new AI ROI metric.">
+<meta name="description" content="Frontier AI labs daily digest for July 17, 2026. xAI, Anthropic, OpenAI, Google DeepMind, Mistral, Meta.">
+<meta name="author" content="Eddie Belaval">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='75' cy='62' r='14' fill='%23FF6B35'/%3E%3Ctext x='10' y='75' font-family='Georgia,serif' font-weight='700' font-size='62' fill='%231a1a1a'%3ES%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;0,9..144,900;1,9..144,300;1,9..144,400;1,9..144,500;1,9..144,700&family=Archivo:wght@300;400;500;600;700;800;900&family=Archivo+Narrow:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{font-size:16px;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;text-rendering:optimizeLegibility}
+body{background:#FAF8F4;color:#0b0b0b;font-family:'Archivo',sans-serif;overflow-x:hidden}
+::selection{background:#FF6B35;color:#fff}
+
+:root{
+  --orange:#FF6B35;
+  --ink:#0b0b0b;
+  --paper:#FAF8F4;
+  --paper-shadow:#f2f0e8;
+  --body:#2a2a2a;
+  --muted:#5a5a5a;
+  --gray:#8a8a8a;
+  --hair:rgba(11,11,11,0.12);
+  --hair-soft:rgba(11,11,11,0.06);
+  --hair-hard:rgba(11,11,11,0.22);
+  --disp:'Fraunces', 'Times New Roman', serif;
+  --sans:'Archivo', system-ui, sans-serif;
+  --narrow:'Archivo Narrow', 'Archivo', sans-serif;
+  --mono:'JetBrains Mono', ui-monospace, monospace;
+}
+
+body::before{
+  content:"";
+  position:fixed;inset:0;pointer-events:none;z-index:1000;opacity:.28;mix-blend-mode:multiply;
+  background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='180' height='180'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' seed='3'/><feColorMatrix values='0 0 0 0 0.02  0 0 0 0 0.02  0 0 0 0 0.02  0 0 0 0.22 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+}
+
+.pub-bar{
+  position:sticky;top:0;z-index:100;
+  background:var(--paper);
+  border-bottom:1px solid var(--hair);
+  padding:0 28px;height:42px;
+  display:flex;align-items:center;justify-content:space-between;
+  font-family:var(--narrow);
+  font-size:11px;font-weight:600;letter-spacing:.22em;
+  text-transform:uppercase;color:var(--ink);
+}
+.pub-bar-left,.pub-bar-right{display:flex;align-items:center;gap:16px}
+.pub-bar-mark{font-family:var(--disp);font-weight:500;font-size:16px;letter-spacing:-.01em;text-transform:none;font-style:italic}
+.pub-bar-mark .dot{color:var(--orange)}
+.pub-bar-sep{width:1px;height:12px;background:var(--hair-hard)}
+.pub-bar-meta{color:var(--muted)}
+.pub-bar-link{color:inherit;text-decoration:none;border-bottom:1px solid currentColor;transition:color .15s ease}
+.pub-bar-link:hover{color:var(--orange)}
+.pub-bar-folio{color:var(--ink)}
+.pub-bar-folio b{font-weight:600;color:var(--orange)}
+
+.section{
+  position:relative;
+  padding:64px 28px 40px;
+  max-width:1280px;margin:0 auto;
+}
+
+.prose-well{
+  max-width:1280px;margin:0 auto;padding:0 28px 56px;
+  display:grid;grid-template-columns:72px 1fr minmax(0,320px);
+  gap:32px;position:relative;
+}
+.prose-well::before{
+  content:"";position:absolute;left:100px;top:0;bottom:0;
+  width:1px;background:var(--hair);
+}
+.prose-marginalia{
+  grid-column:1;
+  font-family:var(--narrow);
+  font-size:10px;font-weight:600;letter-spacing:.26em;
+  text-transform:uppercase;color:var(--gray);
+  writing-mode:vertical-rl;transform:rotate(180deg);
+  align-self:start;padding-top:8px;
+  white-space:nowrap;
+}
+.prose{
+  grid-column:2;
+  font-family:var(--disp);
+  font-variation-settings:"opsz" 14;
+  font-weight:400;font-size:19px;line-height:1.66;
+  color:var(--body);
+  max-width:640px;
+}
+.prose p{margin-bottom:24px}
+.prose em{font-style:italic;color:var(--ink)}
+.prose strong{font-weight:600;color:var(--ink)}
+.prose code{
+  font-family:var(--mono);font-size:.86em;
+  background:var(--paper-shadow);padding:1px 6px;
+  border-radius:3px;color:var(--ink);
+}
+.prose-aside{
+  grid-column:3;
+  font-family:var(--narrow);
+  font-size:11px;font-weight:500;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--muted);
+  border-top:1px solid var(--ink);padding-top:14px;
+  line-height:1.8;
+}
+.prose-aside b{color:var(--ink);font-weight:700}
+@media(max-width:860px){
+  .prose-well{grid-template-columns:1fr;padding-left:20px;padding-right:20px}
+  .prose-well::before{display:none}
+  .prose-marginalia{display:none}
+  .prose{grid-column:1}
+  .prose-aside{grid-column:1;margin-top:20px}
+}
+
+.log-divider{
+  background:var(--paper);
+  padding:96px 28px 48px;
+  text-align:center;
+  border-top:3px double var(--ink);
+  border-bottom:1px solid var(--ink);
+  max-width:1280px;margin:0 auto;
+}
+.log-divider-kicker{
+  font-family:var(--narrow);
+  font-size:11px;font-weight:700;letter-spacing:.48em;
+  text-transform:uppercase;color:var(--orange);
+  margin-bottom:14px;
+}
+.log-divider-title{
+  font-family:var(--disp);font-weight:700;
+  font-variation-settings:"opsz" 144;
+  font-size:clamp(56px,10vw,144px);
+  line-height:.9;letter-spacing:-.045em;color:var(--ink);
+  margin-bottom:16px;
+}
+.log-divider-title em{font-style:italic;font-weight:400}
+.log-divider-sub{
+  font-family:var(--disp);font-style:italic;
+  font-size:18px;color:var(--muted);max-width:640px;margin:0 auto;line-height:1.5;
+}
+
+.log-section{
+  padding:48px 28px;max-width:1280px;margin:0 auto;
+}
+.log-cat-head{
+  display:grid;
+  grid-template-columns:1fr auto;
+  gap:24px;align-items:baseline;
+  padding-bottom:18px;
+  border-bottom:1px solid var(--ink);
+  margin-bottom:0;
+}
+.log-cat-name{
+  font-family:var(--disp);font-weight:600;font-style:italic;
+  font-variation-settings:"opsz" 96;
+  font-size:clamp(36px,5vw,56px);
+  letter-spacing:-.02em;color:var(--ink);line-height:1;
+}
+.log-cat-count{
+  font-family:var(--narrow);
+  font-size:10px;font-weight:600;letter-spacing:.28em;
+  text-transform:uppercase;color:var(--muted);
+  text-align:right;
+}
+.log-cat-count b{color:var(--ink);font-weight:700;font-size:13px;display:block}
+.log-entries{display:flex;flex-direction:column}
+.log-entry{
+  padding:24px 0;
+  border-bottom:1px solid var(--hair);
+  display:grid;
+  grid-template-columns:120px 1fr;gap:28px;
+}
+.log-entry-left{
+  display:flex;flex-direction:column;gap:8px;
+}
+.log-entry-date{
+  font-family:var(--narrow);
+  font-size:10px;font-weight:700;letter-spacing:.22em;
+  text-transform:uppercase;color:var(--ink);
+  font-variant-numeric:tabular-nums;
+}
+.log-tag{
+  font-family:var(--narrow);
+  font-size:9px;font-weight:700;letter-spacing:.22em;
+  text-transform:uppercase;padding:3px 7px;
+  display:inline-block;line-height:1.3;width:fit-content;
+}
+.log-tag.model{background:var(--orange);color:var(--paper)}
+.log-tag.api{background:var(--ink);color:var(--paper)}
+.log-tag.code{background:#3a3a3a;color:var(--paper)}
+.log-tag.apps{background:#5a5a5a;color:var(--paper)}
+.log-tag.sdk-py,.log-tag.sdk-ts{background:var(--paper);color:var(--ink);border:1px solid var(--ink)}
+.log-tag.research,.log-tag.news{background:var(--paper);color:var(--muted);border:1px solid var(--hair-hard)}
+.log-tag.deprecation{background:var(--paper-shadow);color:var(--muted);border:1px solid var(--hair-hard)}
+.log-entry-title{
+  font-family:var(--disp);font-weight:500;
+  font-variation-settings:"opsz" 72;
+  font-size:20px;letter-spacing:-.012em;
+  color:var(--ink);line-height:1.25;
+  margin-bottom:10px;
+}
+.log-entry-title a{color:inherit;text-decoration:none;border-bottom:1px solid var(--hair-hard)}
+.log-entry-title a:hover{border-bottom-color:var(--orange);color:var(--orange)}
+.log-entry-body{
+  font-family:var(--sans);font-size:14.5px;line-height:1.6;color:var(--body);
+  margin-bottom:12px;
+}
+.log-entry-how{
+  font-family:var(--sans);font-size:13.5px;line-height:1.6;color:var(--muted);
+  padding-top:12px;border-top:1px solid var(--hair-soft);
+}
+.log-entry-how b{font-family:var(--narrow);font-size:10px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--ink);display:block;margin-bottom:6px}
+.log-entry-why{
+  font-family:var(--disp);font-style:italic;
+  font-size:14px;color:var(--muted);line-height:1.55;
+  margin-top:10px;padding-left:14px;
+  border-left:2px solid var(--orange);
+}
+.log-entry-why b{font-style:normal;font-family:var(--narrow);font-size:10px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--orange);display:block;margin-bottom:4px}
+
+@media(max-width:720px){
+  .log-entry{grid-template-columns:1fr;gap:12px}
+  .log-cat-head{grid-template-columns:auto 1fr}
+  .log-cat-count{grid-column:1 / -1;text-align:left;padding-top:8px;border-top:1px solid var(--hair)}
+}
+
+.ornament{
+  text-align:center;margin:64px auto;
+  font-family:var(--disp);font-size:16px;color:var(--hair-hard);
+  letter-spacing:1.2em;
+}
+
+.quiet-section{
+  max-width:1280px;margin:0 auto;padding:64px 28px 24px;
+  display:grid;grid-template-columns:repeat(12,1fr);gap:24px;
+}
+.quiet-head{grid-column:1 / span 3;}
+.quiet-title{
+  font-family:var(--disp);font-style:italic;font-weight:400;
+  font-variation-settings:"opsz" 72;
+  font-size:32px;line-height:1;letter-spacing:-.02em;
+  color:var(--ink);
+}
+.quiet-title em{color:var(--orange);font-style:normal;font-weight:500}
+.quiet-kicker{
+  font-family:var(--narrow);
+  font-size:10px;font-weight:700;letter-spacing:.32em;
+  text-transform:uppercase;color:var(--muted);
+  margin-bottom:10px;
+}
+.quiet-body{
+  grid-column:5 / -1;
+  font-family:var(--disp);font-size:17px;line-height:1.65;color:var(--body);
+  padding-left:24px;border-left:1px solid var(--ink);
+}
+.quiet-body p{margin-bottom:16px}
+.quiet-body strong{font-weight:600;color:var(--ink)}
+@media(max-width:860px){
+  .quiet-head,.quiet-body{grid-column:1 / -1}
+  .quiet-body{padding-left:0;border-left:none;border-top:1px solid var(--ink);padding-top:18px}
+}
+
+/* Daily-specific styles */
+.daily-masthead{
+  padding:48px 28px 0;
+  max-width:1280px;margin:0 auto;
+  border-bottom:1px solid var(--ink);
+}
+.daily-kicker-row{
+  display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap;gap:12px;
+  padding-bottom:20px;
+  border-bottom:1px solid var(--hair-hard);
+  margin-bottom:28px;
+}
+.daily-kicker{
+  font-family:var(--narrow);
+  font-size:10px;font-weight:700;letter-spacing:.32em;
+  text-transform:uppercase;color:var(--orange);
+}
+.daily-date{
+  font-family:var(--narrow);
+  font-size:10px;font-weight:600;letter-spacing:.22em;
+  text-transform:uppercase;color:var(--muted);
+}
+.daily-wordmark{
+  font-family:var(--disp);font-style:italic;font-weight:500;
+  font-variation-settings:"opsz" 144;
+  font-size:clamp(72px,12vw,160px);
+  line-height:.88;letter-spacing:-.04em;color:var(--ink);
+  margin-bottom:20px;display:inline-block;
+}
+.daily-wordmark .dot{color:var(--orange)}
+.daily-deck{
+  font-family:var(--disp);font-style:italic;font-weight:400;
+  font-variation-settings:"opsz" 72;
+  font-size:clamp(18px,2.2vw,26px);
+  line-height:1.35;color:var(--muted);
+  max-width:720px;
+  padding-bottom:36px;
+}
+
+.the-read{
+  max-width:1280px;margin:0 auto;
+  padding:48px 28px 40px;
+  border-bottom:1px solid var(--hair);
+}
+.the-read-kicker{
+  font-family:var(--narrow);
+  font-size:10px;font-weight:700;letter-spacing:.32em;
+  text-transform:uppercase;color:var(--orange);
+  margin-bottom:16px;
+}
+.the-read-text{
+  font-family:var(--disp);font-weight:400;
+  font-variation-settings:"opsz" 72;
+  font-size:clamp(22px,3vw,36px);
+  line-height:1.22;letter-spacing:-.015em;
+  color:var(--ink);
+  max-width:840px;
+}
+.the-read-text em{font-style:italic;color:var(--orange)}
+
+.story-opener{
+  max-width:1280px;margin:0 auto;
+  padding:56px 28px 0;
+}
+.story-kicker{
+  font-family:var(--narrow);
+  font-size:10px;font-weight:700;letter-spacing:.32em;
+  text-transform:uppercase;color:var(--orange);
+  margin-bottom:14px;
+}
+.story-lab-flag{
+  display:inline-block;
+  font-family:var(--narrow);
+  font-size:9px;font-weight:700;letter-spacing:.22em;
+  text-transform:uppercase;
+  padding:3px 8px;
+  background:var(--ink);color:var(--paper);
+  margin-bottom:14px;
+}
+.story-lab-flag.xai{background:#0f0f0f}
+.story-lab-flag.anthropic{background:#FF6B35;color:var(--paper)}
+.story-lab-flag.openai{background:#10a37f;color:var(--paper)}
+.story-lab-flag.deepmind{background:#4285f4;color:var(--paper)}
+.story-title{
+  font-family:var(--disp);font-weight:700;
+  font-variation-settings:"opsz" 144;
+  font-size:clamp(32px,5vw,64px);
+  line-height:.96;letter-spacing:-.03em;
+  color:var(--ink);
+  margin-bottom:20px;
+  padding-bottom:20px;
+  border-bottom:2px solid var(--ink);
+}
+.story-meta{
+  font-family:var(--narrow);
+  font-size:10px;font-weight:600;letter-spacing:.22em;
+  text-transform:uppercase;color:var(--muted);
+  margin-bottom:36px;line-height:1.8;
+}
+.story-meta b{color:var(--ink);font-weight:700}
+
+.dig-header{
+  max-width:1280px;margin:0 auto;
+  padding:64px 28px 0;
+  border-top:1px solid var(--hair);
+}
+.dig-header-label{
+  font-family:var(--narrow);
+  font-size:11px;font-weight:700;letter-spacing:.38em;
+  text-transform:uppercase;color:var(--ink);
+  margin-bottom:8px;
+}
+.dig-header-num{
+  font-family:var(--disp);font-weight:700;
+  font-variation-settings:"opsz" 144;
+  font-size:clamp(80px,12vw,160px);
+  line-height:.82;letter-spacing:-.05em;
+  color:var(--paper-shadow);
+  -webkit-text-stroke:1px var(--hair-hard);
+}
+
+.daily-footer{
+  background:var(--paper);
+  border-top:2px solid var(--orange);
+  padding:64px 28px 48px;
+}
+.daily-footer-inner{
+  max-width:1280px;margin:0 auto;
+  display:grid;grid-template-columns:1fr 1fr 1fr;gap:32px;
+}
+.daily-footer-col h4{
+  font-family:var(--narrow);
+  font-size:10px;font-weight:700;letter-spacing:.32em;
+  text-transform:uppercase;color:var(--orange);
+  margin-bottom:12px;padding-bottom:10px;
+  border-bottom:1px solid var(--hair-hard);
+}
+.daily-footer-col p,.daily-footer-col li{
+  font-family:var(--sans);font-size:13px;line-height:1.6;
+  color:var(--muted);
+  margin-bottom:8px;list-style:none;
+}
+.daily-footer-col b{color:var(--ink);font-weight:600}
+.daily-footer-col a{color:var(--muted);text-decoration:none;border-bottom:1px solid var(--hair-hard)}
+.daily-footer-col a:hover{color:var(--orange)}
+.daily-footer-bottom{
+  max-width:1280px;margin:24px auto 0;
+  padding-top:24px;
+  border-top:1px solid var(--hair);
+  display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;
+  font-family:var(--narrow);font-size:10px;font-weight:600;
+  letter-spacing:.28em;text-transform:uppercase;color:var(--muted);
+}
+.daily-footer-bottom b{color:var(--ink)}
+.daily-footer-bottom .hot{color:var(--orange)}
+@media(max-width:860px){
+  .daily-footer-inner{grid-template-columns:1fr;gap:24px}
+  .daily-masthead{padding:32px 20px 0}
+  .story-opener{padding:40px 20px 0}
+  .the-read{padding:32px 20px 32px}
+}
+@media(max-width:600px){
+  .section,.log-section,.quiet-section,.dig-header,.story-opener{padding-left:20px;padding-right:20px}
+  .prose-well{padding-left:20px;padding-right:20px}
+}
+</style>
+</head>
+<body>
+
+<!-- PUBLICATION BAR -->
+<nav class="pub-bar">
+  <div class="pub-bar-left">
+    <span class="pub-bar-mark">Shipped<span class="dot">.</span></span>
+    <span class="pub-bar-sep"></span>
+    <span class="pub-bar-meta">Frontier AI daily by <a href="https://id8labs.app" class="pub-bar-link">id8Labs</a></span>
+  </div>
+  <div class="pub-bar-right">
+    <span class="pub-bar-folio"><b>Daily</b></span>
+    <span class="pub-bar-sep"></span>
+    <span class="pub-bar-meta">Jul 17, 2026</span>
+  </div>
+</nav>
+
+<!-- DAILY MASTHEAD -->
+<div class="daily-masthead">
+  <div class="daily-kicker-row">
+    <span class="daily-kicker">Frontier Daily</span>
+    <span class="daily-date">Friday, July 17, 2026</span>
+  </div>
+  <div class="daily-wordmark">Shipped<span class="dot">.</span></div>
+  <p class="daily-deck">Six labs, one read. Friday, July 17, 2026.</p>
+</div>
+
+<!-- THE READ -->
+<div class="the-read">
+  <div class="the-read-kicker">The Read</div>
+  <p class="the-read-text">xAI open-sourced its coding agent forty-eight hours after a security researcher proved it was quietly uploading Git repositories to an xAI-controlled server, then launched scheduled automation with connectors to GitHub and Slack on the same day. Anthropic shipped session caps and background routing in Claude Code. OpenAI's CFO invented a new metric for enterprise AI ROI. DeepMind went biosecurity. <em>The contrast is not subtle.</em></p>
+</div>
+
+<!-- LEAD: xAI Grok Build -->
+<div class="story-opener">
+  <div class="story-kicker">Lead</div>
+  <span class="story-lab-flag xai">xAI</span>
+  <h2 class="story-title">Grok Build, Forced Open</h2>
+  <div class="story-meta">
+    <b>Sources:</b> <a href="https://x.ai/news/grok-build-open-source" style="color:var(--muted);border-bottom:1px solid var(--hair-hard)">x.ai/news/grok-build-open-source</a>,
+    The Register (Jul 16), Simon Willison (Jul 15) &nbsp;&nbsp;
+    <b>Area:</b> Open Source / Security
+  </div>
+</div>
+<div class="prose-well">
+  <div class="prose-marginalia">Lead Story</div>
+  <div class="prose">
+    <p>The timeline is the story. July 14: a security researcher publishes network-level evidence that Grok Build, xAI's Rust-based CLI coding agent (844,530 lines of it), was silently transmitting complete Git repositories to a Google Cloud Storage bucket controlled by xAI. Users had not been informed. The evidence was traffic captures, not speculation. July 15: xAI open-sources Grok Build under Apache 2.0 on GitHub. July 16: The Register, VentureBeat, and several AI newsletters cover both the security finding and the open-source release as a single story. Timing is not coincidental.</p>
+
+    <p><strong>The mechanism:</strong> the pre-open-source binary was a black box. The upload behavior was discoverable only through network monitoring. Users running the tool against private repositories had no means of knowing what the tool was transmitting. Opening the source code allows verification, in principle, going forward. It does nothing about what already left.</p>
+
+    <p><strong>The blast radius:</strong> anyone who ran any version of Grok Build before July 15 should assume the tool had access to their full Git history. Not just source files. Commit messages, branch names, .git metadata. If your repositories contain anything materially sensitive, the relevant question is not whether this happened but whether the exposure matters. Treat it like a credential rotation decision.</p>
+
+    <p><strong>The read:</strong> xAI opened the code because keeping it closed had become untenable, not because it chose to. The tell is in the repository configuration: GitHub Issues are disabled, external pull requests are rejected. This is a read-only transparency move. xAI wants the code to be seen; it does not want to discuss what the code did.</p>
+
+    <p><strong>Builder's move:</strong> check your network logs from before July 15 if the exposure would be material. The open-source release is not retroactive remediation.</p>
+
+    <p>The contrast deepens when you look at what else xAI launched on July 16: Grok Automations. Describe a recurring task once, and Grok executes it on a schedule or when a trigger email arrives. Connectors: Slack, Google Workspace, GitHub, Airtable, Salesforce. Scheduled runs are available to all users; email-triggered automations require SuperGrok. A complete, well-specified product launch, announced the same week the lab confirmed it had quietly been taking copies of users' code.</p>
+
+    <p>xAI is betting that the market's memory is short and its momentum is long. That bet has paid off before for fast-moving AI labs. The question is whether a security incident involving developer tooling lands differently than a consumer privacy issue. Developers read network captures.</p>
+  </div>
+  <div class="prose-aside">
+    <b>Sources confirmed</b><br>
+    x.ai/news/grok-build-open-source<br>
+    x.ai/news/grok-automations<br>
+    theregister.com (Jul 16)<br>
+    simonwillison.net (Jul 15)<br>
+    <br>
+    <b>Window</b><br>
+    Jul 16 to 17, 2026<br>
+    <br>
+    <b>Lab</b><br>
+    xAI
+  </div>
+</div>
+
+<!-- THE DIG HEADER -->
+<div class="dig-header">
+  <div class="dig-header-label">The Dig</div>
+</div>
+
+<!-- DIG 1: Claude Code -->
+<div class="story-opener" style="padding-top:40px;">
+  <span class="story-lab-flag anthropic">Anthropic</span>
+  <h3 class="story-title" style="font-size:clamp(26px,4vw,48px);">Claude Code v2.1.212: The Cap Architecture</h3>
+  <div class="story-meta">
+    <b>Source:</b> <a href="https://github.com/anthropics/claude-code/releases/tag/v2.1.212" style="color:var(--muted);border-bottom:1px solid var(--hair-hard)">github.com/anthropics/claude-code, CHANGELOG</a> &nbsp;&nbsp;
+    <b>Area:</b> CODE / Developer Tooling
+  </div>
+</div>
+<div class="prose-well">
+  <div class="prose-marginalia">The Dig, 01</div>
+  <div class="prose">
+    <p>Claude Code shipped v2.1.212 on July 17. The headline is a fork redesign, but the more significant story is what Anthropic built around every major consumption vector in a single release.</p>
+
+    <p>On <code>/fork</code>: it now creates a named background session, visible in <code>claude agents</code>, instead of spawning an in-session subagent. The old in-session behavior moves to <code>/subtask</code>. Forked conversations are now persistent and auditable. This is a real architectural change for multi-agent workflows where you want to track what each branch is doing.</p>
+
+    <p>On caps: session-wide limits land for the first time. Web searches default to 200 per session, configurable via <code>CLAUDE_CODE_MAX_WEB_SEARCHES_PER_SESSION</code>. Subagent spawns default to 200 per session (<code>CLAUDE_CODE_MAX_SUBAGENTS_PER_SESSION</code>; <code>/clear</code> resets the counter). MCP tool calls running longer than 2 minutes automatically move to background, with the threshold tunable via <code>CLAUDE_CODE_MCP_AUTO_BACKGROUND_MS</code>. A new <code>claude auto-mode reset</code> command was added. The <code>/resume</code> picker now surfaces past sessions for resumption as background sessions.</p>
+
+    <p>Bug fixes include a worktree symlink vulnerability, SIGTERM orphaning Bash processes, <code>/background</code> failure on Windows PowerShell 5.1, and plan-mode auto-running file-modifying Bash without permission prompts.</p>
+
+    <p><strong>The pattern:</strong> three weeks ago, Claude Code introduced background sessions. Now it's adding caps, auto-routing, and audit visibility across every major agentic vector. Anthropic is building the control surface for agentic code at enterprise scale one release at a time. The caps are not restrictions. They're budgets that make agent behavior legible to the teams running it.</p>
+
+    <p><strong>The contrast:</strong> same week, same product category. One tool was discovered running uncapped and without disclosure of what it consumed. The other shipped explicit, env-tunable caps on every consumption vector. Different philosophy on what "agentic" means at scale.</p>
+
+    <p><strong>Builder's move:</strong> <code>claude update</code>, then review the new default caps. Most workflows won't hit 200 web searches, but if you're running deep-research agentic patterns, tune the env var before the cap bites you mid-run.</p>
+  </div>
+  <div class="prose-aside">
+    <b>Released</b><br>
+    Jul 17, 2026<br>
+    <br>
+    <b>Key changes</b><br>
+    /fork redesign<br>
+    Session-wide caps<br>
+    MCP auto-background<br>
+    Symlink vuln fix<br>
+    <br>
+    <b>Tag</b><br>
+    [CODE]
+  </div>
+</div>
+
+<!-- DIG 2: SDKs (Dreaming + MCP Tunnels) -->
+<div class="story-opener" style="padding-top:40px;">
+  <span class="story-lab-flag anthropic">Anthropic</span>
+  <h3 class="story-title" style="font-size:clamp(26px,4vw,48px);">Dreaming and Tunnels: Two API Surfaces, One Day</h3>
+  <div class="story-meta">
+    <b>Sources:</b>
+    <a href="https://github.com/anthropics/anthropic-sdk-python/releases/tag/v0.117.0" style="color:var(--muted);border-bottom:1px solid var(--hair-hard)">sdk-python v0.117.0</a>,
+    <a href="https://github.com/anthropics/anthropic-sdk-typescript/releases/tag/sdk-v0.112.0" style="color:var(--muted);border-bottom:1px solid var(--hair-hard)">sdk-typescript v0.112.0</a>
+    &nbsp;&nbsp;<b>Area:</b> SDK / API
+  </div>
+</div>
+<div class="prose-well">
+  <div class="prose-marginalia">The Dig, 02</div>
+  <div class="prose">
+    <p>anthropic-sdk-python v0.117.0 and anthropic-sdk-typescript v0.112.0 both shipped on July 16, surfacing two features that have been in preview since May's Code with Claude event.</p>
+
+    <p><strong>MCP Tunnels:</strong> Managed Agents and the Messages API can now connect to private MCP servers via an outbound encrypted connection, no inbound firewall rules required. Before this release, private MCP servers effectively required a public endpoint or a VPN setup outside the SDK. Now the SDK handles the tunnel. For enterprise deployments with internal databases, private knowledge stores, or proprietary tooling as MCP servers, this closes the gap between "we want agentic access to internal tools" and "we can't expose internal infrastructure to the public internet." The TypeScript SDK gained MCP Tunnels support in the same release window, with three follow-on patches (v0.112.1 through v0.112.3) covering documentation updates on July 16 and 17.</p>
+
+    <p><strong>Dreaming:</strong> the Python SDK adds support for the Dreaming API, which lets an agent learn from successful task runs and persist those learnings as playbooks for future runs. The mechanism is roughly: agent completes a task, the system extracts the successful approach, stores it, and informs similar future runs. Closer to structured few-shot prompting built from lived experience than to fine-tuning. Dreaming was first demoed at Code with Claude in May 2026.</p>
+
+    <p><strong>Security:</strong> the Python release also moves credential material out of traceback frame locals via <code>SecretStr</code>. If you're logging exceptions from API calls, your API key was potentially appearing in stack traces before this release. That path is now closed.</p>
+
+    <p><strong>Builder's move:</strong> <code>pip install --upgrade anthropic</code> to v0.117.0. If you're running Managed Agents against private infrastructure, MCP Tunnels is the architecture change that matters this week. See the updated SDK docs for tunnel configuration.</p>
+  </div>
+  <div class="prose-aside">
+    <b>Released</b><br>
+    Jul 16, 2026<br>
+    <br>
+    <b>Python SDK</b><br>
+    v0.117.0<br>
+    Dreaming API<br>
+    MCP Tunnels<br>
+    SecretStr fix<br>
+    <br>
+    <b>TypeScript SDK</b><br>
+    v0.112.0 to v0.112.3<br>
+    MCP Tunnels<br>
+    <br>
+    <b>Tags</b><br>
+    [SDK-PY] [SDK-TS]
+  </div>
+</div>
+
+<!-- DIG 3: OpenAI policy day -->
+<div class="story-opener" style="padding-top:40px;">
+  <span class="story-lab-flag openai">OpenAI</span>
+  <h3 class="story-title" style="font-size:clamp(26px,4vw,48px);">OpenAI's Policy Day</h3>
+  <div class="story-meta">
+    <b>Sources:</b>
+    <a href="https://openai.com/index/why-teens-deserve-access-safe-ai/" style="color:var(--muted);border-bottom:1px solid var(--hair-hard)">openai.com (teen safety)</a>,
+    <a href="https://openai.com/index/ai-progress-and-recommendations/" style="color:var(--muted);border-bottom:1px solid var(--hair-hard)">openai.com (AI progress)</a>,
+    Axios (Jul 17)
+    &nbsp;&nbsp;<b>Area:</b> Policy / Business
+  </div>
+</div>
+<div class="prose-well">
+  <div class="prose-marginalia">The Dig, 03</div>
+  <div class="prose">
+    <p>Three published pieces, no product launches, one SDK release. The sequence: a piece on teen AI safety (Study Mode for step-by-step tutoring, parental quiet hours, voice-mode toggle, high-risk-situation notifications); a piece on US AI governance arguing for coordinated state legislation as a foundation for federal AI policy; and an Axios exclusive with CFO Sarah Friar introducing "useful intelligence per dollar" as the right enterprise AI metric.</p>
+
+    <p>The CFO framework is the most interesting of the three. Friar's four elements: is AI completing work that matters; what does each successful task cost; can you depend on the result; what is the business impact. She specifically argues against benchmark scores and token costs as the relevant measures.</p>
+
+    <p><strong>The read:</strong> this is OpenAI defending enterprise AI spend against the ROI backlash that has been building since Q1 2026. Boards are asking hard questions about whether the investment is justified. "Useful intelligence per dollar" is the CFO's answer, structured as a measurement framework rather than a sales pitch. It is also, conveniently, a metric that is difficult to apply in a direct model-to-model comparison and easy to apply in an internal "is our AI program working" review. When the metric favors your existing client relationship over a competitive benchmark, that is strategic positioning, not neutral measurement.</p>
+
+    <p><strong>The contrast:</strong> OpenAI ran a three-piece content day on a Friday with no product launch. xAI launched a major product feature under duress. Anthropic shipped a version with several significant infrastructure changes and a security fix. Three labs, three registers. OpenAI's register this week is: the CFO is talking to boards.</p>
+
+    <p><strong>SDK:</strong> openai-python v2.46.0 shipped July 17, following v2.45.0 from July 9. Specific release notes were not available via search at sweep time.</p>
+
+    <p><strong>Builder's move:</strong> if you're making the internal business case for AI tooling, Friar's four elements are a useful structure for the slide deck. They map cleanly to a product review format.</p>
+  </div>
+  <div class="prose-aside">
+    <b>Published</b><br>
+    Jul 16 to 17, 2026<br>
+    <br>
+    <b>Pieces</b><br>
+    Teen safety / Study Mode<br>
+    AI governance framework<br>
+    CFO ROI metric<br>
+    <br>
+    <b>SDK</b><br>
+    openai-python v2.46.0<br>
+    <br>
+    <b>Tags</b><br>
+    [NEWS] [SDK]
+  </div>
+</div>
+
+<!-- DIG 4: DeepMind Biosecurity -->
+<div class="story-opener" style="padding-top:40px;">
+  <span class="story-lab-flag deepmind">Google DeepMind</span>
+  <h3 class="story-title" style="font-size:clamp(26px,4vw,48px);">DeepMind: The Other Meaning of AI Safety</h3>
+  <div class="story-meta">
+    <b>Source:</b>
+    <a href="https://deepmind.google/blog/our-approach-to-bioresilience/" style="color:var(--muted);border-bottom:1px solid var(--hair-hard)">deepmind.google/blog, our-approach-to-bioresilience</a>,
+    Axios (Jul 16)
+    &nbsp;&nbsp;<b>Area:</b> Research / Biosecurity
+  </div>
+</div>
+<div class="prose-well">
+  <div class="prose-marginalia">The Dig, 04</div>
+  <div class="prose">
+    <p>Google DeepMind and Isomorphic Labs announced 15-plus biosecurity partnerships built over the past 12 months. The work uses protein-structure prediction for pathogen surveillance and accelerated vaccine and therapeutic design. Isomorphic Labs, founded by DeepMind CEO Demis Hassabis in 2021, raised $2.1 billion in a Series B in May 2026.</p>
+
+    <p><strong>The mechanism:</strong> AlphaFold and its successors allow rapid protein-structure prediction. Applied to pathogen biology, this accelerates the identification of therapeutic targets and vaccine candidates. The announced partnerships are with government bodies, biosecurity organizations, and research groups, covering both surveillance (detecting novel pathogens faster) and response (designing interventions faster).</p>
+
+    <p><strong>The read:</strong> this is a lane nobody else is explicitly claiming. Anthropic's safety work focuses on AI model behavior: refusals, alignment, honesty. xAI's safety posture this week is, generously, reactive. DeepMind's bioresilience initiative applies protein-modeling technology to a different risk surface entirely: biological threats. Two definitions of "AI safety," both legitimate, operating on different threat surfaces.</p>
+
+    <p>The biosecurity lane also benefits from a different political temperature. Governments that are hostile to AI regulation in the consumer and labor space are often enthusiastic about AI for biosurveillance and pandemic preparedness. DeepMind is playing a longer, quieter game than the companies shipping developer tools.</p>
+
+    <p><strong>The contrast:</strong> on a day when the frontier was mostly moving in developer tooling and policy messaging, DeepMind dropped into a different conversation entirely. The announcement was coordinated with Axios as an exclusive, which means the intent was to make this a news moment, not a technical note.</p>
+  </div>
+  <div class="prose-aside">
+    <b>Published</b><br>
+    Jul 16, 2026<br>
+    <br>
+    <b>Partnership count</b><br>
+    15-plus organizations<br>
+    <br>
+    <b>Isomorphic Labs</b><br>
+    $2.1B Series B<br>
+    May 2026<br>
+    <br>
+    <b>Tag</b><br>
+    [RESEARCH]
+  </div>
+</div>
+
+<!-- QUIET ON THE WIRE -->
+<div class="ornament">* * *</div>
+<section class="quiet-section">
+  <div class="quiet-head">
+    <div class="quiet-kicker">What's Next</div>
+    <div class="quiet-title">Quiet on the <em>Wire</em></div>
+  </div>
+  <div class="quiet-body">
+    <p><strong>Anthropic:</strong> release notes show an agent-memory beta entry dated July 22 in preview state. Expect memory features for the broader platform to drop next week. Claude Code is on a near-daily release cadence; v2.1.213 is likely before the weekend.</p>
+    <p><strong>OpenAI:</strong> the Python SDK is on a roughly weekly release cadence; v2.47.0 is likely by next Friday. The "useful intelligence per dollar" framework often precedes a larger enterprise-positioning announcement. Watch for a product tie-in.</p>
+    <p><strong>xAI:</strong> Grok Automations just launched globally. The security community now has source access to Grok Build and the code review will be public and loud. Watch GitHub for community findings on the pre-open-source binary.</p>
+    <p><strong>Mistral, Meta:</strong> quiet this window.</p>
+  </div>
+</section>
+
+<!-- RELEASE LOG -->
+<div class="log-divider" id="log">
+  <div class="log-divider-kicker">Back of Book</div>
+  <h2 class="log-divider-title">The <em>Release</em> Log</h2>
+  <p class="log-divider-sub">Every confirmed item in the window, grouped by category. Sources verified; unconfirmed items omitted.</p>
+</div>
+
+<!-- C: Claude Code -->
+<section class="log-section">
+  <div class="log-cat-head">
+    <div class="log-cat-name">Claude Code</div>
+    <div class="log-cat-count"><b>1</b> entry</div>
+  </div>
+  <div class="log-entries">
+    <div class="log-entry">
+      <div class="log-entry-left">
+        <div class="log-entry-date">Jul 17, 2026</div>
+        <span class="log-tag code">CODE</span>
+      </div>
+      <div>
+        <div class="log-entry-title"><a href="https://github.com/anthropics/claude-code/releases/tag/v2.1.212">Claude Code v2.1.212</a></div>
+        <div class="log-entry-body">/fork redesigned to copy conversations into new background sessions (visible via <code>claude agents</code>) instead of launching in-session subagents; /subtask replaces old in-session fork. <code>claude auto-mode reset</code> command added. Session-wide cap on WebSearch calls introduced (default 200, env <code>CLAUDE_CODE_MAX_WEB_SEARCHES_PER_SESSION</code>). Per-session subagent spawn cap added (default 200, env <code>CLAUDE_CODE_MAX_SUBAGENTS_PER_SESSION</code>; /clear resets budget). MCP tool calls running longer than 2 minutes now move to background automatically (threshold tunable via <code>CLAUDE_CODE_MCP_AUTO_BACKGROUND_MS</code>). /resume now opens a picker of past sessions to resume as background sessions. Bug fixes: plan-mode auto-running file-modifying Bash without permission prompts, worktree symlink vulnerability, SIGTERM orphaning Bash processes, /background failure on Windows PowerShell 5.1, and mTLS certificate handling.</div>
+        <div class="log-entry-how"><b>How to use</b>Run <code>claude update</code> or reinstall. New caps are active immediately; tune via env vars for high-volume agentic workloads. Use <code>/subtask</code> where you previously used <code>/fork</code> for in-session sub-runs.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- E: Agent SDKs -->
+<section class="log-section">
+  <div class="log-cat-head">
+    <div class="log-cat-name">Agent SDKs</div>
+    <div class="log-cat-count"><b>4</b> entries</div>
+  </div>
+  <div class="log-entries">
+    <div class="log-entry">
+      <div class="log-entry-left">
+        <div class="log-entry-date">Jul 16, 2026</div>
+        <span class="log-tag sdk-py">SDK-PY</span>
+      </div>
+      <div>
+        <div class="log-entry-title"><a href="https://github.com/anthropics/anthropic-sdk-python/releases/tag/v0.117.0">anthropic-sdk-python v0.117.0</a></div>
+        <div class="log-entry-body">Adds API support for Dreaming (agent self-improvement via learned playbooks, previewed at Code with Claude May 2026) and MCP Tunnels (private MCP server connections without inbound firewall rules, previewed May 2026). Security fix: credential material is now kept out of traceback frame locals via SecretStr to prevent accidental secrets leakage in exception output.</div>
+        <div class="log-entry-how"><b>How to use</b><code>pip install --upgrade anthropic</code>. For MCP Tunnels, see updated SDK docs for tunnel configuration. For Dreaming, see the Dreaming API reference.</div>
+      </div>
+    </div>
+    <div class="log-entry">
+      <div class="log-entry-left">
+        <div class="log-entry-date">Jul 16, 2026</div>
+        <span class="log-tag sdk-ts">SDK-TS</span>
+      </div>
+      <div>
+        <div class="log-entry-title"><a href="https://github.com/anthropics/anthropic-sdk-typescript/releases/tag/sdk-v0.112.0">anthropic-sdk-typescript sdk-v0.112.0</a></div>
+        <div class="log-entry-body">Adds API support for MCP Tunnels, matching the feature shipped simultaneously in the Python SDK v0.117.0. MCP Tunnels allow Managed Agents and the Messages API to connect to private MCP servers via an outbound encrypted connection without requiring inbound firewall rules.</div>
+        <div class="log-entry-how"><b>How to use</b><code>npm install @anthropic-ai/sdk@0.112.0</code>. See MCP Tunnels documentation for configuration.</div>
+      </div>
+    </div>
+    <div class="log-entry">
+      <div class="log-entry-left">
+        <div class="log-entry-date">Jul 16 to 17, 2026</div>
+        <span class="log-tag sdk-ts">SDK-TS</span>
+      </div>
+      <div>
+        <div class="log-entry-title"><a href="https://github.com/anthropics/anthropic-sdk-typescript/releases">anthropic-sdk-typescript sdk-v0.112.1 to v0.112.3</a></div>
+        <div class="log-entry-body">Three documentation and client-documentation patch releases following v0.112.0. No new API features.</div>
+      </div>
+    </div>
+    <div class="log-entry">
+      <div class="log-entry-left">
+        <div class="log-entry-date">Jul 17, 2026</div>
+        <span class="log-tag sdk-ts">SDK-TS</span>
+      </div>
+      <div>
+        <div class="log-entry-title"><a href="https://github.com/anthropics/anthropic-sdk-typescript/releases/tag/google-cloud-sdk-v0.0.6">anthropic-sdk-typescript google-cloud-sdk v0.0.6</a></div>
+        <div class="log-entry-body">Maintenance release for the TypeScript SDK's Google Cloud sub-package. Bumps google-auth-library dependency to ^10.2.0. No new API features.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- G: News (xAI, OpenAI, DeepMind) -->
+<section class="log-section">
+  <div class="log-cat-head">
+    <div class="log-cat-name">News &amp; Frontier</div>
+    <div class="log-cat-count"><b>6</b> entries</div>
+  </div>
+  <div class="log-entries">
+    <div class="log-entry">
+      <div class="log-entry-left">
+        <div class="log-entry-date">Jul 15 to 16, 2026</div>
+        <span class="log-tag news">NEWS</span>
+      </div>
+      <div>
+        <div class="log-entry-title"><a href="https://x.ai/news/grok-build-open-source">xAI: Grok Build open-sourced under Apache 2.0</a></div>
+        <div class="log-entry-body">xAI open-sourced Grok Build (844,530 lines of Rust, its CLI coding agent) under Apache 2.0 on GitHub (github.com/xai-org/grok-build). The release came approximately 48 hours after a security researcher published network-level evidence that prior versions of the CLI had silently uploaded complete Git repositories to a Google Cloud Storage bucket controlled by xAI. The repository is read-only for the public: external pull requests are rejected and GitHub issues are disabled.</div>
+        <div class="log-entry-why"><b>Why it matters</b>This is transparency under duress. The read-only repository configuration signals xAI intends to show the code rather than take community input on it.</div>
+      </div>
+    </div>
+    <div class="log-entry">
+      <div class="log-entry-left">
+        <div class="log-entry-date">Jul 16, 2026</div>
+        <span class="log-tag news">NEWS</span>
+      </div>
+      <div>
+        <div class="log-entry-title"><a href="https://x.ai/news/grok-automations">xAI: Automations in Grok</a></div>
+        <div class="log-entry-body">xAI launched Grok Automations: users describe a recurring task once and Grok executes it on a schedule (once, daily, weekdays, weekly, monthly, yearly) or in response to incoming email (SuperGrok subscribers only). When an automation fires, Grok opens a live conversation, completes the work, and logs it to a run history. Notifications configurable to email, push, both, or none. Available on grok.com and the Grok iOS/Android apps. Connectors: Slack, Google Workspace, GitHub, Airtable, Salesforce.</div>
+      </div>
+    </div>
+    <div class="log-entry">
+      <div class="log-entry-left">
+        <div class="log-entry-date">Jul 16, 2026</div>
+        <span class="log-tag research">RESEARCH</span>
+      </div>
+      <div>
+        <div class="log-entry-title"><a href="https://deepmind.google/blog/our-approach-to-bioresilience/">Google DeepMind and Isomorphic Labs: Bioresilience initiative</a></div>
+        <div class="log-entry-body">Google DeepMind and Isomorphic Labs announced 15-plus biosecurity partnerships with government bodies, biosecurity organizations, and research groups developed over the past 12 months. Goals include improved pathogen surveillance, accelerated vaccine and therapeutic design using protein-structure prediction, and strengthened outbreak-response capabilities. Isomorphic Labs raised $2.1B in a Series B in May 2026.</div>
+      </div>
+    </div>
+    <div class="log-entry">
+      <div class="log-entry-left">
+        <div class="log-entry-date">Jul 16, 2026</div>
+        <span class="log-tag news">NEWS</span>
+      </div>
+      <div>
+        <div class="log-entry-title"><a href="https://openai.com/index/why-teens-deserve-access-safe-ai/">OpenAI: Why Teens Deserve Access to Safe AI</a></div>
+        <div class="log-entry-body">OpenAI argues for keeping AI accessible to teenagers while embedding age-appropriate guardrails. Describes Study Mode (step-by-step problem solving), expanded parental controls (quiet hours, voice-mode toggle, image-generation management, high-risk-situation notifications), and collaboration with teens, parents, child-safety experts, and mental-health professionals.</div>
+      </div>
+    </div>
+    <div class="log-entry">
+      <div class="log-entry-left">
+        <div class="log-entry-date">Jul 16, 2026</div>
+        <span class="log-tag news">NEWS</span>
+      </div>
+      <div>
+        <div class="log-entry-title"><a href="https://openai.com/index/advancing-ai-safety-through-state-and-federal-action/">OpenAI: The US Is Advancing AI Safety Through State and Federal Action</a></div>
+        <div class="log-entry-body">OpenAI advocates for a "reverse federalism" model for AI governance in which state-level legislation serves as a foundation for building a coherent national framework. Argues for coordinated rather than fragmented regulation.</div>
+      </div>
+    </div>
+    <div class="log-entry">
+      <div class="log-entry-left">
+        <div class="log-entry-date">Jul 17, 2026</div>
+        <span class="log-tag news">NEWS</span>
+      </div>
+      <div>
+        <div class="log-entry-title"><a href="https://openai.com/index/ai-progress-and-recommendations/">OpenAI CFO Sarah Friar: AI Progress and Recommendations</a></div>
+        <div class="log-entry-body">OpenAI CFO Sarah Friar introduces a framework called "useful intelligence per dollar" for measuring real enterprise value from AI. Four elements: (1) Is AI completing work that matters? (2) What does each successful task cost? (3) Can people depend on the result? (4) What is the business impact? Argues against benchmark scores and token costs as the relevant metrics. Reported as an Axios exclusive on the same day.</div>
+        <div class="log-entry-why"><b>Why it matters</b>This is OpenAI's answer to the enterprise ROI backlash of Q1 2026. The metric is conveniently hard to apply in competitive model comparisons and easy to apply in internal program reviews.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER / SOURCES -->
+<footer class="daily-footer">
+  <div class="daily-footer-inner">
+    <div class="daily-footer-col">
+      <h4>Sources</h4>
+      <p><b>Anthropic:</b> github.com/anthropics/claude-code CHANGELOG; github.com/anthropics/anthropic-sdk-python releases; github.com/anthropics/anthropic-sdk-typescript releases</p>
+      <p><b>xAI:</b> x.ai/news/grok-build-open-source; x.ai/news/grok-automations; The Register (Jul 16); Simon Willison (Jul 15)</p>
+      <p><b>OpenAI:</b> openai.com/index (three pieces); Axios (Jul 17); github.com/openai/openai-python releases</p>
+      <p><b>Google DeepMind:</b> deepmind.google/blog/our-approach-to-bioresilience; Axios (Jul 16)</p>
+    </div>
+    <div class="daily-footer-col">
+      <h4>Masthead</h4>
+      <p><b>Publication:</b> Shipped. Daily</p>
+      <p><b>Editor:</b> Eddie Belaval</p>
+      <p><b>Reporting:</b> with the assistance of Claude</p>
+      <p><b>Beat:</b> Anthropic (anchor), OpenAI, Google DeepMind, Meta AI, Mistral, xAI</p>
+      <p><b>Voice:</b> STYLE.md</p>
+      <p><b>Window:</b> Jul 16 to 17, 2026</p>
+    </div>
+    <div class="daily-footer-col">
+      <h4>About</h4>
+      <p>Shipped. is a weekly magazine and nightly digest covering the frontier AI labs. Published by <a href="https://id8labs.app">id8Labs</a>.</p>
+      <p>Weekly magazine ships every Friday at 9 AM ET at <a href="https://id8labs.app/shipped">id8labs.app/shipped</a>.</p>
+      <p>Daily digest archive: <a href="https://eddiebelaval.github.io/shipped/anthropic-daily/">eddiebelaval.github.io/shipped/anthropic-daily</a></p>
+    </div>
+  </div>
+  <div class="daily-footer-bottom">
+    <span>&copy; 2026 <b>id8Labs</b></span>
+    <span>Shipped. Daily, Friday, July 17, 2026</span>
+    <span class="hot">Weekly issue every Friday, 9 AM ET</span>
+  </div>
+</footer>
+
+</body>
+</html>
