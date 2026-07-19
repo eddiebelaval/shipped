@@ -15,10 +15,15 @@ export function renderInvestigation(section: Section): string {
   const ratio = extractRatioChart(section.content);
   const ratioHtml = ratio && ratio.kind === 'ratio' ? renderRatio(ratio.data) : '';
 
-  // Generic investigation body: the full prose block. Quotes render inline
-  // via blockquote formatting. No per-issue hardcoded consortium table or
-  // money-aside (those were Issue 00 Glasswing-specific).
   const prose = paragraphs(stripSidebar(section.content));
+
+  const quotes = extractQuotes(section.content);
+  const quotesHtml =
+    quotes.length > 0
+      ? `\n<div class="prose-well">\n  <div class="prose" style="font-family:var(--disp)">\n${quotes
+          .map((q, i) => renderQuote(q, i === 0 ? 'orange' : 'ink'))
+          .join('\n')}\n  </div>\n</div>`
+      : '';
 
   return `<div class="feature-opener" id="investigation">
   <span class="vert-label">Investigation</span>
@@ -33,7 +38,7 @@ export function renderInvestigation(section: Section): string {
 ${prose}
   </div>
 </div>
-
+${quotesHtml}
 ${ratioHtml}
 
 <span class="ornament">&sect; &nbsp; &sect; &nbsp; &sect;</span>`;
