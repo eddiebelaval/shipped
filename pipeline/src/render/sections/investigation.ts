@@ -207,10 +207,25 @@ function paragraphs(body: string): string {
         b.length > 0 &&
         !/^-{3,}$/.test(b) &&
         !b.startsWith('#') &&
-        !b.startsWith('>') &&
         !b.startsWith('|'),
     );
   return blocks
-    .map((b) => `    <p>${inlineMarkdown(b.replace(/\n/g, ' '))}</p>`)
+    .map((b) => {
+      if (b.startsWith('>')) {
+        // Chart/sidebar header blocks are handled separately — skip them here.
+        if (/^>\s*#/.test(b)) return '';
+        // Named quote cards: > *"text"* followed by > — attribution
+        const quotes = extractQuotes(b);
+        if (quotes.length > 0) return quotes.map((q) => renderQuote(q, 'orange')).join('\n');
+        // Plain blockquote fallback
+        const inner = b
+          .split('\n')
+          .map((l) => l.replace(/^>\s*/, ''))
+          .join(' ')
+          .trim();
+        return inner ? `    <p>${inlineMarkdown(inner)}</p>` : '';
+      }
+      return `    <p>${inlineMarkdown(b.replace(/\n/g, ' '))}</p>`;
+    })
     .join('\n');
 }
