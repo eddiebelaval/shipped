@@ -207,10 +207,29 @@ function paragraphs(body: string): string {
         b.length > 0 &&
         !/^-{3,}$/.test(b) &&
         !b.startsWith('#') &&
-        !b.startsWith('>') &&
         !b.startsWith('|'),
     );
   return blocks
-    .map((b) => `    <p>${inlineMarkdown(b.replace(/\n/g, ' '))}</p>`)
+    .map((b) => {
+      if (b.startsWith('>')) {
+        const q = parseSingleQuote(b);
+        if (q) return renderQuote(q, 'orange');
+        return '';
+      }
+      return `    <p>${inlineMarkdown(b.replace(/\n/g, ' '))}</p>`;
+    })
+    .filter(Boolean)
     .join('\n');
+}
+
+function parseSingleQuote(block: string): Quote | null {
+  const lines = block
+    .split('\n')
+    .map((l) => l.replace(/^>\s?/, '').trim())
+    .filter(Boolean);
+  const m = lines[0]?.match(/^\*"(.{30,})"\*$/);
+  if (!m) return null;
+  const attrLine = lines[1] ?? '';
+  const a = attrLine.match(/^[—-]\s*(.+)$/);
+  return { text: m[1]!, attribution: a ? a[1]! : '' };
 }
