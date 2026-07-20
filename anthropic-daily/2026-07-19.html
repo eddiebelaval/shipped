@@ -1,0 +1,868 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light">
+<title>Shipped. Daily, Saturday, July 19, 2026</title>
+<meta property="og:title" content="Shipped. Daily, Saturday, July 19, 2026">
+<meta property="og:description" content="OpenAI fixes a 272K context regression, Anthropic clips an autonomous reviewer, Google's flagship misses another deadline, and xAI teases 2T parameters via social media.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://eddiebelaval.github.io/shipped/anthropic-daily/2026-07-19.html">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Shipped. Daily, Saturday, July 19, 2026">
+<meta name="twitter:description" content="OpenAI fixes a 272K context regression, Anthropic clips an autonomous reviewer, Google's flagship misses another deadline, and xAI teases 2T parameters via social media.">
+<meta name="description" content="OpenAI fixes a 272K context regression, Anthropic clips an autonomous reviewer, Google's flagship misses another deadline, and xAI teases 2T parameters via social media. The frontier's Saturday, in four moves.">
+<meta name="author" content="Eddie Belaval">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='75' cy='62' r='14' fill='%23FF6B35'/%3E%3Ctext x='10' y='75' font-family='Georgia,serif' font-weight='700' font-size='62' fill='%231a1a1a'%3ES%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;0,9..144,900;1,9..144,300;1,9..144,400;1,9..144,500;1,9..144,700&family=Archivo:wght@300;400;500;600;700;800;900&family=Archivo+Narrow:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{font-size:16px;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;text-rendering:optimizeLegibility}
+body{background:#FAF8F4;color:#0b0b0b;font-family:'Archivo',sans-serif;overflow-x:hidden}
+::selection{background:#FF6B35;color:#fff}
+
+:root{
+  --orange:#FF6B35;
+  --ink:#0b0b0b;
+  --paper:#FAF8F4;
+  --paper-shadow:#f2f0e8;
+  --body:#2a2a2a;
+  --muted:#5a5a5a;
+  --gray:#8a8a8a;
+  --hair:rgba(11,11,11,0.12);
+  --hair-soft:rgba(11,11,11,0.06);
+  --hair-hard:rgba(11,11,11,0.22);
+  --disp:'Fraunces', 'Times New Roman', serif;
+  --sans:'Archivo', system-ui, sans-serif;
+  --narrow:'Archivo Narrow', 'Archivo', sans-serif;
+  --mono:'JetBrains Mono', ui-monospace, monospace;
+}
+
+body::before{
+  content:"";
+  position:fixed;inset:0;pointer-events:none;z-index:1000;opacity:.28;mix-blend-mode:multiply;
+  background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='180' height='180'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' seed='3'/><feColorMatrix values='0 0 0 0 0.02  0 0 0 0 0.02  0 0 0 0 0.02  0 0 0 0.22 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+}
+
+/* PUB BAR */
+.pub-bar{
+  position:sticky;top:0;z-index:100;
+  background:var(--paper);
+  border-bottom:1px solid var(--hair);
+  padding:0 28px;height:42px;
+  display:flex;align-items:center;justify-content:space-between;
+  font-family:var(--narrow);
+  font-size:11px;font-weight:600;letter-spacing:.22em;
+  text-transform:uppercase;color:var(--ink);
+}
+.pub-bar-left,.pub-bar-right{display:flex;align-items:center;gap:16px}
+.pub-bar-mark{font-family:var(--disp);font-weight:500;font-size:16px;letter-spacing:-.01em;text-transform:none;font-style:italic}
+.pub-bar-mark .dot{color:var(--orange)}
+.pub-bar-sep{width:1px;height:12px;background:var(--hair-hard)}
+.pub-bar-meta{color:var(--muted)}
+.pub-bar-link{color:inherit;text-decoration:none;border-bottom:1px solid currentColor;transition:color .15s ease}
+.pub-bar-link:hover{color:var(--orange)}
+.pub-bar-folio{color:var(--ink)}
+.pub-bar-folio b{font-weight:600;color:var(--orange)}
+
+/* FOLIO */
+.folio{
+  font-family:var(--narrow);
+  font-size:10px;font-weight:500;letter-spacing:.28em;
+  text-transform:uppercase;color:var(--gray);
+  display:flex;align-items:center;gap:10px;
+}
+.folio b{color:var(--ink);font-weight:700}
+.folio .ruler{width:28px;height:1px;background:var(--hair-hard)}
+.folio .dot{color:var(--orange)}
+
+/* DAILY COVER */
+.daily-cover{
+  padding:56px 28px 52px;
+  border-bottom:2px solid var(--ink);
+  max-width:1280px;margin:0 auto;
+}
+.daily-cover-kicker{
+  font-family:var(--narrow);
+  font-size:10px;font-weight:700;letter-spacing:.38em;
+  text-transform:uppercase;color:var(--orange);
+  margin-bottom:20px;
+  display:flex;align-items:center;gap:16px;
+}
+.daily-cover-kicker::after{
+  content:"";flex:1;height:1px;background:var(--orange);opacity:.35;max-width:120px;
+}
+.daily-masthead{
+  font-family:var(--disp);
+  font-weight:500;
+  font-variation-settings:"opsz" 144;
+  font-size:clamp(72px,13vw,168px);
+  line-height:.88;
+  letter-spacing:-.04em;
+  color:var(--ink);
+  font-style:italic;
+  display:inline-block;
+  position:relative;
+  margin-bottom:28px;
+}
+.daily-masthead .dot{color:var(--orange)}
+.daily-dateline{
+  font-family:var(--narrow);
+  font-size:14px;font-weight:600;letter-spacing:.22em;
+  text-transform:uppercase;color:var(--muted);
+  margin-bottom:10px;
+}
+.daily-subhead{
+  font-family:var(--disp);font-style:italic;font-weight:400;
+  font-variation-settings:"opsz" 72;
+  font-size:clamp(22px,3vw,36px);
+  line-height:1.2;letter-spacing:-.01em;
+  color:var(--body);
+  max-width:760px;
+}
+.daily-subhead em{font-style:normal;color:var(--orange);font-weight:500}
+
+/* THE READ */
+.the-read{
+  background:var(--paper-shadow);
+  border-left:4px solid var(--orange);
+  padding:28px 32px;
+  margin:0;
+}
+.the-read-kicker{
+  font-family:var(--narrow);
+  font-size:9px;font-weight:700;letter-spacing:.36em;
+  text-transform:uppercase;color:var(--orange);
+  margin-bottom:10px;
+}
+.the-read-text{
+  font-family:var(--disp);font-weight:500;
+  font-variation-settings:"opsz" 72;
+  font-size:clamp(18px,2.2vw,24px);
+  line-height:1.35;letter-spacing:-.012em;
+  color:var(--ink);
+}
+
+/* SECTION WRAPPER */
+.section{
+  position:relative;
+  padding:64px 28px 40px;
+  max-width:1280px;margin:0 auto;
+}
+.section-folio{
+  display:flex;align-items:center;justify-content:space-between;
+  padding-bottom:18px;
+  border-bottom:1px solid var(--ink);
+  margin-bottom:44px;
+}
+.section-folio-left{display:flex;align-items:center;gap:14px}
+.section-folio-label{
+  font-family:var(--narrow);
+  font-size:11px;font-weight:700;letter-spacing:.28em;
+  text-transform:uppercase;color:var(--ink);
+}
+.section-folio-sub{
+  font-family:var(--disp);font-style:italic;
+  font-size:13px;color:var(--muted);
+}
+
+/* PROSE WELL */
+.prose-well{
+  max-width:1280px;margin:0 auto;padding:0 28px 56px;
+  display:grid;grid-template-columns:72px 1fr minmax(0,320px);
+  gap:32px;position:relative;
+}
+.prose-well::before{
+  content:"";position:absolute;left:100px;top:0;bottom:0;
+  width:1px;background:var(--hair);
+}
+.prose-marginalia{
+  grid-column:1;
+  font-family:var(--narrow);
+  font-size:10px;font-weight:600;letter-spacing:.26em;
+  text-transform:uppercase;color:var(--gray);
+  writing-mode:vertical-rl;transform:rotate(180deg);
+  align-self:start;padding-top:8px;
+  white-space:nowrap;
+}
+.prose{
+  grid-column:2;
+  font-family:var(--disp);
+  font-variation-settings:"opsz" 14;
+  font-weight:400;font-size:19px;line-height:1.66;
+  color:var(--body);
+  max-width:640px;
+}
+.prose p{margin-bottom:24px}
+.prose em{font-style:italic;color:var(--ink)}
+.prose strong{font-weight:600;color:var(--ink)}
+.prose code{
+  font-family:var(--mono);font-size:.86em;
+  background:var(--paper-shadow);padding:1px 6px;
+  border-radius:3px;color:var(--ink);
+}
+.prose a{color:var(--ink);border-bottom:1px solid var(--hair-hard);text-decoration:none}
+.prose a:hover{color:var(--orange);border-bottom-color:var(--orange)}
+.prose-aside{
+  grid-column:3;
+  font-family:var(--narrow);
+  font-size:11px;font-weight:500;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--muted);
+  border-top:1px solid var(--ink);padding-top:14px;
+  line-height:1.8;
+}
+.prose-aside b{color:var(--ink);font-weight:700}
+
+.drop-cap::first-letter{
+  font-family:var(--disp);
+  font-variation-settings:"opsz" 144;
+  font-weight:700;
+  font-size:9.2em;
+  float:left;line-height:.78;
+  padding:.02em 12px 0 0;
+  margin:.02em 4px -.1em -2px;
+  color:var(--ink);
+}
+
+@media(max-width:860px){
+  .prose-well{grid-template-columns:1fr;padding-left:20px;padding-right:20px}
+  .prose-well::before{display:none}
+  .prose-marginalia{display:none}
+  .prose{grid-column:1}
+  .prose-aside{grid-column:1;margin-top:20px}
+  .drop-cap::first-letter{font-size:6.6em}
+}
+
+/* DAILY SECTION HEADING */
+.daily-section-head{
+  padding:0 28px 20px;
+  max-width:1280px;margin:0 auto;
+  border-bottom:1px solid var(--ink);
+  margin-bottom:0;
+}
+.daily-section-label{
+  font-family:var(--narrow);
+  font-size:10px;font-weight:700;letter-spacing:.32em;
+  text-transform:uppercase;color:var(--orange);
+  margin-bottom:8px;
+}
+.daily-section-title{
+  font-family:var(--disp);font-weight:600;
+  font-variation-settings:"opsz" 96;
+  font-size:clamp(24px,3.5vw,40px);
+  line-height:1.05;letter-spacing:-.025em;
+  color:var(--ink);
+}
+
+/* DIG HEADER */
+.dig-head{
+  max-width:1280px;margin:0 auto;
+  padding:48px 28px 0;
+}
+.dig-label{
+  font-family:var(--narrow);
+  font-size:9px;font-weight:700;letter-spacing:.36em;
+  text-transform:uppercase;color:var(--muted);
+  margin-bottom:6px;
+}
+.dig-title{
+  font-family:var(--disp);font-weight:500;font-style:italic;
+  font-variation-settings:"opsz" 72;
+  font-size:clamp(20px,2.8vw,34px);
+  line-height:1.1;letter-spacing:-.018em;
+  color:var(--ink);
+  padding-bottom:18px;
+  border-bottom:1px solid var(--hair-hard);
+  margin-bottom:0;
+}
+.dig-title a{color:inherit;text-decoration:none;border-bottom:none}
+
+/* BUILDER MOVE */
+.builder-move{
+  margin-top:20px;padding:14px 20px;
+  background:var(--paper-shadow);
+  border-left:3px solid var(--ink);
+  font-family:var(--sans);font-size:14px;line-height:1.55;color:var(--body);
+}
+.builder-move b{
+  font-family:var(--narrow);font-size:9px;font-weight:700;letter-spacing:.28em;
+  text-transform:uppercase;color:var(--ink);display:block;margin-bottom:6px;
+}
+.builder-move code{font-family:var(--mono);font-size:.85em;background:var(--paper);padding:1px 5px;border-radius:2px}
+
+/* ORNAMENT */
+.ornament{
+  text-align:center;margin:48px auto;
+  font-family:var(--disp);font-size:16px;color:var(--hair-hard);
+  letter-spacing:1.2em;
+}
+
+/* QUIET ON THE WIRE */
+.quiet-section{
+  max-width:1280px;margin:0 auto;padding:64px 28px 24px;
+  display:grid;grid-template-columns:repeat(12,1fr);gap:24px;
+}
+.quiet-head{grid-column:1 / span 3}
+.quiet-title{
+  font-family:var(--disp);font-style:italic;font-weight:400;
+  font-variation-settings:"opsz" 72;
+  font-size:32px;line-height:1;letter-spacing:-.02em;
+  color:var(--ink);
+}
+.quiet-title em{color:var(--orange);font-style:normal;font-weight:500}
+.quiet-kicker{
+  font-family:var(--narrow);
+  font-size:10px;font-weight:700;letter-spacing:.32em;
+  text-transform:uppercase;color:var(--muted);
+  margin-bottom:10px;
+}
+.quiet-body{
+  grid-column:5 / -1;
+  font-family:var(--disp);font-size:17px;line-height:1.65;color:var(--body);
+  padding-left:24px;border-left:1px solid var(--ink);
+}
+.quiet-body p{margin-bottom:16px}
+.quiet-body strong{font-weight:600;color:var(--ink)}
+.quiet-body code{font-family:var(--mono);font-size:.86em;background:var(--paper-shadow);padding:1px 5px;border-radius:2px}
+@media(max-width:860px){
+  .quiet-head,.quiet-body{grid-column:1 / -1}
+  .quiet-body{padding-left:0;border-left:none;border-top:1px solid var(--ink);padding-top:18px}
+}
+
+/* RELEASE LOG */
+.log-divider{
+  background:var(--paper);
+  padding:80px 28px 48px;
+  text-align:center;
+  border-top:3px double var(--ink);
+  border-bottom:1px solid var(--ink);
+  max-width:1280px;margin:0 auto;
+}
+.log-divider-kicker{
+  font-family:var(--narrow);
+  font-size:11px;font-weight:700;letter-spacing:.48em;
+  text-transform:uppercase;color:var(--orange);
+  margin-bottom:14px;
+}
+.log-divider-title{
+  font-family:var(--disp);font-weight:700;
+  font-variation-settings:"opsz" 144;
+  font-size:clamp(48px,8vw,112px);
+  line-height:.9;letter-spacing:-.045em;color:var(--ink);
+  margin-bottom:16px;
+}
+.log-divider-title em{font-style:italic;font-weight:400}
+.log-divider-sub{
+  font-family:var(--disp);font-style:italic;
+  font-size:17px;color:var(--muted);max-width:560px;margin:0 auto;line-height:1.5;
+}
+.log-section{padding:48px 28px;max-width:1280px;margin:0 auto}
+.log-cat-head{
+  display:grid;grid-template-columns:1fr auto;
+  gap:24px;align-items:baseline;
+  padding-bottom:18px;
+  border-bottom:1px solid var(--ink);
+  margin-bottom:0;
+}
+.log-cat-name{
+  font-family:var(--disp);font-weight:600;font-style:italic;
+  font-variation-settings:"opsz" 96;
+  font-size:clamp(28px,4vw,48px);
+  letter-spacing:-.02em;color:var(--ink);line-height:1;
+}
+.log-cat-count{
+  font-family:var(--narrow);
+  font-size:10px;font-weight:600;letter-spacing:.28em;
+  text-transform:uppercase;color:var(--muted);
+  text-align:right;
+}
+.log-cat-count b{color:var(--ink);font-weight:700;font-size:13px;display:block}
+.log-entries{display:flex;flex-direction:column}
+.log-entry{
+  padding:24px 0;
+  border-bottom:1px solid var(--hair);
+  display:grid;
+  grid-template-columns:120px 1fr;gap:28px;
+}
+.log-entry-left{display:flex;flex-direction:column;gap:8px}
+.log-entry-date{
+  font-family:var(--narrow);
+  font-size:10px;font-weight:700;letter-spacing:.22em;
+  text-transform:uppercase;color:var(--ink);
+}
+.log-tag{
+  font-family:var(--narrow);
+  font-size:9px;font-weight:700;letter-spacing:.22em;
+  text-transform:uppercase;padding:3px 7px;
+  display:inline-block;line-height:1.3;width:fit-content;
+}
+.log-tag.model{background:var(--orange);color:var(--paper)}
+.log-tag.api{background:var(--ink);color:var(--paper)}
+.log-tag.code{background:#3a3a3a;color:var(--paper)}
+.log-tag.apps{background:#5a5a5a;color:var(--paper)}
+.log-tag.sdk-py,.log-tag.sdk-ts{background:var(--paper);color:var(--ink);border:1px solid var(--ink)}
+.log-tag.research,.log-tag.news{background:var(--paper);color:var(--muted);border:1px solid var(--hair-hard)}
+.log-entry-title{
+  font-family:var(--disp);font-weight:500;
+  font-variation-settings:"opsz" 72;
+  font-size:19px;letter-spacing:-.012em;
+  color:var(--ink);line-height:1.25;
+  margin-bottom:8px;
+}
+.log-entry-title a{color:inherit;text-decoration:none;border-bottom:1px solid var(--hair-hard)}
+.log-entry-title a:hover{border-bottom-color:var(--orange);color:var(--orange)}
+.log-entry-body{
+  font-family:var(--sans);font-size:14.5px;line-height:1.6;color:var(--body);
+  margin-bottom:10px;
+}
+.log-entry-how{
+  font-family:var(--sans);font-size:13.5px;line-height:1.6;color:var(--muted);
+  padding-top:10px;border-top:1px solid var(--hair-soft);
+}
+.log-entry-how b{font-family:var(--narrow);font-size:10px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--ink);display:block;margin-bottom:5px}
+.log-entry-how code{font-family:var(--mono);font-size:.85em;background:var(--paper-shadow);padding:1px 5px;border-radius:2px}
+
+@media(max-width:720px){
+  .log-entry{grid-template-columns:1fr;gap:12px}
+  .log-cat-head{grid-template-columns:auto 1fr}
+  .log-cat-count{grid-column:1 / -1;text-align:left;padding-top:8px;border-top:1px solid var(--hair)}
+}
+
+/* COLOPHON */
+.colophon{
+  background:var(--ink);color:var(--paper);
+  padding:64px 28px 56px;
+  border-top:2px solid var(--orange);
+}
+.colophon-inner{max-width:1280px;margin:0 auto;display:grid;grid-template-columns:repeat(12,1fr);gap:32px}
+.colophon-mast{grid-column:1 / span 4}
+.colophon-word{
+  font-family:var(--disp);font-weight:500;font-style:italic;
+  font-variation-settings:"opsz" 144;
+  font-size:clamp(56px,8vw,100px);
+  line-height:.9;letter-spacing:-.04em;color:var(--paper);
+}
+.colophon-word .dot{color:var(--orange)}
+.colophon-tag{
+  margin-top:12px;font-family:var(--disp);font-style:italic;font-size:16px;
+  color:rgba(250,250,247,.6);line-height:1.45;max-width:320px;
+}
+.colophon-body{grid-column:5 / -1;display:grid;grid-template-columns:repeat(2,1fr);gap:32px}
+.colophon-col h4{
+  font-family:var(--narrow);
+  font-size:10px;font-weight:700;letter-spacing:.32em;
+  text-transform:uppercase;color:var(--orange);
+  margin-bottom:10px;padding-bottom:10px;
+  border-bottom:1px solid rgba(250,250,247,.2);
+}
+.colophon-col p,.colophon-col li{
+  font-family:var(--sans);font-size:13px;line-height:1.6;
+  color:rgba(250,250,247,.75);margin-bottom:7px;list-style:none;
+}
+.colophon-col b{color:var(--paper);font-weight:600}
+.colophon-col em{font-style:italic;color:rgba(250,250,247,.9)}
+.colophon-foot{
+  grid-column:1 / -1;
+  margin-top:32px;padding-top:24px;
+  border-top:1px solid rgba(250,250,247,.2);
+  display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap;
+  font-family:var(--narrow);font-size:10px;font-weight:600;
+  letter-spacing:.28em;text-transform:uppercase;color:rgba(250,250,247,.5);
+}
+.colophon-foot b{color:var(--paper);font-weight:700}
+.colophon-foot .hot{color:var(--orange)}
+.colophon-link{color:inherit;text-decoration:none;border-bottom:1px solid currentColor}
+.colophon-link:hover{color:var(--orange)}
+
+@media(max-width:860px){
+  .colophon-mast{grid-column:1 / -1}
+  .colophon-body{grid-column:1 / -1;grid-template-columns:1fr;gap:24px}
+}
+
+/* MOBILE */
+@media(max-width:600px){
+  .section,.log-section,.prose-well{padding-left:20px;padding-right:20px}
+  .daily-cover{padding:36px 20px 40px}
+  .dig-head{padding:36px 20px 0}
+  .daily-section-head{padding-left:20px;padding-right:20px}
+  .quiet-section{padding-left:20px;padding-right:20px}
+}
+
+</style>
+</head>
+<body>
+
+<!-- PUBLICATION BAR -->
+<nav class="pub-bar">
+  <div class="pub-bar-left">
+    <span class="pub-bar-mark">Shipped<span class="dot">.</span></span>
+    <span class="pub-bar-sep"></span>
+    <span class="pub-bar-meta">Frontier Daily by <a href="https://id8labs.app" class="pub-bar-link">id8Labs</a></span>
+  </div>
+  <div class="pub-bar-right">
+    <span class="pub-bar-folio"><b>July 19</b>, 2026</span>
+    <span class="pub-bar-sep"></span>
+    <span class="pub-bar-meta">Saturday</span>
+  </div>
+</nav>
+
+<!-- DAILY MASTHEAD -->
+<div style="border-bottom:1px solid var(--hair);">
+  <div class="daily-cover">
+    <div class="daily-cover-kicker">Frontier Daily</div>
+    <h1 class="daily-masthead">Shipped<span class="dot">.</span></h1>
+    <div class="daily-dateline">Saturday, July 19, 2026</div>
+    <p class="daily-subhead">Six labs. The past 24 hours. No press releases.</p>
+  </div>
+
+  <!-- THE READ -->
+  <div style="max-width:1280px;margin:0 auto;padding:0 28px 48px;">
+    <div class="the-read">
+      <div class="the-read-kicker">The Read</div>
+      <p class="the-read-text">OpenAI fixes a 272K context regression, Anthropic clips an autonomous reviewer, Google's flagship misses another deadline, and xAI teases 2 trillion parameters via social media. The frontier's Saturday, in four moves.</p>
+    </div>
+  </div>
+</div>
+
+<!-- LEAD -->
+<div class="daily-section-head" style="padding-top:56px;">
+  <div class="daily-section-label">Lead</div>
+  <div class="daily-section-title">Anthropic clips Claude Code's autonomous review triggers</div>
+</div>
+
+<div class="prose-well" style="padding-top:36px;">
+  <div class="prose-marginalia">Anthropic / CODE</div>
+  <div class="prose drop-cap">
+    <p>Claude Code v2.1.215 shipped at 10:56 PM ET Friday night, a single behavioral change: Claude no longer auto-invokes <code>/verify</code> or <code>/code-review</code> on its own initiative. Both skills now run only when the user explicitly types the command. (<a href="https://github.com/anthropics/claude-code/releases/tag/v2.1.215">Release</a>)</p>
+    <p>The mechanism: previous builds included logic for Claude to decide, independently, that a code change warranted a verification pass or a code review. That decision logic is removed in this release. The skills still exist. They just stopped volunteering.</p>
+    <p>The blast radius depends on your workflow. If you relied on Claude catching its own mistakes post-edit automatically, that behavior is gone. If you found the unsolicited review passes intrusive or redundant, they are gone too. Most affected: teams running Claude Code in semi-autonomous loops where proactive verification was an implicit expectation rather than something explicitly requested.</p>
+    <p>The four-version pattern makes the direction clear. v2.1.212 (July 17) gave Claude Code <code>/fork</code> for background sessions and <code>/subtask</code> for in-session subagents, expanding what the tool could initiate on its own. v2.1.214 (July 18) was a large security release: fixes for Bash bypass exploits, Windows PowerShell 5.1 edge cases, a new <code>EndConversation</code> tool so Claude can terminate sessions with abusive users, periodic heartbeat for long-running silent tool calls, and ISO <code>modified</code> timestamps in memory file frontmatter. Now v2.1.215 rolls back a behavior where the tool was initiating reviews without being asked. Three versions in 48 hours is aggressive maintenance pace, and the direction is consistent: more capability in controlled modalities, less unsolicited initiative.</p>
+    <p>Removing that isn't a regression. It's a boundary adjustment. A tool that decides on its own to review your code is making decisions about your workflow without asking. Anthropic added autonomy features in v2.1.212 and then started trimming the parts of that autonomy that were too quiet about what they were doing. The pattern reads as deliberate.</p>
+    <div class="builder-move">
+      <b>Builder's Move</b>
+      <code>claude update</code> to get v2.1.215. If your workflow depended on automatic post-edit reviews, add <code>/code-review</code> to your project hooks or session close explicitly. It still takes one command.
+    </div>
+    <p style="margin-top:24px;">The week's cross-lab frame: OpenAI fixed a context window regression in Codex. Google's flagship model missed another benchmark deadline. xAI announced a model that won't ship until fall. All four labs spent this Saturday consolidating, not launching.</p>
+  </div>
+  <div class="prose-aside">
+    <b>Source</b><br>
+    github.com/anthropics/claude-code<br>
+    Release v2.1.215<br>
+    July 19, 2026 02:56 UTC<br>
+    <br>
+    <b>Area</b><br>
+    CODE<br>
+    <br>
+    <b>Prior context</b><br>
+    v2.1.214 (July 18): large security release<br>
+    v2.1.212 (July 17): /fork, /subtask added
+  </div>
+</div>
+
+<div class="ornament">* * *</div>
+
+<!-- DIG 1 -->
+<div class="dig-head">
+  <div class="dig-label">The Dig / OpenAI</div>
+  <h2 class="dig-title">OpenAI restores the 272,000-token ceiling in Codex</h2>
+</div>
+<div class="prose-well" style="padding-top:28px;">
+  <div class="prose-marginalia">OpenAI / CODE</div>
+  <div class="prose">
+    <p>A bug in the Codex platform had broken bundled instructions for GPT-5.6 Sol, Terra, and Luna, with a secondary effect of accidentally shrinking effective context windows below their published limit. The July 18 fix restores the correct 272,000-token ceiling for all three model tiers. (<a href="https://developers.openai.com/codex/changelog">Codex changelog</a>)</p>
+    <p>The mechanism: bundled instructions are how Codex operators pass standing context to GPT-5.6 across sessions. The bug broke that delivery pipeline. Without bundled instructions reaching the model, sessions lost background context and ran shorter. 272,000 tokens is a meaningful ceiling. Operators who compensated by front-loading more context per session paid more per call for coverage that should have been free via bundled configuration.</p>
+    <p>The blast radius covers anyone running Codex against GPT-5.6 tiers since the regression was introduced. The symptom looked like behavioral drift or missed standing instructions, not a hard error. That is the expensive kind of bug: you spend time debugging your prompts before the platform changelog tells you it was the infrastructure.</p>
+    <p>Also shipped in the same window: ChatGPT Business desktop apps received a cleaner Chat/Work layout toggle, a unified Recents sidebar, and cloud-synced Work conversations across web, mobile, and desktop. The continuity gap where Work threads would not follow you from the app to the browser is now closed for Business accounts. (<a href="https://help.openai.com/en/articles/6825453-chatgpt-release-notes">ChatGPT release notes</a>)</p>
+    <div class="builder-move">
+      <b>Builder's Move</b>
+      If Codex with GPT-5.6 felt off in the past several days and bundled instructions seemed to have stopped working, the fix is live. No action required on your end. Verify your context is reaching the model as expected.
+    </div>
+  </div>
+  <div class="prose-aside">
+    <b>Source</b><br>
+    Codex changelog via aggregator<br>
+    developers.openai.com/codex/changelog<br>
+    July 18, 2026<br>
+    <br>
+    <b>Area</b><br>
+    CODE / APPS
+  </div>
+</div>
+
+<div class="ornament">* * *</div>
+
+<!-- DIG 2 -->
+<div class="dig-head">
+  <div class="dig-label">The Dig / xAI</div>
+  <h2 class="dig-title">xAI puts specs on Grok 4.6 before the training run ends</h2>
+</div>
+<div class="prose-well" style="padding-top:28px;">
+  <div class="prose-marginalia">xAI / MODEL</div>
+  <div class="prose">
+    <p>On July 18, Elon Musk confirmed via a social media reply chain that Grok 4.6 is in development at 2 trillion parameters, targeting capability per token efficiency, and claiming it "might exceed Kimi K3." Pre-training finished the week of July 20. Estimated availability: late August to mid-September 2026. No benchmarks. No pricing. No context window spec. No formal launch page as of July 19. (Reported by <a href="https://kie.ai/blog/what-is-grok-4-6">kie.ai</a> and <a href="https://www.basenor.com/blogs/news/grok-4-6-confirmed-what-we-know-from-the-xai-roadmap">basenor.com</a>)</p>
+    <p>The prior formal Grok release, Grok 4.5, is a 1.5-trillion-parameter mixture-of-experts model priced at $2 per million input tokens and $6 per million output tokens. The step to 2T is not a dramatic architectural leap on its own, but the efficiency framing is intentional: xAI is positioning 4.6 as better value per compute unit, not just a larger parameter count. The Kimi K3 benchmark reference (MiniMax's frontier model) is concrete enough to track when the formal benchmarks publish.</p>
+    <p>The contrast reveals something about announcement posture. Anthropic does not pre-announce: the Mythos capacity holds a model back from publication rather than leaking it forward. OpenAI occasionally pre-announces products, not weights. xAI pre-announces weights before the training run is done, via founder social media, weeks before a launch page exists. The read: either Grok 4.6 ships in August or September with benchmarks that support the Kimi comparison, or this week's teaser becomes a liability to revisit at formal launch time. Watch whether the August numbers reconcile with what Musk implied here.</p>
+    <div class="builder-move">
+      <b>Builder's Move</b>
+      Nothing to integrate. Watch <a href="https://x.ai/news">x.ai/news</a> for the formal launch. If Grok 4.6 API availability matters for your stack, flag September as the earliest realistic target.
+    </div>
+  </div>
+  <div class="prose-aside">
+    <b>Source</b><br>
+    Social confirmation via Musk<br>
+    Reported: kie.ai, basenor.com<br>
+    July 18, 2026<br>
+    <br>
+    <b>Area</b><br>
+    MODEL (pre-training)<br>
+    <br>
+    <b>Prior release</b><br>
+    Grok 4.5: 1.5T params<br>
+    $2/$6 per MTok
+  </div>
+</div>
+
+<div class="ornament">* * *</div>
+
+<!-- DIG 3 -->
+<div class="dig-head">
+  <div class="dig-label">The Dig / Google DeepMind</div>
+  <h2 class="dig-title">Gemini 3.5 Pro misses its window, and the gap widens</h2>
+</div>
+<div class="prose-well" style="padding-top:28px;">
+  <div class="prose-marginalia">Google / MODEL</div>
+  <div class="prose">
+    <p>Gemini 3.5 Pro was targeting a launch the week of July 14. On July 16, Bloomberg and 9to5Google both reported it missed the date, citing failures on internal coding and reasoning benchmarks. No new public timeline has been set. (<a href="https://9to5google.com/2026/07/16/gemini-3-5-pro-delays/">9to5Google, July 16</a>)</p>
+    <p>This lands just outside the window but defines the July 19 landscape. Gemini 3.5 Pro was supposed to be Google's benchmark-competitive flagship at the top of the stack, the answer to Anthropic's Opus line and OpenAI's GPT-5.6 Terra tier. It's not ready. Gemini 3.5 Flash went GA in early July. Gemini Omni Flash entered public preview June 30. Both are solid releases at their tier. The top slot remains unfilled.</p>
+    <p>The competitive table is set and waiting. Grok 4.6 is targeting August or September. Anthropic's Mythos is in reserve. OpenAI has been iterating GPT-5.6 tiers since June. A delayed flagship in that context is not just a deadline miss. It's a window that Google's competitors notice and plan around. The gap between what Flash can do and what Pro needs to do keeps the pressure on the schedule.</p>
+    <p>The broader pattern: the week of July 19 is a week where none of the major labs shipped a landmark model. Anthropic's notable in-window move is a one-line behavioral rollback in Claude Code. OpenAI's notable move is restoring a context window it accidentally broke. Google is absent. xAI is pre-announcing via social media. This is what frontier-wide consolidation looks like from the outside.</p>
+  </div>
+  <div class="prose-aside">
+    <b>Source</b><br>
+    9to5Google, July 16<br>
+    Bloomberg, July 16<br>
+    <br>
+    <b>Area</b><br>
+    MODEL (delay)<br>
+    <br>
+    <b>Note</b><br>
+    Near-window context.<br>
+    No confirmed July 19 Google release.
+  </div>
+</div>
+
+<!-- QUIET ON THE WIRE -->
+<div class="quiet-section">
+  <div class="quiet-head">
+    <div class="quiet-kicker">Coming Up</div>
+    <h2 class="quiet-title">Quiet on the <em>Wire</em></h2>
+  </div>
+  <div class="quiet-body">
+    <p><strong>July 24:</strong> Anthropic's Opus 4.7 fast mode deprecates in five days. If you are running <code>claude-opus-4-7</code> with fast mode in production, migrate to <code>claude-opus-4-8</code> before then. Requests to the deprecated mode return errors after that date. Migration guide in the API release notes.</p>
+    <p><strong>Late August to mid-September:</strong> Grok 4.6 is xAI's stated target window. No API preview announced. The <code>x.ai/news</code> page has not been updated since the social confirmation.</p>
+    <p><strong>Gemini 3.5 Pro:</strong> No public reschedule date. The DeepMind blog at deepmind.google/discover/blog/ is the watch point.</p>
+    <p>Two Anthropic SDK releases from earlier this week are available now: Python SDK v0.117.0 (July 16) added dreaming support and MCP Tunnels. TypeScript SDK v0.112.2 and v0.112.3 (July 17) are maintenance updates. Both worth pulling if you haven't.</p>
+  </div>
+</div>
+
+<!-- RELEASE LOG -->
+<div class="log-divider">
+  <div class="log-divider-kicker">Back of Book</div>
+  <h2 class="log-divider-title">The <em>Release</em> Log</h2>
+  <p class="log-divider-sub">Everything in the window and its immediate context, grouped by lab. Items that didn't survive the dig live here as one-liners.</p>
+</div>
+
+<!-- C. Claude Code -->
+<div class="log-section">
+  <div class="log-cat-head">
+    <div class="log-cat-name">Claude Code</div>
+    <div class="log-cat-count"><b>1</b> release</div>
+  </div>
+  <div class="log-entries">
+    <div class="log-entry">
+      <div class="log-entry-left">
+        <div class="log-entry-date">Jul 19, 2026</div>
+        <span class="log-tag code">CODE</span>
+      </div>
+      <div class="log-entry-right">
+        <div class="log-entry-title"><a href="https://github.com/anthropics/claude-code/releases/tag/v2.1.215">Claude Code v2.1.215</a></div>
+        <div class="log-entry-body">Removed auto-invocation of <code style="font-family:var(--mono);font-size:.86em;background:var(--paper-shadow);padding:1px 5px;border-radius:2px">/verify</code> and <code style="font-family:var(--mono);font-size:.86em;background:var(--paper-shadow);padding:1px 5px;border-radius:2px">/code-review</code> skills. Both now require explicit user invocation only.</div>
+        <div class="log-entry-how"><b>How to use</b><code style="font-family:var(--mono);font-size:.86em;background:var(--paper-shadow);padding:1px 5px;border-radius:2px">claude update</code> to pull the release. Invoke <code style="font-family:var(--mono);font-size:.86em;background:var(--paper-shadow);padding:1px 5px;border-radius:2px">/code-review</code> or <code style="font-family:var(--mono);font-size:.86em;background:var(--paper-shadow);padding:1px 5px;border-radius:2px">/verify</code> manually as needed. If you relied on auto-invocation, add these to your project hooks.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Near-window context: Anthropic -->
+<div class="log-section" style="padding-top:0;">
+  <div class="log-cat-head">
+    <div class="log-cat-name">Anthropic (near-window context)</div>
+    <div class="log-cat-count"><b>4</b> items</div>
+  </div>
+  <div class="log-entries">
+    <div class="log-entry">
+      <div class="log-entry-left">
+        <div class="log-entry-date">Jul 18, 2026</div>
+        <span class="log-tag code">CODE</span>
+      </div>
+      <div class="log-entry-right">
+        <div class="log-entry-title"><a href="https://github.com/anthropics/claude-code/releases/tag/v2.1.214">Claude Code v2.1.214</a></div>
+        <div class="log-entry-body">Large security and reliability release. Fixed permission-check bypass on Windows PowerShell 5.1 and Bash edge cases. Added <code style="font-family:var(--mono);font-size:.86em;background:var(--paper-shadow);padding:1px 5px;border-radius:2px">EndConversation</code> tool, periodic heartbeat for long-running tool calls, ISO <code style="font-family:var(--mono);font-size:.86em;background:var(--paper-shadow);padding:1px 5px;border-radius:2px">modified</code> timestamp to memory file frontmatter, <code style="font-family:var(--mono);font-size:.86em;background:var(--paper-shadow);padding:1px 5px;border-radius:2px">CLAUDE_CODE_OTEL_CONTENT_MAX_LENGTH</code> env var, and OTel event fields. Dozens of additional bug fixes.</div>
+      </div>
+    </div>
+    <div class="log-entry">
+      <div class="log-entry-left">
+        <div class="log-entry-date">Jul 17, 2026</div>
+        <span class="log-tag code">CODE</span>
+      </div>
+      <div class="log-entry-right">
+        <div class="log-entry-title"><a href="https://github.com/anthropics/claude-code/releases/tag/v2.1.212">Claude Code v2.1.212</a></div>
+        <div class="log-entry-body"><code style="font-family:var(--mono);font-size:.86em;background:var(--paper-shadow);padding:1px 5px;border-radius:2px">/fork</code> for background sessions; <code style="font-family:var(--mono);font-size:.86em;background:var(--paper-shadow);padding:1px 5px;border-radius:2px">/subtask</code> replaces in-session subagents; WebSearch and subagent spawn caps added.</div>
+      </div>
+    </div>
+    <div class="log-entry">
+      <div class="log-entry-left">
+        <div class="log-entry-date">Jul 16, 2026</div>
+        <span class="log-tag sdk-py">SDK-PY</span>
+      </div>
+      <div class="log-entry-right">
+        <div class="log-entry-title"><a href="https://github.com/anthropics/anthropic-sdk-python/releases/tag/v0.117.0">anthropic-sdk-python v0.117.0</a></div>
+        <div class="log-entry-body">Added dreaming support and MCP Tunnels support.</div>
+      </div>
+    </div>
+    <div class="log-entry">
+      <div class="log-entry-left">
+        <div class="log-entry-date">Jul 17, 2026</div>
+        <span class="log-tag sdk-ts">SDK-TS</span>
+      </div>
+      <div class="log-entry-right">
+        <div class="log-entry-title"><a href="https://github.com/anthropics/anthropic-sdk-typescript/releases">anthropic-sdk-typescript v0.112.2 and v0.112.3</a></div>
+        <div class="log-entry-body">Documentation updates. Both maintenance releases.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- OpenAI -->
+<div class="log-section" style="padding-top:0;">
+  <div class="log-cat-head">
+    <div class="log-cat-name">OpenAI</div>
+    <div class="log-cat-count"><b>2</b> items</div>
+  </div>
+  <div class="log-entries">
+    <div class="log-entry">
+      <div class="log-entry-left">
+        <div class="log-entry-date">Jul 18, 2026</div>
+        <span class="log-tag code">CODE</span>
+      </div>
+      <div class="log-entry-right">
+        <div class="log-entry-title">Codex: 272,000-token context restored for GPT-5.6 (<a href="https://developers.openai.com/codex/changelog">Codex changelog</a>)</div>
+        <div class="log-entry-body">Fixed broken bundled instructions for GPT-5.6 Sol, Terra, and Luna; restored the correct 272,000-token context ceiling truncated by a prior regression. Fix is live, no action required.</div>
+      </div>
+    </div>
+    <div class="log-entry">
+      <div class="log-entry-left">
+        <div class="log-entry-date">Jul 18, 2026</div>
+        <span class="log-tag apps">APPS</span>
+      </div>
+      <div class="log-entry-right">
+        <div class="log-entry-title">ChatGPT Business desktop update (<a href="https://help.openai.com/en/articles/6825453-chatgpt-release-notes">ChatGPT release notes</a>)</div>
+        <div class="log-entry-body">Clearer Chat/Work layout toggle, unified Recents sidebar, cloud-synced Work conversations across web, mobile, and desktop for Business accounts.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- xAI -->
+<div class="log-section" style="padding-top:0;">
+  <div class="log-cat-head">
+    <div class="log-cat-name">xAI</div>
+    <div class="log-cat-count"><b>1</b> item</div>
+  </div>
+  <div class="log-entries">
+    <div class="log-entry">
+      <div class="log-entry-left">
+        <div class="log-entry-date">Jul 18, 2026</div>
+        <span class="log-tag model">MODEL</span>
+      </div>
+      <div class="log-entry-right">
+        <div class="log-entry-title">Grok 4.6 pre-training confirmed (<a href="https://x.ai/news">x.ai/news</a>; reported via <a href="https://kie.ai/blog/what-is-grok-4-6">kie.ai</a>)</div>
+        <div class="log-entry-body">Musk confirmed 2T-parameter Grok 4.6 via social media reply. Pre-training finishing the week of July 20. No formal launch page, benchmarks, pricing, or context window specification. Estimated availability: late August to mid-September 2026.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Google DeepMind -->
+<div class="log-section" style="padding-top:0;">
+  <div class="log-cat-head">
+    <div class="log-cat-name">Google DeepMind</div>
+    <div class="log-cat-count"><b>1</b> near-window item</div>
+  </div>
+  <div class="log-entries">
+    <div class="log-entry">
+      <div class="log-entry-left">
+        <div class="log-entry-date">Jul 16, 2026</div>
+        <span class="log-tag news">NEWS</span>
+      </div>
+      <div class="log-entry-right">
+        <div class="log-entry-title">Gemini 3.5 Pro delayed (<a href="https://9to5google.com/2026/07/16/gemini-3-5-pro-delays/">9to5Google</a>; Bloomberg)</div>
+        <div class="log-entry-body">Missed its week-of-July-14 launch target. Cited: failures on internal coding and reasoning benchmarks. No new public timeline set as of July 19.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Sources -->
+<div style="max-width:1280px;margin:0 auto;padding:32px 28px 48px;border-top:1px solid var(--hair);">
+  <div style="font-family:var(--narrow);font-size:10px;font-weight:700;letter-spacing:.32em;text-transform:uppercase;color:var(--orange);margin-bottom:12px;">Sources</div>
+  <ul style="list-style:none;font-family:var(--sans);font-size:13px;line-height:1.8;color:var(--muted);">
+    <li>Anthropic: github.com/anthropics/claude-code/releases (Claude Code v2.1.215, v2.1.214, v2.1.212)</li>
+    <li>Anthropic: github.com/anthropics/anthropic-sdk-python/releases (v0.117.0)</li>
+    <li>Anthropic: github.com/anthropics/anthropic-sdk-typescript/releases (v0.112.2, v0.112.3)</li>
+    <li>OpenAI: developers.openai.com/codex/changelog (Codex context fix, via aggregator)</li>
+    <li>OpenAI: help.openai.com/en/articles/6825453-chatgpt-release-notes (Business desktop update, via aggregator)</li>
+    <li>xAI: x.ai/news; reported by kie.ai and basenor.com (Grok 4.6 confirmation)</li>
+    <li>Google: 9to5Google July 16, 2026; Bloomberg July 16, 2026 (Gemini 3.5 Pro delay)</li>
+  </ul>
+</div>
+
+<!-- COLOPHON -->
+<footer class="colophon">
+  <div class="colophon-inner">
+    <div class="colophon-mast">
+      <div class="colophon-word">Shipped<span class="dot">.</span></div>
+      <div class="colophon-tag">Frontier AI daily by id8Labs. Six labs, one desk, every night at 9 PM ET.</div>
+    </div>
+    <div class="colophon-body">
+      <div class="colophon-col">
+        <h4>This Issue</h4>
+        <p><b>Date</b> Saturday, July 19, 2026</p>
+        <p><b>Window</b> July 18 to July 19, 2026</p>
+        <p><b>Labs swept</b> Anthropic, OpenAI, Google DeepMind, Meta, Mistral, xAI</p>
+        <p><b>Generated by</b> claude.ai routine</p>
+        <p><b>Status</b> Draft</p>
+      </div>
+      <div class="colophon-col">
+        <h4>Typography</h4>
+        <p><b>Display</b> Fraunces</p>
+        <p><b>Sans</b> Archivo</p>
+        <p><b>Narrow</b> Archivo Narrow</p>
+        <p><b>Mono</b> JetBrains Mono</p>
+        <p><em>Warm-white paper, ink on grain.</em></p>
+      </div>
+    </div>
+    <div class="colophon-foot">
+      <span>Copyright 2026 <b>id8Labs</b></span>
+      <span>Printed in pixels, set in Fraunces and Archivo</span>
+      <span class="hot">id8labs.app/shipped</span>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
