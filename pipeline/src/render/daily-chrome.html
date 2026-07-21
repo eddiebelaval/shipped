@@ -69,6 +69,18 @@ body::before{
 .colophon-link:hover{color:var(--orange)}
 .pub-bar-folio{color:var(--ink)}
 .pub-bar-folio b{font-weight:600;color:var(--orange)}
+.pub-bar-btn{
+  font-family:var(--narrow);
+  font-size:10px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--paper);background:var(--orange);
+  padding:6px 12px;border-radius:2px;text-decoration:none;
+  transition:background .15s ease;
+}
+.pub-bar-btn:hover{background:var(--ink);color:var(--paper)}
+@media(max-width:720px){
+  .pub-bar-left,.pub-bar-right{gap:12px}
+  .pub-bar-date,.pub-bar-date-sep{display:none}
+}
 
 .folio{
   font-family:var(--narrow);
@@ -520,7 +532,10 @@ body::before{
     <span class="pub-bar-meta">Daily Dispatch</span>
   </div>
   <div class="pub-bar-right">
-    <span class="pub-bar-meta">Tuesday, Jun 10, 2026</span>
+    <span class="pub-bar-meta pub-bar-date">Tuesday, Jun 10, 2026</span>
+    <span class="pub-bar-sep pub-bar-date-sep"></span>
+    <a href="https://id8labs.app/shipped" class="pub-bar-link">Archive</a>
+    <a href="https://id8labs.app/shipped#subscribe" class="pub-bar-btn">Subscribe</a>
   </div>
 </nav>
 

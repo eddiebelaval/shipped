@@ -80,6 +80,19 @@ body::before{
 .colophon-foot .colophon-link b{color:var(--paper)}
 .pub-bar-folio{color:var(--ink)}
 .pub-bar-folio b{font-weight:600;color:var(--orange)}
+.pub-bar-btn{
+  font-family:var(--narrow);
+  font-size:10px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--paper);background:var(--orange);
+  padding:6px 12px;border-radius:2px;text-decoration:none;
+  transition:background .15s ease;
+}
+.pub-bar-btn:hover{background:var(--ink);color:var(--paper)}
+@media(max-width:720px){
+  .pub-bar{padding:0 20px}
+  .pub-bar-left,.pub-bar-right{gap:12px}
+  .pub-bar-byline,.pub-bar-byline-sep,.pub-bar-date,.pub-bar-date-sep{display:none}
+}
 
 /* ─────────────────────────────────────────
    FOLIO, the corner marker on every section.
@@ -1391,13 +1404,16 @@ body::before{
 <nav class="pub-bar">
   <div class="pub-bar-left">
     <span class="pub-bar-mark">Shipped<span class="dot">.</span></span>
-    <span class="pub-bar-sep"></span>
-    <span class="pub-bar-meta">A weekly magazine by <a href="https://id8labs.app" class="pub-bar-link">id8Labs</a></span>
+    <span class="pub-bar-sep pub-bar-byline-sep"></span>
+    <span class="pub-bar-meta pub-bar-byline">A weekly magazine by <a href="https://id8labs.app" class="pub-bar-link">id8Labs</a></span>
   </div>
   <div class="pub-bar-right">
     <span class="pub-bar-folio">Issue <b>{{issue_num}}</b></span>
+    <span class="pub-bar-sep pub-bar-date-sep"></span>
+    <span class="pub-bar-meta pub-bar-date">{{date_short}}</span>
     <span class="pub-bar-sep"></span>
-    <span class="pub-bar-meta">{{date_short}}</span>
+    <a href="https://id8labs.app/shipped" class="pub-bar-link">Archive</a>
+    <a href="#subscribe" class="pub-bar-btn">Subscribe</a>
   </div>
 </nav>
 
@@ -1455,6 +1471,7 @@ body::before{
      SUBSCRIBE BLOCK
      ═════════════════════════════════════════ -->
 <style>
+  html { scroll-behavior: smooth; }
   .ship-sub {
     background: var(--ink);
     color: var(--paper);
@@ -1462,6 +1479,7 @@ body::before{
     margin: 64px auto;
     max-width: 1240px;
     text-align: center;
+    scroll-margin-top: 58px; /* clears the sticky pub-bar when jumped to via #subscribe */
   }
   .ship-sub-kicker {
     font-family: var(--narrow);
@@ -1600,7 +1618,7 @@ body::before{
     .ship-sub-cadences { gap: 14px; }
   }
 </style>
-<section class="ship-sub">
+<section class="ship-sub" id="subscribe">
   <div class="ship-sub-kicker">Stay on the frontier</div>
   <h3>Get <em>Shipped.</em> in your inbox.</h3>
   <p>Daily digest at 9 PM ET. Weekly magazine every Friday morning. Six labs, one feed. No spam, one-click unsubscribe.</p>
