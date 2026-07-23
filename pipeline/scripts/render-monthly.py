@@ -11,6 +11,23 @@ Usage: python3 render-monthly.py <issue.md> <out.html>
 """
 import re, html, sys, os
 
+SUBSCRIBE_BLOCK = os.path.join(
+    os.path.dirname(os.path.abspath(__file__)), "..", "src", "render", "subscribe-block.html"
+)
+
+
+def _subscribe_block():
+    """The shared subscribe snippet, bound to the monthly source tag.
+
+    Same file the daily renderer and the backfill script use, so all three
+    surfaces stay identical. Returns "" if the snippet is missing rather than
+    failing the render — a monthly without a form still beats no monthly.
+    """
+    if not os.path.exists(SUBSCRIBE_BLOCK):
+        return ""
+    with open(SUBSCRIBE_BLOCK, encoding="utf-8") as fh:
+        return "\n" + fh.read().replace("{{SOURCE}}", "shipped-monthly")
+
 TEMPLATE = "/Users/eddiebelaval/Development/id8/shipped/pipeline/src/render/template.html"
 
 MONTH_NAMES = {
@@ -205,8 +222,11 @@ def main():
         '<span class="pub-bar-sep"></span>'
         '<span class="pub-bar-meta">Monthly &middot; what Anthropic shipped, by '
         '<a href="https://id8labs.app" class="pub-bar-link">id8Labs</a></span></div>'
-        '<div class="pub-bar-right"><span class="pub-bar-folio">Issue <b>%s</b></span>'
-        '<span class="pub-bar-sep"></span><span class="pub-bar-meta">%s</span></div></nav>'
+        '<div class="pub-bar-right">'
+        '<span class="pub-bar-folio pub-bar-hide-sm">Issue <b>%s</b></span>'
+        '<span class="pub-bar-sep pub-bar-hide-sm"></span>'
+        '<span class="pub-bar-meta pub-bar-hide-sm">%s</span>'
+        '<a href="#subscribe" class="pub-bar-cta">Subscribe</a></div></nav>'
         % (html.escape(issue_num), html.escape(month_label)))
 
     # COVER
@@ -409,8 +429,8 @@ def main():
         '<link rel="preconnect" href="https://fonts.googleapis.com">'
         '<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>'
         '<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;0,9..144,900;1,9..144,400;1,9..144,500&family=Archivo:wght@300;400;500;600;700;800;900&family=Archivo+Narrow:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">'
-        '<style>%s</style></head><body>%s</body></html>'
-        % (html.escape(month_label), css, '\n'.join(parts)))
+        '<style>%s</style></head><body>%s%s</body></html>'
+        % (html.escape(month_label), css, '\n'.join(parts), _subscribe_block()))
 
     os.makedirs(os.path.dirname(out), exist_ok=True)
     with open(out, 'w') as f:

@@ -18,6 +18,7 @@ import re, sys, html, datetime, argparse, os
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 CHROME = os.path.join(HERE, "..", "src", "render", "daily-chrome.html")
+SUBSCRIBE_BLOCK = os.path.join(HERE, "..", "src", "render", "subscribe-block.html")
 
 TAG_CLASS = {  # release-log category -> css tag class + label
     "MODEL": "model", "API": "api", "CODE": "code", "SDK": "sdk",
@@ -252,7 +253,19 @@ def render(md, generated_iso):
         '  </div>\n'
         '</footer>'
     )
-    return pre.replace("</head>", extra_css + "</head>", 1) + middle + "\n\n</body>\n</html>"
+    # Subscribe block, from the one snippet the backfill script also uses, so a
+    # freshly rendered page and a backfilled one are structurally identical.
+    sub = ""
+    if os.path.exists(SUBSCRIBE_BLOCK):
+        sub = "\n\n" + open(SUBSCRIBE_BLOCK, encoding="utf-8").read().replace(
+            "{{SOURCE}}", "shipped-daily"
+        )
+    return (
+        pre.replace("</head>", extra_css + "</head>", 1)
+        + middle
+        + sub
+        + "\n\n</body>\n</html>"
+    )
 
 if __name__ == "__main__":
     ap = argparse.ArgumentParser()

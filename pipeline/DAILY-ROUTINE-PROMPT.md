@@ -8,6 +8,25 @@ the rendered page to the `daily-pages` branch).
 prompt** (`trig_01Pevcq2DMteCYHW8dnYFXpT`), edited directly via the remote-trigger
 API, not by pasting from here.
 
+**STATUS 2026-07-23 (subscribe block):** every page on `daily-pages` was
+published with no way to subscribe: no form, no CTA, 88 pages going back to
+2026-05-06, on the most current surface Shipped. has. The 88 were backfilled,
+and the routine prompt now carries a Step 4 item 6 that pastes
+`pipeline/src/render/subscribe-block.html` (the block lives in the repo, so
+future edits to it land with no routine edit; only the instruction is in the
+prompt). Step 4 previously said "no JS" and "do not add an inverted dark close
+block", both of which would have made the routine reject the block, so both were
+narrowed rather than deleted. Publishing is now gated on a third self-audit
+alongside the word floor and the dash grep.
+
+The weekly (`trig_011aW3YwQpj2oS9joyjyTxwQ`) and monthly
+(`trig_01DGxYL9x9wyWhaSULzznuQN`) routine prompts were NOT edited. Instead
+`pipeline/scripts/ensure-subscribe.sh` (launchd, 23:00 daily) sweeps the branch
+and adds the block to anything published without it. That is deliberate: three
+prompts each remembering to paste a block is the same bet this file already
+records losing. Enforcing at the branch covers all three routines and any future
+one, and self-heals when a prompt drifts.
+
 **STATUS 2026-07-07 (length fix):** the routine prompt was rewritten in place to
 (1) sweep all six frontier labs, not Anthropic only; (2) **read `content/DAILY.md`
 as its BINDING depth authority** so future depth/floor edits to that file actually

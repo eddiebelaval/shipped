@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<!--
+  Shipped. — subscribe-block enforcement sweep.
+
+  Checks every page on the daily-pages branch and adds the subscribe block to
+  any that a routine published without it. Three cloud routines write to that
+  branch from three separate prompts; this makes the form a property of the
+  branch rather than a thing three generators each have to remember.
+
+  Runs 23:00 daily, between the 21:00 nightly publish and the 23:15 manifest
+  refresh. The Friday weekly (22:00) and monthly (1st, 10:00) publishes are
+  both swept by the next daily run.
+
+  Install:
+    cp pipeline/cron/com.id8labs.shipped-ensure-subscribe.plist ~/Library/LaunchAgents/
+    launchctl load ~/Library/LaunchAgents/com.id8labs.shipped-ensure-subscribe.plist
+-->
+<plist version="1.0">
+<dict>
+    <key>Label</key>
+    <string>com.id8labs.shipped-ensure-subscribe</string>
+
+    <key>ProgramArguments</key>
+    <array>
+        <string>/bin/bash</string>
+        <string>/Users/eddiebelaval/Development/id8/shipped/pipeline/scripts/ensure-subscribe.sh</string>
+    </array>
+
+    <key>StartCalendarInterval</key>
+    <dict>
+        <key>Hour</key>
+        <integer>23</integer>
+        <key>Minute</key>
+        <integer>0</integer>
+    </dict>
+
+    <key>RunAtLoad</key>
+    <false/>
+
+    <key>StandardOutPath</key>
+    <string>/Users/eddiebelaval/Library/Logs/shipped/ensure-subscribe-stdout.log</string>
+
+    <key>StandardErrorPath</key>
+    <string>/Users/eddiebelaval/Library/Logs/shipped/ensure-subscribe-stderr.log</string>
+</dict>
+</plist>
