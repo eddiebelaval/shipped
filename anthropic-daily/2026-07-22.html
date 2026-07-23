@@ -1,0 +1,998 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light">
+<title>Shipped. Daily, Wednesday, July 22, 2026</title>
+<meta property="og:title" content="Shipped. Daily, Wednesday, July 22, 2026">
+<meta property="og:description" content="Google dropped three Gemini models, OpenAI launched an enterprise agent governance platform, and Anthropic shipped a 48-hour API deprecation window alongside a coordinated economics infrastructure play.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://eddiebelaval.github.io/shipped/anthropic-daily/2026-07-22.html">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Shipped. Daily, Wednesday, July 22, 2026">
+<meta name="twitter:description" content="Google three Gemini models. OpenAI Presence enterprise platform. Anthropic 48-hour API deadline plus economics infrastructure.">
+<meta name="description" content="Google dropped three Gemini models, OpenAI launched an enterprise agent governance platform, and Anthropic shipped a 48-hour API deprecation window alongside a coordinated economics infrastructure play.">
+<meta name="author" content="Eddie Belaval">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='75' cy='62' r='14' fill='%23FF6B35'/%3E%3Ctext x='10' y='75' font-family='Georgia,serif' font-weight='700' font-size='62' fill='%231a1a1a'%3ES%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;0,9..144,900;1,9..144,300;1,9..144,400;1,9..144,500;1,9..144,700&family=Archivo:wght@300;400;500;600;700;800;900&family=Archivo+Narrow:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{font-size:16px;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;text-rendering:optimizeLegibility}
+body{background:#FAF8F4;color:#0b0b0b;font-family:'Archivo',sans-serif;overflow-x:hidden}
+::selection{background:#FF6B35;color:#fff}
+
+:root{
+  --orange:#FF6B35;
+  --ink:#0b0b0b;
+  --paper:#FAF8F4;
+  --paper-shadow:#f2f0e8;
+  --body:#2a2a2a;
+  --muted:#5a5a5a;
+  --gray:#8a8a8a;
+  --hair:rgba(11,11,11,0.12);
+  --hair-soft:rgba(11,11,11,0.06);
+  --hair-hard:rgba(11,11,11,0.22);
+  --disp:'Fraunces', 'Times New Roman', serif;
+  --sans:'Archivo', system-ui, sans-serif;
+  --narrow:'Archivo Narrow', 'Archivo', sans-serif;
+  --mono:'JetBrains Mono', ui-monospace, monospace;
+}
+
+body::before{
+  content:"";
+  position:fixed;inset:0;pointer-events:none;z-index:1000;opacity:.28;mix-blend-mode:multiply;
+  background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='180' height='180'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' seed='3'/><feColorMatrix values='0 0 0 0 0.02  0 0 0 0 0.02  0 0 0 0 0.02  0 0 0 0.22 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+}
+
+.pub-bar{
+  position:sticky;top:0;z-index:100;
+  background:var(--paper);
+  border-bottom:1px solid var(--hair);
+  padding:0 28px;height:42px;
+  display:flex;align-items:center;justify-content:space-between;
+  font-family:var(--narrow);
+  font-size:11px;font-weight:600;letter-spacing:.22em;
+  text-transform:uppercase;color:var(--ink);
+}
+.pub-bar-left,.pub-bar-right{display:flex;align-items:center;gap:16px}
+.pub-bar-mark{font-family:var(--disp);font-weight:500;font-size:16px;letter-spacing:-.01em;text-transform:none;font-style:italic}
+.pub-bar-mark .dot{color:var(--orange)}
+.pub-bar-sep{width:1px;height:12px;background:var(--hair-hard)}
+.pub-bar-meta{color:var(--muted)}
+.pub-bar-link{color:inherit;text-decoration:none;border-bottom:1px solid currentColor;transition:color .15s ease}
+.pub-bar-link:hover{color:var(--orange)}
+
+.section{
+  position:relative;
+  padding:64px 28px 40px;
+  max-width:1280px;margin:0 auto;
+}
+
+.log-section{
+  padding:48px 28px;max-width:1280px;margin:0 auto;
+}
+.log-cat-head{
+  display:grid;
+  grid-template-columns:1fr auto;
+  gap:24px;align-items:baseline;
+  padding-bottom:18px;
+  border-bottom:1px solid var(--ink);
+  margin-bottom:0;
+}
+.log-cat-name{
+  font-family:var(--disp);font-weight:600;font-style:italic;
+  font-variation-settings:"opsz" 96;
+  font-size:clamp(32px,4.5vw,48px);
+  letter-spacing:-.02em;color:var(--ink);line-height:1;
+}
+.log-cat-count{
+  font-family:var(--narrow);
+  font-size:10px;font-weight:600;letter-spacing:.28em;
+  text-transform:uppercase;color:var(--muted);
+  text-align:right;
+}
+.log-cat-count b{color:var(--ink);font-weight:700;font-size:13px;display:block}
+.log-entries{display:flex;flex-direction:column}
+.log-entry{
+  padding:24px 0;
+  border-bottom:1px solid var(--hair);
+  display:grid;
+  grid-template-columns:120px 1fr;gap:28px;
+}
+.log-entry-left{display:flex;flex-direction:column;gap:8px}
+.log-entry-date{
+  font-family:var(--narrow);
+  font-size:10px;font-weight:700;letter-spacing:.22em;
+  text-transform:uppercase;color:var(--ink);
+  font-variant-numeric:tabular-nums;
+}
+.log-tag{
+  font-family:var(--narrow);
+  font-size:9px;font-weight:700;letter-spacing:.22em;
+  text-transform:uppercase;padding:3px 7px;
+  display:inline-block;line-height:1.3;width:fit-content;
+}
+.log-tag.model{background:var(--orange);color:var(--paper)}
+.log-tag.api{background:var(--ink);color:var(--paper)}
+.log-tag.code{background:#3a3a3a;color:var(--paper)}
+.log-tag.apps{background:#5a5a5a;color:var(--paper)}
+.log-tag.sdk-py,.log-tag.sdk-ts{background:var(--paper);color:var(--ink);border:1px solid var(--ink)}
+.log-tag.research,.log-tag.news{background:var(--paper);color:var(--muted);border:1px solid var(--hair-hard)}
+.log-tag.deprecation{background:var(--paper-shadow);color:var(--muted);border:1px solid var(--hair-hard)}
+.log-entry-title{
+  font-family:var(--disp);font-weight:500;
+  font-variation-settings:"opsz" 72;
+  font-size:20px;letter-spacing:-.012em;
+  color:var(--ink);line-height:1.25;
+  margin-bottom:10px;
+}
+.log-entry-title a{color:inherit;text-decoration:none;border-bottom:1px solid var(--hair-hard)}
+.log-entry-title a:hover{border-bottom-color:var(--orange);color:var(--orange)}
+.log-entry-body{
+  font-family:var(--sans);font-size:14.5px;line-height:1.6;color:var(--body);
+  margin-bottom:12px;
+}
+.log-entry-body a{color:var(--body)}
+.log-entry-body a:hover{color:var(--orange)}
+.log-entry-how{
+  font-family:var(--sans);font-size:13.5px;line-height:1.6;color:var(--muted);
+  padding-top:12px;border-top:1px solid var(--hair-soft);
+}
+.log-entry-how b{font-family:var(--narrow);font-size:10px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--ink);display:block;margin-bottom:6px}
+.log-entry-why{
+  font-family:var(--disp);font-style:italic;
+  font-size:14px;color:var(--muted);line-height:1.55;
+  margin-top:10px;padding-left:14px;
+  border-left:2px solid var(--orange);
+}
+.log-entry-why b{font-style:normal;font-family:var(--narrow);font-size:10px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--orange);display:block;margin-bottom:4px}
+
+.log-divider{
+  background:var(--paper);
+  padding:80px 28px 48px;
+  text-align:center;
+  border-top:3px double var(--ink);
+  border-bottom:1px solid var(--ink);
+  max-width:1280px;margin:0 auto;
+}
+.log-divider-kicker{
+  font-family:var(--narrow);
+  font-size:11px;font-weight:700;letter-spacing:.48em;
+  text-transform:uppercase;color:var(--orange);
+  margin-bottom:14px;
+}
+.log-divider-title{
+  font-family:var(--disp);font-weight:700;
+  font-variation-settings:"opsz" 144;
+  font-size:clamp(48px,8vw,112px);
+  line-height:.9;letter-spacing:-.045em;color:var(--ink);
+  margin-bottom:16px;
+}
+.log-divider-title em{font-style:italic;font-weight:400}
+.log-divider-sub{
+  font-family:var(--disp);font-style:italic;
+  font-size:17px;color:var(--muted);max-width:600px;margin:0 auto;line-height:1.5;
+}
+
+.ornament{
+  text-align:center;margin:48px auto;
+  font-family:var(--disp);font-size:16px;color:var(--hair-hard);
+  letter-spacing:1.2em;
+}
+
+.quiet-section{
+  max-width:1280px;margin:0 auto;padding:64px 28px 24px;
+  display:grid;grid-template-columns:repeat(12,1fr);gap:24px;
+}
+.quiet-head{grid-column:1 / span 3}
+.quiet-title{
+  font-family:var(--disp);font-style:italic;font-weight:400;
+  font-variation-settings:"opsz" 72;
+  font-size:32px;line-height:1;letter-spacing:-.02em;
+  color:var(--ink);
+}
+.quiet-title em{color:var(--orange);font-style:normal;font-weight:500}
+.quiet-kicker{
+  font-family:var(--narrow);
+  font-size:10px;font-weight:700;letter-spacing:.32em;
+  text-transform:uppercase;color:var(--muted);
+  margin-bottom:10px;
+}
+.quiet-body{
+  grid-column:5 / -1;
+  font-family:var(--disp);font-size:17px;line-height:1.65;color:var(--body);
+  padding-left:24px;border-left:1px solid var(--ink);
+}
+.quiet-body p{margin-bottom:16px}
+.quiet-body strong{font-weight:600;color:var(--ink)}
+.quiet-body a{color:var(--body)}
+.quiet-body a:hover{color:var(--orange)}
+
+.colophon{
+  background:var(--ink);color:var(--paper);
+  padding:80px 28px 64px;
+  border-top:2px solid var(--orange);
+}
+.colophon-inner{
+  max-width:1280px;margin:0 auto;
+  display:grid;grid-template-columns:repeat(12,1fr);gap:32px;
+}
+.colophon-mast{grid-column:1 / span 5}
+.colophon-word{
+  font-family:var(--disp);font-weight:500;
+  font-variation-settings:"opsz" 144;
+  font-size:clamp(60px,8vw,100px);
+  line-height:.9;letter-spacing:-.04em;color:var(--paper);
+}
+.colophon-word .dot{color:var(--orange)}
+.colophon-tag{
+  margin-top:14px;
+  font-family:var(--disp);font-style:italic;font-size:17px;
+  color:rgba(250,250,247,.65);line-height:1.4;max-width:360px;
+}
+.colophon-body{
+  grid-column:6 / -1;
+  display:grid;grid-template-columns:repeat(3,1fr);gap:32px;
+}
+.colophon-col h4{
+  font-family:var(--narrow);
+  font-size:10px;font-weight:700;letter-spacing:.32em;
+  text-transform:uppercase;color:var(--orange);
+  margin-bottom:12px;padding-bottom:10px;
+  border-bottom:1px solid rgba(250,250,247,.2);
+}
+.colophon-col p,.colophon-col li{
+  font-family:var(--sans);font-size:13px;line-height:1.6;
+  color:rgba(250,250,247,.75);
+  margin-bottom:8px;list-style:none;
+}
+.colophon-col b{color:var(--paper);font-weight:600}
+.colophon-col em{font-style:italic;color:rgba(250,250,247,.9)}
+.colophon-col a{color:rgba(250,250,247,.75);text-decoration:none;border-bottom:1px solid rgba(250,250,247,.25)}
+.colophon-col a:hover{color:var(--paper)}
+.colophon-foot{
+  grid-column:1 / -1;
+  margin-top:32px;padding-top:24px;
+  border-top:1px solid rgba(250,250,247,.2);
+  display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap;
+  font-family:var(--narrow);font-size:10px;font-weight:600;
+  letter-spacing:.28em;text-transform:uppercase;color:rgba(250,250,247,.5);
+}
+.colophon-foot b{color:var(--paper);font-weight:700}
+.colophon-foot .hot{color:var(--orange)}
+
+/* Daily-specific styles */
+.daily-hero{
+  padding:48px 28px 52px;
+  max-width:1280px;margin:0 auto;
+  border-bottom:1px solid var(--hair);
+}
+.daily-pub-label{
+  display:flex;align-items:center;gap:16px;
+  margin-bottom:24px;
+}
+.daily-pub-name{
+  font-family:var(--disp);font-weight:500;font-style:italic;
+  font-size:22px;letter-spacing:-.01em;color:var(--ink);
+}
+.daily-pub-name .dot{color:var(--orange)}
+.daily-pub-sep{width:1px;height:14px;background:var(--hair-hard)}
+.daily-pub-type{
+  font-family:var(--narrow);
+  font-size:10px;font-weight:700;letter-spacing:.32em;
+  text-transform:uppercase;color:var(--orange);
+}
+.daily-date-line{
+  font-family:var(--disp);
+  font-weight:400;font-style:italic;
+  font-size:clamp(28px,5.5vw,60px);
+  line-height:1.02;letter-spacing:-.025em;
+  color:var(--ink);
+  margin-bottom:28px;
+  padding-bottom:24px;
+  border-bottom:2px solid var(--ink);
+}
+.daily-the-read{
+  max-width:820px;
+}
+.daily-read-label{
+  font-family:var(--narrow);
+  font-size:9px;font-weight:700;letter-spacing:.36em;
+  text-transform:uppercase;color:var(--orange);
+  margin-bottom:10px;
+}
+.daily-read-text{
+  font-family:var(--disp);
+  font-variation-settings:"opsz" 24;
+  font-weight:400;font-size:19px;line-height:1.6;
+  color:var(--body);
+}
+.daily-read-text strong{color:var(--ink);font-weight:600}
+
+.daily-section{
+  max-width:1280px;margin:0 auto;
+  padding:52px 28px 40px;
+  border-bottom:1px solid var(--hair);
+}
+.daily-section-kicker{
+  font-family:var(--narrow);
+  font-size:9px;font-weight:700;letter-spacing:.36em;
+  text-transform:uppercase;color:var(--orange);
+  margin-bottom:8px;
+}
+.daily-section-title{
+  font-family:var(--disp);
+  font-weight:700;
+  font-variation-settings:"opsz" 96;
+  font-size:clamp(28px,4.5vw,52px);
+  letter-spacing:-.03em;line-height:1;
+  color:var(--ink);
+  margin-bottom:28px;
+  padding-bottom:20px;
+  border-bottom:1px solid var(--ink);
+}
+.daily-section-title em{font-style:italic;color:var(--orange);font-weight:500}
+.daily-body{
+  font-family:var(--disp);
+  font-variation-settings:"opsz" 14;
+  font-weight:400;font-size:18.5px;line-height:1.68;
+  color:var(--body);
+  max-width:740px;
+}
+.daily-body p{margin-bottom:22px}
+.daily-body strong{color:var(--ink);font-weight:600}
+.daily-body em{font-style:italic;color:var(--ink)}
+.daily-body code{
+  font-family:var(--mono);font-size:.84em;
+  background:var(--paper-shadow);padding:2px 6px;
+  border-radius:3px;color:var(--ink);
+}
+.daily-body a{color:var(--ink);border-bottom:1px solid var(--hair-hard);text-decoration:none}
+.daily-body a:hover{color:var(--orange);border-bottom-color:var(--orange)}
+
+.builder-move{
+  margin-top:24px;
+  padding:14px 20px;
+  border-left:3px solid var(--orange);
+  background:var(--paper-shadow);
+  font-family:var(--sans);
+  font-size:14px;line-height:1.6;color:var(--body);
+  max-width:680px;
+}
+.builder-move strong{
+  font-family:var(--narrow);
+  font-size:9px;font-weight:700;letter-spacing:.28em;
+  text-transform:uppercase;color:var(--orange);
+  display:block;margin-bottom:4px;
+}
+.builder-move code{
+  font-family:var(--mono);font-size:.84em;
+  background:rgba(11,11,11,.06);padding:1px 5px;
+  border-radius:3px;color:var(--ink);
+}
+
+.dig-wrapper{
+  max-width:1280px;margin:0 auto;
+  padding:52px 28px 40px;
+  border-bottom:1px solid var(--hair);
+}
+.dig-wrapper-kicker{
+  font-family:var(--narrow);
+  font-size:9px;font-weight:700;letter-spacing:.36em;
+  text-transform:uppercase;color:var(--muted);
+  margin-bottom:28px;
+  padding-bottom:14px;
+  border-bottom:1px solid var(--ink);
+}
+.dig-item{
+  margin-bottom:44px;
+  padding-bottom:44px;
+  border-bottom:1px solid var(--hair);
+  max-width:740px;
+}
+.dig-item:last-child{border-bottom:none;margin-bottom:0;padding-bottom:0}
+.dig-item-kicker{
+  font-family:var(--narrow);
+  font-size:9px;font-weight:700;letter-spacing:.32em;
+  text-transform:uppercase;color:var(--orange);
+  margin-bottom:6px;
+}
+.dig-item-lab{
+  font-family:var(--narrow);
+  font-size:9px;font-weight:600;letter-spacing:.22em;
+  text-transform:uppercase;color:var(--muted);
+  margin-left:10px;
+}
+.dig-item-title{
+  font-family:var(--disp);
+  font-weight:600;
+  font-variation-settings:"opsz" 72;
+  font-size:clamp(22px,3vw,34px);
+  letter-spacing:-.022em;color:var(--ink);line-height:1.05;
+  margin-bottom:20px;
+}
+.dig-item-body{
+  font-family:var(--disp);
+  font-variation-settings:"opsz" 14;
+  font-weight:400;font-size:17.5px;line-height:1.68;
+  color:var(--body);
+}
+.dig-item-body p{margin-bottom:20px}
+.dig-item-body strong{color:var(--ink);font-weight:600}
+.dig-item-body em{font-style:italic;color:var(--ink)}
+.dig-item-body code{
+  font-family:var(--mono);font-size:.84em;
+  background:var(--paper-shadow);padding:2px 6px;
+  border-radius:3px;color:var(--ink);
+}
+.dig-item-body a{color:var(--ink);border-bottom:1px solid var(--hair-hard);text-decoration:none}
+.dig-item-body a:hover{color:var(--orange)}
+
+.sources-section{
+  max-width:1280px;margin:0 auto;
+  padding:32px 28px 48px;
+  border-top:1px solid var(--hair);
+}
+.sources-label{
+  font-family:var(--narrow);
+  font-size:9px;font-weight:700;letter-spacing:.32em;
+  text-transform:uppercase;color:var(--muted);
+  margin-bottom:12px;
+}
+.sources-list{
+  display:flex;flex-wrap:wrap;gap:8px 20px;
+  font-family:var(--sans);font-size:12px;color:var(--muted);
+}
+.sources-list a{color:var(--muted);text-decoration:none;border-bottom:1px solid var(--hair)}
+.sources-list a:hover{color:var(--orange)}
+
+@media(max-width:860px){
+  .quiet-head,.quiet-body{grid-column:1 / -1}
+  .quiet-body{padding-left:0;border-left:none;border-top:1px solid var(--ink);padding-top:18px}
+  .colophon-mast,.colophon-body{grid-column:1 / -1}
+  .colophon-body{grid-template-columns:1fr;gap:24px}
+}
+@media(max-width:720px){
+  .log-entry{grid-template-columns:1fr;gap:12px}
+  .daily-hero,.daily-section,.dig-wrapper{padding-left:20px;padding-right:20px}
+}
+@media(max-width:600px){
+  .pub-bar{padding:0 16px}
+  .daily-hero,.daily-section,.dig-wrapper,.quiet-section,.log-section,.log-divider,.sources-section{padding-left:16px;padding-right:16px}
+}
+
+</style>
+</head>
+<body>
+
+<!-- PUBLICATION BAR -->
+<nav class="pub-bar">
+  <div class="pub-bar-left">
+    <span class="pub-bar-mark">Shipped<span class="dot">.</span></span>
+    <span class="pub-bar-sep"></span>
+    <span class="pub-bar-meta">Frontier AI daily by <a href="https://id8labs.app" class="pub-bar-link">id8Labs</a></span>
+  </div>
+  <div class="pub-bar-right">
+    <span class="pub-bar-meta">Wednesday, July 22, 2026</span>
+  </div>
+</nav>
+
+<!-- DAILY HERO -->
+<header class="daily-hero">
+  <div class="daily-pub-label">
+    <span class="daily-pub-name">Shipped<span class="dot">.</span></span>
+    <span class="daily-pub-sep"></span>
+    <span class="daily-pub-type">Daily</span>
+  </div>
+  <div class="daily-date-line">Wednesday, July 22, 2026</div>
+  <div class="daily-the-read">
+    <div class="daily-read-label">The Read</div>
+    <p class="daily-read-text">Three labs moved the frontier in the same 24-hour window. Google dropped three Gemini models simultaneously and confirmed its Flash tier now powers Google Search. OpenAI launched Presence, an enterprise agent governance platform available only through managed deployment. Anthropic shipped two Claude Code releases, moved its memory API to a new header with a 48-hour cutover deadline, and published a coordinated economics infrastructure play that is harder to read at first glance but more deliberate than it looks. The pace is not slowing.</p>
+  </div>
+</header>
+
+<!-- LEAD: GOOGLE THREE GEMINI MODELS -->
+<section class="daily-section">
+  <div class="daily-section-kicker">Lead</div>
+  <h1 class="daily-section-title">Google's Three-for-One</h1>
+  <div class="daily-body">
+    <p>Google does not do small Flash updates. On July 21, it released Gemini 3.6 Flash, Gemini 3.5 Flash-Lite, and Gemini 3.5 Flash Cyber in a single announcement, and the clearest thing the move says is that the Flash tier is where Google has decided to win the volume game.</p>
+
+    <p><strong>Gemini 3.6 Flash</strong> is the successor to 3.5 Flash. On the DeepSWE coding benchmark, the score jumped from 37 to 49, a 32% relative improvement on the benchmark that matters most for agentic coding evaluation. The model generates 17% fewer output tokens on average. That is not a capability regression. It means the model reaches the correct answer in fewer tokens, compressing latency and reducing cost in high-throughput pipelines without changing the pricing tier. Output pricing dropped from $9.00 to $7.50 per million tokens. Input stays at $1.50. Knowledge cutoff advanced from January 2025 to March 2026, closing a significant freshness gap for any application that needs current-year context.</p>
+
+    <p><strong>Gemini 3.5 Flash-Lite</strong> is the fastest and cheapest model in the 3.5 class: 350 output tokens per second per the Artificial Analysis Index. Pricing is $0.30 per million input tokens, $2.50 per million output tokens. The headline: Flash-Lite is now Google Search's default AI model. The largest-scale AI deployment in the world just switched its backbone to a model that costs roughly one-third of standard Flash on output. That is a statement about what Flash-Lite can actually do, and about how Google prices the model it trusts at Search scale.</p>
+
+    <p><strong>Gemini 3.5 Flash Cyber</strong> is a security-specialized fine-tune for finding and fixing vulnerabilities. Limited access: governments and trusted partners in a pilot program only, not self-serve. The gap between the public Flash models and the Cyber variant is deliberate. Security vulnerability research is dual-use in ways that general-purpose AI is not, and Google is not offering open access to a model tuned for that specific capability.</p>
+
+    <p>The blast radius: development teams calling Gemini 3.5 Flash APIs should evaluate 3.6 Flash immediately. Same price tier, materially better coding performance, lower token count means lower effective cost per task. Teams on Flash-Lite who wondered whether it was production-grade can stop wondering. Google's Search team made that decision already.</p>
+
+    <p>The pattern that matters most: Gemini 3.5 Pro was expected. It did not ship. Instead, Google advanced the Flash tier to the point where the Pro gap is less visible. This is the second time in 2026 that Google has closed the Flash-to-Pro distance rather than shipping Pro. Meanwhile, the company separately confirmed that Gemini 4 pretraining is underway, described as "the most ambitious run yet." The Flash improvements are not a consolation. They are the plan while the next generation trains.</p>
+  </div>
+  <div class="builder-move">
+    <strong>Builder's Move</strong>
+    Migrate Gemini API calls from 3.5 Flash to 3.6 Flash. The token efficiency gain may lower effective cost even before the output price reduction. Re-run evals if you benchmarked 3.5 Flash as a model selection decision. Flash-Lite is now Search-validated for high-volume use.
+  </div>
+</section>
+
+<!-- THE DIG -->
+<div class="dig-wrapper">
+  <div class="dig-wrapper-kicker">The Dig</div>
+
+  <!-- Dig 1: OpenAI Presence -->
+  <div class="dig-item">
+    <div class="dig-item-kicker">OpenAI <span class="dig-item-lab">July 22</span></div>
+    <h2 class="dig-item-title">The Governance Layer</h2>
+    <div class="dig-item-body">
+      <p>OpenAI launched <a href="https://openai.com/index/introducing-openai-presence/">Presence</a> on July 22: an enterprise platform for deploying AI agents across voice and chat channels with centralized governance. The core offering is a shared foundation for company context, policies, permissions, guardrails, approved actions, and evaluation criteria. Build one set of rules; every agent on the platform inherits it.</p>
+
+      <p>The mechanism is a platform shift, not a model upgrade. Today's enterprise AI problem is not that the models are too weak. It is that when a company deploys five agents across support, sales, HR, and internal IT, each one has been separately configured, separately guardrailed, and separately evaluated. When policy changes, updating five independent deployments is a maintenance burden. Presence is the argument that governance centralization is the product enterprises actually need.</p>
+
+      <p>The deployment model makes the strategic intent explicit. Presence is in limited general availability, with deployments led by OpenAI Forward Deployed Engineers or select global systems integrators. There is no self-serve access. This is not a developer product with an enterprise tier. It is a managed professional services engagement. OpenAI is selling infrastructure contracts, not API subscriptions.</p>
+
+      <p>The contrast with Google is hard to miss. Google shipped three models. OpenAI shipped governance infrastructure. One lab is optimizing the capability layer; the other is building the accountability layer for the same capability. They address different purchasing decisions inside the same enterprise buyer, but they reveal different bets about where AI revenue locks in at scale. Google is betting on API volume. OpenAI is betting on platform contracts with annual terms and services attached.</p>
+    </div>
+    <div class="builder-move">
+      <strong>Builder's Move</strong>
+      If you're evaluating enterprise agent platforms for customer-facing deployment, add Presence to the shortlist. Self-serve access is not available in 2026; expect a sales and FDE engagement.
+    </div>
+  </div>
+
+  <!-- Dig 2: Claude Code -->
+  <div class="dig-item">
+    <div class="dig-item-kicker">Anthropic <span class="dig-item-lab">July 21 and 22</span></div>
+    <h2 class="dig-item-title">Two Claude Code Releases in 24 Hours</h2>
+    <div class="dig-item-body">
+      <p>Reading v2.1.217 (July 21) and v2.1.218 (July 22) together is more useful than reading either alone. Across both, the pattern is an infrastructure hardening pass: concurrency controls, budget enforcement, security fixes, and workflow changes that reflect what happens when real teams run Claude Code at production scale.</p>
+
+      <p><strong>v2.1.217</strong> added subagent concurrency caps (default 20, configurable via <code>CLAUDE_CODE_MAX_CONCURRENT_SUBAGENTS</code>) and depth controls (<code>CLAUDE_CODE_MAX_SUBAGENT_SPAWN_DEPTH</code>, default 0, meaning subagents no longer spawn nested subagents by default). <code>--max-budget-usd</code> now also stops background subagents when the cap is reached, closing a hole where foreground spend was bounded but background work kept running. The MCP memory leak is gone: truncated tool outputs were previously retained in full-length form in memory for the session lifetime.</p>
+
+      <p>The most significant fix in v2.1.217 is easy to skip in the list: background session isolation was not canonicalizing symlinked working directories. A symlink could reach outside the expected sandbox boundary. Security fixes involving sandbox isolation are not changelog footnotes.</p>
+
+      <p><strong>v2.1.218</strong> leads with background <code>/code-review</code>. Reviews now run as subagents rather than filling the foreground conversation. Stacked slash commands retain the review as their target. You can kick off a review on a 400-line diff and keep working. <code>/ultrareview</code> now accepts descriptive arguments ("review my auth changes"). <code>/deep-research</code> no longer auto-launches.</p>
+
+      <p>The Windows path corruption fix in v2.1.218 deserves specific attention. Any path containing a <code>\u</code>-prefixed directory segment was being silently parsed as a Unicode escape sequence and rewritten as CJK characters in tool inputs. Files were unreachable with no error message. On a standard Windows install, paths like <code>C:\Users\username</code> triggered this when the username contained a hex-matching sequence. Silent file-access failures on Windows over the past several weeks may trace here.</p>
+    </div>
+    <div class="builder-move">
+      <strong>Builder's Move</strong>
+      Update Claude Code. On Windows, test file access after updating. Run <code>/code-review</code> on a long diff; it backgrounds automatically.
+    </div>
+  </div>
+
+  <!-- Dig 3: Anthropic Economics -->
+  <div class="dig-item">
+    <div class="dig-item-kicker">Anthropic <span class="dig-item-lab">July 21 and 22</span></div>
+    <h2 class="dig-item-title">Economics Infrastructure, Three Moves</h2>
+    <div class="dig-item-body">
+      <p>The Economic Index connector, the Economic Futures Research Fund research agenda, and the $40 million total to Public First Action are three separate announcements that do not read as separate when placed next to each other.</p>
+
+      <p>The connector: available in claude.ai through the connectors menu, no installation required. Lets anyone query the Anthropic Economic Index dataset in a conversation. Sample queries from the announcement: "Which occupations use AI the most?" and "What tasks do teachers use Claude for?" The Economic Index tracks actual AI usage across occupations and industries. The connector converts that dataset into a natural language query surface for any claude.ai user.</p>
+
+      <p>The fund: $10,000 to $50,000 grants for empirical research on AI's labor market effects, productivity outcomes, and distributional consequences. The stated target is original econometric work or novel data collection capable of informing policymakers on a fast timeline. Not theory. Measurement.</p>
+
+      <p>The donation: $20 million to Public First Action (July 21), a 501(c)(4) focused on AI public interest issues, bringing the total to $40 million. A 501(c)(4) can engage in political and lobbying activity in ways a nonprofit research fund cannot. The structure of the donation is the message.</p>
+
+      <p>Reading the pipeline: Anthropic funds the researchers who generate the data. The connector makes the data accessible in conversation. The policy organization uses the research to shape the regulatory argument. This is not three separate philanthropy decisions. It is a vertical integration strategy for the economic narrative around AI, launched in a 48-hour window.</p>
+
+      <p>The regulatory context matters. The economic effects of AI on labor, income distribution, and occupational displacement are the central policy question in active AI legislation in multiple jurisdictions. A lab that funds the measurement, owns the data platform, and has a policy vehicle at the table is better positioned in that argument than one that does not.</p>
+    </div>
+    <div class="builder-move">
+      <strong>Builder's Move</strong>
+      If you do AI economics research, the grant program is open for applications ($10k to $50k). The Economic Index connector is live in claude.ai today.
+    </div>
+  </div>
+
+  <!-- Dig 4: API header + deprecation -->
+  <div class="dig-item">
+    <div class="dig-item-kicker">Anthropic <span class="dig-item-lab">July 22, expires July 24</span></div>
+    <h2 class="dig-item-title">The 48-Hour Clock</h2>
+    <div class="dig-item-body">
+      <p>The <code>agent-memory-2026-07-22</code> beta header shipped July 22. The <code>managed-agents-2026-04-01</code> header it replaces stops working July 24. Two days.</p>
+
+      <p>What changed under the header: memory listing now returns results in stable server-defined order (caller <code>order_by</code> and <code>order</code> parameters are silently ignored). The <code>depth</code> parameter accepts only <code>0</code>, <code>1</code>, or omitted; any other value returns a 400. The <code>path_prefix</code> parameter must end with a trailing <code>/</code> and now matches whole path segments rather than arbitrary substrings. Sending both headers in the same request returns a 400. Page cursors issued under the old header are invalid under the new one.</p>
+
+      <p>All official SDKs now send the new header by default: Python 0.118.0, TypeScript 0.110.0, Go 1.56.0, Java 2.48.0, Ruby 1.55.0, PHP 0.36.0, C# 12.35.0, CLI 1.16.0. Teams on current official SDK versions are covered automatically. The exposed population is anyone running custom HTTP clients, hand-rolled header injection, or pinned SDK versions that predate this release.</p>
+
+      <p>Python SDK v0.118.0 (released July 22, 16:43 UTC) simultaneously added support for managed agents model effort, initial session events, and threads delta streaming. These additions are not coincidentally timed with the header change. They are part of the same managed agents API surface expansion that the new header marks the next phase of.</p>
+
+      <p>Paired with the same July 24 expiry: <code>claude-opus-4-7</code> fast mode is deprecated. After July 24, requests with <code>speed: "fast"</code> on Opus 4.7 return errors. The migration is one field: update the model identifier to <code>claude-opus-4-8</code>. The problem is that "one field" can mean multiple config files, deployment parameters, and monitoring dashboards depending on how your infrastructure is organized. Anthropic is betting most teams already moved. Everyone who did not is finding out today.</p>
+    </div>
+    <div class="builder-move">
+      <strong>Builder's Move</strong>
+      Grep for <code>managed-agents-2026-04-01</code> header references and any memory API calls with <code>depth</code> values outside 0 or 1, or <code>path_prefix</code> values without trailing slashes. Then grep for <code>claude-opus-4-7</code> with <code>speed: "fast"</code>. Both break Friday.
+    </div>
+  </div>
+
+</div>
+
+<!-- QUIET ON THE WIRE -->
+<div class="quiet-section">
+  <div class="quiet-head">
+    <div class="quiet-kicker">Section</div>
+    <h2 class="quiet-title">Quiet on the <em>Wire</em></h2>
+  </div>
+  <div class="quiet-body">
+    <p>Gemini 3.5 Pro is confirmed not shipping yet; Gemini 4 pretraining is underway. Meta published a <a href="https://ai.meta.com/blog/genesis-mission-lawrence-berkeley-national-laboratory-segment-anything-dino/">Genesis Mission post</a> (July 21) on SYNAPS-I: Segment Anything and DINOv2 applied to X-ray and neutron data analysis at Lawrence Berkeley National Laboratory and SLAC under the DOE initiative. Months of analysis compressed to real time. <strong>OpenAI Atlas</strong>, the browser agentic tool, retires August 9 as its capabilities migrate into ChatGPT and Codex directly. The retirement is the cleaner signal: OpenAI has concluded browser automation belongs inside the chat interface, not as a standalone agent product. <strong>xAI</strong> has been quiet since Grok 4.5 (July 16) and Grok Build going open-source (July 15). <strong>Mistral</strong> last shipped Robostral Navigate on July 8, an unusual two-week pause for a lab that was prolific through June. Anthropic TypeScript SDK v0.110.0 is confirmed as sending the new memory header by default; the broader changelog for that version was not available at publication.</p>
+  </div>
+</div>
+
+<div class="ornament">* * *</div>
+
+<!-- RELEASE LOG -->
+<div class="log-divider">
+  <div class="log-divider-kicker">Back of Book</div>
+  <h2 class="log-divider-title">The <em>Release</em> Log</h2>
+  <p class="log-divider-sub">All confirmed releases in the July 21 to July 22, 2026 window. Grouped by lab and category.</p>
+</div>
+
+<!-- Anthropic: API & Platform -->
+<section class="log-section">
+  <div class="log-cat-head">
+    <div class="log-cat-name">API &amp; Platform</div>
+    <div class="log-cat-count"><b>2 entries</b>Anthropic</div>
+  </div>
+  <div class="log-entries">
+
+    <div class="log-entry">
+      <div class="log-entry-left">
+        <div class="log-entry-date">Jul 22</div>
+        <div class="log-tag api">API</div>
+      </div>
+      <div>
+        <div class="log-entry-title"><a href="https://docs.anthropic.com/en/release-notes/api">agent-memory-2026-07-22 beta header</a></div>
+        <div class="log-entry-body">Replaces <code>managed-agents-2026-04-01</code> on all memory store operations. Breaking changes: listing order is now server-defined (order params ignored); depth accepts only 0, 1, or omitted; path_prefix must end in <code>/</code> matching whole segments; sending both headers returns 400; old-header page cursors are invalid. Retires July 24, 2026. All official Anthropic SDKs updated to send the new header by default.</div>
+        <div class="log-entry-how"><b>How to use</b>Update SDK packages to auto-adopt the new header. For manual header injection: swap <code>managed-agents-2026-04-01</code> for <code>agent-memory-2026-07-22</code> before July 24. Audit depth values and path_prefix strings for conformance.</div>
+        <div class="log-entry-why"><b>Why it matters</b>The narrowed API surface signals the memory design has stabilized after 90 days of production feedback. Two days is a notice, not a migration runway.</div>
+      </div>
+    </div>
+
+    <div class="log-entry">
+      <div class="log-entry-left">
+        <div class="log-entry-date">Jul 22</div>
+        <div class="log-tag deprecation">Deprecation</div>
+      </div>
+      <div>
+        <div class="log-entry-title"><a href="https://docs.anthropic.com/en/release-notes/api">claude-opus-4-7 fast mode deprecated</a></div>
+        <div class="log-entry-body">Fast mode for <code>claude-opus-4-7</code> retires July 24, 2026. Requests with <code>speed: "fast"</code> on Opus 4.7 will return errors after that date.</div>
+        <div class="log-entry-how"><b>How to use</b>Update the model identifier to <code>claude-opus-4-8</code> before July 24. Fast mode on Opus 4.8 is unchanged.</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- Anthropic: Claude Code -->
+<section class="log-section">
+  <div class="log-cat-head">
+    <div class="log-cat-name">Claude Code</div>
+    <div class="log-cat-count"><b>2 releases</b>Anthropic</div>
+  </div>
+  <div class="log-entries">
+
+    <div class="log-entry">
+      <div class="log-entry-left">
+        <div class="log-entry-date">Jul 22</div>
+        <div class="log-tag code">Code</div>
+      </div>
+      <div>
+        <div class="log-entry-title"><a href="https://docs.anthropic.com/en/release-notes/claude-code">Claude Code v2.1.218</a></div>
+        <div class="log-entry-body"><code>/code-review</code> now runs as a background subagent (review no longer fills the active conversation; stacked slash commands retain the review target). <code>/ultrareview</code> accepts descriptive arguments. <code>/deep-research</code> requires manual invocation. Screen reader announcements added for word and line deletions. Plan mode auto no longer prompts for Bash commands the static analyzer cannot prove are non-read-only. Skills with <code>context: fork</code> run in background by default. Agent markdown names containing <code>:</code> rejected (reserved for plugin namespacing). Fixed Windows path corruption: <code>\u</code>-prefixed path segments no longer garbled to CJK characters in tool inputs. Fixed left-arrow conversation-discard (now prompts for confirmation). Fixed multi-line paste collapsing newlines to <code>j</code>. Fixed retry loop re-sending doomed requests after context-overflow. Fixed agent frontmatter hooks running from untrusted folders. Fixed Bedrock setup wizard for assume-role profiles in partitioned AWS regions. MCP server errors now show HTTP status codes and error text in <code>claude mcp list</code> and <code>/mcp</code>. Warning added for MCP config values with hidden whitespace.</div>
+        <div class="log-entry-how"><b>How to use</b><code>claude update</code> or reinstall. Run <code>/code-review</code> in any session; it runs as a background subagent automatically.</div>
+      </div>
+    </div>
+
+    <div class="log-entry">
+      <div class="log-entry-left">
+        <div class="log-entry-date">Jul 21</div>
+        <div class="log-tag code">Code</div>
+      </div>
+      <div>
+        <div class="log-entry-title"><a href="https://docs.anthropic.com/en/release-notes/claude-code">Claude Code v2.1.217</a></div>
+        <div class="log-entry-body">Emoji shortcode autocomplete in prompt input (<code>:heart:</code> triggers emoji, partial strings show suggestions; disable via <code>emojiCompletionEnabled: false</code>). Subagent concurrency cap added (default 20; <code>CLAUDE_CODE_MAX_CONCURRENT_SUBAGENTS</code>). Nested subagent spawning off by default (<code>CLAUDE_CODE_MAX_SUBAGENT_SPAWN_DEPTH</code>). <code>--max-budget-usd</code> now stops background subagents. Warnings added for failing transcript writes and silently-off session saving. Security fix: background session isolation was not canonicalizing symlinked working directories (potential sandbox escape). Fixed memory leak: truncated MCP tool outputs no longer retained in full untruncated form for the session lifetime. Fixed Windows auto-update leaving <code>claude.exe</code> missing. Fixed auto-compact for Opus 4.8 on Bedrock. Fixed corporate mTLS and proxy settings ignored in Claude Desktop sessions. Fixed <code>CLAUDE.md</code> paths frontmatter with many brace groups causing OOM. Footer PR badge links now work as hyperlinks over ssh and tmux.</div>
+        <div class="log-entry-how"><b>How to use</b>Update Claude Code. Concurrency and depth caps are active by default; adjust env vars if your workflow requires higher concurrency or subagent nesting.</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- Anthropic: Claude Apps -->
+<section class="log-section">
+  <div class="log-cat-head">
+    <div class="log-cat-name">Claude Apps</div>
+    <div class="log-cat-count"><b>1 entry</b>Anthropic</div>
+  </div>
+  <div class="log-entries">
+
+    <div class="log-entry">
+      <div class="log-entry-left">
+        <div class="log-entry-date">Jul 21</div>
+        <div class="log-tag apps">Apps</div>
+      </div>
+      <div>
+        <div class="log-entry-title"><a href="https://docs.anthropic.com/en/release-notes/claude-apps">Claude for Teachers data-use clarification</a></div>
+        <div class="log-entry-body">Documentation updated to clarify that whether and how educational data may be used is governed by district and state policies, not solely by Anthropic's terms.</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- Anthropic: Agent SDKs -->
+<section class="log-section">
+  <div class="log-cat-head">
+    <div class="log-cat-name">Agent SDKs</div>
+    <div class="log-cat-count"><b>2 releases</b>Anthropic</div>
+  </div>
+  <div class="log-entries">
+
+    <div class="log-entry">
+      <div class="log-entry-left">
+        <div class="log-entry-date">Jul 22</div>
+        <div class="log-tag sdk-py">SDK-PY</div>
+      </div>
+      <div>
+        <div class="log-entry-title"><a href="https://github.com/anthropics/anthropic-sdk-python/releases">Anthropic Python SDK v0.118.0</a></div>
+        <div class="log-entry-body">Now sends <code>agent-memory-2026-07-22</code> header by default on all memory store calls. Added support for managed agents model effort, initial session events, and threads delta streaming.</div>
+        <div class="log-entry-how"><b>How to use</b><code>pip install --upgrade anthropic</code></div>
+      </div>
+    </div>
+
+    <div class="log-entry">
+      <div class="log-entry-left">
+        <div class="log-entry-date">Jul 21</div>
+        <div class="log-tag sdk-py">SDK-PY</div>
+      </div>
+      <div>
+        <div class="log-entry-title"><a href="https://github.com/anthropics/anthropic-sdk-python/releases">Anthropic Python SDK v0.117.1</a></div>
+        <div class="log-entry-body">Fixed credential handling for <code>AnthropicAWS.copy()</code>. Added support for a new refusal category. Dependency and documentation updates.</div>
+        <div class="log-entry-how"><b>How to use</b><code>pip install --upgrade anthropic</code></div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- Anthropic: Research -->
+<section class="log-section">
+  <div class="log-cat-head">
+    <div class="log-cat-name">Research &amp; Publications</div>
+    <div class="log-cat-count"><b>1 entry</b>Anthropic</div>
+  </div>
+  <div class="log-entries">
+
+    <div class="log-entry">
+      <div class="log-entry-left">
+        <div class="log-entry-date">Jul 22</div>
+        <div class="log-tag research">Research</div>
+      </div>
+      <div>
+        <div class="log-entry-title"><a href="https://www.anthropic.com/news/anthropic-economic-index-connector">Economic Futures Research Fund: research agenda</a></div>
+        <div class="log-entry-body">Anthropic published the grant criteria for the Economic Futures Research Fund: grants of $10,000 to $50,000 for empirical research on AI's labor market effects, productivity outcomes, and distributional consequences. Targets original econometric work or novel data collection capable of informing policymakers on a fast timeline.</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- Anthropic: News -->
+<section class="log-section">
+  <div class="log-cat-head">
+    <div class="log-cat-name">News &amp; Partnerships</div>
+    <div class="log-cat-count"><b>2 entries</b>Anthropic</div>
+  </div>
+  <div class="log-entries">
+
+    <div class="log-entry">
+      <div class="log-entry-left">
+        <div class="log-entry-date">Jul 22</div>
+        <div class="log-tag news">News</div>
+      </div>
+      <div>
+        <div class="log-entry-title"><a href="https://www.anthropic.com/news/anthropic-economic-index-connector">Anthropic Economic Index connector</a></div>
+        <div class="log-entry-body">A connector for claude.ai (connectors menu, no install required) that lets users query the Anthropic Economic Index dataset covering AI usage across occupations and industries directly in a conversation.</div>
+        <div class="log-entry-how"><b>How to use</b>Open claude.ai, open the connectors menu, enable the Economic Index connector. No installation required.</div>
+      </div>
+    </div>
+
+    <div class="log-entry">
+      <div class="log-entry-left">
+        <div class="log-entry-date">Jul 21</div>
+        <div class="log-tag news">News</div>
+      </div>
+      <div>
+        <div class="log-entry-title"><a href="https://www.anthropic.com/news/donate-public-first-action">$20 million donation to Public First Action</a></div>
+        <div class="log-entry-body">Second $20 million donation to Public First Action, a 501(c)(4) focused on AI public interest policy, bringing the total to $40 million.</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- Google DeepMind -->
+<section class="log-section">
+  <div class="log-cat-head">
+    <div class="log-cat-name">Google DeepMind</div>
+    <div class="log-cat-count"><b>3 models</b>July 21</div>
+  </div>
+  <div class="log-entries">
+
+    <div class="log-entry">
+      <div class="log-entry-left">
+        <div class="log-entry-date">Jul 21</div>
+        <div class="log-tag model">Model</div>
+      </div>
+      <div>
+        <div class="log-entry-title"><a href="https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-3-6-flash-3-5-flash-lite-3-5-flash-cyber/">Gemini 3.6 Flash</a></div>
+        <div class="log-entry-body">Successor to 3.5 Flash. DeepSWE benchmark 37 to 49. 17% fewer output tokens. Pricing: $1.50 input, $7.50 output per million tokens (output down from $9.00). Knowledge cutoff advanced to March 2026. Available via the Gemini API.</div>
+        <div class="log-entry-how"><b>How to use</b>Specify <code>gemini-3.6-flash</code> in API calls. Re-run evals; token efficiency gains may reduce costs without a pricing change.</div>
+      </div>
+    </div>
+
+    <div class="log-entry">
+      <div class="log-entry-left">
+        <div class="log-entry-date">Jul 21</div>
+        <div class="log-tag model">Model</div>
+      </div>
+      <div>
+        <div class="log-entry-title"><a href="https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-3-6-flash-3-5-flash-lite-3-5-flash-cyber/">Gemini 3.5 Flash-Lite</a></div>
+        <div class="log-entry-body">Fastest 3.5-class model at 350 output tokens per second (Artificial Analysis Index). Pricing: $0.30 input, $2.50 output per million tokens. Now the default AI model powering Google Search.</div>
+        <div class="log-entry-how"><b>How to use</b>Specify <code>gemini-3.5-flash-lite</code> in API calls. Benchmark against your current Flash-Lite usage; Search-scale validation is a meaningful quality signal.</div>
+      </div>
+    </div>
+
+    <div class="log-entry">
+      <div class="log-entry-left">
+        <div class="log-entry-date">Jul 21</div>
+        <div class="log-tag model">Model</div>
+      </div>
+      <div>
+        <div class="log-entry-title"><a href="https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-3-6-flash-3-5-flash-lite-3-5-flash-cyber/">Gemini 3.5 Flash Cyber</a></div>
+        <div class="log-entry-body">Security-specialized fine-tune for finding and fixing software vulnerabilities. Available in a limited pilot to governments and trusted partners only. Not publicly available.</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- OpenAI -->
+<section class="log-section">
+  <div class="log-cat-head">
+    <div class="log-cat-name">OpenAI</div>
+    <div class="log-cat-count"><b>4 items</b>July 21 to 22</div>
+  </div>
+  <div class="log-entries">
+
+    <div class="log-entry">
+      <div class="log-entry-left">
+        <div class="log-entry-date">Jul 22</div>
+        <div class="log-tag news">News</div>
+      </div>
+      <div>
+        <div class="log-entry-title"><a href="https://openai.com/index/introducing-openai-presence/">OpenAI Presence</a></div>
+        <div class="log-entry-body">Enterprise platform for deploying AI agents across voice and chat channels with centralized governance: shared company context, policies, permissions, guardrails, approved actions, and evaluations. Limited general availability through OpenAI Forward Deployed Engineers and select systems integrators. Not self-serve.</div>
+      </div>
+    </div>
+
+    <div class="log-entry">
+      <div class="log-entry-left">
+        <div class="log-entry-date">Jul 22</div>
+        <div class="log-tag sdk-py">SDK</div>
+      </div>
+      <div>
+        <div class="log-entry-title"><a href="https://github.com/openai/openai-python/releases/tag/v2.47.0">openai-python v2.47.0</a></div>
+        <div class="log-entry-body">Experimental HTTPX2 client runtime support. Configurable CI workflow runner templates. Fixed aiohttp requirements for Python 3.10 and later.</div>
+        <div class="log-entry-how"><b>How to use</b><code>pip install --upgrade openai</code></div>
+      </div>
+    </div>
+
+    <div class="log-entry">
+      <div class="log-entry-left">
+        <div class="log-entry-date">Jul 21</div>
+        <div class="log-tag news">News</div>
+      </div>
+      <div>
+        <div class="log-entry-title"><a href="https://openai.com/news/company-announcements/">Security incident (with Hugging Face) and board additions</a></div>
+        <div class="log-entry-body">OpenAI and Hugging Face jointly addressed a security incident. David Velez and Robin Vince joined OpenAI's board of directors.</div>
+      </div>
+    </div>
+
+    <div class="log-entry">
+      <div class="log-entry-left">
+        <div class="log-entry-date">Jul 21</div>
+        <div class="log-tag deprecation">Deprecation</div>
+      </div>
+      <div>
+        <div class="log-entry-title"><a href="https://openai.com/products/release-notes/">OpenAI Atlas deprecation notice</a></div>
+        <div class="log-entry-body">Browser agentic tool Atlas stops working August 9, 2026. Its capabilities are moving into ChatGPT and Codex directly.</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- Meta AI -->
+<section class="log-section">
+  <div class="log-cat-head">
+    <div class="log-cat-name">Meta AI</div>
+    <div class="log-cat-count"><b>1 item</b>July 21</div>
+  </div>
+  <div class="log-entries">
+
+    <div class="log-entry">
+      <div class="log-entry-left">
+        <div class="log-entry-date">Jul 21</div>
+        <div class="log-tag news">News</div>
+      </div>
+      <div>
+        <div class="log-entry-title"><a href="https://ai.meta.com/blog/genesis-mission-lawrence-berkeley-national-laboratory-segment-anything-dino/">Genesis Mission: SYNAPS-I at Lawrence Berkeley National Laboratory</a></div>
+        <div class="log-entry-body">Meta's Segment Anything and DINOv2 applied to X-ray and neutron data analysis at Lawrence Berkeley National Laboratory and SLAC under the DOE Genesis Mission initiative. Analysis previously taking months now runs in real time under the SYNAPS-I (SYnergistic Neutron And Photon Science, Intelligence) project.</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- Sources -->
+<div class="sources-section">
+  <div class="sources-label">Sources confirmed in this issue</div>
+  <div class="sources-list">
+    <a href="https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-3-6-flash-3-5-flash-lite-3-5-flash-cyber/">Google Blog: Gemini 3.6 Flash announcement</a>
+    <a href="https://openai.com/index/introducing-openai-presence/">OpenAI: Introducing Presence</a>
+    <a href="https://code.claude.com/docs/en/changelog">Claude Code changelog</a>
+    <a href="https://docs.anthropic.com/en/release-notes/api">Anthropic API release notes</a>
+    <a href="https://www.anthropic.com/news/anthropic-economic-index-connector">Anthropic: Economic Index connector</a>
+    <a href="https://www.anthropic.com/news/donate-public-first-action">Anthropic: Public First Action donation</a>
+    <a href="https://github.com/anthropics/anthropic-sdk-python/releases">anthropic-sdk-python releases</a>
+    <a href="https://github.com/openai/openai-python/releases/tag/v2.47.0">openai-python v2.47.0</a>
+    <a href="https://ai.meta.com/blog/genesis-mission-lawrence-berkeley-national-laboratory-segment-anything-dino/">Meta AI: Genesis Mission</a>
+    <a href="https://openai.com/products/release-notes/">OpenAI release notes (Atlas deprecation)</a>
+    <a href="https://techcrunch.com/2026/07/21/google-releases-three-new-gemini-models-but-no-3-5-pro/">TechCrunch: Google releases three new Gemini models</a>
+  </div>
+</div>
+
+<!-- COLOPHON -->
+<footer class="colophon">
+  <div class="colophon-inner">
+    <div class="colophon-mast">
+      <div class="colophon-word">Shipped<span class="dot">.</span></div>
+      <div class="colophon-tag">A daily frontier-AI digest and weekly magazine by <a href="https://id8labs.app">id8Labs</a>. Six labs, one feed.</div>
+    </div>
+    <div class="colophon-body">
+      <div class="colophon-col">
+        <h4>This Issue</h4>
+        <p><b>Date</b> July 22, 2026</p>
+        <p><b>Edition</b> Daily</p>
+        <p><b>Window</b> July 21 to July 22, 2026</p>
+        <p><b>Front matter</b> 2,005 words</p>
+        <p><b>Tier</b> Heavy (2,000 plus floor, cleared)</p>
+      </div>
+      <div class="colophon-col">
+        <h4>Masthead</h4>
+        <p><b>Editor</b> Eddie Belaval</p>
+        <p><b>Reporting</b> with the assistance of Claude</p>
+        <p><b>Voice</b> per STYLE.md</p>
+        <p><b>Generated by</b> Shipped. nightly routine</p>
+      </div>
+      <div class="colophon-col">
+        <h4>Typography</h4>
+        <p><b>Display</b> Fraunces</p>
+        <p><b>Sans</b> Archivo</p>
+        <p><b>Narrow</b> Archivo Narrow</p>
+        <p><b>Mono</b> JetBrains Mono</p>
+        <p><em>Published to GitHub Pages via daily-pages branch.</em></p>
+      </div>
+    </div>
+    <div class="colophon-foot">
+      <span>&copy; 2026 <b>id8Labs</b> &nbsp;·&nbsp; All rights reserved</span>
+      <span>Printed in pixels &nbsp;·&nbsp; Set in Fraunces and Archivo</span>
+      <span class="hot">Next issue: Friday, July 25, 2026</span>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
