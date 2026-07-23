@@ -18,25 +18,57 @@ and `og:url` already resolve to `id8labs.app/shipped/{NN}`; every outbound messa
 
 ## How the pieces fit (no duplicate homes)
 
+**Three streams feed the hub**, and they arrive by different routes. All three
+must stay current or `id8labs.app/shipped` understates what has been published.
+
+**1. Numbered magazine issues** — the marquee editions, written by hand.
+
 ```
 content/issue-NN-*.md            source of truth for an issue (this repo)
         │  pipeline render
         ▼
 id8labs/public/shipped/NN/       the published issue page  →  id8labs.app/shipped/NN
-id8labs/public/shipped/index.html   THE HUB (archive of all issues)  →  id8labs.app/shipped
-        │  pipeline sync-manifest (derives from the hub)
+id8labs/public/shipped/archive.html   the hub ARCHIVE (was index.html until the
+                                      dynamic /shipped route took the index slot)
+        │  pipeline sync-manifest (derives from the archive)
         ▼
-id8labs/lib/shipped/issues.data.ts   AUTO-GENERATED mirror of the hub
+id8labs/lib/shipped/issues.data.ts   AUTO-GENERATED mirror of the archive
         │  consumed by
         ▼
-/writing feed + homepage featured slot   (one source → cannot drift from the hub)
+/shipped hub + /writing feed + homepage featured slot
 ```
 
-The hub archive (`public/shipped/index.html`) is the **single source of truth** for
-what has shipped. The unified `/writing` feed and the homepage no longer keep their
-own hand-maintained list — they derive from the hub via `issues.data.ts`, which the
-publish pipeline regenerates on every run (`pipeline/src/render/sync-manifest.ts`).
-Add an issue by rendering it; the hub and the feed update together.
+**2. Daily editions and 3. weekly/monthly sweeps** — published by the routines to
+the `daily-pages` branch, served from GitHub Pages, mirrored into the hub by a
+manifest builder:
+
+```
+shipped repo, origin/daily-pages branch
+  anthropic-daily/YYYY-MM-DD.html      the daily editions
+  anthropic-weekly/YYYY-WW.html        the weekly sweeps
+  anthropic-monthly/YYYY-MM.html       the monthly roundups
+        │  id8labs/scripts/build-daily-manifest.mjs
+        ▼
+id8labs/lib/shipped/dailies.data.ts   AUTO-GENERATED
+id8labs/lib/shipped/sweeps.data.ts    AUTO-GENERATED
+        │  consumed by
+        ▼
+/shipped hub — "The daily editions." and "The sweeps." sections
+```
+
+The archive (`public/shipped/archive.html`) is the source of truth for the
+numbered issues; the `daily-pages` branch is the source of truth for dailies and
+sweeps. Nothing on the hub is hand-maintained.
+
+**Keeping streams 2 and 3 current is automated — it has to be.** The manifest
+builder is not part of any publish path (the routines run in the cloud; the
+builder reads a local git checkout), so for five weeks nothing ran it: on
+2026-07-23 the hub advertised 40 dailies ending Jun 15 while 77 were live
+through Jul 22, and every weekly and monthly sweep was a public page nothing
+linked to. `id8labs/scripts/refresh-shipped-manifest.sh` now runs daily at 23:15
+(`com.id8labs.shipped-manifest-refresh`), regenerating both files and pushing
+only if they changed. If the hub ever looks thin again, read
+`~/Library/Logs/shipped/manifest-refresh.log` first.
 
 ## Every place Shipped is referenced, and what it is
 
@@ -45,7 +77,11 @@ Add an issue by rendering it; the hub and the feed update together.
 | `id8labs.app/shipped` | The hub (all issues) | **Yes — the home** |
 | `id8labs.app/shipped/{NN}` | An issue | **Yes** |
 | `id8labs.app/writing` (Magazine filter) | Unified feed listing; links out to `/shipped/{NN}` | Mirror of the hub |
+| `eddiebelaval.github.io/shipped/anthropic-daily/{date}` | A daily edition | **Yes — the daily home** |
+| `eddiebelaval.github.io/shipped/anthropic-weekly/{YYYY-WW}` | A weekly sweep | **Yes** |
+| `eddiebelaval.github.io/shipped/anthropic-monthly/{YYYY-MM}` | A monthly roundup | **Yes** |
 | `id8labs/public/shipped/` | Rendered HTML the hub/issues are served from | Build artifact |
+| `id8labs/lib/shipped/*.data.ts` | AUTO-GENERATED manifests (issues, dailies, sweeps) | Never hand-edit |
 | `shipped/content/` (this repo) | Markdown source of each issue | Source |
 | `shipped/content/index.md` | Repo-local archive table; defers to the hub | Mirror |
 | `github.com/eddiebelaval/shipped` | Pipeline + content source (MIT) | Source repo |
