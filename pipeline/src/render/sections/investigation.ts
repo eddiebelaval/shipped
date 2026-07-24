@@ -207,10 +207,23 @@ function paragraphs(body: string): string {
         b.length > 0 &&
         !/^-{3,}$/.test(b) &&
         !b.startsWith('#') &&
-        !b.startsWith('>') &&
         !b.startsWith('|'),
     );
   return blocks
-    .map((b) => `    <p>${inlineMarkdown(b.replace(/\n/g, ' '))}</p>`)
+    .map((b) => {
+      if (b.startsWith('>')) {
+        // The ratio chart block is already rendered by renderRatio(); skip it here.
+        if (/^>\s*###\s+CHART/.test(b)) return '';
+        const inner = b
+          .split('\n')
+          .map((l) => l.replace(/^>\s?/, '').trim())
+          .filter((l) => l.length > 0)
+          .join(' ');
+        if (!inner) return '';
+        return `    <blockquote><p>${inlineMarkdown(inner)}</p></blockquote>`;
+      }
+      return `    <p>${inlineMarkdown(b.replace(/\n/g, ' '))}</p>`;
+    })
+    .filter((s) => s.length > 0)
     .join('\n');
 }
