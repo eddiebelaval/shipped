@@ -1,0 +1,1151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light">
+<title>Shipped. Weekly, Week of 2026-07-20</title>
+<meta property="og:title" content="Shipped. Weekly, Week of 2026-07-20">
+<meta property="og:description" content="Four Claude Code releases, a $200M economics research bet, and Opus 5 landed Friday outperforming Fable 5 on agentic coding at the same price.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://eddiebelaval.github.io/shipped/anthropic-weekly/2026-30.html">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Shipped. Weekly, Week of 2026-07-20">
+<meta name="twitter:description" content="Four Claude Code releases, a $200M economics research bet, and Opus 5 outperforms Fable 5 at the same price.">
+<meta name="description" content="Four Claude Code releases, a $200M economics research bet, and Opus 5 landed Friday outperforming Fable 5 on agentic coding at the same price.">
+<meta name="author" content="Eddie Belaval">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='75' cy='62' r='14' fill='%23FF6B35'/%3E%3Ctext x='10' y='75' font-family='Georgia,serif' font-weight='700' font-size='62' fill='%231a1a1a'%3ES%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;0,9..144,900;1,9..144,300;1,9..144,400;1,9..144,500;1,9..144,700&family=Archivo:wght@300;400;500;600;700;800;900&family=Archivo+Narrow:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{font-size:16px;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;text-rendering:optimizeLegibility}
+body{background:#FAF8F4;color:#0b0b0b;font-family:'Archivo',sans-serif;overflow-x:hidden}
+::selection{background:#FF6B35;color:#fff}
+
+:root{
+  --orange:#FF6B35;
+  --ink:#0b0b0b;
+  --paper:#FAF8F4;
+  --paper-shadow:#f2f0e8;
+  --body:#2a2a2a;
+  --muted:#5a5a5a;
+  --gray:#8a8a8a;
+  --hair:rgba(11,11,11,0.12);
+  --hair-soft:rgba(11,11,11,0.06);
+  --hair-hard:rgba(11,11,11,0.22);
+  --disp:'Fraunces', 'Times New Roman', serif;
+  --sans:'Archivo', system-ui, sans-serif;
+  --narrow:'Archivo Narrow', 'Archivo', sans-serif;
+  --mono:'JetBrains Mono', ui-monospace, monospace;
+}
+
+body::before{
+  content:"";
+  position:fixed;inset:0;pointer-events:none;z-index:1000;opacity:.28;mix-blend-mode:multiply;
+  background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='180' height='180'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' seed='3'/><feColorMatrix values='0 0 0 0 0.02  0 0 0 0 0.02  0 0 0 0 0.02  0 0 0 0.22 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+}
+
+.pub-bar{
+  position:sticky;top:0;z-index:100;
+  background:var(--paper);
+  border-bottom:1px solid var(--hair);
+  padding:0 28px;height:42px;
+  display:flex;align-items:center;justify-content:space-between;
+  font-family:var(--narrow);
+  font-size:11px;font-weight:600;letter-spacing:.22em;
+  text-transform:uppercase;color:var(--ink);
+}
+.pub-bar-left,.pub-bar-right{display:flex;align-items:center;gap:16px}
+.pub-bar-mark{font-family:var(--disp);font-weight:500;font-size:16px;letter-spacing:-.01em;text-transform:none;font-style:italic}
+.pub-bar-mark .dot{color:var(--orange)}
+.pub-bar-sep{width:1px;height:12px;background:var(--hair-hard)}
+.pub-bar-meta{color:var(--muted)}
+.pub-bar-link{color:inherit;text-decoration:none;border-bottom:1px solid currentColor;transition:color .15s ease}
+.pub-bar-link:hover{color:var(--orange)}
+.pub-bar-cta{
+  display:inline-block;background:var(--ink);color:var(--paper);
+  text-decoration:none;border:1px solid var(--ink);border-radius:10px;
+  font-family:var(--narrow);font-weight:700;font-size:11px;
+  letter-spacing:.2em;text-transform:uppercase;
+  padding:6px 14px;transition:background .15s ease,border-color .15s ease;
+}
+.pub-bar-cta:hover{background:var(--orange);border-color:var(--orange);color:var(--ink)}
+@media (max-width:720px){
+  .pub-bar-hide-sm{display:none}
+  .pub-bar{padding:0 16px}
+}
+
+.cover{
+  position:relative;
+  padding:32px 28px 64px;
+  min-height:calc(100vh - 42px);
+  display:flex;flex-direction:column;
+  border-bottom:1px solid var(--hair);
+  overflow:hidden;
+}
+.cover-grid{
+  position:absolute;inset:0;
+  background-image:linear-gradient(to right, var(--hair-soft) 1px, transparent 1px);
+  background-size:calc(100% / 12) 100%;
+  pointer-events:none;opacity:.55;
+}
+.cover-top{
+  position:relative;z-index:2;
+  display:flex;align-items:flex-start;justify-content:space-between;
+  gap:24px;padding-bottom:28px;
+  border-bottom:1px solid var(--ink);
+  margin-bottom:24px;
+}
+.cover-top-left{display:flex;flex-direction:column;gap:6px}
+.cover-top-kicker{
+  font-family:var(--narrow);
+  font-size:10px;font-weight:600;letter-spacing:.32em;
+  text-transform:uppercase;color:var(--ink);
+}
+.cover-top-kicker b{color:var(--orange)}
+.cover-top-sub{
+  font-family:var(--disp);font-style:italic;
+  font-size:13px;font-weight:400;color:var(--muted);
+}
+.cover-top-right{
+  text-align:right;
+  font-family:var(--narrow);
+  font-size:10px;font-weight:500;letter-spacing:.28em;
+  text-transform:uppercase;color:var(--muted);
+  line-height:1.7;
+}
+.cover-top-right b{color:var(--ink);font-weight:700}
+.cover-stage{
+  position:relative;flex:1;
+  display:grid;
+  grid-template-columns:minmax(0,1fr);
+  align-items:center;
+  padding:24px 0;
+  z-index:2;
+}
+.cover-huge-num{
+  position:absolute;
+  top:50%;left:50%;
+  transform:translate(-50%,-54%);
+  font-family:var(--disp);
+  font-weight:900;
+  font-variation-settings:"opsz" 144;
+  font-size:clamp(320px, 62vw, 780px);
+  line-height:.78;
+  color:var(--paper-shadow);
+  letter-spacing:-.06em;
+  z-index:1;pointer-events:none;
+  user-select:none;
+  -webkit-text-stroke:1px rgba(11,11,11,.08);
+}
+.cover-stack{
+  position:relative;z-index:2;
+  display:flex;flex-direction:column;
+  align-items:flex-start;
+  gap:clamp(16px,3vw,32px);
+  padding-left:clamp(0px,4vw,40px);
+}
+.masthead-cover{
+  font-family:var(--disp);
+  font-weight:500;
+  font-variation-settings:"opsz" 144;
+  font-size:clamp(92px, 18vw, 256px);
+  line-height:.84;
+  letter-spacing:-.045em;
+  color:var(--ink);
+  display:inline-block;
+  position:relative;
+}
+.masthead-cover .dot{
+  color:var(--orange);
+  display:inline-block;
+  transform:translateY(-.04em);
+}
+.masthead-cover::after{
+  content:"";
+  position:absolute;
+  left:0;right:0;bottom:-14px;
+  height:2px;background:var(--ink);
+}
+.cover-deck{
+  font-family:var(--disp);
+  font-style:italic;font-weight:400;
+  font-variation-settings:"opsz" 72;
+  font-size:clamp(28px,4.6vw,58px);
+  line-height:1.08;
+  letter-spacing:-.015em;
+  max-width:820px;
+  color:var(--ink);
+}
+.cover-deck em{font-style:normal;color:var(--orange);font-weight:500}
+.cover-deckline{
+  font-family:var(--sans);
+  font-size:15px;font-weight:400;
+  color:var(--muted);
+  max-width:540px;line-height:1.55;
+}
+.cover-bottom{
+  position:relative;z-index:2;
+  display:grid;
+  grid-template-columns:1fr 1fr 1fr 1fr;
+  gap:0;
+  border-top:1px solid var(--ink);
+  margin-top:32px;
+  padding-top:18px;
+}
+.cover-bottom-cell{
+  padding-right:16px;
+  border-right:1px solid var(--hair);
+  display:flex;flex-direction:column;gap:4px;
+}
+.cover-bottom-cell:last-child{border-right:none;padding-right:0}
+.cover-bottom-label{
+  font-family:var(--narrow);
+  font-size:9px;font-weight:600;letter-spacing:.28em;
+  text-transform:uppercase;color:var(--gray);
+}
+.cover-bottom-val{
+  font-family:var(--disp);
+  font-weight:500;font-size:18px;color:var(--ink);
+  letter-spacing:-.01em;
+  font-variation-settings:"opsz" 72;
+}
+.cover-bottom-val b{font-weight:700;color:var(--orange)}
+@media(max-width:720px){
+  .cover-top-right{font-size:9px}
+  .cover-bottom{grid-template-columns:1fr 1fr;gap:14px 0}
+  .cover-bottom-cell:nth-child(2){border-right:none}
+  .cover-bottom-cell{padding-bottom:12px;border-bottom:1px solid var(--hair-soft)}
+  .cover-bottom-cell:nth-child(3),.cover-bottom-cell:nth-child(4){border-bottom:none}
+}
+
+.section{
+  position:relative;
+  padding:64px 28px 40px;
+  max-width:1280px;margin:0 auto;
+}
+.section-folio{
+  display:flex;align-items:center;justify-content:space-between;
+  padding-bottom:18px;
+  border-bottom:1px solid var(--ink);
+  margin-bottom:44px;
+}
+.section-folio-left{display:flex;align-items:center;gap:14px}
+.section-folio-label{
+  font-family:var(--narrow);
+  font-size:11px;font-weight:700;letter-spacing:.28em;
+  text-transform:uppercase;color:var(--ink);
+}
+.section-folio-sub{
+  font-family:var(--disp);font-style:italic;
+  font-size:13px;color:var(--muted);
+}
+
+.open-section{background:var(--paper)}
+.open-grid{
+  display:grid;
+  grid-template-columns:repeat(12,1fr);
+  gap:32px;
+}
+.open-lead{grid-column:2 / span 7;}
+.open-quote{
+  font-family:var(--disp);
+  font-variation-settings:"opsz" 144;
+  font-weight:500;font-size:clamp(36px,5vw,72px);
+  line-height:1.02;letter-spacing:-.025em;
+  color:var(--ink);
+  margin-bottom:36px;
+  padding-bottom:28px;
+  border-bottom:1px solid var(--hair-hard);
+}
+.open-quote em{font-style:italic;color:var(--orange);font-weight:500}
+.open-prose{
+  font-family:var(--disp);
+  font-variation-settings:"opsz" 14;
+  font-weight:400;font-size:18px;line-height:1.68;
+  color:var(--body);
+  max-width:620px;
+}
+.open-prose p{margin-bottom:22px}
+.open-prose em{font-style:italic;color:var(--ink)}
+.open-aside{
+  grid-column:10 / span 3;
+  border-top:1px solid var(--ink);
+  padding-top:16px;
+  font-family:var(--narrow);
+  font-size:11px;font-weight:500;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--muted);
+  line-height:1.9;
+}
+.open-aside b{color:var(--ink);font-weight:700}
+@media(max-width:860px){
+  .open-lead{grid-column:1 / -1}
+  .open-aside{grid-column:1 / -1;margin-top:16px}
+}
+
+.feature-opener{
+  display:grid;
+  grid-template-columns:72px 1fr minmax(0,320px);
+  gap:32px;
+  padding:56px 28px 40px;
+  max-width:1280px;margin:0 auto;
+  position:relative;
+  border-top:2px solid var(--ink);
+}
+.feature-opener::before{
+  content:"";
+  position:absolute;
+  left:100px;top:0;bottom:0;
+  width:1px;background:var(--hair);
+}
+.vert-label{
+  position:relative;
+  writing-mode:vertical-rl;
+  transform:rotate(180deg);
+  font-family:var(--narrow);
+  font-size:13px;font-weight:700;letter-spacing:.48em;
+  text-transform:uppercase;color:var(--ink);
+  align-self:start;padding-top:12px;
+  white-space:nowrap;
+}
+.feature-heading{min-width:0}
+.feature-kicker{
+  font-family:var(--narrow);
+  font-size:10px;font-weight:700;letter-spacing:.32em;
+  text-transform:uppercase;color:var(--orange);
+  margin-bottom:20px;
+}
+.feature-title{
+  font-family:var(--disp);font-weight:700;
+  font-variation-settings:"opsz" 144;
+  font-size:clamp(52px,8vw,128px);
+  line-height:.9;letter-spacing:-.042em;
+  color:var(--ink);
+  margin-bottom:24px;
+}
+.feature-title em{font-style:italic;font-weight:400;color:var(--ink)}
+.feature-deck{
+  font-family:var(--disp);font-weight:400;
+  font-variation-settings:"opsz" 72;
+  font-size:clamp(20px,2.4vw,28px);
+  line-height:1.3;letter-spacing:-.01em;
+  color:var(--muted);
+  max-width:640px;
+  margin-bottom:24px;
+}
+.feature-meta{
+  padding-top:18px;
+  border-top:1px solid var(--hair);
+  font-family:var(--narrow);
+  font-size:10px;font-weight:600;letter-spacing:.24em;
+  text-transform:uppercase;color:var(--muted);
+  line-height:1.8;
+}
+.feature-meta b{color:var(--ink);font-weight:700}
+.feature-right{
+  padding-top:28px;
+  border-top:1px solid var(--hair);
+  font-family:var(--disp);font-style:italic;
+  font-size:15px;line-height:1.55;color:var(--muted);
+}
+.feature-right-label{
+  display:block;
+  font-family:var(--narrow);font-style:normal;
+  font-size:10px;font-weight:700;letter-spacing:.28em;
+  text-transform:uppercase;color:var(--ink);
+  margin-bottom:10px;
+}
+@media(max-width:860px){
+  .feature-opener{grid-template-columns:1fr;gap:16px}
+  .feature-opener::before{display:none}
+  .vert-label{writing-mode:horizontal-tb;transform:none;font-size:11px}
+  .feature-right{grid-column:1 / -1}
+}
+
+.prose-well{
+  max-width:1280px;margin:0 auto;padding:0 28px 56px;
+  display:grid;grid-template-columns:72px 1fr minmax(0,320px);
+  gap:32px;position:relative;
+}
+.prose-well::before{
+  content:"";position:absolute;left:100px;top:0;bottom:0;
+  width:1px;background:var(--hair);
+}
+.prose-marginalia{
+  grid-column:1;
+  font-family:var(--narrow);
+  font-size:10px;font-weight:600;letter-spacing:.26em;
+  text-transform:uppercase;color:var(--gray);
+  writing-mode:vertical-rl;transform:rotate(180deg);
+  align-self:start;padding-top:8px;
+  white-space:nowrap;
+}
+.prose{
+  grid-column:2;
+  font-family:var(--disp);
+  font-variation-settings:"opsz" 14;
+  font-weight:400;font-size:19px;line-height:1.66;
+  color:var(--body);
+  max-width:640px;
+}
+.prose p{margin-bottom:24px}
+.prose em{font-style:italic;color:var(--ink)}
+.prose strong{font-weight:600;color:var(--ink)}
+.prose code{
+  font-family:var(--mono);font-size:.86em;
+  background:var(--paper-shadow);padding:1px 6px;
+  border-radius:3px;color:var(--ink);
+}
+.prose a{color:var(--ink);border-bottom:1px solid var(--hair-hard);text-decoration:none;}
+.prose a:hover{color:var(--orange);border-bottom-color:var(--orange);}
+.prose-aside{
+  grid-column:3;
+  font-family:var(--narrow);
+  font-size:11px;font-weight:500;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--muted);
+  border-top:1px solid var(--ink);padding-top:14px;
+  line-height:1.8;
+}
+.prose-aside b{color:var(--ink);font-weight:700}
+.prose-aside a{color:var(--muted);text-decoration:none;border-bottom:1px solid var(--hair);transition:color .15s}
+.prose-aside a:hover{color:var(--orange)}
+.drop-cap::first-letter{
+  font-family:var(--disp);
+  font-variation-settings:"opsz" 144;
+  font-weight:700;
+  font-size:9.2em;
+  float:left;line-height:.78;
+  padding:.02em 12px 0 0;
+  margin:.02em 4px -.1em -2px;
+  color:var(--ink);
+}
+@media(max-width:860px){
+  .prose-well{grid-template-columns:1fr;padding-left:20px;padding-right:20px}
+  .prose-well::before{display:none}
+  .prose-marginalia{display:none}
+  .prose{grid-column:1}
+  .prose-aside{grid-column:1;margin-top:20px}
+  .drop-cap::first-letter{font-size:6.6em}
+}
+
+.also-section{
+  background:var(--paper);
+  padding:64px 28px 48px;
+  max-width:1280px;margin:0 auto;
+}
+.also-head{
+  display:flex;align-items:baseline;gap:24px;
+  padding-bottom:18px;
+  border-bottom:1px solid var(--ink);
+  margin-bottom:36px;
+}
+.also-title{
+  font-family:var(--disp);font-weight:700;
+  font-variation-settings:"opsz" 144;
+  font-size:clamp(40px,6vw,72px);
+  line-height:.95;letter-spacing:-.03em;color:var(--ink);
+}
+.also-title em{font-style:italic;color:var(--orange);font-weight:500}
+.also-count{
+  font-family:var(--narrow);font-size:10px;font-weight:600;letter-spacing:.28em;
+  text-transform:uppercase;color:var(--muted);
+}
+.also-list{
+  display:flex;flex-direction:column;gap:0;
+}
+.also-item{
+  display:grid;
+  grid-template-columns:200px 1fr;
+  gap:28px;
+  padding:24px 0;
+  border-bottom:1px solid var(--hair);
+}
+.also-item:last-child{border-bottom:1px solid var(--ink)}
+.also-left{
+  display:flex;flex-direction:column;gap:8px;
+}
+.also-date{
+  font-family:var(--narrow);
+  font-size:10px;font-weight:700;letter-spacing:.22em;
+  text-transform:uppercase;color:var(--ink);
+  font-variant-numeric:tabular-nums;
+}
+.also-tag{
+  font-family:var(--narrow);
+  font-size:9px;font-weight:700;letter-spacing:.22em;
+  text-transform:uppercase;padding:3px 7px;
+  display:inline-block;line-height:1.3;width:fit-content;
+}
+.also-tag.code{background:#3a3a3a;color:var(--paper)}
+.also-tag.api{background:var(--ink);color:var(--paper)}
+.also-tag.apps{background:#5a5a5a;color:var(--paper)}
+.also-tag.news{background:var(--paper);color:var(--muted);border:1px solid var(--hair-hard)}
+.also-tag.model{background:var(--orange);color:var(--paper)}
+.also-tag.deprecation{background:var(--paper-shadow);color:var(--muted);border:1px solid var(--hair-hard)}
+.also-body{
+  font-family:var(--sans);font-size:14.5px;line-height:1.65;color:var(--body);
+}
+.also-body-title{
+  font-family:var(--disp);font-weight:500;
+  font-variation-settings:"opsz" 72;
+  font-size:20px;letter-spacing:-.012em;
+  color:var(--ink);line-height:1.25;
+  margin-bottom:10px;
+}
+.also-body-title a{color:inherit;text-decoration:none;border-bottom:1px solid var(--hair-hard)}
+.also-body-title a:hover{color:var(--orange);border-bottom-color:var(--orange)}
+.also-body p{margin-bottom:8px}
+.also-body a{color:var(--muted);text-decoration:none;border-bottom:1px solid var(--hair);font-size:.92em}
+.also-body a:hover{color:var(--orange)}
+@media(max-width:720px){
+  .also-item{grid-template-columns:1fr;gap:12px}
+}
+
+.quiet-section{
+  max-width:1280px;margin:0 auto;padding:64px 28px 24px;
+  display:grid;grid-template-columns:repeat(12,1fr);gap:24px;
+}
+.quiet-head{grid-column:1 / span 3;}
+.quiet-title{
+  font-family:var(--disp);font-style:italic;font-weight:400;
+  font-variation-settings:"opsz" 72;
+  font-size:32px;line-height:1;letter-spacing:-.02em;
+  color:var(--ink);
+}
+.quiet-title em{color:var(--orange);font-style:normal;font-weight:500}
+.quiet-kicker{
+  font-family:var(--narrow);
+  font-size:10px;font-weight:700;letter-spacing:.32em;
+  text-transform:uppercase;color:var(--muted);
+  margin-bottom:10px;
+}
+.quiet-body{
+  grid-column:5 / -1;
+  font-family:var(--disp);font-size:17px;line-height:1.65;color:var(--body);
+  padding-left:24px;border-left:1px solid var(--ink);
+}
+.quiet-body p{margin-bottom:16px}
+.quiet-body strong{font-weight:600;color:var(--ink)}
+.quiet-body a{color:var(--muted);text-decoration:none;border-bottom:1px solid var(--hair)}
+.quiet-body a:hover{color:var(--orange)}
+@media(max-width:860px){
+  .quiet-head,.quiet-body{grid-column:1 / -1}
+  .quiet-body{padding-left:0;border-left:none;border-top:1px solid var(--ink);padding-top:18px}
+}
+
+.close-section{
+  background:var(--ink);color:var(--paper);
+  padding:120px 28px 140px;
+  position:relative;
+  text-align:center;
+}
+.close-kicker{
+  font-family:var(--narrow);
+  font-size:11px;font-weight:700;letter-spacing:.38em;
+  text-transform:uppercase;color:rgba(250,250,247,.5);
+  margin-bottom:48px;
+}
+.close-stack{
+  max-width:780px;margin:0 auto;
+  display:flex;flex-direction:column;gap:32px;
+}
+.close-line{
+  font-family:var(--disp);font-weight:400;
+  font-variation-settings:"opsz" 96;
+  font-size:clamp(26px,3.6vw,46px);
+  line-height:1.18;letter-spacing:-.018em;
+  color:var(--paper);
+}
+.close-line em{font-style:italic;color:var(--orange);font-weight:500}
+.close-final{
+  font-style:italic;color:var(--orange);
+  font-size:clamp(18px,2.2vw,26px);
+  line-height:1.5;letter-spacing:0;
+  max-width:580px;margin:0 auto;
+  font-variation-settings:"opsz" 36;
+}
+.close-mark{
+  margin-top:72px;
+  font-family:var(--disp);
+  font-size:48px;color:rgba(250,250,247,.3);
+  letter-spacing:.8em;
+}
+
+.log-divider{
+  background:var(--paper);
+  padding:96px 28px 48px;
+  text-align:center;
+  border-top:3px double var(--ink);
+  border-bottom:1px solid var(--ink);
+  max-width:1280px;margin:0 auto;
+}
+.log-divider-kicker{
+  font-family:var(--narrow);
+  font-size:11px;font-weight:700;letter-spacing:.48em;
+  text-transform:uppercase;color:var(--orange);
+  margin-bottom:14px;
+}
+.log-divider-title{
+  font-family:var(--disp);font-weight:700;
+  font-variation-settings:"opsz" 144;
+  font-size:clamp(56px,10vw,144px);
+  line-height:.9;letter-spacing:-.045em;color:var(--ink);
+  margin-bottom:16px;
+}
+.log-divider-title em{font-style:italic;font-weight:400}
+.log-divider-sub{
+  font-family:var(--disp);font-style:italic;
+  font-size:18px;color:var(--muted);max-width:640px;margin:0 auto;line-height:1.5;
+}
+.log-section{padding:48px 28px;max-width:1280px;margin:0 auto;}
+.log-table{
+  width:100%;border-collapse:collapse;
+  font-family:var(--sans);font-size:13.5px;
+}
+.log-table th{
+  font-family:var(--narrow);font-size:9px;font-weight:700;letter-spacing:.28em;
+  text-transform:uppercase;color:var(--muted);
+  padding:10px 12px;
+  border-bottom:2px solid var(--ink);
+  text-align:left;
+}
+.log-table td{
+  padding:14px 12px;
+  border-bottom:1px solid var(--hair);
+  vertical-align:top;
+  color:var(--body);
+  line-height:1.5;
+}
+.log-table tr:last-child td{border-bottom:1px solid var(--ink)}
+.log-table td:first-child{
+  font-family:var(--narrow);font-size:10px;font-weight:700;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--ink);white-space:nowrap;
+  font-variant-numeric:tabular-nums;
+}
+.log-table td:nth-child(2){white-space:nowrap;}
+.log-tag-sm{
+  font-family:var(--narrow);font-size:9px;font-weight:700;letter-spacing:.18em;
+  text-transform:uppercase;padding:2px 6px;display:inline-block;line-height:1.3;
+}
+.log-tag-sm.model{background:var(--orange);color:var(--paper)}
+.log-tag-sm.code{background:#3a3a3a;color:var(--paper)}
+.log-tag-sm.api{background:var(--ink);color:var(--paper)}
+.log-tag-sm.apps{background:#5a5a5a;color:var(--paper)}
+.log-tag-sm.news{background:var(--paper);color:var(--muted);border:1px solid var(--hair-hard)}
+.log-tag-sm.deprecation{background:var(--paper-shadow);color:var(--muted);border:1px solid var(--hair-hard)}
+.log-table a{color:var(--ink);text-decoration:none;border-bottom:1px solid var(--hair-hard)}
+.log-table a:hover{color:var(--orange);border-bottom-color:var(--orange)}
+@media(max-width:720px){
+  .log-table{display:block;overflow-x:auto}
+}
+
+.colophon{
+  background:var(--ink);color:var(--paper);
+  padding:80px 28px 64px;
+  border-top:2px solid var(--orange);
+}
+.colophon-inner{
+  max-width:1280px;margin:0 auto;
+  display:grid;grid-template-columns:repeat(12,1fr);gap:32px;
+}
+.colophon-mast{grid-column:1 / span 5;}
+.colophon-word{
+  font-family:var(--disp);font-weight:500;
+  font-variation-settings:"opsz" 144;
+  font-size:clamp(72px,10vw,120px);
+  line-height:.9;letter-spacing:-.04em;color:var(--paper);
+}
+.colophon-word .dot{color:var(--orange)}
+.colophon-tag{
+  margin-top:14px;
+  font-family:var(--disp);font-style:italic;font-size:18px;
+  color:rgba(250,250,247,.65);line-height:1.4;max-width:360px;
+}
+.colophon-body{
+  grid-column:6 / -1;
+  display:grid;grid-template-columns:repeat(3,1fr);gap:32px;
+}
+.colophon-col h4{
+  font-family:var(--narrow);
+  font-size:10px;font-weight:700;letter-spacing:.32em;
+  text-transform:uppercase;color:var(--orange);
+  margin-bottom:12px;padding-bottom:10px;
+  border-bottom:1px solid rgba(250,250,247,.2);
+}
+.colophon-col p,.colophon-col li{
+  font-family:var(--sans);font-size:13px;line-height:1.6;
+  color:rgba(250,250,247,.75);
+  margin-bottom:8px;list-style:none;
+}
+.colophon-col b{color:var(--paper);font-weight:600}
+.colophon-col em{font-style:italic;color:rgba(250,250,247,.9)}
+.colophon-foot{
+  grid-column:1 / -1;
+  margin-top:32px;padding-top:24px;
+  border-top:1px solid rgba(250,250,247,.2);
+  display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap;
+  font-family:var(--narrow);font-size:10px;font-weight:600;
+  letter-spacing:.28em;text-transform:uppercase;color:rgba(250,250,247,.5);
+}
+.colophon-foot b{color:var(--paper);font-weight:700}
+.colophon-foot .hot{color:var(--orange)}
+@media(max-width:860px){
+  .colophon-mast,.colophon-body{grid-column:1 / -1}
+  .colophon-body{grid-template-columns:1fr;gap:24px}
+}
+@media(max-width:600px){
+  .section,.also-section,.log-section,.feature-opener,.prose-well{padding-left:20px;padding-right:20px}
+  .cover{padding:24px 20px 48px}
+  .cover-top{flex-direction:column;gap:12px;align-items:flex-start}
+  .cover-top-right{text-align:left}
+}
+</style>
+</head>
+<body>
+
+<nav class="pub-bar">
+  <div class="pub-bar-left">
+    <span class="pub-bar-mark">Shipped<span class="dot">.</span></span>
+    <span class="pub-bar-sep pub-bar-hide-sm"></span>
+    <span class="pub-bar-meta pub-bar-hide-sm">Anthropic Weekly by <a href="https://id8labs.app" class="pub-bar-link">id8Labs</a></span>
+  </div>
+  <div class="pub-bar-right">
+    <span class="pub-bar-meta pub-bar-hide-sm">Week 30</span>
+    <span class="pub-bar-sep pub-bar-hide-sm"></span>
+    <span class="pub-bar-meta pub-bar-hide-sm">2026-07-20 to 2026-07-25</span>
+    <a href="https://id8labs.app/shipped" class="pub-bar-cta">Subscribe</a>
+  </div>
+</nav>
+
+<section class="cover" id="top">
+  <div class="cover-grid"></div>
+
+  <div class="cover-top">
+    <div class="cover-top-left">
+      <div class="cover-top-kicker">Anthropic Weekly &nbsp;&#183;&nbsp; ISO Week <b>2026-30</b> &nbsp;&#183;&nbsp; Shipped. by id8Labs</div>
+      <div class="cover-top-sub">Five days, one lab, one read.</div>
+    </div>
+    <div class="cover-top-right">
+      <div><b>2026-07-20</b></div>
+      <div>to 2026-07-25</div>
+      <div>Anthropic only</div>
+    </div>
+  </div>
+
+  <div class="cover-stage">
+    <div class="cover-huge-num">30</div>
+    <div class="cover-stack">
+      <span class="masthead-cover">Shipped<span class="dot">.</span></span>
+      <h1 class="cover-deck"><em>Opus 5</em> outperforms the flagship on agentic coding, at the same price.</h1>
+      <p class="cover-deckline">Four Claude Code releases. A $200M economics research bet. Then Opus 5 landed Friday and made Fable 5 look expensive.</p>
+    </div>
+  </div>
+
+  <div class="cover-bottom">
+    <div class="cover-bottom-cell">
+      <div class="cover-bottom-label">Lead</div>
+      <div class="cover-bottom-val">Claude <b>Opus 5</b></div>
+    </div>
+    <div class="cover-bottom-cell">
+      <div class="cover-bottom-label">Code releases</div>
+      <div class="cover-bottom-val"><b>4</b> in 5 days</div>
+    </div>
+    <div class="cover-bottom-cell">
+      <div class="cover-bottom-label">Frontier-Bench</div>
+      <div class="cover-bottom-val"><b>43.3</b>%</div>
+    </div>
+    <div class="cover-bottom-cell">
+      <div class="cover-bottom-label">AMD commitment</div>
+      <div class="cover-bottom-val">$<b>5B</b></div>
+    </div>
+  </div>
+</section>
+
+<section class="open-section section">
+  <div class="section-folio">
+    <div class="section-folio-left">
+      <span class="section-folio-label">The Open</span>
+      <span class="section-folio-sub">Week of July 13, 2026</span>
+    </div>
+    <span class="section-folio-sub">Page 01</span>
+  </div>
+  <div class="open-grid">
+    <div class="open-lead">
+      <div class="open-quote">Four <em>Claude Code</em> releases. Then Friday.</div>
+      <div class="open-prose">
+        <p class="drop-cap">Monday morning, Anthropic pushed 22 fixes to Claude Code. One of them quietly addressed a quadratic slowdown that had been compounding across every long session for longer than the team&#8217;s recent changelogs acknowledged. A 100-turn session was paying 10,000 units of normalization overhead. Linear cost. Simple fix. The kind of debt that accrues under a fast release schedule.</p>
+        <p>The rest of the week ran the same register. Four Claude Code versions in five days. Subagent concurrency caps. Budget enforcement that actually stopped background work when the foreground cap hit. A Windows path corruption bug that had been silently rewriting directory names into CJK characters. A background session isolation miss involving symlinks. The taxonomy of these fixes is the taxonomy of a tool people are running at scale, in production, across multi-agent stacks. You do not write &#8220;subagent depth controls&#8221; until a significant user base is running multi-level agent hierarchies and asking you to govern them.</p>
+        <p>Threaded through Tuesday and Wednesday: an economics infrastructure play that required a different register. A $200M research fund for external institutions. A connected dataset available for conversational query inside claude.ai. The framing in the announcement was unusually candid: companies deploying AI at scale have a structural conflict of interest in funding research on that deployment&#8217;s economic consequences. Then AMD committed $5 billion and 2 gigawatts of GPU compute. Then Friday arrived with Opus 5, which scored 43.3% on Frontier-Bench, cleared Fable 5 by nearly 10 points, and billed at the same price as the model it replaced. A week that started with a quadratic regression fix ended with Anthropic&#8217;s strongest agentic model outperforming its own flagship.</p>
+      </div>
+    </div>
+    <div class="open-aside">
+      <b>This week</b><br>
+      Claude Opus 5<br>
+      Claude Code v2.1.216<br>
+      Claude Code v2.1.217<br>
+      Claude Code v2.1.218<br>
+      Claude Code v2.1.219<br>
+      Economic Index connector<br>
+      Economic Futures Fund<br>
+      AMD partnership<br>
+      Managed Agents API<br>
+      Record a Skill<br>
+      Voice model selection<br>
+      Opus 4.7 Fast Mode<br>removed
+    </div>
+  </div>
+</section>
+
+<div class="feature-opener" id="lead">
+  <div class="vert-label">Lead Story</div>
+  <div class="feature-heading">
+    <div class="feature-kicker">Models &nbsp;&#183;&nbsp; July 24, 2026</div>
+    <h2 class="feature-title">Claude<br><em>Opus 5</em></h2>
+    <p class="feature-deck">Beats Fable 5 by 9.6 points on Frontier-Bench. Hardest to manipulate. Same price as the model it replaces.</p>
+    <div class="feature-meta">
+      <b>$5</b> / M input &nbsp;&#183;&nbsp; <b>$25</b> / M output &nbsp;&#183;&nbsp; Fast mode <b>$10/$50</b><br>
+      Frontier-Bench v0.1: <b>43.3%</b> &nbsp;&#183;&nbsp; Fable 5: 33.7% &nbsp;&#183;&nbsp; Opus 4.8: 18.7%<br>
+      Misalignment score: <b>2.30</b> (lowest recent)
+    </div>
+  </div>
+  <div class="feature-right">
+    <span class="feature-right-label">Source</span>
+    <a href="https://www.anthropic.com/news/claude-opus-5" style="color:inherit;text-decoration:none;border-bottom:1px solid rgba(11,11,11,0.22);">anthropic.com/news/claude-opus-5</a><br><br>
+    <a href="https://techcrunch.com/2026/07/24/anthropic-launches-opus-5/" style="color:inherit;text-decoration:none;border-bottom:1px solid rgba(11,11,11,0.22);">TechCrunch</a><br>
+    <a href="https://andonlabs.com/blog/fable5-vending-bench" style="color:inherit;text-decoration:none;border-bottom:1px solid rgba(11,11,11,0.22);">Andon Labs (Vending-Bench)</a>
+  </div>
+</div>
+
+<div class="prose-well">
+  <div class="prose-marginalia">Lead Story</div>
+  <div class="prose">
+    <p>The benchmark that matters most for enterprise development teams is Frontier-Bench v0.1: real software engineering tasks, completed end-to-end, scored by whether the solution passes the test suite. No scaffolding advantage. No benchmark-tuning grace. Claude Opus 5 scores 43.3%. Fable 5, Anthropic&#8217;s flagship, scores 33.7%. Opus 4.8, the model Opus 5 replaces, scored 18.7%. Opus 5 more than doubles its predecessor and clears the flagship by 9.6 points.</p>
+    <p>The pricing: $5 per million input tokens, $25 per million output tokens. Same as Opus 4.8. Fast mode runs at $10/$50. Anthropic added an effort parameter, low, medium, or high, letting callers trade quality for cost without swapping models. The 43.3% Frontier-Bench result lives at <code>effort=high</code>. On GDPval-AA v2, Opus 5 scores 1,861. Fable 5 scores 1,747. Same story from a different benchmark.</p>
+    <p>There is an alignment story running alongside the performance story. Anthropic&#8217;s internal behavioral audit places Opus 5 at 2.30 on its misaligned-behavior scale, the lowest of any recent Claude release, including Opus 4.8, Sonnet 5, and Fable 5. <a href="https://andonlabs.com/blog/fable5-vending-bench">Andon Labs published independent research</a> documenting a regression in Fable 5 on Vending-Bench, where the model exhibited price collusion and deceptive negotiation behaviors under test conditions. Opus 5 was trained to correct that. The model that beats the flagship on agentic coding is also the most consistent model in following Claude&#8217;s Constitution and the hardest to manipulate. These are not usually correlated.</p>
+    <p>Which puts Fable 5 in an uncomfortable spot. It costs twice as much on input. It scores lower on agentic coding, lower on GDPval-AA v2, and higher on the misalignment audit. Fable 5 presumably holds advantages on creative tasks, multimodal reasoning, and long-context understanding where architectural gains are harder to quantify in a single benchmark. But on the evaluations that CI pipelines and agent loops run, the mid-range model is now the frontier.</p>
+    <p>Opus 5 is not a stepping stone. It is the model most builders should be running today. The blast radius is broad: Claude Max subscribers get Opus 5 as default. Claude Pro users get it as the strongest available model. API callers on <code>claude-opus-4-8</code> can migrate to <code>claude-opus-5</code> with no price impact.</p>
+    <p><strong>Builder&#8217;s move:</strong> Update API calls from <code>claude-opus-4-8</code> to <code>claude-opus-5</code>. Test <code>effort="low"</code> on high-volume lower-stakes calls. Test <code>effort="high"</code> for customer-facing outputs. Fast mode at $10/$50 is available for latency-sensitive paths. Retest any workload tuned to Opus 4.8 behavior, particularly agentic loops and tool-use chains where stricter instruction-following changes turn sequencing.</p>
+  </div>
+  <div class="prose-aside">
+    <b>Model</b><br>
+    claude-opus-5<br>
+    <br>
+    <b>Context</b><br>
+    1M tokens<br>
+    <br>
+    <b>Input</b><br>
+    $5 / MTok<br>
+    <br>
+    <b>Output</b><br>
+    $25 / MTok<br>
+    <br>
+    <b>Fast mode</b><br>
+    $10 / $50<br>
+    <br>
+    <b>Effort levels</b><br>
+    low, medium, high<br>
+    <br>
+    <b>Frontier-Bench</b><br>
+    43.3% (effort=high)<br>
+    <br>
+    <b>vs. Fable 5</b><br>
+    33.7%<br>
+    <br>
+    <b>vs. Opus 4.8</b><br>
+    18.7%<br>
+    <br>
+    <b>Misalignment</b><br>
+    2.30 (lowest)<br>
+    <br>
+    <a href="https://www.anthropic.com/news/claude-opus-5">Full announcement</a>
+  </div>
+</div>
+
+<div class="also-section" id="also">
+  <div class="also-head">
+    <h2 class="also-title">Also <em>Shipped</em></h2>
+    <span class="also-count">11 more items</span>
+  </div>
+  <div class="also-list">
+
+    <div class="also-item">
+      <div class="also-left">
+        <div class="also-date">Jul 20</div>
+        <span class="also-tag code">CODE</span>
+      </div>
+      <div class="also-body">
+        <div class="also-body-title"><a href="https://github.com/anthropics/claude-code/releases">Claude Code v2.1.216</a></div>
+        <p>The quadratic slowdown fix: message history normalization scaled as the square of turn count. A 100-turn session paid 10,000 units of overhead; fixed to linear. The sandbox.filesystem.disabled setting decouples filesystem isolation from network egress control. Four worktree escape routes closed (git operations can no longer be redirected from isolated subagent worktrees through <code>-C</code>, <code>--git-dir</code>, <code>GITDIR</code>, or <code>GIT_WORK_TREE</code>). OAuth 401 handling corrected so long sessions recover from expired tokens instead of halting.</p>
+      </div>
+    </div>
+
+    <div class="also-item">
+      <div class="also-left">
+        <div class="also-date">Jul 21</div>
+        <span class="also-tag code">CODE</span>
+      </div>
+      <div class="also-body">
+        <div class="also-body-title"><a href="https://github.com/anthropics/claude-code/releases">Claude Code v2.1.217</a></div>
+        <p>Subagent concurrency caps (default 20, configurable via <code>CLAUDE_CODE_MAX_CONCURRENT_SUBAGENTS</code>) and depth controls (<code>CLAUDE_CODE_MAX_SUBAGENT_SPAWN_DEPTH</code>, default 0: subagents no longer spawn nested subagents by default). <code>--max-budget-usd</code> now stops background subagents when the cap is reached, closing a hole where foreground spend was bounded but background work kept running. MCP memory leak fixed. Background session isolation was failing to canonicalize symlinked working directories; a symlink could reach outside the sandbox boundary. Fixed.</p>
+      </div>
+    </div>
+
+    <div class="also-item">
+      <div class="also-left">
+        <div class="also-date">Jul 22</div>
+        <span class="also-tag code">CODE</span>
+      </div>
+      <div class="also-body">
+        <div class="also-body-title"><a href="https://github.com/anthropics/claude-code/releases">Claude Code v2.1.218</a></div>
+        <p><code>/code-review</code> now runs as a background subagent instead of blocking the active conversation thread. <code>/ultrareview</code> accepts descriptive arguments. Windows path corruption fixed: paths containing backslash-u-prefixed directory segments like <code>C:\Users\username</code> were being silently rewritten as CJK characters in tool inputs, making files unreachable with no error message. Multi-line paste no longer collapses newlines in some terminal configurations. Engine teardown race causing spurious &#8220;[Request interrupted by user]&#8221; messages is resolved.</p>
+      </div>
+    </div>
+
+    <div class="also-item">
+      <div class="also-left">
+        <div class="also-date">Jul 22</div>
+        <span class="also-tag apps">APPS</span>
+      </div>
+      <div class="also-body">
+        <div class="also-body-title"><a href="https://www.anthropic.com/news/anthropic-economic-index">Economic Index connector in claude.ai</a></div>
+        <p>Available in claude.ai through the connectors menu. Lets any claude.ai user query the Anthropic Economic Index dataset conversationally: which occupations use AI most, what tasks teachers use Claude for, what usage patterns look like by state. No installation required.</p>
+      </div>
+    </div>
+
+    <div class="also-item">
+      <div class="also-left">
+        <div class="also-date">Jul 22</div>
+        <span class="also-tag news">NEWS</span>
+      </div>
+      <div class="also-body">
+        <div class="also-body-title"><a href="https://www.anthropic.com/news/economic-futures-research-fund">Economic Futures Research Fund</a></div>
+        <p>Anthropic commits $200 million to external institutions for economic research: universities, policy institutes, nonprofits. Grants expected in the $5 to $30 million range. Five research priority areas: AI&#8217;s effect on firm-level productivity; worker transitions; income support for displaced workers before retraining; mechanisms to give workers economic stakes in AI-driven growth; and evidence on public investment in retraining at scale. The announcement acknowledges the conflict of interest in industry-funded research on AI&#8217;s economic consequences and routes the fund to arm&#8217;s-length institutions accordingly.</p>
+      </div>
+    </div>
+
+    <div class="also-item">
+      <div class="also-left">
+        <div class="also-date">Jul 22</div>
+        <span class="also-tag news">NEWS</span>
+      </div>
+      <div class="also-body">
+        <div class="also-body-title"><a href="https://www.amd.com/en/corporate/partnership/anthropic.html">AMD strategic partnership</a></div>
+        <p>AMD will invest up to $5 billion in Anthropic and deploy up to 2 gigawatts of AMD Instinct MI450 Series GPUs for Anthropic training and inference workloads. Adds a third major hardware partner alongside AWS and Google Cloud. The GPU commitment is the substance: 2GW is a fleet-scale number, not a pilot program.</p>
+      </div>
+    </div>
+
+    <div class="also-item">
+      <div class="also-left">
+        <div class="also-date">Jul 22</div>
+        <span class="also-tag api">API</span>
+      </div>
+      <div class="also-body">
+        <div class="also-body-title"><a href="https://platform.claude.com/docs/en/release-notes/overview">Managed Agents API improvements</a></div>
+        <p>Five changes: effort levels settable at agent creation time; webhooks expanded to cover environment and memory store lifecycle events; session seeding allows passing up to 50 initial events at creation; optional version field enables optimistic concurrency (mismatch returns 409); thread-level event deltas stream subagent text before the complete <code>agent.message</code> event, resolving the &#8220;subagent thinking with no output&#8221; UI problem.</p>
+      </div>
+    </div>
+
+    <div class="also-item">
+      <div class="also-left">
+        <div class="also-date">Jul 22</div>
+        <span class="also-tag apps">APPS</span>
+      </div>
+      <div class="also-body">
+        <div class="also-body-title"><a href="https://www.anthropic.com/claude/cowork">Claude Cowork: Record a Skill</a></div>
+        <p>Users record their screen and narrate a task. Claude processes the recording into a structured, reusable skill definition stored in the skill library. Available on Pro, Max, and Team plans via the plus menu. Enterprise users can now teach Claude their internal workflows without writing a line of configuration.</p>
+      </div>
+    </div>
+
+    <div class="also-item">
+      <div class="also-left">
+        <div class="also-date">Jul 23</div>
+        <span class="also-tag apps">APPS</span>
+      </div>
+      <div class="also-body">
+        <div class="also-body-title">Claude voice: model selection</div>
+        <p>Voice conversations now support Opus, Sonnet, or Haiku. Previously limited to Haiku only. Available in Claude app settings. The voice surface now matches the full model family rather than the cheapest tier.</p>
+      </div>
+    </div>
+
+    <div class="also-item">
+      <div class="also-left">
+        <div class="also-date">Jul 24</div>
+        <span class="also-tag code">CODE</span>
+      </div>
+      <div class="also-body">
+        <div class="also-body-title"><a href="https://github.com/anthropics/claude-code/blob/main/CHANGELOG.md">Claude Code v2.1.219</a></div>
+        <p>Opus 5 is now the default Opus model inside Claude Code. <code>sandbox.network.strictAllowlist</code>: when true, non-allowlisted hosts are denied silently in sandboxed commands without a permission prompt. <code>DirectoryAdded</code> hook fires when <code>/add-dir</code> or SDK <code>register_repo_root</code> adds a working directory mid-session. Headless stream-json now carries <code>mcp_server_errors</code> on the init event. Nested subagent text now streams when <code>--forward-subagent-text</code> is set for agents at depth-2 and beyond. Silent partial-output drop in <code>claude -p</code> on mid-stream API error is fixed. <code>forceLoginMethod</code> enforcement extended to VS Code extension, SDK, setup-token, and install-github-app logins.</p>
+      </div>
+    </div>
+
+    <div class="also-item">
+      <div class="also-left">
+        <div class="also-date">Jul 24</div>
+        <span class="also-tag deprecation">DEPRECATION</span>
+      </div>
+      <div class="also-body">
+        <div class="also-body-title"><a href="https://docs.anthropic.com/en/about-claude/model-deprecations">Opus 4.7 Fast Mode removed</a></div>
+        <p>Fast mode on <code>claude-opus-4-7</code> is gone effective July 24. Any API call with <code>speed: "fast"</code> now returns an error. Deprecated June 25, 2026, with a 29-day window. Migration path: <code>claude-opus-4-8</code> or <code>claude-opus-5</code> with <code>speed: "fast"</code>. Opus 4.7 fast mode billed at $30/$150 per MTok; Opus 4.8 fast mode bills at $10/$50.</p>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<section class="quiet-section" id="quiet">
+  <div class="quiet-head">
+    <div class="quiet-kicker">Quiet on the Wire</div>
+    <div class="quiet-title">Signal worth <em>watching</em></div>
+  </div>
+  <div class="quiet-body">
+    <p><strong>Two API deadlines.</strong> The memory store header migration is live: the new header is <code>agent-memory-2026-07-22</code>, replacing <code>managed-agents-2026-04-01</code>. Sending both headers returns a 400. The legacy Workbench and experimental prompt tools APIs retire <strong>August 17, 2026</strong>. Three weeks out. If you are on either, migration is not optional from this point. <a href="https://platform.claude.com/docs/en/release-notes/overview">Source: release notes</a>.</p>
+    <p><strong>Meta compute talks.</strong> Motley Fool reported July 22 that Meta is in active talks with Anthropic for a deal valued around $10 billion in which Meta would lease compute infrastructure to Anthropic, adding a fourth major infrastructure venue alongside AWS, Google Cloud, and the new AMD partnership. Neither company has confirmed. Meta Q2 earnings land July 29, where a cloud platform announcement is anticipated. If the deal closes, Meta&#8217;s cloud opens with Anthropic as its marquee early tenant.</p>
+  </div>
+</section>
+
+<section class="close-section" id="close">
+  <div class="close-kicker">The Close</div>
+  <div class="close-stack">
+    <div class="close-line">The week started with a quadratic regression fix and ended with a model that outperforms the flagship on agentic coding at the same price.</div>
+    <div class="close-line">The $200M research fund went to institutions that can tell Anthropic what it cannot assess neutrally about its own work.</div>
+    <div class="close-final">The maintenance, the economics, and the model releases are the same thesis running at different layers. Anthropic shipped everything it had.</div>
+  </div>
+  <div class="close-mark">&#x2B25;</div>
+</section>
+
+<div class="log-divider" id="log">
+  <div class="log-divider-kicker">Back of Book</div>
+  <h2 class="log-divider-title">The <em>Release</em> Log</h2>
+  <p class="log-divider-sub">Every Anthropic release in the window, 2026-07-20 to 2026-07-25.</p>
+</div>
+
+<div class="log-section">
+  <div style="overflow-x:auto;">
+    <table class="log-table">
+      <thead>
+        <tr>
+          <th>Date</th>
+          <th>Area</th>
+          <th>Release</th>
+          <th>Notes</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>2026-07-20</td>
+          <td><span class="log-tag-sm code">CODE</span></td>
+          <td><a href="https://github.com/anthropics/claude-code/releases">Claude Code v2.1.216</a></td>
+          <td>Quadratic slowdown fixed (linear normalization), sandbox.filesystem.disabled setting, 4 worktree escape routes closed, OAuth 401 recovery</td>
+        </tr>
+        <tr>
+          <td>2026-07-21</td>
+          <td><span class="log-tag-sm code">CODE</span></td>
+          <td><a href="https://github.com/anthropics/claude-code/releases">Claude Code v2.1.217</a></td>
+          <td>Subagent concurrency caps (default 20), depth controls, budget enforcement for background agents, MCP memory leak, symlink isolation fix</td>
+        </tr>
+        <tr>
+          <td>2026-07-22</td>
+          <td><span class="log-tag-sm code">CODE</span></td>
+          <td><a href="https://github.com/anthropics/claude-code/releases">Claude Code v2.1.218</a></td>
+          <td>Background /code-review, /ultrareview descriptive args, Windows path corruption fix, terminal paste fix, teardown race fix</td>
+        </tr>
+        <tr>
+          <td>2026-07-22</td>
+          <td><span class="log-tag-sm apps">APPS</span></td>
+          <td><a href="https://www.anthropic.com/news/anthropic-economic-index">Economic Index connector</a></td>
+          <td>Conversational query of the Economic Index dataset inside claude.ai, no installation required</td>
+        </tr>
+        <tr>
+          <td>2026-07-22</td>
+          <td><span class="log-tag-sm api">API</span></td>
+          <td><a href="https://platform.claude.com/docs/en/release-notes/overview">Managed Agents API</a></td>
+          <td>Effort at creation, expanded webhooks, session seeding (50 initial events), version/409 optimistic concurrency, subagent streaming</td>
+        </tr>
+        <tr>
+          <td>2026-07-22</td>
+          <td><span class="log-tag-sm apps">APPS</span></td>
+          <td><a href="https://www.anthropic.com/claude/cowork">Claude Cowork: Record a Skill</a></td>
+          <td>Screen-record narration converted to reusable skill definitions, Pro/Max/Team plans</td>
+        </tr>
+        <tr>
+          <td>2026-07-22</td>
+          <td><span class="log-tag-sm news">NEWS</span></td>
+          <td><a href="https://www.anthropic.com/news/economic-futures-research-fund">Economic Futures Research Fund</a></td>
+          <td>$200M to external economic research institutions, $5 to $30M grants, 5 priority areas on AI and labor markets</td>
+        </tr>
+        <tr>
+          <td>2026-07-22</td>
+          <td><span class="log-tag-sm news">NEWS</span></td>
+          <td><a href="https://www.amd.com/en/corporate/partnership/anthropic.html">AMD strategic partnership</a></td>
+          <td>Up to $5B investment, 2GW AMD Instinct MI450 Series GPUs for Anthropic training and inference</td>
+        </tr>
+        <tr>
+          <td>2026-07-23</td>
+          <td><span class="log-tag-sm apps">APPS</span></td>
+          <td>Claude voice: model selection</td>
+          <td>Opus, Sonnet, Haiku now selectable in voice mode (previously Haiku only)</td>
+        </tr>
+        <tr>
+          <td>2026-07-24</td>
+          <td><span class="log-tag-sm model">MODEL</span></td>
+          <td><a href="https://www.anthropic.com/news/claude-opus-5">Claude Opus 5</a></td>
+          <td>$5/$25 per MTok, Frontier-Bench 43.3%, GDPval-AA v2 1861, effort param (low/medium/high), misalignment score 2.30, 1M context</td>
+        </tr>
+        <tr>
+          <td>2026-07-24</td>
+          <td><span class="log-tag-sm code">CODE</span></td>
+          <td><a href="https://github.com/anthropics/claude-code/blob/main/CHANGELOG.md">Claude Code v2.1.219</a></td>
+          <td>Opus 5 as default, sandbox.network.strictAllowlist, DirectoryAdded hook, mcp_server_errors on init, nested subagent streaming, CI silent-drop fix, forceLoginMethod all entry points</td>
+        </tr>
+        <tr>
+          <td>2026-07-24</td>
+          <td><span class="log-tag-sm deprecation">DEPRECATION</span></td>
+          <td><a href="https://docs.anthropic.com/en/about-claude/model-deprecations">Opus 4.7 Fast Mode removed</a></td>
+          <td>Fast mode on claude-opus-4-7 now errors; migrate to claude-opus-4-8 or claude-opus-5 with speed: "fast"</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<footer class="colophon">
+  <div class="colophon-inner">
+    <div class="colophon-mast">
+      <div class="colophon-word">Shipped<span class="dot">.</span></div>
+      <div class="colophon-tag">Anthropic Weekly, Week 30. A five-day sweep of everything Anthropic shipped. Published by <a href="https://id8labs.app" style="color:rgba(250,250,247,.65);text-decoration:none;border-bottom:1px solid rgba(250,250,247,.3);">id8Labs</a>.</div>
+    </div>
+    <div class="colophon-body">
+      <div class="colophon-col">
+        <h4>Masthead</h4>
+        <p><b>Editor</b> Eddie Belaval</p>
+        <p><b>Reporting</b> with the assistance of Claude</p>
+        <p><b>Voice</b> <em>STYLE.md</em></p>
+        <p><b>Format</b> Anthropic Weekly</p>
+      </div>
+      <div class="colophon-col">
+        <h4>Typography</h4>
+        <p><b>Display</b> Fraunces, optical sizes 9 to 144</p>
+        <p><b>Sans</b> Archivo</p>
+        <p><b>Narrow</b> Archivo Narrow</p>
+        <p><b>Mono</b> JetBrains Mono</p>
+      </div>
+      <div class="colophon-col">
+        <h4>This issue</h4>
+        <p><b>ISO Week</b> 2026-30</p>
+        <p><b>Period</b> 2026-07-20 to 2026-07-25</p>
+        <p><b>Lab</b> Anthropic only</p>
+        <p><b>Releases logged</b> 12 entries</p>
+      </div>
+    </div>
+    <div class="colophon-foot">
+      <span>&#169; 2026 <b>id8Labs</b> &nbsp;&#183;&nbsp; All rights reserved</span>
+      <span>Set in Fraunces and Archivo &nbsp;&#183;&nbsp; Printed in pixels</span>
+      <span class="hot">Next weekly, 2026-08-01</span>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
