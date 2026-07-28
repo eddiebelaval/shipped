@@ -15,10 +15,7 @@ export function renderInvestigation(section: Section): string {
   const ratio = extractRatioChart(section.content);
   const ratioHtml = ratio && ratio.kind === 'ratio' ? renderRatio(ratio.data) : '';
 
-  // Generic investigation body: the full prose block. Quotes render inline
-  // via blockquote formatting. No per-issue hardcoded consortium table or
-  // money-aside (those were Issue 00 Glasswing-specific).
-  const prose = paragraphs(stripSidebar(section.content));
+  const prose = renderProseWithQuotes(stripSidebar(section.content));
 
   return `<div class="feature-opener" id="investigation">
   <span class="vert-label">Investigation</span>
@@ -61,111 +58,37 @@ interface Quote {
   attribution: string;
 }
 
-function extractQuotes(content: string): Quote[] {
-  const lines = content.split('\n');
-  const quotes: Quote[] = [];
+// Renders prose paragraphs and named quote cards in document order.
+// Named quote pattern: > *”text”* followed by > — attribution
+// CHART blocks and other > blocks are skipped (CHART is rendered via ratioHtml).
+function renderProseWithQuotes(content: string): string {
+  let quoteIdx = 0;
+  const blocks = content
+    .replace(/\r\n/g, '\n')
+    .split(/\n{2,}/)
+    .map((b) => b.trim())
+    .filter((b) => b.length > 0 && !/^-{3,}$/.test(b) && !b.startsWith('#') && !b.startsWith('|'));
 
-  for (let i = 0; i < lines.length; i++) {
-    const l = lines[i]!;
-    // Match: > *"... long text ..."*
-    const m1 = l.match(/^>\s*\*"(.+?)"\*\s*$/);
-    const m2 = l.match(/^>\s*\*“(.+?)”\*\s*$/);
-    const matched = m1 || m2;
-    if (matched && matched[1] && matched[1].length > 30) {
-      // Look at the next non-empty `>` line for the attribution.
-      let j = i + 1;
-      while (j < lines.length && lines[j]!.trim() === '') j++;
-      let attr = '';
-      if (j < lines.length) {
-        const a = lines[j]!.match(/^>\s*[—-]\s*(.+)$/);
-        if (a) attr = a[1]!.trim();
+  return blocks
+    .map((b) => {
+      if (!b.startsWith('>')) {
+        return `    <p>${inlineMarkdown(b.replace(/\n/g, ' '))}</p>`;
       }
-      quotes.push({ text: matched[1]!, attribution: attr });
-    }
-  }
-  return quotes;
-}
-
-function renderVoicesAndProse(content: string, ratioHtml: string): string {
-  // First — render the intro prose (everything before the first quote)
-  // Then alternate: quotes + paragraphs in document order, ending with the
-  // ratio chart inserted between the second and third quote (canonical).
-  const lines = content.split('\n');
-  const isQuoteStart = (l: string) => /^>\s*\*"/.test(l) || /^>\s*\*“/.test(l);
-
-  // Intro paragraphs — read until the first quote line
-  let i = 0;
-  // Skip the H1
-  while (i < lines.length && !lines[i]!.startsWith('## ') && lines[i]!.startsWith('#')) i++;
-  while (i < lines.length && !isQuoteStart(lines[i]!) && !lines[i]!.startsWith('> ###')) i++;
-
-  const introBody = lines.slice(0, i).join('\n');
-  const intro = paragraphs(introBody);
-
-  const quotes = extractQuotes(content);
-
-  // Trailing prose — paragraphs after the last quote (before any sidebar).
-  const lastQuote = quotes[quotes.length - 1];
-  let tailStart = 0;
-  if (lastQuote) {
-    const idx = content.indexOf(lastQuote.text);
-    tailStart = idx + lastQuote.text.length;
-    // Move past the attribution line
-    const newlineIdx = content.indexOf('\n', tailStart);
-    tailStart = content.indexOf('\n', newlineIdx + 1) + 1;
-  }
-  const tailBody = stripSidebar(content.slice(tailStart));
-  const tail = paragraphs(tailBody);
-
-  // Quote 1 + middle paragraphs + Quote 2 + chart + Quote 3 + tail
-  const q1 = quotes[0] ? renderQuote(quotes[0], 'orange') : '';
-  const q2 = quotes[1] ? renderQuote(quotes[1], 'ink') : '';
-  const q3 = quotes[2] ? renderQuote(quotes[2], 'ink') : '';
-
-  // Mid-paragraph between q1 and q2 (about Mythos producing results)
-  const midBody = quotes[0] && quotes[1] ? extractBetween(content, quotes[0].text, quotes[1].text) : '';
-  const mid = paragraphs(midBody);
-
-  // Paragraph between q2 and q3 (CyberGym scoring)
-  const mid2 = quotes[1] && quotes[2] ? extractBetween(content, quotes[1].text, quotes[2].text) : '';
-  const mid2Html = paragraphs(mid2);
-
-  return `<div class="prose-well">
-  <span class="prose-marginalia">&#x2197; &nbsp; Apr 07 &nbsp; · &nbsp; Consortium announced</span>
-  <div class="prose drop-cap">
-${intro}
-  </div>
-  <aside class="prose-aside">
-    <div><b>What Mythos found</b></div>
-    <div>OpenBSD · 27 yr</div>
-    <div>FFmpeg · 16 yr</div>
-    <div>Linux kernel · chain</div>
-    <div>Firefox JIT · 4-vuln</div>
-    <div>OSS-Fuzz · 10 tgt</div>
-    <div style="margin-top:8px;color:var(--orange)"><b>Disclosed under embargo</b></div>
-  </aside>
-</div>
-
-<div class="prose-well">
-  <span class="prose-marginalia">&#x2197; &nbsp; Voices</span>
-  <div class="prose" style="font-family:var(--disp)">
-    ${q1}
-${mid}
-    ${q2}
-${mid2Html}
-    ${ratioHtml}
-    ${q3}
-${tail}
-  </div>
-  <aside class="prose-aside">
-    <div><b>Three voices</b></div>
-    <div>Microsoft (AI + OS)</div>
-    <div>Cisco (infra)</div>
-    <div>Linux Foundation (OSS)</div>
-    <div style="margin-top:12px"><b>90 days</b></div>
-    <div>Until the first public report</div>
-  </aside>
-</div>`;
+      const lines = b.split('\n');
+      const m = lines[0]?.match(/^>\s*\*"(.+?)"\*\s*$/);
+      if (m && m[1] && m[1].length > 20) {
+        let attr = '';
+        for (let i = 1; i < lines.length; i++) {
+          const a = lines[i]?.match(/^>\s*[—-]\s*(.+)$/);
+          if (a) { attr = a[1]!.trim(); break; }
+        }
+        const accent = quoteIdx++ === 0 ? 'orange' : 'ink';
+        return renderQuote({ text: m[1], attribution: attr }, accent);
+      }
+      return '';
+    })
+    .filter((s) => s.length > 0)
+    .join('\n');
 }
 
 function renderQuote(q: Quote, accent: 'orange' | 'ink'): string {
@@ -174,16 +97,6 @@ function renderQuote(q: Quote, accent: 'orange' | 'ink'): string {
       <p style="font-style:italic;font-size:22px;line-height:1.35;color:var(--ink);margin-bottom:12px">&ldquo;${inlineMarkdown(q.text)}&rdquo;</p>
       <span style="font-family:var(--narrow);font-size:11px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:var(--muted)">— ${inlineMarkdown(q.attribution)}</span>
     </blockquote>`;
-}
-
-function extractBetween(content: string, before: string, after: string): string {
-  const i1 = content.indexOf(before);
-  if (i1 < 0) return '';
-  const start = content.indexOf('\n', i1 + before.length) + 1;
-  const i2 = content.indexOf(after, start);
-  if (i2 < 0) return '';
-  // Move back to the start of the attribution line for `after`
-  return content.slice(start, content.lastIndexOf('\n', i2));
 }
 
 function stripSidebar(content: string): string {
@@ -197,20 +110,3 @@ function stripSidebar(content: string): string {
   return [...lines.slice(0, s), ...lines.slice(e + 1)].join('\n');
 }
 
-function paragraphs(body: string): string {
-  const blocks = body
-    .replace(/\r\n/g, '\n')
-    .split(/\n{2,}/)
-    .map((b) => b.trim())
-    .filter(
-      (b) =>
-        b.length > 0 &&
-        !/^-{3,}$/.test(b) &&
-        !b.startsWith('#') &&
-        !b.startsWith('>') &&
-        !b.startsWith('|'),
-    );
-  return blocks
-    .map((b) => `    <p>${inlineMarkdown(b.replace(/\n/g, ' '))}</p>`)
-    .join('\n');
-}
