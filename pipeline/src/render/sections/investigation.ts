@@ -207,10 +207,30 @@ function paragraphs(body: string): string {
         b.length > 0 &&
         !/^-{3,}$/.test(b) &&
         !b.startsWith('#') &&
-        !b.startsWith('>') &&
         !b.startsWith('|'),
     );
   return blocks
-    .map((b) => `    <p>${inlineMarkdown(b.replace(/\n/g, ' '))}</p>`)
+    .map((b) => {
+      if (b.startsWith('>')) {
+        // Skip chart/sidebar directives — they're handled separately.
+        if (/^>\s*###/.test(b)) return '';
+        const bqLines = b
+          .split('\n')
+          .map((l) => l.replace(/^>\s?/, '').trim())
+          .filter((l) => l.length > 0);
+        const attrIdx = bqLines.findIndex((l) => /^[—-]/.test(l));
+        const quoteLines = attrIdx >= 0 ? bqLines.slice(0, attrIdx) : bqLines;
+        const attrLines = attrIdx >= 0 ? bqLines.slice(attrIdx) : [];
+        const quoteHtml = quoteLines.length
+          ? `<p style="font-style:italic">${inlineMarkdown(quoteLines.join(' '))}</p>`
+          : '';
+        const attrHtml = attrLines.length
+          ? `<cite>${inlineMarkdown(attrLines.join(' '))}</cite>`
+          : '';
+        return `    <blockquote>${quoteHtml}${attrHtml}</blockquote>`;
+      }
+      return `    <p>${inlineMarkdown(b.replace(/\n/g, ' '))}</p>`;
+    })
+    .filter((b) => b.length > 0)
     .join('\n');
 }
