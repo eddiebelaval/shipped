@@ -207,10 +207,27 @@ function paragraphs(body: string): string {
         b.length > 0 &&
         !/^-{3,}$/.test(b) &&
         !b.startsWith('#') &&
-        !b.startsWith('>') &&
         !b.startsWith('|'),
     );
   return blocks
-    .map((b) => `    <p>${inlineMarkdown(b.replace(/\n/g, ' '))}</p>`)
+    .map((b) => {
+      if (b.startsWith('>')) return renderBlockquoteBlock(b);
+      return `    <p>${inlineMarkdown(b.replace(/\n/g, ' '))}</p>`;
+    })
     .join('\n');
+}
+
+function renderBlockquoteBlock(block: string): string {
+  const lines = block.split('\n');
+  const firstLine = lines[0] ?? '';
+  const m = firstLine.match(/^>\s*\*"(.+?)"\*\s*$/);
+  if (!m) return ''; // chart, sidebar, or other structural blocks — not prose quotes
+  const text = m[1]!;
+  const secondLine = lines[1] ?? '';
+  const am = secondLine.match(/^>\s*[—\-]\s*(.+)$/);
+  const attr = am ? am[1]!.trim() : '';
+  return `    <blockquote style="margin:32px 0;padding:0;border-left:3px solid var(--orange);padding-left:20px">
+      <p style="font-style:italic;font-size:22px;line-height:1.35;color:var(--ink);margin-bottom:12px">&ldquo;${inlineMarkdown(text)}&rdquo;</p>
+      ${attr ? `<span style="font-family:var(--narrow);font-size:11px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:var(--muted)">— ${inlineMarkdown(attr)}</span>` : ''}
+    </blockquote>`;
 }
