@@ -207,10 +207,30 @@ function paragraphs(body: string): string {
         b.length > 0 &&
         !/^-{3,}$/.test(b) &&
         !b.startsWith('#') &&
-        !b.startsWith('>') &&
         !b.startsWith('|'),
     );
   return blocks
-    .map((b) => `    <p>${inlineMarkdown(b.replace(/\n/g, ' '))}</p>`)
+    .map((b) => {
+      if (!b.startsWith('>')) {
+        return `    <p>${inlineMarkdown(b.replace(/\n/g, ' '))}</p>`;
+      }
+      // Skip chart/sidebar/number-table blockquotes
+      if (/^>\s*###/.test(b) || /^>\s*\*\*/.test(b)) return '';
+      // Quote card: > *"..."*  followed by  > — attribution
+      const lines = b.split('\n');
+      const quoteMatch = lines[0]?.match(/^>\s*\*"(.+?)"\*\s*$/);
+      if (quoteMatch?.[1]) {
+        const attrLine = lines.find((l, i) => i > 0 && /^>\s*[—-]/.test(l));
+        const attrMatch = attrLine?.match(/^>\s*[—-]\s*(.+)$/);
+        const text = quoteMatch[1];
+        const attr = attrMatch?.[1] ?? '';
+        return `    <blockquote style="margin:32px 0;padding:0;border-left:3px solid var(--orange);padding-left:20px">
+      <p style="font-style:italic;font-size:22px;line-height:1.35;color:var(--ink);margin-bottom:12px">&ldquo;${inlineMarkdown(text)}&rdquo;</p>
+      ${attr ? `<span style="font-family:var(--narrow);font-size:11px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:var(--muted)">— ${inlineMarkdown(attr)}</span>` : ''}
+    </blockquote>`;
+      }
+      return '';
+    })
+    .filter(Boolean)
     .join('\n');
 }
