@@ -207,10 +207,24 @@ function paragraphs(body: string): string {
         b.length > 0 &&
         !/^-{3,}$/.test(b) &&
         !b.startsWith('#') &&
-        !b.startsWith('>') &&
         !b.startsWith('|'),
     );
-  return blocks
-    .map((b) => `    <p>${inlineMarkdown(b.replace(/\n/g, ' '))}</p>`)
-    .join('\n');
+  const html: string[] = [];
+  for (const b of blocks) {
+    if (b.startsWith('>')) {
+      // Attribution lines ("— Name · Org") may appear as a standalone blockquote
+      // or as the second line of a quote+attribution pair. Detect and render them.
+      const attrLine = b.match(/^>\s*([—–].+)$/m);
+      if (attrLine) {
+        html.push(
+          `    <p style="font-family:var(--narrow);font-size:11px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:var(--muted)">${inlineMarkdown(attrLine[1]!.trim())}</p>`,
+        );
+      }
+      // Chart data, sidebar fragments, and other structural blockquotes are
+      // handled separately (extractRatioChart / stripSidebar); skip here.
+    } else {
+      html.push(`    <p>${inlineMarkdown(b.replace(/\n/g, ' '))}</p>`);
+    }
+  }
+  return html.join('\n');
 }
