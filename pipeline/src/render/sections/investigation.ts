@@ -15,10 +15,10 @@ export function renderInvestigation(section: Section): string {
   const ratio = extractRatioChart(section.content);
   const ratioHtml = ratio && ratio.kind === 'ratio' ? renderRatio(ratio.data) : '';
 
-  // Generic investigation body: the full prose block. Quotes render inline
-  // via blockquote formatting. No per-issue hardcoded consortium table or
-  // money-aside (those were Issue 00 Glasswing-specific).
-  const prose = paragraphs(stripSidebar(section.content));
+  // Generic investigation body: the full prose block. Chart and sidebar
+  // blocks are extracted separately; remaining blockquotes (quote + attribution)
+  // are rendered inline as <blockquote> elements by paragraphs().
+  const prose = paragraphs(stripChart(stripSidebar(section.content)));
 
   return `<div class="feature-opener" id="investigation">
   <span class="vert-label">Investigation</span>
@@ -186,15 +186,23 @@ function extractBetween(content: string, before: string, after: string): string 
   return content.slice(start, content.lastIndexOf('\n', i2));
 }
 
-function stripSidebar(content: string): string {
+function stripBlockquoteSection(content: string, pattern: RegExp): string {
   const lines = content.split('\n');
-  const start = lines.findIndex((l) => /^>\s*###\s+Sidebar/.test(l));
+  const start = lines.findIndex((l) => pattern.test(l));
   if (start < 0) return content;
   let s = start;
   while (s > 0 && lines[s - 1]!.startsWith('>')) s--;
   let e = start;
   while (e < lines.length - 1 && lines[e + 1]!.startsWith('>')) e++;
   return [...lines.slice(0, s), ...lines.slice(e + 1)].join('\n');
+}
+
+function stripSidebar(content: string): string {
+  return stripBlockquoteSection(content, /^>\s*###\s+Sidebar/);
+}
+
+function stripChart(content: string): string {
+  return stripBlockquoteSection(content, /^>\s*###\s+CHART/);
 }
 
 function paragraphs(body: string): string {
@@ -207,10 +215,22 @@ function paragraphs(body: string): string {
         b.length > 0 &&
         !/^-{3,}$/.test(b) &&
         !b.startsWith('#') &&
-        !b.startsWith('>') &&
         !b.startsWith('|'),
     );
   return blocks
-    .map((b) => `    <p>${inlineMarkdown(b.replace(/\n/g, ' '))}</p>`)
+    .map((b) => {
+      if (b.startsWith('>')) {
+        // Render quote/attribution blockquotes inline rather than dropping them.
+        const lines = b
+          .split('\n')
+          .map((l) => l.replace(/^>\s*/, '').trim())
+          .filter(Boolean);
+        const inner = lines
+          .map((l) => `      <p style="margin:0 0 4px">${inlineMarkdown(l)}</p>`)
+          .join('\n');
+        return `    <blockquote style="margin:24px 0;padding-left:16px;border-left:3px solid var(--hair-hard)">\n${inner}\n    </blockquote>`;
+      }
+      return `    <p>${inlineMarkdown(b.replace(/\n/g, ' '))}</p>`;
+    })
     .join('\n');
 }
