@@ -1,2 +1,10 @@
+# pnpm 11 blocks dependency build scripts until each is explicitly approved.
+# It scaffolded this file with a placeholder ("set this to true or false"),
+# which is not a boolean, so `pnpm install` exited 1 on every run. Under
+# `set -euo pipefail` that killed scripts/nightly-check.sh, which had therefore
+# not run since 2026-05-23. Resolved 2026-08-03.
+#
+# esbuild arrives transitively via tsx. Its postinstall links the correct
+# platform-native binary; without it tsx cannot run at all.
 allowBuilds:
-  esbuild: set this to true or false
+  esbuild: true
