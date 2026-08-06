@@ -1,0 +1,1089 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light">
+<title>Shipped. Daily, Thursday, August 6, 2026</title>
+<meta property="og:title" content="Shipped. Daily, Thursday, August 6, 2026">
+<meta property="og:description" content="Demis Hassabis steps back from Google DeepMind CEO. Meta launches Muse Code, a direct Claude Code competitor. Anthropic ships inference hooks for Claude Enterprise. Frontier daily by Shipped.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://eddiebelaval.github.io/shipped/anthropic-daily/2026-08-06.html">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Shipped. Daily, Thursday, August 6, 2026">
+<meta name="twitter:description" content="Hassabis steps back at Google DeepMind. Meta launches Muse Code. Anthropic ships inference hooks for Claude Enterprise.">
+<meta name="description" content="Demis Hassabis steps back from Google DeepMind CEO. Meta launches Muse Code, a direct Claude Code competitor. Anthropic ships inference hooks for Claude Enterprise. Frontier daily by Shipped.">
+<meta name="author" content="Eddie Belaval">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='75' cy='62' r='14' fill='%23FF6B35'/%3E%3Ctext x='10' y='75' font-family='Georgia,serif' font-weight='700' font-size='62' fill='%231a1a1a'%3ES%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;0,9..144,900;1,9..144,300;1,9..144,400;1,9..144,500;1,9..144,700&family=Archivo:wght@300;400;500;600;700;800;900&family=Archivo+Narrow:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{font-size:16px;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;text-rendering:optimizeLegibility}
+body{background:#FAF8F4;color:#0b0b0b;font-family:'Archivo',sans-serif;overflow-x:hidden}
+::selection{background:#FF6B35;color:#fff}
+
+:root{
+  --orange:#FF6B35;
+  --ink:#0b0b0b;
+  --paper:#FAF8F4;
+  --paper-shadow:#f2f0e8;
+  --body:#2a2a2a;
+  --muted:#5a5a5a;
+  --gray:#8a8a8a;
+  --hair:rgba(11,11,11,0.12);
+  --hair-soft:rgba(11,11,11,0.06);
+  --hair-hard:rgba(11,11,11,0.22);
+  --disp:'Fraunces', 'Times New Roman', serif;
+  --sans:'Archivo', system-ui, sans-serif;
+  --narrow:'Archivo Narrow', 'Archivo', sans-serif;
+  --mono:'JetBrains Mono', ui-monospace, monospace;
+}
+
+body::before{
+  content:"";
+  position:fixed;inset:0;pointer-events:none;z-index:1000;opacity:.28;mix-blend-mode:multiply;
+  background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='180' height='180'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' seed='3'/><feColorMatrix values='0 0 0 0 0.02  0 0 0 0 0.02  0 0 0 0 0.02  0 0 0 0.22 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+}
+
+.pub-bar{
+  position:sticky;top:0;z-index:100;
+  background:var(--paper);
+  border-bottom:1px solid var(--hair);
+  padding:0 28px;height:42px;
+  display:flex;align-items:center;justify-content:space-between;
+  font-family:var(--narrow);
+  font-size:11px;font-weight:600;letter-spacing:.22em;
+  text-transform:uppercase;color:var(--ink);
+}
+.pub-bar-left,.pub-bar-right{display:flex;align-items:center;gap:16px}
+.pub-bar-mark{font-family:var(--disp);font-weight:500;font-size:16px;letter-spacing:-.01em;text-transform:none;font-style:italic}
+.pub-bar-mark .dot{color:var(--orange)}
+.pub-bar-sep{width:1px;height:12px;background:var(--hair-hard)}
+.pub-bar-meta{color:var(--muted)}
+.pub-bar-link{color:inherit;text-decoration:none;border-bottom:1px solid currentColor;transition:color .15s ease}
+.pub-bar-link:hover{color:var(--orange)}
+.colophon-link{color:inherit;text-decoration:none;border-bottom:1px solid currentColor;transition:color .15s ease}
+.colophon-link:hover{color:var(--orange)}
+.pub-bar-folio{color:var(--ink)}
+.pub-bar-folio b{font-weight:600;color:var(--orange)}
+.pub-bar-cta{
+  display:inline-block;background:var(--ink);color:var(--paper);
+  text-decoration:none;border:1px solid var(--ink);border-radius:10px;
+  font-family:var(--narrow);font-weight:700;font-size:11px;
+  letter-spacing:.2em;text-transform:uppercase;
+  padding:6px 14px;transition:background .15s ease,border-color .15s ease;
+}
+.pub-bar-cta:hover{background:var(--orange);border-color:var(--orange);color:var(--ink)}
+@media (max-width:720px){
+  .pub-bar-hide-sm{display:none}
+  .pub-bar{padding:0 16px}
+  .pub-bar-cta{padding:5px 10px;letter-spacing:.12em}
+}
+
+.folio{
+  font-family:var(--narrow);
+  font-size:10px;font-weight:500;letter-spacing:.28em;
+  text-transform:uppercase;color:var(--gray);
+  display:flex;align-items:center;gap:10px;
+}
+.folio b{color:var(--ink);font-weight:700}
+.folio .ruler{width:28px;height:1px;background:var(--hair-hard)}
+.folio .dot{color:var(--orange)}
+
+.section{
+  position:relative;
+  padding:64px 28px 40px;
+  max-width:1280px;margin:0 auto;
+}
+.section-folio{
+  display:flex;align-items:center;justify-content:space-between;
+  padding-bottom:18px;
+  border-bottom:1px solid var(--ink);
+  margin-bottom:44px;
+}
+.section-folio-left{display:flex;align-items:center;gap:14px}
+.section-folio-label{
+  font-family:var(--narrow);
+  font-size:11px;font-weight:700;letter-spacing:.28em;
+  text-transform:uppercase;color:var(--ink);
+}
+.section-folio-sub{
+  font-family:var(--disp);font-style:italic;
+  font-size:13px;color:var(--muted);
+}
+
+.prose-well{
+  max-width:1280px;margin:0 auto;padding:0 28px 56px;
+  display:grid;grid-template-columns:72px 1fr minmax(0,320px);
+  gap:32px;position:relative;
+}
+.prose-well::before{
+  content:"";position:absolute;left:100px;top:0;bottom:0;
+  width:1px;background:var(--hair);
+}
+.prose-marginalia{
+  grid-column:1;
+  font-family:var(--narrow);
+  font-size:10px;font-weight:600;letter-spacing:.26em;
+  text-transform:uppercase;color:var(--gray);
+  writing-mode:vertical-rl;transform:rotate(180deg);
+  align-self:start;padding-top:8px;
+  white-space:nowrap;
+}
+.prose{
+  grid-column:2;
+  font-family:var(--disp);
+  font-variation-settings:"opsz" 14;
+  font-weight:400;font-size:19px;line-height:1.66;
+  color:var(--body);
+  max-width:640px;
+}
+.prose p{margin-bottom:24px}
+.prose em{font-style:italic;color:var(--ink)}
+.prose strong{font-weight:600;color:var(--ink)}
+.prose code{
+  font-family:var(--mono);font-size:.86em;
+  background:var(--paper-shadow);padding:1px 6px;
+  border-radius:3px;color:var(--ink);
+}
+.prose h3{
+  font-family:var(--disp);font-weight:700;
+  font-variation-settings:"opsz" 72;
+  font-size:clamp(22px,2.5vw,32px);
+  letter-spacing:-.02em;line-height:1.1;color:var(--ink);
+  margin:40px 0 20px;
+  padding-top:40px;
+  border-top:1px solid var(--hair-hard);
+}
+.prose h3:first-child{margin-top:0;padding-top:0;border-top:none}
+.prose-aside{
+  grid-column:3;
+  font-family:var(--narrow);
+  font-size:11px;font-weight:500;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--muted);
+  border-top:1px solid var(--ink);padding-top:14px;
+  line-height:1.8;
+}
+.prose-aside b{color:var(--ink);font-weight:700}
+
+.drop-cap::first-letter{
+  font-family:var(--disp);
+  font-variation-settings:"opsz" 144;
+  font-weight:700;
+  font-size:9.2em;
+  float:left;line-height:.78;
+  padding:.02em 12px 0 0;
+  margin:.02em 4px -.1em -2px;
+  color:var(--ink);
+}
+
+@media(max-width:860px){
+  .prose-well{grid-template-columns:1fr;padding-left:20px;padding-right:20px}
+  .prose-well::before{display:none}
+  .prose-marginalia{display:none}
+  .prose{grid-column:1}
+  .prose-aside{grid-column:1;margin-top:20px}
+  .drop-cap::first-letter{font-size:6.6em}
+}
+
+.quiet-section{
+  max-width:1280px;margin:0 auto;padding:64px 28px 24px;
+  display:grid;grid-template-columns:repeat(12,1fr);gap:24px;
+}
+.quiet-head{grid-column:1 / span 3;}
+.quiet-title{
+  font-family:var(--disp);font-style:italic;font-weight:400;
+  font-variation-settings:"opsz" 72;
+  font-size:32px;line-height:1;letter-spacing:-.02em;
+  color:var(--ink);
+}
+.quiet-title em{color:var(--orange);font-style:normal;font-weight:500}
+.quiet-kicker{
+  font-family:var(--narrow);
+  font-size:10px;font-weight:700;letter-spacing:.32em;
+  text-transform:uppercase;color:var(--muted);
+  margin-bottom:10px;
+}
+.quiet-body{
+  grid-column:5 / -1;
+  font-family:var(--disp);font-size:17px;line-height:1.65;color:var(--body);
+  padding-left:24px;border-left:1px solid var(--ink);
+}
+.quiet-body p{margin-bottom:16px}
+.quiet-body strong{font-weight:600;color:var(--ink)}
+.quiet-body code{font-family:var(--mono);font-size:.85em;background:var(--paper-shadow);padding:1px 5px;border-radius:3px;color:var(--ink);}
+@media(max-width:860px){
+  .quiet-head,.quiet-body{grid-column:1 / -1}
+  .quiet-body{padding-left:0;border-left:none;border-top:1px solid var(--ink);padding-top:18px}
+}
+
+.log-divider{
+  background:var(--paper);
+  padding:96px 28px 48px;
+  text-align:center;
+  border-top:3px double var(--ink);
+  border-bottom:1px solid var(--ink);
+  max-width:1280px;margin:0 auto;
+}
+.log-divider-kicker{
+  font-family:var(--narrow);
+  font-size:11px;font-weight:700;letter-spacing:.48em;
+  text-transform:uppercase;color:var(--orange);
+  margin-bottom:14px;
+}
+.log-divider-title{
+  font-family:var(--disp);font-weight:700;
+  font-variation-settings:"opsz" 144;
+  font-size:clamp(56px,10vw,144px);
+  line-height:.9;letter-spacing:-.045em;color:var(--ink);
+  margin-bottom:16px;
+}
+.log-divider-title em{font-style:italic;font-weight:400}
+.log-divider-sub{
+  font-family:var(--disp);font-style:italic;
+  font-size:18px;color:var(--muted);max-width:640px;margin:0 auto;line-height:1.5;
+}
+
+.log-section{
+  padding:48px 28px;max-width:1280px;margin:0 auto;
+}
+.log-cat-head{
+  display:grid;
+  grid-template-columns:1fr auto;
+  gap:24px;align-items:baseline;
+  padding-bottom:18px;
+  border-bottom:1px solid var(--ink);
+  margin-bottom:0;
+}
+.log-cat-name{
+  font-family:var(--disp);font-weight:600;font-style:italic;
+  font-variation-settings:"opsz" 96;
+  font-size:clamp(36px,5vw,56px);
+  letter-spacing:-.02em;color:var(--ink);line-height:1;
+}
+.log-cat-count{
+  font-family:var(--narrow);
+  font-size:10px;font-weight:600;letter-spacing:.28em;
+  text-transform:uppercase;color:var(--muted);
+  text-align:right;
+}
+.log-cat-count b{color:var(--ink);font-weight:700;font-size:13px;display:block}
+
+.log-entries{display:flex;flex-direction:column}
+.log-entry{
+  padding:24px 0;
+  border-bottom:1px solid var(--hair);
+  display:grid;
+  grid-template-columns:120px 1fr;gap:28px;
+}
+.log-entry-left{display:flex;flex-direction:column;gap:8px;}
+.log-entry-date{
+  font-family:var(--narrow);
+  font-size:10px;font-weight:700;letter-spacing:.22em;
+  text-transform:uppercase;color:var(--ink);
+  font-variant-numeric:tabular-nums;
+}
+.log-tag{
+  font-family:var(--narrow);
+  font-size:9px;font-weight:700;letter-spacing:.22em;
+  text-transform:uppercase;padding:3px 7px;
+  display:inline-block;line-height:1.3;width:fit-content;
+}
+.log-tag.model{background:var(--orange);color:var(--paper)}
+.log-tag.api{background:var(--ink);color:var(--paper)}
+.log-tag.code{background:#3a3a3a;color:var(--paper)}
+.log-tag.apps{background:#5a5a5a;color:var(--paper)}
+.log-tag.sdk-py,.log-tag.sdk-ts{background:var(--paper);color:var(--ink);border:1px solid var(--ink)}
+.log-tag.research,.log-tag.news{background:var(--paper);color:var(--muted);border:1px solid var(--hair-hard)}
+.log-tag.deprecation{background:var(--paper-shadow);color:var(--muted);border:1px solid var(--hair-hard)}
+.log-entry-title{
+  font-family:var(--disp);font-weight:500;
+  font-variation-settings:"opsz" 72;
+  font-size:20px;letter-spacing:-.012em;
+  color:var(--ink);line-height:1.25;
+  margin-bottom:10px;
+}
+.log-entry-title a{color:inherit;text-decoration:none;border-bottom:1px solid var(--hair-hard)}
+.log-entry-title a:hover{border-bottom-color:var(--orange);color:var(--orange)}
+.log-entry-body{
+  font-family:var(--sans);font-size:14.5px;line-height:1.6;color:var(--body);
+  margin-bottom:12px;
+}
+.log-entry-body code{font-family:var(--mono);font-size:.85em;background:var(--paper-shadow);padding:1px 5px;border-radius:3px;color:var(--ink);}
+.log-entry-how{
+  font-family:var(--sans);font-size:13.5px;line-height:1.6;color:var(--muted);
+  padding-top:12px;border-top:1px solid var(--hair-soft);
+}
+.log-entry-how b{font-family:var(--narrow);font-size:10px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--ink);display:block;margin-bottom:6px}
+.log-entry-how code{font-family:var(--mono);font-size:.85em;background:var(--paper-shadow);padding:1px 5px;border-radius:3px;color:var(--ink);}
+
+@media(max-width:720px){
+  .log-entry{grid-template-columns:1fr;gap:12px}
+  .log-cat-head{grid-template-columns:auto 1fr}
+  .log-cat-count{grid-column:1 / -1;text-align:left;padding-top:8px;border-top:1px solid var(--hair)}
+}
+
+.ornament{
+  text-align:center;margin:64px auto;
+  font-family:var(--disp);font-size:16px;color:var(--hair-hard);
+  letter-spacing:1.2em;
+}
+
+.colophon{
+  background:var(--ink);color:var(--paper);
+  padding:80px 28px 64px;
+  border-top:2px solid var(--orange);
+}
+.colophon-inner{
+  max-width:1280px;margin:0 auto;
+  display:grid;grid-template-columns:repeat(12,1fr);gap:32px;
+}
+.colophon-mast{grid-column:1 / span 5;}
+.colophon-word{
+  font-family:var(--disp);font-weight:500;
+  font-variation-settings:"opsz" 144;
+  font-size:clamp(72px,10vw,120px);
+  line-height:.9;letter-spacing:-.04em;color:var(--paper);
+}
+.colophon-word .dot{color:var(--orange)}
+.colophon-tag{
+  margin-top:14px;
+  font-family:var(--disp);font-style:italic;font-size:18px;
+  color:rgba(250,250,247,.65);line-height:1.4;max-width:360px;
+}
+.colophon-body{
+  grid-column:6 / -1;
+  display:grid;grid-template-columns:repeat(3,1fr);gap:32px;
+}
+.colophon-col h4{
+  font-family:var(--narrow);
+  font-size:10px;font-weight:700;letter-spacing:.32em;
+  text-transform:uppercase;color:var(--orange);
+  margin-bottom:12px;padding-bottom:10px;
+  border-bottom:1px solid rgba(250,250,247,.2);
+}
+.colophon-col p,.colophon-col li{
+  font-family:var(--sans);font-size:13px;line-height:1.6;
+  color:rgba(250,250,247,.75);
+  margin-bottom:8px;list-style:none;
+}
+.colophon-col b{color:var(--paper);font-weight:600}
+.colophon-col em{font-style:italic;color:rgba(250,250,247,.9)}
+.colophon-foot{
+  grid-column:1 / -1;
+  margin-top:32px;padding-top:24px;
+  border-top:1px solid rgba(250,250,247,.2);
+  display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap;
+  font-family:var(--narrow);font-size:10px;font-weight:600;
+  letter-spacing:.28em;text-transform:uppercase;color:rgba(250,250,247,.5);
+}
+.colophon-foot b{color:var(--paper);font-weight:700}
+.colophon-foot .hot{color:var(--orange)}
+@media(max-width:860px){
+  .colophon-mast,.colophon-body{grid-column:1 / -1}
+  .colophon-body{grid-template-columns:1fr;gap:24px}
+}
+
+/* Daily-specific: masthead hero */
+.daily-hero{
+  padding:56px 28px 48px;
+  border-bottom:3px solid var(--ink);
+  max-width:1280px;margin:0 auto;
+}
+.daily-kicker{
+  font-family:var(--narrow);
+  font-size:11px;font-weight:700;letter-spacing:.38em;
+  text-transform:uppercase;color:var(--orange);
+  margin-bottom:20px;
+  display:flex;align-items:center;gap:16px;
+}
+.daily-kicker-rule{width:32px;height:1px;background:var(--orange)}
+.daily-masthead{
+  font-family:var(--disp);font-style:italic;font-weight:500;
+  font-variation-settings:"opsz" 144;
+  font-size:clamp(72px,14vw,180px);
+  line-height:.86;letter-spacing:-.04em;
+  color:var(--ink);
+  display:inline-block;
+  margin-bottom:24px;
+}
+.daily-masthead .dot{color:var(--orange)}
+.daily-dateline{
+  font-family:var(--narrow);
+  font-size:12px;font-weight:600;letter-spacing:.3em;
+  text-transform:uppercase;color:var(--muted);
+  margin-bottom:40px;
+  padding-bottom:28px;
+  border-bottom:1px solid var(--hair-hard);
+}
+
+/* The Read: centered pull quote */
+.daily-read{
+  max-width:780px;
+  margin:40px 0 0;
+}
+.daily-read-label{
+  font-family:var(--narrow);
+  font-size:10px;font-weight:700;letter-spacing:.36em;
+  text-transform:uppercase;color:var(--orange);
+  margin-bottom:14px;
+}
+.daily-read-quote{
+  font-family:var(--disp);font-style:italic;font-weight:400;
+  font-variation-settings:"opsz" 48;
+  font-size:clamp(20px,2.6vw,30px);
+  line-height:1.4;letter-spacing:-.01em;
+  color:var(--body);
+}
+
+/* Flag strip above section titles */
+.lab-flag{
+  display:inline-block;
+  font-family:var(--narrow);font-size:9px;font-weight:700;
+  letter-spacing:.26em;text-transform:uppercase;
+  padding:3px 9px;margin-bottom:10px;
+  background:var(--ink);color:var(--paper);
+}
+.lab-flag.anthropic{background:var(--orange);color:var(--ink)}
+.lab-flag.deepmind{background:#1a73e8;color:#fff}
+.lab-flag.meta{background:#0081fb;color:#fff}
+.lab-flag.mistral{background:#2a2a2a;color:var(--paper)}
+.lab-flag.xai{background:var(--ink);color:var(--paper)}
+
+/* Section title (h2) for dig items */
+.dig-title{
+  font-family:var(--disp);font-weight:700;
+  font-variation-settings:"opsz" 96;
+  font-size:clamp(28px,3.5vw,44px);
+  line-height:1;letter-spacing:-.025em;color:var(--ink);
+  margin-bottom:28px;
+  padding-bottom:20px;
+  border-bottom:1px solid var(--hair-hard);
+}
+
+@media(max-width:600px){
+  .section,.log-section,.quiet-section,.daily-hero{padding-left:20px;padding-right:20px}
+}
+</style>
+</head>
+<body>
+
+<!-- PUBLICATION BAR -->
+<nav class="pub-bar">
+  <div class="pub-bar-left">
+    <span class="pub-bar-mark">Shipped<span class="dot">.</span></span>
+    <span class="pub-bar-sep pub-bar-hide-sm"></span>
+    <span class="pub-bar-meta pub-bar-hide-sm">Frontier Daily by <a href="https://id8labs.app" class="pub-bar-link">id8Labs</a></span>
+  </div>
+  <div class="pub-bar-right">
+    <span class="pub-bar-meta pub-bar-hide-sm">Thursday, August 6, 2026</span>
+    <span class="pub-bar-sep pub-bar-hide-sm"></span>
+    <a href="#subscribe" class="pub-bar-cta">Subscribe</a>
+  </div>
+</nav>
+
+<!-- DAILY HERO MASTHEAD -->
+<div class="daily-hero">
+  <div class="daily-kicker">
+    <span class="daily-kicker-rule"></span>
+    Frontier Daily
+    <span class="daily-kicker-rule"></span>
+  </div>
+  <div class="daily-masthead">Shipped<span class="dot">.</span></div>
+  <div class="daily-dateline">Thursday, August 6, 2026 &nbsp;&#183;&nbsp; Six labs, one feed &nbsp;&#183;&nbsp; id8Labs</div>
+  <div class="daily-read">
+    <div class="daily-read-label">The Read</div>
+    <p class="daily-read-quote">Google DeepMind handed operational control to a new SVP, Meta launched a terminal coding agent to compete directly with Claude Code, and Anthropic wrapped every enterprise prompt in a corporate security checkpoint. Three moves on three different surfaces, same 24 hours. The frontier does not pause for org charts.</p>
+  </div>
+</div>
+
+<!-- LEAD STORY -->
+<section class="section" id="lead">
+  <div class="section-folio">
+    <div class="section-folio-left">
+      <span class="lab-flag deepmind">Google DeepMind</span>
+      <span class="section-folio-sub">Leadership</span>
+    </div>
+    <span style="font-family:var(--narrow);font-size:10px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:var(--muted);">Aug 5, 2026</span>
+  </div>
+  <h2 class="dig-title">One Founder Steps Back</h2>
+</section>
+<div class="prose-well">
+  <div class="prose-marginalia">Lead Story</div>
+  <div class="prose drop-cap">
+    <p>Wednesday, August 5. Sundar Pichai published a company message on blog.google. The first line announced that Demis Hassabis, the person who built DeepMind from a London research house into the most credentialed AI lab on Earth, is stepping back from day-to-day operations. He becomes Chair of Google DeepMind and Chief Scientist of Alphabet, the first person to hold that title. Koray Kavukcuoglu, previously CTO of Google DeepMind and Chief AI Architect of Google, becomes Senior Vice President of Google DeepMind, inheriting day-to-day responsibility for Gemini model development, frontier research, and the Gemini app and developer teams. Jeff Dean, who spent 27 years at Google authoring MapReduce, TensorFlow, and the distributed systems that underpin most of what you use online, and most recently serving as Chief Scientist of Google DeepMind, is departing to found Discovery Loop, a public-benefit corporation.</p>
+    <p>The mechanism is a role reclassification, not an exit. Hassabis remains. He continues to lead Isomorphic Labs. But Chief Scientist of Alphabet is a title you create for someone when you want their insight in the room without their attention on the sprint. It is a strategic role, not an operational one. The distinction matters because DeepMind's most important output right now is not papers. It is Gemini.</p>
+    <p>The blast radius lands on Gemini's velocity. Kavukcuoglu has the credentials: he led the team that built AlphaFold, ran DeepMind's research organization for years, and served as CTO. The transition is orderly in the technical sense. What Hassabis brought to the role that Kavukcuoglu will now have to establish is harder to transfer: the singular credibility of the person who founded the institution, who trained the people who trained the models, who could walk into any government or boardroom and explain why this lab should be trusted. That credibility was personal. Kavukcuoglu is a first-rate researcher and operator. He is not yet that person, and he will spend the next year becoming it.</p>
+    <p>The pattern: no other frontier lab has made this move while the race is live. Sam Altman runs OpenAI. Dario Amodei runs Anthropic. Mark Zuckerberg personally announced Meta Superintelligence Labs' Muse Code this week. Hassabis was the last of the original generation of founder-operators at a major frontier lab. Now he is the first to rotate out of the seat. That is either a sign that DeepMind has matured past the point where one person's calendar is the bottleneck, or a signal about priorities that will become clearer over the next few quarters. Reading the timing charitably: the models are advanced enough that operational leadership can transfer without breaking the research trajectory.</p>
+    <p>Jeff Dean's departure reads separately. Leaving after 27 years to start a public-benefit corporation is a statement of intent, not a retirement. Discovery Loop has a mission orientation. The public-benefit structure means Dean is not going to a competitor. He is going somewhere deliberately different. Two of the most consequential figures in the history of applied AI research exit operational roles in the same announcement. The building does not stop. The builders redirect.</p>
+    <p><strong>The builder's move:</strong> Kavukcuoglu is now the public voice for Gemini's direction. The first model release he owns, the first conference appearance, the first strategic announcement will define the transition.</p>
+  </div>
+  <div class="prose-aside">
+    <b>Source</b><br>
+    blog.google<br>
+    Aug 5, 2026<br><br>
+    <b>Confirmed by</b><br>
+    Axios, 9to5Google,<br>
+    Fortune, Bloomberg<br><br>
+    <b>URL</b><br>
+    blog.google/<br>company-news/...<br>next-chapter-ai-<br>momentum/
+  </div>
+</div>
+
+<!-- THE DIG HEADER -->
+<section class="section" style="padding-bottom:0;" id="dig">
+  <div class="section-folio">
+    <div class="section-folio-left">
+      <span class="section-folio-label">The Dig</span>
+      <span class="section-folio-sub">Secondary items, all six levers</span>
+    </div>
+  </div>
+</section>
+
+<!-- DIG ITEM 1: INFERENCE HOOKS -->
+<section class="section" style="padding-top:0;padding-bottom:0;">
+  <span class="lab-flag anthropic">Anthropic</span>
+  <h2 class="dig-title" style="margin-top:12px;">Anthropic Builds the Corporate Security Checkpoint</h2>
+</section>
+<div class="prose-well" style="padding-bottom:40px;">
+  <div class="prose-marginalia">Inference Hooks</div>
+  <div class="prose">
+    <p>Every prompt typed into Claude Enterprise now clears a corporate security server before the model sees it. That is inference hooks, shipped in beta on August 5 to Claude Enterprise customers.</p>
+    <p>The mechanism: organizations designate a security server endpoint. Every incoming request routes through it. The server returns allow or deny. On deny, the request is blocked before inference. The check also runs on tool call responses from MCP, skills, and plugins before those responses reach the model. A single policy covers Claude chat, Claude Code sessions, and Cowork under one roof. The integration list is not generic: Netskope, Palo Alto Networks, and Zscaler are specifically named as compatible. These are the three dominant enterprise network security vendors. Anthropic is not asking enterprises to buy new security tooling. They are integrating into what enterprises already have and already trust.</p>
+    <p>The blast radius is every regulated-industry deal that has stalled on a DLP objection. Finance, healthcare, legal, government contractors: sectors where a prompt containing a client name or a contract clause is a compliance event before it is a productivity tool. Inference hooks give security teams the interception point they have been demanding. Without it, enterprise AI adoption in regulated industries runs through lengthy exceptions processes. With it, the same teams that approve Netskope traffic policies can approve Claude prompts using the same infrastructure and the same review workflow.</p>
+    <p>The same day, Cowork expanded from desktop-only to web and mobile, with session and file sync across devices and mobile approvals now available. The two announcements together read as a single product move. Anthropic is building a platform enterprises can deploy, not just an API they can call.</p>
+    <p>The contrast with OpenAI is about depth, not presence. OpenAI has enterprise controls too, and its enterprise product is mature. Naming Netskope, Palo Alto, and Zscaler by name in a launch announcement signals specific partnership commitments, not generic API compatibility. That is a different sales motion, and it is the right one for accounts that have already invested in those platforms and want Claude to fit the existing security architecture.</p>
+    <p><strong>Builder's move:</strong> If you are running Claude Enterprise and have an existing DLP or network security stack, beta access is worth prioritizing this week. The Claude Code usage boost runs through August 19.</p>
+  </div>
+  <div class="prose-aside">
+    <b>Source</b><br>
+    Claude Apps<br>
+    release notes<br>
+    Aug 5, 2026<br><br>
+    <b>Tier</b><br>
+    Claude Enterprise<br>only<br><br>
+    <b>Compatible with</b><br>
+    Netskope<br>
+    Palo Alto Networks<br>
+    Zscaler
+  </div>
+</div>
+
+<!-- DIG ITEM 2: META MUSE CODE -->
+<section class="section" style="padding-top:32px;padding-bottom:0;">
+  <span class="lab-flag meta">Meta</span>
+  <h2 class="dig-title" style="margin-top:12px;">Meta Enters the Coding Agent Race</h2>
+</section>
+<div class="prose-well" style="padding-bottom:40px;">
+  <div class="prose-marginalia">Muse Code</div>
+  <div class="prose">
+    <p>Meta Superintelligence Labs released Muse Code in public beta on August 5 for macOS and Linux. It is a terminal coding agent, designed to work across large repositories by coordinating multiple persistent background subagents that plan changes, write code, and validate results. The model underneath is Muse Spark 1.2, a coding-focused update co-trained alongside the agent, with specific improvements in code generation, debugging, codebase understanding, and long-running developer workflows.</p>
+    <p>The model-agent co-training claim is the notable technical bet. Muse Spark 1.2 was not trained generally and then applied to Muse Code. It was built with the agent's specific workflows in mind. Whether co-training produces a meaningfully better agent experience than a capable general model used in an agent loop is an empirical question that benchmarks cannot settle. But the bet is coherent: if the model and the agent share a training distribution, the model is more likely to produce outputs the agent can actually use without reformatting, retrying, or falling back.</p>
+    <p>The blast radius: anyone running Claude Code on large-repo tasks now has a named alternative from a lab with substantially more compute. Pricing at $1.25 per million input tokens and $4.25 per million output tokens puts Muse Spark 1.2 below what most Claude Code enterprise configurations cost in practice.</p>
+    <p>Anthropic extended its 50% Claude Code usage boost through August 19 on the same day Meta went live in beta. That is not a coincidence. It is a retention signal. The coding agent market now has Claude Code, OpenAI Codex, and Meta Muse Code as named competitors with distinct models behind them.</p>
+    <p>Meta's pace in this space is the other thing worth noting. Muse Spark 1.1 and the Meta Model API launched July 9. Muse Code plus Spark 1.2 launched August 5, less than four weeks later. They are moving.</p>
+    <p><strong>Builder's move:</strong> Muse Code is in public beta for macOS and Linux. Evaluate it against a realistic large-repo scenario before deciding, not the benchmark page.</p>
+  </div>
+  <div class="prose-aside">
+    <b>Source</b><br>
+    research.meta.ai<br>
+    Aug 5, 2026<br><br>
+    <b>Availability</b><br>
+    macOS, Linux<br>
+    Public beta<br><br>
+    <b>Pricing</b><br>
+    $1.25/M input<br>
+    $4.25/M output
+  </div>
+</div>
+
+<!-- DIG ITEM 3: SECURITY -->
+<section class="section" style="padding-top:32px;padding-bottom:0;">
+  <span class="lab-flag anthropic">Anthropic</span>
+  <span class="lab-flag mistral" style="margin-left:8px;">Mistral</span>
+  <h2 class="dig-title" style="margin-top:12px;">Security Week, Two Layers</h2>
+</section>
+<div class="prose-well" style="padding-bottom:56px;">
+  <div class="prose-marginalia">Security</div>
+  <div class="prose">
+    <p>Claude Code v2.1.223 shipped on August 5 with a substantive security fix set: Bash permission bypasses, hidden command execution, workflow sandbox escapes triggered via dynamic <code>import()</code>, and permission gaps in <code>bypassPermissions</code> mode.</p>
+    <p>The <code>bypassPermissions</code> gap is the one to act on immediately. That mode is used in automated pipelines where Claude Code runs without per-action human approval. A permission gap there means code that believed it was operating under controlled conditions was not. The fix is in v2.1.223. If you are running Claude Code in any automated configuration, update before anything else today.</p>
+    <p>The dynamic <code>import()</code> sandbox escape reads differently: a targeted attempt to use a JavaScript runtime vector as an exit point from the sandboxed environment. A permission misconfiguration this is not. The attack surface of an autonomous coding agent grows with its capability, and the people testing its limits have become technically sophisticated. Three security-focused Claude Code releases in recent weeks suggests the probe rate is rising.</p>
+    <p>Mistral shipped Shieldstral on August 4, with significant coverage on August 5: a 3B-parameter open-weights multimodal safety classifier under Apache 2.0 on Hugging Face. Unlike fixed-category guard models, Shieldstral accepts plain-language moderation policies at inference time, evaluating both text and images without retraining. Twelve languages, runs on a single 16GB GPU. Mistral claims it matches or exceeds open guard models up to 7x its size on text safety benchmarks.</p>
+    <p>The contrast is worth drawing explicitly. Anthropic is patching specific bypass attempts at the framework level, reactively, as they are discovered. Mistral is releasing a tool that lets any operator write their own moderation policy in natural language and run it against any model, proactively. Two responses to the same problem class, operating at different layers of the stack. Neither is the complete answer. They are not even answering the same question.</p>
+  </div>
+  <div class="prose-aside">
+    <b>Claude Code</b><br>
+    v2.1.223<br>
+    Aug 5, 2026<br><br>
+    <b>Update if</b><br>
+    Running automated<br>
+    pipelines with<br>
+    bypassPermissions<br><br>
+    <b>Mistral</b><br>
+    Shieldstral<br>
+    Apache 2.0<br>
+    Hugging Face
+  </div>
+</div>
+
+<!-- QUIET ON THE WIRE -->
+<div class="quiet-section" id="quiet">
+  <div class="quiet-head">
+    <div class="quiet-kicker">Coming Up</div>
+    <div class="quiet-title">Quiet on<br>the <em>Wire</em></div>
+  </div>
+  <div class="quiet-body">
+    <p>Elon Musk said on August 4 that Grok 4.6 is "likely next week." The <code>grok-voice-latest</code> API alias migrated to Grok Voice Think Fast 2.0 on August 5 (blog post dated July 29). Two API moves in 48 hours from xAI suggests more is staged.</p>
+    <p>Deprecations to calendar: Anthropic retires the legacy Workbench tools API on August 17 (<code>/v1/experimental/generate_prompt</code> and related endpoints). Google retires Gemini API image generation models on August 17. OpenAI retires Atlas on August 9, o3 from ChatGPT on August 26, and DALL-E GPT on August 30.</p>
+    <p>DeepMind's multi-agent AI safety research fund, a $10M initiative with Schmidt Sciences and the Cooperative AI Foundation, closes applications on August 8. If you are an academic group working in this space, that deadline is tomorrow.</p>
+  </div>
+</div>
+
+<div class="ornament">&#183; &#183; &#183;</div>
+
+<!-- SUBSCRIBE BLOCK -->
+<style>
+  /* Spine CTA. Lives here rather than in <head> because two published pages
+     are truncated and have no </head> to inject into; CSS applies document-wide
+     from anywhere, so the end of <body> is the one anchor every page has.
+     Only takes effect on pages that actually carry a pub-bar. */
+  .pub-bar-cta{
+    display:inline-block;
+    background:var(--ink, #0b0b0b);
+    color:var(--paper, #fafaf7);
+    text-decoration:none;
+    border:1px solid var(--ink, #0b0b0b);
+    border-radius:10px;
+    font-family:var(--narrow, 'Archivo Narrow','Archivo',system-ui,sans-serif);
+    font-weight:700;
+    font-size:11px;
+    letter-spacing:.2em;
+    text-transform:uppercase;
+    padding:6px 14px;
+    transition:background .15s ease,border-color .15s ease;
+  }
+  .pub-bar-cta:hover{
+    background:var(--orange, #ff6b35);
+    border-color:var(--orange, #ff6b35);
+    color:var(--ink, #0b0b0b);
+  }
+  @media (max-width:720px){
+    .pub-bar-hide-sm{display:none}
+    .pub-bar-cta{padding:5px 10px;letter-spacing:.12em}
+  }
+
+  .ship-sub {
+    background: var(--ink, #0b0b0b);
+    color: var(--paper, #fafaf7);
+    padding: 72px 64px;
+    margin: 56px auto;
+    max-width: 1280px;
+    text-align: center;
+    /* clears the sticky pub-bar when jumped to from the top CTA */
+    scroll-margin-top: 64px;
+  }
+  .ship-sub-kicker {
+    font-family: var(--narrow, 'Archivo Narrow','Archivo',system-ui,sans-serif);
+    font-weight: 700;
+    font-size: 12px;
+    letter-spacing: .25em;
+    text-transform: uppercase;
+    color: var(--orange, #ff6b35);
+    margin-bottom: 18px;
+  }
+  .ship-sub h3 {
+    font-family: var(--disp, 'Fraunces',Georgia,serif);
+    font-weight: 600;
+    font-style: italic;
+    font-size: clamp(26px, 3.6vw, 40px);
+    line-height: 1.15;
+    margin: 0 0 16px;
+    color: var(--paper, #fafaf7);
+  }
+  .ship-sub h3 em { font-style: normal; color: var(--orange, #ff6b35); }
+  .ship-sub p {
+    font-family: var(--sans, 'Archivo',system-ui,sans-serif);
+    font-size: 15px;
+    line-height: 1.6;
+    color: rgba(250,250,247,.72);
+    max-width: 560px;
+    margin: 0 auto 28px;
+  }
+  .ship-sub-form {
+    display: flex;
+    flex-direction: column;
+    max-width: 480px;
+    margin: 0 auto;
+  }
+  .ship-sub-row {
+    display: flex;
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.12);
+    transition: border-color .15s;
+  }
+  .ship-sub-row:focus-within { border-color: var(--orange, #ff6b35); }
+  .ship-sub-form input[type="email"] {
+    flex: 1;
+    background: transparent;
+    border: none;
+    outline: none;
+    color: var(--paper, #fafaf7);
+    font-family: var(--sans, 'Archivo',system-ui,sans-serif);
+    font-size: 15px;
+    padding: 16px 20px;
+    -webkit-appearance: none;
+    min-width: 0;
+  }
+  .ship-sub-form input::placeholder { color: rgba(250,250,247,.4); }
+  /* Honeypot: off-screen rather than display:none, so naive bots still fill it */
+  .ship-sub-hp {
+    position: absolute !important;
+    left: -9999px !important;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+  }
+  .ship-sub-form button {
+    background: var(--orange, #ff6b35);
+    color: var(--ink, #0b0b0b);
+    border: none;
+    font-family: var(--narrow, 'Archivo Narrow','Archivo',system-ui,sans-serif);
+    font-weight: 700;
+    font-size: 12px;
+    letter-spacing: .2em;
+    text-transform: uppercase;
+    padding: 0 28px;
+    cursor: pointer;
+    transition: background .15s;
+    white-space: nowrap;
+  }
+  .ship-sub-form button:hover { background: #ff5722; }
+  .ship-sub-form button:disabled { opacity: .5; cursor: wait; }
+  .ship-sub-cadences {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    margin-top: 16px;
+  }
+  .ship-sub-cadence {
+    font-family: var(--narrow, 'Archivo Narrow','Archivo',system-ui,sans-serif);
+    font-size: 11px;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    color: rgba(250,250,247,.66);
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    cursor: pointer;
+  }
+  .ship-sub-cadence input { accent-color: var(--orange, #ff6b35); cursor: pointer; }
+  .ship-sub-status {
+    margin-top: 16px;
+    font-family: var(--sans, 'Archivo',system-ui,sans-serif);
+    font-size: 14px;
+    color: var(--orange, #ff6b35);
+    min-height: 20px;
+  }
+  .ship-sub-status.error { color: #ff8b6b; }
+  @media (max-width: 540px) {
+    .ship-sub { padding: 48px 22px; margin: 28px auto; }
+    .ship-sub-cadences { gap: 14px; }
+  }
+</style>
+<section class="ship-sub" id="subscribe">
+  <div class="ship-sub-kicker">Stay on the frontier</div>
+  <h3>Get <em>Shipped.</em> in your inbox.</h3>
+  <p>Daily digest at 9 PM ET. Weekly magazine every Friday morning. Six labs, one feed. No spam, one-click unsubscribe.</p>
+  <form class="ship-sub-form" id="ship-sub-form">
+    <div class="ship-sub-row">
+      <input type="email" name="email" placeholder="your@email.com" required autocomplete="email" aria-label="Email address">
+      <button type="submit" id="ship-sub-btn">Subscribe &#x2192;</button>
+    </div>
+    <input type="text" name="website" class="ship-sub-hp" tabindex="-1" autocomplete="off" aria-hidden="true">
+    <div class="ship-sub-cadences">
+      <label class="ship-sub-cadence"><input type="checkbox" name="cadences" value="nightly" checked> Daily digest</label>
+      <label class="ship-sub-cadence"><input type="checkbox" name="cadences" value="weekly" checked> Weekly magazine</label>
+      <label class="ship-sub-cadence"><input type="checkbox" name="cadences" value="monthly"> Monthly roundup</label>
+    </div>
+  </form>
+  <div class="ship-sub-status" id="ship-sub-status" aria-live="polite"></div>
+</section>
+<script>
+(function () {
+  var form = document.getElementById('ship-sub-form');
+  if (!form) return;
+  var btn = document.getElementById('ship-sub-btn');
+  var status = document.getElementById('ship-sub-status');
+
+  form.addEventListener('submit', async function (e) {
+    e.preventDefault();
+    var data = new FormData(form);
+    var email = (data.get('email') || '').toString().trim();
+    if (!email) return;
+
+    var cadences = data.getAll('cadences').map(String);
+    status.className = 'ship-sub-status';
+    status.textContent = '';
+    btn.disabled = true;
+    btn.textContent = 'Subscribing…';
+
+    try {
+      var res = await fetch('https://id8labs.app/api/newsletter/subscribe', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          email: email,
+          source: 'shipped-daily',
+          website: (data.get('website') || '').toString(),
+          cadences: cadences.length ? cadences : ['nightly', 'weekly']
+        })
+      });
+      var body = await res.json().catch(function () { return {}; });
+      if (res.ok) {
+        status.textContent = body.isNewSubscriber === false
+          ? 'Already on the list.'
+          : 'You’re in. Next edition lands soon.';
+        if (body.isNewSubscriber !== false) form.reset();
+      } else {
+        status.className = 'ship-sub-status error';
+        status.textContent = body.error || 'Could not subscribe right now. Try again in a moment.';
+      }
+    } catch (err) {
+      status.className = 'ship-sub-status error';
+      status.textContent = 'Could not subscribe right now. Try again in a moment.';
+    } finally {
+      btn.disabled = false;
+      btn.textContent = 'Subscribe →';
+    }
+  });
+})();
+</script>
+
+<!-- RELEASE LOG -->
+<div class="log-divider" id="log">
+  <div class="log-divider-kicker">Back of Book</div>
+  <h2 class="log-divider-title">The <em>Release</em> Log</h2>
+  <p class="log-divider-sub">Everything confirmed in the window. August 5, 2026 to August 6, 2026. Use it as reference.</p>
+</div>
+
+<!-- A. Models -->
+<div class="log-section">
+  <div class="log-cat-head">
+    <div class="log-cat-name">A. Models</div>
+    <div class="log-cat-count"><b>1</b> entry</div>
+  </div>
+  <div class="log-entries">
+    <div class="log-entry">
+      <div class="log-entry-left">
+        <div class="log-entry-date">Aug 5, 2026</div>
+        <span class="log-tag deprecation">Deprecation</span>
+      </div>
+      <div>
+        <div class="log-entry-title"><a href="https://docs.anthropic.com/en/release-notes/api">Claude Opus 4.1 retired from the API</a></div>
+        <div class="log-entry-body"><code>claude-opus-4-1-20250805</code> retired from the Claude API. Recommended migration target is Claude Opus 4.8.</div>
+        <div class="log-entry-how"><b>How to use</b>Replace <code>model="claude-opus-4-1-20250805"</code> in all API calls. Requests to the retired model now return errors.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- B. API & Platform -->
+<div class="log-section">
+  <div class="log-cat-head">
+    <div class="log-cat-name">B. API &amp; Platform</div>
+    <div class="log-cat-count"><b>3</b> entries</div>
+  </div>
+  <div class="log-entries">
+    <div class="log-entry">
+      <div class="log-entry-left">
+        <div class="log-entry-date">Aug 5, 2026</div>
+        <span class="log-tag api">API</span>
+      </div>
+      <div>
+        <div class="log-entry-title"><a href="https://docs.anthropic.com/en/release-notes/claude-apps">Inference hooks for Claude Enterprise (beta)</a></div>
+        <div class="log-entry-body">Organization-level security server intercepts every prompt before inference and every tool call response before it reaches the model. Compatible with Netskope, Palo Alto Networks, and Zscaler. Covers Claude chat, Claude Code, and Cowork under a single org-level policy. Claude Platform API and Bedrock/Google Cloud deployments are out of scope.</div>
+        <div class="log-entry-how"><b>How to use</b>Enable via Claude Enterprise admin settings. Scoped to Enterprise tier.</div>
+      </div>
+    </div>
+    <div class="log-entry">
+      <div class="log-entry-left">
+        <div class="log-entry-date">~Aug 2026</div>
+        <span class="log-tag api">API</span>
+      </div>
+      <div>
+        <div class="log-entry-title"><a href="https://docs.anthropic.com/en/release-notes/api">Fallbacks parameter "default" mode</a></div>
+        <div class="log-entry-body">New "default" mode applies Anthropic's recommended fallback models by refusal category.</div>
+        <div class="log-entry-how"><b>How to use</b>Add <code>server-side-fallback-2026-07-01</code> beta header to requests.</div>
+      </div>
+    </div>
+    <div class="log-entry">
+      <div class="log-entry-left">
+        <div class="log-entry-date">~Jul 2026</div>
+        <span class="log-tag api">API</span>
+      </div>
+      <div>
+        <div class="log-entry-title"><a href="https://docs.anthropic.com/en/release-notes/api">Mid-conversation tool changes (beta)</a></div>
+        <div class="log-entry-body">Add or remove tools between turns while preserving the prompt cache. Available on Fable 5, Mythos 5, Opus 4.8, and Opus 5.</div>
+        <div class="log-entry-how"><b>How to use</b>Add <code>mid-conversation-tool-changes-2026-07-01</code> beta header.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- C. Claude Code -->
+<div class="log-section">
+  <div class="log-cat-head">
+    <div class="log-cat-name">C. Claude Code</div>
+    <div class="log-cat-count"><b>2</b> entries</div>
+  </div>
+  <div class="log-entries">
+    <div class="log-entry">
+      <div class="log-entry-left">
+        <div class="log-entry-date">Aug 5, 2026</div>
+        <span class="log-tag code">Code</span>
+      </div>
+      <div>
+        <div class="log-entry-title"><a href="https://github.com/anthropics/claude-code/blob/main/CHANGELOG.md">Claude Code v2.1.223</a></div>
+        <div class="log-entry-body">Security fixes: Bash permission bypasses, hidden command execution, workflow sandbox escapes via dynamic <code>import()</code>, permission gaps in <code>bypassPermissions</code> mode. Added: owner wildcard entries (<code>"owner/*"</code>) for marketplace management, <code>/teleport</code> hints for local session continuation, warnings for restricted subagent models. Fixed: forked background agents stuck "already resuming," session resumption after <code>/cd</code> commands, gateway model discovery hiding provider-prefixed models, Linux sandboxed command failures. Changes: <code>/review</code> now aliases <code>/code-review</code>, auto-compact logic update for unrecognized model IDs, <code>CLAUDE_CODE_DISABLE_1M_CONTEXT</code> behavior. Removed: ultraplan.</div>
+        <div class="log-entry-how"><b>How to use</b>Run <code>claude update</code> or reinstall. Update immediately if running automated pipelines with <code>bypassPermissions</code> enabled.</div>
+      </div>
+    </div>
+    <div class="log-entry">
+      <div class="log-entry-left">
+        <div class="log-entry-date">Aug 5, 2026</div>
+        <span class="log-tag code">Code</span>
+      </div>
+      <div>
+        <div class="log-entry-title"><a href="https://docs.anthropic.com/en/release-notes/claude-apps">Claude Code usage boost extended through August 19</a></div>
+        <div class="log-entry-body">The temporary 50% weekly usage boost for Claude Code subscribers has been extended through August 19, 2026.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- D. Claude Apps -->
+<div class="log-section">
+  <div class="log-cat-head">
+    <div class="log-cat-name">D. Claude Apps</div>
+    <div class="log-cat-count"><b>1</b> entry</div>
+  </div>
+  <div class="log-entries">
+    <div class="log-entry">
+      <div class="log-entry-left">
+        <div class="log-entry-date">Aug 5, 2026</div>
+        <span class="log-tag apps">Apps</span>
+      </div>
+      <div>
+        <div class="log-entry-title"><a href="https://docs.anthropic.com/en/release-notes/claude-apps">Cowork expanded to web and mobile</a></div>
+        <div class="log-entry-body">Cowork sessions and files now sync across desktop, web, and mobile. Background work, scheduled tasks, shared chat and projects, and mobile approvals are available across all surfaces.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- G. News & Partnerships -->
+<div class="log-section">
+  <div class="log-cat-head">
+    <div class="log-cat-name">G. News &amp; Partnerships</div>
+    <div class="log-cat-count"><b>5</b> entries</div>
+  </div>
+  <div class="log-entries">
+    <div class="log-entry">
+      <div class="log-entry-left">
+        <div class="log-entry-date">Aug 5, 2026</div>
+        <span class="log-tag news">News</span>
+      </div>
+      <div>
+        <div class="log-entry-title"><a href="https://www.anthropic.com/news/tino-cuellar">Tino Cuellar joins Anthropic as Chief Global Affairs Officer</a></div>
+        <div class="log-entry-body">Mariano-Florentino (Tino) Cuellar appointed as Anthropic's first Chief Global Affairs Officer, leading policy, strategic international engagement, and government relationships. Previously a member of Anthropic's Long-Term Benefit Trust since January 2026.</div>
+      </div>
+    </div>
+    <div class="log-entry">
+      <div class="log-entry-left">
+        <div class="log-entry-date">Aug 5, 2026</div>
+        <span class="log-tag news">News</span>
+      </div>
+      <div>
+        <div class="log-entry-title"><a href="https://blog.google/company-news/inside-google/message-ceo/next-chapter-ai-momentum/">Google DeepMind leadership restructuring</a></div>
+        <div class="log-entry-body">Demis Hassabis moves from CEO to Chair of Google DeepMind and Chief Scientist of Alphabet; continues leading Isomorphic Labs. Koray Kavukcuoglu promoted to Senior VP of Google DeepMind, taking over day-to-day operations including Gemini model development, frontier research, and the Gemini app and developer teams. Jeff Dean departing after 27 years at Google to found Discovery Loop, a public-benefit corporation.</div>
+      </div>
+    </div>
+    <div class="log-entry">
+      <div class="log-entry-left">
+        <div class="log-entry-date">Aug 5, 2026</div>
+        <span class="log-tag news">News</span>
+      </div>
+      <div>
+        <div class="log-entry-title"><a href="https://research.meta.ai/blog/introducing-muse-code-and-muse-spark-1-2">Meta Muse Code and Muse Spark 1.2</a></div>
+        <div class="log-entry-body">Meta Superintelligence Labs launched Muse Code in public beta for macOS and Linux: a terminal coding agent for full software engineering tasks across large repositories, coordinating multiple persistent background subagents. Powered by Muse Spark 1.2, co-trained with the agent. API pricing: $1.25/M input, $4.25/M output. Positioned as a direct competitor to Claude Code and OpenAI Codex.</div>
+      </div>
+    </div>
+    <div class="log-entry">
+      <div class="log-entry-left">
+        <div class="log-entry-date">Aug 4, 2026</div>
+        <span class="log-tag news">News</span>
+      </div>
+      <div>
+        <div class="log-entry-title"><a href="https://mistral.ai/news/shieldstral/">Mistral Shieldstral</a></div>
+        <div class="log-entry-body">3B-parameter open-weights multimodal safety classifier, Apache 2.0 on Hugging Face. Accepts plain-language moderation policies at inference time without retraining; evaluates both text and images. 12 languages, single 16GB GPU. Claims to match or exceed open guard models up to 7x its size on text safety benchmarks and to set a new state-of-the-art on multimodal moderation tasks.</div>
+      </div>
+    </div>
+    <div class="log-entry">
+      <div class="log-entry-left">
+        <div class="log-entry-date">Aug 5, 2026</div>
+        <span class="log-tag news">News</span>
+      </div>
+      <div>
+        <div class="log-entry-title"><a href="https://x.ai/news/grok-voice-think-fast-2">xAI: grok-voice-latest migrated to Grok Voice Think Fast 2.0</a></div>
+        <div class="log-entry-body">The <code>grok-voice-latest</code> API alias now points to <code>grok-voice-think-fast-2.0</code>. 1.5 to 2x transcription accuracy improvement over Deepgram Nova 3 and ElevenLabs Scribe v2 across 24 languages, approximately 60% lower reasoning token usage than v1.0, 0.70s time-to-first-audio. Priced at $0.08/min via the Speech to Speech API.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer class="colophon">
+  <div class="colophon-inner">
+    <div class="colophon-mast">
+      <div class="colophon-word">Shipped<span class="dot">.</span></div>
+      <div class="colophon-tag">Frontier Daily. Six labs, one feed. Every evening at 9 PM ET, by <a href="https://id8labs.app" class="colophon-link">id8Labs</a>.</div>
+    </div>
+    <div class="colophon-body">
+      <div class="colophon-col">
+        <h4>Masthead</h4>
+        <p><b>Editor</b> Eddie Belaval</p>
+        <p><b>Reporting</b> with the assistance of Claude</p>
+        <p><b>Voice</b> <em>STYLE.md</em></p>
+        <p><b>Design</b> per <em>DESIGN.md</em></p>
+      </div>
+      <div class="colophon-col">
+        <h4>Sources</h4>
+        <p>anthropic.com/news</p>
+        <p>docs.anthropic.com</p>
+        <p>blog.google (company-news)</p>
+        <p>research.meta.ai</p>
+        <p>mistral.ai/news</p>
+        <p>x.ai/news</p>
+      </div>
+      <div class="colophon-col">
+        <h4>This issue</h4>
+        <p><b>Date</b> Thursday, August 6, 2026</p>
+        <p><b>Window</b> August 5 to August 6, 2026</p>
+        <p><b>Labs covered</b> Anthropic, Google DeepMind, Meta, Mistral, xAI</p>
+        <p><b>Status</b> Draft</p>
+      </div>
+    </div>
+    <div class="colophon-foot">
+      <span>&#169; 2026 <a href="https://id8labs.app" class="colophon-link"><b>id8Labs</b></a> &nbsp;&#183;&nbsp; All rights reserved</span>
+      <span>Printed in pixels &nbsp;&#183;&nbsp; Set in Fraunces &amp; Archivo</span>
+      <span class="hot">Next issue: Friday, August 7, 2026</span>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
