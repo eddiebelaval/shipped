@@ -35,8 +35,13 @@
   },
   "devDependencies": {
     "@types/node": "^22.20.1",
-    "tsx": "^4.23.5",
+    "tsx": "^4.23.9",
     "typescript": "^5.5.0"
+  },
+  "pnpm": {
+    "overrides": {
+      "js-yaml": ">=3.15.0 <4.0.0"
+    }
   },
   "engines": {
     "node": ">=20.0.0"
