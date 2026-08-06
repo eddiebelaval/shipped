@@ -1,4 +1,294 @@
-PCFET0NUWVBFIGh0bWw+CjxodG1sIGxhbmc9ImVuIj4KPGhlYWQ+CiAgPG1ldGEgY2hhcnNldD0iVVRGLTgiPgogIDxtZXRhIG5hbWU9InZpZXdwb3J0IiBjb250ZW50PSJ3aWR0aD1kZXZpY2Utd2lkdGgsIGluaXRpYWwtc2NhbGU9MS4wIj4KICA8bWV0YSBuYW1lPSJjb2xvci1zY2hlbWUiIGNvbnRlbnQ9ImxpZ2h0Ij4KICA8dGl0bGU+U2hpcHBlZC4gRGFpbHkgJm1kYXNoOyBNYXkgMjcsIDIwMjY8L3RpdGxlPgogIDxsaW5rIHJlbD0icHJlY29ubmVjdCIgaHJlZj0iaHR0cHM6Ly9mb250cy5nb29nbGVhcGlzLmNvbSI+CiAgPGxpbmsgaHJlZj0iaHR0cHM6Ly9mb250cy5nb29nbGVhcGlzLmNvbS9jc3MyP2ZhbWlseT1JbnRlcjp3Z2h0QDQwMDs1MDA7NjAwJmZhbWlseT1OZXdzcmVhZGVyOml0YWwsd2dodEAxLDQwMDsxLDYwMCZkaXNwbGF5PXN3YXAiIHJlbD0ic3R5bGVzaGVldCI+CiAgPHN0eWxlPgogICAgKiwgKjo6YmVmb3JlLCAqOjphZnRlciB7IGJveC1zaXppbmc6IGJvcmRlci1ib3g7IG1hcmdpbjogMDsgcGFkZGluZzogMDsgfQoKICAgIGJvZHkgewogICAgICBiYWNrZ3JvdW5kOiAjRkZGRkZGOwogICAgICBjb2xvcjogIzAwMDAwMDsKICAgICAgZm9udC1mYW1pbHk6ICdJbnRlcicsIC1hcHBsZS1zeXN0ZW0sIEJsaW5rTWFjU3lzdGVtRm9udCwgJ1NlZ29lIFVJJywgc2Fucy1zZXJpZjsKICAgICAgZm9udC1zaXplOiAxNXB4OwogICAgICBsaW5lLWhlaWdodDogMS42NTsKICAgICAgcGFkZGluZzogNXJlbSAxLjVyZW0gNXJlbTsKICAgICAgbWF4LXdpZHRoOiA3MjBweDsKICAgICAgbWFyZ2luOiAwIGF1dG87CiAgICB9CgogICAgYSB7CiAgICAgIGNvbG9yOiBpbmhlcml0OwogICAgICB0ZXh0LWRlY29yYXRpb246IG5vbmU7CiAgICAgIGJvcmRlci1ib3R0b206IDFweCBzb2xpZCAjRTVFNUU1OwogICAgICB0cmFuc2l0aW9uOiBib3JkZXItY29sb3IgMC4xMnMgZWFzZTsKICAgIH0KICAgIGE6aG92ZXIgeyBib3JkZXItYm90dG9tLWNvbG9yOiAjMDAwMDAwOyB9CgogICAgLm1hc3RoZWFkIHsKICAgICAgZm9udC1mYW1pbHk6ICdOZXdzcmVhZGVyJywgR2VvcmdpYSwgJ1RpbWVzIE5ldyBSb21hbicsIHNlcmlmOwogICAgICBmb250LXN0eWxlOiBpdGFsaWM7CiAgICAgIGZvbnQtd2VpZ2h0OiA2MDA7CiAgICAgIGZvbnQtc2l6ZTogMnJlbTsKICAgICAgbGV0dGVyLXNwYWNpbmc6IC0wLjAyZW07CiAgICAgIGxpbmUtaGVpZ2h0OiAxLjA1OwogICAgICBjb2xvcjogIzAwMDAwMDsKICAgICAgbWFyZ2luLWJvdHRvbTogMC4zcmVtOwogICAgfQoKICAgIC5kYXRlbGluZSB7CiAgICAgIGZvbnQtc2l6ZTogMC43cmVtOwogICAgICBmb250LXdlaWdodDogNTAwOwogICAgICBsZXR0ZXItc3BhY2luZzogMC4xM2VtOwogICAgICB0ZXh0LXRyYW5zZm9ybTogdXBwZXJjYXNlOwogICAgICBjb2xvcjogIzY2NjY2NjsKICAgICAgbWFyZ2luLWJvdHRvbTogMi41cmVtOwogICAgfQoKICAgIC5vbmUtbGluZS1yZWFkIHsKICAgICAgZm9udC1zaXplOiAxLjA1cmVtOwogICAgICBmb250LXdlaWdodDogNDAwOwogICAgICBjb2xvcjogIzAwMDAwMDsKICAgICAgbGluZS1oZWlnaHQ6IDEuNjsKICAgICAgbWFyZ2luLWJvdHRvbTogMi41cmVtOwogICAgICBwYWRkaW5nLWJvdHRvbTogMi41cmVtOwogICAgICBib3JkZXItYm90dG9tOiAxcHggc29saWQgI0U1RTVFNTsKICAgIH0KCiAgICAuc2VjdGlvbi1mbGFnIHsKICAgICAgZm9udC1zaXplOiAwLjY1cmVtOwogICAgICBmb250LXdlaWdodDogNjAwOwogICAgICBsZXR0ZXItc3BhY2luZzogMC4xNGVtOwogICAgICB0ZXh0LXRyYW5zZm9ybTogdXBwZXJjYXNlOwogICAgICBjb2xvcjogIzY2NjY2NjsKICAgICAgbWFyZ2luLXRvcDogMi41cmVtOwogICAgICBtYXJnaW4tYm90dG9tOiAwLjc1cmVtOwogICAgICBkaXNwbGF5OiBibG9jazsKICAgIH0KCiAgICAubGVhZC1ibG9jayB7CiAgICAgIGZvbnQtc2l6ZTogMC45NzVyZW07CiAgICAgIGxpbmUtaGVpZ2h0OiAxLjc1OwogICAgICBjb2xvcjogIzAwMDAwMDsKICAgIH0KCiAgICAubGVhZC1ibG9jayBwIHsKICAgICAgbWFyZ2luLWJvdHRvbTogMC45cmVtOwogICAgfQogICAgLmxlYWQtYmxvY2sgcDpsYXN0LWNoaWxkIHsgbWFyZ2luLWJvdHRvbTogMDsgfQoKICAgIC5ydWxlIHsKICAgICAgYm9yZGVyOiBub25lOwogICAgICBib3JkZXItdG9wOiAxcHggc29saWQgI0U1RTVFNTsKICAgICAgbWFyZ2luOiAyLjI1cmVtIDA7CiAgICB9CgogICAgLmFyZWEtaGVhZGVyIHsKICAgICAgZm9udC1zaXplOiAwLjY1cmVtOwogICAgICBmb250LXdlaWdodDogNjAwOwogICAgICBsZXR0ZXItc3BhY2luZzogMC4xNGVtOwogICAgICB0ZXh0LXRyYW5zZm9ybTogdXBwZXJjYXNlOwogICAgICBjb2xvcjogIzY2NjY2NjsKICAgICAgbWFyZ2luLXRvcDogMS43NXJlbTsKICAgICAgbWFyZ2luLWJvdHRvbTogMDsKICAgICAgcGFkZGluZy1ib3R0b206IDAuNnJlbTsKICAgICAgYm9yZGVyLWJvdHRvbTogMXB4IHNvbGlkICNFNUU1RTU7CiAgICB9CgogICAgLmxvZy1lbnRyeSB7CiAgICAgIHBhZGRpbmc6IDEuMjVyZW0gMDsKICAgICAgYm9yZGVyLWJvdHRvbTogMXB4IHNvbGlkICNGMEYwRjA7CiAgICB9CiAgICAubG9nLWVudHJ5Omxhc3QtY2hpbGQgeyBib3JkZXItYm90dG9tOiBub25lOyB9CgogICAgLmxvZy1tZXRhIHsKICAgICAgZm9udC1zaXplOiAwLjdyZW07CiAgICAgIGZvbnQtd2VpZ2h0OiA1MDA7CiAgICAgIGNvbG9yOiAjNjY2NjY2OwogICAgICBsZXR0ZXItc3BhY2luZzogMC4wNGVtOwogICAgICBtYXJnaW4tYm90dG9tOiAwLjJyZW07CiAgICB9CgogICAgLmxvZy10aXRsZSB7CiAgICAgIGZvbnQtc2l6ZTogMC45NXJlbTsKICAgICAgZm9udC13ZWlnaHQ6IDYwMDsKICAgICAgY29sb3I6ICMwMDAwMDA7CiAgICAgIGxpbmUtaGVpZ2h0OiAxLjM1OwogICAgICBtYXJnaW4tYm90dG9tOiAwLjQ1cmVtOwogICAgfQoKICAgIC50YWcgewogICAgICBkaXNwbGF5OiBpbmxpbmUtYmxvY2s7CiAgICAgIGZvbnQtc2l6ZTogMC42cmVtOwogICAgICBmb250LXdlaWdodDogNjAwOwogICAgICBsZXR0ZXItc3BhY2luZzogMC4xZW07CiAgICAgIHRleHQtdHJhbnNmb3JtOiB1cHBlcmNhc2U7CiAgICAgIHBhZGRpbmc6IDJweCA2cHg7CiAgICAgIGJvcmRlci1yYWRpdXM6IDJweDsKICAgICAgbWFyZ2luLWJvdHRvbTogMC41NXJlbTsKICAgICAgYm9yZGVyOiBub25lOwogICAgfQogICAgLnRhZy1jb2RlICAgeyBiYWNrZ3JvdW5kOiAjNDA0MDQwOyBjb2xvcjogI2ZmZmZmZjsgfQogICAgLnRhZy1zZGstdHMgeyBiYWNrZ3JvdW5kOiAjRTVFNUU1OyBjb2xvcjogIzFhMWExYTsgfQogICAgLnRhZy1uZXdzICAgeyBiYWNrZ3JvdW5kOiAjRjVGNUY1OyBjb2xvcjogIzMzMzMzMzsgYm9yZGVyOiAxcHggc29saWQgcmdiYSgwLDAsMCwwLjEwKSAhaW1wb3J0YW50OyB9CgogICAgLmxvZy1zdW1tYXJ5IHsKICAgICAgZm9udC1zaXplOiAwLjg3NXJlbTsKICAgICAgbGluZS1oZWlnaHQ6IDEuNjU7CiAgICAgIGNvbG9yOiAjMzMzMzMzOwogICAgfQoKICAgIGNvZGUgewogICAgICBmb250LWZhbWlseTogJ1NGIE1vbm8nLCAnRmlyYSBDb2RlJywgJ0Nhc2NhZGlhIENvZGUnLCAnQ291cmllciBOZXcnLCBtb25vc3BhY2U7CiAgICAgIGZvbnQtc2l6ZTogMC44ZW07CiAgICAgIGJhY2tncm91bmQ6ICNGN0Y3Rjc7CiAgICAgIGNvbG9yOiAjMDAwMDAwOwogICAgICBwYWRkaW5nOiAxcHggNXB4OwogICAgICBib3JkZXItcmFkaXVzOiAzcHg7CiAgICB9CgogICAgLnF1aWV0LWJsb2NrIHsKICAgICAgZm9udC1zaXplOiAwLjlyZW07CiAgICAgIGxpbmUtaGVpZ2h0OiAxLjc7CiAgICAgIGNvbG9yOiAjNjY2NjY2OwogICAgICBwYWRkaW5nLWxlZnQ6IDFyZW07CiAgICAgIGJvcmRlci1sZWZ0OiAycHggc29saWQgI0U1RTVFNTsKICAgIH0KCiAgICAuZm9vdGVyIHsKICAgICAgbWFyZ2luLXRvcDogM3JlbTsKICAgICAgcGFkZGluZy10b3A6IDEuNXJlbTsKICAgICAgYm9yZGVyLXRvcDogMXB4IHNvbGlkICNFNUU1RTU7CiAgICAgIGZvbnQtc2l6ZTogMC43MjVyZW07CiAgICAgIGNvbG9yOiAjNjY2NjY2OwogICAgICBsaW5lLWhlaWdodDogMS41OwogICAgfQoKICAgIC5mb290ZXItbGFiZWwgewogICAgICBmb250LXdlaWdodDogNTAwOwogICAgICBsZXR0ZXItc3BhY2luZzogMC4wOGVtOwogICAgICB0ZXh0LXRyYW5zZm9ybTogdXBwZXJjYXNlOwogICAgICBmb250LXNpemU6IDAuNjVyZW07CiAgICAgIG1hcmdpbi10b3A6IDAuOXJlbTsKICAgICAgbWFyZ2luLWJvdHRvbTogMC40cmVtOwogICAgICBkaXNwbGF5OiBibG9jazsKICAgIH0KCiAgICAuZm9vdGVyLXNvdXJjZXMgewogICAgICBsaXN0LXN0eWxlOiBub25lOwogICAgICBwYWRkaW5nOiAwOwogICAgfQogICAgLmZvb3Rlci1zb3VyY2VzIGxpIHsKICAgICAgbWFyZ2luLWJvdHRvbTogMC4ycmVtOwogICAgfQogICAgLmZvb3Rlci1zb3VyY2VzIGEgewogICAgICBjb2xvcjogIzY2NjY2NjsKICAgICAgZm9udC1zaXplOiAwLjcyNXJlbTsKICAgICAgd29yZC1icmVhazogYnJlYWstYWxsOwogICAgICBib3JkZXItYm90dG9tLWNvbG9yOiB0cmFuc3BhcmVudDsKICAgIH0KICAgIC5mb290ZXItc291cmNlcyBhOmhvdmVyIHsgYm9yZGVyLWJvdHRvbS1jb2xvcjogIzY2NjY2NjsgfQoKICAgIEBtZWRpYSAobWF4LXdpZHRoOiA2MDBweCkgewogICAgICBib2R5IHsgcGFkZGluZzogM3JlbSAxLjI1cmVtIDMuNXJlbTsgZm9udC1zaXplOiAxNHB4OyB9CiAgICAgIC5tYXN0aGVhZCB7IGZvbnQtc2l6ZTogMS42NXJlbTsgfQogICAgfQogIDwvc3R5bGU+CjwvaGVhZD4KPGJvZHk+CgogIDxkaXYgY2xhc3M9Im1hc3RoZWFkIj5TaGlwcGVkLjwvZGl2PgogIDxkaXYgY2xhc3M9ImRhdGVsaW5lIj5EYWlseSAmbWlkZG90OyBXZWRuZXNkYXksIE1heSAyNywgMjAyNjwvZGl2PgoKICA8cCBjbGFzcz0ib25lLWxpbmUtcmVhZCI+Q2xhdWRlIENvZGUgc2hpcHMgdHdpY2UgaW4gMjQgaG91cnMsIHRoZSBUeXBlU2NyaXB0IFNESyBjbGVhcnMgdHdvIHZlcnNpb25zLCBhbmQgQW50aHJvcGljIGhvbGRzIGl0cyBmaXJzdCBwYXJ0bmVyIGJyb2FkY2FzdC48L3A+CgogIDxzcGFuIGNsYXNzPSJzZWN0aW9uLWZsYWciPkxlYWQ8L3NwYW4+CiAgPGRpdiBjbGFzcz0ibGVhZC1ibG9jayI+CiAgICA8cD52Mi4xLjE1MiBsYW5kZWQgYXQgMDE6MzAgVVRDIGFuZCBtYWtlcyB0aHJlZSBjaGFuZ2VzIHdvcnRoIHRyYWNraW5nLiA8Y29kZT4vY29kZS1yZXZpZXcgLS1maXg8L2NvZGU+IG5vdyBhcHBsaWVzIHJldmlldyBmaW5kaW5ncyB0byB0aGUgd29ya2luZyB0cmVlIGRpcmVjdGx5IGFmdGVyIHRoZSByZXZpZXcgcnVucy4gPGNvZGU+L3NpbXBsaWZ5PC9jb2RlPiBiZWNvbWVzIGFuIGFsaWFzIGZvciBpdC4gVGhhdCBpcyBhIHdvcmtmbG93IGNvbXByZXNzaW9uLiBUaGUgc2Vjb25kIGNoYW5nZTogYSBuZXcgPGNvZGU+TWVzc2FnZURpc3BsYXk8L2NvZGU+IGhvb2sgZXZlbnQgbGV0cyB0ZWFtcyBpbnRlcmNlcHQgYW5kIHRyYW5zZm9ybSBhc3Npc3RhbnQgbWVzc2FnZSB0ZXh0IGJlZm9yZSBpdCByZW5kZXJzLiBUaGUgdGhpcmQ6IEF1dG8gbW9kZSBkcm9wcyBpdHMgb3B0LWluIGNvbnNlbnQgcmVxdWlyZW1lbnQuIFRoZSBmcmljdGlvbiBnYXRlIGlzIGdvbmUgYnkgZGVmYXVsdC4gPGEgaHJlZj0iaHR0cHM6Ly9naXRodWIuY29tL2FudGhyb3BpY3MvY2xhdWRlLWNvZGUvcmVsZWFzZXMiPmdpdGh1Yi5jb20vYW50aHJvcGljcy9jbGF1ZGUtY29kZS9yZWxlYXNlczwvYT48L3A+CiAgICA8cD52Mi4xLjE1MyBmb2xsb3dlZCBhdCAwMDo1MiBVVEMgb24gdGhlIDI4dGgsIHN0aWxsIGluc2lkZSB0aGUgd2luZG93LiBTdGF0dXMgbGluZSBjb21tYW5kcyBub3cgcmVjZWl2ZSA8Y29kZT5DT0xVTU5TPC9jb2RlPiBhbmQgPGNvZGU+TElORVM8L2NvZGU+IGVudmlyb25tZW50IHZhcmlhYmxlcyBmb3IgdGVybWluYWwtYXdhcmUgb3V0cHV0IHNpemluZy4gbWFjT1MgYmFja2dyb3VuZCBhZ2VudHMgc3VyZmFjZSBpbiBQcml2YWN5IGFuZCBTZWN1cml0eSBhcyAmcXVvdDtDbGF1ZGUgQ29kZSZxdW90OyB3aXRoIHBlcnNpc3RlbnQgcGVybWlzc2lvbnMuIDxjb2RlPmNsYXVkZSBhZ2VudHM8L2NvZGU+IGF1dG9jb21wbGV0ZSBwaWNrcyB1cCBuYXRpdmUgc2xhc2ggY29tbWFuZHMgYW5kIGJ1bmRsZWQgc2tpbGxzLiA8Y29kZT4vbW9kZWw8L2NvZGU+IHNhdmVzIHRoZSBzZWxlY3Rpb24gYXMgdGhlIGRlZmF1bHQgdW5sZXNzIHlvdSBwcmVzcyA8Y29kZT5zPC9jb2RlPiB0byBzY29wZSBpdCB0byB0aGUgY3VycmVudCBzZXNzaW9uIG9ubHkuPC9wPgogIDwvZGl2PgoKICA8aHIgY2xhc3M9InJ1bGUiPgoKICA8c3BhbiBjbGFzcz0ic2VjdGlvbi1mbGFnIj5SZWxlYXNlIExvZzwvc3Bhbj4KCiAgPGRpdiBjbGFzcz0iYXJlYS1oZWFkZXIiPkNvZGU8L2Rpdj4KCiAgPGRpdiBjbGFzcz0ibG9nLWVudHJ5Ij4KICAgIDxkaXYgY2xhc3M9ImxvZy1tZXRhIj4yMDI2LTA1LTI3LCAwMTozMCBVVEM8L2Rpdj4KICAgIDxkaXYgY2xhc3M9ImxvZy10aXRsZSI+PGEgaHJlZj0iaHR0cHM6Ly9naXRodWIuY29tL2FudGhyb3BpY3MvY2xhdWRlLWNvZGUvcmVsZWFzZXMiPkNsYXVkZSBDb2RlIHYyLjEuMTUyPC9hPjwvZGl2PgogICAgPHNwYW4gY2xhc3M9InRhZyB0YWctY29kZSI+Q09ERTwvc3Bhbj4KICAgIDxkaXYgY2xhc3M9ImxvZy1zdW1tYXJ5Ij4KICAgICAgPGNvZGU+L2NvZGUtcmV2aWV3IC0tZml4PC9jb2RlPiBhcHBsaWVzIHJldmlldyBmaW5kaW5ncyB0byB0aGUgd29ya2luZyB0cmVlLiA8Y29kZT4vc2ltcGxpZnk8L2NvZGU+IGFsaWFzZXMgdG8gaXQuIFNraWxscyBhbmQgY29tbWFuZHMgY2FuIGRlY2xhcmUgPGNvZGU+ZGlzYWxsb3dlZC10b29sczwvY29kZT4gaW4gZnJvbnRtYXR0ZXIgdG8gcmVtb3ZlIHRvb2xzIHdoaWxlIGFjdGl2ZS4gPGNvZGU+L3JlbG9hZC1za2lsbHM8L2NvZGU+IGFkZGVkLiA8Y29kZT5TZXNzaW9uU3RhcnQ8L2NvZGU+IGhvb2tzIGNhbiByZXR1cm4gPGNvZGU+cmVsb2FkU2tpbGxzOiB0cnVlPC9jb2RlPiBvciBzZXQgc2Vzc2lvbiB0aXRsZSB2aWEgPGNvZGU+aG9va1NwZWNpZmljT3V0cHV0LnNlc3Npb25UaXRsZTwvY29kZT4uIE5ldyA8Y29kZT5NZXNzYWdlRGlzcGxheTwvY29kZT4gaG9vayBldmVudCBmb3IgdHJhbnNmb3JtaW5nIGFzc2lzdGFudCBtZXNzYWdlIHRleHQgcHJlLXJlbmRlci4gPGNvZGU+cGx1Z2luU3VnZ2VzdGlvbk1hcmtldHBsYWNlczwvY29kZT4gbWFuYWdlZCBzZXR0aW5nIGZvciBhbGxvd2xpc3RpbmcgcGx1Z2luIHNvdXJjZXMuIEF1dG8gbW9kZSBubyBsb25nZXIgcmVxdWlyZXMgb3B0LWluIGNvbnNlbnQuIFZpbSBtb2RlOiA8Y29kZT4vPC9jb2RlPiBpbiBOT1JNQUwgb3BlbnMgcmV2ZXJzZSBoaXN0b3J5IHNlYXJjaC4gPGNvZGU+L3VzYWdlPC9jb2RlPiBicmVha2Rvd24gaW5jbHVkZXMgbGFyZ2Ugc2Vzc2lvbiBmaWxlcy4gVGhpbmtpbmcgc3VtbWFyaWVzIHJlbmRlciBhcyBtYXJrZG93biwgY2FwcGVkIGF0IDEwIGxpbmVzIChDdHJsK08gZm9yIGZ1bGwpLgogICAgPC9kaXY+CiAgPC9kaXY+CgogIDxkaXYgY2xhc3M9ImxvZy1lbnRyeSI+CiAgICA8ZGl2IGNsYXNzPSJsb2ctbWV0YSI+MjAyNi0wNS0yOCwgMDA6NTIgVVRDPC9kaXY+CiAgICA8ZGl2IGNsYXNzPSJsb2ctdGl0bGUiPjxhIGhyZWY9Imh0dHBzOi8vZ2l0aHViLmNvbS9hbnRocm9waWNzL2NsYXVkZS1jb2RlL3JlbGVhc2VzIj5DbGF1ZGUgQ29kZSB2Mi4xLjE1MzwvYT48L2Rpdj4KICAgIDxzcGFuIGNsYXNzPSJ0YWcgdGFnLWNvZGUiPkNPREU8L3NwYW4+CiAgICA8ZGl2IGNsYXNzPSJsb2ctc3VtbWFyeSI+CiAgICAgIEFkZHMgPGNvZGU+c2tpcExmczwvY29kZT4gb3B0aW9uIHRvIDxjb2RlPmdpdGh1YjwvY29kZT4vPGNvZGU+Z2l0PC9jb2RlPiBwbHVnaW4gbWFya2V0cGxhY2Ugc291cmNlcy4gU3RhdHVzIGxpbmUgY29tbWFuZHMgcmVjZWl2ZSA8Y29kZT5DT0xVTU5TPC9jb2RlPiBhbmQgPGNvZGU+TElORVM8L2NvZGU+IGVudiB2YXJzIGZvciB0ZXJtaW5hbC1hd2FyZSBzaXppbmcuIDxjb2RlPmNsYXVkZSBhZ2VudHM8L2NvZGU+IGF1dG9jb21wbGV0ZSBub3cgc3VnZ2VzdHMgbmF0aXZlIHNsYXNoIGNvbW1hbmRzIGFuZCBidW5kbGVkIHNraWxscy4gUFIgY29sdW1uIHNob3dzIDxjb2RlPlBSICNOPC9jb2RlPiAoc2luZ2xlKSBvciA8Y29kZT5OIFBSczwvY29kZT4gKG11bHRpcGxlKS4gPGNvZGU+Y2xhdWRlIGRvY3RvcjwvY29kZT4gc2hvd3MgcmVzdWx0cyBvZiBsYXN0IHVwZGF0ZSBhdHRlbXB0OyBzaG93cyBhIG9uZS10aW1lIG5vdGljZSB3aGVuIG5wbSBnbG9iYWwgaW5zdGFsbCBjYW5ub3QgYXV0by11cGRhdGUuIE1DUCBzZXJ2ZXJzIGFuZCBjb25uZWN0b3JzIGF1dGggbm90aWZpY2F0aW9ucyBjb21iaW5lZCBpbnRvIGEgc2luZ2xlIG1lc3NhZ2UuIG1hY09TOiBiYWNrZ3JvdW5kIGFnZW50cyBhcHBlYXIgYXMgJnF1b3Q7Q2xhdWRlIENvZGUmcXVvdDsgaW4gUHJpdmFjeSBhbmQgU2VjdXJpdHkgd2l0aCBwZXJzaXN0ZW50IHBlcm1pc3Npb25zLiA8Y29kZT4vbW9kZWw8L2NvZGU+IHNhdmVzIHNlbGVjdGlvbiBhcyBkZWZhdWx0IChwcmVzcyA8Y29kZT5zPC9jb2RlPiBmb3IgY3VycmVudCBzZXNzaW9uIG9ubHkpLiBCdWcgZml4ZXM6IE1DUCBzZXJ2ZXIgcmVjb25uZWN0LWxvb3BpbmcsIGN1c3RvbSBBUEkgZ2F0ZXdheSBPQXV0aCBjcmVkZW50aWFsIGhhbmRsaW5nLCBzdWJhZ2VudCBNQ1Agc3RyaWN0LWNvbmZpZyBhbmQgYmFyZS1tb2RlIGNvbXBsaWFuY2UsIFdpbmRvd3MgUG93ZXJTaGVsbCBpbnN0YWxsZXIgZmFsc2Ugc3VjY2VzcywgbWVtb3J5IHVzYWdlIG9uIHJlc3VtZSB3aXRoIG1hbnkgc3RvcmVkIHNlc3Npb25zLCBDTEkgZXhpdCBpbiBzdHJlYW0tanNvbiBtb2RlIHdpdGggY2xvc2VkIHN0ZGluLCBtYWxmb3JtZWQgPGNvZGU+ZmlsZTovLzwvY29kZT4gbGlua3MuCiAgICA8L2Rpdj4KICA8L2Rpdj4KCiAgPGRpdiBjbGFzcz0iYXJlYS1oZWFkZXIiPlNESzwvZGl2PgoKICA8ZGl2IGNsYXNzPSJsb2ctZW50cnkiPgogICAgPGRpdiBjbGFzcz0ibG9nLW1ldGEiPjIwMjYtMDUtMjYsIDIzOjE5IFVUQ8KgPC9kaXY+CiAgICA8ZGl2IGNsYXNzPSJsb2ctdGl0bGUiPjxhIGhyZWY9Imh0dHBzOi8vZ2l0aHViLmNvbS9hbnRocm9waWNzL2FudGhyb3BpYy1zZGstdHlwZXNjcmlwdC9yZWxlYXNlcyI+VHlwZVNjcmlwdCBTREsgdjAuOTguMTwvYT48L2Rpdj4KICAgIDxzcGFuIGNsYXNzPSJ0YWcgdGFnLXNkay10cyI+U0RLLVRTPC9zcGFuPgogICAgPGRpdiBjbGFzcz0ibG9nLXN1bW1hcnkiPgogICAgICBQcmVzZXJ2ZXMgZGlyZWN0b3J5IHByZWZpeCBpbiA8Y29kZT5za2lsbHMudmVyc2lvbnMuY3JlYXRlPC9jb2RlPiB1cGxvYWRzLiBTd2FwcyB0byBUcnVzdGVkIFB1Ymxpc2hpbmcuIFJlbmFtZXMgPGNvZGU+bWFuYWdlZC1hZ2VudHM8L2NvZGU+IHByaXZhdGUtc2FuZGJveC13b3JrZXIgZXhhbXBsZSB0byA8Y29kZT5zZWxmLWhvc3RlZC1zYW5kYm94LXdvcmtlcjwvY29kZT4uCiAgICA8L2Rpdj4KICA8L2Rpdj4KCiAgPGRpdiBjbGFzcz0ibG9nLWVudHJ5Ij4KICAgIDxkaXYgY2xhc3M9ImxvZy1tZXRhIj4yMDI2LTA1LTI3LCAwMTowNCBVVEM8L2Rpdj4KICAgIDxkaXYgY2xhc3M9ImxvZy10aXRsZSI+PGEgaHJlZj0iaHR0cHM6Ly9naXRodWIuY29tL2FudGhyb3BpY3MvYW50aHJvcGljLXNkay10eXBlc2NyaXB0L3JlbGVhc2VzIj5UeXBlU2NyaXB0IFNESyB2MC45OS4wPC9hPjwvZGl2PgogICAgPHNwYW4gY2xhc3M9InRhZyB0YWctc2RrLXRzIj5TREstVFM8L3NwYW4+CiAgICA8ZGl2IGNsYXNzPSJsb2ctc3VtbWFyeSI+CiAgICAgIEFkZHMgc3VwcG9ydCBmb3IgY3VzdG9tIGZpbGUgc2l6ZSBjYXBzLiBGaXhlcyBzdHJlYW1pbmc6IDxjb2RlPnN0b3BfZGV0YWlsczwvY29kZT4gbm93IGNhcnJpZWQgdGhyb3VnaCA8Y29kZT5tZXNzYWdlX2RlbHRhPC9jb2RlPiBhY2N1bXVsYXRpb24uCiAgICA8L2Rpdj4KICA8L2Rpdj4KCiAgPGRpdiBjbGFzcz0iYXJlYS1oZWFkZXIiPk5ld3M8L2Rpdj4KCiAgPGRpdiBjbGFzcz0ibG9nLWVudHJ5Ij4KICAgIDxkaXYgY2xhc3M9ImxvZy1tZXRhIj4yMDI2LTA1LTI3LCA4OjMwIEFNPC9kaXY+CiAgICA8ZGl2IGNsYXNzPSJsb2ctdGl0bGUiPjxhIGhyZWY9Imh0dHBzOi8vd3d3LmFudGhyb3BpYy5jb20vd2ViaW5hcnMvdGhlLWZpcnN0LWJyb2FkY2FzdCI+VGhlIEZpcnN0IEJyb2FkY2FzdDwvYT48L2Rpdj4KICAgIDxzcGFuIGNsYXNzPSJ0YWcgdGFnLW5ld3MiPk5FV1M8L3NwYW4+CiAgICA8ZGl2IGNsYXNzPSJsb2ctc3VtbWFyeSI+CiAgICAgIEFudGhyb3BpYydzIGluYXVndXJhbCBwYXJ0bmVyIHdlYmluYXIuIENvdmVyZWQgTWF5IHByb2R1Y3QgbmV3cywgQ0NBRiBjZXJ0aWZpY2F0aW9uIHVwZGF0ZXMsIGFuZCBpbnRyb2R1Y2VkIEFudGhyb3BpYyBQYXJ0bmVyIEFjYWRlbXksIGEgbmV3IHRyYWluaW5nIGV4cGVyaWVuY2UgZm9yIHBhcnRuZXJzIHdpdGggdGhlIENsYXVkZSBQYXJ0bmVyIENlcnRpZmljYXRpb24gbGF1bmNoaW5nIGFsb25nc2lkZSBpdC4gR2xvYmFsIHJlcGxheSBzY2hlZHVsZWQgTWF5IDI4IGF0IDExOjAwIEFNIFNHVC4KICAgIDwvZGl2PgogIDwvZGl2PgoKICA8aHIgY2xhc3M9InJ1bGUiPgoKICA8c3BhbiBjbGFzcz0ic2VjdGlvbi1mbGFnIj5RdWlldCBvbiB0aGUgV2lyZTwvc3Bhbj4KICA8cCBjbGFzcz0icXVpZXQtYmxvY2siPk5vIG1vZGVsIHJlbGVhc2UgaW4gdGhlIHdpbmRvdy4gTm8gQVBJIGRvY3VtZW50YXRpb24gdXBkYXRlIChkb2NzLmFudGhyb3BpYy5jb20gcmV0dXJuZWQgNDAzIHRocm91Z2hvdXQgdGhpcyBzd2VlcCkuIE5vIHJlc2VhcmNoIHB1YmxpY2F0aW9uLiBQeXRob24gU0RLIGxhc3QgdXBkYXRlZCBNYXkgMjIsIHYwLjEwNC4xLiBObyBDbGF1ZGUgQXBwcyB1cGRhdGUgZGV0ZWN0ZWQuIE5vIHN5c3RlbSBwcm9tcHQgdXBkYXRlIGRldGVjdGVkLjwvcD4KCiAgPGRpdiBjbGFzcz0iZm9vdGVyIj4KICAgIDxkaXY+R2VuZXJhdGVkIDIwMjYtMDUtMjhUMDE6MDA6MzBaLjwvZGl2PgogICAgPHNwYW4gY2xhc3M9ImZvb3Rlci1sYWJlbCI+U291cmNlczwvc3Bhbj4KICAgIDx1bCBjbGFzcz0iZm9vdGVyLXNvdXJjZXMiPgogICAgICA8bGk+PGEgaHJlZj0iaHR0cHM6Ly9naXRodWIuY29tL2FudGhyb3BpY3MvY2xhdWRlLWNvZGUvcmVsZWFzZXMiPmdpdGh1Yi5jb20vYW50aHJvcGljcy9jbGF1ZGUtY29kZS9yZWxlYXNlczwvYT48L2xpPgogICAgICA8bGk+PGEgaHJlZj0iaHR0cHM6Ly9naXRodWIuY29tL2FudGhyb3BpY3MvYW50aHJvcGljLXNkay10eXBlc2NyaXB0L3JlbGVhc2VzIj5naXRodWIuY29tL2FudGhyb3BpY3MvYW50aHJvcGljLXNkay10eXBlc2NyaXB0L3JlbGVhc2VzPC9hPjwvbGk+CiAgICAgIDxsaT48YSBocmVmPSJodHRwczovL3d3dy5hbnRocm9waWMuY29tL3dlYmluYXJzL3RoZS1maXJzdC1icm9hZGNhc3QiPmFudGhyb3BpYy5jb20vd2ViaW5hcnMvdGhlLWZpcnN0LWJyb2FkY2FzdDwvYT48L2xpPgogICAgICA8bGk+PGEgaHJlZj0iaHR0cHM6Ly9kb2NzLmFudGhyb3BpYy5jb20vZW4vcmVsZWFzZS1ub3Rlcy9hcGkiPmRvY3MuYW50aHJvcGljLmNvbS9lbi9yZWxlYXNlLW5vdGVzL2FwaSAoNDAzIGR1cmluZyBzd2VlcCk8L2E+PC9saT4KICAgICAgPGxpPjxhIGhyZWY9Imh0dHBzOi8vZG9jcy5hbnRocm9waWMuY29tL2VuL3JlbGVhc2Utbm90ZXMvY2xhdWRlLWNvZGUiPmRvY3MuYW50aHJvcGljLmNvbS9lbi9yZWxlYXNlLW5vdGVzL2NsYXVkZS1jb2RlICg0MDMgZHVyaW5nIHN3ZWVwKTwvYT48L2xpPgogICAgICA8bGk+PGEgaHJlZj0iaHR0cHM6Ly9kb2NzLmFudGhyb3BpYy5jb20vZW4vcmVsZWFzZS1ub3Rlcy9jbGF1ZGUtYXBwcyI+ZG9jcy5hbnRocm9waWMuY29tL2VuL3JlbGVhc2Utbm90ZXMvY2xhdWRlLWFwcHMgKDQwMyBkdXJpbmcgc3dlZXApPC9hPjwvbGk+CiAgICAgIDxsaT48YSBocmVmPSJodHRwczovL2RvY3MuYW50aHJvcGljLmNvbS9lbi9yZWxlYXNlLW5vdGVzL3N5c3RlbS1wcm9tcHRzIj5kb2NzLmFudGhyb3BpYy5jb20vZW4vcmVsZWFzZS1ub3Rlcy9zeXN0ZW0tcHJvbXB0cyAoNDAzIGR1cmluZyBzd2VlcCk8L2E+PC9saT4KICAgICAgPGxpPjxhIGhyZWY9Imh0dHBzOi8vd3d3LmFudGhyb3BpYy5jb20vbmV3cyI+YW50aHJvcGljLmNvbS9uZXdzICg0MDMgZHVyaW5nIHN3ZWVwKTwvYT48L2xpPgogICAgICA8bGk+PGEgaHJlZj0iaHR0cHM6Ly93d3cuYW50aHJvcGljLmNvbS9yZXNlYXJjaCI+YW50aHJvcGljLmNvbS9yZXNlYXJjaCAoNDAzIGR1cmluZyBzd2VlcCk8L2E+PC9saT4KICAgICAgPGxpPjxhIGhyZWY9Imh0dHBzOi8vZ2l0aHViLmNvbS9hbnRocm9waWNzL2FudGhyb3BpYy1zZGstcHl0aG9uL3JlbGVhc2VzIj5naXRodWIuY29tL2FudGhyb3BpY3MvYW50aHJvcGljLXNkay1weXRob24vcmVsZWFzZXM8L2E+PC9saT4KICAgIDwvdWw+CiAgPC9kaXY+Cgo8L2JvZHk+CjwvaHRtbD4K
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="color-scheme" content="light">
+  <title>Shipped. Daily &mdash; May 27, 2026</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Newsreader:ital,wght@1,400;1,600&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: #FFFFFF;
+      color: #000000;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      font-size: 15px;
+      line-height: 1.65;
+      padding: 5rem 1.5rem 5rem;
+      max-width: 720px;
+      margin: 0 auto;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+      border-bottom: 1px solid #E5E5E5;
+      transition: border-color 0.12s ease;
+    }
+    a:hover { border-bottom-color: #000000; }
+
+    .masthead {
+      font-family: 'Newsreader', Georgia, 'Times New Roman', serif;
+      font-style: italic;
+      font-weight: 600;
+      font-size: 2rem;
+      letter-spacing: -0.02em;
+      line-height: 1.05;
+      color: #000000;
+      margin-bottom: 0.3rem;
+    }
+
+    .dateline {
+      font-size: 0.7rem;
+      font-weight: 500;
+      letter-spacing: 0.13em;
+      text-transform: uppercase;
+      color: #666666;
+      margin-bottom: 2.5rem;
+    }
+
+    .one-line-read {
+      font-size: 1.05rem;
+      font-weight: 400;
+      color: #000000;
+      line-height: 1.6;
+      margin-bottom: 2.5rem;
+      padding-bottom: 2.5rem;
+      border-bottom: 1px solid #E5E5E5;
+    }
+
+    .section-flag {
+      font-size: 0.65rem;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: #666666;
+      margin-top: 2.5rem;
+      margin-bottom: 0.75rem;
+      display: block;
+    }
+
+    .lead-block {
+      font-size: 0.975rem;
+      line-height: 1.75;
+      color: #000000;
+    }
+
+    .lead-block p {
+      margin-bottom: 0.9rem;
+    }
+    .lead-block p:last-child { margin-bottom: 0; }
+
+    .rule {
+      border: none;
+      border-top: 1px solid #E5E5E5;
+      margin: 2.25rem 0;
+    }
+
+    .area-header {
+      font-size: 0.65rem;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: #666666;
+      margin-top: 1.75rem;
+      margin-bottom: 0;
+      padding-bottom: 0.6rem;
+      border-bottom: 1px solid #E5E5E5;
+    }
+
+    .log-entry {
+      padding: 1.25rem 0;
+      border-bottom: 1px solid #F0F0F0;
+    }
+    .log-entry:last-child { border-bottom: none; }
+
+    .log-meta {
+      font-size: 0.7rem;
+      font-weight: 500;
+      color: #666666;
+      letter-spacing: 0.04em;
+      margin-bottom: 0.2rem;
+    }
+
+    .log-title {
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: #000000;
+      line-height: 1.35;
+      margin-bottom: 0.45rem;
+    }
+
+    .tag {
+      display: inline-block;
+      font-size: 0.6rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 2px 6px;
+      border-radius: 2px;
+      margin-bottom: 0.55rem;
+      border: none;
+    }
+    .tag-code   { background: #404040; color: #ffffff; }
+    .tag-sdk-ts { background: #E5E5E5; color: #1a1a1a; }
+    .tag-news   { background: #F5F5F5; color: #333333; border: 1px solid rgba(0,0,0,0.10) !important; }
+
+    .log-summary {
+      font-size: 0.875rem;
+      line-height: 1.65;
+      color: #333333;
+    }
+
+    code {
+      font-family: 'SF Mono', 'Fira Code', 'Cascadia Code', 'Courier New', monospace;
+      font-size: 0.8em;
+      background: #F7F7F7;
+      color: #000000;
+      padding: 1px 5px;
+      border-radius: 3px;
+    }
+
+    .quiet-block {
+      font-size: 0.9rem;
+      line-height: 1.7;
+      color: #666666;
+      padding-left: 1rem;
+      border-left: 2px solid #E5E5E5;
+    }
+
+    .footer {
+      margin-top: 3rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid #E5E5E5;
+      font-size: 0.725rem;
+      color: #666666;
+      line-height: 1.5;
+    }
+
+    .footer-label {
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      font-size: 0.65rem;
+      margin-top: 0.9rem;
+      margin-bottom: 0.4rem;
+      display: block;
+    }
+
+    .footer-sources {
+      list-style: none;
+      padding: 0;
+    }
+    .footer-sources li {
+      margin-bottom: 0.2rem;
+    }
+    .footer-sources a {
+      color: #666666;
+      font-size: 0.725rem;
+      word-break: break-all;
+      border-bottom-color: transparent;
+    }
+    .footer-sources a:hover { border-bottom-color: #666666; }
+
+    @media (max-width: 600px) {
+      body { padding: 3rem 1.25rem 3.5rem; font-size: 14px; }
+      .masthead { font-size: 1.65rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="masthead">Shipped.</div>
+  <div class="dateline">Daily &middot; Wednesday, May 27, 2026</div>
+
+  <p class="one-line-read">Claude Code ships twice in 24 hours, the TypeScript SDK clears two versions, and Anthropic holds its first partner broadcast.</p>
+
+  <span class="section-flag">Lead</span>
+  <div class="lead-block">
+    <p>v2.1.152 landed at 01:30 UTC and makes three changes worth tracking. <code>/code-review --fix</code> now applies review findings to the working tree directly after the review runs. <code>/simplify</code> becomes an alias for it. That is a workflow compression. The second change: a new <code>MessageDisplay</code> hook event lets teams intercept and transform assistant message text before it renders. The third: Auto mode drops its opt-in consent requirement. The friction gate is gone by default. <a href="https://github.com/anthropics/claude-code/releases">github.com/anthropics/claude-code/releases</a></p>
+    <p>v2.1.153 followed at 00:52 UTC on the 28th, still inside the window. Status line commands now receive <code>COLUMNS</code> and <code>LINES</code> environment variables for terminal-aware output sizing. macOS background agents surface in Privacy and Security as &quot;Claude Code&quot; with persistent permissions. <code>claude agents</code> autocomplete picks up native slash commands and bundled skills. <code>/model</code> saves the selection as the default unless you press <code>s</code> to scope it to the current session only.</p>
+  </div>
+
+  <hr class="rule">
+
+  <span class="section-flag">Release Log</span>
+
+  <div class="area-header">Code</div>
+
+  <div class="log-entry">
+    <div class="log-meta">2026-05-27, 01:30 UTC</div>
+    <div class="log-title"><a href="https://github.com/anthropics/claude-code/releases">Claude Code v2.1.152</a></div>
+    <span class="tag tag-code">CODE</span>
+    <div class="log-summary">
+      <code>/code-review --fix</code> applies review findings to the working tree. <code>/simplify</code> aliases to it. Skills and commands can declare <code>disallowed-tools</code> in frontmatter to remove tools while active. <code>/reload-skills</code> added. <code>SessionStart</code> hooks can return <code>reloadSkills: true</code> or set session title via <code>hookSpecificOutput.sessionTitle</code>. New <code>MessageDisplay</code> hook event for transforming assistant message text pre-render. <code>pluginSuggestionMarketplaces</code> managed setting for allowlisting plugin sources. Auto mode no longer requires opt-in consent. Vim mode: <code>/</code> in NORMAL opens reverse history search. <code>/usage</code> breakdown includes large session files. Thinking summaries render as markdown, capped at 10 lines (Ctrl+O for full).
+    </div>
+  </div>
+
+  <div class="log-entry">
+    <div class="log-meta">2026-05-28, 00:52 UTC</div>
+    <div class="log-title"><a href="https://github.com/anthropics/claude-code/releases">Claude Code v2.1.153</a></div>
+    <span class="tag tag-code">CODE</span>
+    <div class="log-summary">
+      Adds <code>skipLfs</code> option to <code>github</code>/<code>git</code> plugin marketplace sources. Status line commands receive <code>COLUMNS</code> and <code>LINES</code> env vars for terminal-aware sizing. <code>claude agents</code> autocomplete now suggests native slash commands and bundled skills. PR column shows <code>PR #N</code> (single) or <code>N PRs</code> (multiple). <code>claude doctor</code> shows results of last update attempt; shows a one-time notice when npm global install cannot auto-update. MCP servers and connectors auth notifications combined into a single message. macOS: background agents appear as &quot;Claude Code&quot; in Privacy and Security with persistent permissions. <code>/model</code> saves selection as default (press <code>s</code> for current session only). Bug fixes: MCP server reconnect-looping, custom API gateway OAuth credential handling, subagent MCP strict-config and bare-mode compliance, Windows PowerShell installer false success, memory usage on resume with many stored sessions, CLI exit in stream-json mode with closed stdin, malformed <code>file://</code> links.
+    </div>
+  </div>
+
+  <div class="area-header">SDK</div>
+
+  <div class="log-entry">
+    <div class="log-meta">2026-05-26, 23:19 UTC </div>
+    <div class="log-title"><a href="https://github.com/anthropics/anthropic-sdk-typescript/releases">TypeScript SDK v0.98.1</a></div>
+    <span class="tag tag-sdk-ts">SDK-TS</span>
+    <div class="log-summary">
+      Preserves directory prefix in <code>skills.versions.create</code> uploads. Swaps to Trusted Publishing. Renames <code>managed-agents</code> private-sandbox-worker example to <code>self-hosted-sandbox-worker</code>.
+    </div>
+  </div>
+
+  <div class="log-entry">
+    <div class="log-meta">2026-05-27, 01:04 UTC</div>
+    <div class="log-title"><a href="https://github.com/anthropics/anthropic-sdk-typescript/releases">TypeScript SDK v0.99.0</a></div>
+    <span class="tag tag-sdk-ts">SDK-TS</span>
+    <div class="log-summary">
+      Adds support for custom file size caps. Fixes streaming: <code>stop_details</code> now carried through <code>message_delta</code> accumulation.
+    </div>
+  </div>
+
+  <div class="area-header">News</div>
+
+  <div class="log-entry">
+    <div class="log-meta">2026-05-27, 8:30 AM</div>
+    <div class="log-title"><a href="https://www.anthropic.com/webinars/the-first-broadcast">The First Broadcast</a></div>
+    <span class="tag tag-news">NEWS</span>
+    <div class="log-summary">
+      Anthropic's inaugural partner webinar. Covered May product news, CCAF certification updates, and introduced Anthropic Partner Academy, a new training experience for partners with the Claude Partner Certification launching alongside it. Global replay scheduled May 28 at 11:00 AM SGT.
+    </div>
+  </div>
+
+  <hr class="rule">
+
+  <span class="section-flag">Quiet on the Wire</span>
+  <p class="quiet-block">No model release in the window. No API documentation update (docs.anthropic.com returned 403 throughout this sweep). No research publication. Python SDK last updated May 22, v0.104.1. No Claude Apps update detected. No system prompt update detected.</p>
+
+  <div class="footer">
+    <div>Generated 2026-05-28T01:00:30Z.</div>
+    <span class="footer-label">Sources</span>
+    <ul class="footer-sources">
+      <li><a href="https://github.com/anthropics/claude-code/releases">github.com/anthropics/claude-code/releases</a></li>
+      <li><a href="https://github.com/anthropics/anthropic-sdk-typescript/releases">github.com/anthropics/anthropic-sdk-typescript/releases</a></li>
+      <li><a href="https://www.anthropic.com/webinars/the-first-broadcast">anthropic.com/webinars/the-first-broadcast</a></li>
+      <li><a href="https://docs.anthropic.com/en/release-notes/api">docs.anthropic.com/en/release-notes/api (403 during sweep)</a></li>
+      <li><a href="https://docs.anthropic.com/en/release-notes/claude-code">docs.anthropic.com/en/release-notes/claude-code (403 during sweep)</a></li>
+      <li><a href="https://docs.anthropic.com/en/release-notes/claude-apps">docs.anthropic.com/en/release-notes/claude-apps (403 during sweep)</a></li>
+      <li><a href="https://docs.anthropic.com/en/release-notes/system-prompts">docs.anthropic.com/en/release-notes/system-prompts (403 during sweep)</a></li>
+      <li><a href="https://www.anthropic.com/news">anthropic.com/news (403 during sweep)</a></li>
+      <li><a href="https://www.anthropic.com/research">anthropic.com/research (403 during sweep)</a></li>
+      <li><a href="https://github.com/anthropics/anthropic-sdk-python/releases">github.com/anthropics/anthropic-sdk-python/releases</a></li>
+    </ul>
+  </div>
+
 <!-- ═════════════════════════════════════════
      SUBSCRIBE BLOCK — daily / weekly / monthly pages
      ═════════════════════════════════════════
@@ -243,5 +533,7 @@ PCFET0NUWVBFIGh0bWw+CjxodG1sIGxhbmc9ImVuIj4KPGhlYWQ+CiAgPG1ldGEgY2hhcnNldD0iVVRG
 })();
 </script>
 
+</body>
+</html>
 </body>
 </html>

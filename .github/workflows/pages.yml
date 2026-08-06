@@ -1,0 +1,63 @@
+name: Deploy daily-pages to GitHub Pages
+
+# Why this exists (2026-08-06): the legacy Pages builder for this repo stopped
+# working. Three consecutive builds errored with duration=0, meaning they failed
+# before doing any work, and a control push of the exact tree that had built
+# successfully that morning in 41 seconds then hung in "building" for 40 minutes.
+# The content was not the cause. This moves publishing onto the Actions builder,
+# which is the supported path and does not run Jekyll at all.
+#
+# No untrusted input reaches a run: step. The only inputs are the repository's
+# own checked-out files.
+
+on:
+  push:
+    branches: [daily-pages]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Never cancel a publish midway; queue instead, so a fast second push cannot
+# leave the site half-deployed.
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Checkout daily-pages
+        uses: actions/checkout@v4
+
+      - name: Sanity check the site before publishing
+        run: |
+          set -euo pipefail
+          test -f index.html || { echo "index.html missing"; exit 1; }
+          pages=$(find anthropic-daily anthropic-weekly anthropic-monthly -name '*.html' | wc -l)
+          echo "pages: $pages"
+          test "$pages" -ge 100 || { echo "only $pages pages, refusing to publish a truncated site"; exit 1; }
+          # every published page must start with a tag; 2026-05-27 once shipped base64
+          bad=0
+          while IFS= read -r f; do
+            head -c 1 "$f" | grep -q '<' || { echo "not HTML: $f"; bad=$((bad+1)); }
+          done < <(find . -name '*.html' -not -path './.git/*')
+          test "$bad" -eq 0 || { echo "$bad malformed page(s)"; exit 1; }
+
+      - name: Configure Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: .
+
+      - name: Deploy
+        id: deployment
+        uses: actions/deploy-pages@v4
