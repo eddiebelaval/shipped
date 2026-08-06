@@ -8,6 +8,30 @@ the rendered page to the `daily-pages` branch).
 prompt** (`trig_01Pevcq2DMteCYHW8dnYFXpT`), edited directly via the remote-trigger
 API, not by pasting from here.
 
+**STATUS 2026-08-05 (date derivation):** the routine ran at 21:25 ET and
+published `anthropic-daily/2026-08-06.html`, titled "Thursday, August 6, 2026",
+with the Aug 04 to Aug 05 window inside it. The 2026-08-05 edition was never
+written. Cause: Step 1 said *"Run `date -u`. Convert to America/New_York"* and
+asked the model to do the conversion in its head. This routine fires at 21:00
+ET, which is already the next calendar day in UTC, so the conversion is
+load-bearing and it is the one step that had no gate on it. Step 1 now runs a
+single `zoneinfo` command that emits `STEM` / `MAST` / `PREV` and says to use
+them verbatim, and a fourth hard gate (**Step 4b, the date self-audit**) refuses
+to publish a stem that is not today's Eastern date. Step 5 also now verifies the
+live URL's `<title>` after the push, because a push is not a publish.
+
+Two blast-radius notes, both fixed in `pipeline/scripts/`:
+- `distribute-local.py` tracked one high-water stem per cadence and only looked
+  at `sorted(stems)[-1]`. Left alone, the future-dated page would have become
+  the mark, so the REAL 2026-08-06 edition would have compared equal the next
+  night and never been mailed. One wrong date, two lost editions. State is now a
+  SET of drafted stems, and future-dated nightly stems are never drafted.
+- Nothing alerted. Not tonight, and not on 2026-07-26 or 2026-07-30 when the
+  routine did not run at all. `nightly-check.sh` watches the WEEKLY magazine
+  dashboard and knows nothing about the daily; the distributor logged "no new
+  pages to draft" and exited 0. `pipeline/scripts/daily-watchdog.sh` (launchd,
+  21:40 local) now asks the one question and pages when the answer is no.
+
 **STATUS 2026-07-23 (subscribe block):** every page on `daily-pages` was
 published with no way to subscribe: no form, no CTA, 88 pages going back to
 2026-05-06, on the most current surface Shipped. has. The 88 were backfilled,

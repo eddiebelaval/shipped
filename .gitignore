@@ -13,3 +13,5 @@ pipeline/.api-cache.json
 .vscode/
 .idea/
 .gstack/
+__pycache__/
+*.pyc
