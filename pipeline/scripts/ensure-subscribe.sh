@@ -1,6 +1,11 @@
 #!/bin/bash
 #
-# Shipped. — subscribe-block enforcement sweep.
+# Shipped. — daily-pages branch sweep.
+#
+# Two jobs, one worktree, one commit, one push (two pushes to the same branch
+# from two launchd jobs would race):
+#   1. every published page carries the subscribe block
+#   2. index.html is regenerated from the branch, so every page is reachable
 #
 # Three separate cloud routines publish to the daily-pages branch (nightly,
 # weekly Fri, monthly 1st), each rendering HTML from its own prompt. Relying on
@@ -62,23 +67,33 @@ git worktree add -q --detach "$WT" origin/daily-pages 2>>"$LOG" || die "worktree
 
 if [ "$DRY_RUN" -eq 1 ]; then
   python3 "$SHIPPED/pipeline/scripts/backfill-subscribe.py" "$WT" --dry-run | tee -a "$LOG"
+  python3 "$SHIPPED/pipeline/scripts/build-archive-index.py" "$WT" --dry-run | tee -a "$LOG"
   exit 0
 fi
 
 OUT="$(python3 "$SHIPPED/pipeline/scripts/backfill-subscribe.py" "$WT")" || die "backfill failed: $OUT"
 log "$OUT"
 
+# Rebuild index.html from the branch. Same doctrine as the block above: the
+# index is DERIVED, never hand-edited, so it cannot fall behind what is
+# published. It had: nine dailies, all from May, untouched since 2026-05-14
+# while ~95 pages accumulated behind it with no path in. Its colophon is
+# stamped with the newest edition rather than the build time, so a night that
+# published nothing produces no diff and no commit.
+IDX="$(python3 "$SHIPPED/pipeline/scripts/build-archive-index.py" "$WT")" || die "index build failed: $IDX"
+log "$IDX"
+
 cd "$WT"
-if git diff --quiet; then
-  log "no change (every published page already carries the block)"
+if git diff --quiet && [ -z "$(git status --porcelain)" ]; then
+  log "no change (every page carries the block and the index is current)"
   exit 0
 fi
 
-COUNT="$(git diff --name-only | wc -l | tr -d ' ')"
+COUNT="$(git status --porcelain | wc -l | tr -d ' ')"
 git add -A
 git -c user.name="Shipped. bot" -c user.email="eb@id8labs.tech" \
-  commit -q -m "chore(pages): ensure subscribe block on $COUNT published page(s)" \
-  -m "Added by ensure-subscribe.sh: a routine published without it." \
+  commit -q -m "chore(pages): branch sweep, $COUNT file(s) updated" \
+  -m "ensure-subscribe.sh: subscribe block enforced on every published page, and index.html regenerated from the branch so every page stays reachable." \
   2>>"$LOG" || die "commit failed"
 
 # HEAD is detached at the fetched tip, so this pushes exactly what we patched.

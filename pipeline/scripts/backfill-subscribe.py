@@ -51,14 +51,38 @@ CTA_LINK = '    <a href="#subscribe" class="pub-bar-cta">Subscribe</a>\n'
 
 def patch(html: str, source: str) -> tuple[str, str | None, str]:
     """Return (new_html, error, note). error is None on success."""
-    if 'class="pub-bar-cta"' in html or 'id="subscribe"' in html:
+    # These are TWO independent edits and must be detected independently.
+    #
+    # This was `if cta in html or block in html: already-patched`, which meant a
+    # page carrying only the pill was declared healed and skipped forever. That
+    # is exactly what the nightly routine produces when it follows Step 4 item 3
+    # (add the pill) and skips Step 4 item 6 (paste the form): a Subscribe button
+    # anchored to #subscribe, on a page with no #subscribe. A dead button, and
+    # the healer built to catch it reporting "already had it" every night.
+    # Found 2026-08-05 on anthropic-monthly/2026-07, anthropic-weekly/2026-30
+    # and 2026-31, which had been in that state since 2026-07-24.
+    has_cta = 'class="pub-bar-cta"' in html
+    has_block = 'id="subscribe"' in html
+    spine = re.search(r'<div class="pub-bar-right">(.*?)</div>', html, re.S)
+
+    # "Done" is not "has both". 37 pages predate the publication bar entirely,
+    # so there is nowhere to put a pill and the form alone IS their finished
+    # state. Calling those unpatched would report 40 repairs a night while
+    # changing nothing, which is the same kind of lie as the OR it replaced.
+    needs_cta = not has_cta and spine is not None
+    needs_block = not has_block
+    if not needs_cta and not needs_block:
         return html, "already-patched", ""
 
     notes = []
+    if has_cta and needs_block:
+        notes.append("half-patched:pill-only")
+    elif has_block and needs_cta:
+        notes.append("half-patched:form-only")
 
     # 1 — Spine CTA, only where a publication bar exists. The older chrome has
     # no nav, so those pages get the form without a top CTA rather than failing.
-    m = re.search(r'<div class="pub-bar-right">(.*?)</div>', html, re.S)
+    m = spine if needs_cta else None
     if m:
         inner = m.group(1)
         # Collapse existing meta on narrow screens so the CTA always has room.
@@ -72,12 +96,15 @@ def patch(html: str, source: str) -> tuple[str, str | None, str]:
             + f'<div class="pub-bar-right">{new_inner}{CTA_LINK}  </div>'
             + html[m.end() :]
         )
-    else:
+    elif spine is None:
         notes.append("no-spine")
 
     # 2 — The subscribe block. Every page gets it. All the CSS it needs travels
     # with it (with token fallbacks), so it renders correctly on the 37 pages
     # that predate the shared design tokens.
+    if not needs_block:
+        return html, None, ",".join(notes)
+
     block = SNIPPET.read_text(encoding="utf-8").replace("{{SOURCE}}", source)
 
     n_body = html.count("</body>")

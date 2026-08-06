@@ -1,5 +1,5 @@
 <!-- ═════════════════════════════════════════
-     SUBSCRIBE BLOCK — daily / weekly / monthly pages
+     SUBSCRIBE BLOCK: daily / weekly / monthly pages
      ═════════════════════════════════════════
 
      The single source of truth for the subscribe form on pages published to
@@ -18,7 +18,7 @@
        1. The POST URL is ABSOLUTE. These pages are served from github.io, not
           id8labs.app, so a relative /api/... path would hit GitHub Pages and
           404. The subscribe route allows this origin explicitly in CORS_ORIGINS
-          — if that list ever changes, this form breaks silently.
+          (if that list ever changes, this form breaks silently.)
 
        2. {{SOURCE}} is substituted per page type (shipped-daily,
           shipped-weekly, shipped-monthly) for attribution. It MUST keep the
@@ -117,7 +117,7 @@
     min-width: 0;
   }
   .ship-sub-form input::placeholder { color: rgba(250,250,247,.4); }
-  /* Honeypot — off-screen rather than display:none, so naive bots still fill it */
+  /* Honeypot: off-screen rather than display:none, so naive bots still fill it */
   .ship-sub-hp {
     position: absolute !important;
     left: -9999px !important;
