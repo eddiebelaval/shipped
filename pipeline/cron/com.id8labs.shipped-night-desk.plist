@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+  <key>Label</key>
+  <string>com.id8labs.shipped-night-desk</string>
+
+  <!-- Two passes, both local ET so they track EDT/EST with the Eastern dates
+       the pages are named for.
+
+       21:40  after the 21:00 routine has had 40 minutes to publish, and BEFORE
+              the 22:45 distributor. Catches a missing or future-dated edition
+              early enough that the distributor does not mail the wrong thing.
+       23:10  after the 22:45 distributor and the 23:00 subscribe sweep. This is
+              the pass that can see the whole night: did it publish, did it
+              deploy, did it get drafted. Runs with --heal.
+
+       Replaces com.id8labs.shipped-daily-watchdog, whose single presence check
+       is now check 1 of nine. Two jobs paging for the same fact is how a real
+       alert gets trained into noise. -->
+  <key>ProgramArguments</key>
+  <array>
+    <string>/usr/bin/python3</string>
+    <string>/Users/eddiebelaval/Development/id8/shipped/pipeline/scripts/night-desk.py</string>
+    <string>--heal</string>
+  </array>
+
+  <key>StartCalendarInterval</key>
+  <array>
+    <dict>
+      <key>Hour</key><integer>21</integer>
+      <key>Minute</key><integer>40</integer>
+    </dict>
+    <dict>
+      <key>Hour</key><integer>23</integer>
+      <key>Minute</key><integer>10</integer>
+    </dict>
+  </array>
+
+  <key>RunAtLoad</key>
+  <false/>
+
+  <key>EnvironmentVariables</key>
+  <dict>
+    <key>PATH</key>
+    <string>/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin</string>
+    <key>HOME</key>
+    <string>/Users/eddiebelaval</string>
+  </dict>
+
+  <key>StandardOutPath</key>
+  <string>/Users/eddiebelaval/Library/Logs/shipped/night-desk-stdout.log</string>
+  <key>StandardErrorPath</key>
+  <string>/Users/eddiebelaval/Library/Logs/shipped/night-desk-stderr.log</string>
+</dict>
+</plist>
