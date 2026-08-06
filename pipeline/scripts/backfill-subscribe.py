@@ -51,6 +51,14 @@ CTA_LINK = '    <a href="#subscribe" class="pub-bar-cta">Subscribe</a>\n'
 
 def patch(html: str, source: str) -> tuple[str, str | None, str]:
     """Return (new_html, error, note). error is None on success."""
+    # Refuse to "heal" something that is not a document. 2026-05-27 was
+    # published base64-encoded: a wall of text, no tags. Because a base64 blob
+    # contains no </body>, the truncated-document path below cheerfully
+    # appended a subscribe block and a </body></html> to it and reported
+    # success, which is how a corrupt page sat live for 70 days looking patched.
+    # A healer that cannot recognise a broken input will always certify it.
+    if not html.lstrip().startswith("<"):
+        return html, "not-html (does not start with a tag; corrupt or encoded?)", ""
     # These are TWO independent edits and must be detected independently.
     #
     # This was `if cta in html or block in html: already-patched`, which meant a

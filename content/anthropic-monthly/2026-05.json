@@ -1,0 +1,179 @@
+{
+  "title": "Shipped. Monthly, May 2026",
+  "og": "The month Anthropic bought the compute, bought the toolchain, and bought the balance sheet. SpaceX and Akamai, Stainless, Opus 4.8, and a $65 billion round at a $965 billion valuation.",
+  "url": "https://eddiebelaval.github.io/shipped/anthropic-monthly/2026-05.html",
+  "kicker": "Monthly",
+  "folio": "May 2026",
+  "dateline": "May 06 to May 31, 2026  ///  Compiled from 25 daily sweeps  ///  Shipped. issue M01",
+  "cover_line": "In one month Anthropic bought the compute, bought the toolchain, and bought the balance sheet. The model releases were almost the smaller story.",
+  "source_tag": "shipped-monthly",
+  "colophon_line": "Shipped. Monthly, May 2026. Compiled 2026-08-06 from the 25 daily sweeps published between May 06 and May 31, 2026.",
+  "sections": [
+    {
+      "flag": "The Open",
+      "paras": [
+        "May opened with a developer conference and closed with a $965 billion valuation. In between, Anthropic signed 300 megawatts from SpaceX, signed $1.8 billion with Akamai, acquired the company that generates SDKs for OpenAI and Google and then announced it would shut that service down, shipped a flagship model at the previous flagship's price, and disclosed that roughly fifty partners had found more than ten thousand high-or-critical vulnerabilities using a model the public could not have.",
+        "Read as a list of releases, May looks ordinary: one model, about twenty Claude Code patches, steady SDK cadence. Read as a set of purchases, it is the month Anthropic stopped behaving like a company that ships models and started behaving like one assembling a supply chain. Compute, tooling, distribution, and capital, all four bought in twenty-five days.",
+        "This is the archive issue for May 2026, compiled in August from the daily sweeps. It is the first monthly Shipped. published for a month that had already closed."
+      ]
+    },
+    {
+      "flag": "Lead Story",
+      "title": "Three purchases and a valuation",
+      "paras": [
+        "The compute came first. On May 6, alongside its first developer conference, Anthropic [announced](https://www.anthropic.com/news/higher-limits-spacex) that it had signed SpaceX for all AI capacity at Colossus 1 in Memphis: more than 220,000 NVIDIA GPUs drawing over 300 megawatts. Two days later Bloomberg [reported](https://www.bloomberg.com/news/articles/2026-05-08/anthropic-inks-1-8-billion-computing-deal-with-akamai) a $1.8 billion, seven-year infrastructure contract with Akamai, the largest deal in Akamai's history. Fortune put the demand side next to it: 80-fold growth in annualized revenue in Q1 2026.",
+        "Then the toolchain. On May 18 Anthropic [acquired Stainless](https://www.anthropic.com/news/anthropic-acquires-stainless), the startup that generates production-ready SDKs from API specifications, and said it would wind down all hosted Stainless products including the generator itself. Stainless built every official Anthropic SDK. It also built the Python, TypeScript, Go, Java, and Kotlin SDKs for OpenAI, Google, Cloudflare, and Meta. Existing customers keep what they have already generated, with full rights to modify. The factory closes; the parts stay where they landed.",
+        "That is the move worth sitting with. Buying the SDK generator does not make Anthropic's SDKs better in any way it could not have bought as a service. What it does is remove a shared dependency from underneath every competitor at once, at a price The Information reported in the low hundreds of millions. Infrastructure you can rent is a cost. Infrastructure your rivals rent from the same vendor is a position.",
+        "Then the capital. On May 29 Anthropic closed a $65 billion [Series H](https://www.anthropic.com/news/series-h) led by Altimeter, Dragoneer, Greenoaks, and Sequoia at a $965 billion post-money valuation, surpassing OpenAI as the most valuable private AI company, on run-rate revenue of $47 billion. The trajectory in the filing is the part to keep: $9 billion ARR at the end of 2025, $14 billion at the Series G in February, $30 billion in April, $47 billion in May."
+      ]
+    },
+    {
+      "flag": "The Dig",
+      "title": "Opus 4.8, and a benchmark nobody was gaming",
+      "paras": [
+        "[Claude Opus 4.8](https://www.anthropic.com/news/claude-opus-4-8) shipped May 28 at Opus 4.7 pricing: $5 and $25 per million tokens, 1M context on Claude API, Bedrock, and Vertex, 200k on Foundry, 128k max output. SWE-bench Pro went to 69.2% from 64.3%, SWE-bench Verified to 88.6% from 87.6%. USAMO 2026 jumped to 96.7% from 69.6%, which is a 27-point move in one release.",
+        "The number Anthropic led with was none of those. Opus 4.8 scored 0% on uncritically accepting and reporting flawed results, the first Claude model to reach that mark, with a more than tenfold reduction in overconfidence against 4.7. That is a benchmark about whether the model will tell you your premise is wrong. For anyone running agents unattended, it is worth more than the coding delta, because a coding delta makes a good agent faster and an honesty delta makes a bad run stop.",
+        "Fast mode also dropped to 2x standard pricing for 2.5x speed, down from 6x. Worth noticing for anyone whose bill moved without their usage moving."
+      ]
+    },
+    {
+      "flag": "The Dig",
+      "title": "Glasswing, and the asymmetry it measures",
+      "paras": [
+        "Anthropic published its first formal update on [Project Glasswing](https://www.anthropic.com/research/glasswing-initial-update) on May 25: roughly fifty partners found more than 10,000 high-or-critical-severity vulnerabilities using Claude Mythos Preview in the program's first month. Cloudflare reported 2,000 bugs, 400 of them high or critical, at a false-positive rate better than human testers. The founding partner list runs through AWS, Apple, Broadcom, Cisco, CrowdStrike, and Google, and the program was expanding to US and allied government critical infrastructure.",
+        "Anthropic's own summary of the problem is the honest part: the relative ease of finding vulnerabilities compared with the difficulty of fixing them amounts to a major challenge for cybersecurity. Ten thousand findings in a month is a defender-first number only if the patch rate can follow. Nothing published in May said it could.",
+        "On May 25 a claude-mythos-1-preview identifier also briefly [appeared in Claude Code](https://www.bleepingcomputer.com/news/artificial-intelligence/anthropics-restricted-claude-mythos-model-may-be-coming-to-claude-code/) before Anthropic pulled it."
+      ]
+    },
+    {
+      "flag": "Also Shipped",
+      "entries": [
+        {
+          "tag": "Apps",
+          "date": "May 06",
+          "title": "Code with Claude 2026, and Code Review",
+          "href": "https://claude.com/code-with-claude/san-francisco",
+          "body": "Anthropic's first developer conference opened in San Francisco with no new model. What shipped was Code Review, a tool that dispatches a team of agents across a diff, which every internal team already ran. CPO Ami Vora framed the event as being about making existing products work better rather than announcing new ones."
+        },
+        {
+          "tag": "Research",
+          "date": "May 07",
+          "title": "The Anthropic Institute research agenda",
+          "href": "https://www.anthropic.com/research/anthropic-institute-agenda",
+          "body": "Led by co-founder Jack Clark, the institute consolidates the Frontier Red Team, Societal Impacts, and Economic Research groups under four named focus areas including economic diffusion and threat modeling."
+        },
+        {
+          "tag": "API",
+          "date": "May 11",
+          "title": "Claude Platform generally available on AWS",
+          "href": "https://aws.amazon.com/about-aws/whats-new/2026/05/claude-platform-aws/",
+          "body": "Not Bedrock. Anthropic's own platform, reachable through an existing AWS account with IAM authentication and AWS billing, no separate Anthropic contract. Messages, Files, and Message Batches APIs, Managed Agents beta, advisor tool beta, web search and fetch, MCP connector beta, Agent Skills beta, and code execution. Opus 4.7, Sonnet 4.6, and Haiku 4.5 at launch. AWS was the first cloud to carry it."
+        },
+        {
+          "tag": "Apps",
+          "date": "May 13",
+          "title": "Claude for Small Business",
+          "href": "https://www.anthropic.com/news",
+          "body": "A toggle install rather than a product: Claude-powered connectors and agentic workflows dropped into software small businesses already run, starting with Intuit QuickBooks and PayPal. Anthropic sized the audience at 44% of US GDP and roughly half the private-sector workforce, and ran a 10-city free half-day workshop tour from Chicago on May 14. Anthropic supplies the reasoning layer; partners carry the integration surface, the same structure as the enterprise push."
+        },
+        {
+          "tag": "News",
+          "date": "May 14",
+          "title": "Gates Foundation, $200 million over four years",
+          "href": "https://www.anthropic.com/news/gates-foundation-partnership",
+          "body": "Grant funding, Claude usage credits, and technical support across global health, education, economic mobility, and language accessibility. The starting points are specific rather than abstract: polio, HPV, and eclampsia. Education runs K-12 tutoring in the US alongside foundational literacy and numeracy in sub-Saharan Africa and India. The language work funds African language datasets released as public goods."
+        },
+        {
+          "tag": "News",
+          "date": "May 14",
+          "title": "PwC expands to 30,000 professionals",
+          "href": "https://www.anthropic.com/news/pwc-expanded-partnership",
+          "body": "Claude Code in front of 30,000 PwC professionals, with a joint Center of Excellence. Announced the same day as the Gates Foundation commitment, at a completely different scale and for a completely different reason."
+        },
+        {
+          "tag": "Research",
+          "date": "May 16",
+          "title": "2028: Two scenarios for global AI leadership",
+          "href": "https://www.anthropic.com/research/2028-ai-leadership",
+          "body": "Anthropic's research team put semiconductors, not capabilities and not safety frameworks, at the center of the US and China question. Scenario one: export controls tighten, the democratic coalition holds a 12-to-24-month frontier lead and sets the rules. Scenario two: policymakers defer and the gap closes. The thesis sentence: there is a high likelihood that we will look back on 2026 as the breakaway opportunity for American AI."
+        },
+        {
+          "tag": "News",
+          "date": "May 26",
+          "title": "Chris Olah at the Vatican",
+          "href": "https://www.anthropic.com/news",
+          "body": "Anthropic's co-founder stood in Vatican City for the press conference launching Pope Leo XIV's encyclical on artificial intelligence, Magnifica humanitas, which runs 42,000 words across 245 paragraphs. The invitation is the story: not the CEO, not the policy team, but the person whose public work is mechanistic interpretability, understanding what a network is actually doing before it does something that cannot be walked back."
+        }
+      ]
+    },
+    {
+      "flag": "Release Log",
+      "title": "Claude Code, and the security patches worth naming",
+      "entries": [
+        {
+          "tag": "Code",
+          "date": "May 19",
+          "title": "v2.1.145 closes a Bash permission bypass",
+          "href": "https://github.com/anthropics/claude-code/releases",
+          "body": "Bare variable assignments to non-allowlisted environment variables in Bash commands were being auto-approved. In an agentic workflow that is a real security hole, not a cosmetic patch, and it sat at bullet twelve of the release notes. The same release added JSON session listing for external session pickers and OTEL trace parenting for background subagents."
+        },
+        {
+          "tag": "Code",
+          "date": "May 22",
+          "title": "v2.1.149, four security fixes in one drop",
+          "href": "https://github.com/anthropics/claude-code/releases",
+          "body": "A PowerShell permission bypass via built-in functions. A git worktrees sandbox write allowlist covering the entire repo root instead of scoped paths. PowerShell prefix and wildcard allow rules pre-approving native executables. A permission-analysis gap from stale PWD, OLDPWD, and DIRSTACK tracking. Also the /usage breakdown by skills, subagents, plugins, and per-MCP-server rather than one opaque total."
+        },
+        {
+          "tag": "Code",
+          "date": "May 11",
+          "title": "v2.1.139 adds Agent View and goal-based continuation",
+          "href": "https://github.com/anthropics/claude-code/releases/tag/v2.1.139",
+          "body": "Agent View surfaces every session, running, blocked, or completed, in one list. Goal-based continuation lets you set a completion condition once and have Claude work across turns until it hits it, with a live overlay of elapsed time, turns, and tokens. Forty-plus fixes rode along, including a deadlock on expired credentials and a hard 16 MB cap on previously unbounded memory growth."
+        },
+        {
+          "tag": "Code",
+          "date": "May 21",
+          "title": "v2.1.147, 28 fixes and pinned background sessions",
+          "href": "https://github.com/anthropics/claude-code/releases/tag/v2.1.147",
+          "body": "Pinned background sessions now survive idle, restart in place when an update lands, and are shed under memory pressure only after non-pinned sessions clear. A review flag posts findings directly as inline PR comments on GitHub."
+        },
+        {
+          "tag": "Code",
+          "date": "May 30",
+          "title": "v2.1.158 brings Auto mode to the clouds",
+          "href": "https://github.com/anthropics/claude-code/releases",
+          "body": "Auto mode reached Bedrock, Vertex, and Foundry for Opus 4.7 and Opus 4.8. Previously it was limited to direct API subscribers and Claude.ai plan holders, so enterprise customers running through a cloud can now enable it without migrating off their platform."
+        },
+        {
+          "tag": "SDK",
+          "date": "May 31",
+          "title": "SDK cadence through the month",
+          "href": "https://github.com/anthropics/anthropic-sdk-python/releases",
+          "body": "Python moved from v0.100.0 on May 6 (Managed Agents multiagent support, webhooks, vault validation) through v0.104.1 on May 22 (a streaming fix through the beta compaction accumulator). TypeScript ran v0.95.1 on May 7 (API-key header redaction in debug logs, a real credential leak) to v0.98.1 on May 26. Both lines added self-hosted sandbox support on May 19 and streaming token estimates for extended thinking on May 21."
+        }
+      ]
+    },
+    {
+      "flag": "Quiet on the Wire",
+      "paras": [
+        "May had three genuinely silent days: May 10, May 17, and May 24, all weekends. The weekday cadence held at roughly one Claude Code release every 24 to 48 hours, and Sunday was the pause.",
+        "One day is missing from this record. There is no daily sweep for May 20, 2026, and none was ever published. This issue is compiled from the 25 dailies that exist, so anything that shipped inside that 24-hour window is absent here rather than covered. It is named rather than papered over.",
+        "The $50 billion raise that ran unclosed through the first half of the month, at a targeted $880 to $900 billion valuation, resolved on May 29 at $65 billion and $965 billion. Both the amount and the valuation came in above the reporting."
+      ]
+    }
+  ],
+  "close": "The month reads like a company that decided its constraint was never going to be model quality. Every large check in May bought something upstream of the model: power, silicon, the tools competitors build with, and the capital to keep buying. The 27-point USAMO jump was the easy part.",
+  "sources": [
+    ["anthropic.com/news/higher-limits-spacex", "https://www.anthropic.com/news/higher-limits-spacex"],
+    ["anthropic.com/news/anthropic-acquires-stainless", "https://www.anthropic.com/news/anthropic-acquires-stainless"],
+    ["anthropic.com/news/claude-opus-4-8", "https://www.anthropic.com/news/claude-opus-4-8"],
+    ["anthropic.com/news/series-h", "https://www.anthropic.com/news/series-h"],
+    ["anthropic.com/research/glasswing-initial-update", "https://www.anthropic.com/research/glasswing-initial-update"],
+    ["anthropic.com/research/2028-ai-leadership", "https://www.anthropic.com/research/2028-ai-leadership"],
+    ["anthropic.com/news/gates-foundation-partnership", "https://www.anthropic.com/news/gates-foundation-partnership"],
+    ["aws.amazon.com Claude Platform on AWS", "https://aws.amazon.com/about-aws/whats-new/2026/05/claude-platform-aws/"],
+    ["bloomberg.com Akamai contract", "https://www.bloomberg.com/news/articles/2026-05-08/anthropic-inks-1-8-billion-computing-deal-with-akamai"],
+    ["github.com/anthropics/claude-code/releases", "https://github.com/anthropics/claude-code/releases"]
+  ]
+}

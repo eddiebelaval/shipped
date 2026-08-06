@@ -161,8 +161,12 @@ def gaps(dailies, weeklies, monthlies, today):
     first = date.fromisoformat(parsed[0])
     lines = []
 
+    # Stop at yesterday. Today's edition is not late until the 21:00 routine has
+    # run, and daily-watchdog.sh already owns that question and pages on it.
+    # Two systems reporting the same gap, one of them wrongly before 21:00, is
+    # how a real alert gets trained into noise.
     missing, d = [], first
-    while d <= today:
+    while d < today:
         if d.isoformat() not in have:
             missing.append(f"{d.isoformat()} {d.strftime('%a')}")
         d += timedelta(days=1)
