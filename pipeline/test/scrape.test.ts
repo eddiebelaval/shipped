@@ -32,6 +32,16 @@ import {
 import { writeScrapeResult, formatDateStamp } from '../src/scrape/output.js';
 import type { ScrapedTweet, ScrapeResult } from '../src/scrape/types.js';
 import { scrapeClaudedevs } from '../src/scrape/index.js';
+import {
+  XMcpClient,
+  MissingMcpConfigError,
+  parseRpcBody,
+  decodeToolResult,
+  extractPostArray,
+  normalizeMcpPost,
+  mergeNovel,
+} from '../src/scrape/x-mcp.js';
+import { searchTermsForHandle } from '../src/scrape/sources.js';
 
 /* -------------------------------------------------------------------------- */
 /* Helpers                                                                    */
@@ -73,6 +83,47 @@ function makeTweet(overrides: Partial<ScrapedTweet> = {}): ScrapedTweet {
     engagement: { likes: 0, reposts: 0, replies: 0 },
     ...overrides,
   };
+}
+
+/**
+ * A fetch stub for the X MCP server. Routes JSON-RPC messages by method/tool
+ * to the supplied tool payloads, wrapping each in an MCP text-content result.
+ * Initialize returns an Mcp-Session-Id; notifications get a 202.
+ */
+function makeMcpFetch(opts: {
+  tools: Record<string, (args: Record<string, unknown>) => unknown>;
+  url?: string;
+  failHttp?: number;
+}): typeof fetch {
+  const mcpUrl = opts.url ?? 'https://mcp.test/';
+  return (async (input: RequestInfo | URL, init?: RequestInit): Promise<Response> => {
+    const url = typeof input === 'string' ? input : input.toString();
+    if (!url.startsWith(mcpUrl)) return new Response('not found', { status: 404 });
+    if (opts.failHttp) {
+      return new Response('mcp down', { status: opts.failHttp });
+    }
+    const msg = init?.body ? JSON.parse(String(init.body)) : {};
+    if (msg.id === undefined) return new Response('', { status: 202 }); // notification
+    let result: unknown = {};
+    if (msg.method === 'initialize') {
+      result = { protocolVersion: '2025-06-18', capabilities: {}, serverInfo: { name: 'x', version: '1' } };
+    } else if (msg.method === 'tools/call') {
+      const name = msg.params?.name as string;
+      const args = (msg.params?.arguments ?? {}) as Record<string, unknown>;
+      const tool = opts.tools[name];
+      const payload = tool ? tool(args) : { posts: [] };
+      result = { content: [{ type: 'text', text: JSON.stringify(payload) }] };
+    }
+    return new Response(JSON.stringify({ jsonrpc: '2.0', id: msg.id, result }), {
+      status: 200,
+      headers: { 'content-type': 'application/json', 'mcp-session-id': 'sess-test' },
+    });
+  }) as unknown as typeof fetch;
+}
+
+/** A recent ISO timestamp guaranteed inside any reasonable lookback window. */
+function recentIso(): string {
+  return new Date(Date.now() - 60 * 60 * 1000).toISOString();
 }
 
 /* -------------------------------------------------------------------------- */
@@ -542,4 +593,275 @@ test('scrapeClaudedevs uses X API when token is set and fetch succeeds', async (
   assert.equal(result.tweets.length, 1);
   assert.equal(result.tweets[0]?.id, '900');
   assert.equal(result.outputPath, null);
+});
+
+/* -------------------------------------------------------------------------- */
+/* X MCP                                                                      */
+/* -------------------------------------------------------------------------- */
+
+test('XMcpClient throws MissingMcpConfigError when no url is configured', () => {
+  const previous = process.env['X_MCP_URL'];
+  delete process.env['X_MCP_URL'];
+  try {
+    assert.throws(() => new XMcpClient(), MissingMcpConfigError);
+  } finally {
+    if (previous !== undefined) process.env['X_MCP_URL'] = previous;
+  }
+});
+
+test('XMcpClient.fetchTimeline handshakes then maps posts to ScrapedTweet', async () => {
+  const fetchStub = makeMcpFetch({
+    tools: {
+      get_user_posts: () => ({
+        posts: [
+          {
+            id: '100',
+            text: 'Opus 4.8 is live',
+            created_at: recentIso(),
+            public_metrics: { like_count: 12, retweet_count: 4, reply_count: 2 },
+            urls: [{ expanded_url: 'https://anthropic.com/news/opus-48' }],
+            hashtags: [{ tag: 'Claude' }],
+          },
+        ],
+      }),
+    },
+  });
+  const client = new XMcpClient({
+    url: 'https://mcp.test/',
+    token: 'k',
+    fetchImpl: fetchStub,
+    delayMs: 0,
+  });
+  const tweets = await client.fetchTimeline({
+    username: 'claudedevs',
+    sinceDays: 7,
+    includeReplies: false,
+    includeRetweets: false,
+  });
+  assert.equal(tweets.length, 1);
+  assert.equal(tweets[0]?.id, '100');
+  assert.equal(tweets[0]?.author, 'claudedevs');
+  assert.deepEqual(tweets[0]?.links, ['https://anthropic.com/news/opus-48']);
+  assert.deepEqual(tweets[0]?.hashtags, ['claude']);
+  assert.equal(tweets[0]?.engagement.likes, 12);
+  assert.equal(tweets[0]?.engagement.reposts, 4);
+  assert.deepEqual(tweets[0]?.attachments, ['link']);
+});
+
+test('XMcpClient.searchPosts attributes the real third-party author', async () => {
+  const fetchStub = makeMcpFetch({
+    tools: {
+      search_posts: (args) => ({
+        posts: [
+          {
+            id: '777',
+            text: `take on ${String(args['query'])}`,
+            created_at: recentIso(),
+            author: { username: 'simonw' },
+            urls: [{ expanded_url: 'https://simonwillison.net/opus48' }],
+          },
+        ],
+      }),
+    },
+  });
+  const client = new XMcpClient({
+    url: 'https://mcp.test/',
+    fetchImpl: fetchStub,
+    delayMs: 0,
+  });
+  const hits = await client.searchPosts('Claude', {
+    username: 'claudedevs',
+    sinceDays: 7,
+    includeReplies: false,
+    includeRetweets: false,
+  });
+  assert.equal(hits.length, 1);
+  assert.equal(hits[0]?.author, 'simonw');
+  assert.equal(hits[0]?.url, 'https://x.com/simonw/status/777');
+});
+
+test('XMcpClient keeps undated posts instead of dropping them at the cutoff', async () => {
+  // A post with no date field is stamped at the epoch by normalizeMcpPost;
+  // it must survive the window filter rather than look like schema drift = 0 posts.
+  const fetchStub = makeMcpFetch({
+    tools: {
+      get_user_posts: () => ({ posts: [{ id: '55', text: 'no date field here' }] }),
+    },
+  });
+  const client = new XMcpClient({
+    url: 'https://mcp.test/',
+    fetchImpl: fetchStub,
+    delayMs: 0,
+  });
+  const tweets = await client.fetchTimeline({
+    username: 'claudedevs',
+    sinceDays: 7,
+    includeReplies: false,
+    includeRetweets: false,
+  });
+  assert.equal(tweets.length, 1);
+  assert.equal(tweets[0]?.id, '55');
+});
+
+test('parseRpcBody parses both plain JSON and SSE framing', () => {
+  const plain = parseRpcBody<{ ok: boolean }>(
+    '{"jsonrpc":"2.0","id":1,"result":{"ok":true}}',
+  );
+  assert.equal(plain?.result?.ok, true);
+
+  const sse = parseRpcBody<{ ok: boolean }>(
+    'event: message\ndata: {"jsonrpc":"2.0","id":2,"result":{"ok":true}}\n\n',
+  );
+  assert.equal(sse?.result?.ok, true);
+
+  assert.equal(parseRpcBody('   '), null);
+});
+
+test('decodeToolResult prefers structuredContent, else parses text block', () => {
+  assert.deepEqual(
+    decodeToolResult({ structuredContent: { posts: [{ id: '1' }] } }),
+    { posts: [{ id: '1' }] },
+  );
+  assert.deepEqual(
+    decodeToolResult({ content: [{ type: 'text', text: '{"posts":[{"id":"2"}]}' }] }),
+    { posts: [{ id: '2' }] },
+  );
+  assert.equal(decodeToolResult(undefined), null);
+});
+
+test('extractPostArray finds the array under common envelope keys', () => {
+  assert.equal(extractPostArray([{ id: '1' }]).length, 1);
+  assert.equal(extractPostArray({ posts: [{ id: '1' }] }).length, 1);
+  assert.equal(extractPostArray({ data: [{ id: '1' }, { id: '2' }] }).length, 2);
+  assert.equal(extractPostArray({ nothing: true }).length, 0);
+});
+
+test('normalizeMcpPost is defensive: null without id, maps minimal post', () => {
+  assert.equal(normalizeMcpPost({}, 'claudedevs'), null);
+
+  const t = normalizeMcpPost(
+    { id: 5 as unknown as string, content: 'hi', username: 'openaidevs', urls: ['https://x.example/a'] },
+    'claudedevs',
+  );
+  assert.ok(t);
+  assert.equal(t?.id, '5');
+  assert.equal(t?.text, 'hi');
+  assert.equal(t?.author, 'openaidevs');
+  assert.deepEqual(t?.links, ['https://x.example/a']);
+  assert.deepEqual(t?.attachments, ['link']);
+});
+
+test('mergeNovel dedupes by id and by shared normalized link', () => {
+  const base = [makeTweet({ id: '1', links: ['https://a.com/x'] })];
+  const extra = [
+    makeTweet({ id: '1' }), // dup id
+    makeTweet({ id: '2', links: ['https://www.a.com/x/'] }), // dup url (normalized)
+    makeTweet({ id: '3', links: ['https://b.com/y'] }), // novel
+  ];
+  const { merged, added } = mergeNovel(base, extra);
+  assert.equal(added, 1);
+  assert.equal(merged.length, 2);
+  assert.ok(merged.some((t) => t.id === '3'));
+});
+
+test('searchTermsForHandle derives lab terms, falls back to bare handle', () => {
+  assert.deepEqual(searchTermsForHandle('claudedevs'), ['Anthropic', 'Claude']);
+  assert.deepEqual(searchTermsForHandle('@OpenAIDevs'), ['OpenAI', 'ChatGPT']);
+  assert.deepEqual(searchTermsForHandle('somebody_else'), ['somebody_else']);
+});
+
+/* -------------------------------------------------------------------------- */
+/* Orchestrator with X MCP                                                    */
+/* -------------------------------------------------------------------------- */
+
+test('scrapeClaudedevs prefers x-mcp when X_MCP_URL is configured', async () => {
+  const fetchStub = makeMcpFetch({
+    tools: {
+      get_user_posts: () => ({
+        posts: [{ id: '900', text: 'live', created_at: recentIso() }],
+      }),
+    },
+  });
+  const result = await scrapeClaudedevs({
+    xMcpUrl: 'https://mcp.test/',
+    xMcpToken: 'k',
+    fetchImpl: fetchStub,
+    dry: true,
+    delayMs: 0,
+  });
+  assert.equal(result.source, 'x-mcp');
+  assert.equal(result.tweets.length, 1);
+  assert.equal(result.tweets[0]?.id, '900');
+});
+
+test('scrapeClaudedevs enrichment merges novel search posts', async () => {
+  const fetchStub = makeMcpFetch({
+    tools: {
+      get_user_posts: () => ({
+        posts: [{ id: '900', text: 'anchor post', created_at: recentIso() }],
+      }),
+      search_posts: () => ({
+        posts: [
+          {
+            id: '901',
+            text: 'third-party benchmark',
+            created_at: recentIso(),
+            author: { username: 'analyst' },
+            urls: [{ expanded_url: 'https://bench.example/claude' }],
+          },
+        ],
+      }),
+    },
+  });
+  const result = await scrapeClaudedevs({
+    xMcpUrl: 'https://mcp.test/',
+    fetchImpl: fetchStub,
+    enrich: true,
+    searchTerms: ['Claude'],
+    dry: true,
+    delayMs: 0,
+  });
+  assert.equal(result.source, 'x-mcp');
+  assert.equal(result.tweets.length, 2);
+  assert.equal(result.enrichment?.added, 1);
+  assert.deepEqual(result.enrichment?.terms, ['Claude']);
+  assert.ok(result.tweets.some((t) => t.author === 'analyst'));
+});
+
+test('scrapeClaudedevs falls back to x-api when X MCP is down', async () => {
+  const mcpUrl = 'https://mcp.test/';
+  const combined = (async (input: RequestInfo | URL, init?: RequestInit): Promise<Response> => {
+    const url = typeof input === 'string' ? input : input.toString();
+    if (url.startsWith(mcpUrl)) return new Response('mcp down', { status: 503 });
+    if (url.includes('/users/by/username/')) {
+      return new Response(
+        JSON.stringify({ data: { id: '1', username: 'claudedevs', name: 'C' } }),
+        { status: 200 },
+      );
+    }
+    return new Response(
+      JSON.stringify({
+        data: [
+          {
+            id: '950',
+            text: 'from api',
+            created_at: recentIso(),
+            public_metrics: { like_count: 0, retweet_count: 0, reply_count: 0 },
+          },
+        ],
+        meta: { result_count: 1 },
+      }),
+      { status: 200 },
+    );
+  }) as unknown as typeof fetch;
+
+  const result = await scrapeClaudedevs({
+    xMcpUrl: mcpUrl,
+    xApiToken: 'fake',
+    fetchImpl: combined,
+    dry: true,
+    delayMs: 0,
+  });
+  assert.equal(result.source, 'x-api');
+  assert.equal(result.tweets[0]?.id, '950');
 });
