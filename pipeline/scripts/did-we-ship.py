@@ -51,8 +51,8 @@ QUIET = "--quiet" in sys.argv
 # Grace buffers: an edition is not "missing" until its routine has had time to
 # run and its Pages deploy has had time to finish. These match the release cron
 # times plus render+deploy slack, and keep the alarm from crying wolf.
-DAILY_DUE = (21, 35)     # nightly fires 21:00 ET; due by 21:35
-WEEKLY_DUE = (22, 30)    # weekly fires Fri 22:00 ET; due by 22:30
+DAILY_DUE = (21, 40)     # nightly fires 21:00 ET; render+deploy done well before 21:40
+WEEKLY_DUE = (23, 0)     # weekly fires Fri 22:00 ET; it renders a bigger page, allow ~1h
 MONTHLY_DUE = (10, 45)   # monthly fires 1st 10:00 ET; due by 10:45
 
 findings = []  # (section, stem, ok, detail)
