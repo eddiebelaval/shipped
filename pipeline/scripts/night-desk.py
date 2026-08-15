@@ -23,11 +23,11 @@ that do not care whether that laptop is awake, so on any night the Mac slept the
 watcher never ran and a broken night looked exactly like a green one. This
 version has no home path, no macOS APIs, and no local state: the repo root comes
 from git, the chrome baseline is committed to the repo, and it pages by exit code
-so a cron wrapper can open a GitHub issue. The one check that needs a mailbox,
-distribution (did the edition get drafted), is not git-visible and lives in the
-trigger's Gmail step, not here.
+so a cron wrapper can open a GitHub issue. Distribution (did the edition get drafted
+for the list) once needed a mailbox the cron job cannot reach, so it is now a
+git-visible receipt (see record-distribution.py) the desk verifies deterministically.
 
-THE EIGHT DETERMINISTIC CHECKS
+THE NINE DETERMINISTIC CHECKS
   1  presence    today's Eastern daily is on the branch
   2  dating      no page is dated in the future
   3  integrity   every page is a real document: opens with a tag, has a title, closes
@@ -38,7 +38,9 @@ THE EIGHT DETERMINISTIC CHECKS
   6  index       index.html links exactly the pages that exist, no orphans
   7  live        the deployed site matches the branch (pushed is not published);
                  falls back to the Pages deploy conclusion when egress is blocked
-  8  gaps        missing dailies and monthlies (reported, never alarmed)
+  8  distro      today's daily left a distribution receipt (drafted for the list,
+                 not just pushed to the web)
+  9  gaps        missing dailies and monthlies (reported, never alarmed)
 
 VERDICTS
   OK        nothing to do
@@ -339,6 +341,40 @@ def check_live(pg, expect_links):
                f"site fetch blocked and gh unavailable; live check unverified for {newest}")
 
 
+def check_distro(pg, today):
+    """Did today's daily get drafted for the list, not just pushed to the web?
+
+    Reads the git-visible receipt that record-distribution.py writes to
+    distribution/<stem>.json on the branch. The mailbox itself is not reachable
+    from a scheduled routine, so the receipt is the signal. Scoped to the daily:
+    weekly/monthly receipts are written by their own routines and checked on
+    their own nights. Until the release routine starts writing receipts the
+    distribution/ tree is absent, so a clean-slate branch reports OK-with-note
+    rather than crying wolf during rollout.
+    """
+    if today not in pg["anthropic-daily"]:
+        return  # nothing shipped today; presence already spoke to that
+    tree = git("ls-tree", "--name-only", "origin/daily-pages", "distribution/")
+    if tree.returncode != 0 or not tree.stdout.strip():
+        record("distro", "OK",
+               "no distribution receipts on the branch yet; the check activates "
+               "once the release routine records them")
+        return
+    receipt = blob(f"distribution/{today}.json")
+    if not receipt:
+        record("distro", "ESCALATE",
+               f"{today} is on the web but no distribution receipt was written. "
+               "The edition published but the list draft did not stage.")
+        return
+    try:
+        ok = json.loads(receipt).get("drafted") is True
+    except ValueError:
+        ok = False
+    record("distro", "OK" if ok else "ESCALATE",
+           f"{today} drafted for the list" if ok
+           else f"{today} receipt present but not marked drafted")
+
+
 def check_gaps(pg, today):
     stems = pg["anthropic-daily"]
     if not stems:
@@ -403,6 +439,7 @@ def main():
     check_subscribe(pg)
     n = check_index(pg)
     check_live(pg, n)
+    check_distro(pg, today)
     check_gaps(pg, today)
 
     escalations = [f for f in findings if f[1] == "ESCALATE"]

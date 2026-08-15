@@ -128,6 +128,19 @@ nd.deploy_conclusion = lambda sha: False
 run("live: site unreachable and the Pages deploy failed",
     lambda: nd.check_live(LIVE_PG, 1), True)
 
+# --- 8. distro: published to the web but no draft receipt ------------------
+# Receipts exist on the branch (dir non-empty) but today's is missing.
+nd.git = lambda *a, **k: type("R", (), {"stdout": "distribution/2026-08-05.json",
+                                         "returncode": 0})()
+nd.blob = lambda p: ""  # no receipt for today
+run("distro: shipped to the web but the list draft did not stage",
+    lambda: nd.check_distro({"anthropic-daily": ["2026-08-06"]}, TODAY), True)
+
+# And the healthy case: today shipped and its receipt is present and drafted.
+nd.blob = lambda p: '{"stem":"2026-08-06","drafted":true}'
+run("distro: shipped and drafted is NOT an alarm",
+    lambda: nd.check_distro({"anthropic-daily": ["2026-08-06"]}, TODAY), False)
+
 print()
 print("ALL ALARMS PROVEN" if fails == 0 else f"{fails} ALARM(S) DID NOT FIRE")
 sys.exit(1 if fails else 0)
