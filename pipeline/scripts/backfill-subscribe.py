@@ -79,10 +79,21 @@ def patch(html: str, source: str) -> tuple[str, str | None, str]:
     # changing nothing, which is the same kind of lie as the OR it replaced.
     needs_cta = not has_cta and spine is not None
     needs_block = not has_block
-    if not needs_cta and not needs_block:
+    # A truncated document is its own repair, independent of the subscribe work.
+    # 2026-08-16 published complete through the subscribe block and then simply
+    # stopped, with no </body> and no </html>. It had the pill and the form, so
+    # this returned "already-patched" and walked past it, and the Night Desk
+    # escalated the same page for three runs while --heal changed nothing. The
+    # close-the-document branch below only ever ran while ALSO adding the block,
+    # which meant it could not fix a page that already had one.
+    needs_close = "</body>" not in html and html.lstrip().startswith("<")
+    if not needs_cta and not needs_block and not needs_close:
         return html, "already-patched", ""
 
     notes = []
+    if needs_close and not needs_block:
+        html = html.rstrip() + "\n</body>\n</html>\n"
+        notes.append("closed-truncated-doc")
     if has_cta and needs_block:
         notes.append("half-patched:pill-only")
     elif has_block and needs_cta:
