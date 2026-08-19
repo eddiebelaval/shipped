@@ -1,0 +1,1202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light">
+<title>Shipped. Daily, Tuesday, August 18, 2026</title>
+<meta name="description" content="The Workbench closes with 31 days notice, Claude Code ships twice in 24 hours, and OpenAI introduces teen safety guardrails four years late.">
+<meta property="og:title" content="Shipped. Daily, Tuesday, August 18, 2026">
+<meta property="og:description" content="The Workbench closes with 31 days notice, Claude Code ships twice in 24 hours, and OpenAI introduces teen safety guardrails four years late.">
+<meta property="og:type" content="article">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Shipped. Daily, Tuesday, August 18, 2026">
+<!--
+  ISSUE CHROME: the canonical Shipped. issue design.
+
+  Locked 2026-08-06 to anthropic-weekly/2026-31, chosen by Eddie as the standard
+  after an audit showed the three cadences had drifted into three different looks.
+  Cause: three cloud routines each free-hand their HTML from template.html every
+  run, and nothing enforced a shared component vocabulary, so each invented one.
+
+  This file is the enforcement point, the same pattern as subscribe-block.html:
+  paste it VERBATIM into the head. Do not retype it, do not restyle it. Editing
+  the design means editing THIS file, and every cadence inherits the change.
+
+  Consumed by pipeline/scripts/render-issue.py and by the daily, weekly and
+  monthly routine prompts. Class vocabulary: pub-bar, weekly-header, open-section,
+  feature-opener, prose-well, also-item, log-*, close-section, colophon.
+-->
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='75' cy='62' r='14' fill='%23FF6B35'/%3E%3Ctext x='10' y='75' font-family='Georgia,serif' font-weight='700' font-size='62' fill='%231a1a1a'%3ES%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;0,9..144,900;1,9..144,300;1,9..144,400;1,9..144,500;1,9..144,700&family=Archivo:wght@300;400;500;600;700;800;900&family=Archivo+Narrow:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"><style>
+
+
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{font-size:16px;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;text-rendering:optimizeLegibility}
+body{background:#FAF8F4;color:#0b0b0b;font-family:'Archivo',sans-serif;overflow-x:hidden}
+::selection{background:#FF6B35;color:#fff}
+
+:root{
+  --orange:#FF6B35;
+  --ink:#0b0b0b;
+  --paper:#FAF8F4;
+  --paper-shadow:#f2f0e8;
+  --body:#2a2a2a;
+  --muted:#5a5a5a;
+  --gray:#8a8a8a;
+  --hair:rgba(11,11,11,0.12);
+  --hair-soft:rgba(11,11,11,0.06);
+  --hair-hard:rgba(11,11,11,0.22);
+  --disp:'Fraunces', 'Times New Roman', serif;
+  --sans:'Archivo', system-ui, sans-serif;
+  --narrow:'Archivo Narrow', 'Archivo', sans-serif;
+  --mono:'JetBrains Mono', ui-monospace, monospace;
+}
+
+body::before{
+  content:"";
+  position:fixed;inset:0;pointer-events:none;z-index:1000;opacity:.28;mix-blend-mode:multiply;
+  background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='180' height='180'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' seed='3'/><feColorMatrix values='0 0 0 0 0.02  0 0 0 0 0.02  0 0 0 0 0.02  0 0 0 0.22 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+}
+
+.pub-bar{
+  position:sticky;top:0;z-index:100;
+  background:var(--paper);
+  border-bottom:1px solid var(--hair);
+  padding:0 28px;height:42px;
+  display:flex;align-items:center;justify-content:space-between;
+  font-family:var(--narrow);
+  font-size:11px;font-weight:600;letter-spacing:.22em;
+  text-transform:uppercase;color:var(--ink);
+}
+.pub-bar-left,.pub-bar-right{display:flex;align-items:center;gap:16px}
+.pub-bar-mark{font-family:var(--disp);font-weight:500;font-size:16px;letter-spacing:-.01em;text-transform:none;font-style:italic}
+.pub-bar-mark .dot{color:var(--orange)}
+.pub-bar-sep{width:1px;height:12px;background:var(--hair-hard)}
+.pub-bar-meta{color:var(--muted)}
+.pub-bar-link{color:inherit;text-decoration:none;border-bottom:1px solid currentColor;transition:color .15s ease}
+.pub-bar-link:hover{color:var(--orange)}
+.colophon-link{color:inherit;text-decoration:none;border-bottom:1px solid currentColor;transition:color .15s ease}
+.colophon-link:hover{color:var(--orange)}
+.colophon-foot .colophon-link b{color:var(--paper)}
+.pub-bar-folio{color:var(--ink)}
+.pub-bar-folio b{font-weight:600;color:var(--orange)}
+.pub-bar-cta{
+  display:inline-block;background:var(--ink);color:var(--paper);
+  text-decoration:none;border:1px solid var(--ink);border-radius:10px;
+  font-family:var(--narrow);font-weight:700;font-size:11px;
+  letter-spacing:.2em;text-transform:uppercase;
+  padding:6px 14px;transition:background .15s ease,border-color .15s ease;
+}
+.pub-bar-cta:hover{background:var(--orange);border-color:var(--orange);color:var(--ink)}
+@media (max-width:720px){
+  .pub-bar-hide-sm{display:none}
+  .pub-bar{padding:0 16px}
+  .pub-bar-cta{padding:5px 10px;letter-spacing:.12em}
+}
+
+.folio{
+  font-family:var(--narrow);
+  font-size:10px;font-weight:500;letter-spacing:.28em;
+  text-transform:uppercase;color:var(--gray);
+  display:flex;align-items:center;gap:10px;
+}
+.folio b{color:var(--ink);font-weight:700}
+.folio .ruler{width:28px;height:1px;background:var(--hair-hard)}
+.folio .dot{color:var(--orange)}
+
+.section{
+  position:relative;
+  padding:64px 28px 40px;
+  max-width:1280px;margin:0 auto;
+}
+.section-folio{
+  display:flex;align-items:center;justify-content:space-between;
+  padding-bottom:18px;
+  border-bottom:1px solid var(--ink);
+  margin-bottom:44px;
+}
+.section-folio-left{display:flex;align-items:center;gap:14px}
+.section-folio-label{
+  font-family:var(--narrow);
+  font-size:11px;font-weight:700;letter-spacing:.28em;
+  text-transform:uppercase;color:var(--ink);
+}
+.section-folio-sub{
+  font-family:var(--disp);font-style:italic;
+  font-size:13px;color:var(--muted);
+}
+
+.open-section{background:var(--paper)}
+.open-grid{
+  display:grid;
+  grid-template-columns:repeat(12,1fr);
+  gap:32px;
+}
+.open-lead{
+  grid-column:2 / span 7;
+}
+.open-quote{
+  font-family:var(--disp);
+  font-variation-settings:"opsz" 144;
+  font-weight:500;font-size:clamp(36px,5vw,72px);
+  line-height:1.02;letter-spacing:-.025em;
+  color:var(--ink);
+  margin-bottom:36px;
+  padding-bottom:28px;
+  border-bottom:1px solid var(--hair-hard);
+}
+.open-quote em{font-style:italic;color:var(--orange);font-weight:500}
+.open-prose{
+  font-family:var(--disp);
+  font-variation-settings:"opsz" 14;
+  font-weight:400;font-size:18px;line-height:1.68;
+  color:var(--body);
+  max-width:620px;
+}
+.open-prose p{margin-bottom:22px}
+.open-prose em{font-style:italic;color:var(--ink)}
+.open-aside{
+  grid-column:10 / span 3;
+  border-top:1px solid var(--ink);
+  padding-top:16px;
+  font-family:var(--narrow);
+  font-size:11px;font-weight:500;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--muted);
+  line-height:1.9;
+}
+.open-aside b{color:var(--ink);font-weight:700}
+@media(max-width:860px){
+  .open-lead{grid-column:1 / -1}
+  .open-aside{grid-column:1 / -1;margin-top:16px}
+}
+
+.feature-opener{
+  display:grid;
+  grid-template-columns:72px 1fr minmax(0,320px);
+  gap:32px;
+  padding:56px 28px 40px;
+  max-width:1280px;margin:0 auto;
+  position:relative;
+  border-top:2px solid var(--ink);
+}
+.feature-opener::before{
+  content:"";
+  position:absolute;
+  left:100px;top:0;bottom:0;
+  width:1px;background:var(--hair);
+}
+.vert-label{
+  position:relative;
+  writing-mode:vertical-rl;
+  transform:rotate(180deg);
+  font-family:var(--narrow);
+  font-size:13px;font-weight:700;letter-spacing:.48em;
+  text-transform:uppercase;color:var(--ink);
+  align-self:start;
+  padding-top:12px;
+  white-space:nowrap;
+}
+.vert-label .vert-num{
+  color:var(--orange);
+  font-family:var(--disp);
+  font-style:italic;font-weight:500;
+  letter-spacing:-.02em;
+  margin-top:12px;display:inline-block;
+  writing-mode:horizontal-tb;
+  transform:rotate(180deg);
+  font-size:20px;
+}
+.feature-heading{min-width:0}
+.feature-kicker{
+  font-family:var(--narrow);
+  font-size:10px;font-weight:700;letter-spacing:.32em;
+  text-transform:uppercase;color:var(--orange);
+  margin-bottom:20px;
+}
+.feature-title{
+  font-family:var(--disp);font-weight:700;
+  font-variation-settings:"opsz" 144;
+  font-size:clamp(52px,8vw,128px);
+  line-height:.9;letter-spacing:-.042em;
+  color:var(--ink);
+  margin-bottom:24px;
+}
+.feature-title em{font-style:italic;font-weight:400;color:var(--ink)}
+.feature-deck{
+  font-family:var(--disp);font-weight:400;
+  font-variation-settings:"opsz" 72;
+  font-size:clamp(20px,2.4vw,28px);
+  line-height:1.3;letter-spacing:-.01em;
+  color:var(--muted);
+  max-width:640px;
+  margin-bottom:24px;
+}
+.feature-meta{
+  padding-top:18px;
+  border-top:1px solid var(--hair);
+  font-family:var(--narrow);
+  font-size:10px;font-weight:600;letter-spacing:.24em;
+  text-transform:uppercase;color:var(--muted);
+  line-height:1.8;
+}
+.feature-meta b{color:var(--ink);font-weight:700}
+.feature-right{
+  padding-top:28px;
+  border-top:1px solid var(--hair);
+  font-family:var(--disp);font-style:italic;
+  font-size:15px;line-height:1.55;color:var(--muted);
+}
+.feature-right-label{
+  display:block;
+  font-family:var(--narrow);font-style:normal;
+  font-size:10px;font-weight:700;letter-spacing:.28em;
+  text-transform:uppercase;color:var(--ink);
+  margin-bottom:10px;
+}
+@media(max-width:860px){
+  .feature-opener{grid-template-columns:1fr;gap:16px}
+  .feature-opener::before{display:none}
+  .vert-label{writing-mode:horizontal-tb;transform:none;font-size:11px}
+  .vert-label .vert-num{writing-mode:horizontal-tb;transform:none;margin-left:16px}
+  .feature-right{grid-column:1 / -1}
+}
+
+.prose-well{
+  max-width:1280px;margin:0 auto;padding:0 28px 56px;
+  display:grid;grid-template-columns:72px 1fr minmax(0,320px);
+  gap:32px;position:relative;
+}
+.prose-well::before{
+  content:"";position:absolute;left:100px;top:0;bottom:0;
+  width:1px;background:var(--hair);
+}
+.prose-marginalia{
+  grid-column:1;
+  font-family:var(--narrow);
+  font-size:10px;font-weight:600;letter-spacing:.26em;
+  text-transform:uppercase;color:var(--gray);
+  writing-mode:vertical-rl;transform:rotate(180deg);
+  align-self:start;padding-top:8px;
+  white-space:nowrap;
+}
+.prose{
+  grid-column:2;
+  font-family:var(--disp);
+  font-variation-settings:"opsz" 14;
+  font-weight:400;font-size:19px;line-height:1.66;
+  color:var(--body);
+  max-width:640px;
+}
+.prose p{margin-bottom:24px}
+.prose em{font-style:italic;color:var(--ink)}
+.prose strong{font-weight:600;color:var(--ink)}
+.prose code{
+  font-family:var(--mono);font-size:.86em;
+  background:var(--paper-shadow);padding:1px 6px;
+  border-radius:3px;color:var(--ink);
+}
+.prose a{color:var(--ink);border-bottom:1px solid var(--hair-hard);text-decoration:none;transition:color .15s,border-color .15s}
+.prose a:hover{color:var(--orange);border-bottom-color:var(--orange)}
+.prose-aside{
+  grid-column:3;
+  font-family:var(--narrow);
+  font-size:11px;font-weight:500;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--muted);
+  border-top:1px solid var(--ink);padding-top:14px;
+  line-height:1.8;
+}
+.prose-aside b{color:var(--ink);font-weight:700}
+
+.drop-cap::first-letter{
+  font-family:var(--disp);
+  font-variation-settings:"opsz" 144;
+  font-weight:700;
+  font-size:9.2em;
+  float:left;line-height:.78;
+  padding:.02em 12px 0 0;
+  margin:.02em 4px -.1em -2px;
+  color:var(--ink);
+}
+.drop-cap-orange::first-letter{
+  color:var(--orange);
+}
+
+@media(max-width:860px){
+  .prose-well{grid-template-columns:1fr;padding-left:20px;padding-right:20px}
+  .prose-well::before{display:none}
+  .prose-marginalia{display:none}
+  .prose{grid-column:1}
+  .prose-aside{grid-column:1;margin-top:20px}
+  .drop-cap::first-letter{font-size:6.6em}
+}
+
+.quiet-section{
+  max-width:1280px;margin:0 auto;padding:64px 28px 24px;
+  display:grid;grid-template-columns:repeat(12,1fr);gap:24px;
+}
+.quiet-head{
+  grid-column:1 / span 3;
+}
+.quiet-title{
+  font-family:var(--disp);font-style:italic;font-weight:400;
+  font-variation-settings:"opsz" 72;
+  font-size:32px;line-height:1;letter-spacing:-.02em;
+  color:var(--ink);
+}
+.quiet-title em{color:var(--orange);font-style:normal;font-weight:500}
+.quiet-kicker{
+  font-family:var(--narrow);
+  font-size:10px;font-weight:700;letter-spacing:.32em;
+  text-transform:uppercase;color:var(--muted);
+  margin-bottom:10px;
+}
+.quiet-body{
+  grid-column:5 / -1;
+  font-family:var(--disp);font-size:17px;line-height:1.65;color:var(--body);
+  padding-left:24px;border-left:1px solid var(--ink);
+}
+.quiet-body p{margin-bottom:16px}
+.quiet-body strong{font-weight:600;color:var(--ink)}
+@media(max-width:860px){
+  .quiet-head,.quiet-body{grid-column:1 / -1}
+  .quiet-body{padding-left:0;border-left:none;border-top:1px solid var(--ink);padding-top:18px}
+}
+
+.close-section{
+  background:var(--ink);color:var(--paper);
+  padding:120px 28px 140px;
+  position:relative;
+  text-align:center;
+}
+.close-kicker{
+  font-family:var(--narrow);
+  font-size:11px;font-weight:700;letter-spacing:.38em;
+  text-transform:uppercase;color:rgba(250,250,247,.5);
+  margin-bottom:48px;
+}
+.close-stack{
+  max-width:780px;margin:0 auto;
+  display:flex;flex-direction:column;gap:32px;
+}
+.close-line{
+  font-family:var(--disp);font-weight:400;
+  font-variation-settings:"opsz" 96;
+  font-size:clamp(26px,3.6vw,46px);
+  line-height:1.18;letter-spacing:-.018em;
+  color:var(--paper);
+}
+.close-line em{font-style:italic;color:var(--orange);font-weight:500}
+.close-final{
+  font-style:italic;color:var(--orange);
+  font-size:clamp(18px,2.2vw,26px);
+  line-height:1.5;letter-spacing:0;
+  max-width:580px;margin:0 auto;
+  font-variation-settings:"opsz" 36;
+}
+.close-coda-start{
+  margin-top:48px;position:relative;
+}
+.close-coda-start::before{
+  content:"";display:block;
+  width:32px;height:1px;
+  background:rgba(217,107,73,.45);
+  margin:0 auto 36px;
+}
+.close-mark{
+  margin-top:72px;
+  font-family:var(--disp);
+  font-size:48px;color:rgba(250,250,247,.3);
+  letter-spacing:.8em;
+}
+
+.log-divider{
+  background:var(--paper);
+  padding:96px 28px 48px;
+  text-align:center;
+  border-top:3px double var(--ink);
+  border-bottom:1px solid var(--ink);
+  max-width:1280px;margin:0 auto;
+}
+.log-divider-kicker{
+  font-family:var(--narrow);
+  font-size:11px;font-weight:700;letter-spacing:.48em;
+  text-transform:uppercase;color:var(--orange);
+  margin-bottom:14px;
+}
+.log-divider-title{
+  font-family:var(--disp);font-weight:700;
+  font-variation-settings:"opsz" 144;
+  font-size:clamp(56px,10vw,144px);
+  line-height:.9;letter-spacing:-.045em;color:var(--ink);
+  margin-bottom:16px;
+}
+.log-divider-title em{font-style:italic;font-weight:400}
+.log-divider-sub{
+  font-family:var(--disp);font-style:italic;
+  font-size:18px;color:var(--muted);max-width:640px;margin:0 auto;line-height:1.5;
+}
+
+.log-section{
+  padding:48px 28px;max-width:1280px;margin:0 auto;
+}
+.log-cat-head{
+  display:grid;
+  grid-template-columns:1fr auto;
+  gap:24px;align-items:baseline;
+  padding-bottom:18px;
+  border-bottom:1px solid var(--ink);
+  margin-bottom:0;
+}
+.log-cat-name{
+  font-family:var(--disp);font-weight:600;font-style:italic;
+  font-variation-settings:"opsz" 96;
+  font-size:clamp(36px,5vw,56px);
+  letter-spacing:-.02em;color:var(--ink);line-height:1;
+}
+.log-cat-count{
+  font-family:var(--narrow);
+  font-size:10px;font-weight:600;letter-spacing:.28em;
+  text-transform:uppercase;color:var(--muted);
+  text-align:right;
+}
+.log-cat-count b{color:var(--ink);font-weight:700;font-size:13px;display:block}
+
+.log-cat-deck{
+  font-family:var(--disp);
+  font-style:italic;
+  font-weight:400;
+  font-variation-settings:"opsz" 24;
+  font-size:18px;
+  line-height:1.45;
+  color:var(--muted);
+  margin-top:14px;
+  margin-bottom:8px;
+  max-width:760px;
+  letter-spacing:-.005em;
+}
+.log-cat-deck b{color:var(--ink);font-weight:600;font-style:normal}
+.log-cat-deck em{color:var(--orange);font-style:normal;font-weight:500}
+
+.log-entries{display:flex;flex-direction:column}
+.log-entry{
+  padding:24px 0;
+  border-bottom:1px solid var(--hair);
+  display:grid;
+  grid-template-columns:120px 1fr;gap:28px;
+}
+.log-entry-left{
+  display:flex;flex-direction:column;gap:8px;
+}
+.log-entry-date{
+  font-family:var(--narrow);
+  font-size:10px;font-weight:700;letter-spacing:.22em;
+  text-transform:uppercase;color:var(--ink);
+  font-variant-numeric:tabular-nums;
+}
+.log-tag{
+  font-family:var(--narrow);
+  font-size:9px;font-weight:700;letter-spacing:.22em;
+  text-transform:uppercase;padding:3px 7px;
+  display:inline-block;line-height:1.3;width:fit-content;
+}
+.log-tag.model{background:var(--orange);color:var(--paper)}
+.log-tag.api{background:var(--ink);color:var(--paper)}
+.log-tag.code{background:#3a3a3a;color:var(--paper)}
+.log-tag.apps{background:#5a5a5a;color:var(--paper)}
+.log-tag.sdk-py,.log-tag.sdk-ts{background:var(--paper);color:var(--ink);border:1px solid var(--ink)}
+.log-tag.research,.log-tag.news{background:var(--paper);color:var(--muted);border:1px solid var(--hair-hard)}
+.log-tag.deprecation{background:var(--paper-shadow);color:var(--muted);border:1px solid var(--hair-hard)}
+.log-entry-title{
+  font-family:var(--disp);font-weight:500;
+  font-variation-settings:"opsz" 72;
+  font-size:20px;letter-spacing:-.012em;
+  color:var(--ink);line-height:1.25;
+  margin-bottom:10px;
+}
+.log-entry-title a{color:inherit;text-decoration:none;border-bottom:1px solid var(--hair-hard)}
+.log-entry-title a:hover{border-bottom-color:var(--orange);color:var(--orange)}
+.log-entry-body{
+  font-family:var(--sans);font-size:14.5px;line-height:1.6;color:var(--body);
+  margin-bottom:12px;
+}
+.log-entry-how{
+  font-family:var(--sans);font-size:13.5px;line-height:1.6;color:var(--muted);
+  padding-top:12px;border-top:1px solid var(--hair-soft);
+}
+.log-entry-how b{font-family:var(--narrow);font-size:10px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--ink);display:block;margin-bottom:6px}
+.log-entry-how code{font-family:var(--mono);font-size:.86em;background:var(--paper-shadow);padding:1px 6px;border-radius:3px;color:var(--ink)}
+.log-entry-why{
+  font-family:var(--disp);font-style:italic;
+  font-size:14px;color:var(--muted);line-height:1.55;
+  margin-top:10px;padding-left:14px;
+  border-left:2px solid var(--orange);
+}
+.log-entry-why b{font-style:normal;font-family:var(--narrow);font-size:10px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--orange);display:block;margin-bottom:4px}
+
+@media(max-width:720px){
+  .log-entry{grid-template-columns:1fr;gap:12px}
+  .log-cat-head{grid-template-columns:auto 1fr}
+  .log-cat-count{grid-column:1 / -1;text-align:left;padding-top:8px;border-top:1px solid var(--hair)}
+}
+
+.colophon{
+  background:var(--ink);color:var(--paper);
+  padding:80px 28px 64px;
+  border-top:2px solid var(--orange);
+}
+.colophon-inner{
+  max-width:1280px;margin:0 auto;
+  display:grid;grid-template-columns:repeat(12,1fr);gap:32px;
+}
+.colophon-mast{
+  grid-column:1 / span 5;
+}
+.colophon-word{
+  font-family:var(--disp);font-weight:500;
+  font-variation-settings:"opsz" 144;
+  font-size:clamp(72px,10vw,120px);
+  line-height:.9;letter-spacing:-.04em;color:var(--paper);
+}
+.colophon-word .dot{color:var(--orange)}
+.colophon-tag{
+  margin-top:14px;
+  font-family:var(--disp);font-style:italic;font-size:18px;
+  color:rgba(250,250,247,.65);line-height:1.4;max-width:360px;
+}
+
+.colophon-body{
+  grid-column:6 / -1;
+  display:grid;grid-template-columns:repeat(3,1fr);gap:32px;
+}
+.colophon-col h4{
+  font-family:var(--narrow);
+  font-size:10px;font-weight:700;letter-spacing:.32em;
+  text-transform:uppercase;color:var(--orange);
+  margin-bottom:12px;padding-bottom:10px;
+  border-bottom:1px solid rgba(250,250,247,.2);
+}
+.colophon-col p,.colophon-col li{
+  font-family:var(--sans);font-size:13px;line-height:1.6;
+  color:rgba(250,250,247,.75);
+  margin-bottom:8px;list-style:none;
+}
+.colophon-col b{color:var(--paper);font-weight:600}
+.colophon-col em{font-style:italic;color:rgba(250,250,247,.9)}
+
+.colophon-foot{
+  grid-column:1 / -1;
+  margin-top:32px;padding-top:24px;
+  border-top:1px solid rgba(250,250,247,.2);
+  display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap;
+  font-family:var(--narrow);font-size:10px;font-weight:600;
+  letter-spacing:.28em;text-transform:uppercase;color:rgba(250,250,247,.5);
+}
+.colophon-foot b{color:var(--paper);font-weight:700}
+.colophon-foot .hot{color:var(--orange)}
+
+@media(max-width:860px){
+  .colophon-mast,.colophon-body{grid-column:1 / -1}
+  .colophon-body{grid-template-columns:1fr;gap:24px}
+}
+
+/* ---- Weekly-specific ---- */
+.weekly-header{
+  padding:64px 28px 48px;
+  max-width:1280px;margin:0 auto;
+  border-bottom:1px solid var(--ink);
+}
+.weekly-kicker{
+  font-family:var(--narrow);
+  font-size:10px;font-weight:700;letter-spacing:.38em;
+  text-transform:uppercase;color:var(--orange);
+  margin-bottom:20px;
+}
+.weekly-masthead{
+  font-family:var(--disp);font-weight:500;
+  font-variation-settings:"opsz" 144;
+  font-size:clamp(72px,14vw,192px);
+  line-height:.86;letter-spacing:-.04em;
+  color:var(--ink);
+  margin-bottom:28px;
+}
+.weekly-masthead .dot{color:var(--orange);display:inline-block}
+.weekly-cover-line{
+  font-family:var(--disp);font-style:italic;font-weight:400;
+  font-variation-settings:"opsz" 72;
+  font-size:clamp(22px,3.4vw,42px);
+  line-height:1.15;letter-spacing:-.015em;
+  color:var(--ink);
+  max-width:820px;
+  margin-bottom:28px;
+}
+.weekly-dateline{
+  font-family:var(--narrow);
+  font-size:11px;font-weight:600;letter-spacing:.28em;
+  text-transform:uppercase;color:var(--muted);
+  display:flex;gap:24px;flex-wrap:wrap;
+  padding-top:24px;
+  border-top:1px solid var(--hair);
+}
+.weekly-dateline span b{color:var(--ink)}
+
+.also-item{
+  padding:28px 0;
+  border-bottom:1px solid var(--hair);
+}
+.also-item:last-child{border-bottom:none}
+.also-item-kicker{
+  font-family:var(--narrow);
+  font-size:9px;font-weight:700;letter-spacing:.32em;
+  text-transform:uppercase;color:var(--orange);
+  margin-bottom:8px;
+}
+.also-item-title{
+  font-family:var(--disp);font-weight:600;
+  font-variation-settings:"opsz" 72;
+  font-size:22px;letter-spacing:-.015em;
+  color:var(--ink);margin-bottom:12px;line-height:1.2;
+}
+.also-item-body{
+  font-family:var(--disp);
+  font-variation-settings:"opsz" 14;
+  font-size:17px;line-height:1.6;color:var(--body);
+  max-width:680px;
+}
+.also-item-body a{color:var(--ink);border-bottom:1px solid var(--hair-hard);text-decoration:none}
+.also-item-body a:hover{color:var(--orange);border-bottom-color:var(--orange)}
+.also-item-source{
+  margin-top:8px;
+  font-family:var(--narrow);font-size:10px;font-weight:600;
+  letter-spacing:.2em;text-transform:uppercase;color:var(--gray);
+}
+.also-item-source a{color:inherit;border-bottom:1px solid currentColor;text-decoration:none}
+.also-item-source a:hover{color:var(--orange)}
+
+.ornament{
+  text-align:center;margin:64px auto;
+  font-family:var(--disp);font-size:16px;color:var(--hair-hard);
+  letter-spacing:1.2em;
+}
+
+@media(max-width:600px){
+  .section,.log-section,.feature-opener,.prose-well{padding-left:20px;padding-right:20px}
+  .weekly-header{padding:40px 20px 36px}
+}
+</style>
+</head>
+<body>
+
+<!-- PUB BAR -->
+<nav class="pub-bar">
+  <div class="pub-bar-left">
+    <span class="pub-bar-mark">Shipped<span class="dot">.</span></span>
+    <span class="pub-bar-sep pub-bar-hide-sm"></span>
+    <span class="pub-bar-meta pub-bar-hide-sm">Daily, Frontier</span>
+    <span class="pub-bar-sep pub-bar-hide-sm"></span>
+    <a href="https://id8labs.app/shipped" class="pub-bar-link pub-bar-hide-sm">id8Labs</a>
+  </div>
+  <div class="pub-bar-right">
+    <span class="pub-bar-folio pub-bar-hide-sm"><b>Aug 18</b></span>
+    <span class="pub-bar-sep pub-bar-hide-sm"></span>
+    <span class="pub-bar-meta pub-bar-hide-sm">Aug 17 to Aug 18</span>
+    <a href="#subscribe" class="pub-bar-cta">Subscribe</a>
+  </div>
+</nav>
+
+<!-- MASTHEAD -->
+<header class="weekly-header">
+  <div class="weekly-kicker">Frontier Labs Daily</div>
+  <div class="weekly-masthead">Shipped<span class="dot">.</span></div>
+  <div class="weekly-cover-line">The Workbench closes with 31 days notice, Claude Code ships twice, and OpenAI introduces teen safety guardrails.</div>
+  <div class="weekly-dateline">
+    <span><b>Date</b> Tuesday, August 18, 2026</span>
+    <span><b>Window</b> Aug 17 to Aug 18</span>
+    <span><b>Beat</b> Six frontier labs</span>
+    <span><b>Cadence</b> Daily</span>
+  </div>
+</header>
+
+<!-- THE OPEN -->
+<section class="open-section">
+  <div class="section">
+    <div class="section-folio">
+      <div class="section-folio-left">
+        <div class="folio"><div class="ruler"></div><b>The Open</b></div>
+      </div>
+      <div class="section-folio-sub">Tuesday, August 18, 2026</div>
+    </div>
+    <div class="open-grid">
+      <div class="open-lead">
+        <div class="open-quote">Thirty-one days. You either used them or <em>you didn't</em>.</div>
+        <div class="open-prose">
+          <p>That was the notice window Anthropic gave developers before retiring the legacy Workbench and three experimental prompt-engineering endpoints. August 17 was the date. The endpoints return errors now. If you had saved prompts, variables, or eval configurations in the old Workbench and missed the export window, Anthropic says there is no recovery path. Not limited support. Not a grace-period ticket. Gone.</p>
+          <p>The replacement is stateless and browser-local. It is also, deliberately, lighter. Whether that trade lands well depends entirely on how much you had built on what got cut.</p>
+          <p>Elsewhere on the frontier: OpenAI shipped a teen-safety mode for ChatGPT on the same day. Age prediction routes users estimated to be 13 to 17 into a filtered experience with study tools and break reminders. Four years after ChatGPT launched and teenagers immediately became its heaviest consumer cohort.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LEAD FEATURE: Workbench Retirement -->
+<div class="feature-opener">
+  <div class="vert-label">Lead Story <span class="vert-num">01</span></div>
+  <div class="feature-heading">
+    <div class="feature-kicker">Platform / Anthropic</div>
+    <h2 class="feature-title">The Workbench<br>Is<br><em>Gone</em></h2>
+    <div class="feature-deck">Three experimental endpoints, a platform sunset, and the calculus behind 31 days of notice on a breaking change.</div>
+    <div class="feature-meta"><b>Source:</b> Anthropic API release notes, August 17, 2026 &nbsp;&nbsp; <b>Area:</b> API / Platform</div>
+  </div>
+  <div class="feature-right">
+    <span class="feature-right-label">By the numbers</span>
+    <strong>31</strong> days notice given<br>
+    <strong>3</strong> endpoints retired<br>
+    <strong>60</strong> days: model deprecation policy minimum<br>
+    <strong>0</strong> recovery paths after the cutoff
+  </div>
+</div>
+<div class="prose-well">
+  <div class="prose-marginalia">Workbench / API</div>
+  <div class="prose drop-cap drop-cap-orange">
+    <p>On August 17, Anthropic closed the legacy Claude API Workbench and retired the three endpoints that powered its prompt-engineering workflows: <code>/v1/experimental/generate_prompt</code>, <code>/v1/experimental/improve_prompt</code>, and <code>/v1/experimental/templatize_prompt</code>. Requests to those paths return errors now. The announcement came July 17, giving developers exactly 31 days to export saved data and migrate any pipelines calling the endpoints.</p>
+    <p>Anthropic's documented deprecation policy for models requires a minimum of 60 days notice. The Workbench is not a model. The endpoints were labeled experimental, which carries no SLA and no long-term commitment. The shorter window was within Anthropic's stated rights. Whether it matched the reasonable expectations of teams who had built production pipelines on those endpoints is a different question entirely.</p>
+    <p>The blast radius lands in two places. First: any pipeline that was automating prompt generation, improvement, or templatization through the API is broken as of yesterday. Migration means moving that logic to direct Messages API calls, likely with a system prompt that approximates what the experimental endpoint was doing. Second: any team using the Workbench as a shared prompt repository either exported before the deadline or lost the data. No recovery path. Not limited support. Gone.</p>
+    <p>The replacement Workbench is simpler: stateless, browser-local, no server-side storage. Test prompts, export them as code, close the tab. This is a cleaner architectural decision for a company managing data at Anthropic's scale, and it removes a class of liability around storing and securing developer prompt assets. It is also, deliberately, not a prompt registry. That affordance was cut along with the endpoints.</p>
+    <p>The pattern sits inside a larger platform direction. This quarter, Anthropic shipped support for the MCP 2026-07-28 specification, making Claude the first major model client to adopt the stateless-core, hardened OAuth 2.0 and OIDC version of the protocol, with versioned extensions for Apps and Tasks and new connector features including embedded UI, enterprise-managed auth, observability, and private network tunnels. It also deprecated older streaming formats and is now cutting the legacy prompt-tooling surface. The direction is coherent: stateless, explicit-control, agentic-first. The 2022-era managed-prompt-loop affordance does not fit that roadmap, and it was removed on a schedule that prioritized platform velocity over developer migration comfort.</p>
+    <p>The read: Anthropic accepted meaningful developer friction to move the platform faster. That choice is defensible on its merits. What it is not is invisible. The 31-day window on a permanent deletion, on a week with no major product launch to offset it, is a signal about where developer workflow stability sits in the priority order when platform modernization is moving.</p>
+  </div>
+  <div class="prose-aside">
+    <b>Action required</b><br>
+    Audit API call logs for the three retired endpoints. Migrate prompt-generation logic to direct Messages API calls. Export any prompt assets from Workbench immediately: the new interface is browser-local only, nothing persists on Anthropic servers.
+  </div>
+</div>
+
+<!-- ALSO SHIPPED -->
+<section class="section">
+  <div class="section-folio">
+    <div class="section-folio-left">
+      <div class="folio"><div class="ruler"></div><b>Also Shipped</b></div>
+    </div>
+    <div class="section-folio-sub">Three items from the 24-hour window</div>
+  </div>
+
+  <!-- Dig 1: Claude Code -->
+  <div class="also-item">
+    <div class="also-item-kicker">Claude Code / Anthropic</div>
+    <div class="also-item-title">Two Releases in 24 Hours: v2.1.234 and v2.1.235</div>
+    <div class="also-item-body">
+      <p>Anthropic pushed v2.1.234 on August 17 and v2.1.235 on August 18. The cadence is routine; the contents are not thin.</p>
+      <p>V2.1.234 adds GitLab MR badge support. Repos with a GitLab remote and an authenticated <code>glab</code> CLI now show the merge request number in the footer and statusline, with draft, pending, and green states visible at a glance. GitHub parity has existed for a while; GitLab-heavy engineering organizations get the same in-editor context now. The other notable addition is automatic session continuation when usage limits reset: Claude Code resumes the session when the usage window rolls over rather than requiring a manual restart. For anyone running long agentic tasks on capped plans, this removes a silent failure mode that previously meant a task either completed incorrectly or had to be started over entirely. Remote Control file upload and the <code>/resume</code> session-history leak are both correctness fixes.</p>
+      <p>V2.1.235, today, adds an optional spellcheck setting that underlines misspelled words in the prompt input and fixes a whole-prompt-cache invalidation bug triggered when language servers disconnected. The cache bug has direct cost implications at scale: prompts that should have been served from cache were being re-processed. Fix it, reclaim efficiency.</p>
+      <p><strong>Builder's move:</strong> <code>claude update</code>. The cache fix and session continuation are both substantive improvements for production agentic workflows.</p>
+    </div>
+    <div class="also-item-source"><a href="https://github.com/anthropics/claude-code/blob/main/CHANGELOG.md">Claude Code CHANGELOG</a></div>
+  </div>
+
+  <!-- Dig 2: OpenAI Teen Mode -->
+  <div class="also-item">
+    <div class="also-item-kicker">Consumer Safety / OpenAI</div>
+    <div class="also-item-title">ChatGPT for Teens: Guardrails, Eventually</div>
+    <div class="also-item-body">
+      <p>OpenAI launched ChatGPT for Teens on August 18. Users estimated to be between 13 and 17, detected via account signals and behavioral prediction rather than hard verification, are routed automatically into a filtered mode. The mode blocks suicide and self-harm topics, romantic and sexual content, and certain high-risk interaction patterns. Study Mode guides through problem-solving step by step rather than providing direct answers. Regular break reminders surface in-session. Parental safety notifications can be triggered for high-risk interactions, reviewed by human personnel before sending.</p>
+      <p>The TechCrunch headline reads: "OpenAI launches a safer ChatGPT for teens, years after teens started using it." That is accurate. ChatGPT launched November 2022. Teen mode launched August 2026.</p>
+      <p>The contrast against Anthropic is worth naming: Anthropic has maintained conservative platform defaults and account-gated access since launch and has never run a fully open consumer product without minimum age terms. The access models differ, which makes a direct comparison imprecise. What is comparable is the sequencing. One lab built consumer scale first and is retrofitting safety infrastructure. The EU AI Act's fine-enforcement provisions activated August 2, 2026. The gap between those two dates and this announcement is probably not a coincidence.</p>
+      <p>The execution caveat: age prediction without hard verification. OpenAI routes users it estimates are minors into teen mode. At scale, without a verified identity system, accounts that misrepresent age at signup are not covered by that routing. The guardrail is probabilistic, not categorical. That gap between "we have teen mode" and "teens are in teen mode" is where the actual safety question lives.</p>
+    </div>
+    <div class="also-item-source"><a href="https://openai.com/news/">OpenAI News</a>, <a href="https://techcrunch.com/2026/08/18/openai-launches-a-safer-chatgpt-for-teens-years-after-teens-started-using-it/">TechCrunch</a></div>
+  </div>
+
+  <!-- Dig 3: xAI Image 2.0 + Google image gen deprecated -->
+  <div class="also-item">
+    <div class="also-item-kicker">Image Generation / xAI and Google</div>
+    <div class="also-item-title">One Ships, One Sunsets</div>
+    <div class="also-item-body">
+      <p>On August 17, xAI pushed Grok Image 2.0 into the Grok mobile app. No API release, no pricing disclosure, no technical paper. An app update that adds a new image generation model to the Grok consumer experience.</p>
+      <p>On the same day, Google deprecated its legacy standalone image-generation endpoints in the Gemini API. The deprecation is a cleanup, not a retreat: image capability has migrated to Gemini 3.7 Flash's native multimodal output, which became generally available August 13. Google is consolidating surfaces.</p>
+      <p>The juxtaposition: xAI is adding a new consumer image surface. Google is retiring an old API in favor of a better-integrated model. Both moves point at the same conclusion: image generation is no longer a standalone feature, it is a modality inside a general-purpose model. xAI is building toward that integration. Google is already there and removing the scaffolding.</p>
+      <p>The practical note for builders: Gemini 3.7 Flash's native image output is GA, priced ($0.75 per million input tokens, $3.75 per million output tokens through December), and available through the standard Gemini API. Grok Image 2.0 is in the mobile app with no disclosed API path. If you need image generation through an API today, Google's is the only new-generation option with a clear pricing and availability signal.</p>
+    </div>
+    <div class="also-item-source"><a href="https://x.ai/news">xAI News</a> / <a href="https://ai.google.dev/gemini-api/docs/changelog">Gemini API changelog</a></div>
+  </div>
+</section>
+
+<!-- QUIET ON THE WIRE -->
+<div class="quiet-section">
+  <div class="quiet-head">
+    <div class="quiet-kicker">Signal</div>
+    <div class="quiet-title">Quiet on<br>the <em>Wire</em></div>
+  </div>
+  <div class="quiet-body">
+    <p><strong>Grok 4.6 promotional window closes August 19.</strong> Doubled usage credits in Grok Build and Cursor end tonight for most accounts. Grok 4.6, released August 12 and available in GitHub Copilot across eight development surfaces since August 14, is built for long-running agents and complex multi-step workflows. The promotional window was xAI's evaluation play. That play ends tonight.</p>
+    <p><strong>GPT-5.6 Sol Ultrafast (Cerebras) remains in limited API preview.</strong> The 750 tokens-per-second tier, powered by Cerebras wafer-scale chips, has been in selective preview since August 13. Fourteen times standard throughput, no measurable quality drop on benchmark evaluations. No pricing disclosed, no date for broader access.</p>
+    <p><strong>Gemini 3.7 Flash is the established workhorse.</strong> GA since August 13, 1M context window, strong gains on software engineering benchmarks, introductory pricing through December. Gemini Robotics ER 2, for advanced spatial reasoning and multi-robot coordination, is in public preview.</p>
+    <p><strong>Mistral: no August-specific release, but the industrial stack is moving.</strong> OCR 4.1 (July 16) is current; the Airbus, BMW, and ASML enterprise deployments are in production. The European sovereign-AI positioning is the ongoing story, sharpened by EU AI Act fine enforcement that activated August 2.</p>
+  </div>
+</div>
+
+<!-- THE CLOSE -->
+<section class="close-section">
+  <div class="close-kicker">August 18, 2026</div>
+  <div class="close-stack">
+    <div class="close-line">The Workbench is gone. The deadline was yesterday.</div>
+    <div class="close-line">Claude Code shipped twice, OpenAI built a guardrail, and xAI pushed an image model with no API.</div>
+    <div class="close-coda-start">
+      <div class="close-final">The frontier does not pause for missed export windows.</div>
+    </div>
+  </div>
+  <div class="close-mark">&#x25cf;</div>
+</section>
+
+<!-- RELEASE LOG -->
+<div class="log-divider" id="log">
+  <div class="log-divider-kicker">Reference</div>
+  <h2 class="log-divider-title">Release<br><em>Log</em></h2>
+  <div class="log-divider-sub">Every Anthropic release in the Aug 17 to Aug 18 window, grouped by surface. Read the top for signal; search here for the detail.</div>
+</div>
+
+<!-- Claude Code section -->
+<div class="log-section">
+  <div class="log-cat-head">
+    <div class="log-cat-name">Claude Code</div>
+    <div class="log-cat-count"><b>2</b><br>releases</div>
+  </div>
+  <div class="log-cat-deck">Two consecutive daily releases. <b>v2.1.234</b> on August 17, <b>v2.1.235</b> on August 18. The changelog entries are substantive.</div>
+  <div class="log-entries">
+
+    <div class="log-entry">
+      <div class="log-entry-left">
+        <div class="log-entry-date">2026-08-18</div>
+        <span class="log-tag code">Code</span>
+      </div>
+      <div>
+        <div class="log-entry-title"><a href="https://github.com/anthropics/claude-code/blob/main/CHANGELOG.md">Claude Code v2.1.235</a></div>
+        <div class="log-entry-body">Added optional spellcheck setting that underlines misspelled words in the prompt input. Fixed whole-prompt-cache invalidation that occurred when language servers disconnected. Improved nested markdown list alignment. Fixed prompt input highlight positioning issues. Resolved Shift+Tab bug in the permission prompt.</div>
+        <div class="log-entry-how"><b>How to use</b> Run <code>claude update</code> or reinstall. Enable spellcheck in settings to get inline spell checking in the prompt input. The cache fix is automatic and applies to all sessions with language server integrations active.</div>
+      </div>
+    </div>
+
+    <div class="log-entry">
+      <div class="log-entry-left">
+        <div class="log-entry-date">2026-08-17</div>
+        <span class="log-tag code">Code</span>
+      </div>
+      <div>
+        <div class="log-entry-title"><a href="https://github.com/anthropics/claude-code/blob/main/CHANGELOG.md">Claude Code v2.1.234</a></div>
+        <div class="log-entry-body">GitLab merge request badge added to footer and statusline: repos with a GitLab remote and an authenticated glab CLI show MR number with draft, pending, and green state indicators. Added optional CLAUDE_CODE_PROJECT_DIR_NAME environment variable to override the project directory display name. Added selection:clear keybinding action. Automatic session continuation when usage limits reset. Fixes: /tui dropping launch --allowed-tools and --disallowed-tools rules on restart; files sent during Remote Control sessions (hosted by Desktop or VS Code) not uploading; /resume while connected leaking the resumed conversation title or history into the connected session.</div>
+        <div class="log-entry-how"><b>How to use</b> Run <code>claude update</code>. Set <code>CLAUDE_CODE_PROJECT_DIR_NAME</code> to customize the project name shown in the statusline. GitLab MR badges require an authenticated <code>glab</code> CLI with repo access.</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- API and Platform section -->
+<div class="log-section">
+  <div class="log-cat-head">
+    <div class="log-cat-name">API and Platform</div>
+    <div class="log-cat-count"><b>1</b><br>change</div>
+  </div>
+  <div class="log-cat-deck">One breaking change. 31 days notice. <em>No soft landing.</em></div>
+  <div class="log-entries">
+
+    <div class="log-entry">
+      <div class="log-entry-left">
+        <div class="log-entry-date">2026-08-17</div>
+        <span class="log-tag api">API</span>
+      </div>
+      <div>
+        <div class="log-entry-title"><a href="https://docs.anthropic.com/en/release-notes/api">Workbench and experimental prompt tools API retired</a></div>
+        <div class="log-entry-body">Legacy Workbench closed. Three experimental endpoints retired: /v1/experimental/generate_prompt, /v1/experimental/improve_prompt, and /v1/experimental/templatize_prompt. All three return errors. Saved Workbench data not exported before August 17 is permanently unavailable. No recovery path. New Workbench is stateless, browser-local, with no server-side storage. Export prompts as code via the Console.</div>
+        <div class="log-entry-how"><b>How to use</b> Audit API call logs for calls to the three retired paths. Migrate prompt-generation pipeline logic to direct Messages API calls. Use the new stateless Workbench for interactive testing and code export only. Nothing is stored server-side.</div>
+        <div class="log-entry-why"><b>Why it matters</b> 31-day notice window vs. the 60-day minimum Anthropic applies to model deprecations. Pipelines calling these endpoints broke on August 17 with no grace period. Any prompt data not exported before the deadline is unrecoverable.</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- COLOPHON -->
+<footer class="colophon">
+  <div class="colophon-inner">
+    <div class="colophon-mast">
+      <div class="colophon-word">Shipped<span class="dot">.</span></div>
+      <div class="colophon-tag">A daily digest of what the frontier AI labs shipped in the last 24 hours.</div>
+    </div>
+    <div class="colophon-body">
+      <div class="colophon-col">
+        <h4>Publication</h4>
+        <p><b>Shipped.</b> by id8Labs</p>
+        <p><b>Cadence:</b> Daily, weekly, monthly</p>
+        <p><b>Beat:</b> Anthropic, OpenAI, Google DeepMind, Meta AI, Mistral, xAI</p>
+        <p><b>Site:</b> <a href="https://id8labs.app/shipped" class="colophon-link">id8labs.app/shipped</a></p>
+      </div>
+      <div class="colophon-col">
+        <h4>This Issue</h4>
+        <p><b>Date:</b> Tuesday, August 18, 2026</p>
+        <p><b>Window:</b> Aug 17 to Aug 18</p>
+        <p><b>Lead:</b> Anthropic Workbench retired</p>
+        <p><b>Generated:</b> claude.ai routine</p>
+      </div>
+      <div class="colophon-col">
+        <h4>Standards</h4>
+        <p>Every number attested. Every quote sourced. No fabricated claims.</p>
+        <p>The verifier runs on every issue. The human ships.</p>
+        <p><a href="https://github.com/eddiebelaval/shipped" class="colophon-link">Open source</a> on GitHub.</p>
+      </div>
+    </div>
+    <div class="colophon-foot">
+      <span><b>Shipped.</b> Daily, Tuesday, August 18, 2026</span>
+      <span class="hot">id8Labs</span>
+      <span>Window: Aug 17 to Aug 18</span>
+    </div>
+  </div>
+</footer>
+<!-- ═════════════════════════════════════════
+     SUBSCRIBE BLOCK: daily / weekly / monthly pages
+     ═════════════════════════════════════════
+
+     The single source of truth for the subscribe form on pages published to
+     the daily-pages branch (served from eddiebelaval.github.io). Injected at
+     the end of the document by render-daily.py and render-monthly.py, and
+     backfilled into already-published pages by scripts/backfill-subscribe.py.
+
+     Do not write a literal closing body or html tag anywhere in this file,
+     including in this comment. The injectors locate their anchor by counting
+     those tags, and a copy inside a comment (invisible to a browser, which
+     skips comments) makes a patched page look malformed to the next tool that
+     parses it.
+
+     Two things differ from the issue-page block in template.html:
+
+       1. The POST URL is ABSOLUTE. These pages are served from github.io, not
+          id8labs.app, so a relative /api/... path would hit GitHub Pages and
+          404. The subscribe route allows this origin explicitly in CORS_ORIGINS
+          (if that list ever changes, this form breaks silently.)
+
+       2. SOURCE is substituted per page type (shipped-daily,
+          shipped-weekly, shipped-monthly) for attribution. It MUST keep the
+          "shipped" prefix: the API only merges a reader onto the Shipped. list
+          when the source starts with it.
+-->
+<style>
+  /* Spine CTA. Lives here rather than in <head> because two published pages
+     are truncated and have no </head> to inject into; CSS applies document-wide
+     from anywhere, so the end of <body> is the one anchor every page has.
+     Only takes effect on pages that actually carry a pub-bar. */
+  .pub-bar-cta{
+    display:inline-block;
+    background:var(--ink, #0b0b0b);
+    color:var(--paper, #fafaf7);
+    text-decoration:none;
+    border:1px solid var(--ink, #0b0b0b);
+    border-radius:10px;
+    font-family:var(--narrow, 'Archivo Narrow','Archivo',system-ui,sans-serif);
+    font-weight:700;
+    font-size:11px;
+    letter-spacing:.2em;
+    text-transform:uppercase;
+    padding:6px 14px;
+    transition:background .15s ease,border-color .15s ease;
+  }
+  .pub-bar-cta:hover{
+    background:var(--orange, #ff6b35);
+    border-color:var(--orange, #ff6b35);
+    color:var(--ink, #0b0b0b);
+  }
+  @media (max-width:720px){
+    .pub-bar-hide-sm{display:none}
+    .pub-bar-cta{padding:5px 10px;letter-spacing:.12em}
+  }
+
+  .ship-sub {
+    background: var(--ink, #0b0b0b);
+    color: var(--paper, #fafaf7);
+    padding: 72px 64px;
+    margin: 56px auto;
+    max-width: 1280px;
+    text-align: center;
+    /* clears the sticky pub-bar when jumped to from the top CTA */
+    scroll-margin-top: 64px;
+  }
+  .ship-sub-kicker {
+    font-family: var(--narrow, 'Archivo Narrow','Archivo',system-ui,sans-serif);
+    font-weight: 700;
+    font-size: 12px;
+    letter-spacing: .25em;
+    text-transform: uppercase;
+    color: var(--orange, #ff6b35);
+    margin-bottom: 18px;
+  }
+  .ship-sub h3 {
+    font-family: var(--disp, 'Fraunces',Georgia,serif);
+    font-weight: 600;
+    font-style: italic;
+    font-size: clamp(26px, 3.6vw, 40px);
+    line-height: 1.15;
+    margin: 0 0 16px;
+    color: var(--paper, #fafaf7);
+  }
+  .ship-sub p {
+    font-family: var(--sans, 'Archivo',system-ui,sans-serif);
+    font-size: 15px;
+    line-height: 1.6;
+    color: rgba(250,250,247,.72);
+    max-width: 560px;
+    margin: 0 auto 28px;
+  }
+  .ship-sub-form {
+    display: flex;
+    flex-direction: column;
+    max-width: 480px;
+    margin: 0 auto;
+  }
+  .ship-sub-row {
+    display: flex;
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.12);
+    transition: border-color .15s;
+  }
+  .ship-sub-row:focus-within { border-color: var(--orange, #ff6b35); }
+  .ship-sub-form input[type="email"] {
+    flex: 1;
+    background: transparent;
+    border: none;
+    outline: none;
+    color: var(--paper, #fafaf7);
+    font-family: var(--sans, 'Archivo',system-ui,sans-serif);
+    font-size: 15px;
+    padding: 16px 20px;
+    -webkit-appearance: none;
+    min-width: 0;
+  }
+  .ship-sub-form input::placeholder { color: rgba(250,250,247,.4); }
+  /* Honeypot: off-screen rather than display:none, so naive bots still fill it */
+  .ship-sub-hp {
+    position: absolute !important;
+    left: -9999px !important;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+  }
+  .ship-sub-form button {
+    background: var(--orange, #ff6b35);
+    color: var(--ink, #0b0b0b);
+    border: none;
+    font-family: var(--narrow, 'Archivo Narrow','Archivo',system-ui,sans-serif);
+    font-weight: 700;
+    font-size: 12px;
+    letter-spacing: .2em;
+    text-transform: uppercase;
+    padding: 0 28px;
+    cursor: pointer;
+    transition: background .15s;
+    white-space: nowrap;
+  }
+  .ship-sub-form button:hover { background: #ff5722; }
+  .ship-sub-form button:disabled { opacity: .5; cursor: wait; }
+  .ship-sub-cadences {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    margin-top: 16px;
+  }
+  .ship-sub-cadence {
+    font-family: var(--narrow, 'Archivo Narrow','Archivo',system-ui,sans-serif);
+    font-size: 11px;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    color: rgba(250,250,247,.66);
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    cursor: pointer;
+  }
+  .ship-sub-cadence input { accent-color: var(--orange, #ff6b35); cursor: pointer; }
+  .ship-sub-status {
+    margin-top: 16px;
+    font-family: var(--sans, 'Archivo',system-ui,sans-serif);
+    font-size: 14px;
+    color: var(--orange, #ff6b35);
+    min-height: 20px;
+  }
+  .ship-sub-status.error { color: #ff8b6b; }
+  @media (max-width: 540px) {
+    .ship-sub { padding: 48px 22px; margin: 28px auto; }
+    .ship-sub-cadences { gap: 14px; }
+  }
+</style>
+<section class="ship-sub" id="subscribe">
+  <div class="ship-sub-kicker">Stay on the frontier</div>
+  <h3>Get <em>Shipped.</em> in your inbox.</h3>
+  <p>Daily digest at 9 PM ET. Weekly magazine every Friday morning. Six labs, one feed. No spam, one-click unsubscribe.</p>
+  <form class="ship-sub-form" id="ship-sub-form">
+    <div class="ship-sub-row">
+      <input type="email" name="email" placeholder="your@email.com" required autocomplete="email" aria-label="Email address">
+      <button type="submit" id="ship-sub-btn">Subscribe &#x2192;</button>
+    </div>
+    <input type="text" name="website" class="ship-sub-hp" tabindex="-1" autocomplete="off" aria-hidden="true">
+    <div class="ship-sub-cadences">
+      <label class="ship-sub-cadence"><input type="checkbox" name="cadences" value="nightly" checked> Daily digest</label>
+      <label class="ship-sub-cadence"><input type="checkbox" name="cadences" value="weekly" checked> Weekly magazine</label>
+      <label class="ship-sub-cadence"><input type="checkbox" name="cadences" value="monthly"> Monthly roundup</label>
+    </div>
+  </form>
+  <div class="ship-sub-status" id="ship-sub-status" aria-live="polite"></div>
+</section>
+<script>
+(function () {
+  var form = document.getElementById('ship-sub-form');
+  if (!form) return;
+  var btn = document.getElementById('ship-sub-btn');
+  var status = document.getElementById('ship-sub-status');
+
+  form.addEventListener('submit', async function (e) {
+    e.preventDefault();
+    var data = new FormData(form);
+    var email = (data.get('email') || '').toString().trim();
+    if (!email) return;
+
+    var cadences = data.getAll('cadences').map(String);
+    status.className = 'ship-sub-status';
+    status.textContent = '';
+    btn.disabled = true;
+    btn.textContent = 'Subscribing…';
+
+    try {
+      var res = await fetch('https://id8labs.app/api/newsletter/subscribe', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          email: email,
+          source: 'shipped-daily',
+          website: (data.get('website') || '').toString(),
+          cadences: cadences.length ? cadences : ['nightly', 'weekly']
+        })
+      });
+      var body = await res.json().catch(function () { return {}; });
+      if (res.ok) {
+        status.textContent = body.isNewSubscriber === false
+          ? 'Already on the list.'
+          : 'You’re in. Next edition lands soon.';
+        if (body.isNewSubscriber !== false) form.reset();
+      } else {
+        status.className = 'ship-sub-status error';
+        status.textContent = body.error || 'Could not subscribe right now. Try again in a moment.';
+      }
+    } catch (err) {
+      status.className = 'ship-sub-status error';
+      status.textContent = 'Could not subscribe right now. Try again in a moment.';
+    } finally {
+      btn.disabled = false;
+      btn.textContent = 'Subscribe →';
+    }
+  });
+})();
+</script>
+
+</body>
+</html>
