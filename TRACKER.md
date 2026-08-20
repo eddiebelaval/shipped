@@ -89,6 +89,9 @@ Every source article across all issues. The master list.
 | Also Shipped: GitHub Copilot Metered | 03 | also-shipped | not yet captured | 2026-04-30 | `articles/issue-03/also-shipped-github-metered.md` |
 | Also Shipped: BioMysteryBench | 03 | also-shipped | not yet captured | 2026-04-30 | `articles/issue-03/also-shipped-biomysterybench.md` |
 | Release Log research 04-24 to 04-30 | 03 | release-log | not yet captured | 2026-04-30 | `articles/issue-03/release-log-research.md` |
+| 264 Checks | 04 | also-shipped | skeleton | 2026-07-06 | `articles/issue-04/264-checks.md` |
+| The Flower and the Clock | 05 | also-shipped | draft | 2026-07-07 | `articles/issue-05/the-flower-and-the-clock.md` |
+| The Honest Half | 05 | also-shipped | draft | 2026-08-09 | `articles/issue-05/the-honest-half.md` |
 
 > **"not yet captured"** = the research exists (in the WIP, in signal reports, in conversation) but hasn't been pulled into a standalone article file yet. Capturing it is step one of making it trackable.
 
