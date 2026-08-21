@@ -1,0 +1,1318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light">
+<title>Shipped. Daily, Thursday, August 20, 2026</title>
+<meta name="description" content="Anthropic files a confidential S-1 targeting a $2 trillion IPO while shipping Files API GA and two Claude Code versions. OpenAI expands ChatGPT Ads to 31 European markets. Grok 4.6 lands on Amazon Bedrock.">
+<meta property="og:title" content="Shipped. Daily, Thursday, August 20, 2026">
+<meta property="og:description" content="Anthropic files the S-1, graduates the Files API, and ships two Claude Code versions. OpenAI goes to Europe with ads. Grok 4.6 on Bedrock.">
+<meta property="og:type" content="article">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Shipped. Daily, Thursday, August 20, 2026">
+<meta name="twitter:description" content="Anthropic files the S-1, graduates the Files API, and ships two Claude Code versions. OpenAI goes to Europe with ads. Grok 4.6 on Bedrock.">
+<!--
+  ISSUE CHROME: the canonical Shipped. issue design.
+
+  Locked 2026-08-06 to anthropic-weekly/2026-31, chosen by Eddie as the standard
+  after an audit showed the three cadences had drifted into three different looks.
+  Cause: three cloud routines each free-hand their HTML from template.html every
+  run, and nothing enforced a shared component vocabulary, so each invented one.
+
+  This file is the enforcement point, the same pattern as subscribe-block.html:
+  paste it VERBATIM into the head. Do not retype it, do not restyle it. Editing
+  the design means editing THIS file, and every cadence inherits the change.
+
+  Consumed by pipeline/scripts/render-issue.py and by the daily, weekly and
+  monthly routine prompts. Class vocabulary: pub-bar, weekly-header, open-section,
+  feature-opener, prose-well, also-item, log-*, close-section, colophon.
+-->
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='75' cy='62' r='14' fill='%23FF6B35'/%3E%3Ctext x='10' y='75' font-family='Georgia,serif' font-weight='700' font-size='62' fill='%231a1a1a'%3ES%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;0,9..144,900;1,9..144,300;1,9..144,400;1,9..144,500;1,9..144,700&family=Archivo:wght@300;400;500;600;700;800;900&family=Archivo+Narrow:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"><style>
+
+
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{font-size:16px;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;text-rendering:optimizeLegibility}
+body{background:#FAF8F4;color:#0b0b0b;font-family:'Archivo',sans-serif;overflow-x:hidden}
+::selection{background:#FF6B35;color:#fff}
+
+:root{
+  --orange:#FF6B35;
+  --ink:#0b0b0b;
+  --paper:#FAF8F4;
+  --paper-shadow:#f2f0e8;
+  --body:#2a2a2a;
+  --muted:#5a5a5a;
+  --gray:#8a8a8a;
+  --hair:rgba(11,11,11,0.12);
+  --hair-soft:rgba(11,11,11,0.06);
+  --hair-hard:rgba(11,11,11,0.22);
+  --disp:'Fraunces', 'Times New Roman', serif;
+  --sans:'Archivo', system-ui, sans-serif;
+  --narrow:'Archivo Narrow', 'Archivo', sans-serif;
+  --mono:'JetBrains Mono', ui-monospace, monospace;
+}
+
+body::before{
+  content:"";
+  position:fixed;inset:0;pointer-events:none;z-index:1000;opacity:.28;mix-blend-mode:multiply;
+  background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='180' height='180'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' seed='3'/><feColorMatrix values='0 0 0 0 0.02  0 0 0 0 0.02  0 0 0 0 0.02  0 0 0 0.22 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+}
+
+.pub-bar{
+  position:sticky;top:0;z-index:100;
+  background:var(--paper);
+  border-bottom:1px solid var(--hair);
+  padding:0 28px;height:42px;
+  display:flex;align-items:center;justify-content:space-between;
+  font-family:var(--narrow);
+  font-size:11px;font-weight:600;letter-spacing:.22em;
+  text-transform:uppercase;color:var(--ink);
+}
+.pub-bar-left,.pub-bar-right{display:flex;align-items:center;gap:16px}
+.pub-bar-mark{font-family:var(--disp);font-weight:500;font-size:16px;letter-spacing:-.01em;text-transform:none;font-style:italic}
+.pub-bar-mark .dot{color:var(--orange)}
+.pub-bar-sep{width:1px;height:12px;background:var(--hair-hard)}
+.pub-bar-meta{color:var(--muted)}
+.pub-bar-link{color:inherit;text-decoration:none;border-bottom:1px solid currentColor;transition:color .15s ease}
+.pub-bar-link:hover{color:var(--orange)}
+.colophon-link{color:inherit;text-decoration:none;border-bottom:1px solid currentColor;transition:color .15s ease}
+.colophon-link:hover{color:var(--orange)}
+.colophon-foot .colophon-link b{color:var(--paper)}
+.pub-bar-folio{color:var(--ink)}
+.pub-bar-folio b{font-weight:600;color:var(--orange)}
+.pub-bar-cta{
+  display:inline-block;background:var(--ink);color:var(--paper);
+  text-decoration:none;border:1px solid var(--ink);border-radius:10px;
+  font-family:var(--narrow);font-weight:700;font-size:11px;
+  letter-spacing:.2em;text-transform:uppercase;
+  padding:6px 14px;transition:background .15s ease,border-color .15s ease;
+}
+.pub-bar-cta:hover{background:var(--orange);border-color:var(--orange);color:var(--ink)}
+@media (max-width:720px){
+  .pub-bar-hide-sm{display:none}
+  .pub-bar{padding:0 16px}
+  .pub-bar-cta{padding:5px 10px;letter-spacing:.12em}
+}
+
+.folio{
+  font-family:var(--narrow);
+  font-size:10px;font-weight:500;letter-spacing:.28em;
+  text-transform:uppercase;color:var(--gray);
+  display:flex;align-items:center;gap:10px;
+}
+.folio b{color:var(--ink);font-weight:700}
+.folio .ruler{width:28px;height:1px;background:var(--hair-hard)}
+.folio .dot{color:var(--orange)}
+
+.section{
+  position:relative;
+  padding:64px 28px 40px;
+  max-width:1280px;margin:0 auto;
+}
+.section-folio{
+  display:flex;align-items:center;justify-content:space-between;
+  padding-bottom:18px;
+  border-bottom:1px solid var(--ink);
+  margin-bottom:44px;
+}
+.section-folio-left{display:flex;align-items:center;gap:14px}
+.section-folio-label{
+  font-family:var(--narrow);
+  font-size:11px;font-weight:700;letter-spacing:.28em;
+  text-transform:uppercase;color:var(--ink);
+}
+.section-folio-sub{
+  font-family:var(--disp);font-style:italic;
+  font-size:13px;color:var(--muted);
+}
+
+.open-section{background:var(--paper)}
+.open-grid{
+  display:grid;
+  grid-template-columns:repeat(12,1fr);
+  gap:32px;
+}
+.open-lead{
+  grid-column:2 / span 7;
+}
+.open-quote{
+  font-family:var(--disp);
+  font-variation-settings:"opsz" 144;
+  font-weight:500;font-size:clamp(36px,5vw,72px);
+  line-height:1.02;letter-spacing:-.025em;
+  color:var(--ink);
+  margin-bottom:36px;
+  padding-bottom:28px;
+  border-bottom:1px solid var(--hair-hard);
+}
+.open-quote em{font-style:italic;color:var(--orange);font-weight:500}
+.open-prose{
+  font-family:var(--disp);
+  font-variation-settings:"opsz" 14;
+  font-weight:400;font-size:18px;line-height:1.68;
+  color:var(--body);
+  max-width:620px;
+}
+.open-prose p{margin-bottom:22px}
+.open-prose em{font-style:italic;color:var(--ink)}
+.open-aside{
+  grid-column:10 / span 3;
+  border-top:1px solid var(--ink);
+  padding-top:16px;
+  font-family:var(--narrow);
+  font-size:11px;font-weight:500;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--muted);
+  line-height:1.9;
+}
+.open-aside b{color:var(--ink);font-weight:700}
+@media(max-width:860px){
+  .open-lead{grid-column:1 / -1}
+  .open-aside{grid-column:1 / -1;margin-top:16px}
+}
+
+.feature-opener{
+  display:grid;
+  grid-template-columns:72px 1fr minmax(0,320px);
+  gap:32px;
+  padding:56px 28px 40px;
+  max-width:1280px;margin:0 auto;
+  position:relative;
+  border-top:2px solid var(--ink);
+}
+.feature-opener::before{
+  content:"";
+  position:absolute;
+  left:100px;top:0;bottom:0;
+  width:1px;background:var(--hair);
+}
+.vert-label{
+  position:relative;
+  writing-mode:vertical-rl;
+  transform:rotate(180deg);
+  font-family:var(--narrow);
+  font-size:13px;font-weight:700;letter-spacing:.48em;
+  text-transform:uppercase;color:var(--ink);
+  align-self:start;
+  padding-top:12px;
+  white-space:nowrap;
+}
+.vert-label .vert-num{
+  color:var(--orange);
+  font-family:var(--disp);
+  font-style:italic;font-weight:500;
+  letter-spacing:-.02em;
+  margin-top:12px;display:inline-block;
+  writing-mode:horizontal-tb;
+  transform:rotate(180deg);
+  font-size:20px;
+}
+.feature-heading{min-width:0}
+.feature-kicker{
+  font-family:var(--narrow);
+  font-size:10px;font-weight:700;letter-spacing:.32em;
+  text-transform:uppercase;color:var(--orange);
+  margin-bottom:20px;
+}
+.feature-title{
+  font-family:var(--disp);font-weight:700;
+  font-variation-settings:"opsz" 144;
+  font-size:clamp(52px,8vw,128px);
+  line-height:.9;letter-spacing:-.042em;
+  color:var(--ink);
+  margin-bottom:24px;
+}
+.feature-title em{font-style:italic;font-weight:400;color:var(--ink)}
+.feature-deck{
+  font-family:var(--disp);font-weight:400;
+  font-variation-settings:"opsz" 72;
+  font-size:clamp(20px,2.4vw,28px);
+  line-height:1.3;letter-spacing:-.01em;
+  color:var(--muted);
+  max-width:640px;
+  margin-bottom:24px;
+}
+.feature-meta{
+  padding-top:18px;
+  border-top:1px solid var(--hair);
+  font-family:var(--narrow);
+  font-size:10px;font-weight:600;letter-spacing:.24em;
+  text-transform:uppercase;color:var(--muted);
+  line-height:1.8;
+}
+.feature-meta b{color:var(--ink);font-weight:700}
+.feature-right{
+  padding-top:28px;
+  border-top:1px solid var(--hair);
+  font-family:var(--disp);font-style:italic;
+  font-size:15px;line-height:1.55;color:var(--muted);
+}
+.feature-right-label{
+  display:block;
+  font-family:var(--narrow);font-style:normal;
+  font-size:10px;font-weight:700;letter-spacing:.28em;
+  text-transform:uppercase;color:var(--ink);
+  margin-bottom:10px;
+}
+@media(max-width:860px){
+  .feature-opener{grid-template-columns:1fr;gap:16px}
+  .feature-opener::before{display:none}
+  .vert-label{writing-mode:horizontal-tb;transform:none;font-size:11px}
+  .vert-label .vert-num{writing-mode:horizontal-tb;transform:none;margin-left:16px}
+  .feature-right{grid-column:1 / -1}
+}
+
+.prose-well{
+  max-width:1280px;margin:0 auto;padding:0 28px 56px;
+  display:grid;grid-template-columns:72px 1fr minmax(0,320px);
+  gap:32px;position:relative;
+}
+.prose-well::before{
+  content:"";position:absolute;left:100px;top:0;bottom:0;
+  width:1px;background:var(--hair);
+}
+.prose-marginalia{
+  grid-column:1;
+  font-family:var(--narrow);
+  font-size:10px;font-weight:600;letter-spacing:.26em;
+  text-transform:uppercase;color:var(--gray);
+  writing-mode:vertical-rl;transform:rotate(180deg);
+  align-self:start;padding-top:8px;
+  white-space:nowrap;
+}
+.prose{
+  grid-column:2;
+  font-family:var(--disp);
+  font-variation-settings:"opsz" 14;
+  font-weight:400;font-size:19px;line-height:1.66;
+  color:var(--body);
+  max-width:640px;
+}
+.prose p{margin-bottom:24px}
+.prose em{font-style:italic;color:var(--ink)}
+.prose strong{font-weight:600;color:var(--ink)}
+.prose code{
+  font-family:var(--mono);font-size:.86em;
+  background:var(--paper-shadow);padding:1px 6px;
+  border-radius:3px;color:var(--ink);
+}
+.prose a{color:var(--ink);border-bottom:1px solid var(--hair-hard);text-decoration:none;transition:color .15s,border-color .15s}
+.prose a:hover{color:var(--orange);border-bottom-color:var(--orange)}
+.prose-aside{
+  grid-column:3;
+  font-family:var(--narrow);
+  font-size:11px;font-weight:500;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--muted);
+  border-top:1px solid var(--ink);padding-top:14px;
+  line-height:1.8;
+}
+.prose-aside b{color:var(--ink);font-weight:700}
+
+.drop-cap::first-letter{
+  font-family:var(--disp);
+  font-variation-settings:"opsz" 144;
+  font-weight:700;
+  font-size:9.2em;
+  float:left;line-height:.78;
+  padding:.02em 12px 0 0;
+  margin:.02em 4px -.1em -2px;
+  color:var(--ink);
+}
+.drop-cap-orange::first-letter{
+  color:var(--orange);
+}
+
+@media(max-width:860px){
+  .prose-well{grid-template-columns:1fr;padding-left:20px;padding-right:20px}
+  .prose-well::before{display:none}
+  .prose-marginalia{display:none}
+  .prose{grid-column:1}
+  .prose-aside{grid-column:1;margin-top:20px}
+  .drop-cap::first-letter{font-size:6.6em}
+}
+
+.quiet-section{
+  max-width:1280px;margin:0 auto;padding:64px 28px 24px;
+  display:grid;grid-template-columns:repeat(12,1fr);gap:24px;
+}
+.quiet-head{
+  grid-column:1 / span 3;
+}
+.quiet-title{
+  font-family:var(--disp);font-style:italic;font-weight:400;
+  font-variation-settings:"opsz" 72;
+  font-size:32px;line-height:1;letter-spacing:-.02em;
+  color:var(--ink);
+}
+.quiet-title em{color:var(--orange);font-style:normal;font-weight:500}
+.quiet-kicker{
+  font-family:var(--narrow);
+  font-size:10px;font-weight:700;letter-spacing:.32em;
+  text-transform:uppercase;color:var(--muted);
+  margin-bottom:10px;
+}
+.quiet-body{
+  grid-column:5 / -1;
+  font-family:var(--disp);font-size:17px;line-height:1.65;color:var(--body);
+  padding-left:24px;border-left:1px solid var(--ink);
+}
+.quiet-body p{margin-bottom:16px}
+.quiet-body strong{font-weight:600;color:var(--ink)}
+@media(max-width:860px){
+  .quiet-head,.quiet-body{grid-column:1 / -1}
+  .quiet-body{padding-left:0;border-left:none;border-top:1px solid var(--ink);padding-top:18px}
+}
+
+.close-section{
+  background:var(--ink);color:var(--paper);
+  padding:120px 28px 140px;
+  position:relative;
+  text-align:center;
+}
+.close-kicker{
+  font-family:var(--narrow);
+  font-size:11px;font-weight:700;letter-spacing:.38em;
+  text-transform:uppercase;color:rgba(250,250,247,.5);
+  margin-bottom:48px;
+}
+.close-stack{
+  max-width:780px;margin:0 auto;
+  display:flex;flex-direction:column;gap:32px;
+}
+.close-line{
+  font-family:var(--disp);font-weight:400;
+  font-variation-settings:"opsz" 96;
+  font-size:clamp(26px,3.6vw,46px);
+  line-height:1.18;letter-spacing:-.018em;
+  color:var(--paper);
+}
+.close-line em{font-style:italic;color:var(--orange);font-weight:500}
+.close-final{
+  font-style:italic;color:var(--orange);
+  font-size:clamp(18px,2.2vw,26px);
+  line-height:1.5;letter-spacing:0;
+  max-width:580px;margin:0 auto;
+  font-variation-settings:"opsz" 36;
+}
+.close-coda-start{
+  margin-top:48px;position:relative;
+}
+.close-coda-start::before{
+  content:"";display:block;
+  width:32px;height:1px;
+  background:rgba(217,107,73,.45);
+  margin:0 auto 36px;
+}
+.close-mark{
+  margin-top:72px;
+  font-family:var(--disp);
+  font-size:48px;color:rgba(250,250,247,.3);
+  letter-spacing:.8em;
+}
+
+.log-divider{
+  background:var(--paper);
+  padding:96px 28px 48px;
+  text-align:center;
+  border-top:3px double var(--ink);
+  border-bottom:1px solid var(--ink);
+  max-width:1280px;margin:0 auto;
+}
+.log-divider-kicker{
+  font-family:var(--narrow);
+  font-size:11px;font-weight:700;letter-spacing:.48em;
+  text-transform:uppercase;color:var(--orange);
+  margin-bottom:14px;
+}
+.log-divider-title{
+  font-family:var(--disp);font-weight:700;
+  font-variation-settings:"opsz" 144;
+  font-size:clamp(56px,10vw,144px);
+  line-height:.9;letter-spacing:-.045em;color:var(--ink);
+  margin-bottom:16px;
+}
+.log-divider-title em{font-style:italic;font-weight:400}
+.log-divider-sub{
+  font-family:var(--disp);font-style:italic;
+  font-size:18px;color:var(--muted);max-width:640px;margin:0 auto;line-height:1.5;
+}
+
+.log-section{
+  padding:48px 28px;max-width:1280px;margin:0 auto;
+}
+.log-cat-head{
+  display:grid;
+  grid-template-columns:1fr auto;
+  gap:24px;align-items:baseline;
+  padding-bottom:18px;
+  border-bottom:1px solid var(--ink);
+  margin-bottom:0;
+}
+.log-cat-name{
+  font-family:var(--disp);font-weight:600;font-style:italic;
+  font-variation-settings:"opsz" 96;
+  font-size:clamp(36px,5vw,56px);
+  letter-spacing:-.02em;color:var(--ink);line-height:1;
+}
+.log-cat-count{
+  font-family:var(--narrow);
+  font-size:10px;font-weight:600;letter-spacing:.28em;
+  text-transform:uppercase;color:var(--muted);
+  text-align:right;
+}
+.log-cat-count b{color:var(--ink);font-weight:700;font-size:13px;display:block}
+
+.log-cat-deck{
+  font-family:var(--disp);
+  font-style:italic;
+  font-weight:400;
+  font-variation-settings:"opsz" 24;
+  font-size:18px;
+  line-height:1.45;
+  color:var(--muted);
+  margin-top:14px;
+  margin-bottom:8px;
+  max-width:760px;
+  letter-spacing:-.005em;
+}
+.log-cat-deck b{color:var(--ink);font-weight:600;font-style:normal}
+.log-cat-deck em{color:var(--orange);font-style:normal;font-weight:500}
+
+.log-entries{display:flex;flex-direction:column}
+.log-entry{
+  padding:24px 0;
+  border-bottom:1px solid var(--hair);
+  display:grid;
+  grid-template-columns:120px 1fr;gap:28px;
+}
+.log-entry-left{
+  display:flex;flex-direction:column;gap:8px;
+}
+.log-entry-date{
+  font-family:var(--narrow);
+  font-size:10px;font-weight:700;letter-spacing:.22em;
+  text-transform:uppercase;color:var(--ink);
+  font-variant-numeric:tabular-nums;
+}
+.log-tag{
+  font-family:var(--narrow);
+  font-size:9px;font-weight:700;letter-spacing:.22em;
+  text-transform:uppercase;padding:3px 7px;
+  display:inline-block;line-height:1.3;width:fit-content;
+}
+.log-tag.model{background:var(--orange);color:var(--paper)}
+.log-tag.api{background:var(--ink);color:var(--paper)}
+.log-tag.code{background:#3a3a3a;color:var(--paper)}
+.log-tag.apps{background:#5a5a5a;color:var(--paper)}
+.log-tag.sdk-py,.log-tag.sdk-ts{background:var(--paper);color:var(--ink);border:1px solid var(--ink)}
+.log-tag.research,.log-tag.news{background:var(--paper);color:var(--muted);border:1px solid var(--hair-hard)}
+.log-tag.deprecation{background:var(--paper-shadow);color:var(--muted);border:1px solid var(--hair-hard)}
+.log-entry-title{
+  font-family:var(--disp);font-weight:500;
+  font-variation-settings:"opsz" 72;
+  font-size:20px;letter-spacing:-.012em;
+  color:var(--ink);line-height:1.25;
+  margin-bottom:10px;
+}
+.log-entry-title a{color:inherit;text-decoration:none;border-bottom:1px solid var(--hair-hard)}
+.log-entry-title a:hover{border-bottom-color:var(--orange);color:var(--orange)}
+.log-entry-body{
+  font-family:var(--sans);font-size:14.5px;line-height:1.6;color:var(--body);
+  margin-bottom:12px;
+}
+.log-entry-how{
+  font-family:var(--sans);font-size:13.5px;line-height:1.6;color:var(--muted);
+  padding-top:12px;border-top:1px solid var(--hair-soft);
+}
+.log-entry-how b{font-family:var(--narrow);font-size:10px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--ink);display:block;margin-bottom:6px}
+.log-entry-how code{font-family:var(--mono);font-size:.86em;background:var(--paper-shadow);padding:1px 6px;border-radius:3px;color:var(--ink)}
+.log-entry-why{
+  font-family:var(--disp);font-style:italic;
+  font-size:14px;color:var(--muted);line-height:1.55;
+  margin-top:10px;padding-left:14px;
+  border-left:2px solid var(--orange);
+}
+.log-entry-why b{font-style:normal;font-family:var(--narrow);font-size:10px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--orange);display:block;margin-bottom:4px}
+
+@media(max-width:720px){
+  .log-entry{grid-template-columns:1fr;gap:12px}
+  .log-cat-head{grid-template-columns:auto 1fr}
+  .log-cat-count{grid-column:1 / -1;text-align:left;padding-top:8px;border-top:1px solid var(--hair)}
+}
+
+.colophon{
+  background:var(--ink);color:var(--paper);
+  padding:80px 28px 64px;
+  border-top:2px solid var(--orange);
+}
+.colophon-inner{
+  max-width:1280px;margin:0 auto;
+  display:grid;grid-template-columns:repeat(12,1fr);gap:32px;
+}
+.colophon-mast{
+  grid-column:1 / span 5;
+}
+.colophon-word{
+  font-family:var(--disp);font-weight:500;
+  font-variation-settings:"opsz" 144;
+  font-size:clamp(72px,10vw,120px);
+  line-height:.9;letter-spacing:-.04em;color:var(--paper);
+}
+.colophon-word .dot{color:var(--orange)}
+.colophon-tag{
+  margin-top:14px;
+  font-family:var(--disp);font-style:italic;font-size:18px;
+  color:rgba(250,250,247,.65);line-height:1.4;max-width:360px;
+}
+
+.colophon-body{
+  grid-column:6 / -1;
+  display:grid;grid-template-columns:repeat(3,1fr);gap:32px;
+}
+.colophon-col h4{
+  font-family:var(--narrow);
+  font-size:10px;font-weight:700;letter-spacing:.32em;
+  text-transform:uppercase;color:var(--orange);
+  margin-bottom:12px;padding-bottom:10px;
+  border-bottom:1px solid rgba(250,250,247,.2);
+}
+.colophon-col p,.colophon-col li{
+  font-family:var(--sans);font-size:13px;line-height:1.6;
+  color:rgba(250,250,247,.75);
+  margin-bottom:8px;list-style:none;
+}
+.colophon-col b{color:var(--paper);font-weight:600}
+.colophon-col em{font-style:italic;color:rgba(250,250,247,.9)}
+
+.colophon-foot{
+  grid-column:1 / -1;
+  margin-top:32px;padding-top:24px;
+  border-top:1px solid rgba(250,250,247,.2);
+  display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap;
+  font-family:var(--narrow);font-size:10px;font-weight:600;
+  letter-spacing:.28em;text-transform:uppercase;color:rgba(250,250,247,.5);
+}
+.colophon-foot b{color:var(--paper);font-weight:700}
+.colophon-foot .hot{color:var(--orange)}
+
+@media(max-width:860px){
+  .colophon-mast,.colophon-body{grid-column:1 / -1}
+  .colophon-body{grid-template-columns:1fr;gap:24px}
+}
+
+/* ---- Weekly-specific ---- */
+.weekly-header{
+  padding:64px 28px 48px;
+  max-width:1280px;margin:0 auto;
+  border-bottom:1px solid var(--ink);
+}
+.weekly-kicker{
+  font-family:var(--narrow);
+  font-size:10px;font-weight:700;letter-spacing:.38em;
+  text-transform:uppercase;color:var(--orange);
+  margin-bottom:20px;
+}
+.weekly-masthead{
+  font-family:var(--disp);font-weight:500;
+  font-variation-settings:"opsz" 144;
+  font-size:clamp(72px,14vw,192px);
+  line-height:.86;letter-spacing:-.04em;
+  color:var(--ink);
+  margin-bottom:28px;
+}
+.weekly-masthead .dot{color:var(--orange);display:inline-block}
+.weekly-cover-line{
+  font-family:var(--disp);font-style:italic;font-weight:400;
+  font-variation-settings:"opsz" 72;
+  font-size:clamp(22px,3.4vw,42px);
+  line-height:1.15;letter-spacing:-.015em;
+  color:var(--ink);
+  max-width:820px;
+  margin-bottom:28px;
+}
+.weekly-dateline{
+  font-family:var(--narrow);
+  font-size:11px;font-weight:600;letter-spacing:.28em;
+  text-transform:uppercase;color:var(--muted);
+  display:flex;gap:24px;flex-wrap:wrap;
+  padding-top:24px;
+  border-top:1px solid var(--hair);
+}
+.weekly-dateline span b{color:var(--ink)}
+
+.also-item{
+  padding:28px 0;
+  border-bottom:1px solid var(--hair);
+}
+.also-item:last-child{border-bottom:none}
+.also-item-kicker{
+  font-family:var(--narrow);
+  font-size:9px;font-weight:700;letter-spacing:.32em;
+  text-transform:uppercase;color:var(--orange);
+  margin-bottom:8px;
+}
+.also-item-title{
+  font-family:var(--disp);font-weight:600;
+  font-variation-settings:"opsz" 72;
+  font-size:22px;letter-spacing:-.015em;
+  color:var(--ink);margin-bottom:12px;line-height:1.2;
+}
+.also-item-body{
+  font-family:var(--disp);
+  font-variation-settings:"opsz" 14;
+  font-size:17px;line-height:1.6;color:var(--body);
+  max-width:680px;
+}
+.also-item-body a{color:var(--ink);border-bottom:1px solid var(--hair-hard);text-decoration:none}
+.also-item-body a:hover{color:var(--orange);border-bottom-color:var(--orange)}
+.also-item-source{
+  margin-top:8px;
+  font-family:var(--narrow);font-size:10px;font-weight:600;
+  letter-spacing:.2em;text-transform:uppercase;color:var(--gray);
+}
+.also-item-source a{color:inherit;border-bottom:1px solid currentColor;text-decoration:none}
+.also-item-source a:hover{color:var(--orange)}
+
+.ornament{
+  text-align:center;margin:64px auto;
+  font-family:var(--disp);font-size:16px;color:var(--hair-hard);
+  letter-spacing:1.2em;
+}
+
+@media(max-width:600px){
+  .section,.log-section,.feature-opener,.prose-well{padding-left:20px;padding-right:20px}
+  .weekly-header{padding:40px 20px 36px}
+}
+</style>
+</head>
+<body>
+
+<!-- PUB BAR -->
+<nav class="pub-bar">
+  <div class="pub-bar-left">
+    <span class="pub-bar-mark">Shipped<span class="dot">.</span></span>
+    <span class="pub-bar-sep pub-bar-hide-sm"></span>
+    <span class="pub-bar-meta pub-bar-hide-sm">Daily, Frontier</span>
+    <span class="pub-bar-sep pub-bar-hide-sm"></span>
+    <span class="pub-bar-meta pub-bar-hide-sm"><a href="https://id8labs.app" class="pub-bar-link">id8Labs</a></span>
+  </div>
+  <div class="pub-bar-right">
+    <span class="pub-bar-folio pub-bar-hide-sm">Aug 19 <b>to</b> Aug 20</span>
+    <span class="pub-bar-sep pub-bar-hide-sm"></span>
+    <span class="pub-bar-meta pub-bar-hide-sm">Six labs</span>
+    <a href="#subscribe" class="pub-bar-cta">Subscribe</a>
+  </div>
+</nav>
+
+<!-- HEADER -->
+<header class="weekly-header">
+  <div class="weekly-kicker">Daily Digest &nbsp;&#x2022;&nbsp; Frontier Labs &nbsp;&#x2022;&nbsp; Thursday, August 20, 2026</div>
+  <div class="weekly-masthead">Shipped<span class="dot">.</span></div>
+  <div class="weekly-cover-line">Anthropic files the S-1, graduates the Files API, and ships two Claude Code versions before midnight.</div>
+  <div class="weekly-dateline">
+    <span><b>Date</b> Thursday, August 20, 2026</span>
+    <span><b>Window</b> Aug 19 to Aug 20</span>
+    <span><b>Labs</b> Anthropic, OpenAI, xAI</span>
+    <span><b>Edition</b> Daily</span>
+  </div>
+</header>
+
+<!-- OPEN SECTION -->
+<section class="open-section">
+  <div class="section">
+    <div class="section-folio">
+      <div class="section-folio-left">
+        <div class="folio"><div class="ruler"></div><b>The Open</b></div>
+      </div>
+      <div class="section-folio-sub">Aug 19 to Aug 20</div>
+    </div>
+    <div class="open-grid">
+      <div class="open-lead">
+        <div class="open-quote">The S-1 exists. It is not public. <em>Not yet.</em></div>
+        <div class="open-prose">
+          <p>Thursday, August 20. Bloomberg confirms what people inside Anthropic had been running the numbers on for weeks: the company has confidentially submitted a draft registration statement to the SEC. The public filing could land before September. The valuation target is $2 trillion, and that number is not a leak. Six investors told the Financial Times it is real.</p>
+          <p>The same day, Anthropic graduated two developer platform features out of beta and shipped two versions of Claude Code. OpenAI announced ChatGPT Ads going live in 31 European markets. Grok 4.6 cleared its final step onto Amazon Bedrock. The frontier did not take a Thursday off.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LEAD: THE $2 TRILLION FILING -->
+<div class="feature-opener">
+  <div class="vert-label">Lead Story<span class="vert-num">01</span></div>
+  <div class="feature-heading">
+    <div class="feature-kicker">Anthropic / IPO / News</div>
+    <h2 class="feature-title">The $2<br><em>Trillion</em><br>Filing</h2>
+    <div class="feature-deck">Anthropic submits a confidential S-1 to the SEC. The target valuation would make it the largest IPO in history. The careful company is running for the record.</div>
+    <div class="feature-meta">
+      <b>Source</b> Bloomberg, Financial Times, Fortune &nbsp;&nbsp; <b>Date</b> Aug 20, 2026
+    </div>
+  </div>
+  <div class="feature-right">
+    <span class="feature-right-label">By the numbers</span>
+    $965B: last known valuation (May round)<br>
+    $2T+: IPO target per six investors<br>
+    $86.2B: SpaceX record to beat<br>
+    Underwriters: Morgan Stanley, Goldman, JPMorgan<br>
+    Public filing: as soon as end of August
+  </div>
+</div>
+
+<div class="prose-well">
+  <div class="prose-marginalia">Anthropic IPO</div>
+  <div class="prose drop-cap drop-cap-orange">
+    <p>The mechanism is a Form S-1, the standard SEC registration for a US public offering. The confidential submission path lets Anthropic complete the regulatory back-and-forth before the roadshow starts, keeping the financials private until the last possible moment. The public filing, when it comes, will carry the actual revenue figures, model cost structures, and how Anthropic accounts for compute. That document is going to be read very carefully by a very large number of people.</p>
+    <p>The valuation math is worth unpacking. Anthropic's May 2026 financing round closed at a $965 billion valuation, already above OpenAI's $852 billion from March. Six investors told the Financial Times in mid-August that the target for the IPO is $2 trillion or more, roughly double what had circulated earlier this year. The underwriters are Morgan Stanley, Goldman Sachs, and JPMorgan Chase. SpaceX raised $86.2 billion in what was the largest IPO in history. Anthropic is running the numbers to match or top it.</p>
+    <p>The blast radius extends well beyond Anthropic. Every enterprise team doing multi-year frontier AI procurement just had the ground shift. A public Anthropic has quarterly earnings, a shareholder base, and growth pressure that a private Anthropic never carried. The character of the company you are betting on changes on the day the S-1 goes public. Not slowly, not eventually. On that day.</p>
+    <p>The pattern across this year: OpenAI's CFO Sarah Friar told employees at an all-hands that the company "will be a public company in 2027, or sooner if our business continues to inflect." Anthropic's public filing could land in days. Two AI labs with a combined implied valuation above $3 trillion are racing to public markets simultaneously. The frontier is not just a technical race anymore.</p>
+    <p>The read: the company that was supposed to be the careful, slower one is now running for the all-time IPO record. The safety-plus-performance bet is now priced at two trillion dollars. That number says something about how investors currently value the lead-with-safety approach. Whether it survives first contact with public markets is the most interesting question in AI for the next 90 days.</p>
+    <p>The builder's move: if you are on a procurement team locking in multi-year contracts, the S-1 disclosure will contain information you need before you sign. Read the document when it goes public. Then negotiate. The pricing conversation changes when you know the margins.</p>
+  </div>
+</div>
+
+<!-- DIG 02: FILES API + ADMIN API GA -->
+<div class="feature-opener">
+  <div class="vert-label">The Dig<span class="vert-num">02</span></div>
+  <div class="feature-heading">
+    <div class="feature-kicker">Anthropic / API / Platform</div>
+    <h2 class="feature-title">Beta<br><em>Labels</em><br>Off</h2>
+    <div class="feature-deck">Files API and Admin API user management graduate to GA on the Claude developer platform. Two less asterisks in production.</div>
+    <div class="feature-meta">
+      <b>Source</b> Anthropic platform release notes &nbsp;&nbsp; <b>Date</b> Aug 19, 2026
+    </div>
+  </div>
+</div>
+
+<div class="prose-well">
+  <div class="prose-marginalia">Platform GA</div>
+  <div class="prose drop-cap drop-cap-orange">
+    <p>Beta graduation is not cosmetic. It means SLA commitments, stable versioning guarantees, and the removal of the operational friction of carrying beta headers in production. The <code>files-api-2025-04-14</code> header is gone. Files API requests go to <code>/v1/files</code> without it. The GA version ships with file expiration: set <code>expires_in_seconds</code> at upload, and the file object reports <code>expires_at</code>. Pagination: <code>page</code> and <code>next_page</code> parameters plus an <code>ids[]</code> filter for list requests. Storage cap: 1 TB per organization. Rate limit: 500 requests per minute.</p>
+    <p>The Admin API for Claude Enterprise organizations covers the same ground: members, invites, groups, and custom roles are now fully GA. The <code>anthropic-beta: ce-user-management-2026-07-13</code> header is no longer required on group and custom-role requests. Enterprise teams running user provisioning automation can remove the asterisk from their runbooks.</p>
+    <p>Also in the same developer platform drop: new Managed Agents controls for web access and self-hosted sandbox memory stores, and a redesigned Console session viewer with richer observability. The session viewer change is worth noting for teams debugging agent behavior. More signal, same interface.</p>
+    <p>The contrast is worth naming. Two API features graduating on the same Thursday Anthropic files its IPO is not accidental. Platform maturity is an investor signal. Product management and investor relations shared a calendar this week, and the result is a product drop that reads, correctly, as a readiness proof.</p>
+    <p>The builder's move: remove the <code>files-api-2025-04-14</code> beta header from your request configs today. If you are uploading files that should expire, add <code>expires_in_seconds</code>. If you are on Claude Enterprise and scripting user provisioning, test your Admin API integration against the stable endpoints before trusting the automation in production.</p>
+  </div>
+</div>
+
+<!-- DIG 03: CLAUDE CODE -->
+<div class="feature-opener">
+  <div class="vert-label">The Dig<span class="vert-num">03</span></div>
+  <div class="feature-heading">
+    <div class="feature-kicker">Anthropic / Claude Code / CODE</div>
+    <h2 class="feature-title">Two<br><em>Versions,</em><br>One Day</h2>
+    <div class="feature-deck">Claude Code ships v2.1.236 and v2.1.237 in 24 hours. The direction: more infrastructure, less narration.</div>
+    <div class="feature-meta">
+      <b>Source</b> Claude Code changelog &nbsp;&nbsp; <b>Date</b> Aug 19 to Aug 20, 2026
+    </div>
+  </div>
+</div>
+
+<div class="prose-well">
+  <div class="prose-marginalia">Claude Code</div>
+  <div class="prose drop-cap drop-cap-orange">
+    <p>v2.1.236 (Aug 19) ships three things worth tracking. First: the <code>ANTHROPIC_DEFAULT_MODEL</code> environment variable. New sessions start on whatever model you have set. A <code>/model</code> pick still overrides it and persists across restarts. If you run Claude Code across multiple machines and want consistent model selection without re-picking on each session, set the variable in your shell profile.</p>
+    <p>Second: <code>notify_when_idle</code> on cross-session <code>SendMessage</code>. You can now ask another Claude Code session running on the same machine to send you a one-shot notification when it next goes idle. Opt-in. One-shot. No polling. macOS and Linux only. The mechanism inverts the signal: the session tells you when it is done, rather than you watching and guessing. This is a small ergonomic fix with a large quality-of-life surface when you are running long agent tasks in parallel sessions.</p>
+    <p>Third: the built-in <code>claude-api</code> skill now loads reference documentation on demand rather than at session startup. Context cost dropped from roughly 200k tokens to roughly 25k. If you use the claude-api skill regularly, your context headroom just got substantially wider. Also in this version: <code>/permissions</code> can now be opened while Claude is actively working.</p>
+    <p>v2.1.237 (Aug 20) fixes prompt caching for sessions using an LLM gateway or custom base URL. Anyone routing Claude Code through an internal proxy layer was not getting cache benefits. That is a latency and cost problem at scale, and it was invisible to the team using it because there is no obvious failure signal. Fixed. Also ships: a new Concise output style. Claude leads with results and skips preamble and narration, doing the work just as thoroughly. For any pipeline reading Claude Code output programmatically, this is a substantial quality-of-life change.</p>
+    <p>The read: two versions in 24 hours is not unusual for Claude Code's velocity. What is worth noting is the consistent direction. <code>notify_when_idle</code> is about multi-session awareness. Concise mode is about reducing what you see. Both point toward Claude Code operating more like infrastructure and less like a conversational terminal. Right call.</p>
+  </div>
+</div>
+
+<!-- ALSO SHIPPED -->
+<section class="section">
+  <div class="section-folio">
+    <div class="section-folio-left">
+      <div class="folio"><div class="ruler"></div><b>Also Shipped</b></div>
+    </div>
+    <div class="section-folio-sub">OpenAI, xAI</div>
+  </div>
+
+  <div class="also-item">
+    <div class="also-item-kicker">OpenAI / ChatGPT / News</div>
+    <div class="also-item-title">ChatGPT Ads land in Europe, 31 markets at once</div>
+    <div class="also-item-body">
+      <p>OpenAI announced ChatGPT Ads will go live across 31 European markets on August 24. Targeting: conversation context, approximate location, device type, time of day, language. Opting out changes which ads you see, not whether you see them. Plus, Pro, and Enterprise subscribers stay ad-free. Free and Go users get ads.</p>
+      <p>OpenAI built consent into the European rollout from the start, asking users before serving targeted ads. That framing is simultaneously better policy for European users and preemptive armor against GDPR and Digital Markets Act scrutiny. Both of those things can be true, and they are. The contrast with the US approach, where contextual targeting went without that consent ask, is deliberate.</p>
+      <p>The bigger contrast: Anthropic is targeting a $2 trillion IPO on a subscriptions-and-API model. OpenAI is layering ads on top. Two roads to sustainable frontier-lab economics, both being tested publicly at the same time.</p>
+    </div>
+    <div class="also-item-source"><a href="https://openai.com/index/chatgpt-ads-expands-across-europe/">Source: OpenAI announcement</a></div>
+  </div>
+
+  <div class="also-item">
+    <div class="also-item-kicker">xAI / Grok 4.6 / API</div>
+    <div class="also-item-title">Grok 4.6 is generally available on Amazon Bedrock</div>
+    <div class="also-item-body">
+      <p>AWS announced general availability of xAI Grok 4.6 on Amazon Bedrock on August 19. 500k context window, configurable reasoning effort across four levels: low, medium, high, and xhigh. Standard Bedrock billing and IAM access apply. No separate xAI account required.</p>
+      <p>Grok on Bedrock sits next to Claude on Bedrock, Mistral on Bedrock, and most of the rest of the frontier on the same shelf. Amazon is the shelf. Grok 4.6 is one week old and already on it. That distribution speed tells you something about the incentive structure: xAI needs enterprise AWS accounts, and AWS needs model diversity to stay off the JEDI-style single-vendor scrutiny list. The model that gets pulled most often wins this particular slot.</p>
+    </div>
+    <div class="also-item-source"><a href="https://aws.amazon.com/about-aws/whats-new/2026/08/amazon-bedrock-grok-4-6/">Source: AWS What's New</a></div>
+  </div>
+
+  <div class="also-item">
+    <div class="also-item-kicker">OpenAI / ChatGPT / Models</div>
+    <div class="also-item-title">GPT-5.6 Sol gets an effort slider for Plus and Pro</div>
+    <div class="also-item-body">
+      <p>Starting August 19, Plus and Pro ChatGPT users got an updated GPT-5.6 Sol with a slider to choose how much reasoning effort ChatGPT applies. Free and Go users got a new, more capable default model for everyday chats. The effort control directly mirrors what Claude Code and other frontier tools already ship. Whether that is convergent design or direct influence, builders using both will not notice the difference in the mechanism, only in the results.</p>
+    </div>
+    <div class="also-item-source"><a href="https://help.openai.com/en/articles/6825453-chatgpt-release-notes">Source: OpenAI ChatGPT release notes</a></div>
+  </div>
+
+</section>
+
+<!-- QUIET ON THE WIRE -->
+<section class="quiet-section">
+  <div class="quiet-head">
+    <div class="quiet-kicker">Quiet on the Wire</div>
+    <div class="quiet-title">Coming <em>next</em></div>
+  </div>
+  <div class="quiet-body">
+    <p><strong>Anthropic public S-1:</strong> the confidential submission is in. The public filing could land any day between now and end of August. When it does, the revenue figures and compute accounting will be the most detailed look at frontier-lab economics ever published in a regulatory filing. Worth clearing your schedule for.</p>
+    <p><strong>OpenAI IPO timeline:</strong> CFO Sarah Friar said 2027 or sooner. The gap between "end of August" and "2027 or sooner" will define how OpenAI positions itself relative to Anthropic for at least the next 12 months. The silence from OpenAI about Anthropic's filing is notable.</p>
+    <p><strong>Gemini API:</strong> the changelog has been quiet since the DeepMind leadership reshuffle in early August. Koray Kavukcuoglu's first major product signal as SVP is still pending. When it breaks, the question is continuity or reset.</p>
+  </div>
+</section>
+
+<!-- THE CLOSE -->
+<section class="close-section">
+  <div class="close-kicker">The Close</div>
+  <div class="close-stack">
+    <div class="close-line">The S-1 exists.</div>
+    <div class="close-line">Two beta labels came off the developer platform.</div>
+    <div class="close-line">The frontier did not take a Thursday off.</div>
+    <div class="close-coda-start">
+      <div class="close-final">The careful company is running for the largest IPO in history.</div>
+    </div>
+  </div>
+  <div class="close-mark">&#x25cf;</div>
+</section>
+
+<!-- RELEASE LOG -->
+<div class="log-divider" id="log">
+  <div class="log-divider-kicker">Reference</div>
+  <h2 class="log-divider-title">Release <em>Log</em></h2>
+  <div class="log-divider-sub">Everything that shipped in the Aug 19 to Aug 20 window, grouped by category. Use this section to grep, share with stakeholders, and track what actually changed.</div>
+</div>
+
+<!-- B: API & PLATFORM -->
+<div class="log-section">
+  <div class="log-cat-head">
+    <div class="log-cat-name">API &amp; Platform</div>
+    <div class="log-cat-count"><b>3</b> entries</div>
+  </div>
+  <div class="log-cat-deck">Three Anthropic developer platform changes on Aug 19: <b>Files API</b> and <b>Admin API</b> graduating to GA, plus new Managed Agents controls and a redesigned Console session viewer.</div>
+  <div class="log-entries">
+
+    <div class="log-entry">
+      <div class="log-entry-left">
+        <div class="log-entry-date">2026-08-19</div>
+        <span class="log-tag api">API</span>
+      </div>
+      <div>
+        <div class="log-entry-title"><a href="https://docs.anthropic.com/en/release-notes/api">Files API generally available</a></div>
+        <div class="log-entry-body">Files API is now GA on the Claude API. The <code>files-api-2025-04-14</code> beta header is no longer required. GA adds file expiration (<code>expires_in_seconds</code> on upload, <code>expires_at</code> on the file object), page and next_page pagination, and an <code>ids[]</code> filter for list requests. Storage: 1 TB per organization. Rate limit: 500 requests per minute.</div>
+        <div class="log-entry-how"><b>How to use</b> Remove the <code>files-api-2025-04-14</code> beta header from all requests. Add <code>expires_in_seconds</code> to any file upload that should age out automatically. Existing files are unaffected.</div>
+      </div>
+    </div>
+
+    <div class="log-entry">
+      <div class="log-entry-left">
+        <div class="log-entry-date">2026-08-19</div>
+        <span class="log-tag api">API</span>
+      </div>
+      <div>
+        <div class="log-entry-title"><a href="https://docs.anthropic.com/en/release-notes/api">Admin API user management generally available</a></div>
+        <div class="log-entry-body">Admin API user-management endpoints for Claude Enterprise organizations (members, invites, groups, custom roles) are now GA. The <code>anthropic-beta: ce-user-management-2026-07-13</code> beta header is no longer required on group and custom-role requests.</div>
+        <div class="log-entry-how"><b>How to use</b> Remove the beta header from group and custom-role Admin API calls. All endpoints remain at the same paths. Test provisioning automation against stable endpoints before relying on them in production workflows.</div>
+      </div>
+    </div>
+
+    <div class="log-entry">
+      <div class="log-entry-left">
+        <div class="log-entry-date">2026-08-19</div>
+        <span class="log-tag api">API</span>
+      </div>
+      <div>
+        <div class="log-entry-title"><a href="https://docs.anthropic.com/en/release-notes/overview">Managed Agents controls and Console session viewer redesign</a></div>
+        <div class="log-entry-body">New Managed Agents controls for web access and self-hosted sandbox memory stores. The Console session viewer has been redesigned with richer observability for debugging agent behavior.</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- C: CLAUDE CODE -->
+<div class="log-section">
+  <div class="log-cat-head">
+    <div class="log-cat-name">Claude Code</div>
+    <div class="log-cat-count"><b>2</b> entries</div>
+  </div>
+  <div class="log-cat-deck">Two versions in 24 hours: <b>v2.1.236</b> adds ANTHROPIC_DEFAULT_MODEL and notify_when_idle; <b>v2.1.237</b> fixes prompt caching for LLM gateways and ships Concise output style.</div>
+  <div class="log-entries">
+
+    <div class="log-entry">
+      <div class="log-entry-left">
+        <div class="log-entry-date">2026-08-19</div>
+        <span class="log-tag code">CODE</span>
+      </div>
+      <div>
+        <div class="log-entry-title"><a href="https://github.com/anthropics/claude-code/blob/main/CHANGELOG.md">Claude Code v2.1.236</a></div>
+        <div class="log-entry-body">Added ANTHROPIC_DEFAULT_MODEL environment variable (sets model for new sessions; /model override still persists). Added notify_when_idle to cross-session SendMessage: opt-in, one-shot idle notification when another session finishes, no polling (macOS and Linux). Reduced claude-api skill context cost from ~200k to ~25k tokens by loading reference docs on demand. /permissions can now be opened while Claude is actively working.</div>
+        <div class="log-entry-how"><b>How to use</b> Set <code>ANTHROPIC_DEFAULT_MODEL=claude-opus-5</code> (or your preferred model) in your shell profile. For notify_when_idle: <code>sendmessage --to &lt;session&gt; --notify-idle</code> from a second session. Update with <code>claude update</code>.</div>
+      </div>
+    </div>
+
+    <div class="log-entry">
+      <div class="log-entry-left">
+        <div class="log-entry-date">2026-08-20</div>
+        <span class="log-tag code">CODE</span>
+      </div>
+      <div>
+        <div class="log-entry-title"><a href="https://github.com/anthropics/claude-code/blob/main/CHANGELOG.md">Claude Code v2.1.237</a></div>
+        <div class="log-entry-body">Fixed prompt caching for sessions using an LLM gateway or custom base URL (previously, caching was silently skipped for these paths). Added Concise output style: Claude leads with results and skips preamble and narration; the work is just as thorough, the response is shorter.</div>
+        <div class="log-entry-how"><b>How to use</b> Update with <code>claude update</code>. To enable Concise output style, use <code>/style concise</code> in a session or set it as your default in preferences. The LLM gateway caching fix requires no action.</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- D: CLAUDE APPS -->
+<div class="log-section">
+  <div class="log-cat-head">
+    <div class="log-cat-name">Claude Apps</div>
+    <div class="log-cat-count"><b>1</b> entry</div>
+  </div>
+  <div class="log-cat-deck"><b>Claude Academy</b> launched Aug 20: a new learning hub with courses, tutorials, badges, and personalized recommendations for safe and effective AI use.</div>
+  <div class="log-entries">
+
+    <div class="log-entry">
+      <div class="log-entry-left">
+        <div class="log-entry-date">2026-08-20</div>
+        <span class="log-tag apps">APPS</span>
+      </div>
+      <div>
+        <div class="log-entry-title"><a href="https://www.anthropic.com/news">Claude Academy launch</a></div>
+        <div class="log-entry-body">Anthropic launched Claude Academy, a structured learning hub for safe and effective AI use. Features include courses, tutorials, completion badges, and personalized recommendations. Emphasis on practical AI fluency: how to delegate, verify, and learn with Claude effectively.</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- G: NEWS & PARTNERSHIPS -->
+<div class="log-section">
+  <div class="log-cat-head">
+    <div class="log-cat-name">News &amp; Partnerships</div>
+    <div class="log-cat-count"><b>4</b> entries</div>
+  </div>
+  <div class="log-cat-deck">Anthropic S-1 confirmation. OpenAI European ad rollout and GPT-5.6 Sol update. Grok 4.6 on Amazon Bedrock. The frontier's Thursday business page.</div>
+  <div class="log-entries">
+
+    <div class="log-entry">
+      <div class="log-entry-left">
+        <div class="log-entry-date">2026-08-20</div>
+        <span class="log-tag news">NEWS</span>
+      </div>
+      <div>
+        <div class="log-entry-title"><a href="https://www.bloomberg.com/news/articles/2026-08-20/anthropic-expects-to-match-spacex-s-record-ipo-size-or-top-it">Anthropic files confidential S-1, targets $2 trillion IPO</a></div>
+        <div class="log-entry-body">Bloomberg confirms Anthropic has submitted a confidential draft S-1 to the SEC. The company expects to match or top SpaceX's record $86.2 billion raise and is targeting a $2 trillion valuation per six investors speaking to the Financial Times. Underwriters: Morgan Stanley, Goldman Sachs, JPMorgan Chase. Public filing expected as soon as end of August 2026.</div>
+        <div class="log-entry-why"><b>Why it matters</b> A public Anthropic at $2 trillion reprices frontier AI procurement, sets a benchmark for OpenAI's anticipated 2027 offering, and changes the operational character of the company in ways that matter to anyone building on the platform long-term.</div>
+      </div>
+    </div>
+
+    <div class="log-entry">
+      <div class="log-entry-left">
+        <div class="log-entry-date">2026-08-19</div>
+        <span class="log-tag news">NEWS</span>
+      </div>
+      <div>
+        <div class="log-entry-title"><a href="https://openai.com/index/chatgpt-ads-expands-across-europe/">OpenAI: ChatGPT Ads expanding to 31 European markets on Aug 24</a></div>
+        <div class="log-entry-body">OpenAI announced ChatGPT Ads will go live August 24 in 31 European markets including Germany, France, Spain, Italy, the Netherlands, and the full EEA. Targeting is contextual (conversation content, location, device, time, language). Opting out changes which ads appear, not whether they do. Paid subscribers (Plus, Pro, Enterprise) remain ad-free. Consent is required before targeted ads are served.</div>
+      </div>
+    </div>
+
+    <div class="log-entry">
+      <div class="log-entry-left">
+        <div class="log-entry-date">2026-08-19</div>
+        <span class="log-tag news">NEWS</span>
+      </div>
+      <div>
+        <div class="log-entry-title"><a href="https://help.openai.com/en/articles/6825453-chatgpt-release-notes">OpenAI GPT-5.6 Sol: effort slider for Plus and Pro users</a></div>
+        <div class="log-entry-body">Starting August 19, Plus and Pro ChatGPT users received an updated GPT-5.6 Sol with a slider to set how much reasoning effort the model applies per response. Free and Go users got a new, more capable default model. The effort slider directly mirrors controls already available in other frontier tools.</div>
+      </div>
+    </div>
+
+    <div class="log-entry">
+      <div class="log-entry-left">
+        <div class="log-entry-date">2026-08-19</div>
+        <span class="log-tag api">API</span>
+      </div>
+      <div>
+        <div class="log-entry-title"><a href="https://aws.amazon.com/about-aws/whats-new/2026/08/amazon-bedrock-grok-4-6/">xAI Grok 4.6 generally available on Amazon Bedrock</a></div>
+        <div class="log-entry-body">AWS announced GA availability of xAI Grok 4.6 on Amazon Bedrock. 500k context window. Configurable reasoning effort: low, medium, high, xhigh. Access via existing IAM permissions and Bedrock billing. No separate xAI account required. This is the first Grok model to reach full GA on Bedrock.</div>
+        <div class="log-entry-how"><b>How to use</b> Access via the Amazon Bedrock API or console. Model ID: <code>xai.grok-4-6</code> (verify in the Bedrock console). Existing Bedrock IAM policies and billing apply.</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- COLOPHON -->
+<footer class="colophon">
+  <div class="colophon-inner">
+    <div class="colophon-mast">
+      <div class="colophon-word">Shipped<span class="dot">.</span></div>
+      <div class="colophon-tag">A daily frontier digest from id8Labs. Six labs, one feed.</div>
+    </div>
+    <div class="colophon-body">
+      <div class="colophon-col">
+        <h4>This edition</h4>
+        <p><b>Date</b> Thursday, August 20, 2026</p>
+        <p><b>Window</b> Aug 19 to Aug 20</p>
+        <p><b>Labs covered</b> Anthropic, OpenAI, xAI</p>
+        <p><b>Edition</b> Daily digest</p>
+      </div>
+      <div class="colophon-col">
+        <h4>The publication</h4>
+        <p><b>Shipped.</b> covers the frontier AI labs weekly and daily. Rolling Stone meets Wired. Personality, not press release.</p>
+        <p><b>Publisher</b> <a href="https://id8labs.app" class="colophon-link">id8Labs</a></p>
+        <p><b>Editor</b> Eddie Belaval</p>
+      </div>
+      <div class="colophon-col">
+        <h4>The beat</h4>
+        <p>Anthropic (anchor), OpenAI, Google DeepMind, Meta AI, Mistral, xAI.</p>
+        <p>Models, APIs, coding agents, SDKs, research, and the occasional piece of news that changes how you read everything else.</p>
+      </div>
+    </div>
+    <div class="colophon-foot">
+      <span><b>Shipped.</b> <span class="hot">id8Labs</span></span>
+      <span>Thursday, August 20, 2026</span>
+      <span>Daily, Frontier</span>
+      <span><a href="https://id8labs.app/shipped" class="colophon-link">id8labs.app/shipped</a></span>
+    </div>
+  </div>
+</footer>
+
+<style>
+  /* Spine CTA. Lives here rather than in <head> because two published pages
+     are truncated and have no </head> to inject into; CSS applies document-wide
+     from anywhere, so the end of <body> is the one anchor every page has.
+     Only takes effect on pages that actually carry a pub-bar. */
+  .pub-bar-cta{
+    display:inline-block;
+    background:var(--ink, #0b0b0b);
+    color:var(--paper, #fafaf7);
+    text-decoration:none;
+    border:1px solid var(--ink, #0b0b0b);
+    border-radius:10px;
+    font-family:var(--narrow, 'Archivo Narrow','Archivo',system-ui,sans-serif);
+    font-weight:700;
+    font-size:11px;
+    letter-spacing:.2em;
+    text-transform:uppercase;
+    padding:6px 14px;
+    transition:background .15s ease,border-color .15s ease;
+  }
+  .pub-bar-cta:hover{
+    background:var(--orange, #ff6b35);
+    border-color:var(--orange, #ff6b35);
+    color:var(--ink, #0b0b0b);
+  }
+  @media (max-width:720px){
+    .pub-bar-hide-sm{display:none}
+    .pub-bar-cta{padding:5px 10px;letter-spacing:.12em}
+  }
+
+  .ship-sub {
+    background: var(--ink, #0b0b0b);
+    color: var(--paper, #fafaf7);
+    padding: 72px 64px;
+    margin: 56px auto;
+    max-width: 1280px;
+    text-align: center;
+    /* clears the sticky pub-bar when jumped to from the top CTA */
+    scroll-margin-top: 64px;
+  }
+  .ship-sub-kicker {
+    font-family: var(--narrow, 'Archivo Narrow','Archivo',system-ui,sans-serif);
+    font-weight: 700;
+    font-size: 12px;
+    letter-spacing: .25em;
+    text-transform: uppercase;
+    color: var(--orange, #ff6b35);
+    margin-bottom: 18px;
+  }
+  .ship-sub h3 {
+    font-family: var(--disp, 'Fraunces',Georgia,serif);
+    font-weight: 600;
+    font-style: italic;
+    font-size: clamp(26px, 3.6vw, 40px);
+    line-height: 1.15;
+    margin: 0 0 16px;
+    color: var(--paper, #fafaf7);
+  }
+  .ship-sub p {
+    font-family: var(--sans, 'Archivo',system-ui,sans-serif);
+    font-size: 15px;
+    line-height: 1.6;
+    color: rgba(250,250,247,.72);
+    max-width: 560px;
+    margin: 0 auto 28px;
+  }
+  .ship-sub-form {
+    display: flex;
+    flex-direction: column;
+    max-width: 480px;
+    margin: 0 auto;
+  }
+  .ship-sub-row {
+    display: flex;
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.12);
+    transition: border-color .15s;
+  }
+  .ship-sub-row:focus-within { border-color: var(--orange, #ff6b35); }
+  .ship-sub-form input[type="email"] {
+    flex: 1;
+    background: transparent;
+    border: none;
+    outline: none;
+    color: var(--paper, #fafaf7);
+    font-family: var(--sans, 'Archivo',system-ui,sans-serif);
+    font-size: 15px;
+    padding: 16px 20px;
+    -webkit-appearance: none;
+    min-width: 0;
+  }
+  .ship-sub-form input::placeholder { color: rgba(250,250,247,.4); }
+  /* Honeypot: off-screen rather than display:none, so naive bots still fill it */
+  .ship-sub-hp {
+    position: absolute !important;
+    left: -9999px !important;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+  }
+  .ship-sub-form button {
+    background: var(--orange, #ff6b35);
+    color: var(--ink, #0b0b0b);
+    border: none;
+    font-family: var(--narrow, 'Archivo Narrow','Archivo',system-ui,sans-serif);
+    font-weight: 700;
+    font-size: 12px;
+    letter-spacing: .2em;
+    text-transform: uppercase;
+    padding: 0 28px;
+    cursor: pointer;
+    transition: background .15s;
+    white-space: nowrap;
+  }
+  .ship-sub-form button:hover { background: #ff5722; }
+  .ship-sub-form button:disabled { opacity: .5; cursor: wait; }
+  .ship-sub-cadences {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    margin-top: 16px;
+  }
+  .ship-sub-cadence {
+    font-family: var(--narrow, 'Archivo Narrow','Archivo',system-ui,sans-serif);
+    font-size: 11px;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    color: rgba(250,250,247,.66);
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    cursor: pointer;
+  }
+  .ship-sub-cadence input { accent-color: var(--orange, #ff6b35); cursor: pointer; }
+  .ship-sub-status {
+    margin-top: 16px;
+    font-family: var(--sans, 'Archivo',system-ui,sans-serif);
+    font-size: 14px;
+    color: var(--orange, #ff6b35);
+    min-height: 20px;
+  }
+  .ship-sub-status.error { color: #ff8b6b; }
+  @media (max-width: 540px) {
+    .ship-sub { padding: 48px 22px; margin: 28px auto; }
+    .ship-sub-cadences { gap: 14px; }
+  }
+</style>
+<section class="ship-sub" id="subscribe">
+  <div class="ship-sub-kicker">Stay on the frontier</div>
+  <h3>Get <em>Shipped.</em> in your inbox.</h3>
+  <p>Daily digest at 9 PM ET. Weekly magazine every Friday morning. Six labs, one feed. No spam, one-click unsubscribe.</p>
+  <form class="ship-sub-form" id="ship-sub-form">
+    <div class="ship-sub-row">
+      <input type="email" name="email" placeholder="your@email.com" required autocomplete="email" aria-label="Email address">
+      <button type="submit" id="ship-sub-btn">Subscribe &#x2192;</button>
+    </div>
+    <input type="text" name="website" class="ship-sub-hp" tabindex="-1" autocomplete="off" aria-hidden="true">
+    <div class="ship-sub-cadences">
+      <label class="ship-sub-cadence"><input type="checkbox" name="cadences" value="nightly" checked> Daily digest</label>
+      <label class="ship-sub-cadence"><input type="checkbox" name="cadences" value="weekly" checked> Weekly magazine</label>
+      <label class="ship-sub-cadence"><input type="checkbox" name="cadences" value="monthly"> Monthly roundup</label>
+    </div>
+  </form>
+  <div class="ship-sub-status" id="ship-sub-status" aria-live="polite"></div>
+</section>
+<script>
+(function () {
+  var form = document.getElementById('ship-sub-form');
+  if (!form) return;
+  var btn = document.getElementById('ship-sub-btn');
+  var status = document.getElementById('ship-sub-status');
+
+  form.addEventListener('submit', async function (e) {
+    e.preventDefault();
+    var data = new FormData(form);
+    var email = (data.get('email') || '').toString().trim();
+    if (!email) return;
+
+    var cadences = data.getAll('cadences').map(String);
+    status.className = 'ship-sub-status';
+    status.textContent = '';
+    btn.disabled = true;
+    btn.textContent = 'Subscribing…';
+
+    try {
+      var res = await fetch('https://id8labs.app/api/newsletter/subscribe', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          email: email,
+          source: 'shipped-daily',
+          website: (data.get('website') || '').toString(),
+          cadences: cadences.length ? cadences : ['nightly', 'weekly']
+        })
+      });
+      var body = await res.json().catch(function () { return {}; });
+      if (res.ok) {
+        status.textContent = body.isNewSubscriber === false
+          ? 'Already on the list.'
+          : 'You’re in. Next edition lands soon.';
+        if (body.isNewSubscriber !== false) form.reset();
+      } else {
+        status.className = 'ship-sub-status error';
+        status.textContent = body.error || 'Could not subscribe right now. Try again in a moment.';
+      }
+    } catch (err) {
+      status.className = 'ship-sub-status error';
+      status.textContent = 'Could not subscribe right now. Try again in a moment.';
+    } finally {
+      btn.disabled = false;
+      btn.textContent = 'Subscribe →';
+    }
+  });
+})();
+</script>
+
+</body>
+</html>
