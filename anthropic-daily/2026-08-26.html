@@ -1,0 +1,1299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Wednesday, August 26, 2026</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="color-scheme" content="light">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Shipped. Daily, Wednesday, August 26, 2026">
+<meta property="og:description" content="Claudeforce lands, OpenAI publishes its Jalapeño chip benchmark, and Google puts Gemini in Chat while 3.5 Pro waits.">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Shipped. Daily, Wednesday, August 26, 2026">
+<meta name="twitter:description" content="Claudeforce lands, OpenAI publishes its Jalapeño chip benchmark, and Google puts Gemini in Chat while 3.5 Pro waits.">
+<!--
+  ISSUE CHROME: the canonical Shipped. issue design.
+
+  Locked 2026-08-06 to anthropic-weekly/2026-31, chosen by Eddie as the standard
+  after an audit showed the three cadences had drifted into three different looks.
+  Cause: three cloud routines each free-hand their HTML from template.html every
+  run, and nothing enforced a shared component vocabulary, so each invented one.
+
+  This file is the enforcement point, the same pattern as subscribe-block.html:
+  paste it VERBATIM into the head. Do not retype it, do not restyle it. Editing
+  the design means editing THIS file, and every cadence inherits the change.
+
+  Consumed by pipeline/scripts/render-issue.py and by the daily, weekly and
+  monthly routine prompts. Class vocabulary: pub-bar, weekly-header, open-section,
+  feature-opener, prose-well, also-item, log-*, close-section, colophon.
+-->
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='75' cy='62' r='14' fill='%23FF6B35'/%3E%3Ctext x='10' y='75' font-family='Georgia,serif' font-weight='700' font-size='62' fill='%231a1a1a'%3ES%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;0,9..144,900;1,9..144,300;1,9..144,400;1,9..144,500;1,9..144,700&family=Archivo:wght@300;400;500;600;700;800;900&family=Archivo+Narrow:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"><style>
+
+
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{font-size:16px;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;text-rendering:optimizeLegibility}
+body{background:#FAF8F4;color:#0b0b0b;font-family:'Archivo',sans-serif;overflow-x:hidden}
+::selection{background:#FF6B35;color:#fff}
+
+:root{
+  --orange:#FF6B35;
+  --ink:#0b0b0b;
+  --paper:#FAF8F4;
+  --paper-shadow:#f2f0e8;
+  --body:#2a2a2a;
+  --muted:#5a5a5a;
+  --gray:#8a8a8a;
+  --hair:rgba(11,11,11,0.12);
+  --hair-soft:rgba(11,11,11,0.06);
+  --hair-hard:rgba(11,11,11,0.22);
+  --disp:'Fraunces', 'Times New Roman', serif;
+  --sans:'Archivo', system-ui, sans-serif;
+  --narrow:'Archivo Narrow', 'Archivo', sans-serif;
+  --mono:'JetBrains Mono', ui-monospace, monospace;
+}
+
+body::before{
+  content:"";
+  position:fixed;inset:0;pointer-events:none;z-index:1000;opacity:.28;mix-blend-mode:multiply;
+  background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='180' height='180'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' seed='3'/><feColorMatrix values='0 0 0 0 0.02  0 0 0 0 0.02  0 0 0 0 0.02  0 0 0 0.22 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+}
+
+.pub-bar{
+  position:sticky;top:0;z-index:100;
+  background:var(--paper);
+  border-bottom:1px solid var(--hair);
+  padding:0 28px;height:42px;
+  display:flex;align-items:center;justify-content:space-between;
+  font-family:var(--narrow);
+  font-size:11px;font-weight:600;letter-spacing:.22em;
+  text-transform:uppercase;color:var(--ink);
+}
+.pub-bar-left,.pub-bar-right{display:flex;align-items:center;gap:16px}
+.pub-bar-mark{font-family:var(--disp);font-weight:500;font-size:16px;letter-spacing:-.01em;text-transform:none;font-style:italic}
+.pub-bar-mark .dot{color:var(--orange)}
+.pub-bar-sep{width:1px;height:12px;background:var(--hair-hard)}
+.pub-bar-meta{color:var(--muted)}
+.pub-bar-link{color:inherit;text-decoration:none;border-bottom:1px solid currentColor;transition:color .15s ease}
+.pub-bar-link:hover{color:var(--orange)}
+.colophon-link{color:inherit;text-decoration:none;border-bottom:1px solid currentColor;transition:color .15s ease}
+.colophon-link:hover{color:var(--orange)}
+.colophon-foot .colophon-link b{color:var(--paper)}
+.pub-bar-folio{color:var(--ink)}
+.pub-bar-folio b{font-weight:600;color:var(--orange)}
+.pub-bar-cta{
+  display:inline-block;background:var(--ink);color:var(--paper);
+  text-decoration:none;border:1px solid var(--ink);border-radius:10px;
+  font-family:var(--narrow);font-weight:700;font-size:11px;
+  letter-spacing:.2em;text-transform:uppercase;
+  padding:6px 14px;transition:background .15s ease,border-color .15s ease;
+}
+.pub-bar-cta:hover{background:var(--orange);border-color:var(--orange);color:var(--ink)}
+@media (max-width:720px){
+  .pub-bar-hide-sm{display:none}
+  .pub-bar{padding:0 16px}
+  .pub-bar-cta{padding:5px 10px;letter-spacing:.12em}
+}
+
+.folio{
+  font-family:var(--narrow);
+  font-size:10px;font-weight:500;letter-spacing:.28em;
+  text-transform:uppercase;color:var(--gray);
+  display:flex;align-items:center;gap:10px;
+}
+.folio b{color:var(--ink);font-weight:700}
+.folio .ruler{width:28px;height:1px;background:var(--hair-hard)}
+.folio .dot{color:var(--orange)}
+
+.section{
+  position:relative;
+  padding:64px 28px 40px;
+  max-width:1280px;margin:0 auto;
+}
+.section-folio{
+  display:flex;align-items:center;justify-content:space-between;
+  padding-bottom:18px;
+  border-bottom:1px solid var(--ink);
+  margin-bottom:44px;
+}
+.section-folio-left{display:flex;align-items:center;gap:14px}
+.section-folio-label{
+  font-family:var(--narrow);
+  font-size:11px;font-weight:700;letter-spacing:.28em;
+  text-transform:uppercase;color:var(--ink);
+}
+.section-folio-sub{
+  font-family:var(--disp);font-style:italic;
+  font-size:13px;color:var(--muted);
+}
+
+.open-section{background:var(--paper)}
+.open-grid{
+  display:grid;
+  grid-template-columns:repeat(12,1fr);
+  gap:32px;
+}
+.open-lead{
+  grid-column:2 / span 7;
+}
+.open-quote{
+  font-family:var(--disp);
+  font-variation-settings:"opsz" 144;
+  font-weight:500;font-size:clamp(36px,5vw,72px);
+  line-height:1.02;letter-spacing:-.025em;
+  color:var(--ink);
+  margin-bottom:36px;
+  padding-bottom:28px;
+  border-bottom:1px solid var(--hair-hard);
+}
+.open-quote em{font-style:italic;color:var(--orange);font-weight:500}
+.open-prose{
+  font-family:var(--disp);
+  font-variation-settings:"opsz" 14;
+  font-weight:400;font-size:18px;line-height:1.68;
+  color:var(--body);
+  max-width:620px;
+}
+.open-prose p{margin-bottom:22px}
+.open-prose em{font-style:italic;color:var(--ink)}
+.open-aside{
+  grid-column:10 / span 3;
+  border-top:1px solid var(--ink);
+  padding-top:16px;
+  font-family:var(--narrow);
+  font-size:11px;font-weight:500;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--muted);
+  line-height:1.9;
+}
+.open-aside b{color:var(--ink);font-weight:700}
+@media(max-width:860px){
+  .open-lead{grid-column:1 / -1}
+  .open-aside{grid-column:1 / -1;margin-top:16px}
+}
+
+.feature-opener{
+  display:grid;
+  grid-template-columns:72px 1fr minmax(0,320px);
+  gap:32px;
+  padding:56px 28px 40px;
+  max-width:1280px;margin:0 auto;
+  position:relative;
+  border-top:2px solid var(--ink);
+}
+.feature-opener::before{
+  content:"";
+  position:absolute;
+  left:100px;top:0;bottom:0;
+  width:1px;background:var(--hair);
+}
+.vert-label{
+  position:relative;
+  writing-mode:vertical-rl;
+  transform:rotate(180deg);
+  font-family:var(--narrow);
+  font-size:13px;font-weight:700;letter-spacing:.48em;
+  text-transform:uppercase;color:var(--ink);
+  align-self:start;
+  padding-top:12px;
+  white-space:nowrap;
+}
+.vert-label .vert-num{
+  color:var(--orange);
+  font-family:var(--disp);
+  font-style:italic;font-weight:500;
+  letter-spacing:-.02em;
+  margin-top:12px;display:inline-block;
+  writing-mode:horizontal-tb;
+  transform:rotate(180deg);
+  font-size:20px;
+}
+.feature-heading{min-width:0}
+.feature-kicker{
+  font-family:var(--narrow);
+  font-size:10px;font-weight:700;letter-spacing:.32em;
+  text-transform:uppercase;color:var(--orange);
+  margin-bottom:20px;
+}
+.feature-title{
+  font-family:var(--disp);font-weight:700;
+  font-variation-settings:"opsz" 144;
+  font-size:clamp(52px,8vw,128px);
+  line-height:.9;letter-spacing:-.042em;
+  color:var(--ink);
+  margin-bottom:24px;
+}
+.feature-title em{font-style:italic;font-weight:400;color:var(--ink)}
+.feature-deck{
+  font-family:var(--disp);font-weight:400;
+  font-variation-settings:"opsz" 72;
+  font-size:clamp(20px,2.4vw,28px);
+  line-height:1.3;letter-spacing:-.01em;
+  color:var(--muted);
+  max-width:640px;
+  margin-bottom:24px;
+}
+.feature-meta{
+  padding-top:18px;
+  border-top:1px solid var(--hair);
+  font-family:var(--narrow);
+  font-size:10px;font-weight:600;letter-spacing:.24em;
+  text-transform:uppercase;color:var(--muted);
+  line-height:1.8;
+}
+.feature-meta b{color:var(--ink);font-weight:700}
+.feature-right{
+  padding-top:28px;
+  border-top:1px solid var(--hair);
+  font-family:var(--disp);font-style:italic;
+  font-size:15px;line-height:1.55;color:var(--muted);
+}
+.feature-right-label{
+  display:block;
+  font-family:var(--narrow);font-style:normal;
+  font-size:10px;font-weight:700;letter-spacing:.28em;
+  text-transform:uppercase;color:var(--ink);
+  margin-bottom:10px;
+}
+@media(max-width:860px){
+  .feature-opener{grid-template-columns:1fr;gap:16px}
+  .feature-opener::before{display:none}
+  .vert-label{writing-mode:horizontal-tb;transform:none;font-size:11px}
+  .vert-label .vert-num{writing-mode:horizontal-tb;transform:none;margin-left:16px}
+  .feature-right{grid-column:1 / -1}
+}
+
+.prose-well{
+  max-width:1280px;margin:0 auto;padding:0 28px 56px;
+  display:grid;grid-template-columns:72px 1fr minmax(0,320px);
+  gap:32px;position:relative;
+}
+.prose-well::before{
+  content:"";position:absolute;left:100px;top:0;bottom:0;
+  width:1px;background:var(--hair);
+}
+.prose-marginalia{
+  grid-column:1;
+  font-family:var(--narrow);
+  font-size:10px;font-weight:600;letter-spacing:.26em;
+  text-transform:uppercase;color:var(--gray);
+  writing-mode:vertical-rl;transform:rotate(180deg);
+  align-self:start;padding-top:8px;
+  white-space:nowrap;
+}
+.prose{
+  grid-column:2;
+  font-family:var(--disp);
+  font-variation-settings:"opsz" 14;
+  font-weight:400;font-size:19px;line-height:1.66;
+  color:var(--body);
+  max-width:640px;
+}
+.prose p{margin-bottom:24px}
+.prose em{font-style:italic;color:var(--ink)}
+.prose strong{font-weight:600;color:var(--ink)}
+.prose code{
+  font-family:var(--mono);font-size:.86em;
+  background:var(--paper-shadow);padding:1px 6px;
+  border-radius:3px;color:var(--ink);
+}
+.prose a{color:var(--ink);border-bottom:1px solid var(--hair-hard);text-decoration:none;transition:color .15s,border-color .15s}
+.prose a:hover{color:var(--orange);border-bottom-color:var(--orange)}
+.prose-aside{
+  grid-column:3;
+  font-family:var(--narrow);
+  font-size:11px;font-weight:500;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--muted);
+  border-top:1px solid var(--ink);padding-top:14px;
+  line-height:1.8;
+}
+.prose-aside b{color:var(--ink);font-weight:700}
+
+.drop-cap::first-letter{
+  font-family:var(--disp);
+  font-variation-settings:"opsz" 144;
+  font-weight:700;
+  font-size:9.2em;
+  float:left;line-height:.78;
+  padding:.02em 12px 0 0;
+  margin:.02em 4px -.1em -2px;
+  color:var(--ink);
+}
+.drop-cap-orange::first-letter{
+  color:var(--orange);
+}
+
+@media(max-width:860px){
+  .prose-well{grid-template-columns:1fr;padding-left:20px;padding-right:20px}
+  .prose-well::before{display:none}
+  .prose-marginalia{display:none}
+  .prose{grid-column:1}
+  .prose-aside{grid-column:1;margin-top:20px}
+  .drop-cap::first-letter{font-size:6.6em}
+}
+
+.quiet-section{
+  max-width:1280px;margin:0 auto;padding:64px 28px 24px;
+  display:grid;grid-template-columns:repeat(12,1fr);gap:24px;
+}
+.quiet-head{
+  grid-column:1 / span 3;
+}
+.quiet-title{
+  font-family:var(--disp);font-style:italic;font-weight:400;
+  font-variation-settings:"opsz" 72;
+  font-size:32px;line-height:1;letter-spacing:-.02em;
+  color:var(--ink);
+}
+.quiet-title em{color:var(--orange);font-style:normal;font-weight:500}
+.quiet-kicker{
+  font-family:var(--narrow);
+  font-size:10px;font-weight:700;letter-spacing:.32em;
+  text-transform:uppercase;color:var(--muted);
+  margin-bottom:10px;
+}
+.quiet-body{
+  grid-column:5 / -1;
+  font-family:var(--disp);font-size:17px;line-height:1.65;color:var(--body);
+  padding-left:24px;border-left:1px solid var(--ink);
+}
+.quiet-body p{margin-bottom:16px}
+.quiet-body strong{font-weight:600;color:var(--ink)}
+@media(max-width:860px){
+  .quiet-head,.quiet-body{grid-column:1 / -1}
+  .quiet-body{padding-left:0;border-left:none;border-top:1px solid var(--ink);padding-top:18px}
+}
+
+.close-section{
+  background:var(--ink);color:var(--paper);
+  padding:120px 28px 140px;
+  position:relative;
+  text-align:center;
+}
+.close-kicker{
+  font-family:var(--narrow);
+  font-size:11px;font-weight:700;letter-spacing:.38em;
+  text-transform:uppercase;color:rgba(250,250,247,.5);
+  margin-bottom:48px;
+}
+.close-stack{
+  max-width:780px;margin:0 auto;
+  display:flex;flex-direction:column;gap:32px;
+}
+.close-line{
+  font-family:var(--disp);font-weight:400;
+  font-variation-settings:"opsz" 96;
+  font-size:clamp(26px,3.6vw,46px);
+  line-height:1.18;letter-spacing:-.018em;
+  color:var(--paper);
+}
+.close-line em{font-style:italic;color:var(--orange);font-weight:500}
+.close-final{
+  font-style:italic;color:var(--orange);
+  font-size:clamp(18px,2.2vw,26px);
+  line-height:1.5;letter-spacing:0;
+  max-width:580px;margin:0 auto;
+  font-variation-settings:"opsz" 36;
+}
+.close-coda-start{
+  margin-top:48px;position:relative;
+}
+.close-coda-start::before{
+  content:"";display:block;
+  width:32px;height:1px;
+  background:rgba(217,107,73,.45);
+  margin:0 auto 36px;
+}
+.close-mark{
+  margin-top:72px;
+  font-family:var(--disp);
+  font-size:48px;color:rgba(250,250,247,.3);
+  letter-spacing:.8em;
+}
+
+.log-divider{
+  background:var(--paper);
+  padding:96px 28px 48px;
+  text-align:center;
+  border-top:3px double var(--ink);
+  border-bottom:1px solid var(--ink);
+  max-width:1280px;margin:0 auto;
+}
+.log-divider-kicker{
+  font-family:var(--narrow);
+  font-size:11px;font-weight:700;letter-spacing:.48em;
+  text-transform:uppercase;color:var(--orange);
+  margin-bottom:14px;
+}
+.log-divider-title{
+  font-family:var(--disp);font-weight:700;
+  font-variation-settings:"opsz" 144;
+  font-size:clamp(56px,10vw,144px);
+  line-height:.9;letter-spacing:-.045em;color:var(--ink);
+  margin-bottom:16px;
+}
+.log-divider-title em{font-style:italic;font-weight:400}
+.log-divider-sub{
+  font-family:var(--disp);font-style:italic;
+  font-size:18px;color:var(--muted);max-width:640px;margin:0 auto;line-height:1.5;
+}
+
+.log-section{
+  padding:48px 28px;max-width:1280px;margin:0 auto;
+}
+.log-cat-head{
+  display:grid;
+  grid-template-columns:1fr auto;
+  gap:24px;align-items:baseline;
+  padding-bottom:18px;
+  border-bottom:1px solid var(--ink);
+  margin-bottom:0;
+}
+.log-cat-name{
+  font-family:var(--disp);font-weight:600;font-style:italic;
+  font-variation-settings:"opsz" 96;
+  font-size:clamp(36px,5vw,56px);
+  letter-spacing:-.02em;color:var(--ink);line-height:1;
+}
+.log-cat-count{
+  font-family:var(--narrow);
+  font-size:10px;font-weight:600;letter-spacing:.28em;
+  text-transform:uppercase;color:var(--muted);
+  text-align:right;
+}
+.log-cat-count b{color:var(--ink);font-weight:700;font-size:13px;display:block}
+
+.log-cat-deck{
+  font-family:var(--disp);
+  font-style:italic;
+  font-weight:400;
+  font-variation-settings:"opsz" 24;
+  font-size:18px;
+  line-height:1.45;
+  color:var(--muted);
+  margin-top:14px;
+  margin-bottom:8px;
+  max-width:760px;
+  letter-spacing:-.005em;
+}
+.log-cat-deck b{color:var(--ink);font-weight:600;font-style:normal}
+.log-cat-deck em{color:var(--orange);font-style:normal;font-weight:500}
+
+.log-entries{display:flex;flex-direction:column}
+.log-entry{
+  padding:24px 0;
+  border-bottom:1px solid var(--hair);
+  display:grid;
+  grid-template-columns:120px 1fr;gap:28px;
+}
+.log-entry-left{
+  display:flex;flex-direction:column;gap:8px;
+}
+.log-entry-date{
+  font-family:var(--narrow);
+  font-size:10px;font-weight:700;letter-spacing:.22em;
+  text-transform:uppercase;color:var(--ink);
+  font-variant-numeric:tabular-nums;
+}
+.log-tag{
+  font-family:var(--narrow);
+  font-size:9px;font-weight:700;letter-spacing:.22em;
+  text-transform:uppercase;padding:3px 7px;
+  display:inline-block;line-height:1.3;width:fit-content;
+}
+.log-tag.model{background:var(--orange);color:var(--paper)}
+.log-tag.api{background:var(--ink);color:var(--paper)}
+.log-tag.code{background:#3a3a3a;color:var(--paper)}
+.log-tag.apps{background:#5a5a5a;color:var(--paper)}
+.log-tag.sdk-py,.log-tag.sdk-ts{background:var(--paper);color:var(--ink);border:1px solid var(--ink)}
+.log-tag.research,.log-tag.news{background:var(--paper);color:var(--muted);border:1px solid var(--hair-hard)}
+.log-tag.deprecation{background:var(--paper-shadow);color:var(--muted);border:1px solid var(--hair-hard)}
+.log-entry-title{
+  font-family:var(--disp);font-weight:500;
+  font-variation-settings:"opsz" 72;
+  font-size:20px;letter-spacing:-.012em;
+  color:var(--ink);line-height:1.25;
+  margin-bottom:10px;
+}
+.log-entry-title a{color:inherit;text-decoration:none;border-bottom:1px solid var(--hair-hard)}
+.log-entry-title a:hover{border-bottom-color:var(--orange);color:var(--orange)}
+.log-entry-body{
+  font-family:var(--sans);font-size:14.5px;line-height:1.6;color:var(--body);
+  margin-bottom:12px;
+}
+.log-entry-how{
+  font-family:var(--sans);font-size:13.5px;line-height:1.6;color:var(--muted);
+  padding-top:12px;border-top:1px solid var(--hair-soft);
+}
+.log-entry-how b{font-family:var(--narrow);font-size:10px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--ink);display:block;margin-bottom:6px}
+.log-entry-how code{font-family:var(--mono);font-size:.86em;background:var(--paper-shadow);padding:1px 6px;border-radius:3px;color:var(--ink)}
+.log-entry-why{
+  font-family:var(--disp);font-style:italic;
+  font-size:14px;color:var(--muted);line-height:1.55;
+  margin-top:10px;padding-left:14px;
+  border-left:2px solid var(--orange);
+}
+.log-entry-why b{font-style:normal;font-family:var(--narrow);font-size:10px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--orange);display:block;margin-bottom:4px}
+
+@media(max-width:720px){
+  .log-entry{grid-template-columns:1fr;gap:12px}
+  .log-cat-head{grid-template-columns:auto 1fr}
+  .log-cat-count{grid-column:1 / -1;text-align:left;padding-top:8px;border-top:1px solid var(--hair)}
+}
+
+.colophon{
+  background:var(--ink);color:var(--paper);
+  padding:80px 28px 64px;
+  border-top:2px solid var(--orange);
+}
+.colophon-inner{
+  max-width:1280px;margin:0 auto;
+  display:grid;grid-template-columns:repeat(12,1fr);gap:32px;
+}
+.colophon-mast{
+  grid-column:1 / span 5;
+}
+.colophon-word{
+  font-family:var(--disp);font-weight:500;
+  font-variation-settings:"opsz" 144;
+  font-size:clamp(72px,10vw,120px);
+  line-height:.9;letter-spacing:-.04em;color:var(--paper);
+}
+.colophon-word .dot{color:var(--orange)}
+.colophon-tag{
+  margin-top:14px;
+  font-family:var(--disp);font-style:italic;font-size:18px;
+  color:rgba(250,250,247,.65);line-height:1.4;max-width:360px;
+}
+
+.colophon-body{
+  grid-column:6 / -1;
+  display:grid;grid-template-columns:repeat(3,1fr);gap:32px;
+}
+.colophon-col h4{
+  font-family:var(--narrow);
+  font-size:10px;font-weight:700;letter-spacing:.32em;
+  text-transform:uppercase;color:var(--orange);
+  margin-bottom:12px;padding-bottom:10px;
+  border-bottom:1px solid rgba(250,250,247,.2);
+}
+.colophon-col p,.colophon-col li{
+  font-family:var(--sans);font-size:13px;line-height:1.6;
+  color:rgba(250,250,247,.75);
+  margin-bottom:8px;list-style:none;
+}
+.colophon-col b{color:var(--paper);font-weight:600}
+.colophon-col em{font-style:italic;color:rgba(250,250,247,.9)}
+
+.colophon-foot{
+  grid-column:1 / -1;
+  margin-top:32px;padding-top:24px;
+  border-top:1px solid rgba(250,250,247,.2);
+  display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap;
+  font-family:var(--narrow);font-size:10px;font-weight:600;
+  letter-spacing:.28em;text-transform:uppercase;color:rgba(250,250,247,.5);
+}
+.colophon-foot b{color:var(--paper);font-weight:700}
+.colophon-foot .hot{color:var(--orange)}
+
+@media(max-width:860px){
+  .colophon-mast,.colophon-body{grid-column:1 / -1}
+  .colophon-body{grid-template-columns:1fr;gap:24px}
+}
+
+/* ---- Weekly-specific ---- */
+.weekly-header{
+  padding:64px 28px 48px;
+  max-width:1280px;margin:0 auto;
+  border-bottom:1px solid var(--ink);
+}
+.weekly-kicker{
+  font-family:var(--narrow);
+  font-size:10px;font-weight:700;letter-spacing:.38em;
+  text-transform:uppercase;color:var(--orange);
+  margin-bottom:20px;
+}
+.weekly-masthead{
+  font-family:var(--disp);font-weight:500;
+  font-variation-settings:"opsz" 144;
+  font-size:clamp(72px,14vw,192px);
+  line-height:.86;letter-spacing:-.04em;
+  color:var(--ink);
+  margin-bottom:28px;
+}
+.weekly-masthead .dot{color:var(--orange);display:inline-block}
+.weekly-cover-line{
+  font-family:var(--disp);font-style:italic;font-weight:400;
+  font-variation-settings:"opsz" 72;
+  font-size:clamp(22px,3.4vw,42px);
+  line-height:1.15;letter-spacing:-.015em;
+  color:var(--ink);
+  max-width:820px;
+  margin-bottom:28px;
+}
+.weekly-dateline{
+  font-family:var(--narrow);
+  font-size:11px;font-weight:600;letter-spacing:.28em;
+  text-transform:uppercase;color:var(--muted);
+  display:flex;gap:24px;flex-wrap:wrap;
+  padding-top:24px;
+  border-top:1px solid var(--hair);
+}
+.weekly-dateline span b{color:var(--ink)}
+
+.also-item{
+  padding:28px 0;
+  border-bottom:1px solid var(--hair);
+}
+.also-item:last-child{border-bottom:none}
+.also-item-kicker{
+  font-family:var(--narrow);
+  font-size:9px;font-weight:700;letter-spacing:.32em;
+  text-transform:uppercase;color:var(--orange);
+  margin-bottom:8px;
+}
+.also-item-title{
+  font-family:var(--disp);font-weight:600;
+  font-variation-settings:"opsz" 72;
+  font-size:22px;letter-spacing:-.015em;
+  color:var(--ink);margin-bottom:12px;line-height:1.2;
+}
+.also-item-body{
+  font-family:var(--disp);
+  font-variation-settings:"opsz" 14;
+  font-size:17px;line-height:1.6;color:var(--body);
+  max-width:680px;
+}
+.also-item-body a{color:var(--ink);border-bottom:1px solid var(--hair-hard);text-decoration:none}
+.also-item-body a:hover{color:var(--orange);border-bottom-color:var(--orange)}
+.also-item-source{
+  margin-top:8px;
+  font-family:var(--narrow);font-size:10px;font-weight:600;
+  letter-spacing:.2em;text-transform:uppercase;color:var(--gray);
+}
+.also-item-source a{color:inherit;border-bottom:1px solid currentColor;text-decoration:none}
+.also-item-source a:hover{color:var(--orange)}
+
+.ornament{
+  text-align:center;margin:64px auto;
+  font-family:var(--disp);font-size:16px;color:var(--hair-hard);
+  letter-spacing:1.2em;
+}
+
+@media(max-width:600px){
+  .section,.log-section,.feature-opener,.prose-well{padding-left:20px;padding-right:20px}
+  .weekly-header{padding:40px 20px 36px}
+}
+</style>
+</head>
+<body>
+
+<!-- PUB BAR -->
+<nav class="pub-bar">
+  <div class="pub-bar-left">
+    <span class="pub-bar-mark pub-bar-hide-sm">Shipped<span class="dot">.</span></span>
+    <span class="pub-bar-sep pub-bar-hide-sm"></span>
+    <span class="pub-bar-meta pub-bar-hide-sm">Daily, Frontier</span>
+    <span class="pub-bar-sep pub-bar-hide-sm"></span>
+    <span class="pub-bar-meta pub-bar-hide-sm"><a href="https://id8labs.app" class="pub-bar-link">id8Labs</a></span>
+  </div>
+  <div class="pub-bar-right">
+    <span class="pub-bar-folio pub-bar-hide-sm"><b>Aug 26</b></span>
+    <span class="pub-bar-sep pub-bar-hide-sm"></span>
+    <span class="pub-bar-meta pub-bar-hide-sm">Aug 25 to Aug 26</span>
+    <a href="#subscribe" class="pub-bar-cta">Subscribe</a>
+  </div>
+</nav>
+
+<!-- HEADER -->
+<header class="weekly-header">
+  <div class="weekly-kicker">Frontier Daily</div>
+  <div class="weekly-masthead">Shipped<span class="dot">.</span></div>
+  <div class="weekly-cover-line">Anthropic plants Claude inside Salesforce, OpenAI publishes a chip benchmark, and Google ships a chat feature while its flagship model is still late.</div>
+  <div class="weekly-dateline">
+    <span><b>Date</b> Wednesday, August 26, 2026</span>
+    <span><b>Window</b> Aug 25 to Aug 26</span>
+    <span><b>Labs</b> Six</span>
+    <span><b>Items</b> Eight</span>
+  </div>
+</header>
+
+<!-- OPEN SECTION -->
+<section class="open-section">
+  <div class="section">
+    <div class="section-folio">
+      <div class="section-folio-left">
+        <div class="folio"><div class="ruler"></div><b>The Open</b></div>
+      </div>
+      <span class="section-folio-sub">Wednesday, August 26, 2026</span>
+    </div>
+    <div class="open-grid">
+      <div class="open-lead">
+        <div class="open-quote">The model<br>is the<br><em>interface</em> now.</div>
+        <div class="open-prose">
+          <p>The interesting thing about the Anthropic-Salesforce deal is what it is not. Not another API partner. Not a research collaboration. Not an enterprise reseller arrangement. It is Anthropic planting Claude inside the world's most widely deployed CRM, with 37 prebuilt skills that can query, update, and action live Salesforce data, all without the seller ever opening the Salesforce interface.</p>
+          <p>That is a different bet. Not "here is a model, build on it." More like: here is the model, it already knows your pipeline, and you never have to switch apps to use it.</p>
+          <p>A week ago the distribution question for Anthropic was about developer mind-share: Vertex seats, Bedrock workloads, API tier. Claudeforce moves that question into a different room. Enterprise software users do not think about which model they are on. They think about which interface they live in. Salesforce just handed Anthropic 150,000-plus enterprise customers and made Claude the interface. Salesforce's stock went up 14% in extended trading. That number is also a data point.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LEAD STORY: CLAUDEFORCE -->
+<div class="feature-opener">
+  <div class="vert-label">Lead<span class="vert-num">01</span></div>
+  <div class="feature-heading">
+    <div class="feature-kicker">Anthropic / Salesforce</div>
+    <h2 class="feature-title">Claude<em>force</em></h2>
+    <div class="feature-deck">37 prebuilt skills, live CRM data, and a bet that you never need to open Salesforce again.</div>
+    <div class="feature-meta">
+      <b>Category:</b> News / Partnerships &nbsp;&nbsp;
+      <b>Source:</b> <a href="https://www.salesforce.com/news/press-releases/2026/08/26/salesforce-and-anthropic-announce-claudeforce/" style="color:inherit;border-bottom:1px solid currentColor;text-decoration:none;">salesforce.com</a> &nbsp;&nbsp;
+      <b>Date:</b> August 26, 2026
+    </div>
+  </div>
+  <div class="feature-right">
+    <span class="feature-right-label">By the numbers</span>
+    37 prebuilt sales skills at launch.<br><br>
+    14% gain in Salesforce shares in after-hours trading.<br><br>
+    Open beta target: September 2026.<br><br>
+    Select pilot customers: live now.
+  </div>
+</div>
+
+<div class="prose-well">
+  <div class="prose-marginalia">Anthropic / Salesforce / August 26</div>
+  <div class="prose drop-cap drop-cap-orange">
+    <p>Anthropic and Salesforce announced Claudeforce on August 26: a plugin with 37 prebuilt sales skills that surfaces live Salesforce CRM data directly inside Claude. Pipeline updates, account history, opportunity status, queryable in natural language, all without leaving Claude. Select pilot customers have it now. Open beta in September.</p>
+    <p>The mechanism is a plugin granting Claude sanctioned read and write access to Salesforce objects. Sellers query the CRM from inside Claude, and Claude takes governed actions: logging activity, updating deal stages, drafting follow-ups, escalating opportunities. The 37 skills are prebuilt workflows. You do not have to wire anything to get the core sales loop running.</p>
+    <p>The blast radius is every Salesforce seat currently duplicating effort between the CRM and a separate AI tool. If the plugin delivers what the demo suggests, the argument for maintaining a separate AI subscription weakens fast. Anthropic is not competing with other AI labs here. It is competing with the friction cost of app-switching, and friction cost is a much lower bar to clear.</p>
+    <p>The pattern: Anthropic has been aggressive about distribution through enterprise infrastructure, AWS, Google Cloud, Azure. Claudeforce is a different layer. Not Claude offered through a cloud provider. Claude embedded at the application layer, where the sales team already lives. The lab that spent years building reputation on safety research just made a bet that the real moat is surface area in the software stack.</p>
+    <p>The read: Anthropic is not selling a model. It is selling a presence. If Claudeforce succeeds, the upgrade conversation for every Salesforce customer becomes an Anthropic conversation. That is a remarkably different revenue architecture than per-token API pricing. Microsoft has been running this playbook inside Office 365 with Copilot for two years. Anthropic is arriving later but arriving with what appears to be a stronger underlying model. Late with a better product is not a losing position.</p>
+    <p>The builder's move: if your team uses Salesforce and you have any interest in internal tooling, register for the September open beta. This is the kind of product that lands differently when you use it than when you read about it. The 37-skill scope is narrow enough to work well out of the box, which is the failure mode that unlimited-tool-use agents never survived in enterprise deployment.</p>
+    <p>The contrast: OpenAI's enterprise play runs through operators, vertical-specific deployments where a company wraps a model and ships it to users. Microsoft Copilot inside 365 is the canonical example at scale. Anthropic just ran the same play with Salesforce, and announced it with Salesforce as an equal partner. The positioning is sharper. Whether the execution matches the press release is a September question.</p>
+  </div>
+</div>
+
+<!-- DIG 02: JALAPEÑO -->
+<div class="feature-opener">
+  <div class="vert-label">Dig<span class="vert-num">02</span></div>
+  <div class="feature-heading">
+    <div class="feature-kicker">OpenAI Infrastructure</div>
+    <h2 class="feature-title"><em>Jalape&#xF1;o</em>'s<br>first<br>results</h2>
+    <div class="feature-deck">OpenAI's custom inference chip outperforms commercial alternatives on a public benchmark. The implications arrive slowly, then all at once.</div>
+    <div class="feature-meta">
+      <b>Category:</b> Infrastructure / News &nbsp;&nbsp;
+      <b>Source:</b> <a href="https://openai.com/index/jalapeno-first-results/" style="color:inherit;border-bottom:1px solid currentColor;text-decoration:none;">openai.com</a> &nbsp;&nbsp;
+      <b>Date:</b> August 25, 2026
+    </div>
+  </div>
+  <div class="feature-right">
+    <span class="feature-right-label">Benchmark</span>
+    InferenceX: public benchmark.<br><br>
+    Models tested: GPT-OSS 120B, DeepSeek R1, Kimi K2.<br><br>
+    Result: Pareto-frontier on throughput per kilowatt and token latency.<br><br>
+    Co-designed with Broadcom.
+  </div>
+</div>
+
+<div class="prose-well">
+  <div class="prose-marginalia">OpenAI / Jalapeño / August 25</div>
+  <div class="prose drop-cap drop-cap-orange">
+    <p>OpenAI released the first performance results from Jalapeño, its custom inference chip co-designed with Broadcom, on August 25. The claim: on InferenceX, a public benchmark using GPT-OSS 120B, Jalapeño delivers more peak throughput per kilowatt and lower token latency than commercial systems in the comparison. The results held across DeepSeek R1 and Kimi K2 as well. OpenAI says the chip sits on the Pareto frontier of performance-per-watt and latency across all three tested model families.</p>
+    <p>The mechanism: most inference hardware forces a tradeoff between throughput (tokens per second in aggregate) and latency (response time per user). Jalapeño, OpenAI says, avoids that tradeoff. The benchmark is public, which means the claim is checkable. OpenAI chose to publish the results rather than keep them internal, which is a signal about confidence.</p>
+    <p>The blast radius is slow-moving but large. If Jalapeño performs at scale what the benchmark shows in controlled testing, OpenAI's marginal cost of serving inference drops substantially. That changes unit economics, potentially before any revenue inflection from the ChatGPT product suite. Lower serving costs either widen margins or compress API pricing for customers. Both outcomes are meaningful for the broader market, because OpenAI's pricing tends to move everyone else's.</p>
+    <p>The pattern: every major frontier lab is now building custom silicon. Google has TPUs. Meta has MTIA running in its data centers. Anthropic runs on AWS Trainium and Inferentia. xAI built custom cluster infrastructure in Memphis. Custom silicon is the infrastructure moat of the next cycle, not because NVIDIA's hardware is bad, but because running on NVIDIA at frontier scale means paying NVIDIA's margins indefinitely. OpenAI just told NVIDIA, publicly, that it has a path off that dependency.</p>
+    <p>The builder's move: nothing actionable today. Jalapeño is internal infrastructure. But if this benchmark holds under production load, watch for API price adjustments in Q1 2027. Note whether the throughput gains translate to lower latency on the models you actually use. When OpenAI's prices move, the whole market moves with them.</p>
+    <p>The contrast: Anthropic's compute is cloud-provider-dependent. AWS agreements, Trainium instances. That is not a weakness today. It may be one in three years if OpenAI's Jalapeño scales and drives down inference costs to a point where compute independence becomes the real cost advantage. The lab that controls its own compute controls its own margin. Anthropic is not in that position, and the Claudeforce partnership suggests the bet is on distribution and product surface area instead.</p>
+  </div>
+</div>
+
+<!-- ALSO SHIPPED: Claude Code, Google, Mistral -->
+<section class="section">
+  <div class="section-folio">
+    <div class="section-folio-left">
+      <div class="folio"><div class="ruler"></div><b>Also Dug</b></div>
+    </div>
+    <span class="section-folio-sub">Three more items from the window</span>
+  </div>
+
+  <!-- Claude Code 2.1.245 -->
+  <div class="also-item">
+    <div class="also-item-kicker">Anthropic / Claude Code</div>
+    <div class="also-item-title">v2.1.245: the wildcard warning</div>
+    <div class="also-item-body">
+      <p>Claude Code shipped version 2.1.245 on August 25. The headline change is a startup warning for Bash allow rules that use a wildcard before the subcommand. A rule that allows <code>bash *</code> would trigger it. The intent is to surface rules that are more permissive than the author likely intended, before any agentic session runs with them.</p>
+      <p>The mechanism: at session initialization, Claude Code scans allow rules and logs a warning when a wildcard appears before the subcommand. This catches rules where the author intended to permit a specific pattern but opened a wider permission. Overly permissive bash rules in Claude Code project settings files are a real footgun, most common when someone copies a rule without reading the scope.</p>
+      <p>Also in this release: a new Auto mode tab in /permissions for viewing and editing classifier rules; transcript rendering improvements; the context cost of loading the built-in claude-api skill dropped from 200k-plus tokens to roughly 25k, because the skill now loads reference docs on demand rather than pre-loading the entire reference set. That last change matters for long agentic sessions where persistent context has a real cost per turn. The /permissions panel and /add-dir command can now both be used while Claude is actively working.</p>
+      <p><strong>Builder's move:</strong> update Claude Code. Check startup output for wildcard rule warnings on first launch in any project. If you find one you do not recognize, the warning is telling you something useful.</p>
+    </div>
+  </div>
+
+  <!-- Google / Gemini in Chat -->
+  <div class="also-item">
+    <div class="also-item-kicker">Google DeepMind / Apps</div>
+    <div class="also-item-title">Ask Gemini in Google Chat, while 3.5 Pro waits</div>
+    <div class="also-item-body">
+      <p>Starting August 26, Google is rolling out Ask Gemini in Google Chat for eligible Workspace customers. Users can query Gemini mid-conversation for summaries and drafts without leaving the Chat interface.</p>
+      <p>This is not the product Google needs to ship. Gemini 3.5 Pro was announced at Google I/O in May with a "ships next month" commitment. It missed June. It missed mid-July. Internal testing showed performance still lagging behind rivals, triggering another two-month delay. Koray Kavukcuoglu took over DeepMind model development from Demis Hassabis on August 12 specifically because of this pattern. What launched today is a workspace chat feature. A real product. Not the flagship.</p>
+      <p>The contrast is pointed: Anthropic is embedding in Salesforce, OpenAI is embedding in enterprise verticals through operators, and Google is embedding Gemini in its own workspace at a point when the frontier model is late. The lab that controls both the model and the workspace has the cleanest path. The question is whether the model is ready. For Google right now, it is not.</p>
+      <p><strong>Builder's move:</strong> if your organization is on Google Workspace, Ask Gemini in Chat is the lowest-friction first step for evaluating Gemini on internal workflows. Use it for summarization and drafting. Hold off on stronger model-layer bets until 3.5 Pro ships.</p>
+    </div>
+  </div>
+
+  <!-- Mistral / HUMAIN -->
+  <div class="also-item">
+    <div class="also-item-kicker">Mistral / Partnerships</div>
+    <div class="also-item-title">Mistral and HUMAIN: hundreds of millions for sovereign AI in Saudi Arabia</div>
+    <div class="also-item-body">
+      <p>Mistral announced a strategic collaboration with HUMAIN, Saudi Arabia's state-backed AI company under the Public Investment Fund, on August 24. Scale: hundreds of millions of Euros. Scope: compute infrastructure, model development, Arabic language models, cybersecurity, voice, and a joint go-to-market for regulated industries across the region.</p>
+      <p>The mechanism: Mistral lends its model stack and open-weights positioning to a national AI deployment program. Saudi Arabia gets a non-US, non-Chinese AI foundation built on European open-weights technology. Mistral gets shelf space on HUMAIN's infrastructure, which includes NVIDIA agreements for up to 600,000 units of AI hardware over three years, plus arrangements with xAI and AWS.</p>
+      <p>The pattern is not subtle. This is the third major non-Western AI infrastructure deal Mistral has signed in 2026. The proposition is increasingly specific: open-weights middle path, customized for your language and regulatory environment, running on compute you own. Mistral's pitch is AI sovereignty, and the market for that pitch is every country that wants neither US hyperscaler dependency nor Chinese state AI. That market is larger than it looked in 2024.</p>
+      <p><strong>Builder's move:</strong> if you build for MENA markets, Mistral is now the incumbent open-weights option in the region by partnership. The Arabic language models are the asset to watch when they ship.</p>
+    </div>
+  </div>
+</section>
+
+<!-- QUIET ON THE WIRE -->
+<section class="quiet-section">
+  <div class="quiet-head">
+    <div class="quiet-kicker">Signal</div>
+    <div class="quiet-title">Quiet<br>on the <em>Wire</em></div>
+  </div>
+  <div class="quiet-body">
+    <p><strong>xAI:</strong> Grok 4.6 is live on the xAI API with a 500,000-token context window. Text and image inputs, text-only output. Grok 5 is still in training; xAI has given no release date commitment.</p>
+    <p><strong>Meta:</strong> Muse Spark 1.2 open weights remain promised but undelivered since the August 10 announcement. Meta's terminal coding agent Muse Code shipped August 5 and is live for users. The open-weights drop is the asset to watch.</p>
+    <p><strong>OpenAI:</strong> o3 retired from ChatGPT today as scheduled, ending the 90-day sunset that began May 28. API access continues. Zero data retention confirmed for eligible API customers: prompts and responses are not retained after processing and are not used for training. The Admin plugin for ChatGPT Work and Codex also shipped August 25.</p>
+  </div>
+</section>
+
+<!-- THE CLOSE -->
+<section class="close-section">
+  <div class="close-kicker">The Close</div>
+  <div class="close-stack">
+    <div class="close-line">Anthropic planted Claude inside Salesforce today. That is distribution at a scale API pricing never reached.</div>
+    <div class="close-line">OpenAI published a chip benchmark. The chip is called Jalap&#xF1;o. The implication is that NVIDIA's margin has an expiration date.</div>
+    <div class="close-coda-start">
+      <div class="close-final">The frontier is moving. Most of today's action happened below the model layer.</div>
+    </div>
+  </div>
+  <div class="close-mark">&#x25cf;</div>
+</section>
+
+<!-- RELEASE LOG -->
+<div class="log-divider" id="log">
+  <div class="log-divider-kicker">Reference</div>
+  <h2 class="log-divider-title">Release<br><em>Log</em></h2>
+  <div class="log-divider-sub">Everything that shipped in the Aug 25 to Aug 26 window, grouped by category. Items that did not make the front matter live here as one-liners.</div>
+</div>
+
+<!-- LOG: Claude Code -->
+<div class="log-section">
+  <div class="log-cat-head">
+    <div class="log-cat-name">Claude Code</div>
+    <div class="log-cat-count"><b>1</b> release</div>
+  </div>
+  <div class="log-cat-deck">Anthropic's agentic coding CLI. Every version individually.</div>
+  <div class="log-entries">
+    <div class="log-entry">
+      <div class="log-entry-left">
+        <div class="log-entry-date">2026-08-25</div>
+        <span class="log-tag code">Code</span>
+      </div>
+      <div>
+        <div class="log-entry-title"><a href="https://github.com/anthropics/claude-code/blob/main/CHANGELOG.md">Claude Code v2.1.245</a></div>
+        <div class="log-entry-body">Startup warning for Bash allow rules with a wildcard before the subcommand. New Auto mode tab in /permissions for viewing and editing classifier rules. Transcript rendering improvements. Context cost of the claude-api built-in skill reduced from 200k-plus tokens to approximately 25k by loading reference docs on demand. /permissions and /add-dir now work while Claude is actively working.</div>
+        <div class="log-entry-how"><b>How to use</b> Run <code>claude update</code> or reinstall. Check startup output for wildcard rule warnings on first launch in any project.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- LOG: News and Partnerships -->
+<div class="log-section">
+  <div class="log-cat-head">
+    <div class="log-cat-name">News &amp; Partnerships</div>
+    <div class="log-cat-count"><b>5</b> items</div>
+  </div>
+  <div class="log-cat-deck">Announcements, partnerships, and model lifecycle events from across the frontier.</div>
+  <div class="log-entries">
+
+    <div class="log-entry">
+      <div class="log-entry-left">
+        <div class="log-entry-date">2026-08-26</div>
+        <span class="log-tag news">News</span>
+      </div>
+      <div>
+        <div class="log-entry-title"><a href="https://www.salesforce.com/news/press-releases/2026/08/26/salesforce-and-anthropic-announce-claudeforce/">Claudeforce: Anthropic and Salesforce strategic partnership</a></div>
+        <div class="log-entry-body">A plugin with 37 prebuilt sales skills gives Claude read and write access to live Salesforce CRM data. Sellers query, update, and action CRM objects from inside Claude. Available to select pilot customers now; open beta in September. Additional prebuilt skills for other business functions begin launching in late 2026.</div>
+        <div class="log-entry-why"><b>Why it matters</b> Anthropic's first major application-layer distribution play. Distribution through a CRM with 150,000-plus enterprise customers is a different channel than developer APIs or cloud provider agreements.</div>
+      </div>
+    </div>
+
+    <div class="log-entry">
+      <div class="log-entry-left">
+        <div class="log-entry-date">2026-08-25</div>
+        <span class="log-tag news">News</span>
+      </div>
+      <div>
+        <div class="log-entry-title"><a href="https://openai.com/index/jalapeno-first-results/">OpenAI Jalapeño: first inference chip benchmark results</a></div>
+        <div class="log-entry-body">OpenAI published performance results for Jalapeño, its custom inference chip co-designed with Broadcom. On InferenceX (GPT-OSS 120B, DeepSeek R1, Kimi K2), Jalapeño shows higher throughput per kilowatt and lower token latency than commercial alternatives. OpenAI says the chip sits on the Pareto frontier of performance-per-watt and latency across all three tested model families.</div>
+        <div class="log-entry-why"><b>Why it matters</b> Custom silicon gives OpenAI a path off NVIDIA infrastructure dependency. If inference costs drop, API prices follow.</div>
+      </div>
+    </div>
+
+    <div class="log-entry">
+      <div class="log-entry-left">
+        <div class="log-entry-date">2026-08-26</div>
+        <span class="log-tag news">News</span>
+      </div>
+      <div>
+        <div class="log-entry-title">OpenAI o3 retired from ChatGPT</div>
+        <div class="log-entry-body">OpenAI retired the o3 model family from ChatGPT today, completing the 90-day sunset period that began May 28, 2026. API access continues unchanged. Users on ChatGPT should migrate to o4-mini or o4 depending on workload requirements.</div>
+      </div>
+    </div>
+
+    <div class="log-entry">
+      <div class="log-entry-left">
+        <div class="log-entry-date">2026-08-26</div>
+        <span class="log-tag news">News</span>
+      </div>
+      <div>
+        <div class="log-entry-title">Google: Ask Gemini in Google Chat launches</div>
+        <div class="log-entry-body">Google is rolling out Ask Gemini in Google Chat for eligible Workspace customers starting August 26. Users can query Gemini for summaries and drafts within active Chat conversations. Gemini 3.5 Pro remains delayed; this is a Workspace integration, not a model launch.</div>
+      </div>
+    </div>
+
+    <div class="log-entry">
+      <div class="log-entry-left">
+        <div class="log-entry-date">2026-08-24</div>
+        <span class="log-tag news">News</span>
+      </div>
+      <div>
+        <div class="log-entry-title"><a href="https://mistral.ai/news/mistral-x-humain/">Mistral and HUMAIN: strategic collaboration for sovereign AI in Saudi Arabia</a></div>
+        <div class="log-entry-body">Mistral and HUMAIN (Public Investment Fund of Saudi Arabia) announced a collaboration in the hundreds of millions of Euros covering compute infrastructure, frontier model development, Arabic language models, cybersecurity, voice, and a joint go-to-market for regulated industries in Saudi Arabia and the broader region.</div>
+        <div class="log-entry-why"><b>Why it matters</b> Third major non-Western AI infrastructure deal for Mistral in 2026. Establishes open-weights European AI as a credible alternative to US or Chinese AI monoculture in Gulf-state deployments.</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- LOG: API and Platform -->
+<div class="log-section">
+  <div class="log-cat-head">
+    <div class="log-cat-name">API &amp; Platform</div>
+    <div class="log-cat-count"><b>2</b> items</div>
+  </div>
+  <div class="log-cat-deck">Release notes and platform changes from OpenAI and Anthropic.</div>
+  <div class="log-entries">
+
+    <div class="log-entry">
+      <div class="log-entry-left">
+        <div class="log-entry-date">2026-08-25</div>
+        <span class="log-tag api">API</span>
+      </div>
+      <div>
+        <div class="log-entry-title"><a href="https://openai.com/index/offering-zero-data-retention-for-frontier-models/">OpenAI: Zero Data Retention for eligible API customers</a></div>
+        <div class="log-entry-body">OpenAI confirmed zero data retention for eligible API customers: prompts and responses are not retained after a request is processed, are not available to OpenAI personnel for review, and are not used to train models unless customers explicitly opt in. Private Safety Processing previewed for running advanced safety evaluation without data retention.</div>
+        <div class="log-entry-how"><b>How to use</b> Check your API account tier to confirm ZDR eligibility. No additional configuration required if eligible.</div>
+      </div>
+    </div>
+
+    <div class="log-entry">
+      <div class="log-entry-left">
+        <div class="log-entry-date">2026-08-25</div>
+        <span class="log-tag api">API</span>
+      </div>
+      <div>
+        <div class="log-entry-title">OpenAI: Admin plugin for ChatGPT Work and Codex</div>
+        <div class="log-entry-body">OpenAI shipped an Admin plugin for ChatGPT Work and Codex, giving administrators management and configuration access within those environments.</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- LOG: Other Labs Context -->
+<div class="log-section">
+  <div class="log-cat-head">
+    <div class="log-cat-name">Other Labs</div>
+    <div class="log-cat-count"><b>1</b> item</div>
+  </div>
+  <div class="log-cat-deck">xAI model availability update.</div>
+  <div class="log-entries">
+
+    <div class="log-entry">
+      <div class="log-entry-left">
+        <div class="log-entry-date">2026-08-12</div>
+        <span class="log-tag news">News</span>
+      </div>
+      <div>
+        <div class="log-entry-title">xAI: Grok 4.6 on the xAI API</div>
+        <div class="log-entry-body">Grok 4.6 is available on the xAI API with a 500,000-token context window. Text and image inputs, text-only output. No text output limit stated. Grok 5 remains in training with no committed release date.</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- COLOPHON -->
+<footer class="colophon">
+  <div class="colophon-inner">
+    <div class="colophon-mast">
+      <div class="colophon-word">Shipped<span class="dot">.</span></div>
+      <div class="colophon-tag">Daily digest of the frontier AI labs. Anthropic anchor, six labs covered. Published every evening at 9 PM ET by id8Labs.</div>
+    </div>
+    <div class="colophon-body">
+      <div class="colophon-col">
+        <h4>Publication</h4>
+        <p><b>Published by</b> id8Labs</p>
+        <p><b>Editor</b> Eddie Belaval</p>
+        <p><b>Site:</b> <a href="https://id8labs.app/shipped" class="colophon-link">id8labs.app/shipped</a></p>
+        <p><b>Cadence</b> Daily, 9 PM ET</p>
+      </div>
+      <div class="colophon-col">
+        <h4>Labs Covered</h4>
+        <p>Anthropic (anchor)</p>
+        <p>OpenAI</p>
+        <p>Google DeepMind</p>
+        <p>Meta AI</p>
+        <p>Mistral</p>
+        <p>xAI</p>
+      </div>
+      <div class="colophon-col">
+        <h4>Subscribe</h4>
+        <p>Daily digest at 9 PM ET.</p>
+        <p>Weekly magazine every Friday morning.</p>
+        <p><a href="#subscribe" class="colophon-link">Get it in your inbox</a></p>
+      </div>
+    </div>
+    <div class="colophon-foot">
+      <span><b>Wednesday, August 26, 2026</b></span>
+      <span class="hot">Shipped. Daily</span>
+      <span>id8Labs / All rights reserved</span>
+    </div>
+  </div>
+</footer>
+
+<style>
+  /* Spine CTA. Lives here rather than in <head> because two published pages
+     are truncated and have no </head> to inject into; CSS applies document-wide
+     from anywhere, so the end of <body> is the one anchor every page has.
+     Only takes effect on pages that actually carry a pub-bar. */
+  .pub-bar-cta{
+    display:inline-block;
+    background:var(--ink, #0b0b0b);
+    color:var(--paper, #fafaf7);
+    text-decoration:none;
+    border:1px solid var(--ink, #0b0b0b);
+    border-radius:10px;
+    font-family:var(--narrow, 'Archivo Narrow','Archivo',system-ui,sans-serif);
+    font-weight:700;
+    font-size:11px;
+    letter-spacing:.2em;
+    text-transform:uppercase;
+    padding:6px 14px;
+    transition:background .15s ease,border-color .15s ease;
+  }
+  .pub-bar-cta:hover{
+    background:var(--orange, #ff6b35);
+    border-color:var(--orange, #ff6b35);
+    color:var(--ink, #0b0b0b);
+  }
+  @media (max-width:720px){
+    .pub-bar-hide-sm{display:none}
+    .pub-bar-cta{padding:5px 10px;letter-spacing:.12em}
+  }
+
+  .ship-sub {
+    background: var(--ink, #0b0b0b);
+    color: var(--paper, #fafaf7);
+    padding: 72px 64px;
+    margin: 56px auto;
+    max-width: 1280px;
+    text-align: center;
+    /* clears the sticky pub-bar when jumped to from the top CTA */
+    scroll-margin-top: 64px;
+  }
+  .ship-sub-kicker {
+    font-family: var(--narrow, 'Archivo Narrow','Archivo',system-ui,sans-serif);
+    font-weight: 700;
+    font-size: 12px;
+    letter-spacing: .25em;
+    text-transform: uppercase;
+    color: var(--orange, #ff6b35);
+    margin-bottom: 18px;
+  }
+  .ship-sub h3 {
+    font-family: var(--disp, 'Fraunces',Georgia,serif);
+    font-weight: 600;
+    font-style: italic;
+    font-size: clamp(26px, 3.6vw, 40px);
+    line-height: 1.15;
+    margin: 0 0 16px;
+    color: var(--paper, #fafaf7);
+  }
+  .ship-sub p {
+    font-family: var(--sans, 'Archivo',system-ui,sans-serif);
+    font-size: 15px;
+    line-height: 1.6;
+    color: rgba(250,250,247,.72);
+    max-width: 560px;
+    margin: 0 auto 28px;
+  }
+  .ship-sub-form {
+    display: flex;
+    flex-direction: column;
+    max-width: 480px;
+    margin: 0 auto;
+  }
+  .ship-sub-row {
+    display: flex;
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.12);
+    transition: border-color .15s;
+  }
+  .ship-sub-row:focus-within { border-color: var(--orange, #ff6b35); }
+  .ship-sub-form input[type="email"] {
+    flex: 1;
+    background: transparent;
+    border: none;
+    outline: none;
+    color: var(--paper, #fafaf7);
+    font-family: var(--sans, 'Archivo',system-ui,sans-serif);
+    font-size: 15px;
+    padding: 16px 20px;
+    -webkit-appearance: none;
+    min-width: 0;
+  }
+  .ship-sub-form input::placeholder { color: rgba(250,250,247,.4); }
+  /* Honeypot: off-screen rather than display:none, so naive bots still fill it */
+  .ship-sub-hp {
+    position: absolute !important;
+    left: -9999px !important;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+  }
+  .ship-sub-form button {
+    background: var(--orange, #ff6b35);
+    color: var(--ink, #0b0b0b);
+    border: none;
+    font-family: var(--narrow, 'Archivo Narrow','Archivo',system-ui,sans-serif);
+    font-weight: 700;
+    font-size: 12px;
+    letter-spacing: .2em;
+    text-transform: uppercase;
+    padding: 0 28px;
+    cursor: pointer;
+    transition: background .15s;
+    white-space: nowrap;
+  }
+  .ship-sub-form button:hover { background: #ff5722; }
+  .ship-sub-form button:disabled { opacity: .5; cursor: wait; }
+  .ship-sub-cadences {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    margin-top: 16px;
+  }
+  .ship-sub-cadence {
+    font-family: var(--narrow, 'Archivo Narrow','Archivo',system-ui,sans-serif);
+    font-size: 11px;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    color: rgba(250,250,247,.66);
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    cursor: pointer;
+  }
+  .ship-sub-cadence input { accent-color: var(--orange, #ff6b35); cursor: pointer; }
+  .ship-sub-status {
+    margin-top: 16px;
+    font-family: var(--sans, 'Archivo',system-ui,sans-serif);
+    font-size: 14px;
+    color: var(--orange, #ff6b35);
+    min-height: 20px;
+  }
+  .ship-sub-status.error { color: #ff8b6b; }
+  @media (max-width: 540px) {
+    .ship-sub { padding: 48px 22px; margin: 28px auto; }
+    .ship-sub-cadences { gap: 14px; }
+  }
+</style>
+<section class="ship-sub" id="subscribe">
+  <div class="ship-sub-kicker">Stay on the frontier</div>
+  <h3>Get <em>Shipped.</em> in your inbox.</h3>
+  <p>Daily digest at 9 PM ET. Weekly magazine every Friday morning. Six labs, one feed. No spam, one-click unsubscribe.</p>
+  <form class="ship-sub-form" id="ship-sub-form">
+    <div class="ship-sub-row">
+      <input type="email" name="email" placeholder="your@email.com" required autocomplete="email" aria-label="Email address">
+      <button type="submit" id="ship-sub-btn">Subscribe &#x2192;</button>
+    </div>
+    <input type="text" name="website" class="ship-sub-hp" tabindex="-1" autocomplete="off" aria-hidden="true">
+    <div class="ship-sub-cadences">
+      <label class="ship-sub-cadence"><input type="checkbox" name="cadences" value="nightly" checked> Daily digest</label>
+      <label class="ship-sub-cadence"><input type="checkbox" name="cadences" value="weekly" checked> Weekly magazine</label>
+      <label class="ship-sub-cadence"><input type="checkbox" name="cadences" value="monthly"> Monthly roundup</label>
+    </div>
+  </form>
+  <div class="ship-sub-status" id="ship-sub-status" aria-live="polite"></div>
+</section>
+<script>
+(function () {
+  var form = document.getElementById('ship-sub-form');
+  if (!form) return;
+  var btn = document.getElementById('ship-sub-btn');
+  var status = document.getElementById('ship-sub-status');
+
+  form.addEventListener('submit', async function (e) {
+    e.preventDefault();
+    var data = new FormData(form);
+    var email = (data.get('email') || '').toString().trim();
+    if (!email) return;
+
+    var cadences = data.getAll('cadences').map(String);
+    status.className = 'ship-sub-status';
+    status.textContent = '';
+    btn.disabled = true;
+    btn.textContent = 'Subscribing…';
+
+    try {
+      var res = await fetch('https://id8labs.app/api/newsletter/subscribe', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          email: email,
+          source: 'shipped-daily',
+          website: (data.get('website') || '').toString(),
+          cadences: cadences.length ? cadences : ['nightly', 'weekly']
+        })
+      });
+      var body = await res.json().catch(function () { return {}; });
+      if (res.ok) {
+        status.textContent = body.isNewSubscriber === false
+          ? 'Already on the list.'
+          : 'You’re in. Next edition lands soon.';
+        if (body.isNewSubscriber !== false) form.reset();
+      } else {
+        status.className = 'ship-sub-status error';
+        status.textContent = body.error || 'Could not subscribe right now. Try again in a moment.';
+      }
+    } catch (err) {
+      status.className = 'ship-sub-status error';
+      status.textContent = 'Could not subscribe right now. Try again in a moment.';
+    } finally {
+      btn.disabled = false;
+      btn.textContent = 'Subscribe →';
+    }
+  });
+})();
+</script>
+
+</body>
+</html>
