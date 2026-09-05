@@ -1,0 +1,1280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light">
+<title>Shipped. Daily, September 04, 2026</title>
+<meta property="og:title" content="Shipped. Daily, Friday, September 04, 2026">
+<meta name="twitter:title" content="Shipped. Daily, Friday, September 04, 2026">
+<meta property="og:description" content="OpenAI's GPT-6 Astra scores 100% on ExploitBench and publishes the result. Anthropic's Mythos 5.1 matches the capability and doesn't. Both cost $10 per million tokens.">
+<meta name="description" content="OpenAI's GPT-6 Astra scores 100% on ExploitBench and publishes the result. Anthropic's Mythos 5.1 matches the capability and doesn't. Both cost $10 per million tokens.">
+<!-- CHROME: issue-chrome.html pasted verbatim -->
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='75' cy='62' r='14' fill='%23FF6B35'/%3E%3Ctext x='10' y='75' font-family='Georgia,serif' font-weight='700' font-size='62' fill='%231a1a1a'%3ES%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;0,9..144,900;1,9..144,300;1,9..144,400;1,9..144,500;1,9..144,700&family=Archivo:wght@300;400;500;600;700;800;900&family=Archivo+Narrow:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"><style>
+
+
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{font-size:16px;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;text-rendering:optimizeLegibility}
+body{background:#FAF8F4;color:#0b0b0b;font-family:'Archivo',sans-serif;overflow-x:hidden}
+::selection{background:#FF6B35;color:#fff}
+
+:root{
+  --orange:#FF6B35;
+  --ink:#0b0b0b;
+  --paper:#FAF8F4;
+  --paper-shadow:#f2f0e8;
+  --body:#2a2a2a;
+  --muted:#5a5a5a;
+  --gray:#8a8a8a;
+  --hair:rgba(11,11,11,0.12);
+  --hair-soft:rgba(11,11,11,0.06);
+  --hair-hard:rgba(11,11,11,0.22);
+  --disp:'Fraunces', 'Times New Roman', serif;
+  --sans:'Archivo', system-ui, sans-serif;
+  --narrow:'Archivo Narrow', 'Archivo', sans-serif;
+  --mono:'JetBrains Mono', ui-monospace, monospace;
+}
+
+body::before{
+  content:"";
+  position:fixed;inset:0;pointer-events:none;z-index:1000;opacity:.28;mix-blend-mode:multiply;
+  background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='180' height='180'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' seed='3'/><feColorMatrix values='0 0 0 0 0.02  0 0 0 0 0.02  0 0 0 0 0.02  0 0 0 0.22 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+}
+
+.pub-bar{
+  position:sticky;top:0;z-index:100;
+  background:var(--paper);
+  border-bottom:1px solid var(--hair);
+  padding:0 28px;height:42px;
+  display:flex;align-items:center;justify-content:space-between;
+  font-family:var(--narrow);
+  font-size:11px;font-weight:600;letter-spacing:.22em;
+  text-transform:uppercase;color:var(--ink);
+}
+.pub-bar-left,.pub-bar-right{display:flex;align-items:center;gap:16px}
+.pub-bar-mark{font-family:var(--disp);font-weight:500;font-size:16px;letter-spacing:-.01em;text-transform:none;font-style:italic}
+.pub-bar-mark .dot{color:var(--orange)}
+.pub-bar-sep{width:1px;height:12px;background:var(--hair-hard)}
+.pub-bar-meta{color:var(--muted)}
+.pub-bar-link{color:inherit;text-decoration:none;border-bottom:1px solid currentColor;transition:color .15s ease}
+.pub-bar-link:hover{color:var(--orange)}
+.colophon-link{color:inherit;text-decoration:none;border-bottom:1px solid currentColor;transition:color .15s ease}
+.colophon-link:hover{color:var(--orange)}
+.colophon-foot .colophon-link b{color:var(--paper)}
+.pub-bar-folio{color:var(--ink)}
+.pub-bar-folio b{font-weight:600;color:var(--orange)}
+.pub-bar-cta{
+  display:inline-block;background:var(--ink);color:var(--paper);
+  text-decoration:none;border:1px solid var(--ink);border-radius:10px;
+  font-family:var(--narrow);font-weight:700;font-size:11px;
+  letter-spacing:.2em;text-transform:uppercase;
+  padding:6px 14px;transition:background .15s ease,border-color .15s ease;
+}
+.pub-bar-cta:hover{background:var(--orange);border-color:var(--orange);color:var(--ink)}
+@media (max-width:720px){
+  .pub-bar-hide-sm{display:none}
+  .pub-bar{padding:0 16px}
+  .pub-bar-cta{padding:5px 10px;letter-spacing:.12em}
+}
+
+.folio{
+  font-family:var(--narrow);
+  font-size:10px;font-weight:500;letter-spacing:.28em;
+  text-transform:uppercase;color:var(--gray);
+  display:flex;align-items:center;gap:10px;
+}
+.folio b{color:var(--ink);font-weight:700}
+.folio .ruler{width:28px;height:1px;background:var(--hair-hard)}
+.folio .dot{color:var(--orange)}
+
+.section{
+  position:relative;
+  padding:64px 28px 40px;
+  max-width:1280px;margin:0 auto;
+}
+.section-folio{
+  display:flex;align-items:center;justify-content:space-between;
+  padding-bottom:18px;
+  border-bottom:1px solid var(--ink);
+  margin-bottom:44px;
+}
+.section-folio-left{display:flex;align-items:center;gap:14px}
+.section-folio-label{
+  font-family:var(--narrow);
+  font-size:11px;font-weight:700;letter-spacing:.28em;
+  text-transform:uppercase;color:var(--ink);
+}
+.section-folio-sub{
+  font-family:var(--disp);font-style:italic;
+  font-size:13px;color:var(--muted);
+}
+
+.open-section{background:var(--paper)}
+.open-grid{
+  display:grid;
+  grid-template-columns:repeat(12,1fr);
+  gap:32px;
+}
+.open-lead{
+  grid-column:2 / span 7;
+}
+.open-quote{
+  font-family:var(--disp);
+  font-variation-settings:"opsz" 144;
+  font-weight:500;font-size:clamp(36px,5vw,72px);
+  line-height:1.02;letter-spacing:-.025em;
+  color:var(--ink);
+  margin-bottom:36px;
+  padding-bottom:28px;
+  border-bottom:1px solid var(--hair-hard);
+}
+.open-quote em{font-style:italic;color:var(--orange);font-weight:500}
+.open-prose{
+  font-family:var(--disp);
+  font-variation-settings:"opsz" 14;
+  font-weight:400;font-size:18px;line-height:1.68;
+  color:var(--body);
+  max-width:620px;
+}
+.open-prose p{margin-bottom:22px}
+.open-prose em{font-style:italic;color:var(--ink)}
+.open-aside{
+  grid-column:10 / span 3;
+  border-top:1px solid var(--ink);
+  padding-top:16px;
+  font-family:var(--narrow);
+  font-size:11px;font-weight:500;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--muted);
+  line-height:1.9;
+}
+.open-aside b{color:var(--ink);font-weight:700}
+@media(max-width:860px){
+  .open-lead{grid-column:1 / -1}
+  .open-aside{grid-column:1 / -1;margin-top:16px}
+}
+
+.feature-opener{
+  display:grid;
+  grid-template-columns:72px 1fr minmax(0,320px);
+  gap:32px;
+  padding:56px 28px 40px;
+  max-width:1280px;margin:0 auto;
+  position:relative;
+  border-top:2px solid var(--ink);
+}
+.feature-opener::before{
+  content:"";
+  position:absolute;
+  left:100px;top:0;bottom:0;
+  width:1px;background:var(--hair);
+}
+.vert-label{
+  position:relative;
+  writing-mode:vertical-rl;
+  transform:rotate(180deg);
+  font-family:var(--narrow);
+  font-size:13px;font-weight:700;letter-spacing:.48em;
+  text-transform:uppercase;color:var(--ink);
+  align-self:start;
+  padding-top:12px;
+  white-space:nowrap;
+}
+.vert-label .vert-num{
+  color:var(--orange);
+  font-family:var(--disp);
+  font-style:italic;font-weight:500;
+  letter-spacing:-.02em;
+  margin-top:12px;display:inline-block;
+  writing-mode:horizontal-tb;
+  transform:rotate(180deg);
+  font-size:20px;
+}
+.feature-heading{min-width:0}
+.feature-kicker{
+  font-family:var(--narrow);
+  font-size:10px;font-weight:700;letter-spacing:.32em;
+  text-transform:uppercase;color:var(--orange);
+  margin-bottom:20px;
+}
+.feature-title{
+  font-family:var(--disp);font-weight:700;
+  font-variation-settings:"opsz" 144;
+  font-size:clamp(52px,8vw,128px);
+  line-height:.9;letter-spacing:-.042em;
+  color:var(--ink);
+  margin-bottom:24px;
+}
+.feature-title em{font-style:italic;font-weight:400;color:var(--ink)}
+.feature-deck{
+  font-family:var(--disp);font-weight:400;
+  font-variation-settings:"opsz" 72;
+  font-size:clamp(20px,2.4vw,28px);
+  line-height:1.3;letter-spacing:-.01em;
+  color:var(--muted);
+  max-width:640px;
+  margin-bottom:24px;
+}
+.feature-meta{
+  padding-top:18px;
+  border-top:1px solid var(--hair);
+  font-family:var(--narrow);
+  font-size:10px;font-weight:600;letter-spacing:.24em;
+  text-transform:uppercase;color:var(--muted);
+  line-height:1.8;
+}
+.feature-meta b{color:var(--ink);font-weight:700}
+.feature-meta a{color:var(--ink);text-decoration:none;border-bottom:1px solid var(--hair-hard)}
+.feature-meta a:hover{color:var(--orange)}
+.feature-right{
+  padding-top:28px;
+  border-top:1px solid var(--hair);
+  font-family:var(--disp);font-style:italic;
+  font-size:15px;line-height:1.55;color:var(--muted);
+}
+.feature-right-label{
+  display:block;
+  font-family:var(--narrow);font-style:normal;
+  font-size:10px;font-weight:700;letter-spacing:.28em;
+  text-transform:uppercase;color:var(--ink);
+  margin-bottom:10px;
+}
+@media(max-width:860px){
+  .feature-opener{grid-template-columns:1fr;gap:16px}
+  .feature-opener::before{display:none}
+  .vert-label{writing-mode:horizontal-tb;transform:none;font-size:11px}
+  .vert-label .vert-num{writing-mode:horizontal-tb;transform:none;margin-left:16px}
+  .feature-right{grid-column:1 / -1}
+}
+
+.prose-well{
+  max-width:1280px;margin:0 auto;padding:0 28px 56px;
+  display:grid;grid-template-columns:72px 1fr minmax(0,320px);
+  gap:32px;position:relative;
+}
+.prose-well::before{
+  content:"";position:absolute;left:100px;top:0;bottom:0;
+  width:1px;background:var(--hair);
+}
+.prose-marginalia{
+  grid-column:1;
+  font-family:var(--narrow);
+  font-size:10px;font-weight:600;letter-spacing:.26em;
+  text-transform:uppercase;color:var(--gray);
+  writing-mode:vertical-rl;transform:rotate(180deg);
+  align-self:start;padding-top:8px;
+  white-space:nowrap;
+}
+.prose{
+  grid-column:2;
+  font-family:var(--disp);
+  font-variation-settings:"opsz" 14;
+  font-weight:400;font-size:19px;line-height:1.66;
+  color:var(--body);
+  max-width:640px;
+}
+.prose p{margin-bottom:24px}
+.prose em{font-style:italic;color:var(--ink)}
+.prose strong{font-weight:600;color:var(--ink)}
+.prose code{
+  font-family:var(--mono);font-size:.86em;
+  background:var(--paper-shadow);padding:1px 6px;
+  border-radius:3px;color:var(--ink);
+}
+.prose a{color:var(--ink);border-bottom:1px solid var(--hair-hard);text-decoration:none;transition:color .15s,border-color .15s}
+.prose a:hover{color:var(--orange);border-bottom-color:var(--orange)}
+.prose-aside{
+  grid-column:3;
+  font-family:var(--narrow);
+  font-size:11px;font-weight:500;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--muted);
+  border-top:1px solid var(--ink);padding-top:14px;
+  line-height:1.8;
+}
+.prose-aside b{color:var(--ink);font-weight:700}
+
+.drop-cap::first-letter{
+  font-family:var(--disp);
+  font-variation-settings:"opsz" 144;
+  font-weight:700;
+  font-size:9.2em;
+  float:left;line-height:.78;
+  padding:.02em 12px 0 0;
+  margin:.02em 4px -.1em -2px;
+  color:var(--ink);
+}
+.drop-cap-orange::first-letter{
+  color:var(--orange);
+}
+
+@media(max-width:860px){
+  .prose-well{grid-template-columns:1fr;padding-left:20px;padding-right:20px}
+  .prose-well::before{display:none}
+  .prose-marginalia{display:none}
+  .prose{grid-column:1}
+  .prose-aside{grid-column:1;margin-top:20px}
+  .drop-cap::first-letter{font-size:6.6em}
+}
+
+.quiet-section{
+  max-width:1280px;margin:0 auto;padding:64px 28px 24px;
+  display:grid;grid-template-columns:repeat(12,1fr);gap:24px;
+}
+.quiet-head{
+  grid-column:1 / span 3;
+}
+.quiet-title{
+  font-family:var(--disp);font-style:italic;font-weight:400;
+  font-variation-settings:"opsz" 72;
+  font-size:32px;line-height:1;letter-spacing:-.02em;
+  color:var(--ink);
+}
+.quiet-title em{color:var(--orange);font-style:normal;font-weight:500}
+.quiet-kicker{
+  font-family:var(--narrow);
+  font-size:10px;font-weight:700;letter-spacing:.32em;
+  text-transform:uppercase;color:var(--muted);
+  margin-bottom:10px;
+}
+.quiet-body{
+  grid-column:5 / -1;
+  font-family:var(--disp);font-size:17px;line-height:1.65;color:var(--body);
+  padding-left:24px;border-left:1px solid var(--ink);
+}
+.quiet-body p{margin-bottom:16px}
+.quiet-body strong{font-weight:600;color:var(--ink)}
+@media(max-width:860px){
+  .quiet-head,.quiet-body{grid-column:1 / -1}
+  .quiet-body{padding-left:0;border-left:none;border-top:1px solid var(--ink);padding-top:18px}
+}
+
+.close-section{
+  background:var(--ink);color:var(--paper);
+  padding:120px 28px 140px;
+  position:relative;
+  text-align:center;
+}
+.close-kicker{
+  font-family:var(--narrow);
+  font-size:11px;font-weight:700;letter-spacing:.38em;
+  text-transform:uppercase;color:rgba(250,250,247,.5);
+  margin-bottom:48px;
+}
+.close-stack{
+  max-width:780px;margin:0 auto;
+  display:flex;flex-direction:column;gap:32px;
+}
+.close-line{
+  font-family:var(--disp);font-weight:400;
+  font-variation-settings:"opsz" 96;
+  font-size:clamp(26px,3.6vw,46px);
+  line-height:1.18;letter-spacing:-.018em;
+  color:var(--paper);
+}
+.close-line em{font-style:italic;color:var(--orange);font-weight:500}
+.close-final{
+  font-style:italic;color:var(--orange);
+  font-size:clamp(18px,2.2vw,26px);
+  line-height:1.5;letter-spacing:0;
+  max-width:580px;margin:0 auto;
+  font-variation-settings:"opsz" 36;
+}
+.close-coda-start{
+  margin-top:48px;position:relative;
+}
+.close-coda-start::before{
+  content:"";display:block;
+  width:32px;height:1px;
+  background:rgba(217,107,73,.45);
+  margin:0 auto 36px;
+}
+.close-mark{
+  margin-top:72px;
+  font-family:var(--disp);
+  font-size:48px;color:rgba(250,250,247,.3);
+  letter-spacing:.8em;
+}
+
+.log-divider{
+  background:var(--paper);
+  padding:96px 28px 48px;
+  text-align:center;
+  border-top:3px double var(--ink);
+  border-bottom:1px solid var(--ink);
+  max-width:1280px;margin:0 auto;
+}
+.log-divider-kicker{
+  font-family:var(--narrow);
+  font-size:11px;font-weight:700;letter-spacing:.48em;
+  text-transform:uppercase;color:var(--orange);
+  margin-bottom:14px;
+}
+.log-divider-title{
+  font-family:var(--disp);font-weight:700;
+  font-variation-settings:"opsz" 144;
+  font-size:clamp(56px,10vw,144px);
+  line-height:.9;letter-spacing:-.045em;color:var(--ink);
+  margin-bottom:16px;
+}
+.log-divider-title em{font-style:italic;font-weight:400}
+.log-divider-sub{
+  font-family:var(--disp);font-style:italic;
+  font-size:18px;color:var(--muted);max-width:640px;margin:0 auto;line-height:1.5;
+}
+
+.log-section{
+  padding:48px 28px;max-width:1280px;margin:0 auto;
+}
+.log-cat-head{
+  display:grid;
+  grid-template-columns:1fr auto;
+  gap:24px;align-items:baseline;
+  padding-bottom:18px;
+  border-bottom:1px solid var(--ink);
+  margin-bottom:0;
+}
+.log-cat-name{
+  font-family:var(--disp);font-weight:600;font-style:italic;
+  font-variation-settings:"opsz" 96;
+  font-size:clamp(36px,5vw,56px);
+  letter-spacing:-.02em;color:var(--ink);line-height:1;
+}
+.log-cat-count{
+  font-family:var(--narrow);
+  font-size:10px;font-weight:600;letter-spacing:.28em;
+  text-transform:uppercase;color:var(--muted);
+  text-align:right;
+}
+.log-cat-count b{color:var(--ink);font-weight:700;font-size:13px;display:block}
+
+.log-cat-deck{
+  font-family:var(--disp);
+  font-style:italic;
+  font-weight:400;
+  font-variation-settings:"opsz" 24;
+  font-size:18px;
+  line-height:1.45;
+  color:var(--muted);
+  margin-top:14px;
+  margin-bottom:8px;
+  max-width:760px;
+  letter-spacing:-.005em;
+}
+.log-cat-deck b{color:var(--ink);font-weight:600;font-style:normal}
+.log-cat-deck em{color:var(--orange);font-style:normal;font-weight:500}
+
+.log-entries{display:flex;flex-direction:column}
+.log-entry{
+  padding:24px 0;
+  border-bottom:1px solid var(--hair);
+  display:grid;
+  grid-template-columns:120px 1fr;gap:28px;
+}
+.log-entry-left{
+  display:flex;flex-direction:column;gap:8px;
+}
+.log-entry-date{
+  font-family:var(--narrow);
+  font-size:10px;font-weight:700;letter-spacing:.22em;
+  text-transform:uppercase;color:var(--ink);
+  font-variant-numeric:tabular-nums;
+}
+.log-tag{
+  font-family:var(--narrow);
+  font-size:9px;font-weight:700;letter-spacing:.22em;
+  text-transform:uppercase;padding:3px 7px;
+  display:inline-block;line-height:1.3;width:fit-content;
+}
+.log-tag.model{background:var(--orange);color:var(--paper)}
+.log-tag.api{background:var(--ink);color:var(--paper)}
+.log-tag.code{background:#3a3a3a;color:var(--paper)}
+.log-tag.apps{background:#5a5a5a;color:var(--paper)}
+.log-tag.sdk-py,.log-tag.sdk-ts{background:var(--paper);color:var(--ink);border:1px solid var(--ink)}
+.log-tag.research,.log-tag.news{background:var(--paper);color:var(--muted);border:1px solid var(--hair-hard)}
+.log-tag.deprecation{background:var(--paper-shadow);color:var(--muted);border:1px solid var(--hair-hard)}
+.log-entry-title{
+  font-family:var(--disp);font-weight:500;
+  font-variation-settings:"opsz" 72;
+  font-size:20px;letter-spacing:-.012em;
+  color:var(--ink);line-height:1.25;
+  margin-bottom:10px;
+}
+.log-entry-title a{color:inherit;text-decoration:none;border-bottom:1px solid var(--hair-hard)}
+.log-entry-title a:hover{border-bottom-color:var(--orange);color:var(--orange)}
+.log-entry-body{
+  font-family:var(--sans);font-size:14.5px;line-height:1.6;color:var(--body);
+  margin-bottom:12px;
+}
+.log-entry-how{
+  font-family:var(--sans);font-size:13.5px;line-height:1.6;color:var(--muted);
+  padding-top:12px;border-top:1px solid var(--hair-soft);
+}
+.log-entry-how b{font-family:var(--narrow);font-size:10px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--ink);display:block;margin-bottom:6px}
+.log-entry-how code{font-family:var(--mono);font-size:.86em;background:var(--paper-shadow);padding:1px 6px;border-radius:3px;color:var(--ink)}
+.log-entry-why{
+  font-family:var(--disp);font-style:italic;
+  font-size:14px;color:var(--muted);line-height:1.55;
+  margin-top:10px;padding-left:14px;
+  border-left:2px solid var(--orange);
+}
+.log-entry-why b{font-style:normal;font-family:var(--narrow);font-size:10px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--orange);display:block;margin-bottom:4px}
+
+@media(max-width:720px){
+  .log-entry{grid-template-columns:1fr;gap:12px}
+  .log-cat-head{grid-template-columns:auto 1fr}
+  .log-cat-count{grid-column:1 / -1;text-align:left;padding-top:8px;border-top:1px solid var(--hair)}
+}
+
+.colophon{
+  background:var(--ink);color:var(--paper);
+  padding:80px 28px 64px;
+  border-top:2px solid var(--orange);
+}
+.colophon-inner{
+  max-width:1280px;margin:0 auto;
+  display:grid;grid-template-columns:repeat(12,1fr);gap:32px;
+}
+.colophon-mast{
+  grid-column:1 / span 5;
+}
+.colophon-word{
+  font-family:var(--disp);font-weight:500;
+  font-variation-settings:"opsz" 144;
+  font-size:clamp(72px,10vw,120px);
+  line-height:.9;letter-spacing:-.04em;color:var(--paper);
+}
+.colophon-word .dot{color:var(--orange)}
+.colophon-tag{
+  margin-top:14px;
+  font-family:var(--disp);font-style:italic;font-size:18px;
+  color:rgba(250,250,247,.65);line-height:1.4;max-width:360px;
+}
+
+.colophon-body{
+  grid-column:6 / -1;
+  display:grid;grid-template-columns:repeat(3,1fr);gap:32px;
+}
+.colophon-col h4{
+  font-family:var(--narrow);
+  font-size:10px;font-weight:700;letter-spacing:.32em;
+  text-transform:uppercase;color:var(--orange);
+  margin-bottom:12px;padding-bottom:10px;
+  border-bottom:1px solid rgba(250,250,247,.2);
+}
+.colophon-col p,.colophon-col li{
+  font-family:var(--sans);font-size:13px;line-height:1.6;
+  color:rgba(250,250,247,.75);
+  margin-bottom:8px;list-style:none;
+}
+.colophon-col b{color:var(--paper);font-weight:600}
+.colophon-col em{font-style:italic;color:rgba(250,250,247,.9)}
+
+.colophon-foot{
+  grid-column:1 / -1;
+  margin-top:32px;padding-top:24px;
+  border-top:1px solid rgba(250,250,247,.2);
+  display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap;
+  font-family:var(--narrow);font-size:10px;font-weight:600;
+  letter-spacing:.28em;text-transform:uppercase;color:rgba(250,250,247,.5);
+}
+.colophon-foot b{color:var(--paper);font-weight:700}
+.colophon-foot .hot{color:var(--orange)}
+
+@media(max-width:860px){
+  .colophon-mast,.colophon-body{grid-column:1 / -1}
+  .colophon-body{grid-template-columns:1fr;gap:24px}
+}
+
+/* ---- Weekly-specific ---- */
+.weekly-header{
+  padding:64px 28px 48px;
+  max-width:1280px;margin:0 auto;
+  border-bottom:1px solid var(--ink);
+}
+.weekly-kicker{
+  font-family:var(--narrow);
+  font-size:10px;font-weight:700;letter-spacing:.38em;
+  text-transform:uppercase;color:var(--orange);
+  margin-bottom:20px;
+}
+.weekly-masthead{
+  font-family:var(--disp);font-weight:500;
+  font-variation-settings:"opsz" 144;
+  font-size:clamp(72px,14vw,192px);
+  line-height:.86;letter-spacing:-.04em;
+  color:var(--ink);
+  margin-bottom:28px;
+}
+.weekly-masthead .dot{color:var(--orange);display:inline-block}
+.weekly-cover-line{
+  font-family:var(--disp);font-style:italic;font-weight:400;
+  font-variation-settings:"opsz" 72;
+  font-size:clamp(22px,3.4vw,42px);
+  line-height:1.15;letter-spacing:-.015em;
+  color:var(--ink);
+  max-width:820px;
+  margin-bottom:28px;
+}
+.weekly-dateline{
+  font-family:var(--narrow);
+  font-size:11px;font-weight:600;letter-spacing:.28em;
+  text-transform:uppercase;color:var(--muted);
+  display:flex;gap:24px;flex-wrap:wrap;
+  padding-top:24px;
+  border-top:1px solid var(--hair);
+}
+.weekly-dateline span b{color:var(--ink)}
+
+.also-item{
+  padding:28px 0;
+  border-bottom:1px solid var(--hair);
+}
+.also-item:last-child{border-bottom:none}
+.also-item-kicker{
+  font-family:var(--narrow);
+  font-size:9px;font-weight:700;letter-spacing:.32em;
+  text-transform:uppercase;color:var(--orange);
+  margin-bottom:8px;
+}
+.also-item-title{
+  font-family:var(--disp);font-weight:600;
+  font-variation-settings:"opsz" 72;
+  font-size:22px;letter-spacing:-.015em;
+  color:var(--ink);margin-bottom:12px;line-height:1.2;
+}
+.also-item-body{
+  font-family:var(--disp);
+  font-variation-settings:"opsz" 14;
+  font-size:17px;line-height:1.6;color:var(--body);
+  max-width:680px;
+}
+.also-item-body p{margin-bottom:14px}
+.also-item-body a{color:var(--ink);border-bottom:1px solid var(--hair-hard);text-decoration:none}
+.also-item-body a:hover{color:var(--orange);border-bottom-color:var(--orange)}
+.also-item-body code{font-family:var(--mono);font-size:.86em;background:var(--paper-shadow);padding:1px 6px;border-radius:3px;color:var(--ink)}
+.also-item-body strong{font-weight:600;color:var(--ink)}
+.also-item-source{
+  margin-top:8px;
+  font-family:var(--narrow);font-size:10px;font-weight:600;
+  letter-spacing:.2em;text-transform:uppercase;color:var(--gray);
+}
+.also-item-source a{color:inherit;border-bottom:1px solid currentColor;text-decoration:none}
+.also-item-source a:hover{color:var(--orange)}
+
+.ornament{
+  text-align:center;margin:64px auto;
+  font-family:var(--disp);font-size:16px;color:var(--hair-hard);
+  letter-spacing:1.2em;
+}
+
+@media(max-width:600px){
+  .section,.log-section,.feature-opener,.prose-well{padding-left:20px;padding-right:20px}
+  .weekly-header{padding:40px 20px 36px}
+}
+</style>
+</head>
+<body>
+
+<!-- PUB BAR -->
+<nav class="pub-bar">
+  <div class="pub-bar-left">
+    <span class="pub-bar-mark">Shipped<span class="dot">.</span></span>
+    <span class="pub-bar-sep pub-bar-hide-sm"></span>
+    <span class="pub-bar-meta pub-bar-hide-sm">Daily, Frontier</span>
+    <span class="pub-bar-sep pub-bar-hide-sm"></span>
+    <a href="https://id8labs.app/shipped" class="pub-bar-link pub-bar-hide-sm">id8Labs</a>
+  </div>
+  <div class="pub-bar-right">
+    <span class="pub-bar-folio pub-bar-hide-sm"><b>Sep 04</b></span>
+    <span class="pub-bar-sep pub-bar-hide-sm"></span>
+    <span class="pub-bar-meta pub-bar-hide-sm">Sep 03 to Sep 04</span>
+    <a href="#subscribe" class="pub-bar-cta">Subscribe</a>
+  </div>
+</nav>
+
+<!-- HEADER -->
+<header class="weekly-header">
+  <div class="weekly-kicker">Frontier Daily</div>
+  <div class="weekly-masthead">Shipped<span class="dot">.</span></div>
+  <div class="weekly-cover-line">OpenAI's GPT-6 Astra scores 100% on its own exploit benchmark, publishes the result, and calls it a safety story.</div>
+  <div class="weekly-dateline">
+    <span><b>Date</b> Friday, September 04, 2026</span>
+    <span><b>Window</b> Sep 03 to Sep 04</span>
+    <span><b>Labs</b> Six</span>
+    <span><b>Cadence</b> Daily</span>
+  </div>
+</header>
+
+<!-- THE OPEN -->
+<section class="open-section">
+  <div class="section">
+    <div class="section-folio">
+      <div class="section-folio-left">
+        <div class="folio">
+          <div class="ruler"></div>
+          <b>The Open</b>
+        </div>
+      </div>
+      <div class="section-folio-sub">Six labs, one feed</div>
+    </div>
+    <div class="open-grid">
+      <div class="open-lead">
+        <div class="open-quote">The score is <em>100%.</em> They published it.</div>
+        <div class="open-prose">
+          <p>Thursday morning, OpenAI published the GPT-6 Astra system card alongside the launch announcement, and buried in it was a number that stopped a lot of security researchers mid-coffee: 100% on ExploitBench.</p>
+          <p>ExploitBench tests whether a model can autonomously find and exploit vulnerabilities in real, hardened systems. No human guiding each step. One hundred percent means Astra passed every scenario in the benchmark. OpenAI published this score, with the model name attached, on their public deployment safety hub at deploymentsafety.openai.com.</p>
+          <p>This is a choice. A deliberate, consequential, arguably defensible one, but a choice. Three days earlier, Anthropic shipped Mythos 5.1, its own model with advanced cyber capability, under a restricted-access program for vetted cyberdefense organizations. Anthropic has not published a comparable benchmark score. Two labs, same capability tier, two entirely different theories about what transparency requires when your model can break into hardened systems. Today, the policy is the story.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LEAD STORY: GPT-6 ASTRA -->
+<div class="feature-opener">
+  <div class="vert-label">Lead Story<span class="vert-num">01</span></div>
+  <div class="feature-heading">
+    <div class="feature-kicker">OpenAI, September 3, 2026</div>
+    <h2 class="feature-title">GPT-6<br><em>Astra</em></h2>
+    <div class="feature-deck">OpenAI's first model to reach the Critical cybersecurity tier: 100% on ExploitBench, a staged rollout with enterprise gating, and a system card that says the quiet part out loud.</div>
+    <div class="feature-meta">
+      <b>Lab</b> OpenAI &nbsp;&nbsp;
+      <b>Price</b> $10 / $50 per MTok &nbsp;&nbsp;
+      <b>Context</b> 1,050,000 tokens &nbsp;&nbsp;
+      <b>Source</b> <a href="https://openai.com/index/gpt-6-astra/">openai.com/index/gpt-6-astra</a>
+    </div>
+  </div>
+  <div class="feature-right">
+    <span class="feature-right-label">By the numbers</span>
+    99.9% ARC-AGI-3<br>
+    97.6% FrontierMath Tier 4<br>
+    72.6% OSWorld 2.0<br>
+    100% ExploitBench<br>
+    1.9x faster computer use<br>
+    91.5% cyber refusal rate<br>
+    8.5% attack success rate
+  </div>
+</div>
+
+<div class="prose-well">
+  <div class="prose-marginalia">OpenAI, September 3, 2026</div>
+  <div class="prose drop-cap drop-cap-orange">
+    <p>OpenAI shipped GPT-6 Astra on September 3, framing it as "the most intelligent and aligned model in the world." The word "aligned" is doing real work in that sentence. Astra is the first model OpenAI has classified as Critical under its Preparedness Framework for cybersecurity capability. The two words are not coincidence.</p>
+    <p>Specs: 1,050,000-token context, 128K max output, text and image input, knowledge cutoff April 30, 2026. Price: $10 per million input tokens, $50 per million output, matching Claude Fable 5.1's headline rate exactly. That matching is probably not a coincidence either.</p>
+    <p>The benchmarks are where they are. ARC-AGI-3 at 99.9%, FrontierMath Tier 4 at 97.6%, OSWorld 2.0 at 72.6%. Computer use improved 1.9x over GPT-5.6 Sol on the Mind2Web benchmark. These numbers put Astra at the measurable frontier on every axis OpenAI chose to report.</p>
+    <p>The cybersecurity classification is what makes this a policy event, not just a product launch. "Critical" under OpenAI's Preparedness Framework means the model can, with appropriate tooling, autonomously identify unknown vulnerabilities and develop working exploits across well-protected systems without a human guiding each step. ExploitBench at 100% is the proof of that claim. OpenAI's response was to implement a staged rollout, gate the most sensitive capabilities behind an enterprise access program, and publish a full system card showing exactly what the model can do.</p>
+    <p>Refusal rates on disallowed cyber requests improved from 59% on GPT-5.6 Sol to 91.5% on Astra. That is a real improvement. It also means that on the hardest adversarial jailbreak attempts, roughly one in twelve still gets through. The 8.5% attack success rate on the curated benchmark of 1,810 attacks is not an abstraction. OpenAI is pricing that residual risk as acceptable; the system card argues, at some length, that transparency about the risk is the safer posture compared to restricting the capability entirely and watching it ship elsewhere.</p>
+    <p>Rollout is staged by design. The Daybreak enterprise cybersecurity program gets access first. API access and ChatGPT Plus, Pro, Business, and Enterprise are rolling out over the days following September 3. Enterprise accounts have Astra off by default until an admin enables it. Pricing runs in layers: $10/$50 standard, $1/MTok for cached input, batch at half price, Fast mode at 2x the standard rate.</p>
+    <p><strong>Builder's move:</strong> Request Daybreak access if your product touches security work. Test your existing prompts against Astra before porting production traffic, since stricter instruction-following will catch edge cases that GPT-5.6 Sol was quietly tolerating. Compare the $1/MTok cache rate against Anthropic's recently cut $0.25/MTok before choosing platforms for context-heavy workloads. If you're on batch pipelines, the half-price rate still pencils out.</p>
+  </div>
+</div>
+
+<!-- ALSO SHIPPED -->
+<section class="section">
+  <div class="section-folio">
+    <div class="section-folio-left">
+      <div class="folio">
+        <div class="ruler"></div>
+        <b>Also Shipped</b>
+      </div>
+    </div>
+    <div class="section-folio-sub">Three days of frontier</div>
+  </div>
+
+  <!-- Item 1: Fable 5.1 and Mythos 5.1 -->
+  <div class="also-item">
+    <div class="also-item-kicker">Anthropic, September 1</div>
+    <div class="also-item-title">Fable 5.1 and Mythos 5.1: The Other Critical Model</div>
+    <div class="also-item-body">
+      <p>Anthropic shipped Fable 5.1 and its restricted twin Mythos 5.1 on September 1, three days before the Astra announcement. The timing is worth noting because the capability story runs parallel.</p>
+      <p>Fable 5.1 is the generally available model: 1M context, 128K output, adaptive thinking on by default, five-level effort setting. Terminal-Bench 4.0 improved from 42.0% to 55.8%, a meaningful gain in agentic coding. The headline change for builders is the cache price cut. Prompt cache reads dropped from $1.00 to $0.25 per million tokens, a 75% reduction. For teams running long-horizon agents with large system prompts, that is a cost-structure change, not an incremental saving. The standard price held at $10/$50 per MTok, matching Astra's launch price exactly.</p>
+      <p>Mythos 5.1 is described by Anthropic as "the same underlying model with different safeguard levels," the cyber and life sciences version restricted to vetted organizations via three channels: the Cyber Verification Program, the invite-only Life Sciences Verification Program built with US government partners, and Project Glasswing, the 150-organization vetted consortium Anthropic has operated since April. Anthropic has not published a Mythos ExploitBench score or an equivalent benchmark.</p>
+      <p>The contrast with Astra is a deliberate positioning difference. OpenAI bets that public benchmarks plus tiered access manages the risk transparently. Anthropic bets that controlled distribution and vetted access does the same job more safely. This week, for the first time, both bets are live simultaneously. Neither is settled.</p>
+    </div>
+    <div class="also-item-source"><a href="https://www.anthropic.com/news">anthropic.com/news</a></div>
+  </div>
+
+  <!-- Item 2: Claude Code 2.1.260 -->
+  <div class="also-item">
+    <div class="also-item-kicker">Anthropic, September 3 to 4</div>
+    <div class="also-item-title">Claude Code 2.1.260: Diff Panel and a Revert</div>
+    <div class="also-item-body">
+      <p>Anthropic shipped Claude Code v2.1.260 on September 3 to 4, one day after v2.1.259. Three Claude Code versions in three days. The codebase is moving fast and cleaning up messes as it goes.</p>
+      <p>The headline feature: a fullscreen diff panel. Run a fullscreen Claude Code session, type <code>/diff</code>, and a panel opens beside the conversation displaying your uncommitted changes as Claude edits. It is the single most useful UX addition for the trust-but-verify workflow, letting you keep visual tracking on what is actually changing without breaking your context window.</p>
+      <p>The other significant line in the changelog: 2.1.260 reverts the Bash argument Read-deny permission from 2.1.259. Anthropic shipped a tightened permission restriction on September 2 that blocked certain Bash command patterns, then walked it back within 24 hours. The revert is a feedback-loop story: the permission was too aggressive, builders noticed immediately, and the fix shipped the next day. Also in this release: prompt-cache miss diagnostics added to <code>/cost</code> showing probable causes such as tool definition changes, system prompt changes, or idle sessions past the TTL; <code>/reload-plugins</code> extended to headless sessions; and a text-form <code>/advisor</code> command for desktop and Remote Control sessions.</p>
+      <p><strong>Builder's move:</strong> Update Claude Code now. The <code>/diff</code> panel is live. If v2.1.259 broke your Bash workflows, the revert is already deployed.</p>
+    </div>
+    <div class="also-item-source"><a href="https://github.com/anthropics/claude-code/blob/main/CHANGELOG.md">github.com/anthropics/claude-code CHANGELOG</a></div>
+  </div>
+
+  <!-- Item 3: Meta and Mistral -->
+  <div class="also-item">
+    <div class="also-item-kicker">Meta and Mistral, September 2 to 3</div>
+    <div class="also-item-title">Muse Spark 1.3, Mistral OCR 4.1, Agentic Search</div>
+    <div class="also-item-body">
+      <p>Meta's Muse Spark 1.3 appeared in the LLM release tracker on September 3 without a formal announcement from ai.meta.com, the third update this year to Meta's creative writing model. Llama 4 remains expected later in September; Meta's blog was quiet this week on the flagship front.</p>
+      <p>Mistral had a lighter but coherent week: OCR 4.1 moved to general availability, Agentic Search landed as a new retrieval layer for AI systems navigating complex document structures, and Leanstral 1.5 shipped with improved SFT mixture quality for Lean 4 formal proof engineering. No new base model from Mistral, but the product surface is expanding while the model roadmap holds.</p>
+    </div>
+    <div class="also-item-source"><a href="https://mistral.ai/news/">mistral.ai/news</a></div>
+  </div>
+</section>
+
+<!-- QUIET ON THE WIRE -->
+<div class="quiet-section">
+  <div class="quiet-head">
+    <div class="quiet-kicker">Signals</div>
+    <div class="quiet-title">Quiet<br>on the<br><em>Wire</em></div>
+  </div>
+  <div class="quiet-body">
+    <p><strong>xAI</strong> has been quiet since Grok 4.6. No product announcement in the September 3 to 4 window. The Grok Bot plan details tracker updated September 4, but it is not a launch.</p>
+    <p><strong>Google DeepMind</strong> has been quiet since Gemini 3.7 Flash went GA in mid-August. Gemini 4 speculation is circulating; nothing confirmed. The Genesis collaboration with the US Department of Energy remains the most recent substantive DeepMind announcement.</p>
+    <p><strong>On the Anthropic side:</strong> the Wellbeing Research Grants program is accepting applications, funding independent research evaluating AI's impact on human wellbeing. The Mariano-Florentino Cuellar appointment as Chief Global Affairs Officer, announced August 4, remains the most recent non-product Anthropic news. The Admin API user-management endpoints for Claude Enterprise organizations moved out of beta in late August, dropping the <code>anthropic-beta</code> header requirement for group and custom-role requests.</p>
+  </div>
+</div>
+
+<!-- THE CLOSE -->
+<section class="close-section">
+  <div class="close-kicker">The Close, September 04, 2026</div>
+  <div class="close-stack">
+    <div class="close-line">OpenAI published the score that proves what its model can do.</div>
+    <div class="close-line">Anthropic keeps that same number private and calls it a safeguard.</div>
+    <div class="close-coda-start">
+      <div class="close-final">Both models cost $10 per million tokens.</div>
+    </div>
+  </div>
+  <div class="close-mark">&#x25cf;</div>
+</section>
+
+<!-- RELEASE LOG -->
+<div class="log-divider" id="log">
+  <div class="log-divider-kicker">Reference</div>
+  <h2 class="log-divider-title">Release<br><em>Log</em></h2>
+  <p class="log-divider-sub">Every item from the September 03 to September 04 window, plus the September 1 launches that opened the week. Grouped A to G per STYLE.md.</p>
+</div>
+
+<!-- A. Models -->
+<div class="log-section">
+  <div class="log-cat-head">
+    <div class="log-cat-name">Models</div>
+    <div class="log-cat-count"><b>3</b> entries</div>
+  </div>
+  <p class="log-cat-deck">GPT-6 Astra, Claude Fable 5.1, and Claude Mythos 5.1 launched within a three-day span. The frontier flagship tier just doubled.</p>
+  <div class="log-entries">
+
+    <div class="log-entry">
+      <div class="log-entry-left">
+        <div class="log-entry-date">2026-09-03</div>
+        <span class="log-tag model">Model</span>
+      </div>
+      <div>
+        <div class="log-entry-title"><a href="https://openai.com/index/gpt-6-astra/">GPT-6 Astra (OpenAI)</a></div>
+        <div class="log-entry-body">OpenAI's most capable model, the first rated Critical under the Preparedness Framework for cybersecurity. 1,050,000-token context, 128K output, $10/$50 per MTok. 100% ExploitBench, 99.9% ARC-AGI-3, 1.9x faster computer use. Staged rollout: Daybreak program first, then API and ChatGPT plans.</div>
+        <div class="log-entry-how"><b>How to use</b> Model ID: <code>gpt-6-astra</code>. API rolling out post-September 3. Daybreak program required for cyber-sensitive capabilities. Enterprise: admin must enable.</div>
+        <div class="log-entry-why"><b>Why it matters</b> First broadly deployed model with autonomous exploit capability confirmed by published benchmark. Sets a transparency precedent the industry will need to position against.</div>
+      </div>
+    </div>
+
+    <div class="log-entry">
+      <div class="log-entry-left">
+        <div class="log-entry-date">2026-09-01</div>
+        <span class="log-tag model">Model</span>
+      </div>
+      <div>
+        <div class="log-entry-title"><a href="https://www.anthropic.com/news">Claude Fable 5.1 (Anthropic)</a></div>
+        <div class="log-entry-body">Anthropic's generally available flagship. 1M-token context, 128K output, adaptive thinking on by default, five-level effort setting. Terminal-Bench 4.0: 55.8% (up from 42.0% on Fable 5). Cache reads cut 75% to $0.25/MTok. Standard API price unchanged at $10/$50 per MTok. Three compatibility changes require testing for existing Fable 5 integrations.</div>
+        <div class="log-entry-how"><b>How to use</b> Model ID: <code>claude-fable-5-1</code>. Available on Claude API, Bedrock, Vertex. Test Fable 5 prompts before migrating. Cache reads at $0.25/MTok apply immediately.</div>
+      </div>
+    </div>
+
+    <div class="log-entry">
+      <div class="log-entry-left">
+        <div class="log-entry-date">2026-09-01</div>
+        <span class="log-tag model">Model</span>
+      </div>
+      <div>
+        <div class="log-entry-title"><a href="https://www.anthropic.com/news">Claude Mythos 5.1 (Anthropic)</a></div>
+        <div class="log-entry-body">Restricted twin of Fable 5.1 for cyberdefense and life sciences. Same underlying model with different safeguard levels. Access via Cyber Verification Program, Life Sciences Verification Program (invite-only, US government partnership), or Project Glasswing (150-org vetted consortium, active since April). Pricing identical to Fable 5.1.</div>
+        <div class="log-entry-how"><b>How to use</b> Requires application through Anthropic's verified access programs. Not available on standard API. Contact Anthropic or Glasswing consortium leads.</div>
+        <div class="log-entry-why"><b>Why it matters</b> Anthropic's answer to the cyber-capable model question: same capability, restricted distribution, unpublished offensive benchmarks.</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- C. Claude Code -->
+<div class="log-section">
+  <div class="log-cat-head">
+    <div class="log-cat-name">Claude Code</div>
+    <div class="log-cat-count"><b>2</b> entries</div>
+  </div>
+  <p class="log-cat-deck">Two versions in two days. The <em>diff</em> panel lands. The Bash deny walks back.</p>
+  <div class="log-entries">
+
+    <div class="log-entry">
+      <div class="log-entry-left">
+        <div class="log-entry-date">2026-09-03</div>
+        <span class="log-tag code">Code</span>
+      </div>
+      <div>
+        <div class="log-entry-title"><a href="https://github.com/anthropics/claude-code/blob/main/CHANGELOG.md">Claude Code v2.1.260</a></div>
+        <div class="log-entry-body">Fullscreen diff panel (<code>/diff</code>) showing uncommitted changes beside the conversation as Claude edits. Reverts Bash argument Read-deny from v2.1.259. Prompt-cache miss diagnostics added to <code>/cost</code>. <code>/reload-plugins</code> extended to headless sessions. Text-form <code>/advisor</code> for desktop and Remote Control.</div>
+        <div class="log-entry-how"><b>How to use</b> <code>claude update</code> to install. Type <code>/diff</code> in fullscreen mode for the panel. If 2.1.259 broke Bash patterns, the revert is live.</div>
+      </div>
+    </div>
+
+    <div class="log-entry">
+      <div class="log-entry-left">
+        <div class="log-entry-date">2026-09-02</div>
+        <span class="log-tag code">Code</span>
+      </div>
+      <div>
+        <div class="log-entry-title"><a href="https://github.com/anthropics/claude-code/blob/main/CHANGELOG.md">Claude Code v2.1.259</a></div>
+        <div class="log-entry-body">Adds <code>managedMcpServers</code> managed setting for org-wide HTTP/SSE MCP servers. Adds <code>--permission-prompts none</code> for unattended headless hosts. Adds GitLab MR recognition (<code>glab mr</code> commands show as MR !N). Adds <code>--json</code> to <code>claude plugin validate</code>. Fixes: concurrent sessions no longer silently revert each other's config changes; <code>CLAUDE_CODE_MAX_CONTEXT_TOKENS</code> works for Vertex-style model IDs; live output preview wrapping fixed; background GitHub connection check removed for claude.ai users; <code>--resume</code> no longer fails with empty attachment entries. Note: Bash Read-deny shipped in this version was reverted in v2.1.260.</div>
+        <div class="log-entry-how"><b>How to use</b> Update to v2.1.260 to get the Bash revert included. <code>managedMcpServers</code> requires org-level settings write access.</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- F. Research -->
+<div class="log-section">
+  <div class="log-cat-head">
+    <div class="log-cat-name">Research</div>
+    <div class="log-cat-count"><b>1</b> entry</div>
+  </div>
+  <p class="log-cat-deck">OpenAI published a system card that names and quantifies what GPT-6 Astra can do offensively.</p>
+  <div class="log-entries">
+
+    <div class="log-entry">
+      <div class="log-entry-left">
+        <div class="log-entry-date">2026-09-03</div>
+        <span class="log-tag research">Research</span>
+      </div>
+      <div>
+        <div class="log-entry-title"><a href="https://deploymentsafety.openai.com/gpt-6-astra">GPT-6 Astra System Card and Safety Overview (OpenAI)</a></div>
+        <div class="log-entry-body">Full deployment safety document for GPT-6 Astra. Covers cybersecurity capability classification (Critical), ExploitBench methodology and results (100%), attack success rate on adversarial benchmark of 1,810 curated attacks (8.5%), refusal rate improvement over GPT-5.6 Sol (59% to 91.5%), and the jailbreak and misalignment testing framework used. Published at deploymentsafety.openai.com.</div>
+        <div class="log-entry-why"><b>Why it matters</b> The first publicly available system card that quantifies a model's ability to autonomously exploit hardened systems. Sets a transparency benchmark every lab will now need to position against.</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- G. News -->
+<div class="log-section">
+  <div class="log-cat-head">
+    <div class="log-cat-name">News</div>
+    <div class="log-cat-count"><b>4</b> entries</div>
+  </div>
+  <p class="log-cat-deck">Mistral expands its product surface. Meta's creative model updates quietly. Anthropic opens wellbeing research grants and graduates an enterprise beta.</p>
+  <div class="log-entries">
+
+    <div class="log-entry">
+      <div class="log-entry-left">
+        <div class="log-entry-date">2026-09-03</div>
+        <span class="log-tag news">News</span>
+      </div>
+      <div>
+        <div class="log-entry-title"><a href="https://mistral.ai/news/">Mistral OCR 4.1 GA and Agentic Search (Mistral)</a></div>
+        <div class="log-entry-body">Mistral OCR 4.1 moved to general availability. Agentic Search released as a retrieval layer designed for AI systems navigating complex document structures. Leanstral 1.5, Mistral's Lean 4 formal proof engineering model, shipped with improved SFT mixture quality and extended long-context reasoning, with a retirement date of September 30, 2026 announced simultaneously.</div>
+      </div>
+    </div>
+
+    <div class="log-entry">
+      <div class="log-entry-left">
+        <div class="log-entry-date">2026-09-03</div>
+        <span class="log-tag news">News</span>
+      </div>
+      <div>
+        <div class="log-entry-title"><a href="https://llmgateway.io/timeline">Meta Muse Spark 1.3 (Meta)</a></div>
+        <div class="log-entry-body">Meta's Muse Spark creative writing model received its 1.3 update, appearing in LLM release tracker on September 3. No formal announcement from ai.meta.com at time of sweep. Llama 4 remains expected later in September; Meta has not confirmed a date.</div>
+      </div>
+    </div>
+
+    <div class="log-entry">
+      <div class="log-entry-left">
+        <div class="log-entry-date">2026-09-04</div>
+        <span class="log-tag news">News</span>
+      </div>
+      <div>
+        <div class="log-entry-title"><a href="https://www.anthropic.com/news/wellbeing-research-grants">Anthropic Wellbeing Research Grants (Anthropic)</a></div>
+        <div class="log-entry-body">Anthropic's Wellbeing Research Grants program is accepting applications, funding independent evaluations of AI's impact on human wellbeing. Application deadline not yet published at time of sweep.</div>
+      </div>
+    </div>
+
+    <div class="log-entry">
+      <div class="log-entry-left">
+        <div class="log-entry-date">2026-08-19</div>
+        <span class="log-tag api">API</span>
+      </div>
+      <div>
+        <div class="log-entry-title"><a href="https://docs.anthropic.com/en/api/administration-api">Admin API Enterprise User Management out of beta (Anthropic)</a></div>
+        <div class="log-entry-body">Admin API user-management endpoints for Claude Enterprise organizations (members, invites, groups, custom roles) exited beta. The <code>anthropic-beta: ce-user-management-2026-07-13</code> header is no longer required on group and custom-role requests.</div>
+        <div class="log-entry-how"><b>How to use</b> Remove the <code>anthropic-beta</code> header from group and custom-role management calls. Standard Admin API credentials apply.</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- COLOPHON -->
+<footer class="colophon">
+  <div class="colophon-inner">
+    <div class="colophon-mast">
+      <div class="colophon-word">Shipped<span class="dot">.</span></div>
+      <div class="colophon-tag">Daily digest for the frontier AI labs. Six labs, one feed.</div>
+    </div>
+    <div class="colophon-body">
+      <div class="colophon-col">
+        <h4>This Issue</h4>
+        <p><b>Date</b> Friday, September 04, 2026</p>
+        <p><b>Window</b> Sep 03 to Sep 04</p>
+        <p><b>Items</b> 10 entries, 4 categories</p>
+        <p><b>Labs</b> Anthropic, OpenAI, Meta, Mistral</p>
+      </div>
+      <div class="colophon-col">
+        <h4>Coverage</h4>
+        <p><b>Anchor</b> Anthropic</p>
+        <p>Also: OpenAI, Google DeepMind, Meta AI, Mistral, xAI</p>
+        <p>Published at <a href="https://id8labs.app/shipped" class="colophon-link">id8labs.app/shipped</a></p>
+      </div>
+      <div class="colophon-col">
+        <h4>id8Labs</h4>
+        <p>Published by <a href="https://id8labs.app" class="colophon-link"><b>id8Labs</b></a></p>
+        <p>Edited by Eddie Belaval</p>
+        <p><em>Rolling Stone meets Wired.</em> The frontier AI labs, with editorial weight.</p>
+      </div>
+    </div>
+    <div class="colophon-foot">
+      <span><b>Shipped.</b> Daily</span>
+      <span>Friday, September 04, 2026</span>
+      <span class="hot">id8Labs</span>
+      <span><a href="https://id8labs.app/shipped" class="colophon-link">id8labs.app/shipped</a></span>
+    </div>
+  </div>
+</footer>
+
+<!-- SUBSCRIBE BLOCK: subscribe-block.html verbatim, source token substituted with shipped-daily -->
+<style>
+  /* Spine CTA. Lives here rather than in <head> because two published pages
+     are truncated and have no </head> to inject into; CSS applies document-wide
+     from anywhere, so the end of <body> is the one anchor every page has.
+     Only takes effect on pages that actually carry a pub-bar. */
+  .pub-bar-cta{
+    display:inline-block;
+    background:var(--ink, #0b0b0b);
+    color:var(--paper, #fafaf7);
+    text-decoration:none;
+    border:1px solid var(--ink, #0b0b0b);
+    border-radius:10px;
+    font-family:var(--narrow, 'Archivo Narrow','Archivo',system-ui,sans-serif);
+    font-weight:700;
+    font-size:11px;
+    letter-spacing:.2em;
+    text-transform:uppercase;
+    padding:6px 14px;
+    transition:background .15s ease,border-color .15s ease;
+  }
+  .pub-bar-cta:hover{
+    background:var(--orange, #ff6b35);
+    border-color:var(--orange, #ff6b35);
+    color:var(--ink, #0b0b0b);
+  }
+  @media (max-width:720px){
+    .pub-bar-hide-sm{display:none}
+    .pub-bar-cta{padding:5px 10px;letter-spacing:.12em}
+  }
+
+  .ship-sub {
+    background: var(--ink, #0b0b0b);
+    color: var(--paper, #fafaf7);
+    padding: 72px 64px;
+    margin: 56px auto;
+    max-width: 1280px;
+    text-align: center;
+    /* clears the sticky pub-bar when jumped to from the top CTA */
+    scroll-margin-top: 64px;
+  }
+  .ship-sub-kicker {
+    font-family: var(--narrow, 'Archivo Narrow','Archivo',system-ui,sans-serif);
+    font-weight: 700;
+    font-size: 12px;
+    letter-spacing: .25em;
+    text-transform: uppercase;
+    color: var(--orange, #ff6b35);
+    margin-bottom: 18px;
+  }
+  .ship-sub h3 {
+    font-family: var(--disp, 'Fraunces',Georgia,serif);
+    font-weight: 600;
+    font-style: italic;
+    font-size: clamp(26px, 3.6vw, 40px);
+    line-height: 1.15;
+    margin: 0 0 16px;
+    color: var(--paper, #fafaf7);
+  }
+  .ship-sub p {
+    font-family: var(--sans, 'Archivo',system-ui,sans-serif);
+    font-size: 15px;
+    line-height: 1.6;
+    color: rgba(250,250,247,.72);
+    max-width: 560px;
+    margin: 0 auto 28px;
+  }
+  .ship-sub-form {
+    display: flex;
+    flex-direction: column;
+    max-width: 480px;
+    margin: 0 auto;
+  }
+  .ship-sub-row {
+    display: flex;
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.12);
+    transition: border-color .15s;
+  }
+  .ship-sub-row:focus-within { border-color: var(--orange, #ff6b35); }
+  .ship-sub-form input[type="email"] {
+    flex: 1;
+    background: transparent;
+    border: none;
+    outline: none;
+    color: var(--paper, #fafaf7);
+    font-family: var(--sans, 'Archivo',system-ui,sans-serif);
+    font-size: 15px;
+    padding: 16px 20px;
+    -webkit-appearance: none;
+    min-width: 0;
+  }
+  .ship-sub-form input::placeholder { color: rgba(250,250,247,.4); }
+  /* Honeypot: off-screen rather than display:none, so naive bots still fill it */
+  .ship-sub-hp {
+    position: absolute !important;
+    left: -9999px !important;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+  }
+  .ship-sub-form button {
+    background: var(--orange, #ff6b35);
+    color: var(--ink, #0b0b0b);
+    border: none;
+    font-family: var(--narrow, 'Archivo Narrow','Archivo',system-ui,sans-serif);
+    font-weight: 700;
+    font-size: 12px;
+    letter-spacing: .2em;
+    text-transform: uppercase;
+    padding: 0 28px;
+    cursor: pointer;
+    transition: background .15s;
+    white-space: nowrap;
+  }
+  .ship-sub-form button:hover { background: #ff5722; }
+  .ship-sub-form button:disabled { opacity: .5; cursor: wait; }
+  .ship-sub-cadences {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    margin-top: 16px;
+  }
+  .ship-sub-cadence {
+    font-family: var(--narrow, 'Archivo Narrow','Archivo',system-ui,sans-serif);
+    font-size: 11px;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    color: rgba(250,250,247,.66);
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    cursor: pointer;
+  }
+  .ship-sub-cadence input { accent-color: var(--orange, #ff6b35); cursor: pointer; }
+  .ship-sub-status {
+    margin-top: 16px;
+    font-family: var(--sans, 'Archivo',system-ui,sans-serif);
+    font-size: 14px;
+    color: var(--orange, #ff6b35);
+    min-height: 20px;
+  }
+  .ship-sub-status.error { color: #ff8b6b; }
+  @media (max-width: 540px) {
+    .ship-sub { padding: 48px 22px; margin: 28px auto; }
+    .ship-sub-cadences { gap: 14px; }
+  }
+</style>
+<section class="ship-sub" id="subscribe">
+  <div class="ship-sub-kicker">Stay on the frontier</div>
+  <h3>Get <em>Shipped.</em> in your inbox.</h3>
+  <p>Daily digest at 9 PM ET. Weekly magazine every Friday morning. Six labs, one feed. No spam, one-click unsubscribe.</p>
+  <form class="ship-sub-form" id="ship-sub-form">
+    <div class="ship-sub-row">
+      <input type="email" name="email" placeholder="your@email.com" required autocomplete="email" aria-label="Email address">
+      <button type="submit" id="ship-sub-btn">Subscribe &#x2192;</button>
+    </div>
+    <input type="text" name="website" class="ship-sub-hp" tabindex="-1" autocomplete="off" aria-hidden="true">
+    <div class="ship-sub-cadences">
+      <label class="ship-sub-cadence"><input type="checkbox" name="cadences" value="nightly" checked> Daily digest</label>
+      <label class="ship-sub-cadence"><input type="checkbox" name="cadences" value="weekly" checked> Weekly magazine</label>
+      <label class="ship-sub-cadence"><input type="checkbox" name="cadences" value="monthly"> Monthly roundup</label>
+    </div>
+  </form>
+  <div class="ship-sub-status" id="ship-sub-status" aria-live="polite"></div>
+</section>
+<script>
+(function () {
+  var form = document.getElementById('ship-sub-form');
+  if (!form) return;
+  var btn = document.getElementById('ship-sub-btn');
+  var status = document.getElementById('ship-sub-status');
+
+  form.addEventListener('submit', async function (e) {
+    e.preventDefault();
+    var data = new FormData(form);
+    var email = (data.get('email') || '').toString().trim();
+    if (!email) return;
+
+    var cadences = data.getAll('cadences').map(String);
+    status.className = 'ship-sub-status';
+    status.textContent = '';
+    btn.disabled = true;
+    btn.textContent = 'Subscribing…';
+
+    try {
+      var res = await fetch('https://id8labs.app/api/newsletter/subscribe', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          email: email,
+          source: 'shipped-daily',
+          website: (data.get('website') || '').toString(),
+          cadences: cadences.length ? cadences : ['nightly', 'weekly']
+        })
+      });
+      var body = await res.json().catch(function () { return {}; });
+      if (res.ok) {
+        status.textContent = body.isNewSubscriber === false
+          ? 'Already on the list.'
+          : 'You’re in. Next edition lands soon.';
+        if (body.isNewSubscriber !== false) form.reset();
+      } else {
+        status.className = 'ship-sub-status error';
+        status.textContent = body.error || 'Could not subscribe right now. Try again in a moment.';
+      }
+    } catch (err) {
+      status.className = 'ship-sub-status error';
+      status.textContent = 'Could not subscribe right now. Try again in a moment.';
+    } finally {
+      btn.disabled = false;
+      btn.textContent = 'Subscribe →';
+    }
+  });
+})();
+</script>
+
+</body>
+</html>
