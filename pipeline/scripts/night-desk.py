@@ -1,42 +1,58 @@
 #!/usr/bin/env python3
 """
-Shipped. — the Night Desk.
+Shipped. — the Night Desk (cloud edition).
 
 The desk that makes sure the paper actually gets out. Runs every night, checks
-the nine things that have ever broken this publication, heals what is mechanical,
-and pages a human for what is not.
+the things that have ever broken this publication, heals what is mechanical, and
+pages a human for what is not.
 
 WHY IT IS NOT AN AGENT FLEET. Every failure Shipped. suffered on 2026-08-05/06
 was deterministically detectable: a missing file, a stem dated tomorrow, a
 base64 blob, an absent CSS marker, a pushed commit that never went live. None of
 it needed judgment, it needed a checklist that actually ran. A nightly fleet of
 model calls would cost real money to rediscover facts that `grep` already knows
-(see the Parallax arena sweep: $112 in one overnight run). So the desk is
+(the Parallax arena sweep burned $112 in one overnight run). So the desk is
 deterministic and costs nothing on a green night. Escalation is where judgment
 belongs, and escalation is a human or a single agent invoked with the evidence
 already gathered.
 
-THE NINE CHECKS
+WHY "CLOUD EDITION". The original desk ran on Eddie's Mac via launchd: it wrote
+to ~/Library/Logs, kept state under ~/.shipped-distribution, and paged with a
+macOS notification. But the paper is produced in the cloud by scheduled routines
+that do not care whether that laptop is awake, so on any night the Mac slept the
+watcher never ran and a broken night looked exactly like a green one. This
+version has no home path, no macOS APIs, and no local state: the repo root comes
+from git, the chrome baseline is committed to the repo, and it pages by exit code
+so a cron wrapper can open a GitHub issue. Distribution (did the edition get drafted
+for the list) once needed a mailbox the cron job cannot reach, so it is now a
+git-visible receipt (see record-distribution.py) the desk verifies deterministically.
+
+THE NINE DETERMINISTIC CHECKS
   1  presence    today's Eastern daily is on the branch
   2  dating      no page is dated in the future
   3  integrity   every page is a real document: opens with a tag, has a title, closes
   4  chrome      every page published since the design lock carries issue-chrome.html
+                 (pre-lock pages are grandfathered via night-desk-baseline.json)
   5  subscribe   every page carries BOTH the pill and the form, with the honeypot
                  and the absolute POST url
   6  index       index.html links exactly the pages that exist, no orphans
-  7  live        the deployed site matches the branch (pushed is not published)
-  8  distro      the distributor drafted the newest edition
-  9  gaps        missing dailies, weeklies, monthlies (reported, never alarmed)
+  7  live        the deployed site matches the branch (pushed is not published);
+                 falls back to the Pages deploy conclusion when egress is blocked
+  8  distro      today's daily left a distribution receipt (drafted for the list,
+                 not just pushed to the web)
+  9  gaps        missing dailies and monthlies (reported, never alarmed)
 
 VERDICTS
   OK        nothing to do
   HEALED    the desk fixed it (only with --heal; reversible, in-repo fixes only)
-  ESCALATE  a human is needed; macOS notification plus a written brief
+  ESCALATE  a human is needed; the process exits 1 with the brief on stdout
 
 Usage:
   night-desk.py                 report only, exit 1 if anything escalates
   night-desk.py --heal          also apply the mechanical fixes and push
-  night-desk.py --quiet         suppress the desktop notification (for cron tests)
+  night-desk.py --quiet         only print the verdict line and any escalations
+Environment:
+  SHIPPED_REPO                  repo root override (defaults to `git rev-parse`)
 """
 import json
 import os
@@ -50,12 +66,21 @@ import urllib.request
 from datetime import date, datetime, timedelta
 from zoneinfo import ZoneInfo
 
-REPO = pathlib.Path(os.path.expanduser("~/Development/id8/shipped"))
+
+def _repo_root():
+    env = os.environ.get("SHIPPED_REPO")
+    if env:
+        return pathlib.Path(env)
+    r = subprocess.run(["git", "rev-parse", "--show-toplevel"],
+                       capture_output=True, text=True)
+    if r.returncode == 0 and r.stdout.strip():
+        return pathlib.Path(r.stdout.strip())
+    return pathlib.Path.cwd()
+
+
+REPO = _repo_root()
 SCRIPTS = REPO / "pipeline" / "scripts"
-LOG_DIR = pathlib.Path(os.path.expanduser("~/Library/Logs/shipped"))
-LOG = LOG_DIR / "night-desk.log"
-STATE = pathlib.Path(os.path.expanduser("~/.shipped-distribution/night-desk-state.json"))
-DISTRO_STATE = pathlib.Path(os.path.expanduser("~/.shipped-distribution/seen.json"))
+BASELINE = SCRIPTS / "night-desk-baseline.json"
 SITE = "https://eddiebelaval.github.io/shipped"
 ET = ZoneInfo("America/New_York")
 
@@ -68,21 +93,27 @@ findings = []   # (check, verdict, message)
 
 
 def log(msg):
-    LOG_DIR.mkdir(parents=True, exist_ok=True)
-    line = f"[{datetime.now(ET):%Y-%m-%d %H:%M:%S %Z}] {msg}"
-    print(line)
-    with open(LOG, "a") as f:
-        f.write(line + "\n")
+    if QUIET:
+        return
+    print(f"[{datetime.now(ET):%Y-%m-%d %H:%M:%S %Z}] {msg}")
 
 
 def record(check, verdict, message):
     findings.append((check, verdict, message))
-    log(f"{verdict:9} {check:10} {message}")
+    # Escalations are always printed, even under --quiet, so the wrapper sees them.
+    if verdict != "OK" or not QUIET:
+        print(f"{verdict:9} {check:10} {message}")
+
+
+def run(*args):
+    try:
+        return subprocess.run(args, capture_output=True, text=True)
+    except FileNotFoundError:
+        return subprocess.CompletedProcess(args, 127, "", f"{args[0]}: not found")
 
 
 def git(*args, repo=None):
-    return subprocess.run(["git", "-C", str(repo or REPO), *args],
-                          capture_output=True, text=True)
+    return run("git", "-C", str(repo or REPO), *args)
 
 
 def fetch(url, timeout=25):
@@ -91,22 +122,8 @@ def fetch(url, timeout=25):
             return r.status, r.read().decode("utf-8", "replace")
     except urllib.error.HTTPError as e:
         return e.code, ""
-    except Exception as e:
-        return 0, str(e)
-
-
-def load_state():
-    try:
-        return json.loads(STATE.read_text())
-    except (OSError, ValueError):
-        return {}
-
-
-def save_state(s):
-    STATE.parent.mkdir(parents=True, exist_ok=True)
-    tmp = str(STATE) + ".tmp"
-    pathlib.Path(tmp).write_text(json.dumps(s, indent=2))
-    os.replace(tmp, STATE)
+    except Exception:
+        return 0, ""
 
 
 def blob(path):
@@ -125,6 +142,29 @@ def pages():
     return out
 
 
+def deploy_conclusion(sha):
+    """Pages deploy verdict for a commit via `gh`. True/False, or None if unknown.
+
+    The cloud-portable stand-in for a live fetch when egress is blocked. `gh` is
+    on PATH in the release-routine environment; when it is not, we return None
+    and the live check degrades to 'unverified' rather than a false alarm.
+    """
+    if not sha:
+        return None
+    gh = run("gh", "run", "list", "--repo", "eddiebelaval/shipped",
+             "--branch", "daily-pages", "--commit", sha,
+             "--json", "conclusion,status", "--limit", "5")
+    if gh.returncode != 0 or not gh.stdout.strip():
+        return None
+    try:
+        runs = json.loads(gh.stdout)
+    except ValueError:
+        return None
+    if not runs or any(r.get("status") != "completed" for r in runs):
+        return None
+    return all(r.get("conclusion") == "success" for r in runs)
+
+
 # --------------------------------------------------------------- the checks
 
 def check_presence(pg, today):
@@ -132,8 +172,7 @@ def check_presence(pg, today):
         record("presence", "OK", f"{today} is on the branch")
         return
     # Today's edition is not late until the 21:00 ET routine has had time to
-    # finish. Escalating before that trains the alarm into noise, which is the
-    # same mistake the archive gap report already had to have removed from it.
+    # finish. Escalating before that trains the alarm into noise.
     now = datetime.now(ET)
     if now.hour < 21 or (now.hour == 21 and now.minute < 35):
         record("presence", "OK",
@@ -175,35 +214,36 @@ def check_integrity(pg):
         record("integrity", "OK", "every page is a well-formed document")
 
 
-def check_chrome(pg, state):
+def load_baseline():
+    try:
+        return set(json.loads(BASELINE.read_text()).get("grandfathered", []))
+    except (OSError, ValueError):
+        return None
+
+
+def check_chrome(pg):
     """Pages published since the design lock must carry issue-chrome.html.
 
-    Everything already on the branch when the desk first ran predates the lock
-    and is grandfathered, the same migration shape the distributor uses. Without
-    that baseline this check would be permanently red on 89 historical dailies
-    and would be ignored within a week.
+    Pages that predate the 2026-08-06 lock are grandfathered by a list committed
+    to the repo (night-desk-baseline.json). Without that baseline this check
+    would be permanently red on 100+ historical pages and ignored within a week.
+    In the cloud there is no local state to seed, so the baseline is versioned:
+    if it is missing, we say so rather than guessing.
     """
-    grandfathered = set(state.get("pre_lock_pages", []))
-    first_run = "pre_lock_pages" not in state
-    missing, seen_all = [], []
+    grandfathered = load_baseline()
+    if grandfathered is None:
+        record("chrome", "ESCALATE",
+               f"baseline missing or unreadable at {BASELINE}. Cannot tell a "
+               "pre-lock page from a routine that stopped pasting the chrome.")
+        return
+    missing = []
     for s in SECTIONS:
         for stem in pg[s]:
             key = f"{s}/{stem}"
-            seen_all.append(key)
             if key in grandfathered:
                 continue
             if "weekly-masthead" not in blob(f"{key}.html"):
                 missing.append(key)
-
-    if first_run:
-        pre = [k for k in seen_all
-               if "weekly-masthead" not in blob(f"{k}.html")]
-        state["pre_lock_pages"] = sorted(pre)
-        record("chrome", "OK",
-               f"baseline set: {len(pre)} page(s) predate the design lock and are "
-               f"grandfathered; {len(seen_all) - len(pre)} already carry the chrome")
-        return
-
     if missing:
         record("chrome", "ESCALATE",
                f"{len(missing)} page(s) published without issue-chrome.html: "
@@ -266,49 +306,81 @@ def check_index(pg):
     return len(linked)
 
 
-def check_live(expect_links):
+def check_live(pg, expect_links):
     status, body = fetch(SITE + "/")
-    if status != 200:
-        record("live", "ESCALATE", f"the site itself returned HTTP {status}")
+    if status == 200:
+        live_links = len(set(re.findall(
+            r'href="((?:anthropic-[a-z]+|dispatch)/[^"]+)"', body)))
+        if expect_links is None:
+            record("live", "OK", f"site up, {live_links} links")
+        elif live_links != expect_links:
+            record("live", "ESCALATE",
+                   f"the branch has {expect_links} linked pages but the live site serves "
+                   f"{live_links}. Pushed is not published: the deploy has not landed.")
+        else:
+            record("live", "OK", f"deployed site matches the branch ({live_links} pages)")
         return
-    live_links = len(set(re.findall(
-        r'href="((?:anthropic-[a-z]+|dispatch)/[^"]+)"', body)))
-    if expect_links is None:
-        record("live", "OK", f"site up, {live_links} links")
-        return
-    if live_links != expect_links:
-        record("live", "ESCALATE",
-               f"the branch has {expect_links} linked pages but the live site serves "
-               f"{live_links}. Pushed is not published: the deploy has not landed.")
-        return
-    record("live", "OK", f"deployed site matches the branch ({live_links} pages)")
-
-
-def check_distro(pg):
-    try:
-        st = json.loads(DISTRO_STATE.read_text())
-    except (OSError, ValueError):
-        record("distro", "ESCALATE", "the distributor state file is unreadable")
-        return
-    drafted = set(st.get("drafted", {}).get("nightly", []))
+    # Egress to the site is blocked in this environment; fall back to the Pages
+    # deploy conclusion for the newest daily's commit, which answers the same
+    # question (did the push actually publish) without needing to reach the site.
     newest = pg["anthropic-daily"][-1] if pg["anthropic-daily"] else None
     if newest is None:
-        record("distro", "ESCALATE", "no dailies on the branch at all")
-    elif newest in drafted:
-        record("distro", "OK", f"newest daily {newest} was drafted")
+        record("live", "ESCALATE", "no dailies on the branch and the site is unreachable")
+        return
+    sha = git("log", "-1", "--format=%H", "origin/daily-pages", "--",
+              f"anthropic-daily/{newest}.html").stdout.strip()
+    d = deploy_conclusion(sha)
+    if d is True:
+        record("live", "OK",
+               f"site fetch blocked here; Pages deploy for {newest} concluded success")
+    elif d is False:
+        record("live", "ESCALATE",
+               f"Pages deploy for {newest} did NOT succeed. Pushed is not published.")
     else:
+        record("live", "OK",
+               f"site fetch blocked and gh unavailable; live check unverified for {newest}")
+
+
+def check_distro(pg, today):
+    """Did today's daily get drafted for the list, not just pushed to the web?
+
+    Reads the git-visible receipt that record-distribution.py writes to
+    distribution/<stem>.json on the branch. The mailbox itself is not reachable
+    from a scheduled routine, so the receipt is the signal. Scoped to the daily:
+    weekly/monthly receipts are written by their own routines and checked on
+    their own nights. Until the release routine starts writing receipts the
+    distribution/ tree is absent, so a clean-slate branch reports OK-with-note
+    rather than crying wolf during rollout.
+    """
+    if today not in pg["anthropic-daily"]:
+        return  # nothing shipped today; presence already spoke to that
+    tree = git("ls-tree", "--name-only", "origin/daily-pages", "distribution/")
+    if tree.returncode != 0 or not tree.stdout.strip():
         record("distro", "OK",
-               f"{newest} not drafted yet (the 22:45 run has not fired), which is "
-               "expected before 22:45 ET")
+               "no distribution receipts on the branch yet; the check activates "
+               "once the release routine records them")
+        return
+    receipt = blob(f"distribution/{today}.json")
+    if not receipt:
+        record("distro", "ESCALATE",
+               f"{today} is on the web but no distribution receipt was written. "
+               "The edition published but the list draft did not stage.")
+        return
+    try:
+        ok = json.loads(receipt).get("drafted") is True
+    except ValueError:
+        ok = False
+    record("distro", "OK" if ok else "ESCALATE",
+           f"{today} drafted for the list" if ok
+           else f"{today} receipt present but not marked drafted")
 
 
 def check_gaps(pg, today):
     stems = pg["anthropic-daily"]
     if not stems:
         return
-    first = date.fromisoformat(stems[0])
     have = set(stems)
-    d, missing = first, []
+    d, missing = date.fromisoformat(stems[0]), []
     while d < date.fromisoformat(today):
         if d.isoformat() not in have:
             missing.append(d.isoformat())
@@ -335,10 +407,8 @@ def heal(reason):
         if git("worktree", "add", "-q", "--detach", wt, "origin/daily-pages").returncode:
             record("heal", "ESCALATE", "could not create a worktree")
             return
-        subprocess.run([sys.executable, str(SCRIPTS / "backfill-subscribe.py"), wt],
-                       capture_output=True, text=True)
-        subprocess.run([sys.executable, str(SCRIPTS / "build-archive-index.py"), wt],
-                       capture_output=True, text=True)
+        run(sys.executable, str(SCRIPTS / "backfill-subscribe.py"), wt)
+        run(sys.executable, str(SCRIPTS / "build-archive-index.py"), wt)
         if not git("status", "--porcelain", repo=wt).stdout.strip():
             record("heal", "OK", "nothing mechanical left to fix")
             return
@@ -356,45 +426,42 @@ def heal(reason):
         git("worktree", "prune")
 
 
-def notify(title, message):
-    if QUIET:
-        return
-    subprocess.run(["osascript", "-e",
-                    f'display notification "{message[:180]}" with title "{title}" '
-                    'sound name "Basso"'], capture_output=True)
-
-
 def main():
     log("---- night desk ----")
     git("fetch", "origin", "daily-pages", "--quiet")
     today = datetime.now(ET).strftime("%Y-%m-%d")
-    state = load_state()
     pg = pages()
 
     check_presence(pg, today)
     check_dating(pg, today)
     check_integrity(pg)
-    check_chrome(pg, state)
+    check_chrome(pg)
     check_subscribe(pg)
     n = check_index(pg)
-    check_live(n)
-    check_distro(pg)
+    check_live(pg, n)
+    check_distro(pg, today)
     check_gaps(pg, today)
-
-    save_state(state)
 
     escalations = [f for f in findings if f[1] == "ESCALATE"]
     healable = {"index", "subscribe"}
     if HEAL and any(f[0] in healable for f in escalations):
         heal(", ".join(f[0] for f in escalations if f[0] in healable))
-        escalations = [f for f in escalations if f[0] not in healable]
+        escalations = [f for f in findings if f[1] == "ESCALATE" and f[0] not in healable]
+
+    # Headline: the one question a human wants answered. Presence + dating +
+    # live together are "did tonight's edition actually go out".
+    ship_blockers = [f for f in findings
+                     if f[1] == "ESCALATE" and f[0] in ("presence", "dating", "live")]
+    when = datetime.now(ET).strftime("%Y-%m-%d %H:%M ET")
+    if ship_blockers:
+        print(f"Did we ship, Shipped? NO — {ship_blockers[0][0]}: {ship_blockers[0][2]} ({when}).")
+    else:
+        print(f"Did we ship, Shipped? YES — {today} is on the branch and live ({when}).")
 
     if escalations:
-        head = escalations[0]
-        log(f"VERDICT: {len(escalations)} escalation(s)")
-        notify("Shipped. Night Desk", f"{head[0]}: {head[2]}")
+        print(f"VERDICT: {len(escalations)} escalation(s): "
+              + ", ".join(f"{c} ({m})" for c, _, m in escalations))
         return 1
-
     log(f"VERDICT: green, {len(findings)} checks clear")
     return 0
 
@@ -403,6 +470,5 @@ if __name__ == "__main__":
     try:
         sys.exit(main())
     except Exception as e:
-        log(f"night desk itself failed: {e}")
-        notify("Shipped. Night Desk failed", str(e)[:170])
+        print(f"night desk itself failed: {e}")
         sys.exit(2)

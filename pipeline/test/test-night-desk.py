@@ -1,11 +1,13 @@
 #!/usr/bin/env python3
 """Prove every Night Desk alarm fires. Injects each real 2026-08 failure."""
 import importlib.util
+import os
 import sys
 from datetime import datetime
 
-spec = importlib.util.spec_from_file_location(
-    "nd", "/Users/eddiebelaval/Development/id8/shipped/pipeline/scripts/night-desk.py")
+SCRIPT = os.path.join(os.path.dirname(os.path.abspath(__file__)),
+                      "..", "scripts", "night-desk.py")
+spec = importlib.util.spec_from_file_location("nd", SCRIPT)
 nd = importlib.util.module_from_spec(spec)
 sys.argv = ["nd", "--quiet"]
 spec.loader.exec_module(nd)
@@ -51,8 +53,16 @@ run("presence: today missing at 22:00 ET",
     lambda: nd.check_presence({"anthropic-daily": ["2026-08-05"]}, TODAY), True)
 nd.datetime = real_dt
 
+class MiddayClock(datetime):
+    @classmethod
+    def now(cls, tz=None):
+        return datetime(2026, 8, 6, 12, 0, tzinfo=nd.ET)
+
+
+nd.datetime = MiddayClock
 run("presence: today missing at midday is NOT an alarm",
     lambda: nd.check_presence({"anthropic-daily": ["2026-08-05"]}, TODAY), False)
+nd.datetime = real_dt
 
 # --- 2. dating: the 2026-08-05 bug ----------------------------------------
 run("dating: page stamped tomorrow",
@@ -70,10 +80,13 @@ run("integrity: no doctype and unclosed",
                                 "anthropic-weekly": [], "anthropic-monthly": []}), True)
 
 # --- 4. chrome: a routine stops pasting the locked design -------------------
+# The baseline (pre-lock grandfather list) is now committed to the repo; empty
+# it so the free-handed page is judged as post-lock and must escalate.
+nd.load_baseline = lambda: set()
 with_blob({"anthropic-daily/2026-08-06.html": GOOD.replace("weekly-masthead", "my-own-masthead")})
 run("chrome: new page free-hands its CSS",
     lambda: nd.check_chrome({"anthropic-daily": ["2026-08-06"], "anthropic-weekly": [],
-                             "anthropic-monthly": []}, {"pre_lock_pages": []}), True)
+                             "anthropic-monthly": []}), True)
 
 # --- 5. subscribe: the dead-button pages -----------------------------------
 with_blob({"anthropic-weekly/2026-30.html":
@@ -102,11 +115,31 @@ run("index: published page unreachable from the index",
                             "anthropic-weekly": [], "anthropic-monthly": []}), True)
 
 # --- 7. live: pushed but not published -------------------------------------
+LIVE_PG = {"anthropic-daily": ["2026-08-06"], "anthropic-weekly": [], "anthropic-monthly": []}
 nd.fetch = lambda u, timeout=25: (200, '<a href="anthropic-daily/2026-08-05.html">x</a>')
-run("live: branch has more pages than the deployed site", lambda: nd.check_live(106), True)
+run("live: branch has more pages than the deployed site",
+    lambda: nd.check_live(LIVE_PG, 106), True)
 
-nd.fetch = lambda u, timeout=25: (503, "")
-run("live: the site itself is down", lambda: nd.check_live(1), True)
+# When egress is blocked (non-200) the check falls back to the Pages deploy
+# conclusion; a failed deploy must still escalate.
+nd.fetch = lambda u, timeout=25: (0, "")
+nd.git = lambda *a, **k: type("R", (), {"stdout": "abc123", "returncode": 0})()
+nd.deploy_conclusion = lambda sha: False
+run("live: site unreachable and the Pages deploy failed",
+    lambda: nd.check_live(LIVE_PG, 1), True)
+
+# --- 8. distro: published to the web but no draft receipt ------------------
+# Receipts exist on the branch (dir non-empty) but today's is missing.
+nd.git = lambda *a, **k: type("R", (), {"stdout": "distribution/2026-08-05.json",
+                                         "returncode": 0})()
+nd.blob = lambda p: ""  # no receipt for today
+run("distro: shipped to the web but the list draft did not stage",
+    lambda: nd.check_distro({"anthropic-daily": ["2026-08-06"]}, TODAY), True)
+
+# And the healthy case: today shipped and its receipt is present and drafted.
+nd.blob = lambda p: '{"stem":"2026-08-06","drafted":true}'
+run("distro: shipped and drafted is NOT an alarm",
+    lambda: nd.check_distro({"anthropic-daily": ["2026-08-06"]}, TODAY), False)
 
 print()
 print("ALL ALARMS PROVEN" if fails == 0 else f"{fails} ALARM(S) DID NOT FIRE")
