@@ -1,11 +1,14 @@
 #!/usr/bin/env bash
 #
 # Shipped. — Monthly issue heartbeat
-# Runs on the 1st of each month at 09:00 local (see com.id8labs.shipped-monthly.plist).
+# Runs on the 1st of each month at 11:30 local, after the 10:13 ET cloud routine (see com.id8labs.shipped-monthly.plist).
 #
 # What it does:
 #   1. Computes the month that just ended (YYYY-MM).
-#   2. Checks whether content/anthropic-monthly/YYYY-MM.md exists and its status.
+#   2. Checks the LIVE page first: the cloud Monthly routine (trig_01DGxYL9x9wyWhaSULzznuQN,
+#      1st ~10:13 ET) publishes anthropic-monthly/YYYY-MM.html to the daily-pages branch
+#      (GitHub Pages) and never writes the .md to main. Falls back to
+#      content/anthropic-monthly/YYYY-MM.md for a hand-staged draft.
 #   3. Emits a macOS desktop notification:
 #        - missing  -> "Monthly due: generate <Month> issue"
 #        - draft    -> "Monthly drafted, awaiting editorial/ship"
@@ -37,8 +40,14 @@ ISSUE_FILE="$MONTHLY_DIR/$PREV_MONTH.md"
 
 log "target month: $PREV_MONTH ($PREV_MONTH_LABEL) -> $ISSUE_FILE"
 
+LIVE_URL="https://eddiebelaval.github.io/shipped/anthropic-monthly/$PREV_MONTH.html"
+LIVE_TITLE="$(curl -fsS --max-time 20 "$LIVE_URL" 2>/dev/null | grep -o '<title>[^<]*' | head -1 || true)"
+log "live check: $LIVE_URL -> ${LIVE_TITLE:-<none>}"
+
 STATUS="MISSING"
-if [ -f "$ISSUE_FILE" ]; then
+if [[ "$LIVE_TITLE" == *"Shipped. Monthly, $PREV_MONTH_LABEL"* ]]; then
+  STATUS="PUBLISHED"
+elif [ -f "$ISSUE_FILE" ]; then
   # status: comes from the YAML frontmatter (draft | published | archived)
   FM_STATUS="$(grep -m1 -E '^status:' "$ISSUE_FILE" | awk '{print $2}' | tr -d '[:space:]')"
   case "${FM_STATUS:-}" in
@@ -55,7 +64,7 @@ case "$STATUS" in
   MISSING)
     TITLE="Shipped. Monthly due"
     SUBTITLE="$PREV_MONTH_LABEL not generated"
-    BODY="Run the monthly generation for $PREV_MONTH_LABEL. Recipe: content/anthropic-monthly/README.md"
+    BODY="No live page for $PREV_MONTH_LABEL. Check the Monthly routine run: claude.ai/code/routines/trig_01DGxYL9x9wyWhaSULzznuQN"
     SOUND="Basso"
     ;;
   DRAFT)
@@ -67,7 +76,7 @@ case "$STATUS" in
   PUBLISHED)
     TITLE="Shipped. Monthly"
     SUBTITLE="$PREV_MONTH_LABEL shipped"
-    BODY="$PREV_MONTH.md is published. Nothing to do."
+    BODY="Live at $LIVE_URL"
     SOUND="Glass"
     ;;
   ARCHIVED)
