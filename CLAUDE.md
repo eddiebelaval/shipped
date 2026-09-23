@@ -31,7 +31,7 @@ These three docs at repo root define the project. Read them in this order when y
 
 These are load-bearing. Violating any of them is a hard stop.
 
-1. **Human-gated publish.** The pipeline stages (`git add`). Eddie runs `git commit && git push`. Never automated. Never bypassed.
+1. **Human-gated publish.** The pipeline stages (`git add`). Eddie runs `git commit && git push`. Never automated. Never bypassed. **Scope:** this gate covers the magazine issues and anything on `main`. **Standing exception (Eddie, 2026-09-22: "Shipped. cloud routines may commit and push their pages to daily-pages with no human step"):** the scheduled cloud release routines (Nightly, Weekly, Monthly) are the publisher of record for the `daily-pages` branch. They commit and push their own generated page to `daily-pages` (GitHub Pages) with no human step, every run. That push is the routine's job, not a bypass of this invariant. The routines never push to `main`, never force-push, and distribution stays draft-only.
 2. **Verifier runs on every issue.** No bypass flag. If the verifier can't run, publish is blocked.
 3. **Markdown is the source of truth.** HTML is always a function of `(md, lang)`. No HTML-only edits.
 4. **English is the canonical language.** Translations start from the EN file. Translation changes never modify EN copy.
