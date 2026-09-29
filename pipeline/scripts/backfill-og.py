@@ -33,10 +33,14 @@ import sys
 import urllib.request
 
 BASE = "https://id8labs.app/shipped/"
+# The ?v= query is the cache key, like the site's own ?v=3 icons. Cloudflare
+# fronts id8labs.app and every .png path is served "immutable, 1 year", 404s
+# included: a pre-deploy existence check (2026-09-29) pinned a 404 on the bare
+# URLs. Bump v when a card changes; never probe a URL before it is deployed.
 CARDS = {
-    "anthropic-daily": "og-daily-v1.png",
-    "anthropic-weekly": "og-sweep-v1.png",
-    "anthropic-monthly": "og-sweep-v1.png",
+    "anthropic-daily": "og-daily-v1.png?v=1",
+    "anthropic-weekly": "og-sweep-v1.png?v=1",
+    "anthropic-monthly": "og-sweep-v1.png?v=1",
 }
 ALT = "Shipped. from id8"
 
