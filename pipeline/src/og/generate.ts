@@ -18,7 +18,7 @@ import { readFileSync, readdirSync, existsSync, writeFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { spawnSync } from 'node:child_process';
 import matter from 'gray-matter';
-import { OG_FILE } from './file';
+import { OG_FILE, OG_DAILY_FILE, OG_SWEEP_FILE } from './file';
 
 const CONTENT_ROOT = '/Users/eddiebelaval/Development/id8/shipped/content';
 const DEPLOY_ROOT = process.env.SHIPPED_DEPLOY_ROOT ?? '/Users/eddiebelaval/Development/id8/id8labs/public/shipped';
@@ -26,6 +26,13 @@ const DEPLOY_ROOT = process.env.SHIPPED_DEPLOY_ROOT ?? '/Users/eddiebelaval/Deve
 // The id8 short wordmark from the locked instrument family (v1.0), signed on
 // every card as "from id8". Read from the source SVG, never redrawn.
 const ID8_WORDMARK_SVG = '/Users/eddiebelaval/Development/id8/identity/id8labs-mark/family/wordmark-id8-scale.svg';
+// The locked Shipped. wordmark (outlined from this card's own setting,
+// 2026-09-29). The card draws the file, not live text, so it cannot drift.
+const SHIPPED_WORDMARK_SVG = '/Users/eddiebelaval/Development/id8/identity/id8labs-mark/family/shipped-wordmark.svg';
+function shippedWordmark(): string {
+  return readFileSync(SHIPPED_WORDMARK_SVG, 'utf8').replace(/\swidth="[^"]*"\sheight="[^"]*"/, '');
+}
+
 function id8Wordmark(): string {
   const svg = readFileSync(ID8_WORDMARK_SVG, 'utf8');
   return svg.replace(/\swidth="[^"]*"\sheight="[^"]*"/, '');
@@ -158,6 +165,7 @@ function renderOgHtml(args: { kicker: string; number: string; title: string; isA
     margin:0;
   }
   .masthead .dot{color:var(--orange);font-style:normal}
+  .masthead svg{display:block;height:259.49px;width:auto;margin:12px 0 -48px;position:relative;left:9.75px}
 
   .sub{
     position:absolute;
@@ -192,7 +200,7 @@ function renderOgHtml(args: { kicker: string; number: string; title: string; isA
     <div class="fg">
       <div class="top">
         <div class="kicker">${escape(kicker)}</div>
-        <div class="masthead">Shipped<span class="dot">.</span></div>
+        <div class="masthead">${shippedWordmark()}</div>
       </div>
       <div class="sub">${formatTitle(title)}</div>
     </div>
@@ -219,6 +227,19 @@ function collectTargets(argIssue?: string): OgTarget[] {
       kind: 'archive',
       outPath: join(DEPLOY_ROOT, OG_FILE),
       html: archiveHtml(),
+    });
+  }
+
+  if (!argIssue) {
+    targets.push({
+      kind: 'archive',
+      outPath: join(DEPLOY_ROOT, OG_DAILY_FILE),
+      html: renderOgHtml({ number: '00', kicker: 'Every night · 9 PM ET', title: 'The daily on what the AI labs ship.', isArchive: true }),
+    });
+    targets.push({
+      kind: 'archive',
+      outPath: join(DEPLOY_ROOT, OG_SWEEP_FILE),
+      html: renderOgHtml({ number: '00', kicker: 'The week, swept', title: 'Weekly and monthly sweeps of what the AI labs ship.', isArchive: true }),
     });
   }
 
