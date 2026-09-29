@@ -8,6 +8,7 @@
  */
 
 import { promises as fs } from 'fs';
+import { ogUrl } from '../og/file';
 import path from 'path';
 import { fileURLToPath } from 'url';
 
@@ -157,7 +158,7 @@ async function buildTemplateData(
     meta_description: `A weekly magazine on what Anthropic ships. Issue ${issueNum} — ${fm.deck ?? stripTitlePrefix(fm.title)}.`,
     meta_description_short: 'A weekly magazine on what Anthropic ships.',
     canonical_url: `https://id8labs.app/shipped/${issueNum}/`,
-    og_image_url: `https://id8labs.app/shipped/${issueNum}/og-v4.png`,
+    og_image_url: ogUrl(issueNum),
     author: 'Eddie Belaval',
 
     // Pub bar

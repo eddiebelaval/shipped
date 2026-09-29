@@ -251,7 +251,10 @@ export function buildEmailHtml(issue: ParsedIssue): { html: string; subject: str
   <a style="color:${FAINT};text-decoration:underline;" href="${webUrl}">View in browser</a>
 </p>
 
-<h1 style="margin:0;font-family:${SERIF};font-size:52px;line-height:1;color:${INK};">Shipped<span style="color:${ORANGE};">.</span></h1>
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0"><tr>
+<td valign="bottom"><h1 style="margin:0;font-family:${SERIF};font-size:52px;line-height:1;color:${INK};">Shipped<span style="color:${ORANGE};">.</span></h1></td>
+<td valign="bottom" align="right" style="padding-left:18px;font-family:${SANS};font-size:10px;letter-spacing:0.24em;text-transform:uppercase;color:${FAINT};white-space:nowrap;">from&nbsp;&nbsp;<img src="https://id8labs.app/brand/id8-wordmark-short-ink@2x.png" width="57" height="47" alt="id8" style="display:inline-block;vertical-align:bottom;border:0;"></td>
+</tr></table>
 <p style="margin:10px 0 0;font-family:${SANS};font-size:12px;letter-spacing:0.14em;text-transform:uppercase;color:${FAINT};">
   Issue ${esc(issueNum)} · ${esc(prettyDate)} · ${esc(fm.period)}
 </p>

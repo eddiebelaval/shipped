@@ -10,16 +10,26 @@
  *   pnpm og               # generates all (archive + each issue)
  *   pnpm og --issue 02    # generates just the one
  *
- * Output: /Users/eddiebelaval/Development/id8/id8labs/public/shipped/{index|NN}/og.png
+ * Output: <DEPLOY_ROOT>/{.|NN}/<OG_FILE> (see ./file.ts). DEPLOY_ROOT defaults to the
+ * id8labs checkout; set SHIPPED_DEPLOY_ROOT to write into a worktree instead.
  */
 
 import { readFileSync, readdirSync, existsSync, writeFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { spawnSync } from 'node:child_process';
 import matter from 'gray-matter';
+import { OG_FILE } from './file';
 
 const CONTENT_ROOT = '/Users/eddiebelaval/Development/id8/shipped/content';
-const DEPLOY_ROOT = '/Users/eddiebelaval/Development/id8/id8labs/public/shipped';
+const DEPLOY_ROOT = process.env.SHIPPED_DEPLOY_ROOT ?? '/Users/eddiebelaval/Development/id8/id8labs/public/shipped';
+
+// The id8 short wordmark from the locked instrument family (v1.0), signed on
+// every card as "from id8". Read from the source SVG, never redrawn.
+const ID8_WORDMARK_SVG = '/Users/eddiebelaval/Development/id8/identity/id8labs-mark/family/wordmark-id8-scale.svg';
+function id8Wordmark(): string {
+  const svg = readFileSync(ID8_WORDMARK_SVG, 'utf8');
+  return svg.replace(/\swidth="[^"]*"\sheight="[^"]*"/, '');
+}
 
 interface OgTarget {
   kind: 'archive' | 'issue';
@@ -159,6 +169,21 @@ function renderOgHtml(args: { kicker: string; number: string; title: string; isA
     color:var(--body);
   }
   .sub em{font-style:italic;color:var(--orange);font-weight:500}
+
+  /* "from id8": the family's short wordmark signs the card, bottom right.
+     Its dot goes ink here so the card keeps the masthead's one orange. */
+  .from{
+    position:absolute;z-index:3;right:58px;bottom:44px;
+    display:flex;align-items:flex-end;gap:12px;color:var(--ink);
+  }
+  .from span{
+    font-family:var(--narrow);font-size:13px;font-weight:600;
+    text-transform:uppercase;letter-spacing:.24em;color:var(--muted);
+    padding-bottom:12px;
+  }
+  .from svg{height:62px;width:auto;display:block}
+  .from svg .accent{fill:currentColor}
+  .from svg .accent-s{stroke:currentColor}
 </style>
 </head>
 <body>
@@ -171,6 +196,7 @@ function renderOgHtml(args: { kicker: string; number: string; title: string; isA
       </div>
       <div class="sub">${formatTitle(title)}</div>
     </div>
+    <div class="from"><span>from</span>${id8Wordmark()}</div>
   </div>
 </body>
 </html>`;
@@ -191,7 +217,7 @@ function collectTargets(argIssue?: string): OgTarget[] {
   if (!argIssue) {
     targets.push({
       kind: 'archive',
-      outPath: join(DEPLOY_ROOT, 'og.png'),
+      outPath: join(DEPLOY_ROOT, OG_FILE),
       html: archiveHtml(),
     });
   }
@@ -207,7 +233,7 @@ function collectTargets(argIssue?: string): OgTarget[] {
     const fm = matter(body).data;
     targets.push({
       kind: 'issue',
-      outPath: join(DEPLOY_ROOT, issueNum, 'og.png'),
+      outPath: join(DEPLOY_ROOT, issueNum, OG_FILE),
       html: issueHtml(fm, issueNum),
     });
   }
@@ -227,7 +253,9 @@ html_path = sys.argv[1]
 out_path = sys.argv[2]
 
 with sync_playwright() as p:
-    browser = p.chromium.launch()
+    # System Chrome, not Playwright's bundled headless shell: the bundle goes
+    # missing on Playwright upgrades and every card then fails (issues 03-10).
+    browser = p.chromium.launch(channel="chrome")
     context = browser.new_context(
         viewport={"width": 1200, "height": 630},
         device_scale_factor=2,
@@ -278,7 +306,7 @@ function main(): void {
     }
     const success = renderTargetViaPlaywright(t.html, t.outPath);
     if (success) {
-      console.log(`  [og] ✓ ${t.outPath.replace('/Users/eddiebelaval/Development/id8/id8labs/public', '')}`);
+      console.log(`  [og] ✓ ${t.outPath.replace(DEPLOY_ROOT, '/shipped')}`);
       ok++;
     } else {
       fail++;
