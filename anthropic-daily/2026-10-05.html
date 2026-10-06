@@ -1,0 +1,1227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light">
+<title>Shipped. Daily, Monday, October 05, 2026</title>
+<meta name="description" content="Frontier AI labs daily digest for Monday, October 05, 2026. NYC compels sworn AI safety testimony from Anthropic, OpenAI, Google, and Meta. SpaceXAI defied a subpoena. Mistral CEO calls the safety debate a cover for negligence. Claude Code gets programmable Mods.">
+<meta property="og:title" content="Shipped. Daily, Monday, October 05, 2026">
+<meta property="og:description" content="NYC forces sworn AI testimony. SpaceXAI defied a subpoena. Mistral CEO calls safety debate a cover for negligence. Claude Code v2.1.287 ships Mods.">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Shipped.">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Shipped. Daily, Monday, October 05, 2026">
+<meta name="twitter:description" content="NYC forces sworn AI testimony. SpaceXAI defied a subpoena. Mistral CEO calls safety debate a cover for negligence.">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='75' cy='62' r='14' fill='%23FF6B35'/%3E%3Ctext x='10' y='75' font-family='Georgia,serif' font-weight='700' font-size='62' fill='%231a1a1a'%3ES%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;0,9..144,900;1,9..144,300;1,9..144,400;1,9..144,500;1,9..144,700&family=Archivo:wght@300;400;500;600;700;800;900&family=Archivo+Narrow:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"><style>
+
+
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{font-size:16px;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;text-rendering:optimizeLegibility}
+body{background:#FAF8F4;color:#0b0b0b;font-family:'Archivo',sans-serif;overflow-x:hidden}
+::selection{background:#FF6B35;color:#fff}
+
+:root{
+  --orange:#FF6B35;
+  --ink:#0b0b0b;
+  --paper:#FAF8F4;
+  --paper-shadow:#f2f0e8;
+  --body:#2a2a2a;
+  --muted:#5a5a5a;
+  --gray:#8a8a8a;
+  --hair:rgba(11,11,11,0.12);
+  --hair-soft:rgba(11,11,11,0.06);
+  --hair-hard:rgba(11,11,11,0.22);
+  --disp:'Fraunces', 'Times New Roman', serif;
+  --sans:'Archivo', system-ui, sans-serif;
+  --narrow:'Archivo Narrow', 'Archivo', sans-serif;
+  --mono:'JetBrains Mono', ui-monospace, monospace;
+}
+
+body::before{
+  content:"";
+  position:fixed;inset:0;pointer-events:none;z-index:1000;opacity:.28;mix-blend-mode:multiply;
+  background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='180' height='180'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' seed='3'/><feColorMatrix values='0 0 0 0 0.02  0 0 0 0 0.02  0 0 0 0 0.02  0 0 0 0.22 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+}
+
+.pub-bar{
+  position:sticky;top:0;z-index:100;
+  background:var(--paper);
+  border-bottom:1px solid var(--hair);
+  padding:0 28px;height:42px;
+  display:flex;align-items:center;justify-content:space-between;
+  font-family:var(--narrow);
+  font-size:11px;font-weight:600;letter-spacing:.22em;
+  text-transform:uppercase;color:var(--ink);
+}
+.pub-bar-left,.pub-bar-right{display:flex;align-items:center;gap:16px}
+.pub-bar-mark{font-family:var(--disp);font-weight:500;font-size:16px;letter-spacing:-.01em;text-transform:none;font-style:italic}
+.pub-bar-mark .dot{color:var(--orange)}
+.pub-bar-sep{width:1px;height:12px;background:var(--hair-hard)}
+.pub-bar-meta{color:var(--muted)}
+.pub-bar-link{color:inherit;text-decoration:none;border-bottom:1px solid currentColor;transition:color .15s ease}
+.pub-bar-link:hover{color:var(--orange)}
+.colophon-link{color:inherit;text-decoration:none;border-bottom:1px solid currentColor;transition:color .15s ease}
+.colophon-link:hover{color:var(--orange)}
+.colophon-foot .colophon-link b{color:var(--paper)}
+.pub-bar-folio{color:var(--ink)}
+.pub-bar-folio b{font-weight:600;color:var(--orange)}
+.pub-bar-cta{
+  display:inline-block;background:var(--ink);color:var(--paper);
+  text-decoration:none;border:1px solid var(--ink);border-radius:10px;
+  font-family:var(--narrow);font-weight:700;font-size:11px;
+  letter-spacing:.2em;text-transform:uppercase;
+  padding:6px 14px;transition:background .15s ease,border-color .15s ease;
+}
+.pub-bar-cta:hover{background:var(--orange);border-color:var(--orange);color:var(--ink)}
+@media (max-width:720px){
+  .pub-bar-hide-sm{display:none}
+  .pub-bar{padding:0 16px}
+  .pub-bar-cta{padding:5px 10px;letter-spacing:.12em}
+}
+
+.folio{
+  font-family:var(--narrow);
+  font-size:10px;font-weight:500;letter-spacing:.28em;
+  text-transform:uppercase;color:var(--gray);
+  display:flex;align-items:center;gap:10px;
+}
+.folio b{color:var(--ink);font-weight:700}
+.folio .ruler{width:28px;height:1px;background:var(--hair-hard)}
+.folio .dot{color:var(--orange)}
+
+.section{
+  position:relative;
+  padding:64px 28px 40px;
+  max-width:1280px;margin:0 auto;
+}
+.section-folio{
+  display:flex;align-items:center;justify-content:space-between;
+  padding-bottom:18px;
+  border-bottom:1px solid var(--ink);
+  margin-bottom:44px;
+}
+.section-folio-left{display:flex;align-items:center;gap:14px}
+.section-folio-label{
+  font-family:var(--narrow);
+  font-size:11px;font-weight:700;letter-spacing:.28em;
+  text-transform:uppercase;color:var(--ink);
+}
+.section-folio-sub{
+  font-family:var(--disp);font-style:italic;
+  font-size:13px;color:var(--muted);
+}
+
+.open-section{background:var(--paper)}
+.open-grid{
+  display:grid;
+  grid-template-columns:repeat(12,1fr);
+  gap:32px;
+}
+.open-lead{
+  grid-column:2 / span 7;
+}
+.open-quote{
+  font-family:var(--disp);
+  font-variation-settings:"opsz" 144;
+  font-weight:500;font-size:clamp(36px,5vw,72px);
+  line-height:1.02;letter-spacing:-.025em;
+  color:var(--ink);
+  margin-bottom:36px;
+  padding-bottom:28px;
+  border-bottom:1px solid var(--hair-hard);
+}
+.open-quote em{font-style:italic;color:var(--orange);font-weight:500}
+.open-prose{
+  font-family:var(--disp);
+  font-variation-settings:"opsz" 14;
+  font-weight:400;font-size:18px;line-height:1.68;
+  color:var(--body);
+  max-width:620px;
+}
+.open-prose p{margin-bottom:22px}
+.open-prose em{font-style:italic;color:var(--ink)}
+.open-aside{
+  grid-column:10 / span 3;
+  border-top:1px solid var(--ink);
+  padding-top:16px;
+  font-family:var(--narrow);
+  font-size:11px;font-weight:500;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--muted);
+  line-height:1.9;
+}
+.open-aside b{color:var(--ink);font-weight:700}
+@media(max-width:860px){
+  .open-lead{grid-column:1 / -1}
+  .open-aside{grid-column:1 / -1;margin-top:16px}
+}
+
+.feature-opener{
+  display:grid;
+  grid-template-columns:72px 1fr minmax(0,320px);
+  gap:32px;
+  padding:56px 28px 40px;
+  max-width:1280px;margin:0 auto;
+  position:relative;
+  border-top:2px solid var(--ink);
+}
+.feature-opener::before{
+  content:"";
+  position:absolute;
+  left:100px;top:0;bottom:0;
+  width:1px;background:var(--hair);
+}
+.vert-label{
+  position:relative;
+  writing-mode:vertical-rl;
+  transform:rotate(180deg);
+  font-family:var(--narrow);
+  font-size:13px;font-weight:700;letter-spacing:.48em;
+  text-transform:uppercase;color:var(--ink);
+  align-self:start;
+  padding-top:12px;
+  white-space:nowrap;
+}
+.vert-label .vert-num{
+  color:var(--orange);
+  font-family:var(--disp);
+  font-style:italic;font-weight:500;
+  letter-spacing:-.02em;
+  margin-top:12px;display:inline-block;
+  writing-mode:horizontal-tb;
+  transform:rotate(180deg);
+  font-size:20px;
+}
+.feature-heading{min-width:0}
+.feature-kicker{
+  font-family:var(--narrow);
+  font-size:10px;font-weight:700;letter-spacing:.32em;
+  text-transform:uppercase;color:var(--orange);
+  margin-bottom:20px;
+}
+.feature-title{
+  font-family:var(--disp);font-weight:700;
+  font-variation-settings:"opsz" 144;
+  font-size:clamp(52px,8vw,128px);
+  line-height:.9;letter-spacing:-.042em;
+  color:var(--ink);
+  margin-bottom:24px;
+}
+.feature-title em{font-style:italic;font-weight:400;color:var(--ink)}
+.feature-deck{
+  font-family:var(--disp);font-weight:400;
+  font-variation-settings:"opsz" 72;
+  font-size:clamp(20px,2.4vw,28px);
+  line-height:1.3;letter-spacing:-.01em;
+  color:var(--muted);
+  max-width:640px;
+  margin-bottom:24px;
+}
+.feature-meta{
+  padding-top:18px;
+  border-top:1px solid var(--hair);
+  font-family:var(--narrow);
+  font-size:10px;font-weight:600;letter-spacing:.24em;
+  text-transform:uppercase;color:var(--muted);
+  line-height:1.8;
+}
+.feature-meta b{color:var(--ink);font-weight:700}
+.feature-right{
+  padding-top:28px;
+  border-top:1px solid var(--hair);
+  font-family:var(--disp);font-style:italic;
+  font-size:15px;line-height:1.55;color:var(--muted);
+}
+.feature-right-label{
+  display:block;
+  font-family:var(--narrow);font-style:normal;
+  font-size:10px;font-weight:700;letter-spacing:.28em;
+  text-transform:uppercase;color:var(--ink);
+  margin-bottom:10px;
+}
+@media(max-width:860px){
+  .feature-opener{grid-template-columns:1fr;gap:16px}
+  .feature-opener::before{display:none}
+  .vert-label{writing-mode:horizontal-tb;transform:none;font-size:11px}
+  .vert-label .vert-num{writing-mode:horizontal-tb;transform:none;margin-left:16px}
+  .feature-right{grid-column:1 / -1}
+}
+
+.prose-well{
+  max-width:1280px;margin:0 auto;padding:0 28px 56px;
+  display:grid;grid-template-columns:72px 1fr minmax(0,320px);
+  gap:32px;position:relative;
+}
+.prose-well::before{
+  content:"";position:absolute;left:100px;top:0;bottom:0;
+  width:1px;background:var(--hair);
+}
+.prose-marginalia{
+  grid-column:1;
+  font-family:var(--narrow);
+  font-size:10px;font-weight:600;letter-spacing:.26em;
+  text-transform:uppercase;color:var(--gray);
+  writing-mode:vertical-rl;transform:rotate(180deg);
+  align-self:start;padding-top:8px;
+  white-space:nowrap;
+}
+.prose{
+  grid-column:2;
+  font-family:var(--disp);
+  font-variation-settings:"opsz" 14;
+  font-weight:400;font-size:19px;line-height:1.66;
+  color:var(--body);
+  max-width:640px;
+}
+.prose p{margin-bottom:24px}
+.prose em{font-style:italic;color:var(--ink)}
+.prose strong{font-weight:600;color:var(--ink)}
+.prose code{
+  font-family:var(--mono);font-size:.86em;
+  background:var(--paper-shadow);padding:1px 6px;
+  border-radius:3px;color:var(--ink);
+}
+.prose a{color:var(--ink);border-bottom:1px solid var(--hair-hard);text-decoration:none;transition:color .15s,border-color .15s}
+.prose a:hover{color:var(--orange);border-bottom-color:var(--orange)}
+.prose-aside{
+  grid-column:3;
+  font-family:var(--narrow);
+  font-size:11px;font-weight:500;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--muted);
+  border-top:1px solid var(--ink);padding-top:14px;
+  line-height:1.8;
+}
+.prose-aside b{color:var(--ink);font-weight:700}
+
+.drop-cap::first-letter{
+  font-family:var(--disp);
+  font-variation-settings:"opsz" 144;
+  font-weight:700;
+  font-size:9.2em;
+  float:left;line-height:.78;
+  padding:.02em 12px 0 0;
+  margin:.02em 4px -.1em -2px;
+  color:var(--ink);
+}
+.drop-cap-orange::first-letter{
+  color:var(--orange);
+}
+
+@media(max-width:860px){
+  .prose-well{grid-template-columns:1fr;padding-left:20px;padding-right:20px}
+  .prose-well::before{display:none}
+  .prose-marginalia{display:none}
+  .prose{grid-column:1}
+  .prose-aside{grid-column:1;margin-top:20px}
+  .drop-cap::first-letter{font-size:6.6em}
+}
+
+.quiet-section{
+  max-width:1280px;margin:0 auto;padding:64px 28px 24px;
+  display:grid;grid-template-columns:repeat(12,1fr);gap:24px;
+}
+.quiet-head{
+  grid-column:1 / span 3;
+}
+.quiet-title{
+  font-family:var(--disp);font-style:italic;font-weight:400;
+  font-variation-settings:"opsz" 72;
+  font-size:32px;line-height:1;letter-spacing:-.02em;
+  color:var(--ink);
+}
+.quiet-title em{color:var(--orange);font-style:normal;font-weight:500}
+.quiet-kicker{
+  font-family:var(--narrow);
+  font-size:10px;font-weight:700;letter-spacing:.32em;
+  text-transform:uppercase;color:var(--muted);
+  margin-bottom:10px;
+}
+.quiet-body{
+  grid-column:5 / -1;
+  font-family:var(--disp);font-size:17px;line-height:1.65;color:var(--body);
+  padding-left:24px;border-left:1px solid var(--ink);
+}
+.quiet-body p{margin-bottom:16px}
+.quiet-body strong{font-weight:600;color:var(--ink)}
+@media(max-width:860px){
+  .quiet-head,.quiet-body{grid-column:1 / -1}
+  .quiet-body{padding-left:0;border-left:none;border-top:1px solid var(--ink);padding-top:18px}
+}
+
+.close-section{
+  background:var(--ink);color:var(--paper);
+  padding:120px 28px 140px;
+  position:relative;
+  text-align:center;
+}
+.close-kicker{
+  font-family:var(--narrow);
+  font-size:11px;font-weight:700;letter-spacing:.38em;
+  text-transform:uppercase;color:rgba(250,250,247,.5);
+  margin-bottom:48px;
+}
+.close-stack{
+  max-width:780px;margin:0 auto;
+  display:flex;flex-direction:column;gap:32px;
+}
+.close-line{
+  font-family:var(--disp);font-weight:400;
+  font-variation-settings:"opsz" 96;
+  font-size:clamp(26px,3.6vw,46px);
+  line-height:1.18;letter-spacing:-.018em;
+  color:var(--paper);
+}
+.close-line em{font-style:italic;color:var(--orange);font-weight:500}
+.close-final{
+  font-style:italic;color:var(--orange);
+  font-size:clamp(18px,2.2vw,26px);
+  line-height:1.5;letter-spacing:0;
+  max-width:580px;margin:0 auto;
+  font-variation-settings:"opsz" 36;
+}
+.close-coda-start{
+  margin-top:48px;position:relative;
+}
+.close-coda-start::before{
+  content:"";display:block;
+  width:32px;height:1px;
+  background:rgba(217,107,73,.45);
+  margin:0 auto 36px;
+}
+.close-mark{
+  margin-top:72px;
+  font-family:var(--disp);
+  font-size:48px;color:rgba(250,250,247,.3);
+  letter-spacing:.8em;
+}
+
+.log-divider{
+  background:var(--paper);
+  padding:96px 28px 48px;
+  text-align:center;
+  border-top:3px double var(--ink);
+  border-bottom:1px solid var(--ink);
+  max-width:1280px;margin:0 auto;
+}
+.log-divider-kicker{
+  font-family:var(--narrow);
+  font-size:11px;font-weight:700;letter-spacing:.48em;
+  text-transform:uppercase;color:var(--orange);
+  margin-bottom:14px;
+}
+.log-divider-title{
+  font-family:var(--disp);font-weight:700;
+  font-variation-settings:"opsz" 144;
+  font-size:clamp(56px,10vw,144px);
+  line-height:.9;letter-spacing:-.045em;color:var(--ink);
+  margin-bottom:16px;
+}
+.log-divider-title em{font-style:italic;font-weight:400}
+.log-divider-sub{
+  font-family:var(--disp);font-style:italic;
+  font-size:18px;color:var(--muted);max-width:640px;margin:0 auto;line-height:1.5;
+}
+
+.log-section{
+  padding:48px 28px;max-width:1280px;margin:0 auto;
+}
+.log-cat-head{
+  display:grid;
+  grid-template-columns:1fr auto;
+  gap:24px;align-items:baseline;
+  padding-bottom:18px;
+  border-bottom:1px solid var(--ink);
+  margin-bottom:0;
+}
+.log-cat-name{
+  font-family:var(--disp);font-weight:600;font-style:italic;
+  font-variation-settings:"opsz" 96;
+  font-size:clamp(36px,5vw,56px);
+  letter-spacing:-.02em;color:var(--ink);line-height:1;
+}
+.log-cat-count{
+  font-family:var(--narrow);
+  font-size:10px;font-weight:600;letter-spacing:.28em;
+  text-transform:uppercase;color:var(--muted);
+  text-align:right;
+}
+.log-cat-count b{color:var(--ink);font-weight:700;font-size:13px;display:block}
+
+.log-cat-deck{
+  font-family:var(--disp);
+  font-style:italic;
+  font-weight:400;
+  font-variation-settings:"opsz" 24;
+  font-size:18px;
+  line-height:1.45;
+  color:var(--muted);
+  margin-top:14px;
+  margin-bottom:8px;
+  max-width:760px;
+  letter-spacing:-.005em;
+}
+.log-cat-deck b{color:var(--ink);font-weight:600;font-style:normal}
+.log-cat-deck em{color:var(--orange);font-style:normal;font-weight:500}
+
+.log-entries{display:flex;flex-direction:column}
+.log-entry{
+  padding:24px 0;
+  border-bottom:1px solid var(--hair);
+  display:grid;
+  grid-template-columns:120px 1fr;gap:28px;
+}
+.log-entry-left{
+  display:flex;flex-direction:column;gap:8px;
+}
+.log-entry-date{
+  font-family:var(--narrow);
+  font-size:10px;font-weight:700;letter-spacing:.22em;
+  text-transform:uppercase;color:var(--ink);
+  font-variant-numeric:tabular-nums;
+}
+.log-tag{
+  font-family:var(--narrow);
+  font-size:9px;font-weight:700;letter-spacing:.22em;
+  text-transform:uppercase;padding:3px 7px;
+  display:inline-block;line-height:1.3;width:fit-content;
+}
+.log-tag.model{background:var(--orange);color:var(--paper)}
+.log-tag.api{background:var(--ink);color:var(--paper)}
+.log-tag.code{background:#3a3a3a;color:var(--paper)}
+.log-tag.apps{background:#5a5a5a;color:var(--paper)}
+.log-tag.sdk-py,.log-tag.sdk-ts{background:var(--paper);color:var(--ink);border:1px solid var(--ink)}
+.log-tag.research,.log-tag.news{background:var(--paper);color:var(--muted);border:1px solid var(--hair-hard)}
+.log-tag.deprecation{background:var(--paper-shadow);color:var(--muted);border:1px solid var(--hair-hard)}
+.log-entry-title{
+  font-family:var(--disp);font-weight:500;
+  font-variation-settings:"opsz" 72;
+  font-size:20px;letter-spacing:-.012em;
+  color:var(--ink);line-height:1.25;
+  margin-bottom:10px;
+}
+.log-entry-title a{color:inherit;text-decoration:none;border-bottom:1px solid var(--hair-hard)}
+.log-entry-title a:hover{border-bottom-color:var(--orange);color:var(--orange)}
+.log-entry-body{
+  font-family:var(--sans);font-size:14.5px;line-height:1.6;color:var(--body);
+  margin-bottom:12px;
+}
+.log-entry-how{
+  font-family:var(--sans);font-size:13.5px;line-height:1.6;color:var(--muted);
+  padding-top:12px;border-top:1px solid var(--hair-soft);
+}
+.log-entry-how b{font-family:var(--narrow);font-size:10px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--ink);display:block;margin-bottom:6px}
+.log-entry-how code{font-family:var(--mono);font-size:.86em;background:var(--paper-shadow);padding:1px 6px;border-radius:3px;color:var(--ink)}
+.log-entry-why{
+  font-family:var(--disp);font-style:italic;
+  font-size:14px;color:var(--muted);line-height:1.55;
+  margin-top:10px;padding-left:14px;
+  border-left:2px solid var(--orange);
+}
+.log-entry-why b{font-style:normal;font-family:var(--narrow);font-size:10px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--orange);display:block;margin-bottom:4px}
+
+@media(max-width:720px){
+  .log-entry{grid-template-columns:1fr;gap:12px}
+  .log-cat-head{grid-template-columns:auto 1fr}
+  .log-cat-count{grid-column:1 / -1;text-align:left;padding-top:8px;border-top:1px solid var(--hair)}
+}
+
+.colophon{
+  background:var(--ink);color:var(--paper);
+  padding:80px 28px 64px;
+  border-top:2px solid var(--orange);
+}
+.colophon-inner{
+  max-width:1280px;margin:0 auto;
+  display:grid;grid-template-columns:repeat(12,1fr);gap:32px;
+}
+.colophon-mast{
+  grid-column:1 / span 5;
+}
+.colophon-word{
+  font-family:var(--disp);font-weight:500;
+  font-variation-settings:"opsz" 144;
+  font-size:clamp(72px,10vw,120px);
+  line-height:.9;letter-spacing:-.04em;color:var(--paper);
+}
+.colophon-word .dot{color:var(--orange)}
+.colophon-tag{
+  margin-top:14px;
+  font-family:var(--disp);font-style:italic;font-size:18px;
+  color:rgba(250,250,247,.65);line-height:1.4;max-width:360px;
+}
+
+.colophon-body{
+  grid-column:6 / -1;
+  display:grid;grid-template-columns:repeat(3,1fr);gap:32px;
+}
+.colophon-col h4{
+  font-family:var(--narrow);
+  font-size:10px;font-weight:700;letter-spacing:.32em;
+  text-transform:uppercase;color:var(--orange);
+  margin-bottom:12px;padding-bottom:10px;
+  border-bottom:1px solid rgba(250,250,247,.2);
+}
+.colophon-col p,.colophon-col li{
+  font-family:var(--sans);font-size:13px;line-height:1.6;
+  color:rgba(250,250,247,.75);
+  margin-bottom:8px;list-style:none;
+}
+.colophon-col b{color:var(--paper);font-weight:600}
+.colophon-col em{font-style:italic;color:rgba(250,250,247,.9)}
+
+.colophon-foot{
+  grid-column:1 / -1;
+  margin-top:32px;padding-top:24px;
+  border-top:1px solid rgba(250,250,247,.2);
+  display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap;
+  font-family:var(--narrow);font-size:10px;font-weight:600;
+  letter-spacing:.28em;text-transform:uppercase;color:rgba(250,250,247,.5);
+}
+.colophon-foot b{color:var(--paper);font-weight:700}
+.colophon-foot .hot{color:var(--orange)}
+
+@media(max-width:860px){
+  .colophon-mast,.colophon-body{grid-column:1 / -1}
+  .colophon-body{grid-template-columns:1fr;gap:24px}
+}
+
+/* ---- Weekly-specific ---- */
+.weekly-header{
+  padding:64px 28px 48px;
+  max-width:1280px;margin:0 auto;
+  border-bottom:1px solid var(--ink);
+}
+.weekly-kicker{
+  font-family:var(--narrow);
+  font-size:10px;font-weight:700;letter-spacing:.38em;
+  text-transform:uppercase;color:var(--orange);
+  margin-bottom:20px;
+}
+.weekly-masthead{
+  font-family:var(--disp);font-weight:500;
+  font-variation-settings:"opsz" 144;
+  font-size:clamp(72px,14vw,192px);
+  line-height:.86;letter-spacing:-.04em;
+  color:var(--ink);
+  margin-bottom:28px;
+}
+.weekly-masthead .dot{color:var(--orange);display:inline-block}
+.weekly-cover-line{
+  font-family:var(--disp);font-style:italic;font-weight:400;
+  font-variation-settings:"opsz" 72;
+  font-size:clamp(22px,3.4vw,42px);
+  line-height:1.15;letter-spacing:-.015em;
+  color:var(--ink);
+  max-width:820px;
+  margin-bottom:28px;
+}
+.weekly-dateline{
+  font-family:var(--narrow);
+  font-size:11px;font-weight:600;letter-spacing:.28em;
+  text-transform:uppercase;color:var(--muted);
+  display:flex;gap:24px;flex-wrap:wrap;
+  padding-top:24px;
+  border-top:1px solid var(--hair);
+}
+.weekly-dateline span b{color:var(--ink)}
+
+.also-item{
+  padding:28px 0;
+  border-bottom:1px solid var(--hair);
+}
+.also-item:last-child{border-bottom:none}
+.also-item-kicker{
+  font-family:var(--narrow);
+  font-size:9px;font-weight:700;letter-spacing:.32em;
+  text-transform:uppercase;color:var(--orange);
+  margin-bottom:8px;
+}
+.also-item-title{
+  font-family:var(--disp);font-weight:600;
+  font-variation-settings:"opsz" 72;
+  font-size:22px;letter-spacing:-.015em;
+  color:var(--ink);margin-bottom:12px;line-height:1.2;
+}
+.also-item-body{
+  font-family:var(--disp);
+  font-variation-settings:"opsz" 14;
+  font-size:17px;line-height:1.6;color:var(--body);
+  max-width:680px;
+}
+.also-item-body a{color:var(--ink);border-bottom:1px solid var(--hair-hard);text-decoration:none}
+.also-item-body a:hover{color:var(--orange);border-bottom-color:var(--orange)}
+.also-item-source{
+  margin-top:8px;
+  font-family:var(--narrow);font-size:10px;font-weight:600;
+  letter-spacing:.2em;text-transform:uppercase;color:var(--gray);
+}
+.also-item-source a{color:inherit;border-bottom:1px solid currentColor;text-decoration:none}
+.also-item-source a:hover{color:var(--orange)}
+
+.ornament{
+  text-align:center;margin:64px auto;
+  font-family:var(--disp);font-size:16px;color:var(--hair-hard);
+  letter-spacing:1.2em;
+}
+
+@media(max-width:600px){
+  .section,.log-section,.feature-opener,.prose-well{padding-left:20px;padding-right:20px}
+  .weekly-header{padding:40px 20px 36px}
+}
+</style>
+</head>
+<body>
+
+<nav class="pub-bar">
+  <div class="pub-bar-left">
+    <span class="pub-bar-mark">Shipped<span class="dot">.</span></span>
+    <span class="pub-bar-sep pub-bar-hide-sm"></span>
+    <span class="pub-bar-meta pub-bar-hide-sm">Daily, Frontier</span>
+    <span class="pub-bar-sep pub-bar-hide-sm"></span>
+    <a href="https://id8labs.app/shipped" class="pub-bar-link pub-bar-hide-sm">id8Labs</a>
+  </div>
+  <div class="pub-bar-right">
+    <span class="pub-bar-folio pub-bar-hide-sm"><b>Oct 05</b></span>
+    <span class="pub-bar-sep pub-bar-hide-sm"></span>
+    <span class="pub-bar-meta pub-bar-hide-sm">Oct 04 to Oct 05</span>
+    <a href="#subscribe" class="pub-bar-cta">Subscribe</a>
+  </div>
+</nav>
+
+<header class="weekly-header">
+  <div class="weekly-kicker">Frontier Daily</div>
+  <h1 class="weekly-masthead">Shipped<span class="dot">.</span></h1>
+  <p class="weekly-cover-line">Four labs testified under oath. One sent a letter instead.</p>
+  <div class="weekly-dateline">
+    <span><b>Edition</b> Daily</span>
+    <span><b>Date</b> Monday, October 05, 2026</span>
+    <span><b>Window</b> Oct 04 to Oct 05</span>
+    <span><b>Labs</b> Anthropic, OpenAI, Google, Meta, Mistral, xAI</span>
+  </div>
+</header>
+
+<section class="open-section">
+  <div class="section">
+    <div class="section-folio">
+      <div class="section-folio-left">
+        <div class="folio"><div class="ruler"></div><b>The Open</b></div>
+      </div>
+      <span class="section-folio-sub">Monday's signal</span>
+    </div>
+    <div class="open-grid">
+      <div class="open-lead">
+        <div class="open-quote">Something that can end in human extinction deserves more than a <em>press briefing</em>.</div>
+        <div class="open-prose">
+          <p>Today, for the first time in American legislative history, AI company executives testified under oath about what their systems might do. Not in Washington, where the AI lobbying apparatus has kept Congress effectively paralyzed on meaningful AI legislation for three years, but in New York City, where Speaker Julie Menin ran the session like a federal grand jury with better attendance.</p>
+          <p>Fifty-one council members. Four labs. Three whistleblowers. One empty chair where SpaceXAI was supposed to sit.</p>
+          <p>The frontier is not an abstraction. It is a thing being built right now, in specific buildings, by specific people who apparently cannot agree on whether it might kill everyone. That disagreement showed up in New York today, in public, under oath, for the record.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="feature-opener">
+  <div class="vert-label">Lead<span class="vert-num">01</span></div>
+  <div class="feature-heading">
+    <div class="feature-kicker">NYC Council AI Hearing, October 05, 2026</div>
+    <h2 class="feature-title">The<br>Oath<br><em>Takers</em></h2>
+    <p class="feature-deck">New York City became the first government in the United States to compel sworn AI safety testimony. Four labs showed up. One sent a letter.</p>
+    <div class="feature-meta">
+      <span><b>Source:</b> CNBC, The Next Web, City and State New York, amNY</span>
+      &nbsp;&middot;&nbsp;
+      <span><b>Area:</b> Policy</span>
+    </div>
+  </div>
+  <div class="feature-right">
+    <span class="feature-right-label">By the numbers</span>
+    51 council members present<br>
+    4 labs testified under oath<br>
+    3 whistleblowers called<br>
+    1 subpoena defied<br>
+    0 companies quantified worst-case risk
+  </div>
+</div>
+<div class="prose-well">
+  <div class="prose-marginalia">NYC Council, Oct 05</div>
+  <div class="prose drop-cap drop-cap-orange">
+    <p>The New York City Council Committee of the Whole convened Monday morning with a property no previous AI oversight session had possessed: executives were legally required to tell the truth. Anthropic's Logan Graham, OpenAI's Morgan Dwyer, Google's Alice Friend, and Meta's Shane Cahill each appeared virtually. SpaceXAI, the entity formed from the February 2026 merger of SpaceX and xAI, received a subpoena and replied with a letter saying it wanted to cooperate. Speaker Julie Menin announced she is asking a judge to enforce it. New York City is now the first US legislative body to attempt compelled AI safety testimony. Whether the mechanism holds is a separate question.</p>
+    <p>The mechanism of the hearing itself is worth naming: the companies were asked, under oath, to quantify worst-case risk. None of them could, or did. That is not a talking point. It is a data point about what happens when labs' public safety messaging meets a formal proceeding. The companies have spent years arguing that safety is their first priority. The first time they had to make that claim under penalty of perjury, they declined to attach a number to it.</p>
+    <p>The blast radius of that non-answer extends past the courtroom. Jacob Coxon, who left Anthropic in September after work as a safety researcher, testified voluntarily and in person. He called current practices "extremely reckless" and drew a line that landed: "Companies run on a startup mindset: move fast, break things, fix them later. That works for a photo sharing app. It does not work for building the most powerful technology ever built." His conclusion, on the record: "On the current path, I think it is more likely than not that humanity loses control to these AIs, and it could end in human extinction." Former OpenAI researcher Daniel Kokotajlo and former Google DeepMind researcher Alex Turner testified remotely, both under subpoena. Turner warned that misaligned AI could prove "more dangerous than China."</p>
+    <p>The pattern: this is what accountability eventually looks like for an industry that outran federal oversight. Congress has been blocked on substantive AI legislation for three years. New York City moved first, and now has the distinction of putting AI executives under oath before any federal body managed to. The legislative proposals on the table include mandatory kill switches and whistleblower cash rewards. If even one passes, it sets a municipal template others can copy. Chicago, San Francisco, and Austin are all watching.</p>
+    <p>The read: SpaceXAI's absence is the most legible signal of the day. Four labs calculated that showing up, under oath, with no quantified risk answers, was better than the alternative. SpaceXAI did not agree. That calculation will now be tested in court, and the outcome will tell you something about whether municipal AI oversight has teeth or just subpoenas.</p>
+    <p>The builder's move: the whistleblower incentive bill is the one to watch. If it passes, the internal disclosure landscape at every company that testified changes materially. Understand now what your organization's posture is toward safety disclosures. The law may move faster than you expect.</p>
+  </div>
+</div>
+
+<div class="feature-opener">
+  <div class="vert-label">The Dig<span class="vert-num">02</span></div>
+  <div class="feature-heading">
+    <div class="feature-kicker">Mistral, October 04, 2026</div>
+    <h2 class="feature-title">Cover<br><em>Story</em></h2>
+    <p class="feature-deck">Mistral's Arthur Mensch called the US AI safety debate "a cover for negligence," one day before four labs were sitting under oath answering questions about extinction risk.</p>
+    <div class="feature-meta">
+      <span><b>Source:</b> CNBC, TheStreet, The Next Web</span>
+      &nbsp;&middot;&nbsp;
+      <span><b>Area:</b> Policy</span>
+    </div>
+  </div>
+</div>
+<div class="prose-well">
+  <div class="prose-marginalia">Mistral, Oct 04</div>
+  <div class="prose drop-cap drop-cap-orange">
+    <p>On Sunday, Mistral CEO Arthur Mensch told CNBC that parts of the American AI safety discourse amount to a cover story for rival negligence. His argument is precise: the issue is not the speed of development but the lack of robust monitoring and containment for autonomous agents. When agents accumulate many tools, he said, "they become quite dynamic and could do things their creators would not anticipate." His prescription is not slower ships but better cages, and he argued that the existential-risk framing obscures that engineering problem by turning it into a geopolitical one.</p>
+    <p>The blast radius is mostly rhetorical, but the timing is worth reading carefully. Mensch said this the day before Anthropic, OpenAI, Google, and Meta sat in front of 51 council members and could not, under oath, put a probability on worst-case outcomes. From one angle, Mensch looks wrong: the hearing room did not have the quality of a theatrical exercise. From another, his structural point lands: the companies' actual response to formal accountability was to decline to quantify the thing they have been warning about in their own public communications for years.</p>
+    <p>The contrast is the story here. Mistral's position is that existential-risk safety talk functions as a US competitive weapon dressed as ethics, used to slow rivals rather than solve the engineering problem. The NYC hearing is evidence that something more structural is developing, one where the rhetoric has attracted regulatory scrutiny that now applies to everyone. Mistral ships in Europe, and Le Chat has its own Brussels exposure. When European regulators ask Mensch the same questions NYC asked Monday, "negligence theater" will land differently in that room.</p>
+    <p>The builder's move: Mensch's actual technical claim, that agentic systems with broad tool access exhibit emergent behaviors their builders do not anticipate and need better runtime monitoring and containment, is worth taking seriously as an engineering position regardless of the political framing. If you run agents with significant tool access, that is a design consideration that exists independent of who is winning the safety-messaging war.</p>
+  </div>
+</div>
+
+<section class="section">
+  <div class="section-folio">
+    <div class="section-folio-left">
+      <div class="folio"><div class="ruler"></div><b>Also Shipped</b></div>
+    </div>
+    <span class="section-folio-sub">From the wire this window</span>
+  </div>
+
+  <div class="also-item">
+    <div class="also-item-kicker">Anthropic, October 02, 2026</div>
+    <div class="also-item-title">Claude Frontier Academy: $100M to Build 10,000 Deployed Engineers</div>
+    <div class="also-item-body">
+      <p>Anthropic announced a $100 million commitment to train 10,000 "Frontier Deployed Engineers" by end of 2027. The program, Claude Frontier Academy, pairs in-person graded training with a 12-week live deployment inside the engineer's own organization, supported by Anthropic staff. First cohorts draw from Accenture, Bain, Capgemini, McKinsey, Deloitte, Morgan Stanley, Novo Nordisk, and Commonwealth Bank of Australia, running in San Francisco, New York, and London. Participation is by nomination through an Anthropic account team.</p>
+      <p>The competitive read: OpenAI ran DevDay on September 29 to court developers directly. Anthropic is running Frontier Academy to build certified operators inside the enterprise accounts that deploy the developers. Different buyer, same territory. The first Frontier Deployed Engineers get certified in early 2027, which means the first wave of enterprise deployments built on this credential hits the market roughly the same time the NYC legislative cycle may produce actual AI rules.</p>
+    </div>
+    <div class="also-item-source"><a href="https://www.cnbc.com/2026/10/02/anthropic-to-invest-100-million-to-train-ai-engineer-talent.html">CNBC</a></div>
+  </div>
+
+  <div class="also-item">
+    <div class="also-item-kicker">Anthropic, October 01, 2026</div>
+    <div class="also-item-title">Claude Code v2.1.287: Mods Let Developers Reprogram the Agent at Runtime</div>
+    <div class="also-item-body">
+      <p>Claude Code v2.1.287 ships Mods, TypeScript handlers that run inside Claude Code and change its behavior before and during execution. A mod can rewrite a prompt before it goes out, block or redirect tool calls, approve permission requests programmatically, add slash commands, and draw new UI panes in the interface. Mods ship inside plugins, installed via <code>/plugin</code> in the CLI or desktop app. A built-in first-party mod, "You should know," runs a side agent that flags things the main agent and developer might miss.</p>
+      <p>The contrast with OpenAI is clean: the Agents API with computer use (announced September 29 at DevDay) extends agents outward into operating third-party software. Anthropic's Mods extend Claude Code inward, making the agent itself programmable by the developer at runtime. Two different bets on where the control surface for agentic work should live.</p>
+    </div>
+    <div class="also-item-source"><a href="https://code.claude.com/docs/en/changelog">Claude Code Changelog</a></div>
+  </div>
+
+  <div class="also-item">
+    <div class="also-item-kicker">xAI, October 02, 2026</div>
+    <div class="also-item-title">Grok 4.7 in Ramp Router at 50% Off; Voice Transcription 1.0 Retired</div>
+    <div class="also-item-body">
+      <p>Grok 4.7, carrying a 500k context window, became available inside Ramp Router, xAI's model-routing platform, with a 50% discount through October 6, 2026. Separately, grok-voice-transcribe-1.0 reached end of life; all requests to that endpoint now route automatically to grok-voice-transcribe-2.0 at the same price, with higher accuracy. No migration action required. SpaceXAI's decision to defy Monday's subpoena adds a legal dimension that its model releases do not. That situation will play out in court.</p>
+    </div>
+    <div class="also-item-source">xAI Release Notes</div>
+  </div>
+</section>
+
+<div class="quiet-section">
+  <div class="quiet-head">
+    <div class="quiet-kicker">Quiet on the Wire</div>
+    <h2 class="quiet-title">What's <em>next</em></h2>
+  </div>
+  <div class="quiet-body">
+    <p>The NYC Council's AI safety bills, including mandatory kill switch requirements and whistleblower cash rewards, move to committee markup following Monday's hearing. If Speaker Menin wins the subpoena enforcement motion against SpaceXAI, it establishes a municipal compulsion precedent that other US cities can follow immediately.</p>
+    <p>Mistral, on track to cross $1 billion ARR before year end per the September 8 report, will face European regulatory scrutiny that will not accept "negligence theater" as a framing. Watch for Le Chat's next model release and how Mensch positions safety compliance in the EU context.</p>
+    <p><strong>OpenAI's Dots agents</strong> and ChatGPT Finances (both September 29) are spreading through enterprise accounts this week. Early friction reports from computer-use integrations at scale are expected.</p>
+  </div>
+</div>
+
+<section class="close-section">
+  <div class="close-kicker">The Close</div>
+  <div class="close-stack">
+    <div class="close-line">Four labs sat in front of 51 council members and could not name the probability of the thing they say they are worried about.</div>
+    <div class="close-line">One CEO called the whole debate a cover story, the day before it became a legal proceeding.</div>
+    <div class="close-coda-start">
+      <p class="close-final">The frontier has always been a race. Today was the first day it had a courtroom.</p>
+    </div>
+  </div>
+  <div class="close-mark">&#x25cf;</div>
+</section>
+
+<div class="log-divider" id="log">
+  <div class="log-divider-kicker">Back of Book</div>
+  <h2 class="log-divider-title">Release<br><em>Log</em></h2>
+  <p class="log-divider-sub">Every confirmed item from Oct 04 to Oct 05, 2026. Source-linked. No aggregation.</p>
+</div>
+
+<div class="log-section">
+  <div class="log-cat-head">
+    <div class="log-cat-name">Policy and News</div>
+    <div class="log-cat-count"><b>4</b> entries</div>
+  </div>
+  <p class="log-cat-deck">NYC Council hearing, whistleblower testimony, a defied subpoena, and Mistral's CEO on the safety debate.</p>
+  <div class="log-entries">
+    <div class="log-entry">
+      <div class="log-entry-left">
+        <div class="log-entry-date">Oct 05</div>
+        <span class="log-tag news">news</span>
+      </div>
+      <div>
+        <div class="log-entry-title"><a href="https://www.cnbc.com/2026/10/05/anthropic-openai-google-meta-execs-testify-nyc-council-ai-hearing.html">NYC Council AI Safety Hearing: Anthropic, OpenAI, Google, Meta Testify Under Oath</a></div>
+        <div class="log-entry-body">Senior representatives from Anthropic (Logan Graham), OpenAI (Morgan Dwyer), Google (Alice Friend), and Meta (Shane Cahill) testified virtually before all 51 NYC Council members on October 5. SpaceXAI defied a subpoena; Speaker Menin is seeking court enforcement. Bills on the table include mandatory kill switches and whistleblower cash rewards. None of the four companies could quantify worst-case risk under oath. NYC is now the first US legislative body to compel sworn AI safety testimony.</div>
+      </div>
+    </div>
+    <div class="log-entry">
+      <div class="log-entry-left">
+        <div class="log-entry-date">Oct 05</div>
+        <span class="log-tag news">news</span>
+      </div>
+      <div>
+        <div class="log-entry-title"><a href="https://thenextweb.com/news/nyc-council-ai-hearing-coxon-kokotajlo-turner">Whistleblowers Testify: Coxon (Anthropic), Kokotajlo (OpenAI), Turner (Google DeepMind)</a></div>
+        <div class="log-entry-body">Jacob Coxon (former Anthropic, voluntary), Daniel Kokotajlo (former OpenAI, under subpoena), and Alex Turner (former Google DeepMind, under subpoena) each testified at the NYC Council hearing. Coxon: "On the current path, I think it is more likely than not that humanity loses control to these AIs, and it could end in human extinction." Turner warned misaligned AI could be more dangerous than China. Coxon left Anthropic in September 2026.</div>
+      </div>
+    </div>
+    <div class="log-entry">
+      <div class="log-entry-left">
+        <div class="log-entry-date">Oct 05</div>
+        <span class="log-tag news">news</span>
+      </div>
+      <div>
+        <div class="log-entry-title"><a href="https://lavocedinewyork.com/en/new-york/2026/10/05/nyc-council-threatens-legal-action-after-spacexai-skips-ai-hearing/">SpaceXAI Defies NYC Council Subpoena, Council Pursues Legal Action</a></div>
+        <div class="log-entry-body">SpaceXAI (the entity from the February 2026 SpaceX and xAI merger) received a subpoena to send a representative to testify October 5. It replied with a letter expressing willingness to cooperate but sent no one. Speaker Menin announced she will seek judicial enforcement. SpaceXAI is the only major US AI company that neither responded to the original invitation nor complied with the subpoena.</div>
+      </div>
+    </div>
+    <div class="log-entry">
+      <div class="log-entry-left">
+        <div class="log-entry-date">Oct 04</div>
+        <span class="log-tag news">news</span>
+      </div>
+      <div>
+        <div class="log-entry-title"><a href="https://thestreet.com/technology/mistral-ceo-has-blunt-take-on-ai-safety-fight-cites-negligence">Mistral CEO: AI Safety Debate Is "a Cover for Negligence"</a></div>
+        <div class="log-entry-body">Arthur Mensch told CNBC on October 4 that parts of the US AI safety discussion have become "a cover for the negligence" of rival labs. He argued the real problem is insufficient monitoring and containment for agentic systems, not development pace. His prescription: better runtime containment mechanisms, not slower releases. Mensch did not name specific rivals. Mistral is on track to cross $1 billion ARR before year end.</div>
+        <div class="log-entry-why"><b>Why it matters</b> Mensch's technical claim about agentic systems and containment is the part worth extracting from the competitive framing: unpredictable behavior at scale with broad tool access is an engineering problem regardless of who is winning the safety-messaging debate.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="log-section">
+  <div class="log-cat-head">
+    <div class="log-cat-name">Anthropic</div>
+    <div class="log-cat-count"><b>3</b> entries</div>
+  </div>
+  <p class="log-cat-deck">Frontier Academy commits $100M to enterprise engineer training, Claude Code ships programmable Mods, and Claude for Government reaches general availability.</p>
+  <div class="log-entries">
+    <div class="log-entry">
+      <div class="log-entry-left">
+        <div class="log-entry-date">Oct 02</div>
+        <span class="log-tag news">news</span>
+      </div>
+      <div>
+        <div class="log-entry-title"><a href="https://www.cnbc.com/2026/10/02/anthropic-to-invest-100-million-to-train-ai-engineer-talent.html">Claude Frontier Academy: $100M Commitment, 10,000 Frontier Deployed Engineers by 2027</a></div>
+        <div class="log-entry-body">Anthropic announced a $100 million program to train 10,000 "Frontier Deployed Engineers" by end of 2027. In-person graded training plus a 12-week live deployment inside the engineer's own company. Launch cohorts: Accenture, Bain, Capgemini, McKinsey, Deloitte, Morgan Stanley, Novo Nordisk, Commonwealth Bank of Australia. Running in San Francisco, New York, and London. Participation by nomination through Anthropic account teams. First certifications expected early 2027.</div>
+        <div class="log-entry-how"><b>How to use</b> Contact your Anthropic account team to nominate engineers for an upcoming cohort.</div>
+      </div>
+    </div>
+    <div class="log-entry">
+      <div class="log-entry-left">
+        <div class="log-entry-date">Oct 01</div>
+        <span class="log-tag code">code</span>
+      </div>
+      <div>
+        <div class="log-entry-title"><a href="https://code.claude.com/docs/en/changelog">Claude Code v2.1.287: Mods and Plugins Ship</a></div>
+        <div class="log-entry-body">Mods are TypeScript handlers running inside Claude Code that can rewrite prompts before execution, redirect or block tool calls, approve permission requests programmatically, add slash commands, and draw new UI panes. Mods ship inside plugins. Built-in first-party mod "You should know" runs a side agent flagging items the main agent or developer might miss.</div>
+        <div class="log-entry-how"><b>How to use</b> Run <code>claude update</code> to get v2.1.287. Install mods via <code>/plugin</code> in CLI or desktop app. Enable the built-in mod: <code>/plugin enable cc-plugin-you-should-know@builtin</code> (requires first-party session with telemetry enabled).</div>
+      </div>
+    </div>
+    <div class="log-entry">
+      <div class="log-entry-left">
+        <div class="log-entry-date">Sep 30</div>
+        <span class="log-tag apps">apps</span>
+      </div>
+      <div>
+        <div class="log-entry-title"><a href="https://www.executivebiz.com/articles/claude-for-government-fedramp-high-general-availability">Claude for Government: Generally Available in FedRAMP High Environment</a></div>
+        <div class="log-entry-body">Claude for Government is now generally available for eligible US federal and state agencies in a FedRAMP High-authorized environment. Includes spend controls, audit logs, and desktop file support. Claude Code CLI and Claude for Microsoft 365 are entering early access in the same environment. Procurement through Anthropic direct, Carahsoft, or GSA OneGov. Usage-based pricing; reported $1-per-user promotional rate expires October 31, 2026.</div>
+        <div class="log-entry-how"><b>How to use</b> Procure through Anthropic, Carahsoft, or GSA OneGov. Contact your Anthropic account team for Claude Code early access in the FedRAMP environment.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="log-section">
+  <div class="log-cat-head">
+    <div class="log-cat-name">xAI / SpaceXAI</div>
+    <div class="log-cat-count"><b>2</b> entries</div>
+  </div>
+  <p class="log-cat-deck">Grok 4.7 routing discount, voice transcription upgraded automatically.</p>
+  <div class="log-entries">
+    <div class="log-entry">
+      <div class="log-entry-left">
+        <div class="log-entry-date">Oct 02</div>
+        <span class="log-tag api">api</span>
+      </div>
+      <div>
+        <div class="log-entry-title">Grok 4.7 Available in Ramp Router, 50% Off Through Oct 06</div>
+        <div class="log-entry-body">Grok 4.7, with 500k context window, became available inside Ramp Router, xAI's model-routing platform. xAI is offering 50% off access through October 6, 2026. Targets coding, agentic tasks, and knowledge work.</div>
+        <div class="log-entry-how"><b>How to use</b> Access via Ramp Router; standard pricing applies after October 6.</div>
+      </div>
+    </div>
+    <div class="log-entry">
+      <div class="log-entry-left">
+        <div class="log-entry-date">Oct 02</div>
+        <span class="log-tag deprecation">deprecation</span>
+      </div>
+      <div>
+        <div class="log-entry-title">grok-voice-transcribe-1.0 End of Life, All Requests Route to 2.0</div>
+        <div class="log-entry-body">grok-voice-transcribe-1.0 reached end of life on October 2. All requests to the v1 endpoint now route automatically to grok-voice-transcribe-2.0 at the same price point, with higher accuracy. No migration action required.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer class="colophon">
+  <div class="colophon-inner">
+    <div class="colophon-mast">
+      <div class="colophon-word">Shipped<span class="dot">.</span></div>
+      <div class="colophon-tag">Daily frontier digest. Six labs, one feed. Monday, October 05, 2026.</div>
+    </div>
+    <div class="colophon-body">
+      <div class="colophon-col">
+        <h4>Published by</h4>
+        <p><b>id8Labs</b></p>
+        <p><a href="https://id8labs.app/shipped" class="colophon-link">id8labs.app/shipped</a></p>
+        <p><em>Shipped.</em> covers Anthropic, OpenAI, Google DeepMind, Meta AI, Mistral, and xAI.</p>
+      </div>
+      <div class="colophon-col">
+        <h4>This edition</h4>
+        <p><b>Date:</b> Monday, October 05, 2026</p>
+        <p><b>Window:</b> Oct 04 to Oct 05</p>
+        <p><b>Items covered:</b> 9</p>
+      </div>
+      <div class="colophon-col">
+        <h4>Archive</h4>
+        <p>Daily pages: <a href="https://eddiebelaval.github.io/shipped/anthropic-daily/" class="colophon-link">GitHub Pages</a></p>
+        <p>Hub: <a href="https://id8labs.app/shipped" class="colophon-link">id8labs.app/shipped</a></p>
+      </div>
+    </div>
+    <div class="colophon-foot">
+      <span>Published <b>2026-10-05</b></span>
+      <span><b class="hot">Shipped.</b> Daily</span>
+      <span>id8Labs</span>
+    </div>
+  </div>
+</footer>
+
+<style>
+  /* Spine CTA. Lives here rather than in <head> because two published pages
+     are truncated and have no </head> to inject into; CSS applies document-wide
+     from anywhere, so the end of <body> is the one anchor every page has.
+     Only takes effect on pages that actually carry a pub-bar. */
+  .pub-bar-cta{
+    display:inline-block;
+    background:var(--ink, #0b0b0b);
+    color:var(--paper, #fafaf7);
+    text-decoration:none;
+    border:1px solid var(--ink, #0b0b0b);
+    border-radius:10px;
+    font-family:var(--narrow, 'Archivo Narrow','Archivo',system-ui,sans-serif);
+    font-weight:700;
+    font-size:11px;
+    letter-spacing:.2em;
+    text-transform:uppercase;
+    padding:6px 14px;
+    transition:background .15s ease,border-color .15s ease;
+  }
+  .pub-bar-cta:hover{
+    background:var(--orange, #ff6b35);
+    border-color:var(--orange, #ff6b35);
+    color:var(--ink, #0b0b0b);
+  }
+  @media (max-width:720px){
+    .pub-bar-hide-sm{display:none}
+    .pub-bar-cta{padding:5px 10px;letter-spacing:.12em}
+  }
+
+  .ship-sub {
+    background: var(--ink, #0b0b0b);
+    color: var(--paper, #fafaf7);
+    padding: 72px 64px;
+    margin: 56px auto;
+    max-width: 1280px;
+    text-align: center;
+    /* clears the sticky pub-bar when jumped to from the top CTA */
+    scroll-margin-top: 64px;
+  }
+  .ship-sub-kicker {
+    font-family: var(--narrow, 'Archivo Narrow','Archivo',system-ui,sans-serif);
+    font-weight: 700;
+    font-size: 12px;
+    letter-spacing: .25em;
+    text-transform: uppercase;
+    color: var(--orange, #ff6b35);
+    margin-bottom: 18px;
+  }
+  .ship-sub h3 {
+    font-family: var(--disp, 'Fraunces',Georgia,serif);
+    font-weight: 600;
+    font-style: italic;
+    font-size: clamp(26px, 3.6vw, 40px);
+    line-height: 1.15;
+    margin: 0 0 16px;
+    color: var(--paper, #fafaf7);
+  }
+  .ship-sub p {
+    font-family: var(--sans, 'Archivo',system-ui,sans-serif);
+    font-size: 15px;
+    line-height: 1.6;
+    color: rgba(250,250,247,.72);
+    max-width: 560px;
+    margin: 0 auto 28px;
+  }
+  .ship-sub-form {
+    display: flex;
+    flex-direction: column;
+    max-width: 480px;
+    margin: 0 auto;
+  }
+  .ship-sub-row {
+    display: flex;
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.12);
+    transition: border-color .15s;
+  }
+  .ship-sub-row:focus-within { border-color: var(--orange, #ff6b35); }
+  .ship-sub-form input[type="email"] {
+    flex: 1;
+    background: transparent;
+    border: none;
+    outline: none;
+    color: var(--paper, #fafaf7);
+    font-family: var(--sans, 'Archivo',system-ui,sans-serif);
+    font-size: 15px;
+    padding: 16px 20px;
+    -webkit-appearance: none;
+    min-width: 0;
+  }
+  .ship-sub-form input::placeholder { color: rgba(250,250,247,.4); }
+  /* Honeypot: off-screen rather than display:none, so naive bots still fill it */
+  .ship-sub-hp {
+    position: absolute !important;
+    left: -9999px !important;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+  }
+  .ship-sub-form button {
+    background: var(--orange, #ff6b35);
+    color: var(--ink, #0b0b0b);
+    border: none;
+    font-family: var(--narrow, 'Archivo Narrow','Archivo',system-ui,sans-serif);
+    font-weight: 700;
+    font-size: 12px;
+    letter-spacing: .2em;
+    text-transform: uppercase;
+    padding: 0 28px;
+    cursor: pointer;
+    transition: background .15s;
+    white-space: nowrap;
+  }
+  .ship-sub-form button:hover { background: #ff5722; }
+  .ship-sub-form button:disabled { opacity: .5; cursor: wait; }
+  .ship-sub-cadences {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    margin-top: 16px;
+  }
+  .ship-sub-cadence {
+    font-family: var(--narrow, 'Archivo Narrow','Archivo',system-ui,sans-serif);
+    font-size: 11px;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    color: rgba(250,250,247,.66);
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    cursor: pointer;
+  }
+  .ship-sub-cadence input { accent-color: var(--orange, #ff6b35); cursor: pointer; }
+  .ship-sub-status {
+    margin-top: 16px;
+    font-family: var(--sans, 'Archivo',system-ui,sans-serif);
+    font-size: 14px;
+    color: var(--orange, #ff6b35);
+    min-height: 20px;
+  }
+  .ship-sub-status.error { color: #ff8b6b; }
+  @media (max-width: 540px) {
+    .ship-sub { padding: 48px 22px; margin: 28px auto; }
+    .ship-sub-cadences { gap: 14px; }
+  }
+</style>
+<section class="ship-sub" id="subscribe">
+  <div class="ship-sub-kicker">Stay on the frontier</div>
+  <h3>Get <em>Shipped.</em> in your inbox.</h3>
+  <p>Daily digest at 9 PM ET. Weekly magazine every Friday morning. Six labs, one feed. No spam, one-click unsubscribe.</p>
+  <form class="ship-sub-form" id="ship-sub-form">
+    <div class="ship-sub-row">
+      <input type="email" name="email" placeholder="your@email.com" required autocomplete="email" aria-label="Email address">
+      <button type="submit" id="ship-sub-btn">Subscribe &#x2192;</button>
+    </div>
+    <input type="text" name="website" class="ship-sub-hp" tabindex="-1" autocomplete="off" aria-hidden="true">
+    <div class="ship-sub-cadences">
+      <label class="ship-sub-cadence"><input type="checkbox" name="cadences" value="nightly" checked> Daily digest</label>
+      <label class="ship-sub-cadence"><input type="checkbox" name="cadences" value="weekly" checked> Weekly magazine</label>
+      <label class="ship-sub-cadence"><input type="checkbox" name="cadences" value="monthly"> Monthly roundup</label>
+    </div>
+  </form>
+  <div class="ship-sub-status" id="ship-sub-status" aria-live="polite"></div>
+</section>
+<script>
+(function () {
+  var form = document.getElementById('ship-sub-form');
+  if (!form) return;
+  var btn = document.getElementById('ship-sub-btn');
+  var status = document.getElementById('ship-sub-status');
+
+  form.addEventListener('submit', async function (e) {
+    e.preventDefault();
+    var data = new FormData(form);
+    var email = (data.get('email') || '').toString().trim();
+    if (!email) return;
+
+    var cadences = data.getAll('cadences').map(String);
+    status.className = 'ship-sub-status';
+    status.textContent = '';
+    btn.disabled = true;
+    btn.textContent = 'Subscribing…';
+
+    try {
+      var res = await fetch('https://id8labs.app/api/newsletter/subscribe', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          email: email,
+          source: 'shipped-daily',
+          website: (data.get('website') || '').toString(),
+          cadences: cadences.length ? cadences : ['nightly', 'weekly']
+        })
+      });
+      var body = await res.json().catch(function () { return {}; });
+      if (res.ok) {
+        status.textContent = body.isNewSubscriber === false
+          ? 'Already on the list.'
+          : 'You’re in. Next edition lands soon.';
+        if (body.isNewSubscriber !== false) form.reset();
+      } else {
+        status.className = 'ship-sub-status error';
+        status.textContent = body.error || 'Could not subscribe right now. Try again in a moment.';
+      }
+    } catch (err) {
+      status.className = 'ship-sub-status error';
+      status.textContent = 'Could not subscribe right now. Try again in a moment.';
+    } finally {
+      btn.disabled = false;
+      btn.textContent = 'Subscribe →';
+    }
+  });
+})();
+</script>
+
+</body>
+</html>
