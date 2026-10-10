@@ -14,7 +14,7 @@ The visual identity spec for `id8labs.app/shipped/`. Read this before touching a
 
 Eddie, 2026-10-10: Shipped. should feel more like a newspaper, and start running images, monotone dithered art in orange ink. Mockups: `content/mockups/2026-10-10-newspaper/` (`index.html` four directions, `hybrid.html` the pick). Layout is still open for ratification; the image rules below Eddie set in this session.
 
-**Layout (pick under review).** The hybrid: Broadsheet bones (centered flag, double rules, three ruled columns, the Log and Term of the Issue in the rail) with a riso-tabloid cover splash above the fold. Concept statement section 1 said "Not imagery." This revision retires that line for the front-of-book only; the back-of-book log stays typographic.
+**Layout (pick under review).** The hybrid: Broadsheet bones (centered flag, double rules, three ruled columns, the Log and Term of the Issue in the rail) with a full-width riso halftone cover photo above the fold. No type over the photo (Eddie 2026-10-10: the giant splash headline was jarring); the cover headline sits beneath it in Fraunces. Concept statement section 1 said "Not imagery." This revision retires that line for the front-of-book only; the back-of-book log stays typographic.
 
 **One ink, two screens.**
 - **Atkinson** is the everyday treatment: every photo inside the paper, any size.
