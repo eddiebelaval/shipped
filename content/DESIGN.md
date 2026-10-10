@@ -10,6 +10,26 @@ The visual identity spec for `id8labs.app/shipped/`. Read this before touching a
 
 ## Revision History
 
+### Revision 6 (PROPOSED 2026-10-10): The Paper Gets Pictures
+
+Eddie, 2026-10-10: Shipped. should feel more like a newspaper, and start running images, monotone dithered art in orange ink. Mockups: `content/mockups/2026-10-10-newspaper/` (`index.html` four directions, `hybrid.html` the pick). Layout is still open for ratification; the image rules below Eddie set in this session.
+
+**Layout (pick under review).** The hybrid: Broadsheet bones (centered flag, double rules, three ruled columns, the Log and Term of the Issue in the rail) with a riso-tabloid cover splash above the fold. Concept statement section 1 said "Not imagery." This revision retires that line for the front-of-book only; the back-of-book log stays typographic.
+
+**One ink, two screens.**
+- **Atkinson** is the everyday treatment: every photo inside the paper, any size.
+- **Riso halftone** is the loud one: the cover splash or a full-bleed opener, at most once per issue, and **never rendered below 700px wide**. The press refuses to render it smaller, and the layout swaps the cover to Atkinson on screens under 760px.
+- Retired: Bayer stipple and ink-plus-orange duotone. One ink is the identity.
+- Ink is `#EE5C28` on paper `#FAF8F4`, a touch deeper than the UI orange so it reads as printed.
+
+**Auto exposure.** Every render is exposure-corrected to a target ink coverage (Atkinson 42%, halftone 40%) so photos stay legible no matter how dark or bright the source. Automatic flags: under 25% ink (washed out), over 60% (too heavy), or more than 18% of the frame solid ink (flooded).
+
+**Human review is a gate.** Eddie, 2026-10-10: "we must review all images before publish for legibility and aesthetic." Every render lands in `content/articles/issue-NN/images/manifest.json` as pending. `image-press.py review` builds a page showing each image at its real size and at column size. `pnpm publish` runs `image-press.py check` before staging and exits 6 if any image is pending, rejected, or uncredited. Re-rendering an image with different pixels resets it to pending.
+
+**Licensing.** Dithering does not change a photo's license. Every source needs a `credits.json` entry; CC BY images carry the photographer's name in the caption. Preferred sources: public-domain government photos, credited CC BY, Eddie's own, or generated.
+
+**Tooling.** `pipeline/scripts/image-press.py` (render, review, approve, reject, check). Gate: `pipeline/src/orchestrate/image-gate.ts`.
+
 ### Revision 5.0 — Type + Paper Reconciliation (AUTHORED 2026-06-08, Iris)
 
 A design pass before crystallizing the new auto-generated release cadence (Nightly / Weekly / Monthly Anthropic pages) caught a load-bearing drift: **the spec below describes a magazine that no longer ships.** The implementation in `pipeline/src/render/template.html` moved off Rev 4's entire type system and paper value during Issue 02/03 production, and the spec was never updated. The Rev 5 full-triangulation pass (see the PLANNED block below) is still open; this 5.0 block is the narrow, urgent reconciliation so no future session "fixes" the template back to a spec that is stale.

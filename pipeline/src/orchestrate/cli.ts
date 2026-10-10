@@ -23,6 +23,7 @@
  *   3  Scraper failed in a way that should block (rare)
  *   4  Git working tree dirty in id8labs — refuse to stage on top of unrelated changes
  *   5  CLI error (bad args, missing file, etc.)
+ *   6  Image gate blocked: an image is unreviewed, rejected, or uncredited (image-press.py)
  */
 
 import { existsSync } from 'node:fs';
@@ -31,6 +32,7 @@ import { resolve, basename } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { dirname } from 'node:path';
 import { beatHandles } from '../scrape/sources.js';
+import { issueImageDir } from './image-gate.js';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const PIPELINE_ROOT = resolve(__dirname, '..', '..');
@@ -198,6 +200,19 @@ async function main() {
     log.step(4, 4, 'Stage — SKIPPED');
     log.banner('Pipeline complete (skip-stage / dry).');
     return;
+  }
+
+  // Image gate: no image stages until a human has reviewed it (Eddie, 2026-10-10).
+  const imageDir = issueImageDir(opts.markdownPath, resolve(PIPELINE_ROOT, '..', 'content'));
+  if (imageDir) {
+    const gateExit = await runStep('image-gate', 'python3', [
+      resolve(PIPELINE_ROOT, 'scripts', 'image-press.py'), 'check', imageDir,
+    ]);
+    if (gateExit !== 0) {
+      log.error('Image gate blocked. Review every image (image-press.py review), approve, re-run.');
+      process.exit(6);
+    }
+    log.ok('Image gate clear: every image reviewed and credited');
   }
 
   log.step(4, 4, 'Stage — git add (NEVER commits, NEVER pushes)');
