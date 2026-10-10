@@ -1660,7 +1660,7 @@ body::before{
       var res = await fetch('https://id8labs.app/api/newsletter/subscribe', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email: email, name: name, cadences: cadences, source: 'shipped-issue-{{issue_num}}', website: (form.website && form.website.value) || '' })
+        body: JSON.stringify({ email: email, name: name, cadences: cadences, source: 'shipped-magazine-issue-{{issue_num}}', website: (form.website && form.website.value) || '' })
       });
       var data = await res.json().catch(function(){ return {}; });
       if (res.ok) {
