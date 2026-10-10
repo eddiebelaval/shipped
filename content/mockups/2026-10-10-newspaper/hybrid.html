@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Shipped. Hybrid Front</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,700;0,9..144,800;0,9..144,900;1,9..144,400;1,9..144,700;1,9..144,900&family=Archivo+Narrow:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --orange:#FF6B35; --ink-orange:#EE5C28;
+  --ink:#0b0b0b; --paper:#FAF8F4; --body:#2a2a2a; --muted:#5a5a5a;
+  --hair:rgba(11,11,11,.14); --hair-hard:rgba(11,11,11,.55);
+  --disp:'Fraunces','Times New Roman',serif;
+  --narrow:'Archivo Narrow',system-ui,sans-serif; --mono:'JetBrains Mono',ui-monospace,monospace;
+}
+html{-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+body{background:var(--paper);color:var(--ink);font-family:var(--disp);overflow-x:hidden}
+body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:1000;opacity:.28;mix-blend-mode:multiply;
+  background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='180' height='180'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' seed='3'/><feColorMatrix values='0 0 0 0 0.02  0 0 0 0 0.02  0 0 0 0 0.02  0 0 0 0.22 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>")}
+img{display:block;width:100%;height:auto;image-rendering:pixelated}
+.dot{color:var(--orange)}
+.page{max-width:1320px;margin:0 auto;padding:22px 28px 64px}
+.kick{font-family:var(--narrow);font-weight:700;font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-orange)}
+.cap{font-family:var(--narrow);font-size:12px;color:var(--muted);margin-top:6px;letter-spacing:.02em}
+.cap i{font-family:var(--disp)}
+.meta{font-family:var(--narrow);font-size:13px;color:var(--muted);letter-spacing:.02em}
+code{font-family:var(--mono);font-size:.84em;background:rgba(238,92,40,.09);padding:0 .25em}
+
+/* nameplate (A) */
+.ears{display:flex;justify-content:space-between;align-items:end;gap:20px;font-family:var(--narrow);font-size:13px;letter-spacing:.06em;padding-bottom:10px;border-bottom:1px solid var(--ink)}
+.motto{text-align:center;font-family:var(--narrow);font-size:12px;letter-spacing:.42em;text-transform:uppercase;margin:16px 0 0;color:var(--muted)}
+.flag{text-align:center;font-weight:900;font-size:clamp(64px,13vw,168px);line-height:.9;letter-spacing:-.035em;margin:6px 0 4px;font-variation-settings:"opsz" 144}
+.weather{margin-top:30px;text-align:center;font-style:italic;font-size:17px;color:var(--body);margin-bottom:12px}
+.nav{border-top:4px double var(--ink);border-bottom:1px solid var(--ink);display:flex;justify-content:center;flex-wrap:wrap;gap:6px 32px;padding:10px 0;font-family:var(--narrow);font-weight:700;font-size:13px;letter-spacing:.2em;text-transform:uppercase}
+.nav span:first-child{color:var(--ink-orange)}
+
+/* cover splash (B), halftone, >=700px only */
+.cover{position:relative;margin-top:22px;border:3px solid var(--ink);overflow:hidden}
+.cover img{max-height:600px;object-fit:cover}
+.cover .stamp{position:absolute;left:24px;right:24px;bottom:34px;line-height:1}
+.splash{font-family:var(--narrow);font-weight:700;font-size:clamp(52px,11vw,170px);line-height:.82;letter-spacing:-.02em;text-transform:uppercase;color:var(--ink);background:var(--paper);display:inline;padding:0 .12em;box-decoration-break:clone;-webkit-box-decoration-break:clone}
+.cover-deck{display:grid;grid-template-columns:1fr auto;gap:24px;align-items:end;margin-top:14px;padding-bottom:18px;border-bottom:4px double var(--ink)}
+.cover-deck p{font-weight:600;font-size:clamp(22px,2.4vw,30px);line-height:1.2;letter-spacing:-.01em;max-width:860px}
+.cover-deck em{color:var(--ink-orange)}
+.cover-deck .jump{font-family:var(--narrow);font-weight:700;font-size:12px;letter-spacing:.2em;text-transform:uppercase;white-space:nowrap}
+
+/* broadsheet grid (A), Atkinson everywhere inside */
+.grid{display:grid;grid-template-columns:1.55fr 1fr .9fr;margin-top:26px}
+.grid>*{padding:0 24px}
+.grid>*:first-child{padding-left:0}
+.grid>*:last-child{padding-right:0}
+.grid>*+*{border-left:1px solid var(--hair-hard)}
+h1{font-weight:800;font-size:clamp(38px,4.4vw,60px);line-height:.98;letter-spacing:-.025em;margin:10px 0 12px}
+.deck{font-style:italic;font-size:20px;line-height:1.38;color:var(--body);margin-bottom:12px}
+.lead-img{margin:16px 0 4px;border:1px solid var(--ink)}
+.body{font-size:18px;line-height:1.58;color:var(--body);margin-top:16px}
+.body p+p{margin-top:12px}
+.drop::first-letter{float:left;font-weight:900;font-size:5.1em;line-height:.8;padding:6px 10px 0 0;color:var(--ink-orange)}
+.sect{display:flex;justify-content:space-between;align-items:baseline;gap:12px;border-top:3px double var(--ink);border-bottom:1px solid var(--ink);padding:8px 0;margin-bottom:14px;font-family:var(--narrow);font-weight:700;font-size:13px;letter-spacing:.24em;text-transform:uppercase}
+.sect i{font-family:var(--disp);font-weight:400;letter-spacing:0;text-transform:none;font-size:14px;color:var(--muted)}
+h2{font-weight:700;font-size:27px;line-height:1.08;letter-spacing:-.015em;margin:6px 0 8px}
+h3{font-weight:700;font-size:21px;line-height:1.12;margin:6px 0}
+.sm{font-size:16px;line-height:1.5;color:var(--body)}
+.story+.story{border-top:1px solid var(--hair);margin-top:18px;padding-top:16px}
+.story img{border:1px solid var(--ink)}
+.story .kick{display:block;margin-top:12px}
+.box{border:2px solid var(--ink);background:#fffdf8;padding:16px 18px}
+.box .kick{display:block;margin-bottom:6px}
+.log-row{font-size:16px;line-height:1.4;padding:10px 0;border-bottom:1px dotted var(--hair-hard)}
+.log-row:last-child{border-bottom:0}
+.term{margin-top:22px}
+.term .hw{font-style:italic;font-weight:700;font-size:30px}
+.term .ipa{font-family:var(--mono);font-size:12px;color:var(--muted)}
+.nums{margin-top:22px}
+.nums .r{display:grid;grid-template-columns:78px 1fr;align-items:baseline;border-top:1px solid var(--hair);padding:8px 0}
+.nums .v{font-family:var(--narrow);font-weight:700;font-size:30px;color:var(--ink-orange);line-height:1}
+.nums .t{font-family:var(--narrow);font-size:13px;line-height:1.35}
+
+.fold{margin-top:30px;display:grid;grid-template-columns:1.3fr 1fr 1fr 1fr;border-top:4px double var(--ink);padding-top:16px;gap:24px}
+.fold h4{font-weight:700;font-size:19px;line-height:1.15;margin:6px 0}
+.fold img{border:1px solid var(--ink);margin-bottom:10px}
+.close{margin-top:34px;text-align:center;border-top:4px double var(--ink);padding-top:22px;font-style:italic;font-size:24px;line-height:1.5}
+.credits{font-family:var(--narrow);font-size:12px;color:var(--muted);margin-top:26px;line-height:1.6;text-align:center}
+
+@media (max-width:980px){
+  .grid{grid-template-columns:1fr}
+  .grid>*{padding:0;border-left:0 !important;margin-bottom:28px}
+  .fold{grid-template-columns:1fr 1fr}
+  .cover-deck{grid-template-columns:1fr}
+}
+@media (max-width:560px){
+  .page{padding-left:16px;padding-right:16px}
+  .fold{grid-template-columns:1fr}
+  .ears{flex-direction:column;align-items:center;text-align:center;gap:4px}
+  .cover .stamp{left:12px;right:12px;bottom:16px}
+}
+</style>
+</head>
+<body>
+<div class="page">
+  <div class="ears">
+    <span>VOL. I · No. 10</span>
+    <span>Tuesday, June 16, 2026 · Weekly Edition</span>
+    <span>Covering 6 frontier labs · Anthropic first</span>
+  </div>
+  <p class="motto">All the frontier that ships</p>
+  <div class="flag">Shipped<span class="dot">.</span></div>
+  <p class="weather">Forecast: three days of sun, then a federal blackout. Keep a second model warm.</p>
+  <div class="nav"><span>Front Page</span><span>Models</span><span>Platform</span><span>Claude Code</span><span>SDKs</span><span>Policy</span><span>The Log</span></div>
+
+  <!-- Cover: halftone only at 700px+ rendered width; Atkinson below that (DESIGN rule) -->
+  <div class="cover">
+    <picture>
+      <source media="(min-width: 760px)" srcset="img/capitol-halftone.png">
+      <img src="img/capitol-atkinson.png" alt="US Capitol west front in orange ink">
+    </picture>
+    <div class="stamp"><span class="splash">Switched off.</span></div>
+  </div>
+  <p class="cap">US Capitol, west front. <i>Public domain.</i></p>
+  <div class="cover-deck">
+    <p>Three days after launch, a letter from Commerce grounded Fable 5 and Mythos 5 <em>for every customer on earth.</em></p>
+    <span class="jump">The Investigation, below</span>
+  </div>
+
+  <div class="grid">
+    <article>
+      <span class="kick">Investigation · Lead Story</span>
+      <h1>The letter that turned off the frontier</h1>
+      <p class="deck">Seventy-two hours after Fable 5 and Mythos 5 went public, a letter from Commerce took them offline for every customer on earth.</p>
+      <p class="meta">Edited by Eddie Belaval · Reported with the assistance of Claude · 9 min read</p>
+      <div class="lead-img"><img src="img/commerce-atkinson.png" alt="Commerce Department building entrance in orange ink"></div>
+      <p class="cap">The Herbert C. Hoover Building, Washington. <i>US Department of Commerce, public domain.</i></p>
+      <div class="body">
+        <p class="drop">The most consequential thing that happened to Anthropic this week was not something it shipped. It was something it had to un-ship, on a government order, for the entire planet at once.</p>
+        <p>Fable 5 and Mythos 5 went generally available on June 9. On the evening of June 12, an export control directive ordered Anthropic to suspend access for any foreign national, inside or outside the United States, including its own employees. A restriction wired to citizenship rather than geography cannot be enforced with a regional toggle. There was no narrower way to obey it. Both models went dark for everyone.</p>
+        <p>All other Claude models stayed up. The grounding was surgical at the model level and total at the access level, which is the worst combination for anyone who wired Fable 5 into something the day after launch.</p>
+      </div>
+    </article>
+
+    <div>
+      <div class="sect">Also Shipped <i>The week around the blackout</i></div>
+      <div class="story">
+        <img src="img/racks-atkinson.png" alt="Server racks in orange ink">
+        <p class="cap">Requests to the dated 4-series IDs now return errors. <i>Carl Lender, CC BY 2.0.</i></p>
+        <span class="kick">The Retirement Clock</span>
+        <h2>Sonnet 4 and Opus 4 reach end of life</h2>
+        <p class="sm">Sixty days of notice, then nothing. Anyone still pinned to a 4-series ID had two outages stacked on the same model layer. One of them was avoidable.</p>
+      </div>
+      <div class="story">
+        <img src="img/keys-atkinson.png" alt="Typewriter typebars in orange ink">
+        <p class="cap"><i>Thad Zajdowicz, CC BY 2.0.</i></p>
+        <span class="kick">Public Record</span>
+        <h3>What nearly 52,000 Americans actually fear</h3>
+        <p class="sm">Job loss leads in every state at 64%. Only 15% trust AI companies to regulate themselves. The public asked for a hand on the switch.</p>
+      </div>
+      <div class="story">
+        <span class="kick" style="margin-top:0">Billing</span>
+        <h3>Programmatic usage gets its own meter</h3>
+        <p class="sm">A human at a terminal is a subscription. An agent in a loop is metered.</p>
+      </div>
+    </div>
+
+    <aside>
+      <div class="box">
+        <span class="kick">The Log · In Window</span>
+        <div class="log-row"><b>Jun 12</b>, Fable 5 and Mythos 5 suspended worldwide. <code>[MODEL]</code></div>
+        <div class="log-row"><b>Jun 12</b>, Claude Code v2.1.176, auto mode falls back to best Opus.</div>
+        <div class="log-row"><b>Jun 15</b>, Sonnet 4, Opus 4 retire. <code>[DEPRECATION]</code></div>
+        <div class="log-row"><b>Jun 15</b>, programmatic credit billing goes live. <code>[API]</code></div>
+        <div class="log-row"><b>Jun 15</b>, v2.1.178 adds <code>Tool(param:value)</code> rules.</div>
+      </div>
+      <div class="nums">
+        <div class="sect">By the Numbers</div>
+        <div class="r"><span class="v">72h</span><span class="t">From general availability to global suspension</span></div>
+        <div class="r"><span class="v">64%</span><span class="t">of Americans name job loss as their top AI fear</span></div>
+        <div class="r"><span class="v">15%</span><span class="t">trust AI companies to regulate themselves</span></div>
+      </div>
+      <div class="term">
+        <div class="sect">Term of the Issue</div>
+        <div class="hw">The Grounding</div>
+        <div class="ipa">/ðə ˈɡraʊn.dɪŋ/ noun</div>
+        <p class="sm" style="margin-top:8px">A government-ordered, provider-executed global shutdown of a commercial AI model. In a deprecation the lab decides; in a grounding the lab complies.</p>
+      </div>
+    </aside>
+  </div>
+
+  <div class="fold">
+    <div><img src="img/circuit-atkinson.png" alt="Circuit board traces in orange ink"><span class="kick">Claude Code</span><h4>The CLI kept its own counsel</h4><p class="sm"><code>Agent(model:opus)</code> now blocks Opus subagents outright. <i class="cap">Photo: quapan, CC BY 2.0.</i></p></div>
+    <div><span class="kick">SDKs</span><h4>Quiet on the wire</h4><p class="sm">Python v0.109.2 and TypeScript v0.104.2 strip the dead model IDs.</p></div>
+    <div><span class="kick">Policy</span><h4>The switch sits in Washington</h4><p class="sm">Export control, built for chips and centrifuges, pointed at an API.</p></div>
+    <div><span class="kick">The Move</span><h4>Keep a second model warm</h4><p class="sm">Route to Opus 4.8 or Sonnet 4.6 tonight. Treat a model ID as revocable.</p></div>
+  </div>
+
+  <div class="close">The model you couldn't avoid became the model you couldn't reach.<br>Three days up. Then dark.</div>
+  <p class="credits">Photos: US Capitol and Commerce Department, public domain. "Datacenter Server Racks," Carl Lender, CC BY 2.0. "Clickety Clackety," Thad Zajdowicz, CC BY 2.0. "Labyrinthine circuit board lines," quapan, CC BY 2.0. All images rendered in orange ink by the Shipped. image press.</p>
+</div>
+</body>
+</html>

@@ -1,0 +1,174 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Shipped. Image Review</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,700;1,9..144,600&family=Archivo+Narrow:wght@500;700&family=JetBrains+Mono&display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#FAF8F4;color:#0b0b0b;font-family:'Archivo Narrow',sans-serif;padding:28px}
+h1{font-family:Fraunces,serif;font-size:40px;margin:0} h1 span{color:#FF6B35}
+p.lede{font-size:16px;color:#5a5a5a;max-width:760px}
+.card{border-top:4px double #0b0b0b;padding:16px 0 28px;margin-top:18px}
+.card header{display:flex;justify-content:space-between;font-size:15px;letter-spacing:.06em}
+.st{font-weight:700;letter-spacing:.18em} .pending .st{color:#EE5C28} .approved .st{color:#2d6a2d} .rejected .st{color:#a11}
+img{display:block;max-width:100%;image-rendering:pixelated;border:1px solid #0b0b0b}
+figure{margin:12px 0} figcaption{font-size:12px;color:#5a5a5a;margin-top:4px}
+.small{display:flex;gap:28px;flex-wrap:wrap;align-items:flex-start}
+dl{display:grid;grid-template-columns:130px 1fr;gap:6px 14px;font-size:14px;margin:12px 0} dt{color:#5a5a5a} dd{margin:0}
+ul{margin:0;padding-left:18px;color:#a11} li.ok{color:#2d6a2d;list-style:none;margin-left:-18px}
+code{font-family:'JetBrains Mono',monospace;font-size:12px;background:rgba(238,92,40,.09);padding:1px 4px}
+</style></head><body>
+<h1>Image review<span>.</span></h1>
+<p class="lede">Every image, at its real size and at column size, before it publishes. Look for two things: can you tell what it is (legibility), and does it look like Shipped. (aesthetic). Automatic checks catch flooding and wash-out; they do not replace your eye.</p>
+
+<section class="card pending">
+  <header><b>capitol-atkinson.png</b><span class="st">PENDING</span></header>
+  <div class="row">
+    <figure><img src="capitol-atkinson.png" style="width:1200px"><figcaption>real render width, 1200px</figcaption></figure>
+  </div>
+  <div class="row small">
+    <figure><img src="capitol-atkinson.png" style="width:320px"><figcaption>column size, 320px</figcaption></figure>
+    <dl>
+      <dt>Treatment</dt><dd>atkinson</dd>
+      <dt>Ink coverage</dt><dd>40% (legible band 25% to 60%)</dd>
+      <dt>Exposure gamma</dt><dd>0.771</dd>
+      <dt>Credit</dt><dd>Public domain</dd>
+      <dt>Checks</dt><dd><ul><li class=ok>no automatic flags</li></ul></dd>
+      <dt>Approve</dt><dd><code>python dither.py approve . capitol-atkinson.png --by Eddie</code></dd>
+    </dl>
+  </div>
+</section>
+<section class="card pending">
+  <header><b>capitol-halftone.png</b><span class="st">PENDING</span></header>
+  <div class="row">
+    <figure><img src="capitol-halftone.png" style="width:1200px"><figcaption>real render width, 1600px</figcaption></figure>
+  </div>
+  <div class="row small">
+    <figure><img src="capitol-halftone.png" style="width:320px"><figcaption>column size, 320px</figcaption></figure>
+    <dl>
+      <dt>Treatment</dt><dd>halftone</dd>
+      <dt>Ink coverage</dt><dd>40% (legible band 25% to 60%)</dd>
+      <dt>Exposure gamma</dt><dd>0.375</dd>
+      <dt>Credit</dt><dd>Public domain</dd>
+      <dt>Checks</dt><dd><ul><li class=ok>no automatic flags</li></ul></dd>
+      <dt>Approve</dt><dd><code>python dither.py approve . capitol-halftone.png --by Eddie</code></dd>
+    </dl>
+  </div>
+</section>
+<section class="card pending">
+  <header><b>circuit-atkinson.png</b><span class="st">PENDING</span></header>
+  <div class="row">
+    <figure><img src="circuit-atkinson.png" style="width:1200px"><figcaption>real render width, 1200px</figcaption></figure>
+  </div>
+  <div class="row small">
+    <figure><img src="circuit-atkinson.png" style="width:320px"><figcaption>column size, 320px</figcaption></figure>
+    <dl>
+      <dt>Treatment</dt><dd>atkinson</dd>
+      <dt>Ink coverage</dt><dd>42% (legible band 25% to 60%)</dd>
+      <dt>Exposure gamma</dt><dd>0.645</dd>
+      <dt>Credit</dt><dd>quapan, CC BY 2.0</dd>
+      <dt>Checks</dt><dd><ul><li class=ok>no automatic flags</li></ul></dd>
+      <dt>Approve</dt><dd><code>python dither.py approve . circuit-atkinson.png --by Eddie</code></dd>
+    </dl>
+  </div>
+</section>
+<section class="card pending">
+  <header><b>circuit-halftone.png</b><span class="st">PENDING</span></header>
+  <div class="row">
+    <figure><img src="circuit-halftone.png" style="width:1200px"><figcaption>real render width, 1600px</figcaption></figure>
+  </div>
+  <div class="row small">
+    <figure><img src="circuit-halftone.png" style="width:320px"><figcaption>column size, 320px</figcaption></figure>
+    <dl>
+      <dt>Treatment</dt><dd>halftone</dd>
+      <dt>Ink coverage</dt><dd>40% (legible band 25% to 60%)</dd>
+      <dt>Exposure gamma</dt><dd>0.301</dd>
+      <dt>Credit</dt><dd>quapan, CC BY 2.0</dd>
+      <dt>Checks</dt><dd><ul><li class=ok>no automatic flags</li></ul></dd>
+      <dt>Approve</dt><dd><code>python dither.py approve . circuit-halftone.png --by Eddie</code></dd>
+    </dl>
+  </div>
+</section>
+<section class="card pending">
+  <header><b>commerce-atkinson.png</b><span class="st">PENDING</span></header>
+  <div class="row">
+    <figure><img src="commerce-atkinson.png" style="width:1200px"><figcaption>real render width, 1200px</figcaption></figure>
+  </div>
+  <div class="row small">
+    <figure><img src="commerce-atkinson.png" style="width:320px"><figcaption>column size, 320px</figcaption></figure>
+    <dl>
+      <dt>Treatment</dt><dd>atkinson</dd>
+      <dt>Ink coverage</dt><dd>41% (legible band 25% to 60%)</dd>
+      <dt>Exposure gamma</dt><dd>0.746</dd>
+      <dt>Credit</dt><dd>US Department of Commerce, public domain</dd>
+      <dt>Checks</dt><dd><ul><li class=ok>no automatic flags</li></ul></dd>
+      <dt>Approve</dt><dd><code>python dither.py approve . commerce-atkinson.png --by Eddie</code></dd>
+    </dl>
+  </div>
+</section>
+<section class="card pending">
+  <header><b>keys-atkinson.png</b><span class="st">PENDING</span></header>
+  <div class="row">
+    <figure><img src="keys-atkinson.png" style="width:1200px"><figcaption>real render width, 1200px</figcaption></figure>
+  </div>
+  <div class="row small">
+    <figure><img src="keys-atkinson.png" style="width:320px"><figcaption>column size, 320px</figcaption></figure>
+    <dl>
+      <dt>Treatment</dt><dd>atkinson</dd>
+      <dt>Ink coverage</dt><dd>41% (legible band 25% to 60%)</dd>
+      <dt>Exposure gamma</dt><dd>0.361</dd>
+      <dt>Credit</dt><dd>Thad Zajdowicz, CC BY 2.0</dd>
+      <dt>Checks</dt><dd><ul><li class=ok>no automatic flags</li></ul></dd>
+      <dt>Approve</dt><dd><code>python dither.py approve . keys-atkinson.png --by Eddie</code></dd>
+    </dl>
+  </div>
+</section>
+<section class="card pending">
+  <header><b>keys-halftone.png</b><span class="st">PENDING</span></header>
+  <div class="row">
+    <figure><img src="keys-halftone.png" style="width:1200px"><figcaption>real render width, 1600px</figcaption></figure>
+  </div>
+  <div class="row small">
+    <figure><img src="keys-halftone.png" style="width:320px"><figcaption>column size, 320px</figcaption></figure>
+    <dl>
+      <dt>Treatment</dt><dd>halftone</dd>
+      <dt>Ink coverage</dt><dd>40% (legible band 25% to 60%)</dd>
+      <dt>Exposure gamma</dt><dd>0.169</dd>
+      <dt>Credit</dt><dd>Thad Zajdowicz, CC BY 2.0</dd>
+      <dt>Checks</dt><dd><ul><li class=ok>no automatic flags</li></ul></dd>
+      <dt>Approve</dt><dd><code>python dither.py approve . keys-halftone.png --by Eddie</code></dd>
+    </dl>
+  </div>
+</section>
+<section class="card pending">
+  <header><b>racks-atkinson.png</b><span class="st">PENDING</span></header>
+  <div class="row">
+    <figure><img src="racks-atkinson.png" style="width:1200px"><figcaption>real render width, 1200px</figcaption></figure>
+  </div>
+  <div class="row small">
+    <figure><img src="racks-atkinson.png" style="width:320px"><figcaption>column size, 320px</figcaption></figure>
+    <dl>
+      <dt>Treatment</dt><dd>atkinson</dd>
+      <dt>Ink coverage</dt><dd>39% (legible band 25% to 60%)</dd>
+      <dt>Exposure gamma</dt><dd>0.503</dd>
+      <dt>Credit</dt><dd>Carl Lender, CC BY 2.0</dd>
+      <dt>Checks</dt><dd><ul><li class=ok>no automatic flags</li></ul></dd>
+      <dt>Approve</dt><dd><code>python dither.py approve . racks-atkinson.png --by Eddie</code></dd>
+    </dl>
+  </div>
+</section>
+<section class="card pending">
+  <header><b>racks-halftone.png</b><span class="st">PENDING</span></header>
+  <div class="row">
+    <figure><img src="racks-halftone.png" style="width:1200px"><figcaption>real render width, 1600px</figcaption></figure>
+  </div>
+  <div class="row small">
+    <figure><img src="racks-halftone.png" style="width:320px"><figcaption>column size, 320px</figcaption></figure>
+    <dl>
+      <dt>Treatment</dt><dd>halftone</dd>
+      <dt>Ink coverage</dt><dd>40% (legible band 25% to 60%)</dd>
+      <dt>Exposure gamma</dt><dd>0.232</dd>
+      <dt>Credit</dt><dd>Carl Lender, CC BY 2.0</dd>
+      <dt>Checks</dt><dd><ul><li class=ok>no automatic flags</li></ul></dd>
+      <dt>Approve</dt><dd><code>python dither.py approve . racks-halftone.png --by Eddie</code></dd>
+    </dl>
+  </div>
+</section>
+</body></html>

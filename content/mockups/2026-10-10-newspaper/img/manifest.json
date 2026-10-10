@@ -1,0 +1,166 @@
+{
+  "images": {
+    "capitol-atkinson.png": {
+      "source": "capitol.jpg",
+      "treatment": "atkinson",
+      "width": 1200,
+      "gamma": 0.771,
+      "ink_coverage": 0.403,
+      "flags": [],
+      "credit": "Public domain",
+      "license": "PD",
+      "source_url": "https://commons.wikimedia.org/wiki/File:United_States_Capitol_-_west_front.jpg",
+      "sha": "5b1dde65d5d8c56d",
+      "review": {
+        "status": "pending",
+        "by": null,
+        "at": null,
+        "note": ""
+      }
+    },
+    "capitol-halftone.png": {
+      "source": "capitol.jpg",
+      "treatment": "halftone",
+      "width": 1600,
+      "gamma": 0.375,
+      "ink_coverage": 0.4,
+      "flags": [],
+      "credit": "Public domain",
+      "license": "PD",
+      "source_url": "https://commons.wikimedia.org/wiki/File:United_States_Capitol_-_west_front.jpg",
+      "sha": "70b3cd47003c53ef",
+      "review": {
+        "status": "pending",
+        "by": null,
+        "at": null,
+        "note": ""
+      }
+    },
+    "circuit-atkinson.png": {
+      "source": "circuit.jpg",
+      "treatment": "atkinson",
+      "width": 1200,
+      "gamma": 0.645,
+      "ink_coverage": 0.419,
+      "flags": [],
+      "credit": "quapan, CC BY 2.0",
+      "license": "CC BY 2.0",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Labyrinthine_circuit_board_lines_-_Flickr_-_quapan.jpg",
+      "sha": "8bd58ad182b23760",
+      "review": {
+        "status": "pending",
+        "by": null,
+        "at": null,
+        "note": ""
+      }
+    },
+    "circuit-halftone.png": {
+      "source": "circuit.jpg",
+      "treatment": "halftone",
+      "width": 1600,
+      "gamma": 0.301,
+      "ink_coverage": 0.4,
+      "flags": [],
+      "credit": "quapan, CC BY 2.0",
+      "license": "CC BY 2.0",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Labyrinthine_circuit_board_lines_-_Flickr_-_quapan.jpg",
+      "sha": "1db87eba82005d66",
+      "review": {
+        "status": "pending",
+        "by": null,
+        "at": null,
+        "note": ""
+      }
+    },
+    "commerce-atkinson.png": {
+      "source": "commerce.jpg",
+      "treatment": "atkinson",
+      "width": 1200,
+      "gamma": 0.746,
+      "ink_coverage": 0.407,
+      "flags": [],
+      "credit": "US Department of Commerce, public domain",
+      "license": "PD",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Main_entrance_Commerce_Department_Building,_14th_and_Constitution_3.jpg",
+      "sha": "52ccf1b55f7b326b",
+      "review": {
+        "status": "pending",
+        "by": null,
+        "at": null,
+        "note": ""
+      }
+    },
+    "keys-atkinson.png": {
+      "source": "keys.jpg",
+      "treatment": "atkinson",
+      "width": 1200,
+      "gamma": 0.361,
+      "ink_coverage": 0.407,
+      "flags": [],
+      "credit": "Thad Zajdowicz, CC BY 2.0",
+      "license": "CC BY 2.0",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Clickety_Clackety_-_in_Explore_-_Flickr_-_Thad_Zajdowicz.jpg",
+      "sha": "551754684b3af049",
+      "review": {
+        "status": "pending",
+        "by": null,
+        "at": null,
+        "note": ""
+      }
+    },
+    "keys-halftone.png": {
+      "source": "keys.jpg",
+      "treatment": "halftone",
+      "width": 1600,
+      "gamma": 0.169,
+      "ink_coverage": 0.4,
+      "flags": [],
+      "credit": "Thad Zajdowicz, CC BY 2.0",
+      "license": "CC BY 2.0",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Clickety_Clackety_-_in_Explore_-_Flickr_-_Thad_Zajdowicz.jpg",
+      "sha": "bea1ddba1c483b19",
+      "review": {
+        "status": "pending",
+        "by": null,
+        "at": null,
+        "note": ""
+      }
+    },
+    "racks-atkinson.png": {
+      "source": "racks.jpg",
+      "treatment": "atkinson",
+      "width": 1200,
+      "gamma": 0.503,
+      "ink_coverage": 0.391,
+      "flags": [],
+      "credit": "Carl Lender, CC BY 2.0",
+      "license": "CC BY 2.0",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Datacenter_Server_Racks_(22370909788).jpg",
+      "sha": "bfd50a9c82f60a2e",
+      "review": {
+        "status": "pending",
+        "by": null,
+        "at": null,
+        "note": ""
+      }
+    },
+    "racks-halftone.png": {
+      "source": "racks.jpg",
+      "treatment": "halftone",
+      "width": 1600,
+      "gamma": 0.232,
+      "ink_coverage": 0.4,
+      "flags": [],
+      "credit": "Carl Lender, CC BY 2.0",
+      "license": "CC BY 2.0",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Datacenter_Server_Racks_(22370909788).jpg",
+      "sha": "f8b35e378b3aed99",
+      "review": {
+        "status": "pending",
+        "by": null,
+        "at": null,
+        "note": ""
+      }
+    }
+  }
+}
