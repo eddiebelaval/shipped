@@ -28,7 +28,13 @@ Eddie, 2026-10-10: Shipped. should feel more like a newspaper, and start running
 
 **Licensing.** Dithering does not change a photo's license. Every source needs a `credits.json` entry; CC BY images carry the photographer's name in the caption. Preferred sources: public-domain government photos, credited CC BY, Eddie's own, or generated.
 
-**Tooling.** `pipeline/scripts/image-press.py` (render, review, approve, reject, check). Gate: `pipeline/src/orchestrate/image-gate.ts`.
+**Fresh every issue, never recycled (Eddie, 2026-10-10: "i dont really want to recycle photos. i need it to be fresh every time").** No image bank. The image desk (`pipeline/scripts/image-desk.py ISSUE_MD`) reads the issue, names a concrete subject per slot (cover, lead, one per Also Shipped story), searches Wikimedia Commons for a relevant, licensed (public domain, CC0, CC BY; no share-alike, no AI uploads), unused photo, and generates one when nothing fresh fits. `content/image-ledger.json` records every source (page URL + perceptual hash); no later issue can reuse it. Reject an image and rerun: only that slot is redone, and the rejected source never returns.
+
+**Generated images are labeled, always.** Credit reads "Illustration, AI-generated (model)"; the publish gate blocks a generated image without it. Generation prompts forbid real or identifiable people, real named places, logos and text, so an illustration can never pass for a news photo of a real event. Captions say literally what an image shows and never claim a photo depicts the news event.
+
+**Layout opt-in.** `layout: paper` in an issue's frontmatter renders the newspaper front (`pipeline/src/render/paper-front.ts`); issues without it render the classic cover byte-for-byte, so published issues never change. Optional `weather:` sets the line under the nameplate. The masthead is the locked wordmark plus the rebrand's "from id8" signature.
+
+**Tooling.** `pipeline/scripts/image-desk.py` (source), `pipeline/scripts/image-press.py` (render, review, approve, reject, check). Gate: `pipeline/src/orchestrate/image-gate.ts`.
 
 ### Revision 5.0 — Type + Paper Reconciliation (AUTHORED 2026-06-08, Iris)
 

@@ -108,6 +108,8 @@ function normalizeFrontmatter(data: Record<string, unknown>): IssueFrontmatter {
     fob_content: fm.fob_content ? String(fm.fob_content) : undefined,
     log_content: fm.log_content ? String(fm.log_content) : undefined,
     by_the_numbers: fm.by_the_numbers as IssueFrontmatter['by_the_numbers'],
+    layout: fm.layout ? String(fm.layout) : undefined,
+    weather: fm.weather ? String(fm.weather) : undefined,
   };
 }
 

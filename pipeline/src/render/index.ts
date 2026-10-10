@@ -18,6 +18,8 @@ import { renderSweepTable } from './charts.js';
 import { renderReleaseLog } from './release-log.js';
 import { updateArchive } from './archive.js';
 import { syncManifest } from './sync-manifest.js';
+import { renderPaperFront, loadSlotImages } from './paper-front.js';
+import { issueImageDir } from '../orchestrate/image-gate.js';
 import {
   renderOpen,
   renderByTheNumbers,
@@ -71,19 +73,27 @@ export async function renderIssue(
   const scratchPath =
     options.scratchPath ?? '/tmp/shipped-render-output.html';
 
-  // Build the template data dictionary.
+  // Build the template data dictionary. Paper layout (DESIGN.md Rev 6) swaps
+  // the classic cover for the newspaper front and pulls the desk's images.
+  const paper = issue.frontmatter.layout === 'paper';
+  const imagesDir = paper ? issueImageDir(absMarkdown, path.resolve(__dirname, '../../../content')) : null;
+  const images = loadSlotImages(imagesDir);
   const data = await buildTemplateData(issue, issueNum);
+  if (paper) Object.assign(data, paperOverrides(issue, issueNum, images));
+  else data.paper_front = '';
 
   // Apply
   const template = await loadTemplate();
-  const html = render(template, data);
+  const html = applyFront(render(template, data), paper);
 
   // Always write to scratch for diffing.
   await fs.writeFile(scratchPath, html, 'utf-8');
+  await copyImages(images, imagesDir, path.dirname(scratchPath));
 
   if (!options.dryRun) {
     await fs.mkdir(path.dirname(outputPath), { recursive: true });
     await fs.writeFile(outputPath, html, 'utf-8');
+    await copyImages(images, imagesDir, path.dirname(outputPath));
     await updateArchive(archivePath, issue, issueNum);
     // Keep the id8labs /writing feed + homepage in lockstep with the hub
     // archive. The hub is the single source of truth; this regenerates
@@ -111,6 +121,40 @@ export async function renderIssue(
 // ────────────────────────────────────────────────────────────────────
 // Template data builder
 // ────────────────────────────────────────────────────────────────────
+
+
+type SlotImgs = ReturnType<typeof loadSlotImages>;
+
+/**
+ * Paper layout (DESIGN.md Rev 6): the newspaper front replaces the classic
+ * cover and contents, and consumes the lead, Also Shipped and By the Numbers.
+ * The term keeps its full entry below; the rail links to it.
+ */
+function paperOverrides(issue: ParsedIssue, issueNum: string, images: SlotImgs): Record<string, string> {
+  return {
+    paper_front: renderPaperFront(issue, issueNum, images),
+    'section:lead_story': '',
+    'section:investigation': '',
+    'section:also_shipped': '',
+    'section:by_the_numbers': '',
+  };
+}
+
+/** Classic: drop the markers. Paper: drop the whole classic cover + contents region. */
+function applyFront(html: string, paper: boolean): string {
+  return paper
+    ? html.replace(/<!--front:classic-->[\s\S]*?<!--\/front:classic-->\n?/, '')
+    : html.replace('<!--front:classic-->\n', '').replace('<!--/front:classic-->\n\n', ''); // empty paper slot
+}
+
+/** Copy every slot image (and the cover halftone) next to the rendered page, under img/. */
+async function copyImages(images: SlotImgs, from: string | null, pageDir: string): Promise<void> {
+  if (!from) return;
+  const files = Object.values(images).flatMap((i) => [i.file, i.halftone].filter(Boolean) as string[]);
+  if (!files.length) return;
+  await fs.mkdir(path.join(pageDir, 'img'), { recursive: true });
+  await Promise.all(files.map((f) => fs.copyFile(path.join(from, f), path.join(pageDir, 'img', f))));
+}
 
 async function buildTemplateData(
   issue: ParsedIssue,

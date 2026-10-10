@@ -31,6 +31,10 @@ export interface IssueFrontmatter {
   fob_content?: string;
   /** "editorial" | "reference" — kind of the release log. */
   log_content?: string;
+  /** "paper" renders the newspaper front (DESIGN.md Rev 6); absent = classic cover. */
+  layout?: string;
+  /** One-line forecast under the nameplate (paper layout). Falls back to The Close's first line. */
+  weather?: string;
   /** Optional per-issue By the Numbers data. Renders empty if absent. */
   by_the_numbers?: {
     head?: string;

@@ -19,6 +19,13 @@ async function main(): Promise<void> {
   const args = process.argv.slice(2);
   const positional = args.filter((a) => !a.startsWith('--'));
   const flags = new Set(args.filter((a) => a.startsWith('--')));
+  // An unknown flag must fail loudly: a typo like `--dry` used to fall through
+  // to a REAL render into the deploy folder (2026-10-10, overwrote published pages).
+  const unknown = [...flags].filter((f) => f !== '--dry-run' && f !== '--issue');
+  if (unknown.length) {
+    console.error(`Unknown flag(s): ${unknown.join(', ')}. Did you mean --dry-run?`);
+    process.exit(1);
+  }
 
   // --issue NN mode: resolve to content/issue-NN-{slug}.md; auto-assemble if missing.
   let markdownPath = positional[0];
