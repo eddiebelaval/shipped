@@ -70,3 +70,12 @@ test('excerpt keeps whole paragraphs under budget and cuts a long first paragrap
   assert.equal(b.text, 'First sentence here.'); assert.equal(b.cut, true);
   assert.equal(excerpt('short.', 10).cut, false);
 });
+
+test('the Brief states only computed facts (no hard-coded April figures)', async () => {
+  const html = await renderTo(ISSUE_09);
+  assert.doesNotMatch(html, /Consortium|12 orgs|Apr 2026<\/span>|<b>Days<\/b> 21<|<b>Releases<\/b> 56</);
+  assert.match(html, /<b>Releases<\/b> \d+/);
+  const { periodDays } = await import('../src/render/sections/open.js');
+  assert.equal(periodDays('2026-06-13 to 2026-06-16'), 4);
+  assert.equal(periodDays('nonsense'), null);
+});

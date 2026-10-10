@@ -222,7 +222,7 @@ async function buildTemplateData(
     sources_html: renderSources(fm as unknown as { sources?: string[] }),
 
     // Editorial
-    'section:open': open ? renderOpen(open, fm.period) : '',
+    'section:open': open ? renderOpen(open, fm.period, { issueNum, date: fm.date, releaseCount: releaseLogCount }) : '',
     'section:by_the_numbers': renderByTheNumbers(fm.by_the_numbers as { head?: string; deck?: string; cells?: Array<{ label: string; value: string; note?: string; size?: 3 | 4 | 6; accent?: boolean }> } | undefined),
     'section:lead_story': lead ? renderLeadStory(lead) : '',
     'chart:sweep_table': sweepHtml,
