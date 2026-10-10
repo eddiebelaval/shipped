@@ -38,7 +38,9 @@ test('layout: paper swaps in the newspaper front with wordmark, signature and fo
     assert.match(html, /class="pf-mark"/);           // locked wordmark, not live text
     assert.match(html, /class="pf-sig"/);            // "from id8" rebrand signature
     assert.match(html, /<header class="pf-head">/);  // one folded headline under the cover
-    assert.equal((html.match(/id="also"/g) ?? []).length, 1);  // Also Shipped rendered once, in the front
+    assert.equal((html.match(/id="also"/g) ?? []).length, 1);        // full Also Shipped once, below the front
+    assert.match(html, /id="front-also"/);                            // front carries the excerpts
+    assert.match(html, /class="pf-jump/);                             // and jumps to the full stories
   } finally { rmSync(dir, { recursive: true, force: true }); }
 });
 
@@ -58,4 +60,13 @@ test('loadSlotImages marks an image approved only when every file for the slot i
     assert.equal(imgs.cover?.halftone, 'cover-halftone.png');
     assert.equal(imgs.lead?.approved, true);
   } finally { rmSync(dir, { recursive: true, force: true }); }
+});
+
+test('excerpt keeps whole paragraphs under budget and cuts a long first paragraph at a sentence', async () => {
+  const { excerpt } = await import('../src/render/paper-front.js');
+  const a = excerpt('one two three.\n\nfour five six.\n\nseven eight nine ten.', 6);
+  assert.equal(a.text, 'one two three.\n\nfour five six.'); assert.equal(a.cut, true);
+  const b = excerpt('First sentence here. Second sentence is longer than budget allows.', 4);
+  assert.equal(b.text, 'First sentence here.'); assert.equal(b.cut, true);
+  assert.equal(excerpt('short.', 10).cut, false);
 });

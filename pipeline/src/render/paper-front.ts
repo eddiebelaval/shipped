@@ -104,6 +104,37 @@ function bodyOf(section: Section): string {
   return section.content.split('\n').filter((l) => !l.startsWith('# ')).join('\n');
 }
 
+/**
+ * Front-page excerpt: whole paragraphs up to a word budget; a single long
+ * paragraph is cut at a sentence end. The full story runs below the front
+ * (the jump), so columns end level instead of one running the page.
+ */
+export function excerpt(body: string, budget: number): { text: string; cut: boolean } {
+  const paras = body.replace(/\r\n/g, '\n').split(/\n{2,}/).map((p) => p.trim())
+    .filter((p) => p && !/^-{3,}$/.test(p) && !p.startsWith('>') && !p.startsWith('|'));
+  const out: string[] = []; let words = 0;
+  for (const p of paras) {
+    const n = p.split(/\s+/).length;
+    if (words + n <= budget) { out.push(p); words += n; continue; }
+    if (out.length === 0) {
+      const sentences = p.match(/[^.!?]+[.!?]+["')\]]*\s*/g) ?? [p];
+      let acc = '';
+      for (const sn of sentences) {
+        if (acc && (acc + sn).split(/\s+/).length > budget) break;
+        acc += sn;
+      }
+      out.push(acc.trim());
+    }
+    return { text: out.join('\n\n'), cut: true };
+  }
+  return { text: out.join('\n\n'), cut: false };
+}
+
+const LEAD_WORDS = 230;
+const STORY_WORDS = 60;
+const FRONT_STORIES = 3;
+const FULL_ANCHOR: Record<string, string> = { investigation: '#investigation', lead_story: '#lead', feature: '#feature' };
+
 function stories(section: Section | undefined): Array<{ title: string; body: string }> {
   if (!section) return [];
   return section.content.split(/^### /m).slice(1).map((chunk) => {
@@ -132,6 +163,7 @@ export function renderPaperFront(issue: ParsedIssue, issueNum: string, images: S
   const also = find('also_shipped');
   const term = find('term_of_issue');
   const close = find('close');
+  const quiet = find('quiet_on_wire');
 
   const log = issue.releaseLog.flatMap((c) => c.entries)
     .sort((a, b) => b.date.localeCompare(a.date)).slice(0, 6);
@@ -142,12 +174,22 @@ export function renderPaperFront(issue: ParsedIssue, issueNum: string, images: S
   // A lead picked as halftone runs as a full-width band (halftone needs 700px+).
   const leadBand = images.lead?.treatment === 'halftone';
 
-  const storyHtml = stories(also).map((st, i) => `
+  const all = stories(also);
+  const storyHtml = all.slice(0, FRONT_STORIES).map((st, i) => {
+    const ex = excerpt(st.body, STORY_WORDS);
+    return `
       <div class="pf-story">
         ${figure(images[`story-${i + 1}`])}
         <h3>${inlineMarkdown(st.title)}</h3>
-        <div class="pf-sm">${paragraphs(st.body)}</div>
-      </div>`).join('');
+        <div class="pf-sm">${paragraphs(ex.text)}</div>
+        ${ex.cut ? '<a class="pf-jump" href="#also">Continued inside</a>' : ''}
+      </div>`;
+  }).join('') + (all.length > FRONT_STORIES ? `
+      <div class="pf-inside"><span class="pf-kick">Also inside</span>
+        ${all.slice(FRONT_STORIES).map((st) => `<a href="#also">${inlineMarkdown(st.title)}</a>`).join('')}
+      </div>` : '');
+  const leadEx = lead ? excerpt(bodyOf(lead), LEAD_WORDS) : { text: '', cut: false };
+  const leadAnchor = lead ? FULL_ANCHOR[lead.kind] ?? '#top' : '#top';
 
   return `<style>
 .pf{max-width:1320px;margin:0 auto;padding:22px 28px 40px;font-family:var(--disp);color:var(--ink)}
@@ -182,6 +224,19 @@ export function renderPaperFront(issue: ParsedIssue, issueNum: string, images: S
 .pf-sect{display:flex;justify-content:space-between;align-items:baseline;border-top:3px double var(--ink);border-bottom:1px solid var(--ink);padding:8px 0;margin-bottom:14px;font-family:var(--narrow);font-weight:700;font-size:13px;letter-spacing:.24em;text-transform:uppercase}
 .pf-story h3{font-weight:700;font-size:23px;line-height:1.1;margin:12px 0 8px}
 .pf-story+.pf-story{border-top:1px solid rgba(11,11,11,.14);margin-top:20px;padding-top:18px}
+.pf-grid .pf-fig img{aspect-ratio:3/2;object-fit:cover}
+/* Level columns: the lead column sets the row height; the middle and rail fill
+   exactly that height (height:0 + min-height:100% takes the row's height without
+   adding to it) and fade out behind a jump link. No column runs the page. */
+.pf-fill{height:0;min-height:100%;overflow:hidden;position:relative}
+.pf-fill::after{content:"";position:absolute;left:0;right:0;bottom:0;height:110px;background:linear-gradient(rgba(250,248,244,0),var(--paper) 70%);pointer-events:none}
+.pf-pin{position:absolute;bottom:0;z-index:2;font-family:var(--narrow);font-weight:700;font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--orange);text-decoration:none;border-bottom:1px solid currentColor}
+.pf-fill.pf-fits::after,.pf-fill.pf-fits .pf-pin{display:none}
+.pf-quiet{margin-top:22px}
+.pf-jump{display:inline-block;margin-top:8px;font-family:var(--narrow);font-weight:700;font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--orange);text-decoration:none;border-bottom:1px solid currentColor}
+.pf-jump-lead{margin-top:14px}
+.pf-inside{border-top:3px double var(--ink);margin-top:20px;padding-top:12px;display:flex;flex-direction:column;gap:8px}
+.pf-inside a{font-weight:700;font-size:17px;line-height:1.2;color:var(--ink);text-decoration:none}
 .pf-sm{font-size:16px;line-height:1.5;color:var(--body)}.pf-sm p+p{margin-top:10px}
 .pf-box{border:2px solid var(--ink);background:#fffdf8;padding:16px 18px}
 .pf-row{font-size:15px;line-height:1.4;padding:9px 0;border-bottom:1px dotted rgba(11,11,11,.55)}.pf-row:last-of-type{border-bottom:0}
@@ -190,7 +245,8 @@ export function renderPaperFront(issue: ParsedIssue, issueNum: string, images: S
 .pf-nums{margin-top:22px}.pf-num{display:grid;grid-template-columns:84px 1fr;align-items:baseline;border-top:1px solid rgba(11,11,11,.14);padding:8px 0}
 .pf-num b{font-family:var(--narrow);font-size:28px;color:var(--orange);line-height:1}.pf-num span{font-family:var(--narrow);font-size:13px;line-height:1.35}
 .pf-term{margin-top:22px}.pf-hw{font-style:italic;font-weight:700;font-size:30px}.pf-ipa{font-family:var(--mono);font-size:12px;color:var(--muted);margin-bottom:8px}
-@media (max-width:980px){.pf-grid{grid-template-columns:1fr}.pf-grid>*{padding:0;border-left:0 !important;margin-bottom:28px}}
+@media (max-width:980px){.pf-grid{grid-template-columns:1fr}.pf-grid>*{padding:0;border-left:0 !important;margin-bottom:28px}
+  .pf-fill{height:auto;min-height:0;overflow:visible}.pf-fill::after,.pf-pin{display:none}.pf-quiet{display:none}}
 @media (max-width:560px){.pf{padding-left:16px;padding-right:16px}.pf-ears{flex-direction:column;align-items:center;gap:4px}}
 </style>
 <section class="pf" id="top">
@@ -198,7 +254,7 @@ export function renderPaperFront(issue: ParsedIssue, issueNum: string, images: S
   <p class="pf-motto">All the frontier that ships</p>
   <div class="pf-flag">${wordmark()}${signature()}</div>
   ${weather ? `<p class="pf-weather">${inlineMarkdown(weather)}</p>` : ''}
-  <nav class="pf-nav"><a href="#top">Front Page</a><a href="#lead">Lead</a><a href="#also">Also Shipped</a>${term ? '<a href="#term">Term</a>' : ''}<a href="#log">The Log</a></nav>
+  <nav class="pf-nav"><a href="#top">Front Page</a><a href="${leadAnchor}">Lead</a><a href="#also">Also Shipped</a>${term ? '<a href="#term">Term</a>' : ''}<a href="#log">The Log</a></nav>
 
   ${figure(images.cover, 'pf-cover')}
 
@@ -211,15 +267,17 @@ export function renderPaperFront(issue: ParsedIssue, issueNum: string, images: S
 
   ${leadBand ? figure(images.lead, 'pf-cover pf-band') : ''}
   <div class="pf-grid">
-    <article id="lead">
+    <article id="front-lead">
       ${leadBand ? '' : figure(images.lead)}
-      <div class="pf-body">${lead ? paragraphs(bodyOf(lead)) : ''}</div>
+      <div class="pf-body">${paragraphs(leadEx.text)}</div>
+      ${leadEx.cut ? `<a class="pf-jump pf-jump-lead" href="${leadAnchor}">Continued inside</a>` : ''}
     </article>
-    <div id="also">
+    <div id="front-also" class="pf-fill">
       <div class="pf-sect">Also Shipped</div>
       ${storyHtml}
+      <a class="pf-pin" href="#also">Continued inside</a>
     </div>
-    <aside>
+    <aside class="pf-fill">
       <div class="pf-box">
         <span class="pf-kick">The Log · In Window</span>
         ${log.map((e) => `<div class="pf-row"><b>${esc(e.date.slice(5))}</b> ${inlineMarkdown(e.title)} <span class="pf-tag">${esc(e.category)}</span></div>`).join('')}
@@ -227,7 +285,11 @@ export function renderPaperFront(issue: ParsedIssue, issueNum: string, images: S
       </div>
       ${cells.length ? `<div class="pf-nums"><div class="pf-sect">By the Numbers</div>${cells.map((c) => `<div class="pf-num"><b>${esc(c.value)}</b><span>${esc(c.label)}</span></div>`).join('')}</div>` : ''}
       ${termRail(term)}
+      ${quiet ? `<div class="pf-quiet"><div class="pf-sect">Quiet on the Wire</div><div class="pf-sm">${paragraphs(quiet.content)}</div></div>` : ''}
+      ${close ? `<div class="pf-quiet"><div class="pf-sect">The Close</div><div class="pf-sm"><em>${paragraphs(close.content)}</em></div></div>` : ''}
+      <a class="pf-pin" href="#log">More inside</a>
     </aside>
   </div>
-</section>`;
+</section>
+<script>(function(){function f(){document.querySelectorAll('.pf-fill').forEach(function(c){c.classList.toggle('pf-fits',c.scrollHeight<=c.clientHeight+2)})}window.addEventListener('load',f);window.addEventListener('resize',f)})();</script>`;
 }

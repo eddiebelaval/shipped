@@ -127,15 +127,13 @@ type SlotImgs = ReturnType<typeof loadSlotImages>;
 
 /**
  * Paper layout (DESIGN.md Rev 6): the newspaper front replaces the classic
- * cover and contents, and consumes the lead, Also Shipped and By the Numbers.
- * The term keeps its full entry below; the rail links to it.
+ * cover and contents. The front carries excerpts; the full stories run below it.
  */
 function paperOverrides(issue: ParsedIssue, issueNum: string, images: SlotImgs): Record<string, string> {
   return {
     paper_front: renderPaperFront(issue, issueNum, images),
-    'section:lead_story': '',
-    'section:investigation': '',
-    'section:also_shipped': '',
+    // The full lead and Also Shipped stories run below the front (the jump); only
+    // By the Numbers moves wholesale into the rail.
     'section:by_the_numbers': '',
   };
 }
