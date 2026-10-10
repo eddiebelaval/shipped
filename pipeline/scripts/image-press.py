@@ -13,7 +13,9 @@ usage:
   python image-press.py review OUT_DIR              writes OUT_DIR/review.html (every image, real size, metrics, credit)
   python image-press.py approve OUT_DIR FILE|all --by NAME [--note TEXT]
   python image-press.py reject OUT_DIR FILE --by NAME --note TEXT
-  python image-press.py check OUT_DIR               exit 1 if any image is pending, rejected, or uncredited (publish gate)
+  python image-press.py check OUT_DIR               exit 1 if any image IN USE is pending, rejected, or uncredited (publish gate)
+  python image-press.py serve OUT_DIR [--port 8794]  clickable review desk: pick treatment per slot, approve, reject
+  python image-press.py pick OUT_DIR SLOT atkinson|halftone
 
 Credits: SRC_DIR/credits.json maps source name -> {credit, license, url}. An image with no
 credit entry fails `check`. Dithering does not change a photo's license.
@@ -231,9 +233,48 @@ def set_status(a, status):
         print(f"{status}: {t}")
     save_manifest(a.out, m)
 
+# ── slot picks (which treatment runs) ─────────────────────────────────
+
+HALFTONE_SLOTS = ("cover", "lead")   # only slots shown at 700px+ may run halftone (lead becomes a full-width band)
+
+def load_slots(out):
+    p = os.path.join(out, "slots.json")
+    return json.load(open(p)) if os.path.exists(p) else None
+
+def treatment_of(slot, meta):
+    return meta.get("treatment") or ("halftone" if slot == "cover" else "atkinson")
+
+def in_use(out, m):
+    """Files the paper will actually draw. Without slots.json (mockups), every image counts."""
+    slots = load_slots(out)
+    if slots is None: return sorted(m["images"])
+    files = []
+    for slot, meta in slots.items():
+        files.append(f"{slot}-atkinson.png")                       # always: the small-screen fallback
+        if treatment_of(slot, meta) == "halftone": files.append(f"{slot}-halftone.png")
+    return files
+
+def set_pick(out, slot, treatment):
+    slots = load_slots(out) or {}
+    if slot not in slots: raise ValueError(f"unknown slot: {slot}")
+    if treatment not in ("atkinson", "halftone"): raise ValueError("treatment is atkinson or halftone")
+    if treatment == "halftone":
+        if slot not in HALFTONE_SLOTS: raise ValueError(f"halftone only runs at 700px+: {', '.join(HALFTONE_SLOTS)}")
+        if f"{slot}-halftone.png" not in load_manifest(out)["images"]: raise ValueError(f"no halftone render for {slot}")
+    slots[slot]["treatment"] = treatment
+    json.dump(slots, open(os.path.join(out, "slots.json"), "w"), indent=2)
+
+def cmd_pick(a):
+    try: set_pick(a.out, a.slot, a.treatment)
+    except ValueError as e: sys.exit(str(e))
+    print(f"{a.slot}: {a.treatment}")
+
 def cmd_check(a):
     m = load_manifest(a.out); bad = []
-    for fname, e in sorted(m["images"].items()):
+    files = in_use(a.out, m)
+    for fname in files:
+        e = m["images"].get(fname)
+        if e is None: bad.append(f"{fname}: picked but never rendered"); continue
         if e["review"]["status"] != "approved": bad.append(f"{fname}: {e['review']['status']}")
         if not e.get("credit"): bad.append(f"{fname}: no credit")
         if e.get("license") == "generated" and "AI-generated" not in (e.get("credit") or ""):
@@ -241,7 +282,132 @@ def cmd_check(a):
         if e["treatment"] == "halftone" and e["width"] < MIN_HALFTONE_PX: bad.append(f"{fname}: halftone under {MIN_HALFTONE_PX}px")
     if bad:
         print("IMAGE GATE BLOCKED\n  " + "\n  ".join(bad)); sys.exit(1)
-    print(f"image gate clear: {len(m['images'])} images reviewed and credited")
+    print(f"image gate clear: {len(files)} images in use, reviewed and credited")
+
+# ── review desk (local, clickable) ────────────────────────────────────
+
+DESK_HTML = r"""<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Shipped. Image Desk</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,700;1,9..144,500&family=Archivo+Narrow:wght@500;600;700&family=JetBrains+Mono&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#0b0b0b;--paper:#FAF8F4;--orange:#EE5C28;--muted:#5a5a5a;--ok:#1f6b3a;--bad:#a11}
+*{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);font-family:'Archivo Narrow',sans-serif}
+header{position:sticky;top:0;z-index:5;background:var(--ink);color:var(--paper);display:flex;flex-wrap:wrap;gap:8px 20px;align-items:center;padding:12px 20px}
+header h1{font-family:Fraunces,serif;font-size:22px;margin:0}header h1 span{color:#FF6B35}
+#gate{font-size:13px;letter-spacing:.14em;text-transform:uppercase;padding:5px 10px;border:1px solid rgba(250,248,244,.35)}
+#gate.clear{background:var(--ok);border-color:var(--ok)}#gate.blocked{background:var(--orange);border-color:var(--orange);color:var(--ink)}
+main{max-width:1320px;margin:0 auto;padding:10px 20px 80px}
+.slot{border-top:4px double var(--ink);padding:18px 0 26px}
+.top{display:flex;justify-content:space-between;align-items:baseline;gap:12px;flex-wrap:wrap}
+.top b{font-size:15px;letter-spacing:.18em;text-transform:uppercase}.st{font-weight:700;letter-spacing:.18em;font-size:13px}
+.st.approved{color:var(--ok)}.st.pending{color:var(--orange)}.st.rejected{color:var(--bad)}
+.subject{font-family:Fraunces,serif;font-style:italic;font-size:17px;color:var(--muted);margin:4px 0 12px}
+.opts{display:flex;gap:8px;margin-bottom:10px;flex-wrap:wrap}
+.opts button,.acts button{all:unset;cursor:pointer;font-size:13px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;padding:9px 14px;border:1px solid var(--ink)}
+.opts button[aria-pressed=true]{background:var(--ink);color:var(--paper)}
+.opts button:disabled{opacity:.35;cursor:not-allowed}
+.stage img{display:block;width:100%;image-rendering:pixelated;border:1px solid var(--ink)}
+.stage.col img{max-width:420px}
+.cap{font-size:13px;color:var(--muted);margin-top:6px}.cap i{font-family:Fraunces,serif}
+.flags{color:var(--bad);font-size:13px;margin-top:6px}
+.acts{display:flex;gap:8px;align-items:center;margin-top:12px;flex-wrap:wrap}
+.acts .ok{background:var(--ok);color:#fff;border-color:var(--ok)}.acts .no{border-color:var(--bad);color:var(--bad)}
+.acts input{font:inherit;font-size:14px;padding:8px 10px;border:1px solid var(--ink);background:#fff;min-width:260px}
+.note{font-size:12px;color:var(--muted)}
+.hint{font-size:12px;color:var(--muted);margin-left:4px}
+</style></head><body>
+<header><h1>Image desk<span>.</span></h1><span id="gate">checking</span><span class="note" style="color:rgba(250,248,244,.7)">Pick the treatment that looks best, then approve. Rejecting sends the slot back to the desk.</span></header>
+<main id="slots"></main>
+<script>
+const esc=s=>String(s??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+async function api(path,body){const r=await fetch(path,{method:body?'POST':'GET',headers:{'Content-Type':'application/json'},body:body?JSON.stringify(body):undefined});const j=await r.json();if(j.error)alertBar(j.error);return j}
+function alertBar(msg){const g=document.getElementById('gate');g.textContent=msg;g.className='blocked'}
+function draw(state){
+  const g=document.getElementById('gate');g.textContent=state.gate.clear?'Gate clear':'Gate blocked: '+state.gate.problems.length;g.className=state.gate.clear?'clear':'blocked';g.title=state.gate.problems.join('
+');
+  document.getElementById('slots').innerHTML=state.slots.map(s=>{
+    const showing=s.view||s.treatment;const f=s.files[showing];
+    return `<section class="slot" data-slot="${s.slot}">
+      <div class="top"><b>${s.slot}</b><span class="st ${s.status}">${s.status.toUpperCase()}</span></div>
+      <div class="subject">${esc(s.subject)}</div>
+      <div class="opts">
+        <button data-pick="atkinson" aria-pressed="${s.treatment==='atkinson'}">Atkinson</button>
+        <button data-pick="halftone" aria-pressed="${s.treatment==='halftone'}" ${s.files.halftone?'':'disabled title="halftone only runs at 700px+ (cover, lead)"'}>Halftone</button>
+        ${s.slot==='lead'&&s.treatment==='halftone'?'<span class="hint">runs as a full-width band</span>':''}
+      </div>
+      <div class="stage ${s.slot.startsWith('story')?'col':''}"><img src="${f.file}?v=${f.sha}" alt=""></div>
+      <div class="cap">${esc(s.caption)} <i>${esc(s.credit)}.</i> &middot; ink ${Math.round(f.ink*100)}%</div>
+      ${f.flags.length?`<div class="flags">${f.flags.map(esc).join(' &middot; ')}</div>`:''}
+      <div class="acts"><button class="ok" data-act="approved">Approve</button><button class="no" data-act="rejected">Reject</button><input placeholder="note (why, if rejecting)"></div>
+    </section>`}).join('');
+}
+document.addEventListener('click',async e=>{
+  const sec=e.target.closest('.slot');if(!sec)return;const slot=sec.dataset.slot;
+  if(e.target.dataset.pick&&!e.target.disabled){draw(await api('/api/pick',{slot,treatment:e.target.dataset.pick}))}
+  if(e.target.dataset.act){const note=sec.querySelector('input').value;draw(await api('/api/review',{slot,status:e.target.dataset.act,note}))}
+});
+api('/api/state').then(draw);
+</script></body></html>"""
+
+def desk_state(out):
+    m = load_manifest(out); slots = load_slots(out) or {}
+    rows = []
+    for slot, meta in slots.items():
+        t = treatment_of(slot, meta); files = {}
+        for kind in ("atkinson", "halftone"):
+            e = m["images"].get(f"{slot}-{kind}.png")
+            if e and (kind == "atkinson" or slot in HALFTONE_SLOTS):
+                files[kind] = {"file": f"{slot}-{kind}.png", "sha": e["sha"], "ink": e["ink_coverage"], "flags": e["flags"]}
+        used = [f"{slot}-atkinson.png"] + ([f"{slot}-halftone.png"] if t == "halftone" else [])
+        sts = {m["images"].get(f, {}).get("review", {}).get("status", "pending") for f in used}
+        status = "rejected" if "rejected" in sts else ("approved" if sts == {"approved"} else "pending")
+        a = m["images"].get(f"{slot}-atkinson.png", {})
+        rows.append({"slot": slot, "subject": meta.get("subject"), "caption": meta.get("caption"), "credit": a.get("credit"),
+                     "treatment": t, "files": files, "status": status})
+    problems = []
+    for f in in_use(out, m):
+        e = m["images"].get(f)
+        if not e or e["review"]["status"] != "approved": problems.append(f"{f}: {(e or {}).get('review', {}).get('status', 'missing')}")
+    return {"slots": rows, "gate": {"clear": not problems, "problems": problems}}
+
+def cmd_serve(a):
+    import http.server, socketserver
+    out = os.path.abspath(a.out)
+    class H(http.server.SimpleHTTPRequestHandler):
+        def __init__(self, *args, **kw): super().__init__(*args, directory=out, **kw)
+        def log_message(self, *x): pass
+        def send_json(self, obj, code=200):
+            b = json.dumps(obj).encode(); self.send_response(code)
+            self.send_header("Content-Type", "application/json"); self.send_header("Content-Length", str(len(b))); self.end_headers(); self.wfile.write(b)
+        def do_GET(self):
+            if self.path in ("/", "/index.html"):
+                b = DESK_HTML.encode(); self.send_response(200); self.send_header("Content-Type", "text/html; charset=utf-8")
+                self.send_header("Content-Length", str(len(b))); self.end_headers(); self.wfile.write(b); return
+            if self.path == "/api/state": return self.send_json(desk_state(out))
+            if not self.path.split("?")[0].endswith(".png"): return self.send_error(404)
+            return super().do_GET()
+        def do_POST(self):
+            body = json.loads(self.rfile.read(int(self.headers.get("Content-Length", 0))) or b"{}")
+            try:
+                if self.path == "/api/pick":
+                    set_pick(out, body["slot"], body["treatment"])
+                elif self.path == "/api/review":
+                    st = body["status"]
+                    if st not in ("approved", "rejected"): raise ValueError("status is approved or rejected")
+                    if st == "rejected" and not body.get("note"): raise ValueError("say why in the note before rejecting")
+                    m = load_manifest(out); slots = load_slots(out) or {}
+                    t = treatment_of(body["slot"], slots.get(body["slot"], {}))
+                    for f in [f"{body['slot']}-atkinson.png"] + ([f"{body['slot']}-halftone.png"] if t == "halftone" else []):
+                        if f in m["images"]:
+                            m["images"][f]["review"] = {"status": st, "by": a.by, "at": now(), "note": body.get("note", "")}
+                    save_manifest(out, m)
+                else: return self.send_error(404)
+            except (ValueError, KeyError) as e:
+                return self.send_json({**desk_state(out), "error": str(e)})
+            self.send_json(desk_state(out))
+    socketserver.TCPServer.allow_reuse_address = True
+    with socketserver.TCPServer(("127.0.0.1", a.port), H) as srv:
+        print(f"image desk: http://127.0.0.1:{a.port}/  (Ctrl-C to stop)"); srv.serve_forever()
 
 if __name__ == "__main__":
     p = argparse.ArgumentParser(); sp = p.add_subparsers(dest="cmd", required=True)
@@ -253,6 +419,8 @@ if __name__ == "__main__":
         s = sp.add_parser(name); s.add_argument("out"); s.add_argument("file")
         s.add_argument("--by", required=True); s.add_argument("--note", required=(name == "reject"))
     c = sp.add_parser("check"); c.add_argument("out")
+    k = sp.add_parser("pick"); k.add_argument("out"); k.add_argument("slot"); k.add_argument("treatment")
+    d = sp.add_parser("serve"); d.add_argument("out"); d.add_argument("--port", type=int, default=8794); d.add_argument("--by", default="Eddie")
     a = p.parse_args()
-    {"render": cmd_render, "review": cmd_review, "check": cmd_check,
+    {"render": cmd_render, "review": cmd_review, "check": cmd_check, "pick": cmd_pick, "serve": cmd_serve,
      "approve": lambda a: set_status(a, "approved"), "reject": lambda a: set_status(a, "rejected")}[a.cmd](a)

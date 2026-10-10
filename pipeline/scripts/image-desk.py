@@ -298,7 +298,7 @@ def main():
 
     # 5. press
     press = [sys.executable, os.path.join(HERE, "image-press.py")]
-    subprocess.run(press + ["render", src, out, "--halftone", "cover"], check=True)
+    subprocess.run(press + ["render", src, out, "--halftone", "cover,lead"], check=True)  # both offered at the desk toggle
     subprocess.run(press + ["review", out], check=True)
     print(f"\nReview before publish: {os.path.join(out, 'review.html')}")
 

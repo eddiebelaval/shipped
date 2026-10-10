@@ -34,6 +34,10 @@ Eddie, 2026-10-10: Shipped. should feel more like a newspaper, and start running
 
 **Layout opt-in.** `layout: paper` in an issue's frontmatter renders the newspaper front (`pipeline/src/render/paper-front.ts`); issues without it render the classic cover byte-for-byte, so published issues never change. Optional `weather:` sets the line under the nameplate. The masthead is the locked wordmark plus the rebrand's "from id8" signature.
 
+**Pick per image (Eddie, 2026-10-10).** The cover and lead render in both treatments; at the review desk (`image-press.py serve <images>`) Eddie clicks the one that looks best, then approves or rejects (a reject needs a reason). A lead picked as halftone runs as a full-width band; story images stay Atkinson (their column is under 700px). The gate checks only the files the paper actually draws.
+
+**Dailies (open).** The daily, weekly-sweep and monthly editions are written and pushed by cloud routines with no human step, so they neither use the paper front nor pass the image gate. `pipeline/scripts/daily-to-paper.py` converts a daily into the paper shape for previews. How dailies adopt images is Eddie's call (the human-review rule has no gate there yet).
+
 **Tooling.** `pipeline/scripts/image-desk.py` (source), `pipeline/scripts/image-press.py` (render, review, approve, reject, check). Gate: `pipeline/src/orchestrate/image-gate.ts`.
 
 ### Revision 5.0 — Type + Paper Reconciliation (AUTHORED 2026-06-08, Iris)

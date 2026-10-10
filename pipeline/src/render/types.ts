@@ -35,6 +35,9 @@ export interface IssueFrontmatter {
   layout?: string;
   /** One-line forecast under the nameplate (paper layout). Falls back to The Close's first line. */
   weather?: string;
+  /** Paper ears: edition name ("Daily Edition") and the left label; default weekly. */
+  edition?: string;
+  issue_label?: string;
   /** Optional per-issue By the Numbers data. Renders empty if absent. */
   by_the_numbers?: {
     head?: string;

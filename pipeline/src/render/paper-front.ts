@@ -33,6 +33,7 @@ export interface SlotImage {
   credit: string;
   alt: string;
   approved: boolean;
+  treatment: 'atkinson' | 'halftone';
 }
 
 export type SlotImages = Record<string, SlotImage>;
@@ -45,14 +46,16 @@ export function loadSlotImages(imagesDir: string | null): SlotImages {
   const slotsPath = path.join(imagesDir, 'slots.json');
   const manPath = path.join(imagesDir, 'manifest.json');
   if (!existsSync(slotsPath) || !existsSync(manPath)) return {};
-  const slots = JSON.parse(readFileSync(slotsPath, 'utf-8')) as Record<string, { caption?: string; alt?: string }>;
+  const slots = JSON.parse(readFileSync(slotsPath, 'utf-8')) as Record<string, { caption?: string; alt?: string; treatment?: string }>;
   const man = (JSON.parse(readFileSync(manPath, 'utf-8')) as { images: Record<string, ManifestEntry> }).images;
   const out: SlotImages = {};
   for (const [slot, meta] of Object.entries(slots)) {
     const file = `${slot}-atkinson.png`;
     const entry = man[file];
     if (!entry || !existsSync(path.join(imagesDir, file))) continue;
-    const halftone = man[`${slot}-halftone.png`] ? `${slot}-halftone.png` : undefined;
+    // Eddie picks the treatment per slot at the image desk; cover defaults to halftone.
+    const treatment = (meta.treatment ?? (slot === 'cover' ? 'halftone' : 'atkinson')) === 'halftone' ? 'halftone' : 'atkinson';
+    const halftone = treatment === 'halftone' && man[`${slot}-halftone.png`] ? `${slot}-halftone.png` : undefined;
     const files = [file, halftone].filter(Boolean) as string[];
     out[slot] = {
       file,
@@ -61,6 +64,7 @@ export function loadSlotImages(imagesDir: string | null): SlotImages {
       credit: entry.credit ?? '',
       alt: meta.alt ?? '',
       approved: files.every((f) => man[f]?.review?.status === 'approved'),
+      treatment: halftone ? 'halftone' : 'atkinson',
     };
   }
   return out;
@@ -122,7 +126,7 @@ function termRail(term: Section | undefined): string {
 }
 
 export function renderPaperFront(issue: ParsedIssue, issueNum: string, images: SlotImages): string {
-  const fm = issue.frontmatter as ParsedIssue['frontmatter'] & { weather?: string };
+  const fm = issue.frontmatter;
   const find = (k: string) => issue.sections.find((s) => s.kind === k);
   const lead = find('investigation') ?? find('lead_story') ?? find('feature');
   const also = find('also_shipped');
@@ -135,6 +139,8 @@ export function renderPaperFront(issue: ParsedIssue, issueNum: string, images: S
   const weather = fm.weather
     ?? close?.content.split('\n').map((l) => l.trim()).find((l) => l && !/^-{3,}$/.test(l)) ?? '';
   const cells = (fm.by_the_numbers?.cells ?? []).slice(0, 4);
+  // A lead picked as halftone runs as a full-width band (halftone needs 700px+).
+  const leadBand = images.lead?.treatment === 'halftone';
 
   const storyHtml = stories(also).map((st, i) => `
       <div class="pf-story">
@@ -158,7 +164,7 @@ export function renderPaperFront(issue: ParsedIssue, issueNum: string, images: S
 .pf-nav a{color:inherit;text-decoration:none}.pf-nav a:first-child{color:var(--orange)}
 .pf-fig{position:relative;margin:0}
 .pf-fig img{border:1px solid var(--ink)}
-.pf-cover{margin-top:22px}.pf-cover img{border:3px solid var(--ink);max-height:560px;object-fit:cover}
+.pf-cover{margin-top:22px}.pf-band{margin:22px 0 4px}.pf-cover img{border:3px solid var(--ink);max-height:560px;object-fit:cover}
 .pf-cap{font-family:var(--narrow);font-size:12px;color:var(--muted);margin-top:6px;letter-spacing:.02em}
 .pf-cap i{font-family:var(--disp)}
 .pf-pending{position:absolute;top:10px;left:10px;z-index:2;background:var(--ink);color:var(--paper);font-family:var(--narrow);font-weight:700;font-size:11px;letter-spacing:.2em;text-transform:uppercase;padding:5px 9px}
@@ -188,24 +194,25 @@ export function renderPaperFront(issue: ParsedIssue, issueNum: string, images: S
 @media (max-width:560px){.pf{padding-left:16px;padding-right:16px}.pf-ears{flex-direction:column;align-items:center;gap:4px}}
 </style>
 <section class="pf" id="top">
-  <div class="pf-ears"><span>Vol. I · No. ${issueNum}</span><span>${fmtPrettyDate(fm.date)} · Weekly Edition</span><span>${logCount} releases in the log · Anthropic first</span></div>
+  <div class="pf-ears"><span>${esc(fm.issue_label ?? `Vol. I · No. ${issueNum}`)}</span><span>${fmtPrettyDate(fm.date)} · ${esc(fm.edition ?? 'Weekly Edition')}</span><span>${logCount} releases in the log · Anthropic first</span></div>
   <p class="pf-motto">All the frontier that ships</p>
   <div class="pf-flag">${wordmark()}${signature()}</div>
   ${weather ? `<p class="pf-weather">${inlineMarkdown(weather)}</p>` : ''}
-  <nav class="pf-nav"><a href="#top">Front Page</a><a href="#lead">Lead</a><a href="#also">Also Shipped</a><a href="#term">Term</a><a href="#log">The Log</a></nav>
+  <nav class="pf-nav"><a href="#top">Front Page</a><a href="#lead">Lead</a><a href="#also">Also Shipped</a>${term ? '<a href="#term">Term</a>' : ''}<a href="#log">The Log</a></nav>
 
   ${figure(images.cover, 'pf-cover')}
 
   <header class="pf-head">
-    <span class="pf-kick">${esc(lead?.name ?? 'Lead Story')} · Lead Story</span>
+    <span class="pf-kick">${lead && !/lead story/i.test(lead.name) ? `${esc(lead.name)} · ` : ''}Lead Story</span>
     <h2>${inlineMarkdown(headlineOf(lead, fm.title))}</h2>
     ${fm.deck ? `<p class="pf-deck">${inlineMarkdown(fm.deck)}</p>` : ''}
     ${fm.byline ? `<p class="pf-byl">${esc(fm.byline)}</p>` : ''}
   </header>
 
+  ${leadBand ? figure(images.lead, 'pf-cover pf-band') : ''}
   <div class="pf-grid">
     <article id="lead">
-      ${figure(images.lead)}
+      ${leadBand ? '' : figure(images.lead)}
       <div class="pf-body">${lead ? paragraphs(bodyOf(lead)) : ''}</div>
     </article>
     <div id="also">
