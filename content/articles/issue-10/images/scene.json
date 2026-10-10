@@ -1,0 +1,70 @@
+{
+  "slots": [
+    {
+      "slot": "cover",
+      "subject": "A heavy industrial knife switch, a large copper-bladed disconnect lever mounted on a slate panel, in the open position",
+      "why": "The kill switch made literal: a single physical lever that cuts power to everything downstream.",
+      "queries": [
+        "knife switch disconnect lever",
+        "large electrical knife switch slate panel",
+        "antique power plant switchboard"
+      ],
+      "generate": "A close-up photograph of a large industrial knife switch with a thick copper blade and black insulated handle, mounted on a slate panel, blade raised to the open position, dramatic side lighting, high contrast, shallow depth of field, no text, no people"
+    },
+    {
+      "slot": "lead",
+      "subject": "A sealed government envelope on a bare wooden desk beneath a single lamp, with a metal letter opener beside it",
+      "why": "The story turns on a letter delivered on a Thursday evening; an unopened official envelope is the cleanest image of an order arriving.",
+      "queries": [
+        "sealed envelope letter opener desk",
+        "official letter envelope wax seal",
+        "vintage desk lamp envelope"
+      ],
+      "generate": "A photograph of a single sealed cream envelope with a red stamp-like seal on a dark wooden desk, lit by a single desk lamp, a brass letter opener lying beside it, hard shadows, high contrast, no text, no people, no logos"
+    },
+    {
+      "slot": "story-1",
+      "subject": "A rural polling station: a row of cardboard voting booths with privacy curtains in a school gymnasium",
+      "why": "A public record of what Americans feel and want from government is a poll; a booth row is the instantly readable image of citizens being asked.",
+      "queries": [
+        "voting booths gymnasium polling place",
+        "polling station cardboard booths",
+        "school gymnasium election voting booths"
+      ],
+      "generate": "A photograph of a row of empty voting booths with blue privacy curtains set up in a school gymnasium with a wooden floor, strong window light from one side, high contrast, no people, no signs, no text, no logos"
+    },
+    {
+      "slot": "story-2",
+      "subject": "A wall calendar with a single date circled in thick red marker, pinned to a cork board",
+      "why": "The retirement was a dated deadline sitting on the wall since April; a circled date is the whole story in one object.",
+      "queries": [
+        "wall calendar circled date",
+        "calendar red circle deadline",
+        "paper calendar pinned cork board"
+      ],
+      "generate": "A close-up photograph of a paper wall calendar page with one date boldly circled in thick red marker, pinned to a cork board with a metal pushpin, raking light, high contrast, no readable text, no people, no logos"
+    },
+    {
+      "slot": "story-3",
+      "subject": "A mechanical utility meter: an analog electric meter with spinning dials mounted on a brick wall",
+      "why": "The story is a new meter on agent usage; an analog utility meter is the plainest picture of being billed by consumption.",
+      "queries": [
+        "analog electric meter dials",
+        "watt-hour meter brick wall",
+        "utility meter spinning disc"
+      ],
+      "generate": "A photograph of an old analog electricity meter with a glass dome and a spinning metal disc and rows of dial counters, mounted on a weathered brick wall, hard directional light, high contrast, no readable text, no people, no logos"
+    },
+    {
+      "slot": "story-4",
+      "subject": "A ship's helm: a brass compass binnacle and wooden wheel on a vessel's bridge",
+      "why": "The story is the CLI quietly shipping controls to steer where your agents can go; a compass at the wheel says steady course through rough weather.",
+      "queries": [
+        "ship binnacle compass wheel bridge",
+        "ship's wheel brass compass",
+        "vintage ship helm binnacle"
+      ],
+      "generate": "A photograph of a brass ship's compass binnacle beside a wooden spoked ship's wheel on a vessel's deck, low sun raking across the brass, high contrast, no people, no named vessel, no text, no logos"
+    }
+  ]
+}

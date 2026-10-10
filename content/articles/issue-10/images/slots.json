@@ -1,0 +1,38 @@
+{
+  "cover": {
+    "caption": "A copper-bladed industrial knife switch on a slate panel, raised to the open position.",
+    "alt": "Close-up of a large knife switch with a copper blade and black handle, open, on a slate panel.",
+    "origin": "generated",
+    "subject": "A heavy industrial knife switch, a large copper-bladed disconnect lever mounted on a slate panel, in the open position"
+  },
+  "lead": {
+    "caption": "The red wax seal of the Vice President of the United States on an envelope, from a letter dated January 26, 1850.",
+    "alt": "Red wax government seal impressed on an old letter envelope.",
+    "origin": "photo",
+    "subject": "A sealed government envelope on a bare wooden desk beneath a single lamp, with a metal letter opener beside it"
+  },
+  "story-2": {
+    "caption": "A paper wall calendar with one date circled in red marker, pinned to a cork board.",
+    "alt": "Calendar page with a single date circled in thick red marker, pinned to cork.",
+    "origin": "generated",
+    "subject": "A wall calendar with a single date circled in thick red marker, pinned to a cork board"
+  },
+  "story-3": {
+    "caption": "An old analog electric meter with a spinning disc and dial counters on a weathered brick wall.",
+    "alt": "Analog electricity meter with glass dome and dials mounted on brick.",
+    "origin": "generated",
+    "subject": "A mechanical utility meter: an analog electric meter with spinning dials mounted on a brick wall"
+  },
+  "story-4": {
+    "caption": "A brass compass binnacle beside a wooden spoked wheel on a ship's deck.",
+    "alt": "Brass ship's compass binnacle next to a wooden ship's wheel in low sun.",
+    "origin": "generated",
+    "subject": "A ship's helm: a brass compass binnacle and wooden wheel on a vessel's bridge"
+  },
+  "story-1": {
+    "caption": "A row of empty voting booths with blue privacy curtains stands on the wooden floor of a school gymnasium.",
+    "alt": "Empty voting booths with blue curtains in a school gym.",
+    "origin": "generated",
+    "subject": "A rural polling station: a row of cardboard voting booths with privacy curtains in a school gymnasium"
+  }
+}

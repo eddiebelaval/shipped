@@ -1,0 +1,58 @@
+{
+  "entries": [
+    {
+      "issue": 10,
+      "slot": "cover",
+      "source_page": null,
+      "sha": "cda4172723e5a544",
+      "dhash": "0b6b4b4b6b67cbcb",
+      "origin": "generated",
+      "at": "2026-10-10T10:30:37-04:00"
+    },
+    {
+      "issue": 10,
+      "slot": "lead",
+      "source_page": "https://commons.wikimedia.org/wiki/File:US_Vice_Presidents_seal_1850.jpg",
+      "sha": "0e734c2640c32c4d",
+      "dhash": "7cecc6e272b6ccf0",
+      "origin": "photo",
+      "at": "2026-10-10T10:30:38-04:00"
+    },
+    {
+      "issue": 10,
+      "slot": "story-2",
+      "source_page": null,
+      "sha": "5582c89b7ebe81c4",
+      "dhash": "7b5b270313333317",
+      "origin": "generated",
+      "at": "2026-10-10T10:30:49-04:00"
+    },
+    {
+      "issue": 10,
+      "slot": "story-3",
+      "source_page": null,
+      "sha": "0b81e59fd070ddef",
+      "dhash": "e7e5331bb999f171",
+      "origin": "generated",
+      "at": "2026-10-10T10:31:06-04:00"
+    },
+    {
+      "issue": 10,
+      "slot": "story-4",
+      "source_page": null,
+      "sha": "08e102b8822ea229",
+      "dhash": "45687b6b0f2363e7",
+      "origin": "generated",
+      "at": "2026-10-10T10:31:20-04:00"
+    },
+    {
+      "issue": 10,
+      "slot": "story-1",
+      "source_page": null,
+      "sha": "c98831d00acd01f6",
+      "dhash": "2781a08094a88188",
+      "origin": "generated",
+      "at": "2026-10-10T10:32:45-04:00"
+    }
+  ]
+}

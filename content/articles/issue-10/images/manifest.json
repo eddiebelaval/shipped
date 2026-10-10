@@ -1,0 +1,132 @@
+{
+  "images": {
+    "cover-atkinson.png": {
+      "source": "cover.jpg",
+      "treatment": "atkinson",
+      "width": 1200,
+      "gamma": 0.503,
+      "ink_coverage": 0.397,
+      "flags": [],
+      "credit": "Illustration, AI-generated (OpenAI gpt-image-2)",
+      "license": "generated",
+      "source_url": null,
+      "sha": "6f000eefcfea8299",
+      "review": {
+        "status": "pending",
+        "by": null,
+        "at": null,
+        "note": ""
+      }
+    },
+    "cover-halftone.png": {
+      "source": "cover.jpg",
+      "treatment": "halftone",
+      "width": 1600,
+      "gamma": 0.253,
+      "ink_coverage": 0.4,
+      "flags": [],
+      "credit": "Illustration, AI-generated (OpenAI gpt-image-2)",
+      "license": "generated",
+      "source_url": null,
+      "sha": "2362082a1e5aac10",
+      "review": {
+        "status": "pending",
+        "by": null,
+        "at": null,
+        "note": ""
+      }
+    },
+    "lead-atkinson.png": {
+      "source": "lead.jpg",
+      "treatment": "atkinson",
+      "width": 1200,
+      "gamma": 0.456,
+      "ink_coverage": 0.403,
+      "flags": [],
+      "credit": "Public domain",
+      "license": "Public domain",
+      "source_url": "https://commons.wikimedia.org/wiki/File:US_Vice_Presidents_seal_1850.jpg",
+      "sha": "d8f48584c299ffb8",
+      "review": {
+        "status": "pending",
+        "by": null,
+        "at": null,
+        "note": ""
+      }
+    },
+    "story-1-atkinson.png": {
+      "source": "story-1.jpg",
+      "treatment": "atkinson",
+      "width": 1200,
+      "gamma": 0.43,
+      "ink_coverage": 0.395,
+      "flags": [],
+      "credit": "Illustration, AI-generated (OpenAI gpt-image-2)",
+      "license": "generated",
+      "source_url": null,
+      "sha": "6e03ea917bbe1d2f",
+      "review": {
+        "status": "pending",
+        "by": null,
+        "at": null,
+        "note": ""
+      }
+    },
+    "story-2-atkinson.png": {
+      "source": "story-2.jpg",
+      "treatment": "atkinson",
+      "width": 1200,
+      "gamma": 7.872,
+      "ink_coverage": 0.387,
+      "flags": [
+        "flooded: 20% of the frame is solid ink"
+      ],
+      "credit": "Illustration, AI-generated (OpenAI gpt-image-2)",
+      "license": "generated",
+      "source_url": null,
+      "sha": "82cb1865af858b22",
+      "review": {
+        "status": "pending",
+        "by": null,
+        "at": null,
+        "note": ""
+      }
+    },
+    "story-3-atkinson.png": {
+      "source": "story-3.jpg",
+      "treatment": "atkinson",
+      "width": 1200,
+      "gamma": 0.488,
+      "ink_coverage": 0.395,
+      "flags": [],
+      "credit": "Illustration, AI-generated (OpenAI gpt-image-2)",
+      "license": "generated",
+      "source_url": null,
+      "sha": "26c68b59e0d495ea",
+      "review": {
+        "status": "pending",
+        "by": null,
+        "at": null,
+        "note": ""
+      }
+    },
+    "story-4-atkinson.png": {
+      "source": "story-4.jpg",
+      "treatment": "atkinson",
+      "width": 1200,
+      "gamma": 0.263,
+      "ink_coverage": 0.389,
+      "flags": [],
+      "credit": "Illustration, AI-generated (OpenAI gpt-image-2)",
+      "license": "generated",
+      "source_url": null,
+      "sha": "6b53557a53c529d1",
+      "review": {
+        "status": "pending",
+        "by": null,
+        "at": null,
+        "note": ""
+      }
+    }
+  }
+}

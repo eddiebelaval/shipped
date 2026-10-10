@@ -236,6 +236,8 @@ def cmd_check(a):
     for fname, e in sorted(m["images"].items()):
         if e["review"]["status"] != "approved": bad.append(f"{fname}: {e['review']['status']}")
         if not e.get("credit"): bad.append(f"{fname}: no credit")
+        if e.get("license") == "generated" and "AI-generated" not in (e.get("credit") or ""):
+            bad.append(f"{fname}: generated image not labeled AI-generated")
         if e["treatment"] == "halftone" and e["width"] < MIN_HALFTONE_PX: bad.append(f"{fname}: halftone under {MIN_HALFTONE_PX}px")
     if bad:
         print("IMAGE GATE BLOCKED\n  " + "\n  ".join(bad)); sys.exit(1)
