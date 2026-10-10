@@ -10,11 +10,11 @@ The visual identity spec for `id8labs.app/shipped/`. Read this before touching a
 
 ## Revision History
 
-### Revision 6 (PROPOSED 2026-10-10): The Paper Gets Pictures
+### Revision 6 (RATIFIED 2026-10-10): The Paper Gets Pictures
 
-Eddie, 2026-10-10: Shipped. should feel more like a newspaper, and start running images, monotone dithered art in orange ink. Mockups: `content/mockups/2026-10-10-newspaper/` (`index.html` four directions, `hybrid.html` the pick). Layout is still open for ratification; the image rules below Eddie set in this session.
+Eddie, 2026-10-10: Shipped. should feel more like a newspaper, and start running images, monotone dithered art in orange ink. Mockups: `content/mockups/2026-10-10-newspaper/` (`index.html` four directions, `hybrid.html` the pick). RATIFIED (Eddie, 2026-10-10: "i dig this... its clean and repeatable"): the hybrid layout and the image rules below. Next: port into pipeline/src/render/template.html with a cover_image frontmatter field, then a pre-cleared image bank by beat.
 
-**Layout (pick under review).** The hybrid: Broadsheet bones (centered flag, double rules, three ruled columns, the Log and Term of the Issue in the rail) with a full-width riso halftone cover photo above the fold. No type over the photo (Eddie 2026-10-10: the giant splash headline was jarring); the cover headline sits beneath it in Fraunces. Concept statement section 1 said "Not imagery." This revision retires that line for the front-of-book only; the back-of-book log stays typographic.
+**Layout.** The hybrid: Broadsheet bones (centered flag, double rules, three ruled columns, the Log and Term of the Issue in the rail) with a full-width riso halftone cover photo above the fold. No type over the photo (Eddie 2026-10-10: the giant splash headline was jarring); the cover headline sits beneath it in Fraunces. Concept statement section 1 said "Not imagery." This revision retires that line for the front-of-book only; the back-of-book log stays typographic.
 
 **One ink, two screens.**
 - **Atkinson** is the everyday treatment: every photo inside the paper, any size.
