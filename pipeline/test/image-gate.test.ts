@@ -1,6 +1,6 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { mkdtempSync, mkdirSync, writeFileSync, rmSync } from 'node:fs';
+import { mkdtempSync, mkdirSync, writeFileSync, rmSync, readFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join, resolve, dirname } from 'node:path';
 import { execFileSync } from 'node:child_process';
@@ -47,4 +47,15 @@ test('image gate blocks pending, rejected, uncredited and small halftone; clears
     manifest(dir, 'approved', 'PD', 'halftone', 600); assert.equal(gate(dir), 1);
     manifest(dir, 'approved', 'Carl Lender, CC BY 2.0'); assert.equal(gate(dir), 0);
   } finally { rmSync(root, { recursive: true, force: true }); }
+});
+
+test('review desk page script parses (a stray newline once broke it silently)', () => {
+  const src = readFileSync(PRESS, 'utf-8');
+  const html = src.slice(src.indexOf('DESK_HTML = r"""') + 16, src.indexOf('</html>"""') + 7);
+  const js = html.slice(html.indexOf('<script>') + 8, html.indexOf('</script>'));
+  const dir = mkdtempSync(join(tmpdir(), 'shipped-deskjs-'));
+  try {
+    writeFileSync(join(dir, 'desk.js'), js);
+    execFileSync(process.execPath, ['--check', join(dir, 'desk.js')], { stdio: 'pipe' });
+  } finally { rmSync(dir, { recursive: true, force: true }); }
 });

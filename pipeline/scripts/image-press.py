@@ -323,8 +323,7 @@ const esc=s=>String(s??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&g
 async function api(path,body){const r=await fetch(path,{method:body?'POST':'GET',headers:{'Content-Type':'application/json'},body:body?JSON.stringify(body):undefined});const j=await r.json();if(j.error)alertBar(j.error);return j}
 function alertBar(msg){const g=document.getElementById('gate');g.textContent=msg;g.className='blocked'}
 function draw(state){
-  const g=document.getElementById('gate');g.textContent=state.gate.clear?'Gate clear':'Gate blocked: '+state.gate.problems.length;g.className=state.gate.clear?'clear':'blocked';g.title=state.gate.problems.join('
-');
+  const g=document.getElementById('gate');g.textContent=state.gate.clear?'Gate clear':'Gate blocked: '+state.gate.problems.length;g.className=state.gate.clear?'clear':'blocked';g.title=state.gate.problems.join(' | ');
   document.getElementById('slots').innerHTML=state.slots.map(s=>{
     const showing=s.view||s.treatment;const f=s.files[showing];
     return `<section class="slot" data-slot="${s.slot}">
