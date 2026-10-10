@@ -2,12 +2,14 @@
 #
 # Shipped. — daily-pages branch sweep.
 #
-# Three jobs, one worktree, one commit, one push (two pushes to the same branch
+# Four jobs, one worktree, one commit, one push (two pushes to the same branch
 # from two launchd jobs would race):
 #   1. every published page carries the subscribe block
 #   2. index.html is regenerated from the branch, so every page is reachable
 #   3. every daily/weekly/monthly page names a share image (backfill-og.py);
 #      the routines declared summary_large_image with no image (2026-09-29)
+#   4. every live-text "Shipped." wordmark is the locked wordmark (inline SVG,
+#      backfill-wordmark.py); the routines improvised ~35 markups (2026-09-30)
 #
 # Three separate cloud routines publish to the daily-pages branch (nightly,
 # weekly Fri, monthly 1st), each rendering HTML from its own prompt. Relying on
@@ -71,6 +73,7 @@ if [ "$DRY_RUN" -eq 1 ]; then
   python3 "$SHIPPED/pipeline/scripts/backfill-subscribe.py" "$WT" --dry-run | tee -a "$LOG"
   python3 "$SHIPPED/pipeline/scripts/build-archive-index.py" "$WT" --dry-run | tee -a "$LOG"
   python3 "$SHIPPED/pipeline/scripts/backfill-og.py" "$WT" --dry-run | tee -a "$LOG"
+  python3 "$SHIPPED/pipeline/scripts/backfill-wordmark.py" "$WT" --dry-run | tee -a "$LOG"
   exit 0
 fi
 
@@ -90,6 +93,10 @@ log "$IDX"
 OG="$(python3 "$SHIPPED/pipeline/scripts/backfill-og.py" "$WT")" || die "og backfill failed: $OG"
 log "$OG"
 
+# The wordmark runs last, after the index rebuild, so the fresh index gets it too.
+WM="$(python3 "$SHIPPED/pipeline/scripts/backfill-wordmark.py" "$WT")" || die "wordmark backfill failed: $WM"
+log "$WM"
+
 cd "$WT"
 if git diff --quiet && [ -z "$(git status --porcelain)" ]; then
   log "no change (every page carries the block and the index is current)"
@@ -100,7 +107,7 @@ COUNT="$(git status --porcelain | wc -l | tr -d ' ')"
 git add -A
 git -c user.name="Shipped. bot" -c user.email="eb@id8labs.tech" \
   commit -q -m "chore(pages): branch sweep, $COUNT file(s) updated" \
-  -m "ensure-subscribe.sh: subscribe block enforced on every published page, index.html regenerated from the branch so every page stays reachable, and every edition names its share image." \
+  -m "ensure-subscribe.sh: subscribe block enforced on every published page, index.html regenerated from the branch so every page stays reachable, every edition names its share image, and every page draws the locked wordmark." \
   2>>"$LOG" || die "commit failed"
 
 # HEAD is detached at the fetched tip, so this pushes exactly what we patched.
