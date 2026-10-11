@@ -81,6 +81,16 @@ run("chrome: the Edition Desk paper front is the other locked design",
     lambda: nd.check_chrome({"anthropic-daily": ["2026-10-10"], "anthropic-weekly": [],
                              "anthropic-monthly": []}, {"pre_lock_pages": []}), False)
 
+alert = nd.REPO / "ops" / "EDITION-DESK-ALERT.md"
+_had = alert.read_text() if alert.exists() else None
+alert.parent.mkdir(exist_ok=True)
+alert.write_text("# Edition Desk alert\n\n- ESCALATE gate held anthropic-daily/2026-10-10: text missing\n")
+run("editions: the Edition Desk left a standing alert", nd.check_edition_desk, True)
+alert.unlink()
+run("editions: no standing alert", nd.check_edition_desk, False)
+if _had is not None:
+    alert.write_text(_had)
+
 # --- 5. subscribe: the dead-button pages -----------------------------------
 with_blob({"anthropic-weekly/2026-30.html":
            '<!DOCTYPE html><html><head><title>x</title></head><body>'

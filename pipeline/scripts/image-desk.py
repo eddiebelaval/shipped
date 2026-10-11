@@ -29,7 +29,7 @@ import sys, os, re, json, time, base64, hashlib, argparse, subprocess, datetime,
 from PIL import Image
 
 HERE = os.path.dirname(os.path.abspath(__file__))
-CONTENT = os.path.normpath(os.path.join(HERE, "..", "..", "content"))
+CONTENT = os.environ.get("SHIPPED_CONTENT") or os.path.normpath(os.path.join(HERE, "..", "..", "content"))
 LEDGER = os.path.join(CONTENT, "image-ledger.json")
 UA = "ShippedImageDesk/1.0 (id8labs.app/shipped)"
 ALLOWED = re.compile(r"^(public domain|pd|cc0|cc by(?!-sa)\b)", re.I)

@@ -31,7 +31,11 @@ from pathlib import Path
 SCRIPTS = Path(__file__).resolve().parent
 PIPELINE = SCRIPTS.parent
 REPO = PIPELINE.parent
-EDITIONS = REPO / "content" / "editions"
+# Data lives in the main checkout even when the code runs from the clean release worktree
+# (edition-desk-launch.sh): editions, the image ledger and ops alerts are shared state.
+CONTENT = Path(os.environ.get("SHIPPED_CONTENT", REPO / "content"))
+OPS = Path(os.environ.get("SHIPPED_OPS", REPO / "ops"))
+EDITIONS = CONTENT / "editions"
 PAGES = "https://eddiebelaval.github.io/shipped"
 LOG = Path.home() / "Library" / "Logs" / "shipped" / "edition-desk.log"
 SECTIONS = ("anthropic-daily", "anthropic-weekly", "anthropic-monthly")
@@ -42,7 +46,12 @@ MAX_REDOS = 1
 DASHES = re.compile("[" + chr(0x2014) + chr(0x2013) + "]")
 
 
+ESCALATIONS = []
+
+
 def log(msg):
+    if "ESCALATE" in msg:
+        ESCALATIONS.append(msg.strip())
     line = f"{datetime.datetime.now().isoformat(timespec='seconds')} {msg}"
     print(line)
     LOG.parent.mkdir(parents=True, exist_ok=True)
@@ -50,8 +59,10 @@ def log(msg):
         f.write(line + "\n")
 
 
-def git(*args, repo=REPO, check=False):
-    r = subprocess.run(["git", *args], cwd=repo, capture_output=True, text=True)
+def git(*args, repo=None, check=False):
+    # REPO is read at call time, never bound as a default: a default captured at import let a
+    # test that patched REPO push to the real daily-pages (2026-10-11).
+    r = subprocess.run(["git", *args], cwd=repo or REPO, capture_output=True, text=True)
     if check and r.returncode:
         raise RuntimeError(f"git {' '.join(args)}: {r.stderr.strip()}")
     return r
@@ -165,10 +176,15 @@ def plain(page):
     return re.sub(r"\s+", " ", html.unescape(re.sub(r"<[^>]+>", " ", page)))
 
 
+def norm(s):
+    """Letters and digits only: inline tags and punctuation spacing never decide a match."""
+    return re.sub(r"[^a-z0-9]", "", html.unescape(s).lower())
+
+
 def parity_gate(md_text, page):
     """Every paragraph and log title of the edition must reach the page, and the house rules hold."""
     problems = []
-    text = plain(page)
+    text = norm(plain(page))
     for block in re.split(r"\n\s*\n", md_text.split("---", 2)[2]):
         b = block.strip()
         if not b or b.startswith(("## ", "`[")):
@@ -176,14 +192,14 @@ def parity_gate(md_text, page):
         if b.startswith("#### "):
             title = re.sub(r"^#### \S+ - ", "", b.splitlines()[0])
             title = re.sub(r"\s*\(\[source\]\([^)]*\)\)\s*$", "", title)
-            if html.unescape(title) not in text:
+            if norm(title) not in text:
                 problems.append(f"log entry missing: {title[:60]}")
             continue
         b = re.sub(r"^\*\*(How to use|Why it matters):\*\*\s*", "", b)  # the page sets these labels apart
         flat = re.sub(r"\[([^\]]+)\]\([^)]+\)", r"\1", b)
         flat = re.sub(r"^#+ |[*`]", "", flat).strip()
         key = " ".join(flat.split()[:8])
-        if key and key not in text:
+        if norm(key) and norm(key) not in text:
             problems.append(f"text missing: {key[:60]}")
     if DASHES.search(page):
         problems.append("em/en dash on the page")
@@ -197,6 +213,38 @@ def parity_gate(md_text, page):
     if "<title>" not in page:
         problems.append("no <title>")
     return problems
+
+
+# Content blocks of a routine page, in its locked class vocabulary. Kickers, folios and the
+# colophon are chrome the paper redraws; everything here is the edition's own words.
+SOURCE_BLOCKS = ("weekly-cover-line", "open-quote", "open-prose", "feature-title", "feature-deck", "feature-meta",
+                 "feature-right", "prose", "also-item-title", "also-item-body", "also-item-source", "quiet-title",
+                 "quiet-body", "close-line", "close-final", "log-cat-name", "log-entry-title", "log-entry-body",
+                 "log-entry-how", "log-entry-why")
+
+
+def source_parity(source_page, page):
+    """Diff the ROUTINE page against the render, so a converter drop cannot hide behind edition.md."""
+    spec = importlib.util.spec_from_file_location("e2p", SCRIPTS / "edition-to-paper.py")
+    e2p = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(e2p)
+    t = e2p.Tree(); t.feed(source_page)
+    text = norm(plain(page))
+    missing = []
+    for cls in SOURCE_BLOCKS:
+        for node in t.root.find_all(cls):
+            if cls == "feature-meta":
+                units = [sp.text() for sp in node.find_all(tag="span")]
+            elif cls == "feature-right":
+                units = node.lines()
+            else:
+                units = [p.text() for p in node.find_all(tag="p")] or [node.text()]
+            for u in units:
+                u = re.sub(r"^(How to use|Why it matters):?\s*", "", u)
+                key = " ".join(u.split()[:8])
+                if norm(key) and norm(key) not in text:
+                    missing.append(f"{cls}: {key[:60]}")
+    return missing
 
 
 def scope_images(page, stem):
@@ -253,6 +301,7 @@ def build(section, stem, st, want, dry):
         render(d / "edition.md", out)
         page = out.read_text()
         problems = parity_gate((d / "edition.md").read_text(), page)
+        problems += source_parity((d / "source.html").read_text(), page)
         if problems:
             st["gate_failure"] = {"key": [st.get("source_sha"), want], "problems": problems[:10]}
             log(f"  ESCALATE gate held {section}/{stem}: " + "; ".join(problems[:5]))
@@ -281,6 +330,12 @@ def build(section, stem, st, want, dry):
 
 # ---------------------------------------------------------------- the run
 
+def source_key(page):
+    """The routine page plus the converter itself: a converter fix re-converts every edition."""
+    conv = (SCRIPTS / "edition-to-paper.py").read_bytes()
+    return hashlib.sha256(page.encode() + b"\0" + conv).hexdigest()[:16]
+
+
 def convert(section, stem, page, st):
     d = folder(section, stem)
     d.mkdir(parents=True, exist_ok=True)
@@ -294,7 +349,7 @@ def convert(section, stem, page, st):
     if st.get("lead") and st["lead"] != summary["lead"] and (d / "images").exists():
         shutil.rmtree(d / "images")  # a different lead story gets different pictures
         st.pop("image_attempts", None)
-    st.update(source_sha=hashlib.sha256(page.encode()).hexdigest()[:16], lead=summary["lead"],
+    st.update(source_sha=source_key(page), lead=summary["lead"],
               converted=summary, redos=0)
     st.pop("published_images", None)
     log(f"{section}/{stem}: converted ({summary['stories']} stories, {summary['log_entries']} log entries)")
@@ -338,27 +393,45 @@ def process(section, stem, a):
     if not page:
         return
     st = load_state(section, stem)
-    ours = MARKER in page
-    if not ours and st.get("source_sha") != hashlib.sha256(page.encode()).hexdigest()[:16]:
-        convert(section, stem, page, st)      # a new edition, or the routine re-published it
-    elif not ours:
-        st.pop("published_images", None)      # the routine page is live again over ours
-    if not (folder(section, stem) / "edition.md").exists():
+    if st.get("paused"):
         return
-    if not a.no_images:
-        images(section, stem, st)
+    try:
+        ours = MARKER in page
+        if not ours and st.get("source_sha") != source_key(page):
+            convert(section, stem, page, st)      # a new edition, or the routine re-published it
+        elif not ours:
+            st.pop("published_images", None)      # the routine page is live again over ours
+        if not (folder(section, stem) / "edition.md").exists():
+            return
+        if not a.no_images:
+            images(section, stem, st)
 
-    want = ready_set(section, stem)  # nothing ships until every drawn image is decided
-    if a.retry:
-        st.pop("gate_failure", None)
-    held = st.get("gate_failure", {}).get("key") == [st.get("source_sha"), want]
-    if (not ours or st.get("published_images") != want) and not held:
-        log(f"{section}/{stem}: building ({len(want)} approved images)" if want else f"{section}/{stem}: building text-only")
-        build(section, stem, st, want, a.dry_run)
-    save_state(section, stem, st)
+        want = ready_set(section, stem)  # nothing ships until every drawn image is decided
+        if a.retry:
+            st.pop("gate_failure", None)
+        key = [st.get("source_sha"), want]
+        held = st.get("gate_failure", {}).get("key") == key
+        if (not ours or st.get("published_images") != want) and not held:
+            log(f"{section}/{stem}: building ({len(want)} approved images)" if want else f"{section}/{stem}: building text-only")
+            try:
+                build(section, stem, st, want, a.dry_run)
+            except Exception as e:  # a failed render or push holds like a failed gate: no retry storm
+                st["gate_failure"] = {"key": key, "problems": [f"build failed: {e}"[:300]]}
+                raise
+    finally:
+        # Caps, attempts and holds persist on every exit, or a failing edition retries without limit.
+        if folder(section, stem).exists():
+            save_state(section, stem, st)
+
+
+PAUSE = OPS / "EDITION-DESK-PAUSED"
+ALERT = OPS / "EDITION-DESK-ALERT.md"
 
 
 def cmd_run(a):
+    if PAUSE.exists():
+        log(f"paused ({PAUSE} exists); nothing runs")
+        return
     pages = branch_pages()
     todo = [(s, stem) for s in SECTIONS for stem in pages[s]]
     if a.only:
@@ -369,6 +442,15 @@ def cmd_run(a):
         except Exception as e:  # one bad edition never blocks the others
             log(f"  ESCALATE {section}/{stem}: {e}")
             notify("Shipped. Edition Desk", f"{section}/{stem}: {str(e)[:120]}")
+    if a.dry_run:
+        return
+    # A standing alert Night Desk reads every night: written on escalation, cleared on a clean run.
+    if ESCALATIONS:
+        ALERT.parent.mkdir(exist_ok=True)
+        ALERT.write_text("# Edition Desk alert\n\n" + "\n".join(f"- {e}" for e in ESCALATIONS)
+                         + "\n\nRunbook: pipeline/EDITION-DESK.md\n")
+    elif ALERT.exists():
+        ALERT.unlink()
 
 
 def cmd_review(a):

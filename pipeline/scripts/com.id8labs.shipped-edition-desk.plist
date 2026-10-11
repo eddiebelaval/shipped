@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
-<!-- Shipped. Edition Desk: paper front for every new edition, images after Eddie's review.
-     Install: cp to ~/Library/LaunchAgents/ && launchctl load ~/Library/LaunchAgents/com.id8labs.shipped-edition-desk.plist
+<!-- Shipped. Edition Desk: paper front for every new edition, images after Claude QC.
+     Runs edition-desk-launch.sh, which runs the desk from a clean worktree pinned to the pushed origin/main.
+     Install, pause and rollback: pipeline/EDITION-DESK.md.
      Image generation (the OpenAI fallback) needs OPENAI_API_KEY under EnvironmentVariables;
      without it the desk sources Wikimedia only. -->
 <plist version="1.0">
@@ -9,9 +10,8 @@
   <key>Label</key><string>com.id8labs.shipped-edition-desk</string>
   <key>ProgramArguments</key>
   <array>
-    <string>/usr/bin/python3</string>
-    <string>/Users/eddiebelaval/Development/id8/shipped/pipeline/scripts/edition-desk.py</string>
-    <string>run</string>
+    <string>/bin/bash</string>
+    <string>/Users/eddiebelaval/Development/id8/shipped/pipeline/scripts/edition-desk-launch.sh</string>
   </array>
   <key>EnvironmentVariables</key>
   <dict>

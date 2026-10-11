@@ -16,8 +16,9 @@ Per image the front will draw:
               (text or logos, an identifiable real person, gore, a caption that
               says something the picture does not show, a picture implied to be
               the news event).
-  3. CALL     approve only when no hard fault and every score is 4+; else reject
-              with the reason. For cover and lead, both treatments are graded and
+  3. CALL     approve only when no hard fault and legibility, relevance and caption
+              truth each score 3+ (look and taste are advisory, rejecting only at 1);
+              else reject with the reason. The bar is GATE below, set by calibration. For cover and lead, both treatments are graded and
               the stronger passing one is picked.
 
 Writes approve / reject into the manifest as "Claude QC" with the scores in the
@@ -31,7 +32,8 @@ import argparse, importlib.util, json, os, re, shutil, subprocess, sys, tempfile
 from pathlib import Path
 
 SCRIPTS = Path(__file__).resolve().parent
-CONTENT = SCRIPTS.parent.parent / "content"
+CONTENT = Path(os.environ.get("SHIPPED_CONTENT", SCRIPTS.parent.parent / "content"))
+OUTPUT = SCRIPTS.parent / "output"
 MODEL = os.environ.get("SHIPPED_QC_MODEL", "opus")
 BY = "Claude QC"
 AXES = ("legibility", "look", "relevance", "caption_truth", "taste")
@@ -277,8 +279,8 @@ def cmd_calibrate(a):
         print(f"{r[2]:9} {r[0]:28} {r[1]:24} {r[3][:150]}")
     print(f"\ncalibration ({a.model}): {agree}/{total} agree with Eddie's bar")
     report = {"model": a.model, "agree": agree, "total": total, "rows": rows}
-    (SCRIPTS.parent / "output").mkdir(exist_ok=True)
-    (SCRIPTS.parent / "output" / "image-qc-calibration.json").write_text(json.dumps(report, indent=1))
+    OUTPUT.mkdir(exist_ok=True)
+    (OUTPUT / "image-qc-calibration.json").write_text(json.dumps(report, indent=1))
     sys.exit(0 if agree == total else 1)
 
 

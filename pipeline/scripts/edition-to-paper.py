@@ -41,6 +41,19 @@ class Node:
         r = self.find_all(cls, tag)
         return r[0] if r else None
 
+    def lines(self):
+        """Text split at <br>, minus any labelled child span (e.g. feature-right-label)."""
+        out, cur = [], []
+        for k in self.kids:
+            if isinstance(k, Node) and k.tag == "br":
+                out.append(clean("".join(cur))); cur = []
+            elif isinstance(k, Node) and any(c.endswith("-label") for c in k.classes):
+                continue
+            else:
+                cur.append(k if isinstance(k, str) else k.text())
+        out.append(clean("".join(cur)))
+        return [x for x in out if x]
+
     def text(self):
         return clean("".join(k if isinstance(k, str) else (" " if k.tag == "br" else k.text()) for k in self.kids))
 
@@ -129,6 +142,18 @@ def next_sibling_prose(fo):
     return None
 
 
+def iso_date(section, stem):
+    """A real calendar date for the renderer: the day itself, the week's Friday, the month's last day."""
+    import calendar, datetime
+    if section == "anthropic-weekly":
+        y, w = map(int, stem.split("-"))
+        return datetime.date.fromisocalendar(y, w, 5).isoformat()
+    if section == "anthropic-monthly":
+        y, m = map(int, stem.split("-"))
+        return datetime.date(y, m, calendar.monthrange(y, m)[1]).isoformat()
+    return stem
+
+
 def convert(page, section, stem):
     t = Tree(); t.feed(page)
     root = t.root
@@ -153,7 +178,17 @@ def convert(page, section, stem):
     stories = []  # (title, deck, paragraphs)
     for fo in body.find_all("feature-opener"):
         ft = fo.find("feature-title")
-        stories.append((ft.text() if ft else "", cmd(fo.find("feature-deck")), paras(next_sibling_prose(fo))))
+        lead_in = []
+        meta = fo.find("feature-meta")
+        if meta is not None:  # the fact box: Source, Area, Disclosure
+            parts = [cmd(sp) for sp in meta.find_all(tag="span") if cmd(sp)]
+            if parts:
+                lead_in.append("*" + " ".join(parts).replace("*", "") + "*")
+        right = fo.find("feature-right")
+        if right is not None and right.lines():
+            label = right.find("feature-right-label")
+            lead_in.append(f"**{label.text() if label else 'By the numbers'}:** " + "; ".join(right.lines()) + ".")
+        stories.append((ft.text() if ft else "", cmd(fo.find("feature-deck")), lead_in + paras(next_sibling_prose(fo))))
     for it in body.find_all("also-item"):
         ps = paras(it.find("also-item-body"))
         src = cmd(it.find("also-item-source"))
@@ -165,6 +200,9 @@ def convert(page, section, stem):
         raise SystemExit("edition-to-paper: no feature or also-item with text; refusing to write an empty front")
 
     quiet = paras(body.find("quiet-body"))
+    qt = body.find("quiet-title")
+    if quiet and qt is not None and qt.text():
+        quiet.insert(0, f"*{qt.text()}*")
     close = [n.text() for n in body.find_all("close-line")] + [n.text() for n in body.find_all("close-final")]
 
     log_md, letter, n_entries = [], "A", 0
@@ -194,10 +232,11 @@ def convert(page, section, stem):
         letter = chr(ord(letter) + 1)
 
     lead_title, lead_deck, lead_paras = stories[0]
+    date = iso_date(section, stem)
     parts = [f"""---
 issue: 90
 title: {q(title)}
-date: {stem}
+date: {date}
 period: {q(window)}
 status: published
 masthead: Shipped.

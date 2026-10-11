@@ -249,6 +249,16 @@ def check_chrome(pg, state):
         record("chrome", "OK", "every post-lock page carries the locked chrome")
 
 
+def check_edition_desk():
+    """The Edition Desk leaves ops/EDITION-DESK-ALERT.md when it escalates; it clears on a clean run."""
+    alert = REPO / "ops" / "EDITION-DESK-ALERT.md"
+    if alert.exists():
+        lines = [l[2:] for l in alert.read_text().splitlines() if l.startswith("- ")]
+        record("editions", "ESCALATE", f"Edition Desk: {len(lines)} problem(s): " + "; ".join(lines[:2])[:300])
+    else:
+        record("editions", "OK", "Edition Desk has no standing alert")
+
+
 def check_subscribe(pg):
     no_form, no_hp, bad_url, dead_pill = [], [], [], []
     for s in SECTIONS:
@@ -451,6 +461,7 @@ def main():
     check_integrity(pg)
     check_chrome(pg, state)
     check_subscribe(pg)
+    check_edition_desk()
     n = check_index(pg)
     check_live(n)
     check_distro(pg)
