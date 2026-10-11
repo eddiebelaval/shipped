@@ -53,6 +53,51 @@
       "dhash": "2781a08094a88188",
       "origin": "generated",
       "at": "2026-10-10T10:32:45-04:00"
+    },
+    {
+      "issue": "anthropic-daily/2026-10-10",
+      "slot": "cover",
+      "source_page": "https://commons.wikimedia.org/wiki/File:Millinery_Book_Ledger_-_DPLA_-_4e890e62dfe17d454d20da31c89554c8_(page_105).jpg",
+      "sha": "8529fa121f0bcb2e",
+      "dhash": "0ddd4d9dcd8d4d4d",
+      "origin": "photo",
+      "at": "2026-10-11T12:38:28-04:00"
+    },
+    {
+      "issue": "anthropic-daily/2026-10-10",
+      "slot": "lead",
+      "source_page": "https://commons.wikimedia.org/wiki/File:Rubber_stamp_IMG_20190427_113849721_HDR.jpg",
+      "sha": "3df7ec8501ee424a",
+      "dhash": "66e869ccce37d63e",
+      "origin": "photo",
+      "at": "2026-10-11T12:38:29-04:00"
+    },
+    {
+      "issue": "anthropic-daily/2026-10-10",
+      "slot": "story-1",
+      "source_page": "https://commons.wikimedia.org/wiki/File:Gear_train.jpg",
+      "sha": "dcf369e2d5ffde12",
+      "dhash": "71d0ccd2f2f0c8c8",
+      "origin": "photo",
+      "at": "2026-10-11T12:38:29-04:00"
+    },
+    {
+      "issue": "anthropic-daily/2026-10-10",
+      "slot": "story-2",
+      "source_page": "https://commons.wikimedia.org/wiki/File:Switchyard_of_electric_substation_750kV.png",
+      "sha": "75681f7b4847dfe2",
+      "dhash": "096f09232bab2b5f",
+      "origin": "photo",
+      "at": "2026-10-11T12:38:31-04:00"
+    },
+    {
+      "issue": "anthropic-daily/2026-10-10",
+      "slot": "story-3",
+      "source_page": "https://commons.wikimedia.org/wiki/File:Split-flap_display.jpg",
+      "sha": "9357efe1acc30234",
+      "dhash": "7171c4c8d04266b6",
+      "origin": "photo",
+      "at": "2026-10-11T12:38:33-04:00"
     }
   ]
 }

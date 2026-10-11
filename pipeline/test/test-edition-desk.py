@@ -61,7 +61,7 @@ try:
          "## A. Models\n\n#### 2026-10-07 - Claude Haiku 5.5 ([source](https://x))\n`[MODEL]`\n\nBody.\n\n" \
          "**How to use:** Call the API with the model id today please now.\n"
     page_ok = ('<title>t</title>' + ed.MARKER + '<p>Alpha beta gamma delta epsilon zeta eta theta iota.</p>'
-               '<b>Claude Haiku 5.5</b> Body. <b>How to use</b> Call the API with the model id today please now.'
+               '<a href="https://x"><b>Claude Haiku 5.5</b></a> Body. <b>How to use</b> Call the API with the model id today please now.'
                '<section id="subscribe">https://id8labs.app/api/newsletter/subscribe</section>')
     check("gate passes a faithful page", ed.parity_gate(md, page_ok), [])
     check("gate catches a dropped log entry", ed.parity_gate(md, page_ok.replace("Claude Haiku 5.5", "")),

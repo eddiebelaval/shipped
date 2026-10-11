@@ -200,6 +200,9 @@ def parity_gate(md_text, page):
         flat = re.sub(r"^#+ |[*`]", "", flat).strip()
         if norm(flat) and norm(flat) not in text:
             problems.append(f"text missing: {flat[:60]}")
+    for href in re.findall(r"\]\(([^)\s]+)\)", md_text.split("---", 2)[2]):
+        if f'href="{href}"' not in page and f'href="{html.escape(href, quote=True)}"' not in page:
+            problems.append(f"link missing: {href[:80]}")
     if DASHES.search(page):
         problems.append("em/en dash on the page")
     forms = page.count('id="subscribe"')
@@ -222,7 +225,14 @@ SOURCE_BLOCKS = ("weekly-cover-line", "open-quote", "open-prose", "feature-title
                  "log-entry-how", "log-entry-why")
 
 
-def source_parity(source_page, page):
+NUM = re.compile(r"(?<![\w.])\$?(?:\d{1,3}(?:,\d{3})+|\d+)(?:\.\d+)?%?")
+# Numbers the paper template prints on every edition (page folios, the wordmark's year line, counts the
+# template computes). Measured from renders; a figure outside source + this set is a changed figure.
+CHROME_NUMS = {"9", "144"}  # colophon: "Fraunces, optical sizes 9 to 144"
+CHROME_PHRASES = re.compile(r"\b(\d+) (?:words|entries|sections|releases in the log)\b|\bReleases (\d+)\b")
+
+
+def source_parity(source_page, page, extra=""):
     """Diff the ROUTINE page against the render: every block's full text (every number) and every link.
 
     A converter drop or a changed figure cannot hide behind edition.md this way.
@@ -232,24 +242,76 @@ def source_parity(source_page, page):
     spec.loader.exec_module(e2p)
     t = e2p.Tree(); t.feed(source_page)
     text = norm(plain(page))
-    missing = []
-    for cls in SOURCE_BLOCKS:
-        for node in t.root.find_all(cls):
-            if cls == "feature-meta":
-                units = [sp.text() for sp in node.find_all(tag="span")]
-            elif cls == "feature-right":
-                units = node.lines()
-            else:
-                units = [p.text() for p in node.find_all(tag="p")] or [node.text()]
-            for u in units:
-                u = re.sub(r"^(How to use|Why it matters):?\s*", "", u)
-                if norm(u) and norm(u) not in text:
-                    missing.append(f"{cls}: {u[:60]}")
-            for a in node.find_all(tag="a"):
-                href = a.attrs.get("href", "")
-                if href and html.escape(href, quote=True) not in page and href not in page:
-                    missing.append(f"{cls}: link missing {href[:80]}")
+    missing, want_links, want_nums = [], {}, {}
+    blocks = [(cls, node) for cls in SOURCE_BLOCKS for node in t.root.find_all(cls)]
+    ids = {id(n) for _, n in blocks}
+
+    def nested(node):  # a block inside another block is counted with its parent, never twice
+        p = node.parent
+        while p is not None:
+            if id(p) in ids:
+                return True
+            p = p.parent
+        return False
+
+    for cls, node in blocks:
+        if cls == "feature-meta":
+            units = [sp.text() for sp in node.find_all(tag="span")] or [node.text()]
+        elif cls == "feature-right":
+            units = node.lines()
+        else:
+            units = [p.text() for p in node.find_all(tag="p")] or [node.text()]
+        for u in units:
+            u = re.sub(r"^(How to use|Why it matters):?\s*", "", u)
+            if norm(u) and norm(u) not in text:
+                missing.append(f"{cls}: {u[:60]}")
+        if nested(node):  # its text is checked above; its links and figures count with the parent
+            continue
+        for a in node.find_all(tag="a"):
+            href = a.attrs.get("href", "")
+            if href:
+                want_links[href] = want_links.get(href, 0) + 1
+        for n in NUM.findall(node.text()):
+            want_nums[n] = want_nums.get(n, 0) + 1
+    for href, n in want_links.items():
+        got = page.count(f'href="{html.escape(href, quote=True)}"') + (page.count(f'href="{href}"') if html.escape(href, quote=True) != href else 0)
+        if got < n:
+            missing.append(f"link missing: {href[:80]} (source {n}, page {got})")
+    page_nums = {}
+    for n in NUM.findall(plain(page)):
+        page_nums[n] = page_nums.get(n, 0) + 1
+    for n, c in want_nums.items():
+        if page_nums.get(n, 0) < c:
+            missing.append(f"figure missing: {n} (source {c}, page {page_nums.get(n, 0)})")
+    # A number the routine never printed is a changed figure (chrome numbers come from the source too).
+    allowed = set(NUM.findall(plain(source_page) + " " + extra)) | CHROME_NUMS  # extra: running images' captions + credits
+    for m in CHROME_PHRASES.finditer(plain(page)):  # counts the template computes (words, entries, sections)
+        allowed.add(m.group(1) or m.group(2))
+    stray = sorted(n for n in page_nums if n not in allowed)
+    if stray:
+        missing.append("figures not in the source: " + ", ".join(stray[:8]))
     return missing
+
+
+def image_text(want, images_dir):
+    """Captions and credits of the images that will run: their figures are the image desk's, not the routine's."""
+    slots = json.loads((images_dir / "slots.json").read_text()) if (images_dir / "slots.json").exists() else {}
+    man = json.loads((images_dir / "manifest.json").read_text()).get("images", {}) if (images_dir / "manifest.json").exists() else {}
+    return " ".join(f"{slots.get(f.rsplit('-', 1)[0], {}).get('caption', '')} {man.get(f, {}).get('credit', '')}" for f in want)
+
+
+def image_gate(page, want, images_dir):
+    """Every approved image the desk means to run is on the page, with its caption."""
+    problems = []
+    slots = json.loads((images_dir / "slots.json").read_text()) if (images_dir / "slots.json").exists() else {}
+    text = norm(plain(page))
+    for f in want:
+        if f'img/{f}"' not in page:
+            problems.append(f"image missing: {f}")
+        cap = slots.get(f.rsplit("-", 1)[0], {}).get("caption", "")
+        if cap and norm(cap) not in text:
+            problems.append(f"caption missing: {cap[:60]}")
+    return problems
 
 
 def scope_images(page, stem):
@@ -306,7 +368,8 @@ def build(section, stem, st, want, dry):
         render(d / "edition.md", out)
         page = out.read_text()
         problems = parity_gate((d / "edition.md").read_text(), page)
-        problems += source_parity((d / "source.html").read_text(), page)
+        problems += source_parity((d / "source.html").read_text(), page, image_text(want, d / "images"))
+        problems += image_gate(page, want, d / "images")
         if problems:
             st["gate_failure"] = {"key": [st.get("source_sha"), want], "problems": problems[:10]}
             log(f"  ESCALATE gate held {section}/{stem}: " + "; ".join(problems[:5]))
@@ -449,6 +512,12 @@ def cmd_run(a):
             notify("Shipped. Edition Desk", f"{section}/{stem}: {str(e)[:120]}")
     if a.dry_run:
         return
+    # Editions still held keep the alert standing even on a quiet run.
+    for sec in SECTIONS:
+        for d in sorted((EDITIONS / sec).glob("*")) if (EDITIONS / sec).exists() else []:
+            gf = load_state(sec, d.name).get("gate_failure")
+            if gf and not any(f"{sec}/{d.name}" in e for e in ESCALATIONS):
+                ESCALATIONS.append(f"HELD {sec}/{d.name}: {gf['problems'][0]}")
     # A standing alert Night Desk reads every night: written on escalation, cleared on a clean run.
     if ESCALATIONS:
         ALERT.parent.mkdir(exist_ok=True)

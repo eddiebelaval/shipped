@@ -180,6 +180,13 @@ class TestDesk(World):
             with self.assertRaises(AssertionError):
                 ed.branch_pages()
 
+    def test_alert_stands_while_an_edition_is_held(self):
+        with mock.patch.object(ed, "parity_gate", return_value=["text missing: x"]):
+            ed.cmd_run(args())
+            ed.ESCALATIONS.clear()
+            ed.cmd_run(args())  # quiet run: nothing new escalates, but the edition is still held
+        self.assertIn("HELD anthropic-daily/2026-10-10", ed.ALERT.read_text())
+
     def test_build_crash_persists_hold_and_caps(self):
         with mock.patch.object(ed, "render", side_effect=RuntimeError("boom")):
             ed.cmd_run(args())
@@ -302,7 +309,7 @@ class TestDeskUnits(unittest.TestCase):
         md = ("---\ntitle: x\n---\n## The Open\n\nAlpha beta gamma delta epsilon zeta eta theta.\n\n"
               "## A. Models\n\n#### 2026-10-07 - Claude Haiku 5.5 ([source](https://x))\n`[MODEL]`\n\nBody here.\n")
         good = ("<title>t</title>" + ed.MARKER + "<p>Alpha beta gamma delta epsilon zeta eta theta.</p>"
-                "<b>Claude Haiku 5.5</b> Body here. <section id=\"subscribe\">https://id8labs.app/api/newsletter/subscribe</section>")
+                "<a href=\"https://x\"><b>Claude Haiku 5.5</b></a> Body here. <section id=\"subscribe\">https://id8labs.app/api/newsletter/subscribe</section>")
         self.assertEqual(ed.parity_gate(md, good), [])
         self.assertEqual(ed.parity_gate(md, good.replace("https://id8labs.app/api/newsletter/subscribe", "/api/x")),
                          ["subscribe POST url missing"])
@@ -329,6 +336,68 @@ class TestDeskUnits(unittest.TestCase):
         with mock.patch.object(sys, "argv", ["ed", "status"]), mock.patch.object(ed, "cmd_status") as st:
             ed.main()
         st.assert_called_once()
+
+
+class TestGateMutants(unittest.TestCase):
+    """The Prometheus L2 mutations (2026-10-11): each must trip a gate. Block ORDER is out of scope:
+    the paper front reorders blocks by design (teaser, columns, rail), so order cannot be a rule."""
+
+    @classmethod
+    def setUpClass(cls):
+        cls.tmp = Path(tempfile.mkdtemp(prefix="mutants-"))
+        cls.src = FIXTURE.read_text()
+        md, _ = e2p.convert(cls.src, "anthropic-daily", "2026-10-10")
+        (cls.tmp / "edition.md").write_text(md)
+        subprocess.run(["npx", "tsx", "src/render/edition-cli.ts", str(cls.tmp / "edition.md"), str(cls.tmp / "out.html")],
+                       cwd=HERE.parent, check=True, capture_output=True)
+        cls.page = (cls.tmp / "out.html").read_text()
+        cls.md = md
+
+    @classmethod
+    def tearDownClass(cls):
+        shutil.rmtree(cls.tmp, ignore_errors=True)
+
+    def problems(self, page):
+        return ed.parity_gate(self.md, page) + ed.source_parity(self.src, page)
+
+    def test_faithful_render_is_clean(self):
+        self.assertEqual(self.problems(self.page), [])
+
+    def mutate(self, old, new, count=-1):
+        self.assertIn(old, self.page)
+        return self.page.replace(old, new) if count < 0 else self.page.replace(old, new, count)
+
+    def test_changed_figure_everywhere(self):
+        self.assertTrue(self.problems(self.mutate("72.4%", "74.2%")))
+
+    def test_changed_figure_only_in_the_teaser(self):
+        self.assertTrue(self.problems(self.mutate("72.4%", "79.9%", 1)))
+
+    def test_removed_figure(self):
+        self.assertTrue(self.problems(self.mutate("20 visa forms submitted", "visa forms submitted")))
+
+    def test_swapped_figures(self):
+        swapped = self.page.replace("4 behavior types disclosed", "TMP").replace("1 police tip filed", "4 police tip filed")
+        self.assertTrue(self.problems(swapped.replace("TMP", "1 behavior types disclosed")))
+
+    def test_changed_link_and_dropped_duplicate_link(self):
+        href = "https://www.anthropic.com/news"
+        self.assertTrue(self.problems(self.mutate(f'href="{href}"', 'href="https://example.com"')))
+        self.assertTrue(self.problems(self.mutate(f'href="{href}"', 'href="https://example.com"', 1)))
+
+    def test_cut_last_sentence(self):
+        self.assertTrue(self.problems(self.mutate(" The small-model tier is a contested space now.", "")))
+
+    def test_image_gate(self):
+        imgs = self.tmp / "images"
+        imgs.mkdir(exist_ok=True)
+        (imgs / "slots.json").write_text(json.dumps({"lead": {"caption": "A stamp with 12 wheels."}}))
+        page = self.page + '<img src="img/lead-atkinson.png"><figcaption>A stamp with 12 wheels.</figcaption>'
+        self.assertEqual(ed.image_gate(page, ["lead-atkinson.png"], imgs), [])
+        self.assertEqual(ed.image_gate(page.replace("12 wheels", "13 wheels"), ["lead-atkinson.png"], imgs),
+                         ["caption missing: A stamp with 12 wheels."])
+        self.assertEqual(ed.image_gate(self.page, ["lead-atkinson.png"], imgs),
+                         ["image missing: lead-atkinson.png", "caption missing: A stamp with 12 wheels."])
 
 
 class TestConverter(unittest.TestCase):
@@ -405,6 +474,29 @@ class TestQC(unittest.TestCase):
         with mock.patch.object(qc.subprocess, "run", return_value=mock.Mock(returncode=0, stdout='{"result": "no"}', stderr="")):
             with self.assertRaises(RuntimeError):
                 qc.grade("p.png", None, "story-1", "", "", "")
+
+    def test_gate_thresholds_are_the_calibrated_ones(self):
+        self.assertEqual(qc.GATE, {"legibility": 3, "relevance": 3, "caption_truth": 3, "look": 2, "taste": 2})
+
+    def test_doubted_caption_without_a_fix_is_capped_and_rejected(self):
+        sc = {"legibility": 5, "look": 5, "relevance": 5, "caption_truth": 4, "taste": 5, "hard_faults": [], "note": "n"}
+        with mock.patch.object(qc.subprocess, "run", return_value=self.claude(sc)):
+            g = qc.grade("p.png", None, "lead", "x", "c", "")
+        self.assertEqual(g["caption_truth"], 2)
+        self.assertFalse(qc.verdict(g, [])[0])
+        with mock.patch.object(qc.subprocess, "run", return_value=self.claude({**sc, "caption_fix": "A better caption."})):
+            g = qc.grade("p.png", None, "lead", "x", "c", "")
+        self.assertEqual(g["caption_truth"], 4)
+        self.assertTrue(qc.verdict(g, [])[0])
+
+    def test_review_writes_the_caption_fix(self):
+        sc = {"legibility": 5, "look": 5, "relevance": 5, "caption_truth": 4, "taste": 5, "hard_faults": [],
+              "caption_fix": "A knife switch on a panel.", "note": "n"}
+        with mock.patch.object(qc.subprocess, "run", side_effect=[self.claude(sc), self.claude(sc)]):
+            qc.review(self.imgs, str(self.md), log=lambda *_: None)
+        slots = json.loads((self.imgs / "slots.json").read_text())
+        self.assertEqual(slots["cover"]["caption"], "A knife switch on a panel.")
+        self.assertEqual(slots["cover"]["caption_was"], "A knife switch.")
 
     def test_review_writes_calls_and_picks(self):
         hi = {"legibility": 5, "look": 5, "relevance": 5, "caption_truth": 5, "taste": 5, "hard_faults": [], "note": "h"}
