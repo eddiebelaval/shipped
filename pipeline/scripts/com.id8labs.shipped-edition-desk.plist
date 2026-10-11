@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<!-- Shipped. Edition Desk: paper front for every new edition, images after Eddie's review.
+     Install: cp to ~/Library/LaunchAgents/ && launchctl load ~/Library/LaunchAgents/com.id8labs.shipped-edition-desk.plist
+     Image generation (the OpenAI fallback) needs OPENAI_API_KEY under EnvironmentVariables;
+     without it the desk sources Wikimedia only. -->
+<plist version="1.0">
+<dict>
+  <key>Label</key><string>com.id8labs.shipped-edition-desk</string>
+  <key>ProgramArguments</key>
+  <array>
+    <string>/usr/bin/python3</string>
+    <string>/Users/eddiebelaval/Development/id8/shipped/pipeline/scripts/edition-desk.py</string>
+    <string>run</string>
+  </array>
+  <key>EnvironmentVariables</key>
+  <dict>
+    <key>PATH</key><string>/Users/eddiebelaval/.local/bin:/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin</string>
+  </dict>
+  <key>StartInterval</key><integer>1800</integer>
+  <key>RunAtLoad</key><false/>
+  <key>StandardOutPath</key><string>/Users/eddiebelaval/Library/Logs/shipped/edition-desk.launchd.log</string>
+  <key>StandardErrorPath</key><string>/Users/eddiebelaval/Library/Logs/shipped/edition-desk.launchd.log</string>
+</dict>
+</plist>

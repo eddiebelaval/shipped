@@ -15,3 +15,6 @@ pipeline/.api-cache.json
 .gstack/
 __pycache__/
 *.pyc
+
+# Edition Desk working folders (daily-pages is the record)
+content/editions/

@@ -206,6 +206,9 @@ def check_integrity(pg):
         record("integrity", "OK", "every page is a well-formed document")
 
 
+PAPER_MARKER = '<meta name="shipped-layout" content="paper">'
+
+
 def check_chrome(pg, state):
     """Pages published since the design lock must carry issue-chrome.html.
 
@@ -223,7 +226,9 @@ def check_chrome(pg, state):
             seen_all.append(key)
             if key in grandfathered:
                 continue
-            if "weekly-masthead" not in blob(f"{key}.html"):
+            page = blob(f"{key}.html")
+            # The Edition Desk's paper front (DESIGN.md Rev 6) is the other locked design.
+            if "weekly-masthead" not in page and PAPER_MARKER not in page:
                 missing.append(key)
 
     if first_run:

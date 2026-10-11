@@ -11,10 +11,15 @@
  */
 
 import { existsSync } from 'node:fs';
-import { basename, join } from 'node:path';
+import { basename, dirname, join } from 'node:path';
 
 /** The issue's images folder if it has a manifest, else null. */
 export function issueImageDir(markdownPath: string, contentRoot: string): string | null {
+  // Editions (content/editions/<section>/<stem>/edition.md) keep images beside the markdown.
+  if (basename(markdownPath) === 'edition.md') {
+    const dir = join(dirname(markdownPath), 'images');
+    return existsSync(join(dir, 'manifest.json')) ? dir : null;
+  }
   const m = basename(markdownPath).match(/^issue-(\d+)/);
   const num = m?.[1];
   if (!num) return null;

@@ -77,7 +77,10 @@ export async function renderIssue(
   // the classic cover for the newspaper front and pulls the desk's images.
   const paper = issue.frontmatter.layout === 'paper';
   const imagesDir = paper ? issueImageDir(absMarkdown, path.resolve(__dirname, '../../../content')) : null;
-  const images = loadSlotImages(imagesDir);
+  const allImages = loadSlotImages(imagesDir);
+  const images = options.approvedImagesOnly
+    ? Object.fromEntries(Object.entries(allImages).filter(([, img]) => img.approved))
+    : allImages;
   const data = await buildTemplateData(issue, issueNum);
   if (paper) Object.assign(data, paperOverrides(issue, issueNum, images));
   else data.paper_front = '';

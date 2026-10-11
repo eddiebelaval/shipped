@@ -65,15 +65,17 @@ def parse_issue(path):
     for chunk in re.split(r"^### ", sections.get("Also Shipped", ""), flags=re.M)[1:]:
         title, _, body = chunk.partition("\n")
         stories.append({"title": title.strip(), "text": body.strip()[:1200]})
-    num = int(fm.get("issue", re.search(r"issue-(\d+)", path).group(1)))
+    num = int(fm["issue"] if "issue" in fm else re.search(r"issue-(\d+)", path).group(1))
     return {"issue": num, "title": fm.get("title", ""), "deck": fm.get("deck", ""),
             "open": sections.get("The Open", "")[:1200], "headline": headline,
             "lead": lead[:3000], "stories": stories}
 
+FRONT_STORIES = 3  # the paper front draws three stories (paper-front.ts FRONT_STORIES); more would be pictures nobody sees
+
 def slots_for(issue):
     s = [{"slot": "cover", "kind": "cover", "context": f"{issue['title']}. {issue['deck']}\n{issue['open']}"},
          {"slot": "lead", "kind": "lead", "context": f"{issue['headline']}\n{issue['lead']}"}]
-    for i, st in enumerate(issue["stories"]):
+    for i, st in enumerate(issue["stories"][:FRONT_STORIES]):
         s.append({"slot": f"story-{i+1}", "kind": "story", "context": f"{st['title']}\n{st['text']}"})
     return s
 
@@ -202,7 +204,10 @@ def main():
     a = ap.parse_args()
 
     issue = parse_issue(a.issue_md); n = issue["issue"]
-    out = os.path.join(CONTENT, "articles", f"issue-{n:02d}", "images"); src = os.path.join(out, "src")
+    # Editions (content/editions/<section>/<stem>/edition.md) keep images beside the markdown.
+    out = (os.path.join(os.path.dirname(os.path.abspath(a.issue_md)), "images") if os.path.basename(a.issue_md) == "edition.md"
+           else os.path.join(CONTENT, "articles", f"issue-{n:02d}", "images"))
+    src = os.path.join(out, "src")
     os.makedirs(src, exist_ok=True)
     slots = slots_for(issue)
     print(f"Issue {n:02d}: {len(slots)} slots")

@@ -75,6 +75,12 @@ run("chrome: new page free-hands its CSS",
     lambda: nd.check_chrome({"anthropic-daily": ["2026-08-06"], "anthropic-weekly": [],
                              "anthropic-monthly": []}, {"pre_lock_pages": []}), True)
 
+with_blob({"anthropic-daily/2026-10-10.html": GOOD.replace(
+    '<div class="weekly-masthead">Shipped</div>', '<meta name="shipped-layout" content="paper">')})
+run("chrome: the Edition Desk paper front is the other locked design",
+    lambda: nd.check_chrome({"anthropic-daily": ["2026-10-10"], "anthropic-weekly": [],
+                             "anthropic-monthly": []}, {"pre_lock_pages": []}), False)
+
 # --- 5. subscribe: the dead-button pages -----------------------------------
 with_blob({"anthropic-weekly/2026-30.html":
            '<!DOCTYPE html><html><head><title>x</title></head><body>'

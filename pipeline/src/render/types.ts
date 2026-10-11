@@ -217,6 +217,9 @@ export interface RenderOptions {
   dryRun?: boolean;
   /** Extra path written for diffing in CI/dry-run. */
   scratchPath?: string;
+  /** Drop images not yet approved instead of stamping them PENDING REVIEW
+   *  (editions publish text-only until Eddie approves their images). */
+  approvedImagesOnly?: boolean;
 }
 
 export interface RenderResult {
