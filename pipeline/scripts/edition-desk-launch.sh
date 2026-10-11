@@ -12,7 +12,8 @@ ALERT="$MAIN/ops/EDITION-DESK-LAUNCHER-ALERT.md"  # sticky: removed by hand once
 
 fail() {
   mkdir -p "$MAIN/ops"
-  printf '# Edition Desk alert\n\n- ESCALATE launcher failed: %s\n\nRunbook: pipeline/EDITION-DESK.md\n' "$1" > "$ALERT"
+  [ -e "$ALERT" ] || printf '# Edition Desk launcher alert (delete once read; runbook pipeline/EDITION-DESK.md)\n\n' > "$ALERT"
+  printf -- '- ESCALATE %s launcher failed: %s\n' "$(date '+%Y-%m-%d %H:%M')" "$1" >> "$ALERT"
   osascript -e "display notification \"launcher failed: $1\" with title \"Shipped. Edition Desk\"" >/dev/null 2>&1
   exit 1
 }
@@ -24,7 +25,8 @@ mkdir -p "$MAIN/ops"
 if ! mkdir "$LOCK" 2>/dev/null; then
   # A lock older than 2 hours is a crashed run (kill -9, reboot): say so, clear it, carry on.
   if [ -n "$(find "$LOCK" -maxdepth 0 -mmin +120 2>/dev/null)" ]; then
-    printf '# Edition Desk alert\n\n- ESCALATE stale lock cleared (a run died holding it)\n' > "$ALERT"
+    [ -e "$ALERT" ] || printf '# Edition Desk launcher alert (delete once read; runbook pipeline/EDITION-DESK.md)\n\n' > "$ALERT"
+    printf -- '- ESCALATE %s stale lock cleared (a run died holding it)\n' "$(date '+%Y-%m-%d %H:%M')" >> "$ALERT"
     rmdir "$LOCK" && mkdir "$LOCK" || fail "could not clear the stale lock"
   else
     echo "another Edition Desk run holds $LOCK"; exit 0

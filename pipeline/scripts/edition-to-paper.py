@@ -245,8 +245,8 @@ edition: {edition}
 issue_label: {q(f"{short} · {window}")}
 deck: {q(cover_line or lead_deck)}
 weather: {q(close[-1] if close else '')}
-edition_section: {section}
-edition_stem: {stem}
+edition_section: "{section}"
+edition_stem: "{stem}"
 ---
 """, "## The Open\n", *([f"*{open_quote.strip('*')}*\n"] if open_quote else []), *[p + "\n" for p in open_paras],
         "## The Lead Story\n", f"# {lead_title}\n", *([f"**{lead_deck.strip('*')}**\n"] if lead_deck else []),

@@ -27,7 +27,7 @@ weekly 2026-41 verified byte-identical to 2338810; the test image returns 404.
 git -C ~/Development/id8/shipped push origin main
 ```
 Expect: `origin/main` = the polled SHA. Stop if the push is rejected. Undo: `git revert` the commits on main and
-push (main only feeds the desk; nothing publishes from a push alone).
+push. Before op 3 nothing publishes from a push alone; after op 3 the next timer run uses whatever main holds.
 
 **Op 2 (after op 1).** Publish daily 10-10 in the paper layout, nothing else.
 ```bash
@@ -47,7 +47,8 @@ launchctl load ~/Library/LaunchAgents/com.id8labs.shipped-edition-desk.plist
 public site with images Claude QC approved.** Its first run also PUBLISHES weekly 2026-41 to the public site, unattended (it is past the
 cutover and passes every gate in preview). Stop signal: Night Desk escalates an Edition Desk alert. Undo:
 `launchctl unload ~/Library/LaunchAgents/com.id8labs.shipped-edition-desk.plist`, or
-`touch ~/Development/id8/shipped/ops/EDITION-DESK-PAUSED`.
+`touch ~/Development/id8/shipped/ops/EDITION-DESK-PAUSED`; roll back an edition with the
+rollback section below.
 
 Known limits: block order is not gated beyond story and log titles keeping their order (the paper front reorders
 blocks by design). No whole-run timeout. An image-desk failure is logged, not escalated (the edition runs text-only). The launcher itself runs
@@ -82,12 +83,13 @@ One edition only: set `"paused": true` in `~/Development/id8/shipped/content/edi
 /usr/bin/python3 ~/Development/id8/shipped/pipeline/scripts/edition-desk.py rollback anthropic-daily/2026-10-10
 ```
 
-It pauses the edition first (so no run can re-publish it), then restores `<section>/<stem>.html` from the newest
-daily-pages commit NOT made by the Edition Desk (the routine's own page, including any Night Desk sweep), removes
+First `touch ~/Development/id8/shipped/ops/EDITION-DESK-PAUSED` (stops every run while you work). The command
+then pauses the edition, restores `<section>/<stem>.html` from the newest daily-pages version WITHOUT the paper
+marker (the routine's page; a 23:00 sweep that rewrote the paper page is skipped, whoever committed it), removes
 `<section>/img/<stem>/`, and pushes one plain commit. If the routine's page is already live it pauses and pushes
 nothing. Never revert the newest "Edition Desk" commit by hand: on 10-10 that commit is the op 0 revert, and
 reverting it would put the leaked test page back. Tested: one publish (A), text then images (B), after a desk
-revert (C). To resume: set `"paused": false` in that edition's `edition.json`, then
+revert (C), after a bot sweep of a text-only and of an image edition (D). To resume: set `"paused": false` in that edition's `edition.json`, then
 `~/Development/id8/shipped/pipeline/scripts/edition-desk-launch.sh --retry --only <section>/<stem>`.
 
 ## Unload

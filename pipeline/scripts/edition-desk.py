@@ -331,6 +331,93 @@ def one_in(fragment, pat):
     return m.group(1) if m else ""
 
 
+def md_sections(md_text):
+    body = md_text.split("---", 2)[2]
+    return {m.group(1).strip(): m.group(2) for m in re.finditer(r"^## (.+?)\n(.*?)(?=^## |\Z)", body, re.M | re.S)}
+
+
+def md_paras(text):
+    return [norm(md_plain(b)) for b in re.split(r"\n\s*\n", text.strip()) if b.strip() and norm(md_plain(b))]
+
+
+def md_log(md_text):
+    """[(date, title, url, tag, body, how, why)] from the edition's release log, in order."""
+    out = []
+    for block in re.split(r"^#### ", md_text, flags=re.M)[1:]:
+        head, _, rest = block.partition("\n")
+        m = re.match(r"(\S+) - (.+?)(?: \(\[source\]\(([^)]+)\)\))?\s*$", head)
+        if not m:
+            continue
+        rest = re.split(r"^## ", rest, flags=re.M)[0]
+        tag = (re.search(r"`\[([A-Z-]+)\]`", rest) or [None, ""])[1]
+        rest = re.sub(r"`\[[A-Z-]+\]`", "", rest)
+        how = (re.search(r"\*\*How to use:\*\* (.*)", rest) or [None, ""])[1]
+        why = (re.search(r"\*\*Why it matters:\*\* (.*)", rest) or [None, ""])[1]
+        body = re.split(r"\*\*(?:How to use|Why it matters):\*\*", rest)[0]
+        out.append((m.group(1), norm(md_plain(m.group(2))), m.group(3) or "", tag.lower(),
+                    norm(md_plain(body)), norm(md_plain(how)), norm(md_plain(why))))
+    return out
+
+
+def inside_structure(page, md_text):
+    """Read the rendered INSIDE back into its parts and require each to equal edition.md, in order:
+    the Open, the lead's paragraphs, every Also Shipped story's title with its own paragraphs, Quiet,
+    the Close, and every log entry field by field (date, title, link, tag, body, how, why). Words
+    present somewhere are not enough: each must sit under its own title."""
+    spec = importlib.util.spec_from_file_location("e2p", SCRIPTS / "edition-to-paper.py")
+    e2p = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(e2p)
+    _, inside = split_front(page)
+    t = e2p.Tree(); t.feed(inside)
+    secs = md_sections(md_text)
+    ptext = lambda n: norm(n.text())
+    probs = []
+
+    lead_md = secs.get("The Lead Story", "")
+    title = next((l[2:].strip() for l in lead_md.splitlines() if l.startswith("# ")), "")
+    prose = t.root.find("prose")
+    if prose is None or [ptext(x) for x in prose.find_all(tag="p")] != md_paras(lead_md.split(f"# {title}", 1)[-1]):
+        probs.append("inside lead paragraphs differ from the edition")
+
+    stories, cur = [], None
+    for sec in t.root.find_all(tag="section"):
+        if "also shipped" in norm(sec.text()[:200]).replace("shipped", " shipped") or "alsoshipped" in norm(sec.text()[:120]):
+            pr = sec.find("prose")
+            for k in (pr.kids if pr is not None else []):
+                if isinstance(k, e2p.Node) and k.tag == "h3":
+                    cur = [norm(k.text().rstrip(".")), []]; stories.append(cur)
+                elif isinstance(k, e2p.Node) and k.tag == "p" and cur is not None:
+                    cur[1].append(ptext(k))
+            break
+    want = [[norm(md_plain(c.partition("\n")[0].strip().rstrip("."))), md_paras(c.partition("\n")[2])]
+            for c in re.split(r"^### ", secs.get("Also Shipped", ""), flags=re.M)[1:]]
+    if stories != want:
+        probs.append("inside Also Shipped differs (a body under the wrong title, or a story changed)")
+
+    qb = t.root.find("quiet-body")
+    if secs.get("Quiet on the Wire") and (qb is None or [ptext(x) for x in qb.find_all(tag="p")] != md_paras(secs["Quiet on the Wire"])):
+        probs.append("inside Quiet on the Wire differs")
+    cl = [ptext(x) for x in t.root.find_all("close-line")]
+    if secs.get("The Close") and cl != md_paras(secs["The Close"]):
+        probs.append("inside Close differs")
+
+    got = []
+    for e in t.root.find_all("log-entry"):
+        d = re.sub(r"\D", "", e.find("log-entry-date").text()) if e.find("log-entry-date") else ""
+        tl = e.find("log-entry-title")
+        a = tl.find(tag="a") if tl is not None else None
+        tg = next((x.text() for x in e.find_all(tag="span") if "log-tag" in x.classes), "")
+        how = re.sub(r"^How to use:?", "", e.find("log-entry-how").text()) if e.find("log-entry-how") else ""
+        why = re.sub(r"^Why it matters:?", "", e.find("log-entry-why").text()) if e.find("log-entry-why") else ""
+        got.append((d, ptext(tl) if tl else "", (a.attrs.get("href", "").lstrip("#") and a.attrs.get("href", "")) if a is not None else "", tg.lower(),
+                    ptext(e.find("log-entry-body")) if e.find("log-entry-body") else "", norm(how), norm(why)))
+    want_log = [(re.sub(r"\D", "", d), ti, u, tg, b, h, w) for d, ti, u, tg, b, h, w in md_log(md_text)]
+    if got != want_log:
+        bad = next((i for i, (x, y) in enumerate(zip(got, want_log)) if x != y), min(len(got), len(want_log)))
+        probs.append(f"inside release log differs at entry {bad + 1} of {len(want_log)}")
+    return probs
+
+
 def link_check(page, source_page, md_text):
     """No link on the page the edition never had (template chrome and in-page anchors excepted)."""
     allowed = set(re.findall(r'href="([^"]+)"', source_page)) | set(re.findall(r"\]\(([^)\s]+)\)", md_text))
@@ -520,6 +607,7 @@ def build(section, stem, st, want, dry):
         problems += front_check(split_front(page)[0], src, md_text, image_text(want, d / "images"))
         problems += link_check(page, src, md_text)
         problems += front_structure(split_front(page)[0], md_text)
+        problems += inside_structure(page, md_text)
         if problems:
             st["gate_failure"] = {"key": [st.get("source_sha"), want], "problems": problems[:10]}
             log(f"  ESCALATE gate held {section}/{stem}: " + "; ".join(problems[:5]))
@@ -537,6 +625,7 @@ def build(section, stem, st, want, dry):
         live = verify_live(section, stem)
         log(f"  published {section}/{stem} ({note}); live check: {'OK' if live else 'UNVERIFIED'}")
         if not live:
+            log(f"  ESCALATE {section}/{stem}: pushed but not live after 5 minutes (PUBLISH UNVERIFIED)")
             notify("Shipped. Edition Desk", f"{section}/{stem}: pushed but not live after 5 minutes")
         st["published_images"] = want
         st["published_at"] = datetime.datetime.now().isoformat(timespec="seconds")
@@ -678,7 +767,7 @@ def cmd_run(a):
 
 
 def cmd_rollback(a):
-    """Put the routine's own page back: the file from the newest commit NOT made by the Edition Desk.
+    """Put the routine's own page back: the newest version of the file without the paper marker.
 
     Reverting the newest desk commit is wrong in general: a desk revert or a second (image) publish
     sits on top. Restoring the routine's version is right in every case, and the edition is paused
@@ -687,11 +776,16 @@ def cmd_rollback(a):
     section, stem = a.edition.split("/")
     path = f"{section}/{stem}.html"
     git("fetch", "origin", "daily-pages", "--quiet", check=True)
-    log_lines = git("log", "--format=%H%x09%an", "origin/daily-pages", "--", path, check=True).stdout.splitlines()
-    routine = next((h for h, who in (l.split("\t") for l in log_lines) if who != "Edition Desk"), None)
+    # The routine's page is the newest version WITHOUT the paper marker, whoever committed it: the
+    # 23:00 sweep ("Shipped. bot") also rewrites paper pages, so authorship cannot decide it.
+    routine = want = None
+    for h in git("log", "--format=%H", "origin/daily-pages", "--", path, check=True).stdout.split():
+        body = git("show", f"{h}:{path}").stdout
+        if body and MARKER not in body:
+            routine, want = h, body
+            break
     if not routine:
         sys.exit(f"no routine version of {path} on daily-pages")
-    want = git("show", f"{routine}:{path}", check=True).stdout
     live = git("show", f"origin/daily-pages:{path}").stdout
     imgs_live = git("ls-tree", "--name-only", "origin/daily-pages", f"{section}/img/{stem}/").stdout.strip()
     st = load_state(section, stem)

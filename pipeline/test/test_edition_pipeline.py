@@ -211,9 +211,49 @@ class TestDesk(World):
         self.assertIn("already is the routine's page", out.getvalue())
         self.assertEqual(self.live(), FIXTURE.read_text())
 
+    def sweep(self, extra="<!-- swept -->"):
+        """What the 23:00 sweep does: a 'Shipped. bot' commit that rewrites the (paper) page."""
+        seed = self.tmp / "sweeper"
+        if not seed.exists():
+            sh("git", "clone", "-q", "-b", "daily-pages", str(self.origin), str(seed), cwd=self.tmp)
+        sh("git", "pull", "-q", "origin", "daily-pages", cwd=seed)
+        f = seed / "anthropic-daily" / "2026-10-10.html"
+        f.write_text(f.read_text() + extra)
+        sh("git", "-c", "user.name=Shipped. bot", "-c", "user.email=b@b", "commit", "-qam", "chore(pages): branch sweep", cwd=seed)
+        sh("git", "push", "-q", "origin", "HEAD:daily-pages", cwd=seed)
+
+    def test_rollback_case_d_after_a_bot_sweep_text_only(self):
+        ed.cmd_run(args())
+        self.sweep()
+        self.assertIn(ed.MARKER, self.live())
+        ed.cmd_rollback(argparse.Namespace(edition="anthropic-daily/2026-10-10"))
+        self.assertEqual(self.live(), FIXTURE.read_text())
+
+    def test_rollback_case_d_after_a_bot_sweep_with_images(self):
+        ed.cmd_run(args())
+        imgs = ed.folder("anthropic-daily", "2026-10-10") / "images"
+        imgs.mkdir()
+        shutil.copy(ISSUE10 / "story-3-atkinson.png", imgs / "lead-atkinson.png")
+        (imgs / "slots.json").write_text(json.dumps({"lead": {"caption": "A meter on a wall.", "alt": "meter", "treatment": "atkinson"}}))
+        (imgs / "manifest.json").write_text(json.dumps({"images": {"lead-atkinson.png": {
+            "credit": "Public domain", "treatment": "atkinson", "width": 1200, "flags": [], "review": {"status": "approved"}}}}))
+        ed.cmd_run(args())
+        self.sweep()
+        ed.cmd_rollback(argparse.Namespace(edition="anthropic-daily/2026-10-10"))
+        page = self.live()
+        self.assertEqual(page, FIXTURE.read_text())
+        self.assertNotIn("img/2026-10-10/", page)  # never a page pointing at images that were removed
+
+    def test_rollback_is_wired_into_the_cli(self):
+        with mock.patch.object(sys, "argv", ["ed", "rollback", "anthropic-daily/2026-10-10"]), \
+             mock.patch.object(ed, "cmd_rollback") as rb:
+            ed.main()
+        rb.assert_called_once()
+
     def test_every_gate_in_build_can_hold(self):
         """Deleting any gate call from build() must fail this test."""
-        for gate in ("image_gate", "front_check", "link_check", "source_parity", "parity_gate"):
+        for gate in ("image_gate", "front_check", "link_check", "source_parity", "parity_gate",
+                     "front_structure", "inside_structure"):
             with self.subTest(gate=gate):
                 shutil.rmtree(ed.EDITIONS, ignore_errors=True)
                 with mock.patch.object(ed, gate, return_value=[f"{gate} says no"]):
@@ -515,6 +555,35 @@ class TestGateMutants(unittest.TestCase):
         self.assertEqual(ed.image_gate(ok, ["lead-atkinson.png"], imgs), [])
         self.assertTrue(any("alt text" in x for x in ed.image_gate(ok.replace("a stamp", "a meter"), ["lead-atkinson.png"], imgs)))
 
+    def test_inside_binding_mutants(self):
+        """Words in the right place: swaps between log entries or stories, with nothing added or lost."""
+        self.assertEqual(ed.inside_structure(self.page, self.md), [])
+        cut = self.page.index(ed.split_front(self.page)[0]) + len(ed.split_front(self.page)[0])
+        head, inside = self.page[:cut], self.page[cut:]
+        def swap(text, a, b):
+            self.assertIn(a, text); self.assertIn(b, text)
+            return text.replace(a, "\x00").replace(b, a).replace("\x00", b)
+        bodies = re.findall(r'<p class="log-entry-body">(.*?)</p>', inside, re.S)
+        titles = re.findall(r'<h3 class="log-entry-title">(.*?)</h3>', inside, re.S)
+        dates = re.findall(r'<span class="log-entry-date">(.*?)</span>', inside, re.S)
+        story = re.findall(r"<h3 style=[^>]*>(.*?)</h3>", inside)
+        muts = {
+            "log bodies swapped": swap(inside, bodies[0], bodies[1]),
+            "log titles+links swapped": swap(inside, titles[0], titles[3]),
+            "log date changed": inside.replace(dates[0], dates[0].replace("07", "08"), 1),
+            "log tag changed": re.sub(r'(<span class="log-tag[^"]*">)[^<]*', r"\1News", inside, count=1),
+            "story headings swapped": swap(inside, story[0], story[1]),
+        }
+        hows = re.findall(r'<div class="log-entry-how">(.*?)</div>', inside, re.S)
+        if len(hows) > 1:
+            muts["how-to swapped"] = swap(inside, hows[0], hows[1])
+        lead_p = re.search(r'<div class="prose drop-cap[^"]*">\s*<p>(.*?)</p>', inside, re.S).group(1)
+        also_p = re.search(r"<h3 style=[^>]*>.*?</h3>\s*<p>(.*?)</p>", inside, re.S).group(1)
+        muts["lead paragraph swapped with a story's"] = swap(inside, lead_p, also_p)
+        for name, bad in muts.items():
+            self.assertNotEqual(bad, inside, name)
+            self.assertTrue(ed.inside_structure(head + bad, self.md), name)
+
     def test_figures_swapped_or_recaptioned(self):
         imgs = self.tmp / "imgs2"
         imgs.mkdir(exist_ok=True)
@@ -609,6 +678,15 @@ class TestLauncher(unittest.TestCase):
         self.assertEqual(r.returncode, 0, r.stderr)
         self.assertTrue((self.main / "ops" / "argv.json").exists())
         self.assertIn("stale lock cleared", (self.main / "ops" / "EDITION-DESK-LAUNCHER-ALERT.md").read_text())
+
+    def test_failure_writes_the_sticky_alert(self):
+        (self.main / "pipeline" / "scripts" / "edition-desk.py").write_text("import sys; sys.exit(3)\n")
+        sh("git", "-c", "user.name=t", "-c", "user.email=t@t", "commit", "-qam", "broken desk", cwd=self.main)
+        sh("git", "push", "-q", "origin", "main", cwd=self.main)
+        alert = self.main / "ops" / "EDITION-DESK-LAUNCHER-ALERT.md"
+        self.assertEqual(self.launch().returncode, 1)
+        self.assertEqual(self.launch().returncode, 1)
+        self.assertEqual(alert.read_text().count("launcher failed: edition-desk.py exited"), 2)  # appended, not overwritten
 
     def test_pause(self):
         (self.main / "ops").mkdir()

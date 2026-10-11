@@ -89,6 +89,10 @@ alert.write_text("# Edition Desk alert\n\n- ESCALATE gate held anthropic-daily/2
 run("editions: the Edition Desk left a standing alert", nd.check_edition_desk, True)
 alert.unlink()
 run("editions: no standing alert", nd.check_edition_desk, False)
+launcher = nd.REPO / "ops" / "EDITION-DESK-LAUNCHER-ALERT.md"
+launcher.write_text("# launcher alert\n\n- ESCALATE 2026-10-11 23:30 launcher failed: git fetch origin main\n")
+run("editions: the launcher left a sticky alert", nd.check_edition_desk, True)
+launcher.unlink()
 nd.REPO = _real_repo
 
 # --- 5. subscribe: the dead-button pages -----------------------------------
