@@ -14,7 +14,7 @@ fail() {
   mkdir -p "$MAIN/ops"
   [ -e "$ALERT" ] || printf '# Edition Desk launcher alert (delete once read; runbook pipeline/EDITION-DESK.md)\n\n' > "$ALERT"
   printf -- '- ESCALATE %s launcher failed: %s\n' "$(date '+%Y-%m-%d %H:%M')" "$1" >> "$ALERT"
-  osascript -e "display notification \"launcher failed: $1\" with title \"Shipped. Edition Desk\"" >/dev/null 2>&1
+  [ -n "${EDITION_DESK_QUIET:-}" ] || osascript -e "display notification \"launcher failed: $1\" with title \"Shipped. Edition Desk\"" >/dev/null 2>&1
   exit 1
 }
 

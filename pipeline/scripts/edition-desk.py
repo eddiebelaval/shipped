@@ -537,7 +537,9 @@ def image_gate(page, want, images_dir):
         if others:
             problems.append(f"image {f} shares a figure with {sorted(others)}")
         alt = slots.get(slot, {}).get("alt", "")
-        if alt and f'alt="{html.escape(alt, quote=True)}"' not in fig and f'alt="{alt}"' not in fig:
+        # Compare decoded text: renderers spell an apostrophe &apos;, &#x27; or raw (weekly 2026-41 held on this).
+        alts = [html.unescape(a) for a in re.findall(r'<img [^>]*alt="([^"]*)"', fig)]
+        if alt and html.unescape(alt) not in alts:
             problems.append(f"alt text wrong for {f}")
         cap = re.search(r"<figcaption[^>]*>([\s\S]*?)</figcaption>", fig)
         want_cap = f"{slots.get(slot, {}).get('caption', '')} {man.get(f, {}).get('credit', '')}"

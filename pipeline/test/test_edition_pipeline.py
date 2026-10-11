@@ -554,6 +554,11 @@ class TestGateMutants(unittest.TestCase):
         ok = fig.replace('<img src="img/cover-atkinson.png">', "")
         self.assertEqual(ed.image_gate(ok, ["lead-atkinson.png"], imgs), [])
         self.assertTrue(any("alt text" in x for x in ed.image_gate(ok.replace("a stamp", "a meter"), ["lead-atkinson.png"], imgs)))
+        # Apostrophes: every spelling a renderer may use passes; a different alt still holds.
+        (imgs / "slots.json").write_text(json.dumps({"lead": {"caption": "C.", "alt": "the judge's chair"}}))
+        for spelled in ("the judge&apos;s chair", "the judge&#x27;s chair", "the judge's chair"):
+            self.assertEqual(ed.image_gate(ok.replace('alt="a stamp"', f'alt="{spelled}"'), ["lead-atkinson.png"], imgs), [], spelled)
+        self.assertTrue(ed.image_gate(ok.replace('alt="a stamp"', 'alt="the judge&apos;s desk"'), ["lead-atkinson.png"], imgs))
 
     def test_inside_binding_mutants(self):
         """Words in the right place: swaps between log entries or stories, with nothing added or lost."""
@@ -650,7 +655,7 @@ class TestLauncher(unittest.TestCase):
                   ["remote", "add", "origin", str(origin)], ["push", "-q", "origin", "main"]):
             sh("git", *c, cwd=main)
         self.main = main
-        self.env = {**os.environ, "HOME": str(self.home)}
+        self.env = {**os.environ, "HOME": str(self.home), "EDITION_DESK_QUIET": "1"}  # no real notifications from tests
         self.env.pop("GIT_SSH_COMMAND", None)
 
     def tearDown(self):

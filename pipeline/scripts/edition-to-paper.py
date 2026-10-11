@@ -181,7 +181,9 @@ def convert(page, section, stem):
         lead_in = []
         meta = fo.find("feature-meta")
         if meta is not None:  # the fact box: Source, Area, Disclosure
-            parts = [cmd(sp) for sp in meta.find_all(tag="span") if cmd(sp)] or [cmd(meta)]  # routines vary: spans or bare <b> labels
+            parts = [cmd(sp) for sp in meta.find_all(tag="span") if cmd(sp)]
+            if not parts:  # routines vary: bare <b> labels, one fact per label
+                parts = [x.strip() for x in re.split(r"(?=\*\*[^*]+:\*\*)", cmd(meta)) if x.strip()]
             if parts:
                 lead_in.append("*" + " · ".join(parts).replace("*", "") + "*")
         right = fo.find("feature-right")
