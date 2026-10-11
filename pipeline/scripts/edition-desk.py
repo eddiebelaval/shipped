@@ -228,8 +228,49 @@ SOURCE_BLOCKS = ("weekly-cover-line", "open-quote", "open-prose", "feature-title
 NUM = re.compile(r"(?<![\w.])\$?(?:\d{1,3}(?:,\d{3})+|\d+)(?:\.\d+)?%?")
 # Numbers the paper template prints on every edition (page folios, the wordmark's year line, counts the
 # template computes). Measured from renders; a figure outside source + this set is a changed figure.
+CHROME_HREFS = set(re.findall(r'href="(https?://[^"{]+)"', (PIPELINE / "src" / "render" / "template.html").read_text()
+                                + (PIPELINE / "src" / "render" / "subscribe-block.html").read_text()))
 CHROME_NUMS = {"9", "144"}  # colophon: "Fraunces, optical sizes 9 to 144"
 CHROME_PHRASES = re.compile(r"\b(\d+) (?:words|entries|sections|releases in the log)\b|\bReleases (\d+)\b")
+
+
+FRONT_ONLY = {"weekly-cover-line"}
+FRONT_OPEN = '<section class="pf" id="top">'
+FRONT_CLOSE = "</section>\n<script>(function(){function f(){"
+FRONT_CHROME = re.compile(r'<div class="pf-ears">[\s\S]*?</div>|<(figure|nav)\b[\s\S]*?</\1>|<(?:div|span|p|a) class="pf-(?:ears|motto|flag|kick|sect|jump[^"]*|pin|more|tag)"[\s\S]*?</(?:div|span|p|a)>'
+                          r'|<style[\s\S]*?</style>|<b>\d\d-\d\d</b>')
+
+
+def split_front(page):
+    """(front, inside): the paper front section, and the rest of the page."""
+    i = page.find(FRONT_OPEN)
+    j = page.find(FRONT_CLOSE, i)
+    if i < 0 or j < 0:
+        return "", page
+    return page[i:j], page[:i] + page[j:]
+
+
+def front_lines(front):
+    """The edition's words on the front (headline, deck, teasers, log titles), chrome and figures removed."""
+    body = FRONT_CHROME.sub(" ", front)
+    body = re.sub(r"</(p|h\d|div|li|a|article|aside|header)>|<br\s*/?>", "\n", body)
+    return [ln for ln in (re.sub(r"\s+", " ", html.unescape(re.sub(r"<[^>]+>", " ", x))).strip() for x in body.split("\n")) if ln]
+
+
+def front_check(front, source_page, md_text, extra=""):
+    """Every line on the front must be the edition's own words, verbatim (a teaser is a prefix of its paragraph)."""
+    allowed = norm(plain(source_page)) + "|" + norm(md_text.split("---", 2)[-1]) + "|" + norm(extra)
+    return [f"front line not in the edition: {ln[:70]}" for ln in front_lines(front) if norm(ln) and norm(ln) not in allowed]
+
+
+def link_check(page, source_page, md_text):
+    """No link on the page the edition never had (template chrome and in-page anchors excepted)."""
+    allowed = set(re.findall(r'href="([^"]+)"', source_page)) | set(re.findall(r"\]\(([^)\s]+)\)", md_text))
+    allowed |= CHROME_HREFS
+    allowed = allowed | {html.escape(h, quote=True) for h in allowed}
+    stray = sorted({h for h in re.findall(r'href="([^"]+)"', page)
+                    if h not in allowed and not h.startswith(("#", "data:", PAGES))})
+    return [f"link not in the edition: {h[:80]}" for h in stray]
 
 
 def source_parity(source_page, page, extra=""):
@@ -241,7 +282,9 @@ def source_parity(source_page, page, extra=""):
     e2p = importlib.util.module_from_spec(spec)
     spec.loader.exec_module(e2p)
     t = e2p.Tree(); t.feed(source_page)
-    text = norm(plain(page))
+    front, inside = split_front(page)
+    text = norm(plain(inside))  # the teaser repeats paragraphs; the inside must carry every word itself
+    full = norm(plain(page))
     missing, want_links, want_nums = [], {}, {}
     blocks = [(cls, node) for cls in SOURCE_BLOCKS for node in t.root.find_all(cls)]
     ids = {id(n) for _, n in blocks}
@@ -263,9 +306,11 @@ def source_parity(source_page, page, extra=""):
             units = [p.text() for p in node.find_all(tag="p")] or [node.text()]
         for u in units:
             u = re.sub(r"^(How to use|Why it matters):?\s*", "", u)
-            if norm(u) and norm(u) not in text:
+            # The cover line is the front's deck by design; everything else must be inside.
+            scope = full if cls in FRONT_ONLY else text
+            if norm(u) and norm(u) not in scope:
                 missing.append(f"{cls}: {u[:60]}")
-        if nested(node):  # its text is checked above; its links and figures count with the parent
+        if nested(node) or cls in FRONT_ONLY:  # nested: counted with the parent; front-only: text checked whole
             continue
         for a in node.find_all(tag="a"):
             href = a.attrs.get("href", "")
@@ -278,7 +323,7 @@ def source_parity(source_page, page, extra=""):
         if got < n:
             missing.append(f"link missing: {href[:80]} (source {n}, page {got})")
     page_nums = {}
-    for n in NUM.findall(plain(page)):
+    for n in NUM.findall(plain(inside)):
         page_nums[n] = page_nums.get(n, 0) + 1
     for n, c in want_nums.items():
         if page_nums.get(n, 0) < c:
@@ -301,16 +346,24 @@ def image_text(want, images_dir):
 
 
 def image_gate(page, want, images_dir):
-    """Every approved image the desk means to run is on the page, with its caption."""
+    """Each running image sits in its own figure with its own slot's caption and credit."""
     problems = []
     slots = json.loads((images_dir / "slots.json").read_text()) if (images_dir / "slots.json").exists() else {}
-    text = norm(plain(page))
+    man = json.loads((images_dir / "manifest.json").read_text()).get("images", {}) if (images_dir / "manifest.json").exists() else {}
+    figs = re.findall(r'<figure class="pf-fig[^"]*">([\s\S]*?)</figure>', page)
     for f in want:
-        if f'img/{f}"' not in page:
+        slot = f.rsplit("-", 1)[0]
+        fig = next((x for x in figs if f'img/{f}"' in x), None)
+        if fig is None:
             problems.append(f"image missing: {f}")
-        cap = slots.get(f.rsplit("-", 1)[0], {}).get("caption", "")
-        if cap and norm(cap) not in text:
-            problems.append(f"caption missing: {cap[:60]}")
+            continue
+        others = {g.rsplit("-", 1)[0] for g in re.findall(r'img/([\w-]+\.png)"', fig)} - {slot}
+        if others:
+            problems.append(f"image {f} shares a figure with {sorted(others)}")
+        cap = re.search(r"<figcaption[^>]*>([\s\S]*?)</figcaption>", fig)
+        want_cap = f"{slots.get(slot, {}).get('caption', '')} {man.get(f, {}).get('credit', '')}"
+        if not cap or norm(plain(cap.group(1))) != norm(want_cap):
+            problems.append(f"caption or credit wrong for {f}: {want_cap[:60]}")
     return problems
 
 
@@ -370,6 +423,10 @@ def build(section, stem, st, want, dry):
         problems = parity_gate((d / "edition.md").read_text(), page)
         problems += source_parity((d / "source.html").read_text(), page, image_text(want, d / "images"))
         problems += image_gate(page, want, d / "images")
+        md_text = (d / "edition.md").read_text()
+        src = (d / "source.html").read_text()
+        problems += front_check(split_front(page)[0], src, md_text, image_text(want, d / "images"))
+        problems += link_check(page, src, md_text)
         if problems:
             st["gate_failure"] = {"key": [st.get("source_sha"), want], "problems": problems[:10]}
             log(f"  ESCALATE gate held {section}/{stem}: " + "; ".join(problems[:5]))

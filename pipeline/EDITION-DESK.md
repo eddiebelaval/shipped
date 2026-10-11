@@ -42,8 +42,8 @@ cp ~/Development/id8/shipped/pipeline/scripts/com.id8labs.shipped-edition-desk.p
 launchctl load ~/Library/LaunchAgents/com.id8labs.shipped-edition-desk.plist
 ```
 **From then on, every 30 minutes and with no one watching, the desk re-publishes every new edition to the
-public site with images Claude QC approved.** Its first run also converts weekly 2026-41 (already past the
-cutover; it passes both gates in preview). Stop signal: Night Desk escalates an Edition Desk alert. Undo:
+public site with images Claude QC approved.** Its first run also PUBLISHES weekly 2026-41 to the public site, unattended (it is past the
+cutover and passes every gate in preview). Stop signal: Night Desk escalates an Edition Desk alert. Undo:
 `launchctl unload` it, or `touch ops/EDITION-DESK-PAUSED`.
 
 Known limits: block order is not gated (the paper front reorders blocks by design). The launcher itself runs
@@ -67,20 +67,26 @@ launchctl load ~/Library/LaunchAgents/com.id8labs.shipped-edition-desk.plist
 ## Pause (everything, immediately)
 
 ```bash
-touch ~/Development/id8/shipped/ops/EDITION-DESK-PAUSED     # the next run does nothing
+touch ~/Development/id8/shipped/ops/EDITION-DESK-PAUSED     # the next run, timer or hand, does nothing
 ```
 
-One edition only: set `"paused": true` in its `content/editions/<section>/<stem>/edition.json`.
+One edition only: set `"paused": true` in `~/Development/id8/shipped/content/editions/<section>/<stem>/edition.json`.
 
 ## Roll back an edition (this order matters)
 
 Reverting first does not work: the next run sees the routine page again and re-publishes the paper front.
 
-1. **Stop it:** `touch ops/EDITION-DESK-PAUSED`, or set `"paused": true` in that edition's `edition.json`.
-2. **Revert on daily-pages:** in a worktree of `origin/daily-pages`, `git revert <Edition Desk commit>` and push
-   (plain push, never force). The routine's page comes back byte for byte.
-3. **Keep it paused** until the cause is fixed. Then remove the pause and run
-   `edition-desk.py run --retry --only <section>/<stem>`.
+1. **Stop it:** `touch ~/Development/id8/shipped/ops/EDITION-DESK-PAUSED`.
+2. **Revert on daily-pages** (plain push, never force):
+   ```bash
+   cd ~/Development/id8/shipped && git fetch origin daily-pages
+   C=$(git log origin/daily-pages --author="Edition Desk" --format=%h -- anthropic-daily/2026-10-10.html | head -1)
+   W=$(mktemp -d)/dp && git worktree add -q --detach "$W" origin/daily-pages
+   git -C "$W" revert --no-edit "$C" && git -C "$W" push origin HEAD:daily-pages && git worktree remove --force "$W"
+   ```
+   (swap the section/stem for the edition in question). The routine's page comes back byte for byte.
+3. **Keep it paused** until the cause is fixed, then `rm ~/Development/id8/shipped/ops/EDITION-DESK-PAUSED` and
+   re-run through the launcher: `~/Development/id8/shipped/pipeline/scripts/edition-desk-launch.sh --retry --only <section>/<stem>`.
 
 ## Unload
 

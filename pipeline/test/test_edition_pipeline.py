@@ -172,6 +172,16 @@ class TestDesk(World):
         self.assertTrue(any("gate held" in e for e in ed.ESCALATIONS))
         self.assertTrue(ed.ALERT.exists())
 
+    def test_every_gate_in_build_can_hold(self):
+        """Deleting any gate call from build() must fail this test."""
+        for gate in ("image_gate", "front_check", "link_check", "source_parity", "parity_gate"):
+            with self.subTest(gate=gate):
+                shutil.rmtree(ed.EDITIONS, ignore_errors=True)
+                with mock.patch.object(ed, gate, return_value=[f"{gate} says no"]):
+                    ed.cmd_run(args())
+                self.assertNotIn(ed.MARKER, self.live())
+                self.assertEqual(ed.load_state("anthropic-daily", "2026-10-10")["gate_failure"]["problems"], [f"{gate} says no"])
+
     def test_tripwire_catches_the_original_bug(self):
         """Re-introduce the import-time default: the tripwire, not luck, must stop it."""
         real_repo = HERE.parent.parent
@@ -358,7 +368,8 @@ class TestGateMutants(unittest.TestCase):
         shutil.rmtree(cls.tmp, ignore_errors=True)
 
     def problems(self, page):
-        return ed.parity_gate(self.md, page) + ed.source_parity(self.src, page)
+        return (ed.parity_gate(self.md, page) + ed.source_parity(self.src, page)
+                + ed.front_check(ed.split_front(page)[0], self.src, self.md) + ed.link_check(page, self.src, self.md))
 
     def test_faithful_render_is_clean(self):
         self.assertEqual(self.problems(self.page), [])
@@ -388,16 +399,58 @@ class TestGateMutants(unittest.TestCase):
     def test_cut_last_sentence(self):
         self.assertTrue(self.problems(self.mutate(" The small-model tier is a contested space now.", "")))
 
+    def test_front_teaser_figure_changed_only_on_the_front(self):
+        front, inside = ed.split_front(self.page)
+        self.assertIn("$0.10", front)
+        bad = self.page.replace(front, front.replace("$0.10", "$0.50", 1))
+        self.assertTrue(ed.front_check(ed.split_front(bad)[0], self.src, self.md))
+
+    def test_front_headline_and_log_box_edits(self):
+        front = ed.split_front(self.page)[0]
+        for old, new in (("The Paper Trail", "The Paper Trial"), ("Claude Haiku 5.5", "Claude Haiku 6")):
+            bad = front.replace(old, new)
+            self.assertNotEqual(bad, front)
+            self.assertTrue(ed.front_check(bad, self.src, self.md), old)
+        self.assertEqual(ed.front_check(front, self.src, self.md), [])
+
+    def test_sentence_cut_inside_but_kept_in_the_teaser(self):
+        front, inside = ed.split_front(self.page)
+        sent = "The mechanism. The report describes four behavior types."
+        self.assertIn(sent, front)
+        bad = self.page.replace(inside, inside.replace(sent, "", 1)) if False else front.join(
+            [self.page.split(front)[0].replace(sent, ""), self.page.split(front)[1].replace(sent, "")])
+        self.assertTrue(ed.source_parity(self.src, bad))
+
+    def test_foreign_link(self):
+        href = "https://finance.yahoo.com/technology/ai/articles/anthropic-cites-ai-misbehavior-government-002120323.html"
+        bad = self.page.replace(f'href="{href}"', 'href="https://evil.example/x"', 1)
+        self.assertEqual(ed.link_check(self.page, self.src, self.md), [])
+        self.assertEqual(ed.link_check(bad, self.src, self.md), ["link not in the edition: https://evil.example/x"])
+
+    def test_figures_swapped_or_recaptioned(self):
+        imgs = self.tmp / "imgs2"
+        imgs.mkdir(exist_ok=True)
+        (imgs / "slots.json").write_text(json.dumps({"story-1": {"caption": "A gear train."}, "story-2": {"caption": "A substation."}}))
+        (imgs / "manifest.json").write_text(json.dumps({"images": {"story-1-atkinson.png": {"credit": "R. S., CC BY 2.0"},
+                                                                   "story-2-atkinson.png": {"credit": "N., CC BY 4.0"}}}))
+        fig = lambda f, cap: f'<figure class="pf-fig "><img src="img/{f}"><figcaption class="pf-cap">{cap}</figcaption></figure>'
+        good = fig("story-1-atkinson.png", "A gear train. <i>R. S., CC BY 2.0.</i>") + fig("story-2-atkinson.png", "A substation. <i>N., CC BY 4.0.</i>")
+        want = ["story-1-atkinson.png", "story-2-atkinson.png"]
+        self.assertEqual(ed.image_gate(good, want, imgs), [])
+        swapped = good.replace("story-1-atkinson", "TMP").replace("story-2-atkinson", "story-1-atkinson").replace("TMP", "story-2-atkinson")
+        self.assertEqual(len(ed.image_gate(swapped, want, imgs)), 2)
+        self.assertTrue(ed.image_gate(good.replace("R. S., CC BY 2.0", "Unknown"), want, imgs))
+        self.assertTrue(ed.image_gate(good.replace(" <i>R. S., CC BY 2.0.</i>", ""), want, imgs))
+
     def test_image_gate(self):
         imgs = self.tmp / "images"
         imgs.mkdir(exist_ok=True)
         (imgs / "slots.json").write_text(json.dumps({"lead": {"caption": "A stamp with 12 wheels."}}))
-        page = self.page + '<img src="img/lead-atkinson.png"><figcaption>A stamp with 12 wheels.</figcaption>'
-        self.assertEqual(ed.image_gate(page, ["lead-atkinson.png"], imgs), [])
-        self.assertEqual(ed.image_gate(page.replace("12 wheels", "13 wheels"), ["lead-atkinson.png"], imgs),
-                         ["caption missing: A stamp with 12 wheels."])
-        self.assertEqual(ed.image_gate(self.page, ["lead-atkinson.png"], imgs),
-                         ["image missing: lead-atkinson.png", "caption missing: A stamp with 12 wheels."])
+        (imgs / "manifest.json").write_text(json.dumps({"images": {"lead-atkinson.png": {"credit": "Public domain"}}}))
+        fig = '<figure class="pf-fig "><img src="img/lead-atkinson.png"><figcaption class="pf-cap">A stamp with 12 wheels. <i>Public domain.</i></figcaption></figure>'
+        self.assertEqual(ed.image_gate(self.page + fig, ["lead-atkinson.png"], imgs), [])
+        self.assertTrue(ed.image_gate(self.page + fig.replace("12 wheels", "13 wheels"), ["lead-atkinson.png"], imgs))
+        self.assertEqual(ed.image_gate(self.page, ["lead-atkinson.png"], imgs), ["image missing: lead-atkinson.png"])
 
 
 class TestConverter(unittest.TestCase):
@@ -410,9 +463,69 @@ class TestConverter(unittest.TestCase):
         self.assertIn("*What is next*", md)
         self.assertEqual(summary["log_entries"], 8)
 
+    def test_bare_label_fact_box(self):
+        page = FIXTURE.read_text()
+        i = page.index('<div class="feature-meta">')
+        j = page.index("</div>", i) + 6
+        page = page[:i] + '<div class="feature-meta"><b>Area:</b> Security &nbsp; <b>Dates:</b> October 8 to 9, 2026</div>' + page[j:]
+        md, _ = e2p.convert(page, "anthropic-daily", "2026-10-10")
+        self.assertIn("Dates: October 8 to 9, 2026", md.replace("**", ""))
+
     def test_empty_page_refused(self):
         with self.assertRaises(SystemExit):
             e2p.convert("<html><body><p>x</p></body></html>", "anthropic-daily", "2026-10-10")
+
+
+class TestLauncher(unittest.TestCase):
+    """The real launcher under a fake HOME: args reach the desk, the lock holds, a stale lock clears."""
+
+    def setUp(self):
+        self.home = Path(tempfile.mkdtemp(prefix="launcher-home-"))
+        origin = self.home / "origin.git"
+        main = self.home / "Development" / "id8" / "shipped"
+        sh("git", "init", "-q", "--bare", "-b", "main", str(origin))
+        (main / "pipeline" / "scripts").mkdir(parents=True)
+        (main / "pipeline" / "node_modules").mkdir()
+        (main / "pipeline" / "scripts" / "edition-desk.py").write_text(
+            "import sys, os, json\nopen(os.environ['SHIPPED_OPS'] + '/argv.json', 'w').write(json.dumps(sys.argv[1:]))\n")
+        sh("git", "init", "-q", "-b", "main", str(main))
+        for c in (["add", "-A"], ["-c", "user.name=t", "-c", "user.email=t@t", "commit", "-qm", "stub"],
+                  ["remote", "add", "origin", str(origin)], ["push", "-q", "origin", "main"]):
+            sh("git", *c, cwd=main)
+        self.main = main
+        self.env = {**os.environ, "HOME": str(self.home)}
+        self.env.pop("GIT_SSH_COMMAND", None)
+
+    def tearDown(self):
+        shutil.rmtree(self.home, ignore_errors=True)
+
+    def launch(self, *a):
+        return subprocess.run(["/bin/bash", str(SCRIPTS / "edition-desk-launch.sh"), *a], env=self.env,
+                              capture_output=True, text=True, timeout=120)
+
+    def test_args_reach_the_desk_from_the_clean_worktree(self):
+        r = self.launch("--only", "anthropic-daily/2026-10-10")
+        self.assertEqual(r.returncode, 0, r.stderr)
+        self.assertEqual(json.loads((self.main / "ops" / "argv.json").read_text()), ["run", "--only", "anthropic-daily/2026-10-10"])
+        self.assertTrue((self.home / "Development" / ".worktrees" / "shipped" / "edition-desk" / ".git").exists())
+
+    def test_lock_and_stale_lock(self):
+        lock = self.main / "ops" / ".edition-desk.lock"
+        lock.mkdir(parents=True)
+        r = self.launch()
+        self.assertIn("another Edition Desk run holds", r.stdout)
+        self.assertFalse((self.main / "ops" / "argv.json").exists())
+        old = 1_000_000_000
+        os.utime(lock, (old, old))
+        r = self.launch()
+        self.assertEqual(r.returncode, 0, r.stderr)
+        self.assertTrue((self.main / "ops" / "argv.json").exists())
+
+    def test_pause(self):
+        (self.main / "ops").mkdir()
+        (self.main / "ops" / "EDITION-DESK-PAUSED").write_text("")
+        self.assertIn("paused", self.launch().stdout)
+        self.assertFalse((self.main / "ops" / "argv.json").exists())
 
 
 class TestQC(unittest.TestCase):

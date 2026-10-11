@@ -20,8 +20,15 @@ fail() {
 [ -e "$MAIN/ops/EDITION-DESK-PAUSED" ] && { echo "paused"; exit 0; }
 
 # One run at a time: a hand run during a timer run must not reset the worktree under it.
+mkdir -p "$MAIN/ops"
 if ! mkdir "$LOCK" 2>/dev/null; then
-  echo "another Edition Desk run holds $LOCK"; exit 0
+  # A lock older than 2 hours is a crashed run (kill -9, reboot): say so, clear it, carry on.
+  if [ -n "$(find "$LOCK" -maxdepth 0 -mmin +120 2>/dev/null)" ]; then
+    printf '# Edition Desk alert\n\n- ESCALATE stale lock cleared (a run died holding it)\n' > "$ALERT"
+    rmdir "$LOCK" && mkdir "$LOCK" || fail "could not clear the stale lock"
+  else
+    echo "another Edition Desk run holds $LOCK"; exit 0
+  fi
 fi
 trap 'rmdir "$LOCK" 2>/dev/null' EXIT
 
