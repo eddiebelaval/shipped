@@ -16,8 +16,9 @@ deterministic and costs nothing on a green night. Escalation is where judgment
 belongs, and escalation is a human or a single agent invoked with the evidence
 already gathered.
 
-THE NINE CHECKS
+THE TEN CHECKS
   1  presence    today's Eastern daily is on the branch
+  1b weekly      the last due Friday weekly is on the branch (added 2026-10-11)
   2  dating      no page is dated in the future
   3  integrity   every page is a real document: opens with a tag, has a title, closes
   4  chrome      every page published since the design lock carries issue-chrome.html
@@ -56,6 +57,11 @@ LOG_DIR = pathlib.Path(os.path.expanduser("~/Library/Logs/shipped"))
 LOG = LOG_DIR / "night-desk.log"
 STATE = pathlib.Path(os.path.expanduser("~/.shipped-distribution/night-desk-state.json"))
 DISTRO_STATE = pathlib.Path(os.path.expanduser("~/.shipped-distribution/seen.json"))
+# A desktop notification on a Friday night is easy to miss (2026-10-09: the desk
+# escalated twice and nobody saw it). Escalations also leave a standing alert file
+# and one FIELD_NOTES line per day; FIELD_NOTES is surfaced at every session start.
+ALERT = REPO / "ops" / "NIGHT-DESK-ALERT.md"
+FIELD_NOTES = pathlib.Path(os.path.expanduser("~/Development/id8/FIELD_NOTES.md"))
 SITE = "https://eddiebelaval.github.io/shipped"
 ET = ZoneInfo("America/New_York")
 
@@ -145,6 +151,31 @@ def check_presence(pg, today):
            if yesterday in pg["anthropic-daily"] else
            "the routine has not published for at least two days")
     record("presence", "ESCALATE", f"no {today} daily. {why}.")
+
+
+def last_due_friday(now):
+    """The most recent Friday whose weekly should exist by now. The weekly routine
+    fires Friday 22:00 ET; give it until 22:40 before counting that Friday."""
+    d = now.date()
+    back = (d.weekday() - 4) % 7          # days since the last Friday (0 on a Friday)
+    friday = d - timedelta(days=back)
+    if back == 0 and (now.hour, now.minute) < (22, 40):
+        friday -= timedelta(days=7)
+    return friday
+
+
+def check_weekly(pg, today):
+    """The 2026-10-09 weekly failed at sign-in and the desk never noticed: it only
+    looked for the daily. Escalate when the last due weekly is missing."""
+    friday = last_due_friday(datetime.now(ET))
+    y, w, _ = friday.isocalendar()
+    stem = f"{y}-{w:02d}"
+    if stem in pg["anthropic-weekly"]:
+        record("weekly", "OK", f"weekly {stem} (week ending {friday}) is on the branch")
+    else:
+        record("weekly", "ESCALATE",
+               f"no weekly {stem} (week ending {friday}). the Friday 22:00 ET routine "
+               "did not publish (claude.ai/code/routines/trig_011aW3YwQpj2oS9joyjyTxwQ)")
 
 
 def check_dating(pg, today):
@@ -316,6 +347,18 @@ def check_gaps(pg, today):
     parts = []
     if missing:
         parts.append(f"dailies {', '.join(missing)}")
+    wk_have = set(pg["anthropic-weekly"])
+    if wk_have:
+        f, wk_missing = date.fromisoformat(stems[0]), []
+        f += timedelta(days=(4 - f.weekday()) % 7)        # first Friday on record
+        last = last_due_friday(datetime.now(ET))
+        while f <= last:
+            y, w, _ = f.isocalendar()
+            if f"{y}-{w:02d}" not in wk_have:
+                wk_missing.append(f"{y}-{w:02d}")
+            f += timedelta(days=7)
+        if wk_missing:
+            parts.append(f"weeklies {', '.join(wk_missing)}")
     mo_have = set(pg["anthropic-monthly"])
     mo_missing = [m for m in sorted({s[:7] for s in stems})
                   if m not in mo_have and m != today[:7]]
@@ -364,6 +407,32 @@ def notify(title, message):
                     'sound name "Basso"'], capture_output=True)
 
 
+def standing_alert(escalations):
+    """Leave the escalation where it will be seen; clear it when the desk is green."""
+    if QUIET:
+        return
+    now = datetime.now(ET)
+    if not escalations:
+        if ALERT.exists():
+            ALERT.unlink()
+        return
+    lines = [f"# Shipped. Night Desk alert", "",
+             f"Raised {now:%Y-%m-%d %H:%M %Z}. Clears itself on the next green run.", ""]
+    lines += [f"- **{c}**: {m}" for c, _, m in escalations]
+    lines += ["", "Log: ~/Library/Logs/shipped/night-desk.log"]
+    ALERT.parent.mkdir(parents=True, exist_ok=True)
+    ALERT.write_text("\n".join(lines) + "\n")
+    summary = "; ".join(f"{c}: {m}" for c, _, m in escalations)
+    tag = f"- {now:%Y-%m-%d} (Shipped. Night Desk) ESCALATE"
+    try:
+        existing = FIELD_NOTES.read_text() if FIELD_NOTES.exists() else ""
+        if tag not in existing:                         # one line per day, not per run
+            with open(FIELD_NOTES, "a") as f:
+                f.write(f"{tag}: {summary[:300]}. Standing alert at {ALERT}.\n")
+    except OSError as e:
+        log(f"could not write FIELD_NOTES: {e}")
+
+
 def main():
     log("---- night desk ----")
     git("fetch", "origin", "daily-pages", "--quiet")
@@ -372,6 +441,7 @@ def main():
     pg = pages()
 
     check_presence(pg, today)
+    check_weekly(pg, today)
     check_dating(pg, today)
     check_integrity(pg)
     check_chrome(pg, state)
@@ -389,6 +459,7 @@ def main():
         heal(", ".join(f[0] for f in escalations if f[0] in healable))
         escalations = [f for f in escalations if f[0] not in healable]
 
+    standing_alert(escalations)
     if escalations:
         head = escalations[0]
         log(f"VERDICT: {len(escalations)} escalation(s)")
