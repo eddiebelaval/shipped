@@ -13,7 +13,15 @@ finds fresh images, has Claude QC grade them, gates the result, and re-publishes
   edition is held, clears when none is) and `ops/EDITION-DESK-LAUNCHER-ALERT.md` (the launcher's: failures and stale
   locks; sticky, delete it by hand once read). Night Desk escalates both every night.
 
-## Go-live card (2026-10-11): what each step does, in order
+## Status
+
+LIVE since 2026-10-11 17:26 ET. Op 1 pushed 29b0862 (7th Prometheus poll, 6/6 GO); op 2 published daily 10-10
+with 6 QC-approved images (verified live, every image 200); op 3 loaded the launchd job. Weekly 2026-41 was held
+at 17:59 by an apostrophe alt-text bug (fail-safe; routine page stayed live); fix 1755a1f (poll 6/6 GO) pushed
+18:54 on Eddie's go. A successful publish sends no notification: look for `published ... live check: OK` in the
+log and the alert file clearing.
+
+## Go-live card (2026-10-11, executed): what each step did, in order
 
 Whose hands: Claude runs every step, in this order, only after Eddie's explicit go on THIS card.
 
