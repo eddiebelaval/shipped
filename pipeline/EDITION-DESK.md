@@ -9,7 +9,9 @@ finds fresh images, has Claude QC grade them, gates the result, and re-publishes
 - Runs from: a clean worktree at `~/Development/.worktrees/shipped/edition-desk`, pinned to the
   pushed `origin/main` by `scripts/edition-desk-launch.sh`. The main checkout is never the release surface.
 - State: `content/editions/<section>/<stem>/` (gitignored): `source.html`, `edition.md`, `images/`, `edition.json`.
-- Log: `~/Library/Logs/shipped/edition-desk.log`. Alerts: `ops/EDITION-DESK-ALERT.md` (Night Desk escalates it).
+- Log: `~/Library/Logs/shipped/edition-desk.log`. Alerts: `ops/EDITION-DESK-ALERT.md` (the desk's; stands while any
+  edition is held, clears when none is) and `ops/EDITION-DESK-LAUNCHER-ALERT.md` (the launcher's: failures and stale
+  locks; sticky, delete it by hand once read). Night Desk escalates both every night.
 
 ## Go-live card (2026-10-11): what each step does, in order
 
@@ -44,9 +46,11 @@ launchctl load ~/Library/LaunchAgents/com.id8labs.shipped-edition-desk.plist
 **From then on, every 30 minutes and with no one watching, the desk re-publishes every new edition to the
 public site with images Claude QC approved.** Its first run also PUBLISHES weekly 2026-41 to the public site, unattended (it is past the
 cutover and passes every gate in preview). Stop signal: Night Desk escalates an Edition Desk alert. Undo:
-`launchctl unload` it, or `touch ops/EDITION-DESK-PAUSED`.
+`launchctl unload ~/Library/LaunchAgents/com.id8labs.shipped-edition-desk.plist`, or
+`touch ~/Development/id8/shipped/ops/EDITION-DESK-PAUSED`.
 
-Known limits: block order is not gated (the paper front reorders blocks by design). The launcher itself runs
+Known limits: block order is not gated beyond story and log titles keeping their order (the paper front reorders
+blocks by design). No whole-run timeout. An image-desk failure is logged, not escalated (the edition runs text-only). The launcher itself runs
 from the main checkout and only bootstraps the clean worktree; everything after it runs pushed origin/main.
 
 **What Eddie is trusting (disclosed):** Claude QC's bar was set by calibration on the same 7 issue-10 images he
@@ -72,21 +76,19 @@ touch ~/Development/id8/shipped/ops/EDITION-DESK-PAUSED     # the next run, time
 
 One edition only: set `"paused": true` in `~/Development/id8/shipped/content/editions/<section>/<stem>/edition.json`.
 
-## Roll back an edition (this order matters)
+## Roll back an edition
 
-Reverting first does not work: the next run sees the routine page again and re-publishes the paper front.
+```bash
+/usr/bin/python3 ~/Development/id8/shipped/pipeline/scripts/edition-desk.py rollback anthropic-daily/2026-10-10
+```
 
-1. **Stop it:** `touch ~/Development/id8/shipped/ops/EDITION-DESK-PAUSED`.
-2. **Revert on daily-pages** (plain push, never force):
-   ```bash
-   cd ~/Development/id8/shipped && git fetch origin daily-pages
-   C=$(git log origin/daily-pages --author="Edition Desk" --format=%h -- anthropic-daily/2026-10-10.html | head -1)
-   W=$(mktemp -d)/dp && git worktree add -q --detach "$W" origin/daily-pages
-   git -C "$W" revert --no-edit "$C" && git -C "$W" push origin HEAD:daily-pages && git worktree remove --force "$W"
-   ```
-   (swap the section/stem for the edition in question). The routine's page comes back byte for byte.
-3. **Keep it paused** until the cause is fixed, then `rm ~/Development/id8/shipped/ops/EDITION-DESK-PAUSED` and
-   re-run through the launcher: `~/Development/id8/shipped/pipeline/scripts/edition-desk-launch.sh --retry --only <section>/<stem>`.
+It pauses the edition first (so no run can re-publish it), then restores `<section>/<stem>.html` from the newest
+daily-pages commit NOT made by the Edition Desk (the routine's own page, including any Night Desk sweep), removes
+`<section>/img/<stem>/`, and pushes one plain commit. If the routine's page is already live it pauses and pushes
+nothing. Never revert the newest "Edition Desk" commit by hand: on 10-10 that commit is the op 0 revert, and
+reverting it would put the leaked test page back. Tested: one publish (A), text then images (B), after a desk
+revert (C). To resume: set `"paused": false` in that edition's `edition.json`, then
+`~/Development/id8/shipped/pipeline/scripts/edition-desk-launch.sh --retry --only <section>/<stem>`.
 
 ## Unload
 

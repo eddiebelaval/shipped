@@ -251,9 +251,12 @@ def check_chrome(pg, state):
 
 def check_edition_desk():
     """The Edition Desk leaves ops/EDITION-DESK-ALERT.md when it escalates; it clears on a clean run."""
-    alert = REPO / "ops" / "EDITION-DESK-ALERT.md"
-    if alert.exists():
-        lines = [l[2:] for l in alert.read_text().splitlines() if l.startswith("- ")]
+    lines = []
+    for name in ("EDITION-DESK-ALERT.md", "EDITION-DESK-LAUNCHER-ALERT.md"):
+        alert = REPO / "ops" / name
+        if alert.exists():
+            lines += [l[2:] for l in alert.read_text().splitlines() if l.startswith("- ")]
+    if lines:
         record("editions", "ESCALATE", f"Edition Desk: {len(lines)} problem(s): " + "; ".join(lines[:2])[:300])
     else:
         record("editions", "OK", "Edition Desk has no standing alert")

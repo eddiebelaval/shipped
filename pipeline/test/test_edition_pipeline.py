@@ -5,7 +5,7 @@ image sourcing are mocked; git, the converter, the renderer and the gates run fo
 run:  /usr/bin/python3 -m coverage run --include='*/edition-desk.py,*/image-qc.py,*/edition-to-paper.py' \
         test/test_edition_pipeline.py && /usr/bin/python3 -m coverage report
 """
-import argparse, importlib.util, io, json, os, shutil, subprocess, sys, tempfile, unittest
+import argparse, importlib.util, io, json, os, re, shutil, subprocess, sys, tempfile, unittest
 from pathlib import Path
 from unittest import mock
 
@@ -171,6 +171,45 @@ class TestDesk(World):
         self.assertEqual(st["gate_failure"]["problems"], ["feature-right: 20 visa forms submitted"])
         self.assertTrue(any("gate held" in e for e in ed.ESCALATIONS))
         self.assertTrue(ed.ALERT.exists())
+
+    def test_rollback_case_a_one_publish(self):
+        ed.cmd_run(args())
+        self.assertIn(ed.MARKER, self.live())
+        ed.cmd_rollback(argparse.Namespace(edition="anthropic-daily/2026-10-10"))
+        self.assertEqual(self.live(), FIXTURE.read_text())
+        self.assertTrue(ed.load_state("anthropic-daily", "2026-10-10")["paused"])
+        ed.cmd_run(args())  # paused: the next run must not re-publish
+        self.assertEqual(self.live(), FIXTURE.read_text())
+
+    def test_rollback_case_b_text_then_images(self):
+        ed.cmd_run(args())
+        imgs = ed.folder("anthropic-daily", "2026-10-10") / "images"
+        imgs.mkdir()
+        shutil.copy(ISSUE10 / "story-3-atkinson.png", imgs / "lead-atkinson.png")
+        (imgs / "slots.json").write_text(json.dumps({"lead": {"caption": "A meter on a wall.", "alt": "meter", "treatment": "atkinson"}}))
+        (imgs / "manifest.json").write_text(json.dumps({"images": {"lead-atkinson.png": {
+            "credit": "Public domain", "treatment": "atkinson", "width": 1200, "flags": [], "review": {"status": "approved"}}}}))
+        ed.cmd_run(args())
+        self.assertIn("img/2026-10-10/", self.live())
+        ed.cmd_rollback(argparse.Namespace(edition="anthropic-daily/2026-10-10"))
+        self.assertEqual(self.live(), FIXTURE.read_text())
+        self.assertNotEqual(subprocess.run(["git", "cat-file", "-e", "origin/daily-pages:anthropic-daily/img/2026-10-10/lead-atkinson.png"],
+                                           cwd=self.repo).returncode, 0)
+
+    def test_rollback_case_c_after_a_desk_revert(self):
+        """The 10/11 shape: a desk publish, then a desk-authored revert on top. Rollback must not resurrect the publish."""
+        ed.cmd_run(args())
+        sh("git", "fetch", "-q", "origin", "daily-pages", cwd=self.repo)
+        wt = self.tmp / "rev"
+        sh("git", "worktree", "add", "-q", "--detach", str(wt), "origin/daily-pages", cwd=self.repo)
+        sh("git", "-c", "user.name=Edition Desk", "-c", "user.email=e@e", "revert", "--no-edit", "HEAD", cwd=wt)
+        sh("git", "push", "-q", "origin", "HEAD:daily-pages", cwd=wt)
+        self.assertEqual(self.live(), FIXTURE.read_text())
+        out = io.StringIO()
+        with mock.patch("sys.stdout", out):
+            ed.cmd_rollback(argparse.Namespace(edition="anthropic-daily/2026-10-10"))
+        self.assertIn("already is the routine's page", out.getvalue())
+        self.assertEqual(self.live(), FIXTURE.read_text())
 
     def test_every_gate_in_build_can_hold(self):
         """Deleting any gate call from build() must fail this test."""
@@ -425,7 +464,56 @@ class TestGateMutants(unittest.TestCase):
         href = "https://finance.yahoo.com/technology/ai/articles/anthropic-cites-ai-misbehavior-government-002120323.html"
         bad = self.page.replace(f'href="{href}"', 'href="https://evil.example/x"', 1)
         self.assertEqual(ed.link_check(self.page, self.src, self.md), [])
-        self.assertEqual(ed.link_check(bad, self.src, self.md), ["link not in the edition: https://evil.example/x"])
+        self.assertIn("link not in the edition: https://evil.example/x", ed.link_check(bad, self.src, self.md))
+
+    def test_front_structure_mutants(self):
+        front = ed.split_front(self.page)[0]
+        self.assertEqual(ed.front_structure(front, self.md), [])
+        h2 = re.search(r'<header class="pf-head">.*?<h2>(.*?)</h2>', front, re.S).group(1)
+        rows = re.findall(r'<div class="pf-row">.*?</div>', front)
+        muts = {
+            "headline swapped for a story's": front.replace(f"<h2>{h2}</h2>", "<h2>The Small Model Argument</h2>", 1),
+            "log date": front.replace("<b>10-08</b>", "<b>10-09</b>", 1),
+            "log title cut": front.replace("Anthropic Cyber Mission Launch", "Anthropic Cyber Mission", 1),
+            "log rows swapped": front.replace(rows[0], "TMP").replace(rows[1], rows[0]).replace("TMP", rows[1]),
+            "log row dropped": front.replace(rows[2], ""),
+            "log count": front.replace("8 releases in the log", "9 releases in the log"),
+            "ears date": front.replace("Oct 10, 2026", "Oct 11, 2026", 1),
+            "deck": front.replace("Every other lab has not.", "Every other lab has.", 1),
+        }
+        for name, bad in muts.items():
+            self.assertNotEqual(bad, front, name)
+            self.assertTrue(ed.front_structure(bad, self.md), name)
+        blocks = re.findall(r'<div class="pf-story">.*?<h3>(.*?)</h3>', front, re.S)
+        swapped = front.replace(f"<h3>{blocks[0]}</h3>", "<h3>TMP</h3>").replace(f"<h3>{blocks[1]}</h3>", f"<h3>{blocks[0]}</h3>").replace("<h3>TMP</h3>", f"<h3>{blocks[1]}</h3>")
+        self.assertTrue(ed.front_structure(swapped, self.md), "story headlines swapped")
+
+    def test_wrong_article_link_and_inside_title_swap(self):
+        # Point one link at ANOTHER URL this edition really uses: only the pair check can see it.
+        hrefs = sorted(h for h in set(re.findall(r'href="(https://[^"]+)"', self.src)) - ed.CHROME_HREFS
+                       if f'href="{h}"' in self.page)
+        a_href, b_href = hrefs[0], hrefs[1]
+        bad = self.page.replace(f'href="{a_href}"', f'href="{b_href}"', 1)
+        self.assertNotEqual(bad, self.page)
+        self.assertTrue(any("points elsewhere" in x for x in ed.link_check(bad, self.src, self.md)))
+        a, b = "The Small Model Argument", "The Offense-Defense Budget"
+        front = ed.split_front(self.page)[0]
+        cut = self.page.index(front) + len(front)
+        after = self.page[cut:]
+        swapped = self.page[:cut] + after.replace(a, "TMP").replace(b, a).replace("TMP", b)
+        self.assertNotEqual(swapped, self.page)
+        self.assertTrue(any("out of order" in x for x in ed.source_parity(self.src, swapped)))
+
+    def test_shared_figure_and_alt(self):
+        imgs = self.tmp / "imgs3"
+        imgs.mkdir(exist_ok=True)
+        (imgs / "slots.json").write_text(json.dumps({"lead": {"caption": "C.", "alt": "a stamp"}, "cover": {"caption": "D."}}))
+        (imgs / "manifest.json").write_text(json.dumps({"images": {"lead-atkinson.png": {"credit": "PD"}}}))
+        fig = '<figure class="pf-fig "><img src="img/lead-atkinson.png" alt="a stamp"><img src="img/cover-atkinson.png"><figcaption>C. <i>PD.</i></figcaption></figure>'
+        self.assertTrue(any("shares a figure" in x for x in ed.image_gate(fig, ["lead-atkinson.png"], imgs)))
+        ok = fig.replace('<img src="img/cover-atkinson.png">', "")
+        self.assertEqual(ed.image_gate(ok, ["lead-atkinson.png"], imgs), [])
+        self.assertTrue(any("alt text" in x for x in ed.image_gate(ok.replace("a stamp", "a meter"), ["lead-atkinson.png"], imgs)))
 
     def test_figures_swapped_or_recaptioned(self):
         imgs = self.tmp / "imgs2"
@@ -520,6 +608,7 @@ class TestLauncher(unittest.TestCase):
         r = self.launch()
         self.assertEqual(r.returncode, 0, r.stderr)
         self.assertTrue((self.main / "ops" / "argv.json").exists())
+        self.assertIn("stale lock cleared", (self.main / "ops" / "EDITION-DESK-LAUNCHER-ALERT.md").read_text())
 
     def test_pause(self):
         (self.main / "ops").mkdir()

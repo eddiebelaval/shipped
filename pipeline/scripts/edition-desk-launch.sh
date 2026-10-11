@@ -8,7 +8,7 @@ set -u
 MAIN="$HOME/Development/id8/shipped"
 WT="$HOME/Development/.worktrees/shipped/edition-desk"
 LOCK="$MAIN/ops/.edition-desk.lock"
-ALERT="$MAIN/ops/EDITION-DESK-ALERT.md"
+ALERT="$MAIN/ops/EDITION-DESK-LAUNCHER-ALERT.md"  # sticky: removed by hand once read; Night Desk escalates it nightly
 
 fail() {
   mkdir -p "$MAIN/ops"

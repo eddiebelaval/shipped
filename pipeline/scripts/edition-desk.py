@@ -23,6 +23,7 @@ keeps the routine's page and the desk escalates.
 usage:
   edition-desk.py run [--dry-run] [--no-images] [--retry] [--only SECTION/STEM]
   edition-desk.py review SECTION/STEM      open the image review desk for one edition
+  edition-desk.py rollback SECTION/STEM    restore the routine's page and pause the edition
   edition-desk.py status
 """
 import argparse, datetime, hashlib, html, importlib.util, json, os, re, shutil, subprocess, sys, tempfile, time, urllib.request
@@ -263,6 +264,73 @@ def front_check(front, source_page, md_text, extra=""):
     return [f"front line not in the edition: {ln[:70]}" for ln in front_lines(front) if norm(ln) and norm(ln) not in allowed]
 
 
+def md_plain(s):
+    return re.sub(r"[*`]", "", re.sub(r"\[([^\]]+)\]\([^)]+\)", r"\1", s)).strip()
+
+
+def edition_parts(md_text):
+    """What the front must show, read from edition.md: lead, deck, weather, stories, log entries."""
+    head, body = md_text.split("---", 2)[1:]
+    fm = {k: v.strip().strip('"') for k, v in re.findall(r"^(\w+):\s*(.*)$", head, re.M)}
+    secs = {m.group(1).strip(): m.group(2) for m in re.finditer(r"^## (.+?)\n(.*?)(?=^## |\Z)", body, re.M | re.S)}
+    lead = secs.get("The Lead Story", "")
+    lead_title = next((l[2:].strip() for l in lead.splitlines() if l.startswith("# ")), "")
+    lead_body = lead.split(f"# {lead_title}", 1)[-1]
+    stories = [(c.partition("\n")[0].strip(), c.partition("\n")[2]) for c in re.split(r"^### ", secs.get("Also Shipped", ""), flags=re.M)[1:]]
+    log = re.findall(r"^#### (\S+) - (.+?)(?: \(\[source\]\([^)]*\)\))?\n`\[([A-Z-]+)\]`", body, re.M)
+    return fm, lead_title, lead_body, stories, log
+
+
+def front_structure(front, md_text):
+    """The front, slot by slot, against edition.md: headline, deck, weather, each teaser under its own
+    title, the log box rows in the renderer's order, the counts and the date in the ears."""
+    fm, lead_title, lead_body, stories, log = edition_parts(md_text)
+    p = []
+    txt = lambda frag: re.sub(r"\s+", " ", html.unescape(re.sub(r"<[^>]+>", " ", frag))).strip()
+    one = lambda pat: (re.search(pat, front, re.S) or [None, ""])[1]
+    if norm(txt(one(r'<header class="pf-head">.*?<h2>(.*?)</h2>'))) != norm(md_plain(lead_title)):
+        p.append("front headline is not the lead's")
+    if fm.get("deck") and norm(txt(one(r'<p class="pf-deck">(.*?)</p>'))) != norm(md_plain(fm["deck"])):
+        p.append("front deck differs")
+    if fm.get("weather") and norm(txt(one(r'<p class="pf-weather">(.*?)</p>'))) != norm(md_plain(fm["weather"])):
+        p.append("front weather line differs")
+    teaser = norm(txt(one(r'<div class="pf-body">(.*?)</div>\s*(?:<a class="pf-jump|</article>)')))
+    if not teaser or not norm(md_plain(lead_body)).startswith(teaser):
+        p.append("lead teaser is not the start of the lead story")
+    blocks = re.findall(r'<div class="pf-story">(.*?)</div>\s*(?:<a class="pf-jump" href="#also">Continued inside</a>\s*)?</div>', front, re.S)
+    if len(blocks) != min(3, len(stories)):
+        p.append(f"front shows {len(blocks)} stories, edition has {min(3, len(stories))} for the front")
+    for (title, body), blk in zip(stories, blocks):
+        if norm(txt(one_in(blk, r"<h3>(.*?)</h3>"))) != norm(md_plain(title)):
+            p.append(f"story headline out of place: {title[:50]}")
+        t = norm(txt(one_in(blk, r'<div class="pf-sm">(.*)')))
+        if not t or not norm(md_plain(body)).startswith(t):
+            p.append(f"teaser is not the start of its own story: {title[:50]}")
+    inside_titles = [txt(x) for x in re.findall(r'<a href="#also">(.*?)</a>', one(r'<div class="pf-inside">(.*?)</div>'))]
+    if [norm(x) for x in inside_titles] != [norm(md_plain(t)) for t, _ in stories[3:]]:
+        p.append("Also inside list differs")
+    rows = [(d, norm(txt(t)), g) for d, t, g in re.findall(r'<div class="pf-row"><b>([^<]*)</b>(.*?)<span class="pf-tag">([^<]*)</span></div>', front, re.S)]
+    want_rows = [(d[5:], norm(md_plain(t)), g) for d, t, g in sorted(log, key=lambda e: e[0], reverse=True)[:6]]
+    if rows != want_rows:
+        p.append("log box rows differ from the release log")
+    n = len(log)
+    if f"All {n} entries" not in front or f"{n} releases in the log" not in front:
+        p.append(f"log counts differ (edition has {n})")
+    try:
+        import datetime as _dt
+        d = _dt.date.fromisoformat(fm.get("date", ""))
+        if f"{d.strftime('%b')} {d.day}, {d.year}" not in txt(one(r'<div class="pf-ears">(.*?)</div>')):
+            p.append("ears date differs")
+    except ValueError:
+        p.append("edition date unreadable")
+    return p
+
+
+def one_in(fragment, pat):
+    m = re.search(pat, fragment, re.S)
+    return m.group(1) if m else ""
+
+
 def link_check(page, source_page, md_text):
     """No link on the page the edition never had (template chrome and in-page anchors excepted)."""
     allowed = set(re.findall(r'href="([^"]+)"', source_page)) | set(re.findall(r"\]\(([^)\s]+)\)", md_text))
@@ -270,7 +338,19 @@ def link_check(page, source_page, md_text):
     allowed = allowed | {html.escape(h, quote=True) for h in allowed}
     stray = sorted({h for h in re.findall(r'href="([^"]+)"', page)
                     if h not in allowed and not h.startswith(("#", "data:", PAGES))})
-    return [f"link not in the edition: {h[:80]}" for h in stray]
+    out = [f"link not in the edition: {h[:80]}" for h in stray]
+    # Each link's words must point where the edition pointed them (no "wrong article" swaps).
+    pairs = lambda h: {(norm(html.unescape(re.sub(r"<[^>]+>", "", t))), html.unescape(u))
+                       for u, t in re.findall(r'<a [^>]*href="([^"]+)"[^>]*>(.*?)</a>', h, re.S)}
+    ok = pairs(source_page) | {(norm(md_plain(t)), u) for t, u in re.findall(r"\[([^\]]+)\]\(([^)\s]+)\)", md_text)}
+    ok |= {(norm(md_plain(t)), u) for t, u in re.findall(r"^#### \S+ - (.+?) \(\[source\]\(([^)]+)\)\)", md_text, re.M)}
+    texts = {}
+    for t, u in ok:
+        texts.setdefault(t, set()).add(u)
+    for t, u in pairs(page):
+        if t in texts and u not in texts[t] and not u.startswith(("#", PAGES)) and u not in CHROME_HREFS:
+            out.append(f"link points elsewhere: '{t[:40]}' -> {u[:60]}")
+    return out
 
 
 def source_parity(source_page, page, extra=""):
@@ -318,6 +398,15 @@ def source_parity(source_page, page, extra=""):
                 want_links[href] = want_links.get(href, 0) + 1
         for n in NUM.findall(node.text()):
             want_nums[n] = want_nums.get(n, 0) + 1
+    # Titles keep the routine's order inside (a swap of two headlines changes no words, only meaning).
+    for cls in ("also-item-title", "log-entry-title"):
+        pos, last = [], -1
+        for node in t.root.find_all(cls):
+            k = norm(node.text())
+            at = text.find(k, last + 1) if k else -1
+            if k and at < 0:
+                missing.append(f"{cls} out of order: {node.text()[:50]}")
+            last = max(last, at)
     for href, n in want_links.items():
         got = page.count(f'href="{html.escape(href, quote=True)}"') + (page.count(f'href="{href}"') if html.escape(href, quote=True) != href else 0)
         if got < n:
@@ -360,6 +449,9 @@ def image_gate(page, want, images_dir):
         others = {g.rsplit("-", 1)[0] for g in re.findall(r'img/([\w-]+\.png)"', fig)} - {slot}
         if others:
             problems.append(f"image {f} shares a figure with {sorted(others)}")
+        alt = slots.get(slot, {}).get("alt", "")
+        if alt and f'alt="{html.escape(alt, quote=True)}"' not in fig and f'alt="{alt}"' not in fig:
+            problems.append(f"alt text wrong for {f}")
         cap = re.search(r"<figcaption[^>]*>([\s\S]*?)</figcaption>", fig)
         want_cap = f"{slots.get(slot, {}).get('caption', '')} {man.get(f, {}).get('credit', '')}"
         if not cap or norm(plain(cap.group(1))) != norm(want_cap):
@@ -427,6 +519,7 @@ def build(section, stem, st, want, dry):
         src = (d / "source.html").read_text()
         problems += front_check(split_front(page)[0], src, md_text, image_text(want, d / "images"))
         problems += link_check(page, src, md_text)
+        problems += front_structure(split_front(page)[0], md_text)
         if problems:
             st["gate_failure"] = {"key": [st.get("source_sha"), want], "problems": problems[:10]}
             log(f"  ESCALATE gate held {section}/{stem}: " + "; ".join(problems[:5]))
@@ -584,6 +677,47 @@ def cmd_run(a):
         ALERT.unlink()
 
 
+def cmd_rollback(a):
+    """Put the routine's own page back: the file from the newest commit NOT made by the Edition Desk.
+
+    Reverting the newest desk commit is wrong in general: a desk revert or a second (image) publish
+    sits on top. Restoring the routine's version is right in every case, and the edition is paused
+    so the next run cannot re-publish it.
+    """
+    section, stem = a.edition.split("/")
+    path = f"{section}/{stem}.html"
+    git("fetch", "origin", "daily-pages", "--quiet", check=True)
+    log_lines = git("log", "--format=%H%x09%an", "origin/daily-pages", "--", path, check=True).stdout.splitlines()
+    routine = next((h for h, who in (l.split("\t") for l in log_lines) if who != "Edition Desk"), None)
+    if not routine:
+        sys.exit(f"no routine version of {path} on daily-pages")
+    want = git("show", f"{routine}:{path}", check=True).stdout
+    live = git("show", f"origin/daily-pages:{path}").stdout
+    imgs_live = git("ls-tree", "--name-only", "origin/daily-pages", f"{section}/img/{stem}/").stdout.strip()
+    st = load_state(section, stem)
+    st["paused"] = True  # first, so no run re-publishes between here and the push
+    save_state(section, stem, st)
+    if live == want and not imgs_live:
+        print(f"{path} already is the routine's page ({routine[:7]}); paused it, nothing to push")
+        return
+    wt = tempfile.mkdtemp(prefix="edition-rollback-")
+    try:
+        git("worktree", "add", "-q", "--detach", wt, "origin/daily-pages", check=True)
+        (Path(wt) / path).write_text(want)
+        if (Path(wt) / section / "img" / stem).exists():
+            shutil.rmtree(Path(wt) / section / "img" / stem)
+        git("add", "-A", section, repo=wt)
+        git("-c", "user.name=Edition Desk", "-c", "user.email=eb@id8labs.tech", "commit", "-q",
+            "-m", f"revert(editions): {section}/{stem} back to the routine page ({routine[:7]})", repo=wt, check=True)
+        r = git("push", "--quiet", "origin", "HEAD:daily-pages", repo=wt)
+        if r.returncode:
+            raise RuntimeError(f"push failed: {r.stderr.strip()[:200]}")
+        log(f"rolled back {section}/{stem} to {routine[:7]}; edition paused")
+    finally:
+        git("worktree", "remove", "--force", wt)
+        git("worktree", "prune")
+
+
 def cmd_review(a):
     section, stem = a.edition.split("/")
     imgs = folder(section, stem) / "images"
@@ -626,9 +760,11 @@ def main():
     r.add_argument("--retry", action="store_true", help="re-try editions a failed gate is holding")
     v = sp.add_parser("review")
     v.add_argument("edition")
+    rb = sp.add_parser("rollback", help="restore the routine's page for one edition and pause it")
+    rb.add_argument("edition")
     sp.add_parser("status")
     a = ap.parse_args()
-    {"run": cmd_run, "review": cmd_review, "status": cmd_status}[a.cmd](a)
+    {"run": cmd_run, "review": cmd_review, "status": cmd_status, "rollback": cmd_rollback}[a.cmd](a)
 
 
 if __name__ == "__main__":
