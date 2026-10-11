@@ -9,12 +9,14 @@ runs locally after them (launchd, every 30 minutes):
   1. CONVERT   a new routine page on daily-pages -> content/editions/<section>/<stem>/edition.md
   2. IMAGES    image-desk.py finds fresh images for it (pending review)
   3. PUBLISH   the text-only paper front (no image ships unseen), after the parity gate
-  4. NOTIFY    Eddie: images are waiting at the review desk
+  4. QC        image-qc.py grades every drawn image against Eddie's bar and
+               approves or rejects it (Eddie, 2026-10-11: "i want out of the
+               loop here. i need to trust you for QC")
   5. UPGRADE   once every image in the edition is decided, re-render with the
                approved ones and publish again. Rejected slots get one redo
                from the image desk; after that they are dropped.
 
-Approving at the desk IS the go for that edition's images. The routine page is
+`review` still opens the human desk for a spot check; it is no longer a gate. The routine page is
 kept as source.html, so a failed gate never loses the edition: daily-pages
 keeps the routine's page and the desk escalates.
 
@@ -307,14 +309,28 @@ def images(section, stem, st):
         log(f"  image desk: {'ok' if ok else 'FAILED'} {tail}")
     elif counts["rejected"] and not counts["pending"] and st.get("redos", 0) < MAX_REDOS:
         st["redos"] = st.get("redos", 0) + 1
+        st["qc_attempts"] = 0
         ok, tail = run_image_desk(md)
         log(f"  image desk redo: {'ok' if ok else 'FAILED'} {tail}")
-    else:
+    if image_status(section, stem)["pending"] and st.get("qc_attempts", 0) < 3:
+        st["qc_attempts"] = st.get("qc_attempts", 0) + 1
+        qc(section, stem, st)
+
+
+def qc(section, stem, st):
+    """Claude QC holds the image gate (Eddie, 2026-10-11: "i want out of the loop here")."""
+    spec = importlib.util.spec_from_file_location("image_qc", SCRIPTS / "image-qc.py")
+    mod = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(mod)
+    try:
+        res = mod.review(folder(section, stem) / "images", str(folder(section, stem) / "edition.md"),
+                         log=lambda line: log(line))
+    except Exception as e:  # images stay pending, the edition stays text-only, the desk says so
+        log(f"  ESCALATE image QC failed for {section}/{stem}: {e}")
+        notify("Shipped. Edition Desk", f"{section}/{stem}: image QC failed, running text-only")
         return
-    if image_status(section, stem)["pending"]:
-        st["review_requested"] = datetime.datetime.now().isoformat(timespec="seconds")
-        notify("Shipped. Edition Desk", f"{section}/{stem}: images waiting for review. "
-               f"edition-desk.py review {section}/{stem}")
+    st["qc_at"] = datetime.datetime.now().isoformat(timespec="seconds")
+    log(f"  image QC: {sum(ok for ok, _ in res.values())} approved, {sum(not ok for ok, _ in res.values())} rejected")
 
 
 def process(section, stem, a):

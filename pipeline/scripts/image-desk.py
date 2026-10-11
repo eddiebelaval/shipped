@@ -107,7 +107,7 @@ SLOTS:
 PICK_PROMPT = """You are the photo editor of Shipped. For each slot, pick the ONE candidate photo that best fits
 the story and the intended subject, or null if none genuinely fits (a near miss is null; we will
 generate instead). Prefer clear single subjects that survive heavy dithering.
-Write a caption that says LITERALLY what the photo shows (place, object, year if known). Never claim
+Write a caption that says LITERALLY what the photo shows (place, object, year if known). Never mention colours (every image prints in one orange ink from a grayscale source). Never claim
 the photo depicts the news event itself. Never mention colours (every image prints in one orange ink). Also write short alt text.
 
 Return ONLY JSON: {"picks":[{"slot":"cover","choice":<candidate index or null>,"caption":"...","alt":"..."}]}
