@@ -183,7 +183,7 @@ def convert(page, section, stem):
         if meta is not None:  # the fact box: Source, Area, Disclosure
             parts = [cmd(sp) for sp in meta.find_all(tag="span") if cmd(sp)]
             if parts:
-                lead_in.append("*" + " ".join(parts).replace("*", "") + "*")
+                lead_in.append("*" + " · ".join(parts).replace("*", "") + "*")
         right = fo.find("feature-right")
         if right is not None and right.lines():
             label = right.find("feature-right-label")

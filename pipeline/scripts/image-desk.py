@@ -66,7 +66,9 @@ def parse_issue(path):
         title, _, body = chunk.partition("\n")
         stories.append({"title": title.strip(), "text": body.strip()[:1200]})
     num = int(fm["issue"] if "issue" in fm else re.search(r"issue-(\d+)", path).group(1))
-    return {"issue": num, "title": fm.get("title", ""), "deck": fm.get("deck", ""),
+    # Ledger key: an edition is its own section/stem; every edition carries issue 90 for the renderer.
+    key = f"{fm['edition_section']}/{fm['edition_stem']}" if fm.get("edition_section") and fm.get("edition_stem") else num
+    return {"issue": num, "key": key, "title": fm.get("title", ""), "deck": fm.get("deck", ""),
             "open": sections.get("The Open", "")[:1200], "headline": headline,
             "lead": lead[:3000], "stories": stories}
 
@@ -203,7 +205,7 @@ def main():
     ap.add_argument("--fresh", action="store_true", help="redo every slot, not only rejected ones")
     a = ap.parse_args()
 
-    issue = parse_issue(a.issue_md); n = issue["issue"]
+    issue = parse_issue(a.issue_md); n = issue["issue"]; key = issue["key"]
     # Editions (content/editions/<section>/<stem>/edition.md) keep images beside the markdown.
     out = (os.path.join(os.path.dirname(os.path.abspath(a.issue_md)), "images") if os.path.basename(a.issue_md) == "edition.md"
            else os.path.join(CONTENT, "articles", f"issue-{n:02d}", "images"))
@@ -243,7 +245,7 @@ def main():
         sc = by_slot.get(s["slot"], {}); found, seen = [], set()
         for q in sc.get("queries", [])[:3]:
             for c in commons_search(q, MIN_W[s["kind"]]):
-                if c["page"] in seen or c["page"] in rejected or used_before(ledger, n, page=c["page"]): continue
+                if c["page"] in seen or c["page"] in rejected or used_before(ledger, key, page=c["page"]): continue
                 seen.add(c["page"]); found.append(c)
         cands[s["slot"]] = found[:8]
         print(f"  {s['slot']:9s} {sc.get('subject','?')[:60]:60s} {len(cands[s['slot']])} fresh candidates")
@@ -258,7 +260,7 @@ def main():
     credits = {k: v for k, v in prev_credits.items() if k in keep}
     slot_meta = {k: v for k, v in prev_slots.items() if k in keep}
     need_caption = []
-    entries = [e for e in load_ledger()["entries"] if e["issue"] == n and e["slot"] in keep]
+    entries = [e for e in load_ledger()["entries"] if e["issue"] == key and e["slot"] in keep]
     for s in work:
         name, p = s["slot"], picks.get(s["slot"], {})
         choice = p.get("choice")
@@ -267,7 +269,7 @@ def main():
         if chosen:
             data = fetch(chosen["url"])
             dh = dhash(Image.open(io.BytesIO(data)))
-            if used_before(ledger, n, dh=dh): chosen = data = None   # same photo under another name
+            if used_before(ledger, key, dh=dh): chosen = data = None   # same photo under another name
         if chosen:
             credits[name] = {"title": chosen["title"], "credit": f"{chosen['artist']}, {chosen['license']}" if not chosen["license"].lower().startswith(("public domain", "pd")) else "Public domain",
                              "license": chosen["license"], "url": chosen["page"]}
@@ -283,7 +285,7 @@ def main():
             print(f"  {name:9s} generated: {by_slot[name]['subject'][:60]}")
         img = Image.open(io.BytesIO(data)).convert("RGB")
         img.save(os.path.join(src, f"{name}.jpg"), quality=92)
-        entries.append({"issue": n, "slot": name, "source_page": credits[name]["url"],
+        entries.append({"issue": key, "slot": name, "source_page": credits[name]["url"],
                         "sha": hashlib.sha256(data).hexdigest()[:16], "dhash": dhash(img),
                         "origin": slot_meta[name]["origin"],
                         "at": datetime.datetime.now().astimezone().isoformat(timespec="seconds")})
@@ -298,7 +300,7 @@ def main():
     json.dump(slot_meta, open(os.path.join(out, "slots.json"), "w"), indent=2)
 
     # 6. ledger (replace this issue's rows, keep everyone else's)
-    ledger["entries"] = [e for e in ledger["entries"] if e["issue"] != n] + entries
+    ledger["entries"] = [e for e in ledger["entries"] if e["issue"] != key] + entries
     json.dump(ledger, open(LEDGER, "w"), indent=2)
 
     # 5. press

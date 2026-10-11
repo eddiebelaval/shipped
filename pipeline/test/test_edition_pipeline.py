@@ -61,17 +61,21 @@ class World(unittest.TestCase):
                         mock.patch.object(ed, "verify_live", lambda *a, **k: True)]
         for p in self.patches:
             p.start()
-        # Tripwire: no git call in a test may run inside the real repo (2026-10-11 incident).
-        real = ed.git.__wrapped__ if hasattr(ed.git, "__wrapped__") else ed.git
+        # Tripwire (2026-10-11 incident): no subprocess in a test may run git inside the real repo,
+        # whatever path the code computed, and the real SSH remote is unreachable.
         real_root = str(HERE.parent.parent.resolve())
-        def guarded(*a, repo=None, check=False):
-            cwd = str(Path(repo or ed.REPO).resolve())
-            if cwd == real_root or cwd.startswith(real_root + os.sep):
-                raise AssertionError(f"test touched the real repo: git {' '.join(a)}")
-            return real(*a, repo=repo, check=check)
-        guarded.__wrapped__ = real
-        self.patches.append(mock.patch.object(ed, "git", guarded))
-        self.patches[-1].start()
+        real_run = subprocess.run
+        def guarded_run(cmd, *a, **kw):
+            cwd = str(Path(kw.get("cwd") or os.getcwd()).resolve())
+            if cmd and cmd[0] == "git" and (cwd == real_root or cwd.startswith(real_root + os.sep)):
+                raise AssertionError(f"test ran git in the real repo: {' '.join(map(str, cmd))}")
+            return real_run(cmd, *a, **kw)
+        self.patches += [mock.patch.object(ed.subprocess, "run", guarded_run),
+                         mock.patch.dict(os.environ, {"GIT_SSH_COMMAND": "false"})]
+        for p in self.patches[-2:]:
+            p.start()
+        url = real_run(["git", "remote", "get-url", "origin"], cwd=repo, capture_output=True, text=True).stdout.strip()
+        assert url == str(origin), f"test origin must be the local bare repo, got {url}"
         self.toasts = []
         ed.ESCALATIONS.clear()
 
@@ -158,6 +162,23 @@ class TestDesk(World):
         ed.cmd_run(args(retry=True))  # gate now real and passing
         self.assertIn(ed.MARKER, self.live())
         self.assertFalse(ed.ALERT.exists())
+
+    def test_source_parity_failure_holds_the_publish(self):
+        with mock.patch.object(ed, "source_parity", return_value=["feature-right: 20 visa forms submitted"]):
+            ed.cmd_run(args())
+        self.assertNotIn(ed.MARKER, self.live())
+        st = ed.load_state("anthropic-daily", "2026-10-10")
+        self.assertEqual(st["gate_failure"]["problems"], ["feature-right: 20 visa forms submitted"])
+        self.assertTrue(any("gate held" in e for e in ed.ESCALATIONS))
+        self.assertTrue(ed.ALERT.exists())
+
+    def test_tripwire_catches_the_original_bug(self):
+        """Re-introduce the import-time default: the tripwire, not luck, must stop it."""
+        real_repo = HERE.parent.parent
+        bad = lambda *a, repo=real_repo, check=False: ed.subprocess.run(["git", *a], cwd=repo, capture_output=True, text=True)
+        with mock.patch.object(ed, "git", bad):
+            with self.assertRaises(AssertionError):
+                ed.branch_pages()
 
     def test_build_crash_persists_hold_and_caps(self):
         with mock.patch.object(ed, "render", side_effect=RuntimeError("boom")):

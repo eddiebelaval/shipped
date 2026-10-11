@@ -198,9 +198,8 @@ def parity_gate(md_text, page):
         b = re.sub(r"^\*\*(How to use|Why it matters):\*\*\s*", "", b)  # the page sets these labels apart
         flat = re.sub(r"\[([^\]]+)\]\([^)]+\)", r"\1", b)
         flat = re.sub(r"^#+ |[*`]", "", flat).strip()
-        key = " ".join(flat.split()[:8])
-        if norm(key) and norm(key) not in text:
-            problems.append(f"text missing: {key[:60]}")
+        if norm(flat) and norm(flat) not in text:
+            problems.append(f"text missing: {flat[:60]}")
     if DASHES.search(page):
         problems.append("em/en dash on the page")
     forms = page.count('id="subscribe"')
@@ -224,7 +223,10 @@ SOURCE_BLOCKS = ("weekly-cover-line", "open-quote", "open-prose", "feature-title
 
 
 def source_parity(source_page, page):
-    """Diff the ROUTINE page against the render, so a converter drop cannot hide behind edition.md."""
+    """Diff the ROUTINE page against the render: every block's full text (every number) and every link.
+
+    A converter drop or a changed figure cannot hide behind edition.md this way.
+    """
     spec = importlib.util.spec_from_file_location("e2p", SCRIPTS / "edition-to-paper.py")
     e2p = importlib.util.module_from_spec(spec)
     spec.loader.exec_module(e2p)
@@ -241,9 +243,12 @@ def source_parity(source_page, page):
                 units = [p.text() for p in node.find_all(tag="p")] or [node.text()]
             for u in units:
                 u = re.sub(r"^(How to use|Why it matters):?\s*", "", u)
-                key = " ".join(u.split()[:8])
-                if norm(key) and norm(key) not in text:
-                    missing.append(f"{cls}: {key[:60]}")
+                if norm(u) and norm(u) not in text:
+                    missing.append(f"{cls}: {u[:60]}")
+            for a in node.find_all(tag="a"):
+                href = a.attrs.get("href", "")
+                if href and html.escape(href, quote=True) not in page and href not in page:
+                    missing.append(f"{cls}: link missing {href[:80]}")
     return missing
 
 

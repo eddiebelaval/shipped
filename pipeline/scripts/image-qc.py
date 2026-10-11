@@ -81,9 +81,14 @@ Hard faults (any one rejects): readable text, signage, logos or watermarks that 
 an identifiable real person's face; gore or distress; the picture implies it IS the news event;
 a caption that is false; the printed file is blank, inverted, or broken.
 
+If the caption is not exactly right (caption_truth under 5), write the corrected caption in
+caption_fix: literal, no colour words, keeping any who/when/where facts from the source record.
+If the caption names the wrong kind of object (a display called a clock, booths called a queue),
+caption_truth is 2 at most.
+
 Answer with ONLY this JSON, no prose:
 {{"legibility": n, "look": n, "relevance": n, "caption_truth": n, "taste": n,
-  "hard_faults": ["..."], "note": "one sentence an editor would write"}}"""
+  "hard_faults": ["..."], "caption_fix": "", "note": "one sentence an editor would write"}}"""
 
 
 def press():
@@ -142,6 +147,9 @@ def grade(printed, source, slot, caption, credit, story, model=MODEL, record="")
     for k in AXES:
         g[k] = int(g.get(k, 0))
     g["hard_faults"] = [f for f in g.get("hard_faults") or [] if f and f.strip()]
+    g["caption_fix"] = (g.get("caption_fix") or "").strip()
+    if g["caption_truth"] < 5 and not g["caption_fix"]:
+        g["caption_truth"] = min(g["caption_truth"], 2)  # flagged but unfixed: never approve a caption QC doubts
     return g
 
 
@@ -177,7 +185,7 @@ def review(images_dir, context_md, dry=False, log=print):
     results = {}
     for slot, meta in slots.items():
         options = [t for t in ("atkinson", "halftone") if f"{slot}-{t}.png" in m["images"]]
-        graded = {}
+        graded, fixes = {}, {}
         for t in options:
             f = f"{slot}-{t}.png"
             e = m["images"][f]
@@ -188,6 +196,8 @@ def review(images_dir, context_md, dry=False, log=print):
                                                          meta.get("caption", ""), e.get("credit", ""),
                                                          story_context(context_md, slot), record=record_for(out, slot))
             graded[t] = verdict(g, hard) + (sum(g.get(k, 0) for k in AXES),)
+            if g.get("caption_fix") and graded[t][0]:
+                fixes[slot] = g["caption_fix"]
         if not graded:
             continue
         # The atkinson print is always drawn (small screens), so it must pass for the slot to run.
@@ -204,6 +214,12 @@ def review(images_dir, context_md, dry=False, log=print):
                 ip.set_status(argparse.Namespace(out=out, file=f, by=BY, note=note), "approved" if ok else "rejected")
         if not dry and slot in ip.HALFTONE_SLOTS and "halftone" in graded:
             ip.set_pick(out, slot, pick)
+        if not dry and slot in fixes:  # the editor corrects the caption rather than run a wrong one
+            cur = ip.load_slots(out)
+            cur[slot]["caption_was"] = cur[slot].get("caption", "")
+            cur[slot]["caption"] = fixes[slot]
+            json.dump(cur, open(os.path.join(out, "slots.json"), "w"), indent=2)
+            log(f"  caption fixed for {slot}: {fixes[slot]}")
     return results
 
 

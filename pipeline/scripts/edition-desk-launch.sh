@@ -12,7 +12,9 @@ if [ ! -e "$WT/.git" ]; then
   git -C "$MAIN" worktree add -q --detach "$WT" origin/main || exit 1
 fi
 git -C "$WT" fetch -q origin main || exit 1
-git -C "$WT" checkout -q --detach origin/main || exit 1
+git -C "$WT" checkout -q -f --detach origin/main || exit 1
+git -C "$WT" reset -q --hard origin/main || exit 1
+git -C "$WT" clean -qfd || exit 1   # nothing unreviewed ever runs: the worktree is exactly origin/main
 if [ ! -d "$WT/pipeline/node_modules" ]; then
   ln -s "$MAIN/pipeline/node_modules" "$WT/pipeline/node_modules"
 fi

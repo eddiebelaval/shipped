@@ -18,3 +18,4 @@ __pycache__/
 
 # Edition Desk working folders (daily-pages is the record)
 content/editions/
+pipeline/.coverage
