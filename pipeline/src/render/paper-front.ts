@@ -85,6 +85,43 @@ function signature(): string {
   return `<span class="pf-sig"><span class="pf-from">from</span><img src="data:image/svg+xml;base64,${b64}" alt="id8" width="71" height="58"></span>`;
 }
 
+/**
+ * The jump page: each story's photo runs again above its full story inside the issue
+ * (Eddie, 2026-10-11: images only on the front left "the whole middle and bottom" empty).
+ * Same approved files, so nothing new to review. The Release Log stays typographic.
+ */
+export function insideFigures(html: string, images: SlotImages): string {
+  let out = html;
+  // Lead: at the top of the lead story's prose, after its feature opener.
+  const opener = out.indexOf('<div class="feature-opener"');
+  if (opener >= 0 && images.lead) {
+    const prose = out.indexOf('<div class="prose drop-cap', opener);
+    if (prose >= 0) {
+      const tagEnd = out.indexOf('>', prose) + 1;
+      const tag = out.slice(prose, tagEnd);
+      const caps = (tag.match(/drop-cap[\w-]*/g) ?? []).join(' ');
+      // The drop cap moves from the prose block onto its first paragraph, so the photo above
+      // never steals the initial.
+      const firstP = out.indexOf('<p>', tagEnd);
+      if (firstP >= 0) out = out.slice(0, firstP) + `<p class="${caps}">` + out.slice(firstP + 3);
+      out = out.slice(0, prose) + tag.replace(/\s*drop-cap[\w-]*/g, '') + figure(images.lead, 'pf-inside') + out.slice(tagEnd);
+    }
+  }
+  // Also Shipped: story-N above the Nth story heading of the Also Shipped section.
+  const also = out.search(/class="section-folio-sub">\s*Also shipped/i);
+  if (also >= 0) {
+    let from = also;
+    for (let i = 1; images[`story-${i}`]; i++) {
+      const h3 = out.indexOf('<h3 style="font-family:var(--disp)', from);
+      if (h3 < 0) break;
+      const fig = figure(images[`story-${i}`], 'pf-inside');
+      out = out.slice(0, h3) + fig + out.slice(h3);
+      from = h3 + fig.length + 4;
+    }
+  }
+  return out;
+}
+
 function figure(img: SlotImage | undefined, cls = ''): string {
   if (!img) return '';
   const stamp = img.approved ? '' : '<span class="pf-pending">Pending review</span>';
@@ -206,6 +243,7 @@ export function renderPaperFront(issue: ParsedIssue, issueNum: string, images: S
 .pf-nav a{color:inherit;text-decoration:none}.pf-nav a:first-child{color:var(--orange)}
 .pf-fig{position:relative;margin:0}
 .pf-fig img{border:1px solid var(--ink)}
+.pf-inside{margin:6px 0 22px}.pf-inside img{display:block;width:100%;aspect-ratio:3/2;object-fit:cover}
 .pf-cover{margin-top:22px}.pf-band{margin:22px 0 4px}.pf-cover img{border:3px solid var(--ink);max-height:560px;object-fit:cover}
 .pf-cap{font-family:var(--narrow);font-size:12px;color:var(--muted);margin-top:6px;letter-spacing:.02em}
 .pf-cap i{font-family:var(--disp)}

@@ -18,7 +18,7 @@ import { renderSweepTable } from './charts.js';
 import { renderReleaseLog } from './release-log.js';
 import { updateArchive } from './archive.js';
 import { syncManifest } from './sync-manifest.js';
-import { renderPaperFront, loadSlotImages } from './paper-front.js';
+import { renderPaperFront, loadSlotImages, insideFigures } from './paper-front.js';
 import { issueImageDir } from '../orchestrate/image-gate.js';
 import {
   renderOpen,
@@ -87,7 +87,8 @@ export async function renderIssue(
 
   // Apply
   const template = await loadTemplate();
-  const html = applyFront(render(template, data), paper);
+  const assembled = applyFront(render(template, data), paper);
+  const html = paper ? insideFigures(assembled, images) : assembled;
 
   // Always write to scratch for diffing.
   await fs.writeFile(scratchPath, html, 'utf-8');
