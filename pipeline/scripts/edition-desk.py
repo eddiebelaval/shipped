@@ -630,6 +630,7 @@ def build(section, stem, st, want, dry):
             log(f"  ESCALATE {section}/{stem}: pushed but not live after 5 minutes (PUBLISH UNVERIFIED)")
             notify("Shipped. Edition Desk", f"{section}/{stem}: pushed but not live after 5 minutes")
         st["published_images"] = want
+        st["render_key"] = render_key()
         st["published_at"] = datetime.datetime.now().isoformat(timespec="seconds")
         st.pop("gate_failure", None)
         return True
@@ -643,6 +644,15 @@ def source_key(page):
     """The routine page plus the converter itself: a converter fix re-converts every edition."""
     conv = (SCRIPTS / "edition-to-paper.py").read_bytes()
     return hashlib.sha256(page.encode() + b"\0" + conv).hexdigest()[:16]
+
+
+def render_key():
+    """The renderer itself (template + render code): a layout fix re-publishes every live edition."""
+    h = hashlib.sha256()
+    for f in sorted((PIPELINE / "src" / "render").rglob("*")):
+        if f.is_file() and f.suffix in (".ts", ".html"):
+            h.update(f.read_bytes())
+    return h.hexdigest()[:16]
 
 
 def convert(section, stem, page, st):
@@ -720,7 +730,8 @@ def process(section, stem, a):
             st.pop("gate_failure", None)
         key = [st.get("source_sha"), want]
         held = st.get("gate_failure", {}).get("key") == key
-        if (not ours or st.get("published_images") != want) and not held:
+        stale = st.get("render_key") != render_key()
+        if (not ours or st.get("published_images") != want or stale) and not held:
             log(f"{section}/{stem}: building ({len(want)} approved images)" if want else f"{section}/{stem}: building text-only")
             try:
                 build(section, stem, st, want, a.dry_run)
