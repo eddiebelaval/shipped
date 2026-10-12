@@ -90,10 +90,10 @@ test('insideFigures repeats each story photo above its full story and keeps the 
     '<h3 style="font-family:var(--disp);x">Three.</h3><p>c</p></div>',
   ].join('');
   const out = insideFigures(html, { lead: img('lead-atkinson.png', 'Lead pic'), 'story-1': img('story-1-atkinson.png', 'One pic'), 'story-2': img('story-2-atkinson.png', 'Two pic') });
-  assert.match(out, /<div class="prose"><figure class="pf-fig pf-inside"><img src="img\/lead-atkinson.png"/);
+  assert.match(out, /<div class="prose"><figure class="pf-fig pf-jumpfig"><img src="img\/lead-atkinson.png"/);
   assert.match(out, /<p class="drop-cap drop-cap-orange">First lead paragraph/);
   assert.ok(out.indexOf('story-1-atkinson') < out.indexOf('>One.</h3>'));
   assert.ok(out.indexOf('>One.</h3>') < out.indexOf('story-2-atkinson') && out.indexOf('story-2-atkinson') < out.indexOf('>Two.</h3>'));
-  assert.equal((out.match(/pf-inside/g) ?? []).length, 3, 'no photo for a story without one');
+  assert.equal((out.match(/pf-jumpfig/g) ?? []).length, 3, 'no photo for a story without one');
   assert.equal(insideFigures(html, {}), html, 'no images, no change');
 });

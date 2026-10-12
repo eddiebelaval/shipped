@@ -104,7 +104,7 @@ export function insideFigures(html: string, images: SlotImages): string {
       // never steals the initial.
       const firstP = out.indexOf('<p>', tagEnd);
       if (firstP >= 0) out = out.slice(0, firstP) + `<p class="${caps}">` + out.slice(firstP + 3);
-      out = out.slice(0, prose) + tag.replace(/\s*drop-cap[\w-]*/g, '') + figure(images.lead, 'pf-inside') + out.slice(tagEnd);
+      out = out.slice(0, prose) + tag.replace(/\s*drop-cap[\w-]*/g, '') + figure(images.lead, 'pf-jumpfig') + out.slice(tagEnd);
     }
   }
   // Also Shipped: story-N above the Nth story heading of the Also Shipped section.
@@ -114,7 +114,7 @@ export function insideFigures(html: string, images: SlotImages): string {
     for (let i = 1; images[`story-${i}`]; i++) {
       const h3 = out.indexOf('<h3 style="font-family:var(--disp)', from);
       if (h3 < 0) break;
-      const fig = figure(images[`story-${i}`], 'pf-inside');
+      const fig = figure(images[`story-${i}`], 'pf-jumpfig');
       out = out.slice(0, h3) + fig + out.slice(h3);
       from = h3 + fig.length + 4;
     }
@@ -243,7 +243,7 @@ export function renderPaperFront(issue: ParsedIssue, issueNum: string, images: S
 .pf-nav a{color:inherit;text-decoration:none}.pf-nav a:first-child{color:var(--orange)}
 .pf-fig{position:relative;margin:0}
 .pf-fig img{border:1px solid var(--ink)}
-.pf-inside{margin:6px 0 22px}.pf-inside img{display:block;width:100%;aspect-ratio:3/2;object-fit:cover}
+.pf-jumpfig{margin:6px 0 22px}.pf-jumpfig img{display:block;width:100%;aspect-ratio:3/2;object-fit:cover}
 .pf-cover{margin-top:22px}.pf-band{margin:22px 0 4px}.pf-cover img{border:3px solid var(--ink);max-height:560px;object-fit:cover}
 .pf-cap{font-family:var(--narrow);font-size:12px;color:var(--muted);margin-top:6px;letter-spacing:.02em}
 .pf-cap i{font-family:var(--disp)}

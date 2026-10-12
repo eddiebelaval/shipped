@@ -70,6 +70,13 @@ person's portrait, an irrelevant photo). Small n. QC also corrects captions it d
 unfixed. Optional: Eddie skims the first week of edition images (`edition-desk.py review <section>/<stem>`);
 any note he leaves becomes calibration data.
 
+## Layout changes republish
+
+The desk stores a hash of the render code per edition. When the renderer changes (a pushed layout fix), the
+next run rebuilds every live edition since the cutover and republishes it through every gate; a gate failure
+holds that edition and leaves its live page alone (re-try with `run --retry`). Undo: revert the change on main
+and push (the next run republishes without it), or roll back one edition as below.
+
 ## Install
 
 ```bash
