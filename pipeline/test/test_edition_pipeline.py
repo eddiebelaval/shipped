@@ -111,13 +111,17 @@ class TestDesk(World):
 
     def test_a_renderer_change_republishes_live_editions(self):
         ed.cmd_run(args())
-        head = lambda: subprocess.run(["git", "rev-parse", "origin/daily-pages"], cwd=self.repo, capture_output=True, text=True).stdout
-        before = head()
-        ed.cmd_run(args())
-        self.assertEqual(head(), before)  # nothing changed: no republish
-        with mock.patch.object(ed, "render_key", return_value="new-layout"):
+        real_build = ed.build
+        calls = []
+        def counting(*a, **k):
+            calls.append(a[:2])
+            return real_build(*a, **k)
+        with mock.patch.object(ed, "build", counting):
             ed.cmd_run(args())
-        self.assertNotEqual(head(), before)  # renderer changed: republished
+            self.assertEqual(calls, [])  # nothing changed: no rebuild
+            with mock.patch.object(ed, "render_key", return_value="new-layout"):
+                ed.cmd_run(args())
+            self.assertEqual(calls, [("anthropic-daily", "2026-10-10")])  # renderer changed: rebuilt and gated
         self.assertEqual(ed.load_state("anthropic-daily", "2026-10-10")["render_key"], "new-layout")
 
     def test_approved_images_upgrade_and_are_scoped(self):
