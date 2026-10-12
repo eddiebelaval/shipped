@@ -172,13 +172,16 @@ def all_stems(subdir):
     return sorted(stems)
 
 
-def make_draft(sender, subject, body, bcc_list):
+def make_draft(sender, subject, body, bcc_list, mode="draft"):
+    """Stage the release in Mail.app: a draft, or sent outright when send_mode is "send"
+    (enabled by Eddie 2026-10-11: drafts sat unsent because nothing told him one was waiting)."""
+    mode = "send" if mode == "send" else "draft"
     if DRY_RUN:
-        log(f"would draft: {subject} -> {len(bcc_list)} recipient(s)")
+        log(f"would {mode}: {subject} -> {len(bcc_list)} recipient(s)")
         return True
     bcc = ",".join(bcc_list)
     r = subprocess.run(
-        ["osascript", APPLESCRIPT, sender, subject, body, bcc],
+        ["osascript", APPLESCRIPT, sender, subject, body, bcc, mode],
         capture_output=True, text=True
     )
     if r.returncode != 0:
@@ -280,8 +283,8 @@ def main():
                 f"{url}\n\n"
                 f"You are on the Shipped. reading list. Reply to this message to be removed.\n"
             )
-            if make_draft(sender, subject, body, who):
-                log(f"drafted {cadence} {stem} to {len(who)} recipient(s): {subject}")
+            if make_draft(sender, subject, body, who, mode):
+                log(f"{'sent' if mode == 'send' else 'drafted'} {cadence} {stem} to {len(who)} recipient(s): {subject}")
                 drafted[cadence].add(stem)
                 drafted_any = True
             else:

@@ -10,7 +10,7 @@
 // Email-only today: every shipped subscriber gets all three cadences. Phone is
 // stored on the row but not used here (the launcher drafts email via Mail.app).
 //
-// Preserves `send_mode` ("draft" | "off") and `from` from any existing
+// Preserves `send_mode` ("draft" | "send" | "off") and `from` from any existing
 // recipients.json so operator settings survive a sync.
 //
 // Reads SUPABASE_URL + SUPABASE_SERVICE_ROLE_KEY from the id8labs app env.
