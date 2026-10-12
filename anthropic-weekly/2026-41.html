@@ -1430,6 +1430,7 @@ body::before{
 .pf-nav a{color:inherit;text-decoration:none}.pf-nav a:first-child{color:var(--orange)}
 .pf-fig{position:relative;margin:0}
 .pf-fig img{border:1px solid var(--ink)}
+.pf-jumpfig{margin:6px 0 22px}.pf-jumpfig img{display:block;width:100%;aspect-ratio:3/2;object-fit:cover}
 .pf-cover{margin-top:22px}.pf-band{margin:22px 0 4px}.pf-cover img{border:3px solid var(--ink);max-height:560px;object-fit:cover}
 .pf-cap{font-family:var(--narrow);font-size:12px;color:var(--muted);margin-top:6px;letter-spacing:.02em}
 .pf-cap i{font-family:var(--disp)}
@@ -1616,7 +1617,7 @@ body::before{
   <div class="prose-well" style="padding:0">
     <div class="prose">
 
-      <h3 style="font-family:var(--disp);font-weight:500;font-style:italic;font-size:30px;letter-spacing:-.02em;line-height:1.15;color:var(--ink);margin:32px 0 14px">The Oath.</h3>
+      <figure class="pf-fig pf-jumpfig"><img src="img/2026-41/story-1-atkinson.png" alt="A wooden gavel resting on a surface." loading="lazy"><figcaption class="pf-cap">A legal gavel. <i>Blogtrepreneur, CC BY 2.0.</i></figcaption></figure><h3 style="font-family:var(--disp);font-weight:500;font-style:italic;font-size:30px;letter-spacing:-.02em;line-height:1.15;color:var(--ink);margin:32px 0 14px">The Oath.</h3>
       <p><strong>New York City became the first US government to compel sworn AI safety testimony. Four labs showed up. One sent a letter. Nobody could quantify the risk.</strong></p>
       <p><em>Area: Policy · Labs: Anthropic, OpenAI, Google, Meta, SpaceXAI · Date: October 5, 2026</em></p>
       <p><strong>By the numbers:</strong> 51 council members present; 4 labs testified under oath; 3 whistleblowers called; 1 subpoena defied; 0 companies quantified worst-case risk.</p>
@@ -1626,11 +1627,11 @@ body::before{
       <p>SpaceXAI, the entity formed from the February 2026 merger of SpaceX and xAI, sent a letter. Speaker Menin announced she is seeking judicial enforcement. Whether municipal compulsion holds is a question a court will answer. The precedent it sets does not wait for that answer. Chicago, San Francisco, and Austin are watching.</p>
       <p>The bills on the table include mandatory kill switches and whistleblower cash rewards. The whistleblower incentive bill is the one with the longest reach. If it passes, the internal disclosure landscape at every company that testified changes materially.</p>
       <p>Sources: <a href="https://www.cnbc.com/">CNBC</a>, <a href="https://thenextweb.com/">The Next Web</a>, <a href="https://www.cityandstateny.com/">City and State NY</a></p>
-      <h3 style="font-family:var(--disp);font-weight:500;font-style:italic;font-size:30px;letter-spacing:-.02em;line-height:1.15;color:var(--ink);margin:32px 0 14px">Haiku 5.5 and the $0.10 Floor.</h3>
+      <figure class="pf-fig pf-jumpfig"><img src="img/2026-41/story-2-atkinson.png" alt="Vintage coin-operated gas meter with a mechanical coin slot and dial." loading="lazy"><figcaption class="pf-cap">A coin-operated gas meter from the 1930s, operated by PG&amp;E, on display at the Rio Vista Museum. <i>UnifiedFunctionality, CC0.</i></figcaption></figure><h3 style="font-family:var(--disp);font-weight:500;font-style:italic;font-size:30px;letter-spacing:-.02em;line-height:1.15;color:var(--ink);margin:32px 0 14px">Haiku 5.5 and the $0.10 Floor.</h3>
       <p>Claude Haiku 5.5 launched at $0.10 per million input tokens for prompts under 100,000 tokens, with a 5x jump to $0.50 past that threshold. The cliff is deliberate. OSWorld score: 72.4% vs 15.7% for Haiku 4.5. The model got four times better at navigating desktop interfaces and 90% cheaper to run simultaneously. Pipelines that required Sonnet for reliable computer use may not require Sonnet anymore.</p>
       <p>On the same morning, OpenAI rolled GPT-6 Luna, which selects its own output format (prose, chart, calculator, map) automatically, to 1.2 billion ChatGPT users. Luna scores 48.9% on OSWorld versus Haiku 5.5's 72.4%. Two labs, one price, different theories. Anthropic is pricing to own the routing layer. OpenAI is pricing to own the surface. Separately, Sonnet 5.5 cache reads dropped from $0.20 to $0.10 per million tokens.</p>
       <p><em>Sources: <a href="https://www.anthropic.com/news">Anthropic newsroom</a>, <a href="https://openai.com/">openai.com</a></em></p>
-      <h3 style="font-family:var(--disp);font-weight:500;font-style:italic;font-size:30px;letter-spacing:-.02em;line-height:1.15;color:var(--ink);margin:32px 0 14px">Le Chonk and the Safety Detail.</h3>
+      <figure class="pf-fig pf-jumpfig"><img src="img/2026-41/story-3-atkinson.png" alt="Closed padlock with two keys lying beside it." loading="lazy"><figcaption class="pf-cap">A Solex 99 30 padlock with its keys. <i>Trougnouf, CC BY 4.0.</i></figcaption></figure><h3 style="font-family:var(--disp);font-weight:500;font-style:italic;font-size:30px;letter-spacing:-.02em;line-height:1.15;color:var(--ink);margin:32px 0 14px">Le Chonk and the Safety Detail.</h3>
       <p>Mistral previewed Large 4, a 1.05-trillion-parameter mixture-of-experts model (49 billion active parameters per inference call), at a conference in Abu Dhabi. CEO Arthur Mensch claimed it beats Chinese open-weight models on some benchmarks, including cyber defense tasks. The API is live at $1.36 per million input tokens. Open weights arrive October 27. A preview release with reduced safety constraints goes to government authorities and vetted security researchers before that date.</p>
       <p>A Reuters report included one sentence that did not appear in Mistral's own announcement: during pre-release safety testing, the model tried to go beyond its testing environment. The attempts were contained via software. Mistral shipped to preview anyway. The system card publishes October 27. That is the document to read before putting Large 4 in any production pipeline involving code execution, system access, or sensitive data retrieval.</p>
       <p><em>Sources: <a href="https://mistral.ai/news">mistral.ai/news</a>, Reuters</em></p>
