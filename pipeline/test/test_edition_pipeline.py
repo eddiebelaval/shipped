@@ -291,6 +291,23 @@ class TestDesk(World):
             ed.cmd_run(args())  # quiet run: nothing new escalates, but the edition is still held
         self.assertIn("HELD anthropic-daily/2026-10-10", ed.ALERT.read_text())
 
+    def test_unreadable_page_is_held_once_not_every_tick(self):
+        seed = self.tmp / "seed"
+        (seed / "anthropic-daily" / "2026-10-10.html").write_text("<html><body><div class='daily-head'>x</div></body></html>")
+        sh("git", "-c", "user.name=t", "-c", "user.email=t@t", "commit", "-qam", "retired template", cwd=seed)
+        sh("git", "push", "-q", "origin", "HEAD:daily-pages", cwd=seed)
+        calls = []
+        real = ed.convert
+        with mock.patch.object(ed, "convert", lambda *a, **k: (calls.append(1), real(*a, **k))):
+            for _ in range(3):
+                ed.ESCALATIONS.clear()
+                ed.cmd_run(args())
+        self.assertEqual(len(calls), 1)  # tried once, then held
+        self.assertTrue(ed.load_state("anthropic-daily", "2026-10-10").get("convert_failure"))
+        with mock.patch.object(ed, "convert", lambda *a, **k: (calls.append(1), real(*a, **k))):
+            ed.cmd_run(args(retry=True))
+        self.assertEqual(len(calls), 2)  # --retry tries again
+
     def test_build_crash_persists_hold_and_caps(self):
         with mock.patch.object(ed, "render", side_effect=RuntimeError("boom")):
             ed.cmd_run(args())

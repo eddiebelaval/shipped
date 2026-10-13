@@ -716,8 +716,20 @@ def process(section, stem, a):
         return
     try:
         ours = MARKER in page
-        if not ours and st.get("source_sha") != source_key(page):
-            convert(section, stem, page, st)      # a new edition, or the routine re-published it
+        key_now = source_key(page)
+        if a.retry:
+            st.pop("convert_failure", None)
+        if not ours and st.get("convert_failure") == key_now:
+            return  # this exact page already failed to convert; it waits for a converter fix or --retry
+        if not ours and st.get("source_sha") != key_now:
+            try:
+                convert(section, stem, page, st)  # a new edition, or the routine re-published it
+            except Exception as e:
+                # Held once per page version, not re-tried (and re-alerted) every tick (2026-10-12: a
+                # daily re-rendered in a retired template failed every run).
+                st["convert_failure"] = key_now
+                raise RuntimeError(f"convert held: {e}") from e
+            st.pop("convert_failure", None)
         elif not ours:
             st.pop("published_images", None)      # the routine page is live again over ours
         if not (folder(section, stem) / "edition.md").exists():
