@@ -142,6 +142,43 @@ def next_sibling_prose(fo):
     return None
 
 
+MONTHS = {m: i for i, m in enumerate(("jan", "feb", "mar", "apr", "may", "jun", "jul", "aug", "sep", "oct", "nov", "dec"), 1)}
+
+
+def log_date(raw, stem):
+    """A release-log date as YYYY-MM-DD, whatever the routine wrote ("2026-10-12", "Oct 12",
+    "October 12, 2026", "10-12"). The renderer only reads ISO dates; anything else rendered an
+    empty log (daily 2026-10-12, held by the gate). Year comes from the edition when missing."""
+    import datetime
+    raw = re.sub(r"\s+", " ", raw).strip()
+    ed_year = int(stem[:4])
+    tail = stem[5:7] if len(stem) >= 7 and stem[4] == "-" and stem[5:7].isdigit() else ""
+    if len(stem) == 7 and tail and int(tail) > 12:  # a weekly stem, YYYY-WW
+        ed_month = datetime.date.fromisocalendar(ed_year, int(tail), 5).month
+    else:
+        ed_month = int(tail) if tail else 12
+    m = re.match(r"^(\d{4})-(\d{2})(?:-(\d{2}))?$", raw)
+    if m:
+        return raw
+    m = re.match(r"^([A-Za-z]{3})[a-z]*\.? (\d{1,2})(?:, (\d{4}))?$", raw)
+    if m and m.group(1).lower() in MONTHS:
+        mo, d = MONTHS[m.group(1).lower()], int(m.group(2))
+        y = int(m.group(3)) if m.group(3) else (ed_year - 1 if mo > ed_month + 1 else ed_year)
+        return datetime.date(y, mo, d).isoformat()
+    m = re.match(r"^(\d{1,2})[-/](\d{1,2})$", raw)
+    if m:
+        mo, d = int(m.group(1)), int(m.group(2))
+        return datetime.date(ed_year - 1 if mo > ed_month + 1 else ed_year, mo, d).isoformat()
+    m = re.match(r"^(\d{4}) · (\d{2}) · (\d{2})$", raw)
+    if m:
+        return f"{m.group(1)}-{m.group(2)}-{m.group(3)}"
+    return iso_date_fallback(stem)
+
+
+def iso_date_fallback(stem):
+    return stem if re.match(r"^\d{4}-\d{2}-\d{2}$", stem) else f"{stem[:4]}-01-01"
+
+
 def iso_date(section, stem):
     """A real calendar date for the renderer: the day itself, the week's Friday, the month's last day."""
     import calendar, datetime
@@ -215,7 +252,7 @@ def convert(page, section, stem):
             tag = tag_el.text().upper() if tag_el else "NEWS"
             title_el = e.find("log-entry-title")
             a = title_el.find(tag="a") if title_el else None
-            date = e.find("log-entry-date").text() if e.find("log-entry-date") else stem
+            date = log_date(e.find("log-entry-date").text() if e.find("log-entry-date") else "", stem)
             link = f" ([source]({a.attrs['href']}))" if a is not None and a.attrs.get("href") else ""
             block = [f"#### {date} - {title_el.text() if title_el else 'Untitled'}{link}",
                      f"`[{tag if tag in LOG_TAGS else 'NEWS'}]`", "", cmd(e.find("log-entry-body"))]

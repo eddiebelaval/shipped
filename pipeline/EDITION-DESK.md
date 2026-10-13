@@ -51,7 +51,7 @@ gate holds, the live check is UNVERIFIED, or Pages is not 200. Undo: the rollbac
 cp ~/Development/id8/shipped/pipeline/scripts/com.id8labs.shipped-edition-desk.plist ~/Library/LaunchAgents/
 launchctl load ~/Library/LaunchAgents/com.id8labs.shipped-edition-desk.plist
 ```
-**From then on, every 30 minutes and with no one watching, the desk re-publishes every new edition to the
+**From then on, every 5 minutes and with no one watching, the desk re-publishes every new edition to the
 public site with images Claude QC approved.** Its first run also PUBLISHES weekly 2026-41 to the public site, unattended (it is past the
 cutover and passes every gate in preview). Stop signal: Night Desk escalates an Edition Desk alert. Undo:
 `launchctl unload ~/Library/LaunchAgents/com.id8labs.shipped-edition-desk.plist`, or

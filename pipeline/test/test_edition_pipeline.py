@@ -648,6 +648,17 @@ class TestConverter(unittest.TestCase):
         md, _ = e2p.convert(page, "anthropic-daily", "2026-10-10")
         self.assertIn("Dates: October 8 to 9, 2026", md.replace("**", ""))
 
+    def test_log_dates_normalised(self):
+        """Daily 2026-10-12 wrote 'Oct 12'; the renderer only reads ISO, so its log rendered empty."""
+        for raw, stem, want in (("Oct 12", "2026-10-12", "2026-10-12"), ("2026-10-07", "2026-10-12", "2026-10-07"),
+                                ("October 12, 2026", "2026-10-12", "2026-10-12"), ("10-12", "2026-10-12", "2026-10-12"),
+                                ("Dec 30", "2026-01-03", "2025-12-30"), ("Oct 07", "2026-41", "2026-10-07"),
+                                ("2026 · 10 · 07", "2026-10-12", "2026-10-07")):
+            self.assertEqual(e2p.log_date(raw, stem), want, raw)
+        page = FIXTURE.read_text().replace('<div class="log-entry-date">2026-10-07</div>', '<div class="log-entry-date">Oct 07</div>')
+        md, _ = e2p.convert(page, "anthropic-daily", "2026-10-10")
+        self.assertNotIn("#### Oct", md)
+
     def test_empty_page_refused(self):
         with self.assertRaises(SystemExit):
             e2p.convert("<html><body><p>x</p></body></html>", "anthropic-daily", "2026-10-10")
