@@ -111,7 +111,9 @@ export function insideFigures(html: string, images: SlotImages): string {
   const also = out.search(/class="section-folio-sub">\s*Also shipped/i);
   if (also >= 0) {
     let from = also;
-    for (let i = 1; images[`story-${i}`]; i++) {
+    // Walk every front story's heading; a story without an approved photo is skipped, never the end
+    // (daily 2026-10-12: story-1 had no photo, so story-3's was never placed).
+    for (let i = 1; i <= FRONT_STORIES; i++) {
       const h3 = out.indexOf('<h3 style="font-family:var(--disp)', from);
       if (h3 < 0) break;
       const fig = figure(images[`story-${i}`], 'pf-jumpfig');

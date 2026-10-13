@@ -96,4 +96,6 @@ test('insideFigures repeats each story photo above its full story and keeps the 
   assert.ok(out.indexOf('>One.</h3>') < out.indexOf('story-2-atkinson') && out.indexOf('story-2-atkinson') < out.indexOf('>Two.</h3>'));
   assert.equal((out.match(/pf-jumpfig/g) ?? []).length, 3, 'no photo for a story without one');
   assert.equal(insideFigures(html, {}), html, 'no images, no change');
+  const gap = insideFigures(html, { 'story-3': img('story-3-atkinson.png', 'Three pic') });
+  assert.ok(gap.indexOf('story-3-atkinson') > gap.indexOf('>Two.</h3>') && gap.indexOf('story-3-atkinson') < gap.indexOf('>Three.</h3>'), 'a missing story-1 photo does not stop story-3');
 });
