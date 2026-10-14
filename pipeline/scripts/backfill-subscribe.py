@@ -23,6 +23,8 @@ Usage:
   backfill-subscribe.py <root> --dry-run  report what would change
 """
 
+from __future__ import annotations  # launchd's python3 can be macOS 3.9; `str | None` needs this
+
 import argparse
 import pathlib
 import re

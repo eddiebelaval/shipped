@@ -396,10 +396,13 @@ def heal(reason):
         if git("worktree", "add", "-q", "--detach", wt, "origin/daily-pages").returncode:
             record("heal", "ESCALATE", "could not create a worktree")
             return
-        subprocess.run([sys.executable, str(SCRIPTS / "backfill-subscribe.py"), wt],
-                       capture_output=True, text=True)
-        subprocess.run([sys.executable, str(SCRIPTS / "build-archive-index.py"), wt],
-                       capture_output=True, text=True)
+        for script in ("backfill-subscribe.py", "build-archive-index.py"):
+            r = subprocess.run([sys.executable, str(SCRIPTS / script), wt],
+                               capture_output=True, text=True)
+            if r.returncode:
+                err = (r.stderr.strip().splitlines() or ["no output"])[-1]
+                record("heal", "ESCALATE", f"{script} failed: {err[:160]}")
+                return
         if not git("status", "--porcelain", repo=wt).stdout.strip():
             record("heal", "OK", "nothing mechanical left to fix")
             return
@@ -474,8 +477,11 @@ def main():
 
     escalations = [f for f in findings if f[1] == "ESCALATE"]
     healable = {"index", "subscribe"}
-    if HEAL and any(f[0] in healable for f in escalations):
-        heal(", ".join(f[0] for f in escalations if f[0] in healable))
+    # check_index records "HEAL" (not "ESCALATE") when healing is on; both must trigger the repair,
+    # or a stale index is logged every night and never rebuilt (10-11 to 10-14).
+    to_heal = [f for f in findings if f[0] in healable and f[1] in ("ESCALATE", "HEAL")]
+    if HEAL and to_heal:
+        heal(", ".join(sorted({f[0] for f in to_heal})))
         escalations = [f for f in escalations if f[0] not in healable]
 
     standing_alert(escalations)
