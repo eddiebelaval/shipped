@@ -233,7 +233,13 @@ def convert(page, section, stem):
         src = cmd(it.find("also-item-source"))
         if src:
             ps.append(f"*{src.strip('*')}*")
-        stories.append((it.find("also-item-title").text() if it.find("also-item-title") else "", "", ps))
+        # Some routines link the headline itself instead of a source line; keep that link or the parity gate holds.
+        it_title = it.find("also-item-title")
+        a = it_title.find(tag="a") if it_title else None
+        href = a.attrs.get("href", "") if a is not None else ""
+        if href and href not in src:
+            ps.append(f"*[Source]({href})*")
+        stories.append((it_title.text() if it_title else "", "", ps))
     stories = [s for s in stories if s[0] and s[2]]
     if not stories:
         raise SystemExit("edition-to-paper: no feature or also-item with text; refusing to write an empty front")

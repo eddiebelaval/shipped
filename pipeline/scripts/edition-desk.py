@@ -602,7 +602,9 @@ def build(section, stem, st, want, dry):
         render(d / "edition.md", out)
         page = out.read_text()
         problems = parity_gate((d / "edition.md").read_text(), page)
-        problems += source_parity((d / "source.html").read_text(), page, image_text(want, d / "images"))
+        # The converter turns the routine's "Oct 14" log dates into ISO dates the template prints as "2026 · 10 · 14".
+        log_dates = " ".join(re.findall(r"^#### (\d{4}-\d{2}-\d{2})", (d / "edition.md").read_text(), re.M)).replace("-", " ")
+        problems += source_parity((d / "source.html").read_text(), page, image_text(want, d / "images") + " " + log_dates)
         problems += image_gate(page, want, d / "images")
         md_text = (d / "edition.md").read_text()
         src = (d / "source.html").read_text()
