@@ -160,6 +160,7 @@ sources:
   - https://x.com/claudeai/status/2046328619249684989
   - https://x.com/testingcatalog/status/2039490365414048182
   - https://yourstory.com/ai-story/claude-cowork-live-dashboards-ai-bi-disruption
+layout: paper
 ---
 
 # Shipped.

@@ -13,6 +13,7 @@ ship_date: 2026-05-15
 running_order_locked: true
 fob_content: editorial
 log_content: reference
+layout: paper
 ---
 
 # Shipped.
