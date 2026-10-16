@@ -833,6 +833,95 @@ def qc(section, stem, st):
     log(f"  image QC: {sum(ok for ok, _ in res.values())} approved, {sum(not ok for ok, _ in res.values())} rejected")
 
 
+# ---------------------------------------------------------------- shadow: the routine's own markdown
+
+SHADOW_LEDGER = OPS / "edition-shadow.jsonl"
+
+
+def routine_md(section, stem):
+    r = git("show", f"origin/daily-pages:{section}/src/{stem}.md")
+    return r.stdout if r.returncode == 0 else ""
+
+
+def wrap_routine_md(section, stem, text):
+    """The routine's markdown (edition-md-check shape) as the paper renderer's edition.md."""
+    spec = importlib.util.spec_from_file_location("e2p", SCRIPTS / "edition-to-paper.py")
+    e2p = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(e2p)
+    head, body = text[4:].split("\n---\n", 1)
+    fm = {k: v.strip().strip('"') for k, v in re.findall(r"^(\w+):\s*(.*)$", head, re.M)}
+    edition, short = e2p.EDITION[section]
+    period = fm.get("period") or stem
+    q = e2p.q
+    return f"""---
+issue: 90
+title: {q(fm.get('title', ''))}
+date: {e2p.iso_date(section, stem)}
+period: {q(period)}
+status: published
+masthead: Shipped.
+layout: paper
+edition: {edition}
+issue_label: {q(f"{short} · {period}")}
+deck: {q(fm.get('deck', ''))}
+weather: {q(fm.get('weather', ''))}
+edition_section: "{section}"
+edition_stem: "{stem}"
+---
+{body}"""
+
+
+def shadow(section, stem, st, page_src):
+    """Render the paper front from the routine's markdown and compare it with the HTML route.
+
+    Shadow only (2026-10-16): logs AGREE / DISAGREE to ops/edition-shadow.jsonl, never publishes. After a
+    week of agreement the markdown route replaces the HTML conversion.
+    """
+    md = routine_md(section, stem)
+    if not md:
+        return
+    key = hashlib.sha256(md.encode() + render_key().encode()).hexdigest()[:16]
+    if st.get("shadow_key") == key:
+        return
+    st["shadow_key"] = key
+    spec = importlib.util.spec_from_file_location("emc", SCRIPTS / "edition-md-check.py")
+    emc = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(emc)
+    verdict = {"edition": f"{section}/{stem}", "at": datetime.datetime.now().isoformat(timespec="seconds")}
+    shape = emc.check(md)
+    if shape:
+        verdict.update(result="SHAPE", problems=shape[:10])
+    else:
+        d = folder(section, stem)
+        wrapped = wrap_routine_md(section, stem, md)
+        (d / "shadow.md").write_text(wrapped)
+        out_dir = Path(tempfile.mkdtemp(prefix="edition-shadow-"))
+        try:
+            render(d / "shadow.md", out_dir / "index.html")
+            page = out_dir / "index.html"
+            page = page.read_text()
+            probs = parity_gate(wrapped, page) + source_coverage(page_src, page)
+            probs += front_structure(split_front(page)[0], wrapped) + inside_structure(page, wrapped)
+            conv = (d / "edition.md").read_text() if (d / "edition.md").exists() else ""
+            a, b = edition_parts(wrapped), edition_parts(conv) if conv else None
+            if b:
+                if norm(md_plain(a[1])) != norm(md_plain(b[1])):
+                    probs.append(f"lead differs: md '{a[1][:40]}' vs html '{b[1][:40]}'")
+                if len(a[3]) != len(b[3]):
+                    probs.append(f"story count differs: md {len(a[3])} vs html {len(b[3])}")
+                if len(a[4]) != len(b[4]):
+                    probs.append(f"log entries differ: md {len(a[4])} vs html {len(b[4])}")
+            verdict.update(result="AGREE" if not probs else "DISAGREE", problems=probs[:10])
+        except Exception as e:
+            verdict.update(result="ERROR", problems=[str(e)[:300]])
+        finally:
+            shutil.rmtree(out_dir, ignore_errors=True)
+    log(f"  shadow {section}/{stem}: {verdict['result']}" + (f" ({verdict['problems'][0][:120]})" if verdict.get("problems") else ""))
+    SHADOW_LEDGER.parent.mkdir(exist_ok=True)
+    with open(SHADOW_LEDGER, "a") as f:
+        f.write(json.dumps(verdict) + "\n")
+
+
 def process(section, stem, a):
     page = blob(section, stem)
     if not page:
@@ -860,6 +949,11 @@ def process(section, stem, a):
             st.pop("published_images", None)      # the routine page is live again over ours
         if not (folder(section, stem) / "edition.md").exists():
             return
+        if not ours and (folder(section, stem) / "source.html").exists():
+            try:  # the shadow never holds or publishes anything; a failure in it is only logged
+                shadow(section, stem, st, (folder(section, stem) / "source.html").read_text())
+            except Exception as e:
+                log(f"  shadow {section}/{stem}: ERROR {str(e)[:200]}")
         if not a.no_images and stem >= IMAGES_FROM[section]:
             images(section, stem, st)
 
