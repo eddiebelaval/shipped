@@ -437,8 +437,8 @@ def legacy(body, stem):
             quiet += paras(n)
         elif kind == "quiet-title":
             quiet.append(f"*{n.text()}*")
-        elif kind == "h":
-            stories.append([n.text(), "", []])
+        elif kind == "h":  # keep a linked headline's link (07-10: "The Three-Body Problem")
+            stories.append([cmd(n).strip("*").strip() or n.text(), "", []])
         elif kind == "p":
             text = cmd(n)
             if text:

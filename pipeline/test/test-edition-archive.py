@@ -93,8 +93,18 @@ check("DEPRECATION tag kept", "`[DEPRECATION]`" in md, True)
 # The gate: a link the paper prints once where the routine printed it twice still passes; a dropped link holds.
 src = ('<div class="also-item"><div class="also-item-title"><a href="https://x.com/a">T</a></div>'
        '<div class="also-item-source"><a href="https://x.com/a">x.com</a></div></div>')
-check("link parity: present once is enough", [p for p in ed.source_parity(src, '<a href="https://x.com/a">T</a>') if "link" in p], [])
+# The real 10-14/10-15 fold: the paper unlinks the headline and keeps the link on the source line.
+check("link parity: linked headline folds into its source line", [p for p in ed.source_parity(src, '<h3>T</h3><a href="https://x.com/a">x.com</a>') if "link" in p], [])
 check("link parity: missing link holds", any("link missing" in p for p in ed.source_parity(src, "<p>T x.com</p>")), True)
+
+# A link dropped from a story is caught even when the same URL survives in the release log.
+src2 = ('<div class="prose"><p>Read <a href="https://x.com/s1">the S-1 filing</a> today.</p></div>'
+        '<div class="log-entry-title"><a href="https://x.com/s1">S-1 filed</a></div>')
+check("link parity: body link dropped, log keeps URL -> held",
+      any("dropped from its words" in p for p in ed.source_parity(src2, '<p>Read the S-1 filing today.</p><a href="https://x.com/s1">S-1 filed</a>')), True)
+check("link parity: widened link (whole log title) passes",
+      [p for p in ed.source_parity('<div class="log-entry-title">Delayed (<a href="https://x.com/g">9to5Google</a>)</div>',
+                                   '<a href="https://x.com/g">Delayed (9to5Google)</a>') if "link" in p], [])
 
 # Coverage: a paragraph the converter dropped is caught; furniture is not demanded.
 cov_src = ('<body><nav class="pub-bar">Subscribe now please</nav><div class="cover-top">Week 26 cover box</div>'

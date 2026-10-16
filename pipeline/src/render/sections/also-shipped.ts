@@ -9,6 +9,12 @@
 import type { Section } from '../types.js';
 import { inlineMarkdown } from '../markdown.js';
 
+/** A story title as inline markdown (a linked title stays a link), closed with one full stop, never two. */
+function titleLine(raw: string): string {
+  const plain = raw.replace(/\[([^\]]+)\]\([^)]+\)/g, '$1').replace(/[*`]/g, '').trim();
+  return inlineMarkdown(raw) + (/[.!?]$/.test(plain) ? '' : '.');
+}
+
 export function renderAlsoShipped(
   alsoShipped: Section | undefined,
   cowork: Section | undefined,
@@ -72,7 +78,7 @@ function renderBodyWithSubheadings(content: string): string {
     if (h3) {
       flushBuffer();
       out.push(
-        `      <h3 style="font-family:var(--disp);font-weight:500;font-style:italic;font-size:30px;letter-spacing:-.02em;line-height:1.15;color:var(--ink);margin:32px 0 14px">${h3[1]}.</h3>`,
+        `      <h3 style="font-family:var(--disp);font-weight:500;font-style:italic;font-size:30px;letter-spacing:-.02em;line-height:1.15;color:var(--ink);margin:32px 0 14px">${titleLine(h3[1]!)}</h3>`,
       );
       continue;
     }

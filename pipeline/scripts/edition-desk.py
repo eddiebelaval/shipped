@@ -453,7 +453,7 @@ def source_parity(source_page, page, extra=""):
     front, inside = split_front(page)
     text = norm(plain(inside))  # the teaser repeats paragraphs; the inside must carry every word itself
     full = norm(plain(page))
-    missing, want_links, want_nums = [], {}, {}
+    missing, want_links, want_nums, want_pairs = [], {}, {}, []
     blocks = [(cls, node) for cls in SOURCE_BLOCKS for node in t.root.find_all(cls)]
     ids = {id(n) for _, n in blocks}
 
@@ -494,6 +494,7 @@ def source_parity(source_page, page, extra=""):
             href = a.attrs.get("href", "")
             if href:
                 want_links[href] = want_links.get(href, 0) + 1
+                want_pairs.append((cls, norm(a.text()), href))
         def words(x):  # the block's own words; a kicker or label inside it is furniture the paper redraws
             if isinstance(x, str):
                 return x
@@ -517,6 +518,17 @@ def source_parity(source_page, page, extra=""):
         got = page.count(f'href="{html.escape(href, quote=True)}"') + (page.count(f'href="{href}"') if html.escape(href, quote=True) != href else 0)
         if got == 0:
             missing.append(f"link missing: {href[:80]} (source {n}, page {got})")
+    # Each link must keep its own words: the same URL surviving elsewhere (the log) does not cover a link
+    # dropped from a story. Only a linked headline may fold into its story's source line (10-14, 10-15).
+    page_pairs = {(norm(html.unescape(re.sub(r"<[^>]+>", "", t))), html.unescape(u))
+                  for u, t in re.findall(r'<a [^>]*href="([^"]+)"[^>]*>(.*?)</a>', page, re.S)}
+    for cls, text, href in want_pairs:
+        # The paper may widen a link (a log title links whole, "Gemini delayed (9to5Google)"), never drop it.
+        if not text or any(u == href and text in t for t, u in page_pairs):
+            continue
+        if cls in ("also-item-title", "feature-title") and any(u == href for _, u in page_pairs):
+            continue
+        missing.append(f"link dropped from its words: '{text[:40]}' -> {href[:60]}")
     page_nums = {}
     for n in NUM.findall(plain(inside)):
         page_nums[n] = page_nums.get(n, 0) + 1
