@@ -172,6 +172,26 @@ def all_stems(subdir):
     return sorted(stems)
 
 
+PAPER_MARKER = '<meta name="shipped-layout" content="paper">'
+PAPER_WAIT_MIN = 45  # the Edition Desk converts every 5 minutes
+
+
+def wait_for_paper(url, minutes=PAPER_WAIT_MIN):
+    """True once the live page carries the paper front (polls while the desk converts it)."""
+    import time
+    import urllib.request
+    deadline = time.time() + minutes * 60
+    while True:
+        try:
+            if PAPER_MARKER in urllib.request.urlopen(f"{url}?send={int(time.time())}", timeout=20).read().decode():
+                return True
+        except Exception:
+            pass
+        if time.time() >= deadline:
+            return False
+        time.sleep(60)
+
+
 def make_draft(sender, subject, body, bcc_list, mode="draft"):
     """Stage the release in Mail.app: a draft, or sent outright when send_mode is "send"
     (enabled by Eddie 2026-10-11: drafts sat unsent because nothing told him one was waiting)."""
@@ -277,6 +297,12 @@ def main():
 
         for stem in pending:
             url = f"{BASE_URL}/{subdir}/{stem}.html"
+            if not wait_for_paper(url):
+                # 2026-10-15: editions mailed while the Edition Desk still held them in the old design
+                # (Mon to Thu). The link goes out only once the paper front is live; otherwise defer.
+                log(f"{cadence}: {stem} still in the old design after {PAPER_WAIT_MIN} min; deferred, not sent")
+                page("Shipped. send deferred", f"{stem} is not on the paper front yet; the Edition Desk is holding it")
+                continue
             subject = pretty_subject(prefix, cadence, stem)
             body = (
                 f"The latest {prefix} is up.\n\n"
