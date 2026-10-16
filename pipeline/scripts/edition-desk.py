@@ -494,9 +494,11 @@ def source_parity(source_page, page, extra=""):
             if k and at < 0:
                 missing.append(f"{cls} out of order: {node.text()[:50]}")
             last = max(last, at)
+    # Presence, not count: the paper folds a linked headline and its source line into one link
+    # (10-14 and 10-15 sat in the old design on "source 2, page 1"). A dropped link is still caught.
     for href, n in want_links.items():
         got = page.count(f'href="{html.escape(href, quote=True)}"') + (page.count(f'href="{href}"') if html.escape(href, quote=True) != href else 0)
-        if got < n:
+        if got == 0:
             missing.append(f"link missing: {href[:80]} (source {n}, page {got})")
     page_nums = {}
     for n in NUM.findall(plain(inside)):
