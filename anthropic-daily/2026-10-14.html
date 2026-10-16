@@ -12,11 +12,6 @@
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Shipped. Daily, Wednesday, October 14, 2026">
 <meta name="twitter:description" content="The quarter before the IPO: <meta name="twitter:description" content="6.8B in Q3 revenue, Argon in the API, and the frontier not waiting.">
-<meta property="og:image" content="https://id8labs.app/shipped/og-daily-v1.png?v=1">
-<meta property="og:image:width" content="1200">
-<meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="Shipped. from id8">
-<meta name="twitter:image" content="https://id8labs.app/shipped/og-daily-v1.png?v=1">
 <meta name="description" content="The quarter before the IPO: <meta name="description" content="6.8B in Q3 revenue, Argon in the API, and the frontier not waiting.">
 <meta name="author" content="Eddie Belaval">
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='75' cy='62' r='14' fill='%23FF6B35'/%3E%3Ctext x='10' y='75' font-family='Georgia,serif' font-weight='700' font-size='62' fill='%231a1a1a'%3ES%3C/text%3E%3C/svg%3E">
@@ -1399,6 +1394,12 @@ body::before{
   .cover-top-right{text-align:left}
   .btn-num{font-size:54px}
 }
+
+/* Phone guard (2026-10-15): a code block or an unbroken token never pushes the page wider than the screen. */
+@media (max-width:720px){
+  pre{white-space:pre-wrap;word-break:break-word;max-width:100%}
+  .prose,.log-entry,.log-entry > div,.log-entry-body{min-width:0;overflow-wrap:anywhere}
+}
 </style>
 </head>
 <body>
@@ -1446,6 +1447,7 @@ body::before{
 .pf-deck{font-style:italic;font-size:clamp(19px,1.8vw,23px);line-height:1.38;color:var(--body);max-width:900px}
 .pf-byl{font-family:var(--narrow);font-size:13px;color:var(--muted);margin-top:10px}
 .pf-grid{display:grid;grid-template-columns:1.55fr 1fr .9fr;margin-top:26px}
+.pf-grid.pf-solo{grid-template-columns:2.2fr 1fr}
 .pf-grid>*{padding:0 24px;min-width:0}.pf-grid>*:first-child{padding-left:0}.pf-grid>*:last-child{padding-right:0}
 .pf-grid>*+*{border-left:1px solid rgba(11,11,11,.55)}
 .pf-body{font-size:18px;line-height:1.58;color:var(--body);margin-top:16px}
@@ -1475,7 +1477,7 @@ body::before{
 .pf-nums{margin-top:22px}.pf-num{display:grid;grid-template-columns:84px 1fr;align-items:baseline;border-top:1px solid rgba(11,11,11,.14);padding:8px 0}
 .pf-num b{font-family:var(--narrow);font-size:28px;color:var(--orange);line-height:1}.pf-num span{font-family:var(--narrow);font-size:13px;line-height:1.35}
 .pf-term{margin-top:22px}.pf-hw{font-style:italic;font-weight:700;font-size:30px}.pf-ipa{font-family:var(--mono);font-size:12px;color:var(--muted);margin-bottom:8px}
-@media (max-width:980px){.pf-grid{grid-template-columns:1fr}.pf-grid>*{padding:0;border-left:0 !important;margin-bottom:28px}
+@media (max-width:980px){.pf-grid,.pf-grid.pf-solo{grid-template-columns:1fr}.pf-grid>*{padding:0;border-left:0 !important;margin-bottom:28px}
   .pf-fill{height:auto;min-height:0;overflow:visible}.pf-fill::after,.pf-pin{display:none}.pf-quiet{display:none}}
 @media (max-width:560px){.pf{padding-left:16px;padding-right:16px}.pf-ears{flex-direction:column;align-items:center;gap:4px}}
 </style>
@@ -1486,7 +1488,7 @@ body::before{
   <p class="pf-weather">The frontier moves whether or not the filing is ready.</p>
   <nav class="pf-nav"><a href="#top">Front Page</a><a href="#lead">Lead</a><a href="#also">Also Shipped</a><a href="#log">The Log</a></nav>
 
-  <figure class="pf-fig pf-cover"><img src="img/2026-10-14/cover-atkinson.png" alt="Archival street view of Raffles Square in Singapore, 1963." loading="lazy"><figcaption class="pf-cap">Raffles Square, Singapore, c. 1963. <i>David Pirmann, CC BY 2.0.</i></figcaption></figure>
+  
 
   <header class="pf-head">
     <span class="pf-kick">Lead Story</span>
@@ -1495,7 +1497,7 @@ body::before{
     
   </header>
 
-  <figure class="pf-fig pf-cover pf-band"><picture><source media="(min-width: 760px)" srcset="img/2026-10-14/lead-halftone.png"><img src="img/2026-10-14/lead-atkinson.png" alt="Two views of a stock exchange trading floor in Toronto."></picture><figcaption class="pf-cap">Two photographs of the trading floor of the Standard Stock and Mining Exchange in Toronto. <i>Public domain.</i></figcaption></figure>
+  
   <div class="pf-grid">
     <article id="front-lead">
       
@@ -1516,7 +1518,7 @@ body::before{
         <a class="pf-jump" href="#also">Continued inside</a>
       </div>
       <div class="pf-story">
-        <figure class="pf-fig "><img src="img/2026-10-14/story-2-atkinson.png" alt="Close view of a patch panel with cables plugged into rows of jacks." loading="lazy"><figcaption class="pf-cap">Patch panel of an analog computer at the Computer History Museum. <i>Don DeBold from San Jose, CA, USA, CC BY 2.0.</i></figcaption></figure>
+        
         <h3>OpenAI Starts the GPT-4 Sunset</h3>
         <div class="pf-sm"><p>OpenAI published a deprecation notice on October 14: GPT-4o, GPT-4o mini, GPT-4.1, and GPT-4.1 mini leave the API on January 14, 2027. The recommended replacement is <code>gpt-6-luna</code>. GPT-5.5 was also retired on the same day from ChatGPT, ChatGPT Work, and Codex across all plan tiers; API access is unaffected.</p></div>
         <a class="pf-jump" href="#also">Continued inside</a>
@@ -1543,7 +1545,8 @@ body::before{
       <div class="pf-quiet"><div class="pf-sect">Quiet on the Wire</div><div class="pf-sm"><p><em>What is coming</em></p>
 <p>Mistral is quiet this window. <strong>Mistral Large 4</strong> open weights are expected around October 27 to 31. The preview has been available since October 6. <strong>Llama 4 Behemoth</strong> from Meta remains in preview; no public release date has been set.</p>
 <p>Anthropic's IPO timing is now expected to slip past the November US midterms. No S-1 has been filed. The next signal will be the filing date, not a press release. The revenue figures disclosed on October 14 are unaudited and come from investor briefings, not company statements.</p>
-<p>OpenAI's engineer arrest case (federal charges filed October 14 against a Saudi national over a recording device found in the San Francisco office) is a security and employment story, not a product one. The court docket, not the API changelog, is the place to watch it.</p></div></div>
+<p>OpenAI's engineer arrest case (federal charges filed October 14 against a Saudi national over a recording device found in the San Francisco office) is a security and employment story, not a product one. The court docket, not the API changelog, is the place to watch it.</p>
+<p><em>Mistral:</em> Quiet window. Mistral Large 4 open weights expected around October 27 to 31.</p></div></div>
       <div class="pf-quiet"><div class="pf-sect">The Close</div><div class="pf-sm"><em><p>Sixteen point eight billion, adjusted.</p>
 <p>Argon in the API. Muse on the charts. Grok on the phones.</p>
 <p>The frontier moves whether or not the filing is ready.</p></em></div></div>
@@ -1587,8 +1590,8 @@ body::before{
 </div>
 
 <div class="prose-well">
-  <div class="prose"><figure class="pf-fig pf-jumpfig"><picture><source media="(min-width: 760px)" srcset="img/2026-10-14/lead-halftone.png"><img src="img/2026-10-14/lead-atkinson.png" alt="Two views of a stock exchange trading floor in Toronto."></picture><figcaption class="pf-cap">Two photographs of the trading floor of the Standard Stock and Mining Exchange in Toronto. <i>Public domain.</i></figcaption></figure>
-    <p class="drop-cap drop-cap-orange"><strong>The lab that built on safety first tells investors it made money last quarter.</strong></p>
+  <div class="prose drop-cap drop-cap-orange">
+    <p><strong>The lab that built on safety first tells investors it made money last quarter.</strong></p>
     <p><em>Lab Anthropic Tag News Date Oct 14, 2026 Source Bloomberg, Reuters</em></p>
     <p><strong>By the Numbers:</strong> $16.8B Q3 revenue; +45% quarter over quarter; $11.6B Q2 revenue; $4.7B Q1 revenue; Adjusted profitable: Q3 first; Target: $2T+ valuation; IPO: expected post-midterms.</p>
     <p>The figures came out of a pre-IPO investor meeting in San Francisco. Bloomberg and Reuters each reported it from sources briefed on the session: $16.8 billion in Q3 revenue, a 45% jump from Q2's $11.6 billion, and adjusted profitability for the first time. The company has hundreds of billions in cloud and compute commitments locked in. The target valuation is above $2 trillion, with timing now expected to slip past the November US midterms.</p>
@@ -1629,7 +1632,7 @@ body::before{
       <p>The contrast: Anthropic is telling investors it is profitable. Google is repricing the market segment Anthropic is pitching in, at the same time. That is the race. Not bad coordination; just two companies doing their jobs on the same day.</p>
       <p><strong>Builder's move:</strong> Call <code>gemini-4-argon</code> via the Gemini API now. The intro pricing is live and expires November 30.</p>
       <p><em><a href="https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-gemini-4-argon/">Source</a></em></p>
-      <figure class="pf-fig pf-jumpfig"><img src="img/2026-10-14/story-2-atkinson.png" alt="Close view of a patch panel with cables plugged into rows of jacks." loading="lazy"><figcaption class="pf-cap">Patch panel of an analog computer at the Computer History Museum. <i>Don DeBold from San Jose, CA, USA, CC BY 2.0.</i></figcaption></figure><h3 style="font-family:var(--disp);font-weight:500;font-style:italic;font-size:30px;letter-spacing:-.02em;line-height:1.15;color:var(--ink);margin:32px 0 14px">OpenAI Starts the GPT-4 Sunset.</h3>
+      <h3 style="font-family:var(--disp);font-weight:500;font-style:italic;font-size:30px;letter-spacing:-.02em;line-height:1.15;color:var(--ink);margin:32px 0 14px">OpenAI Starts the GPT-4 Sunset.</h3>
       <p>OpenAI published a deprecation notice on October 14: GPT-4o, GPT-4o mini, GPT-4.1, and GPT-4.1 mini leave the API on January 14, 2027. The recommended replacement is <code>gpt-6-luna</code>. GPT-5.5 was also retired on the same day from ChatGPT, ChatGPT Work, and Codex across all plan tiers; API access is unaffected.</p>
       <p>The mechanism: a three-month deprecation window with a hard shutdown date. Direct model ID calls fail after January 14. Alias-based calls pointing to a supported model are unaffected.</p>
       <p>The blast radius: any production code calling those four model IDs directly, without an alias, has a 90-day clock. If you built something last year and have not touched it, this is the check.</p>
@@ -1673,6 +1676,7 @@ body::before{
     <p>Mistral is quiet this window. <strong>Mistral Large 4</strong> open weights are expected around October 27 to 31. The preview has been available since October 6. <strong>Llama 4 Behemoth</strong> from Meta remains in preview; no public release date has been set.</p>
     <p>Anthropic's IPO timing is now expected to slip past the November US midterms. No S-1 has been filed. The next signal will be the filing date, not a press release. The revenue figures disclosed on October 14 are unaudited and come from investor briefings, not company statements.</p>
     <p>OpenAI's engineer arrest case (federal charges filed October 14 against a Saudi national over a recording device found in the San Francisco office) is a security and employment story, not a product one. The court docket, not the API changelog, is the place to watch it.</p>
+    <p><em>Mistral:</em> Quiet window. Mistral Large 4 open weights expected around October 27 to 31.</p>
   </div>
 </section>
 <section class="close-section">
@@ -2131,7 +2135,7 @@ body::before{
         <p><b>Volume</b> I</p>
         <p><b>Edition</b> Daily (Shipped. Daily, Wednesday, October 14, 2026)</p>
         <p><b>Period</b> Oct 13 → Oct 14</p>
-        <p><b>Front of book</b> 789 words</p>
+        <p><b>Front of book</b> 803 words</p>
         <p><b>Release log</b> 11 entries · 5 sections</p>
         <p><b>Status</b> Published</p>
       </div>

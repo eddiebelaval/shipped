@@ -12,11 +12,6 @@
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Shipped., Thursday, October 15, 2026">
 <meta name="twitter:description" content="Meta releases 816 billion parameters for free, and the rest of the frontier recalibrates.">
-<meta property="og:image" content="https://id8labs.app/shipped/og-daily-v1.png?v=1">
-<meta property="og:image:width" content="1200">
-<meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="Shipped. from id8">
-<meta name="twitter:image" content="https://id8labs.app/shipped/og-daily-v1.png?v=1">
 <meta name="description" content="Meta releases 816 billion parameters for free, and the rest of the frontier recalibrates.">
 <meta name="author" content="Eddie Belaval">
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='75' cy='62' r='14' fill='%23FF6B35'/%3E%3Ctext x='10' y='75' font-family='Georgia,serif' font-weight='700' font-size='62' fill='%231a1a1a'%3ES%3C/text%3E%3C/svg%3E">
@@ -1399,6 +1394,12 @@ body::before{
   .cover-top-right{text-align:left}
   .btn-num{font-size:54px}
 }
+
+/* Phone guard (2026-10-15): a code block or an unbroken token never pushes the page wider than the screen. */
+@media (max-width:720px){
+  pre{white-space:pre-wrap;word-break:break-word;max-width:100%}
+  .prose,.log-entry,.log-entry > div,.log-entry-body{min-width:0;overflow-wrap:anywhere}
+}
 </style>
 </head>
 <body>
@@ -1446,6 +1447,7 @@ body::before{
 .pf-deck{font-style:italic;font-size:clamp(19px,1.8vw,23px);line-height:1.38;color:var(--body);max-width:900px}
 .pf-byl{font-family:var(--narrow);font-size:13px;color:var(--muted);margin-top:10px}
 .pf-grid{display:grid;grid-template-columns:1.55fr 1fr .9fr;margin-top:26px}
+.pf-grid.pf-solo{grid-template-columns:2.2fr 1fr}
 .pf-grid>*{padding:0 24px;min-width:0}.pf-grid>*:first-child{padding-left:0}.pf-grid>*:last-child{padding-right:0}
 .pf-grid>*+*{border-left:1px solid rgba(11,11,11,.55)}
 .pf-body{font-size:18px;line-height:1.58;color:var(--body);margin-top:16px}
@@ -1475,7 +1477,7 @@ body::before{
 .pf-nums{margin-top:22px}.pf-num{display:grid;grid-template-columns:84px 1fr;align-items:baseline;border-top:1px solid rgba(11,11,11,.14);padding:8px 0}
 .pf-num b{font-family:var(--narrow);font-size:28px;color:var(--orange);line-height:1}.pf-num span{font-family:var(--narrow);font-size:13px;line-height:1.35}
 .pf-term{margin-top:22px}.pf-hw{font-style:italic;font-weight:700;font-size:30px}.pf-ipa{font-family:var(--mono);font-size:12px;color:var(--muted);margin-bottom:8px}
-@media (max-width:980px){.pf-grid{grid-template-columns:1fr}.pf-grid>*{padding:0;border-left:0 !important;margin-bottom:28px}
+@media (max-width:980px){.pf-grid,.pf-grid.pf-solo{grid-template-columns:1fr}.pf-grid>*{padding:0;border-left:0 !important;margin-bottom:28px}
   .pf-fill{height:auto;min-height:0;overflow:visible}.pf-fill::after,.pf-pin{display:none}.pf-quiet{display:none}}
 @media (max-width:560px){.pf{padding-left:16px;padding-right:16px}.pf-ears{flex-direction:column;align-items:center;gap:4px}}
 </style>
@@ -1486,7 +1488,7 @@ body::before{
   <p class="pf-weather">The race is not only about who ships the best model anymore.</p>
   <nav class="pf-nav"><a href="#top">Front Page</a><a href="#lead">Lead</a><a href="#also">Also Shipped</a><a href="#log">The Log</a></nav>
 
-  <figure class="pf-fig pf-cover"><img src="img/2026-10-15/cover-atkinson.png" alt="Aerial view of dense rows of stacked shipping containers at a port terminal." loading="lazy"><figcaption class="pf-cap">Thousands of shipping containers stacked at the terminal at Port Elizabeth, New Jersey. <i>Public domain.</i></figcaption></figure>
+  
 
   <header class="pf-head">
     <span class="pf-kick">Lead Story</span>
@@ -1515,13 +1517,13 @@ body::before{
         <a class="pf-jump" href="#also">Continued inside</a>
       </div>
       <div class="pf-story">
-        <figure class="pf-fig "><img src="img/2026-10-15/story-2-atkinson.png" alt="A vintage studio microphone from the 1930s in its housing." loading="lazy"><figcaption class="pf-cap">An EMI HB-1E microphone from the 1930s, kept at Abbey Road Studios in London. <i>Josephenus P. Riley, CC BY 2.0.</i></figcaption></figure>
+        
         <h3>Grok Voice 3.0 Ships at $0.08 Per Minute, Same as 2.0</h3>
         <div class="pf-sm"><p>xAI released Grok Voice 3.0 on October 14 in its Voice Agent API. Speech-to-speech, $0.08 per minute, unchanged from the prior version. Apps using the <code>grok-voice-latest</code> alias were automatically migrated. Grok Voice 2.0 is deprecated. Artificial Analysis scores it 86.</p></div>
         <a class="pf-jump" href="#also">Continued inside</a>
       </div>
       <div class="pf-story">
-        <figure class="pf-fig "><img src="img/2026-10-15/story-3-atkinson.png" alt="A ballot box at a polling place in a Polish town." loading="lazy"><figcaption class="pf-cap">A ballot box in Tomaszów Mazowiecki, Poland, during the October 2023 parliamentary election and referendum. <i>Public domain.</i></figcaption></figure>
+        
         <h3>99% Even-Handed, One Asterisk</h3>
         <div class="pf-sm"><p>Anthropic published its midterm election preparation update on October 14. Usage data from a late-September sample of approximately 250,000 US Claude conversations: 0.51% touched elections or voting, 0.01% asked Claude whom to vote for, 0.002% violated election integrity policies. Claude Opus 5.5, Sonnet 5.5, and Haiku 5.5 scored 99% on Anthropic's political evenhandedness evaluation.</p></div>
         <a class="pf-jump" href="#also">Continued inside</a>
@@ -1625,11 +1627,11 @@ body::before{
       <p>The tiered access structure Anthropic published is worth reading in full. Tier 1: narrow, company-approved investigations with Anthropic veto on publication. Tier 2: publication rights with minimal veto, broader information access. Tier 3, the METR arrangement: employee-like access, full publication rights, and a redaction dispute process. SecureBio sits at Tier 1 right now, reviewing the CBRN chapter of the August Risk Report. Hugging Face is in early talks. Accenture and Faculty are in a broader partnership covering red-teaming and alignment assessments.</p>
       <p>This is the most concrete external accountability structure any frontier lab has published. Anthropic says every frontier company should do the same. That is either leadership or a PR dare. When the METR reports publish, they will be primary sources for anyone making model-selection decisions on safety grounds.</p>
       <p><em><a href="https://www.anthropic.com/news/an-update-on-independent-evaluators">anthropic.com, October 15, 2026</a></em></p>
-      <figure class="pf-fig pf-jumpfig"><img src="img/2026-10-15/story-2-atkinson.png" alt="A vintage studio microphone from the 1930s in its housing." loading="lazy"><figcaption class="pf-cap">An EMI HB-1E microphone from the 1930s, kept at Abbey Road Studios in London. <i>Josephenus P. Riley, CC BY 2.0.</i></figcaption></figure><h3 style="font-family:var(--disp);font-weight:500;font-style:italic;font-size:30px;letter-spacing:-.02em;line-height:1.15;color:var(--ink);margin:32px 0 14px">Grok Voice 3.0 Ships at $0.08 Per Minute, Same as 2.0.</h3>
+      <h3 style="font-family:var(--disp);font-weight:500;font-style:italic;font-size:30px;letter-spacing:-.02em;line-height:1.15;color:var(--ink);margin:32px 0 14px">Grok Voice 3.0 Ships at $0.08 Per Minute, Same as 2.0.</h3>
       <p>xAI released Grok Voice 3.0 on October 14 in its Voice Agent API. Speech-to-speech, $0.08 per minute, unchanged from the prior version. Apps using the <code>grok-voice-latest</code> alias were automatically migrated. Grok Voice 2.0 is deprecated. Artificial Analysis scores it 86.9 on its Speech-to-Speech Index, which xAI cites as first place, though OpenAI holds a narrow lead on the separate tau-voice evaluation. xAI says the model handles millions of conversations per day in Tesla vehicles.</p>
       <p>Shipping at competitive benchmark quality with no price increase, in a market that usually extracts one with each model generation, is a deliberate pricing strategy. If the benchmark holds in production, the voice API market just got more competitive without getting more expensive. The builder's move: <code>grok-voice-latest</code> already points to 3.0. If you have a hardcoded <code>grok-voice-2.0</code> string in production, it is deprecated and you should move it now.</p>
       <p><em><a href="https://siliconangle.com/2026/10/14/grok-voice-3-0-from-spacexsi-outscores-openai-and-google-on-speech-to-speech-index/">SiliconANGLE, October 14, 2026</a></em></p>
-      <figure class="pf-fig pf-jumpfig"><img src="img/2026-10-15/story-3-atkinson.png" alt="A ballot box at a polling place in a Polish town." loading="lazy"><figcaption class="pf-cap">A ballot box in Tomaszów Mazowiecki, Poland, during the October 2023 parliamentary election and referendum. <i>Public domain.</i></figcaption></figure><h3 style="font-family:var(--disp);font-weight:500;font-style:italic;font-size:30px;letter-spacing:-.02em;line-height:1.15;color:var(--ink);margin:32px 0 14px">99% Even-Handed, One Asterisk.</h3>
+      <h3 style="font-family:var(--disp);font-weight:500;font-style:italic;font-size:30px;letter-spacing:-.02em;line-height:1.15;color:var(--ink);margin:32px 0 14px">99% Even-Handed, One Asterisk.</h3>
       <p>Anthropic published its midterm election preparation update on October 14. Usage data from a late-September sample of approximately 250,000 US Claude conversations: 0.51% touched elections or voting, 0.01% asked Claude whom to vote for, 0.002% violated election integrity policies. Claude Opus 5.5, Sonnet 5.5, and Haiku 5.5 scored 99% on Anthropic's political evenhandedness evaluation.</p>
       <p>One outside reviewer found an asymmetry worth flagging. The Foundation for American Innovation found that Claude Sonnet 4.5 was more likely to soften arguments for right-leaning positions than left-leaning ones. Anthropic says it is working on it, and it includes that finding in its own report. Publishing a 99% self-reported score alongside an external finding of directional bias is two measurements of two different things, both reported in the same document. Anthropic gets credit for including both. The contrast with a lab that would not publish the outside critique is the relevant comparison.</p>
       <p>If you are building political content tools, Anthropic's new Usage Policy guidance for campaigns is the clearest current document on what is permitted versus prohibited: press statements and debate prep are in; fake personas and mass-produced engagement are out.</p>
