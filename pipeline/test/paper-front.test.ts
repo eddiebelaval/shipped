@@ -19,8 +19,15 @@ async function renderTo(md: string): Promise<string> {
   return html;
 }
 
+// The issue files carry their own layout (every issue moved to the paper, 2026-10-15); the tests pin it.
+const ISSUE_09_SRC = () => readFileSync(ISSUE_09, 'utf-8').replace(/^layout: .*\n/m, '');
+
 test('classic issues keep the classic cover and leak no front markers', async () => {
-  const html = await renderTo(ISSUE_09);
+  const dir = mkdtempSync(join(tmpdir(), 'shipped-classic-md-'));
+  const md = join(dir, 'issue-09-the-public-frontier.md');
+  writeFileSync(md, ISSUE_09_SRC());
+  const html = await renderTo(md);
+  rmSync(dir, { recursive: true, force: true });
   assert.match(html, /<section class="cover" id="top">/);
   assert.doesNotMatch(html, /front:classic/);
   assert.doesNotMatch(html, /class="pf"/);
@@ -29,7 +36,7 @@ test('classic issues keep the classic cover and leak no front markers', async ()
 test('layout: paper swaps in the newspaper front with wordmark, signature and folded headline', async () => {
   const dir = mkdtempSync(join(tmpdir(), 'shipped-paper-md-'));
   const md = join(dir, 'issue-99-paper-test.md');  // issue 99 has no images folder: text-only front
-  writeFileSync(md, readFileSync(ISSUE_09, 'utf-8').replace(/^status: (.*)$/m, 'status: $1\nlayout: paper'));
+  writeFileSync(md, ISSUE_09_SRC().replace(/^status: (.*)$/m, 'status: $1\nlayout: paper'));
   try {
     const html = await renderTo(md);
     assert.match(html, /<section class="pf" id="top">/);

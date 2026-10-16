@@ -148,9 +148,15 @@ function bodyOf(section: Section): string {
  * paragraph is cut at a sentence end. The full story runs below the front
  * (the jump), so columns end level instead of one running the page.
  */
+/** Markdown subheads ("### x") read as a bold line in the front's rail and teasers. */
+function boldSubheads(s: string): string {
+  return s.replace(/^#{1,6}\s+(.+)$/gm, '**$1**');
+}
+
 export function excerpt(body: string, budget: number): { text: string; cut: boolean } {
   const paras = body.replace(/\r\n/g, '\n').split(/\n{2,}/).map((p) => p.trim())
-    .filter((p) => p && !/^-{3,}$/.test(p) && !p.startsWith('>') && !p.startsWith('|'));
+    .filter((p) => p && !/^-{3,}$/.test(p) && !p.startsWith('>') && !p.startsWith('|'))
+    .map(boldSubheads);  // a subhead in a teaser reads bold, never as raw "###"
   const out: string[] = []; let words = 0;
   for (const p of paras) {
     const n = p.split(/\s+/).length;
@@ -208,7 +214,7 @@ export function renderPaperFront(issue: ParsedIssue, issueNum: string, images: S
     .sort((a, b) => b.date.localeCompare(a.date)).slice(0, 6);
   const logCount = issue.releaseLog.reduce((s, c) => s + c.entries.length, 0);
   const weather = fm.weather
-    ?? close?.content.split('\n').map((l) => l.trim()).find((l) => l && !/^-{3,}$/.test(l)) ?? '';
+    ?? close?.content.split('\n').map((l) => l.trim()).find((l) => l && !/^-{3,}$/.test(l) && !l.startsWith('#')) ?? '';
   const cells = (fm.by_the_numbers?.cells ?? []).slice(0, 4);
   // A lead picked as halftone runs as a full-width band (halftone needs 700px+).
   const leadBand = images.lead?.treatment === 'halftone';
@@ -324,10 +330,10 @@ export function renderPaperFront(issue: ParsedIssue, issueNum: string, images: S
         ${log.map((e) => `<div class="pf-row"><b>${esc(e.date.slice(5))}</b> ${inlineMarkdown(e.title)} <span class="pf-tag">${esc(e.category)}</span></div>`).join('')}
         <a class="pf-more" href="#log">All ${logCount} entries</a>
       </div>
-      ${cells.length ? `<div class="pf-nums"><div class="pf-sect">By the Numbers</div>${cells.map((c) => `<div class="pf-num"><b>${esc(c.value)}</b><span>${esc(c.label)}</span></div>`).join('')}</div>` : ''}
+      ${cells.length ? `<div class="pf-nums"><div class="pf-sect">By the Numbers</div>${cells.map((c) => `<div class="pf-num"><b>${esc(String(c.value))}</b><span>${esc(String(c.label))}</span></div>`).join('')}</div>` : ''}
       ${termRail(term)}
-      ${quiet ? `<div class="pf-quiet"><div class="pf-sect">Quiet on the Wire</div><div class="pf-sm">${paragraphs(quiet.content)}</div></div>` : ''}
-      ${close ? `<div class="pf-quiet"><div class="pf-sect">The Close</div><div class="pf-sm"><em>${paragraphs(close.content)}</em></div></div>` : ''}
+      ${quiet ? `<div class="pf-quiet"><div class="pf-sect">Quiet on the Wire</div><div class="pf-sm">${paragraphs(boldSubheads(quiet.content))}</div></div>` : ''}
+      ${close ? `<div class="pf-quiet"><div class="pf-sect">The Close</div><div class="pf-sm"><em>${paragraphs(boldSubheads(close.content))}</em></div></div>` : ''}
       <a class="pf-pin" href="#log">More inside</a>
     </aside>
   </div>

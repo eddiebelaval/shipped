@@ -1395,6 +1395,12 @@ body::before{
   .cover-top-right{text-align:left}
   .btn-num{font-size:54px}
 }
+
+/* Phone guard (2026-10-15): a code block or an unbroken token never pushes the page wider than the screen. */
+@media (max-width:720px){
+  pre{white-space:pre-wrap;word-break:break-word;max-width:100%}
+  .prose,.log-entry,.log-entry > div,.log-entry-body{min-width:0;overflow-wrap:anywhere}
+}
 </style>
 </head>
 <body>
