@@ -198,7 +198,7 @@ const NAME_TO_KIND: Array<[RegExp, SectionKind]> = [
   [/^colophon$/i, 'colophon'],
 ];
 
-const RELEASE_LOG_HEADER_RE = /^([A-G])\.\s+(.+)$/;
+const RELEASE_LOG_HEADER_RE = /^([A-Z])\.\s+(.+)$/;
 
 function classifySection(raw: RawSection): Section {
   const logMatch = RELEASE_LOG_HEADER_RE.exec(raw.name);

@@ -38,7 +38,7 @@ export function inlineMarkdown(input: string): string {
   // Inline code `...`
   const codes: string[] = [];
   out = out.replace(/`([^`]+)`/g, (_m, c: string) => {
-    codes.push(`<code>${escForCode(c)}</code>`);
+    codes.push(`<code>${c}</code>`);  // already escaped above; escaping again printed "&lt;name&gt;"
     return `\u0000C${codes.length - 1}\u0000`;
   });
 
@@ -58,15 +58,11 @@ export function inlineMarkdown(input: string): string {
 
   // Em-dash and en-dash already in the markdown (—, –) pass through.
 
-  // Restore code and links
-  out = out.replace(/\u0000C(\d+)\u0000/g, (_m, i: string) => codes[Number(i)]!);
+  // Restore links, then code: a link's text can hold code ([Update with `claude update`](...)).
   out = out.replace(/\u0000L(\d+)\u0000/g, (_m, i: string) => links[Number(i)]!);
+  out = out.replace(/\u0000C(\d+)\u0000/g, (_m, i: string) => codes[Number(i)]!);
 
   return out;
-}
-
-function escForCode(s: string): string {
-  return s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
 }
 
 /**

@@ -256,6 +256,7 @@ export function renderPaperFront(issue: ParsedIssue, issueNum: string, images: S
 .pf-deck{font-style:italic;font-size:clamp(19px,1.8vw,23px);line-height:1.38;color:var(--body);max-width:900px}
 .pf-byl{font-family:var(--narrow);font-size:13px;color:var(--muted);margin-top:10px}
 .pf-grid{display:grid;grid-template-columns:1.55fr 1fr .9fr;margin-top:26px}
+.pf-grid.pf-solo{grid-template-columns:2.2fr 1fr}
 .pf-grid>*{padding:0 24px;min-width:0}.pf-grid>*:first-child{padding-left:0}.pf-grid>*:last-child{padding-right:0}
 .pf-grid>*+*{border-left:1px solid rgba(11,11,11,.55)}
 .pf-body{font-size:18px;line-height:1.58;color:var(--body);margin-top:16px}
@@ -285,7 +286,7 @@ export function renderPaperFront(issue: ParsedIssue, issueNum: string, images: S
 .pf-nums{margin-top:22px}.pf-num{display:grid;grid-template-columns:84px 1fr;align-items:baseline;border-top:1px solid rgba(11,11,11,.14);padding:8px 0}
 .pf-num b{font-family:var(--narrow);font-size:28px;color:var(--orange);line-height:1}.pf-num span{font-family:var(--narrow);font-size:13px;line-height:1.35}
 .pf-term{margin-top:22px}.pf-hw{font-style:italic;font-weight:700;font-size:30px}.pf-ipa{font-family:var(--mono);font-size:12px;color:var(--muted);margin-bottom:8px}
-@media (max-width:980px){.pf-grid{grid-template-columns:1fr}.pf-grid>*{padding:0;border-left:0 !important;margin-bottom:28px}
+@media (max-width:980px){.pf-grid,.pf-grid.pf-solo{grid-template-columns:1fr}.pf-grid>*{padding:0;border-left:0 !important;margin-bottom:28px}
   .pf-fill{height:auto;min-height:0;overflow:visible}.pf-fill::after,.pf-pin{display:none}.pf-quiet{display:none}}
 @media (max-width:560px){.pf{padding-left:16px;padding-right:16px}.pf-ears{flex-direction:column;align-items:center;gap:4px}}
 </style>
@@ -306,17 +307,17 @@ export function renderPaperFront(issue: ParsedIssue, issueNum: string, images: S
   </header>
 
   ${leadBand ? figure(images.lead, 'pf-cover pf-band') : ''}
-  <div class="pf-grid">
+  <div class="pf-grid${all.length ? '' : ' pf-solo'}">
     <article id="front-lead">
       ${leadBand ? '' : figure(images.lead)}
       <div class="pf-body">${paragraphs(leadEx.text)}</div>
       ${leadEx.cut ? `<a class="pf-jump pf-jump-lead" href="${leadAnchor}">Continued inside</a>` : ''}
     </article>
-    <div id="front-also" class="pf-fill">
+    ${all.length ? `<div id="front-also" class="pf-fill">
       <div class="pf-sect">Also Shipped</div>
       ${storyHtml}
       <a class="pf-pin" href="#also">Continued inside</a>
-    </div>
+    </div>` : ''}
     <aside class="pf-fill">
       <div class="pf-box">
         <span class="pf-kick">The Log · In Window</span>

@@ -40,8 +40,9 @@ EDITIONS = CONTENT / "editions"
 PAGES = "https://eddiebelaval.github.io/shipped"
 LOG = Path.home() / "Library" / "Logs" / "shipped" / "edition-desk.log"
 SECTIONS = ("anthropic-daily", "anthropic-weekly", "anthropic-monthly")
-# The cutover: earlier editions keep the look they were published in.
-FIRST = {"anthropic-daily": "2026-10-10", "anthropic-weekly": "2026-41", "anthropic-monthly": "2026-10"}
+# Every edition gets the paper (Eddie, 2026-10-15: "all editions, all issues"). Images start at the
+# 2026-10-11 cutover; the archive before it runs text-only (no image desk for 180 back editions).
+IMAGES_FROM = {"anthropic-daily": "2026-10-10", "anthropic-weekly": "2026-41", "anthropic-monthly": "2026-10"}
 MARKER = '<meta name="shipped-layout" content="paper">'
 MAX_REDOS = 1
 DASHES = re.compile("[" + chr(0x2014) + chr(0x2013) + "]")
@@ -97,7 +98,7 @@ def branch_pages():
     for s in SECTIONS:
         r = git("ls-tree", "--name-only", "origin/daily-pages", s + "/")
         out[s] = sorted(Path(p).stem for p in r.stdout.splitlines()
-                        if p.endswith(".html") and Path(p).stem >= FIRST[s])
+                        if p.endswith(".html") and Path(p).stem[:1].isdigit())
     return out
 
 
@@ -231,8 +232,8 @@ NUM = re.compile(r"(?<![\w.])\$?(?:\d{1,3}(?:,\d{3})+|\d+)(?:\.\d+)?%?")
 # template computes). Measured from renders; a figure outside source + this set is a changed figure.
 CHROME_HREFS = set(re.findall(r'href="(https?://[^"{]+)"', (PIPELINE / "src" / "render" / "template.html").read_text()
                                 + (PIPELINE / "src" / "render" / "subscribe-block.html").read_text()))
-CHROME_NUMS = {"9", "144"}  # colophon: "Fraunces, optical sizes 9 to 144"
-CHROME_PHRASES = re.compile(r"\b(\d+) (?:words|entries|sections|releases in the log)\b|\bReleases (\d+)\b")
+CHROME_NUMS = {"9", "144", "4"}  # colophon: "Fraunces, optical sizes 9 to 144", "DESIGN.md (Rev 4)"
+CHROME_PHRASES = re.compile(r"\b(\d+) (?:words|entries|sections|releases in the log)\b|\bReleases (\d+)\b|\b(0\d) Report by\b|\b(1):1 mirror\b")
 
 
 FRONT_ONLY = {"weekly-cover-line"}
@@ -409,9 +410,9 @@ def inside_structure(page, md_text):
         tg = next((x.text() for x in e.find_all(tag="span") if "log-tag" in x.classes), "")
         how = re.sub(r"^How to use:?", "", e.find("log-entry-how").text()) if e.find("log-entry-how") else ""
         why = re.sub(r"^Why it matters:?", "", e.find("log-entry-why").text()) if e.find("log-entry-why") else ""
-        got.append((d, ptext(tl) if tl else "", (a.attrs.get("href", "").lstrip("#") and a.attrs.get("href", "")) if a is not None else "", tg.lower(),
+        got.append((d, ptext(tl) if tl else "", (a.attrs.get("href", "").lstrip("#") and a.attrs.get("href", "")) if a is not None else "", norm(tg),
                     ptext(e.find("log-entry-body")) if e.find("log-entry-body") else "", norm(how), norm(why)))
-    want_log = [(re.sub(r"\D", "", d), ti, u, tg, b, h, w) for d, ti, u, tg, b, h, w in md_log(md_text)]
+    want_log = [(re.sub(r"\D", "", d), ti, u, norm(tg), b, h, w) for d, ti, u, tg, b, h, w in md_log(md_text)]
     if got != want_log:
         bad = next((i for i, (x, y) in enumerate(zip(got, want_log)) if x != y), min(len(got), len(want_log)))
         probs.append(f"inside release log differs at entry {bad + 1} of {len(want_log)}")
@@ -464,7 +465,15 @@ def source_parity(source_page, page, extra=""):
             p = p.parent
         return False
 
+    def section_of(node):
+        p = node.parent
+        while p is not None and "log-section" not in p.classes:
+            p = p.parent
+        return p
+
     for cls, node in blocks:
+        if cls == "log-cat-name" and (section_of(node) is None or section_of(node).find("log-entry") is None):
+            continue  # an empty category's name; its note, if any, reads in Quiet
         if cls == "feature-meta":
             units = [sp.text() for sp in node.find_all(tag="span")] or [node.text()]
         elif cls == "feature-right":
@@ -473,6 +482,8 @@ def source_parity(source_page, page, extra=""):
             units = [p.text() for p in node.find_all(tag="p")] or [node.text()]
         for u in units:
             u = re.sub(r"^(How to use|Why it matters):?\s*", "", u)
+            if cls == "log-cat-name":
+                u = e2p.category_name(u)  # the paper letters its own sections
             # The cover line is the front's deck by design; everything else must be inside.
             scope = full if cls in FRONT_ONLY else text
             if norm(u) and norm(u) not in scope:
@@ -483,7 +494,13 @@ def source_parity(source_page, page, extra=""):
             href = a.attrs.get("href", "")
             if href:
                 want_links[href] = want_links.get(href, 0) + 1
-        for n in NUM.findall(node.text()):
+        def words(x):  # the block's own words; a kicker or label inside it is furniture the paper redraws
+            if isinstance(x, str):
+                return x
+            if x is not node and e2p.legacy_chrome(x):
+                return " "
+            return "".join(words(k) if not (isinstance(k, e2p.Node) and k.tag == "br") else " " for k in x.kids)
+        for n in NUM.findall(words(node)):
             want_nums[n] = want_nums.get(n, 0) + 1
     # Titles keep the routine's order inside (a swap of two headlines changes no words, only meaning).
     for cls in ("also-item-title", "log-entry-title"):
@@ -507,12 +524,59 @@ def source_parity(source_page, page, extra=""):
         if page_nums.get(n, 0) < c:
             missing.append(f"figure missing: {n} (source {c}, page {page_nums.get(n, 0)})")
     # A number the routine never printed is a changed figure (chrome numbers come from the source too).
-    allowed = set(NUM.findall(plain(source_page) + " " + extra)) | CHROME_NUMS  # extra: running images' captions + credits
+    allowed = set(NUM.findall(plain(source_page) + " " + extra)) | CHROME_NUMS
+    allowed |= {str(int(x)) for x in allowed if x.isdigit()}  # "May 06" prints as "May 6"  # extra: running images' captions + credits
+    allowed |= set(re.findall(r'class="log-cat-count"><b>(\d+)</b>', page))  # entries per log section
     for m in CHROME_PHRASES.finditer(plain(page)):  # counts the template computes (words, entries, sections)
-        allowed.add(m.group(1) or m.group(2))
+        allowed.add(next(g for g in m.groups() if g))
     stray = sorted(n for n in page_nums if n not in allowed)
     if stray:
         missing.append("figures not in the source: " + ", ".join(stray[:8]))
+    return missing
+
+
+def source_coverage(source_page, page):
+    """Every text block of the routine page reaches the paper, whatever template wrote it (the archive
+    from May to August 2026 predates the class vocabulary source_parity reads). Furniture aside."""
+    spec = importlib.util.spec_from_file_location("e2p", SCRIPTS / "edition-to-paper.py")
+    e2p = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(e2p)
+    t = e2p.Tree(); t.feed(source_page)
+    text = norm(plain(page))
+    missing = []
+
+    # The paper prints these in its own format (ISO dates, the tag set, its own counts); the other gates check them.
+    reformatted = re.compile(r"(^|-)(date|tag|tags|count|meta)$")
+    refmt = lambda n: any(reformatted.search(c) for c in n.classes)
+    has_refmt = lambda n: any(isinstance(k, e2p.Node) and (refmt(k) or has_refmt(k)) for k in n.kids)
+    label = re.compile(r"^(How to use|How to|Why it matters)\s*:?\s*")
+
+    def walk(n):
+        for k in n.kids:
+            if not isinstance(k, e2p.Node) or e2p.legacy_chrome(k) or refmt(k):
+                continue
+            # A category header is structure (the paper letters its own sections); its entries are checked one by one.
+            if e2p.CATEGORY & set(k.classes) or any(isinstance(x, e2p.Node) and any(c.endswith("-letter") for c in x.classes) for x in k.kids):
+                continue
+            if re.match(r"^\s*sources?\b", k.text(), re.I) and len(k.text()) < 60:
+                continue  # a "Sources drawn from" footer heading
+            if re.match(r"^\s*(\d+\s+(items?|entries|releases?)|\d+\s+of\s+\d+|[\w.-]+\.[a-z]{2,}[\w/.-]*(\s*·\s*[\w.-]+\.[a-z]{2,}[\w/.-]*)+)\s*$", k.text()):
+                continue  # counters ("2 items", "01 of 03") and bare domain lists are furniture
+            if re.match(r"^\s*[\w-]+(\.[\w-]+)+\.?[a-z]{2,}\S*\s*·", k.text()) and k.text().count(" · ") >= 2:
+                continue  # a page-level "sources" line: domain · domain · ...
+            if k.tag == "thead":
+                continue  # a log table's column heads
+            if k.tag in ("table", "tbody"):
+                walk(k)
+                continue
+            if k.tag in ("p", "li", "h1", "h2", "h3", "h4", "tr") or (not e2p.has_block(k) and not e2p.has_chrome(k) and not has_refmt(k)):
+                raw = e2p.category_name(k.text()) if e2p.CATEGORY & set(k.classes) else label.sub("", k.text())
+                u = norm(raw)
+                if u and u not in text:
+                    missing.append(f"source text missing: {k.text()[:60]}")
+            else:
+                walk(k)
+    walk(t.root.find(tag="body") or t.root)
     return missing
 
 
@@ -557,7 +621,21 @@ def scope_images(page, stem):
 
 # ---------------------------------------------------------------- publish
 
+BATCH = None  # run --batch: {"wt": worktree, "done": [(section, stem)]}; one commit and one push for the run
+
+
 def publish(section, stem, page, img_dir, note):
+    if BATCH is not None:  # stage only; cmd_run commits, pushes and verifies the whole batch once
+        dest = Path(BATCH["wt"]) / section
+        dest.mkdir(parents=True, exist_ok=True)
+        (dest / f"{stem}.html").write_text(page)
+        tgt = dest / "img" / stem
+        if tgt.exists():
+            shutil.rmtree(tgt)
+        if img_dir.exists() and any(img_dir.iterdir()):
+            shutil.copytree(img_dir, tgt)
+        BATCH["done"].append((section, stem))
+        return True
     wt = tempfile.mkdtemp(prefix="edition-desk-")
     try:
         git("worktree", "add", "-q", "--detach", wt, "origin/daily-pages", check=True)
@@ -580,6 +658,36 @@ def publish(section, stem, page, img_dir, note):
     finally:
         git("worktree", "remove", "--force", wt)
         git("worktree", "prune")
+
+
+def push_batch(batch):
+    """One commit and one push for every edition the run staged, then every page checked live."""
+    wt, done = batch["wt"], batch["done"]
+    git("add", "-A", *SECTIONS, repo=wt)
+    if not git("status", "--porcelain", repo=wt).stdout.strip():
+        return
+    git("-c", "user.name=Edition Desk", "-c", "user.email=eb@id8labs.tech", "commit", "-q",
+        "-m", f"feat(editions): {len(done)} editions in the paper front (archive backfill)", repo=wt, check=True)
+    r = git("push", "--quiet", "origin", "HEAD:daily-pages", repo=wt)
+    if r.returncode:
+        raise RuntimeError(f"batch push failed: {r.stderr.strip()[:200]}")
+    log(f"  pushed {len(done)} editions in one commit; checking each live")
+    pending, deadline = list(done), time.time() + 900
+    while pending and time.time() < deadline:
+        pending = [(s, t) for s, t in pending if not is_live(s, t)]
+        if pending:
+            time.sleep(30)
+    for s, t in pending:
+        log(f"  ESCALATE {s}/{t}: pushed but not live after 15 minutes (PUBLISH UNVERIFIED)")
+    log(f"  batch live check: {len(done) - len(pending)}/{len(done)} OK")
+
+
+def is_live(section, stem):
+    try:
+        url = f"{PAGES}/{section}/{stem}.html?desk={int(time.time())}"
+        return MARKER in urllib.request.urlopen(url, timeout=20).read().decode()
+    except Exception:
+        return False
 
 
 def verify_live(section, stem, wait=300):
@@ -606,7 +714,9 @@ def build(section, stem, st, want, dry):
         problems = parity_gate((d / "edition.md").read_text(), page)
         # The converter turns the routine's "Oct 14" log dates into ISO dates the template prints as "2026 · 10 · 14".
         log_dates = " ".join(re.findall(r"^#### (\d{4}-\d{2}-\d{2})", (d / "edition.md").read_text(), re.M)).replace("-", " ")
-        problems += source_parity((d / "source.html").read_text(), page, image_text(want, d / "images") + " " + log_dates)
+        # The paper prints the edition's own stem ("2026-23") in its ears and brief.
+        problems += source_parity((d / "source.html").read_text(), page, image_text(want, d / "images") + " " + log_dates + " " + stem.replace("-", " "))
+        problems += source_coverage((d / "source.html").read_text(), page)
         problems += image_gate(page, want, d / "images")
         md_text = (d / "edition.md").read_text()
         src = (d / "source.html").read_text()
@@ -628,7 +738,7 @@ def build(section, stem, st, want, dry):
             log(f"  [dry-run] gate passed; would publish {section}/{stem} ({note}); preview at {d / 'preview.html'}")
             return False
         publish(section, stem, scope_images(page, stem), out_dir / "img", note)
-        live = verify_live(section, stem)
+        live = True if BATCH is not None else verify_live(section, stem)  # a batch verifies after its one push
         log(f"  published {section}/{stem} ({note}); live check: {'OK' if live else 'UNVERIFIED'}")
         if not live:
             log(f"  ESCALATE {section}/{stem}: pushed but not live after 5 minutes (PUBLISH UNVERIFIED)")
@@ -738,7 +848,7 @@ def process(section, stem, a):
             st.pop("published_images", None)      # the routine page is live again over ours
         if not (folder(section, stem) / "edition.md").exists():
             return
-        if not a.no_images:
+        if not a.no_images and stem >= IMAGES_FROM[section]:
             images(section, stem, st)
 
         want = ready_set(section, stem)  # nothing ships until every drawn image is decided
@@ -768,16 +878,28 @@ def cmd_run(a):
     if PAUSE.exists():
         log(f"paused ({PAUSE} exists); nothing runs")
         return
+    global BATCH
     pages = branch_pages()
     todo = [(s, stem) for s in SECTIONS for stem in pages[s]]
     if a.only:
         todo = [t for t in todo if "/".join(t) == a.only]
-    for section, stem in todo:
-        try:
-            process(section, stem, a)
-        except Exception as e:  # one bad edition never blocks the others
-            log(f"  ESCALATE {section}/{stem}: {e}")
-            notify("Shipped. Edition Desk", f"{section}/{stem}: {str(e)[:120]}")
+    if a.batch and not a.dry_run:
+        BATCH = {"wt": tempfile.mkdtemp(prefix="edition-desk-batch-"), "done": []}
+        git("worktree", "add", "-q", "--detach", BATCH["wt"], "origin/daily-pages", check=True)
+    try:
+        for section, stem in todo:
+            try:
+                process(section, stem, a)
+            except Exception as e:  # one bad edition never blocks the others
+                log(f"  ESCALATE {section}/{stem}: {e}")
+                notify("Shipped. Edition Desk", f"{section}/{stem}: {str(e)[:120]}")
+        if BATCH is not None and BATCH["done"]:
+            push_batch(BATCH)
+    finally:
+        if BATCH is not None:
+            git("worktree", "remove", "--force", BATCH["wt"])
+            git("worktree", "prune")
+            BATCH = None
     if a.dry_run:
         return
     # Editions still held keep the alert standing even on a quiet run.
@@ -881,6 +1003,7 @@ def main():
     r.add_argument("--no-images", action="store_true")
     r.add_argument("--only")
     r.add_argument("--retry", action="store_true", help="re-try editions a failed gate is holding")
+    r.add_argument("--batch", action="store_true", help="one commit and one push for the whole run (archive backfill)")
     v = sp.add_parser("review")
     v.add_argument("edition")
     rb = sp.add_parser("rollback", help="restore the routine's page for one edition and pause it")
