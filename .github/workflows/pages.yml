@@ -50,14 +50,21 @@ jobs:
           done < <(find . -name '*.html' -not -path './.git/*')
           test "$bad" -eq 0 || { echo "$bad malformed page(s)"; exit 1; }
 
+      - name: Paper gate (only the Edition Desk's paper pages go live)
+        id: gate
+        run: bash .github/paper-gate.sh
+
       - name: Configure Pages
+        if: steps.gate.outputs.hold != 'true'
         uses: actions/configure-pages@v5
 
       - name: Upload artifact
+        if: steps.gate.outputs.hold != 'true'
         uses: actions/upload-pages-artifact@v3
         with:
           path: .
 
       - name: Deploy
+        if: steps.gate.outputs.hold != 'true'
         id: deployment
         uses: actions/deploy-pages@v4
