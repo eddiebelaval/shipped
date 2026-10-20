@@ -27,11 +27,14 @@ Shape (frontmatter, then sections in this order; optional ones may be left out):
     ## Also Shipped                       (optional)
     ### A Story's Headline
     Paragraphs.
+    *[github.com/org/repo/releases](https://github.com/org/repo/releases)*   (the story's source line, last;
+                                          write it whenever the story cites one primary source)
 
     ## Quiet on the Wire                  (optional)
     ## The Close                          (optional)
 
     ## A. Category Name                   (the release log: lettered A, B, C... in order)
+    *One italic deck line for the category.*   (optional; the only text allowed before the first entry)
     #### 2026-10-15 - Entry Title ([source](https://primary.source/url))   (a monthly may date YYYY-MM; source optional if linked in the body)
     `[MODEL]`
 
@@ -40,6 +43,11 @@ Shape (frontmatter, then sections in this order; optional ones may be left out):
     **How to use:** optional.
 
     **Why it matters:** optional.
+
+Same words (2026-10-19): this markdown is the edition. Every sentence, source line and deck line on the
+published page is in it word for word, and nothing on the page is missing from it. On 10-19 the page
+carried a source line, two category decks and a reworded sentence the markdown did not, and the desk's
+shadow held it.
 
 usage: python3 edition-md-check.py FILE.md      exit 0 = renders as is; exit 1 prints every problem
 """
