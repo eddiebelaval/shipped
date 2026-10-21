@@ -20,13 +20,20 @@ runs locally after them (launchd, every 30 minutes):
 kept as source.html, so a failed gate never loses the edition: daily-pages
 keeps the routine's page and the desk escalates.
 
+Markdown route (Eddie, 2026-10-19: the routine becomes the researcher and writes only
+<section>/src/<stem>.md; the desk is the only thing that writes the HTML page). An edition with a routine
+markdown and NO routine HTML page (none on the branch, or only our own paper page) is built from that
+markdown: edition-md-check shape first (a SHAPE failure holds the edition once per markdown version and
+escalates), then the same render and every gate that compares the page with edition.md. While the routine
+still pushes its own HTML, the HTML route and the shadow run exactly as before.
+
 usage:
   edition-desk.py run [--dry-run] [--no-images] [--retry] [--only SECTION/STEM]
   edition-desk.py review SECTION/STEM      open the image review desk for one edition
   edition-desk.py rollback SECTION/STEM    restore the routine's page and pause the edition
   edition-desk.py status
 """
-import argparse, datetime, hashlib, html, importlib.util, json, os, re, shutil, subprocess, sys, tempfile, time, urllib.request
+import argparse, datetime, hashlib, html, importlib.util, inspect, json, os, re, shutil, subprocess, sys, tempfile, time, urllib.request
 from pathlib import Path
 
 SCRIPTS = Path(__file__).resolve().parent
@@ -93,12 +100,16 @@ def save_state(section, stem, st):
 
 
 def branch_pages():
+    """Every edition on daily-pages: a routine page <section>/<stem>.html, or a routine markdown
+    <section>/src/<stem>.md with no page yet (the markdown route; the desk writes its page)."""
     git("fetch", "origin", "daily-pages", "--quiet")
     out = {}
     for s in SECTIONS:
-        r = git("ls-tree", "--name-only", "origin/daily-pages", s + "/")
-        out[s] = sorted(Path(p).stem for p in r.stdout.splitlines()
-                        if p.endswith(".html") and Path(p).stem[:1].isdigit())
+        stems = set()
+        for sub, ext in ((s + "/", ".html"), (s + "/src/", ".md")):
+            r = git("ls-tree", "--name-only", "origin/daily-pages", sub)
+            stems |= {Path(p).stem for p in r.stdout.splitlines() if p.endswith(ext) and Path(p).stem[:1].isdigit()}
+        out[s] = sorted(stems)
     return out
 
 
@@ -592,6 +603,19 @@ def source_coverage(source_page, page):
     return missing
 
 
+def md_figures(md_text, page, extra=""):
+    """The markdown route's figure check (source_parity's, against edition.md): a number inside the page
+    the edition never printed is a changed figure. Dropped figures are caught by parity_gate's text match."""
+    _, inside = split_front(page)
+    allowed = set(NUM.findall(md_plain(md_text) + " " + extra)) | CHROME_NUMS
+    allowed |= {str(int(x)) for x in allowed if x.isdigit()}
+    allowed |= set(re.findall(r'class="log-cat-count"><b>(\d+)</b>', page))
+    for m in CHROME_PHRASES.finditer(plain(page)):
+        allowed.add(next(g for g in m.groups() if g))
+    stray = sorted({n for n in NUM.findall(plain(inside)) if n not in allowed})
+    return ["figures not in the edition: " + ", ".join(stray[:8])] if stray else []
+
+
 def image_text(want, images_dir):
     """Captions and credits of the images that will run: their figures are the image desk's, not the routine's."""
     slots = json.loads((images_dir / "slots.json").read_text()) if (images_dir / "slots.json").exists() else {}
@@ -652,6 +676,7 @@ def publish(section, stem, page, img_dir, note):
     try:
         git("worktree", "add", "-q", "--detach", wt, "origin/daily-pages", check=True)
         dest = Path(wt) / section
+        dest.mkdir(parents=True, exist_ok=True)
         (dest / f"{stem}.html").write_text(page)
         tgt = dest / "img" / stem
         if tgt.exists():
@@ -715,24 +740,38 @@ def verify_live(section, stem, wait=300):
     return False
 
 
-def build(section, stem, st, want, dry):
-    """Render with approved images only, gate, publish. Returns True when the page went out."""
+def build(section, stem, st, want, dry, route="html"):
+    """Render with approved images only, gate, publish. Returns True when the page went out.
+
+    route "html": edition.md was converted from the routine page (source.html); every gate runs, including
+    the ones that diff the render against that page. route "md": edition.md IS the routine's markdown (it
+    passed edition-md-check); there is no routine page, so the source.html gates are replaced by the same
+    gates against the markdown (text, links, front, inside, a figure check) plus the shape check upstream.
+    """
     d = folder(section, stem)
     out_dir = Path(tempfile.mkdtemp(prefix="edition-render-"))
     try:
         out = out_dir / "index.html"
         render(d / "edition.md", out)
         page = out.read_text()
-        problems = parity_gate((d / "edition.md").read_text(), page)
-        # The converter turns the routine's "Oct 14" log dates into ISO dates the template prints as "2026 · 10 · 14".
-        log_dates = " ".join(re.findall(r"^#### (\d{4}-\d{2}-\d{2})", (d / "edition.md").read_text(), re.M)).replace("-", " ")
-        # The paper prints the edition's own stem ("2026-23") in its ears and brief.
-        problems += source_parity((d / "source.html").read_text(), page, image_text(want, d / "images") + " " + log_dates + " " + stem.replace("-", " "))
-        problems += source_coverage((d / "source.html").read_text(), page)
-        problems += image_gate(page, want, d / "images")
         md_text = (d / "edition.md").read_text()
-        src = (d / "source.html").read_text()
-        problems += front_check(split_front(page)[0], src, md_text, image_text(want, d / "images"))
+        problems = parity_gate(md_text, page)
+        # The converter turns the routine's "Oct 14" log dates into ISO dates the template prints as "2026 · 10 · 14".
+        log_dates = " ".join(re.findall(r"^#### (\d{4}-\d{2}-\d{2})", md_text, re.M)).replace("-", " ")
+        # The paper prints the edition's own stem ("2026-23") in its ears and brief.
+        extra = image_text(want, d / "images") + " " + log_dates + " " + stem.replace("-", " ")
+        if route == "md":
+            src = ""
+            # The deck, weather and title live in the frontmatter, not the body: the front may print them.
+            front_extra = image_text(want, d / "images") + " " + md_text.split("---", 2)[1]
+            problems += md_figures(md_text, page, extra)
+        else:
+            src = (d / "source.html").read_text()
+            front_extra = image_text(want, d / "images")
+            problems += source_parity(src, page, extra)
+            problems += source_coverage(src, page)
+        problems += image_gate(page, want, d / "images")
+        problems += front_check(split_front(page)[0], src, md_text, front_extra)
         problems += link_check(page, src, md_text)
         problems += front_structure(split_front(page)[0], md_text)
         problems += inside_structure(page, md_text)
@@ -756,6 +795,7 @@ def build(section, stem, st, want, dry):
             log(f"  ESCALATE {section}/{stem}: pushed but not live after 5 minutes (PUBLISH UNVERIFIED)")
             notify("Shipped. Edition Desk", f"{section}/{stem}: pushed but not live after 5 minutes")
         st["published_images"] = want
+        st["route"] = route
         st["render_key"] = render_key()
         st["published_at"] = datetime.datetime.now().isoformat(timespec="seconds")
         st.pop("gate_failure", None)
@@ -871,6 +911,43 @@ edition_stem: "{stem}"
 {body}"""
 
 
+# ---------------------------------------------------------------- the markdown route
+
+def md_check():
+    spec = importlib.util.spec_from_file_location("emc", SCRIPTS / "edition-md-check.py")
+    emc = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(emc)
+    return emc
+
+
+def md_key(md):
+    """source_key for the markdown route: the routine markdown plus the code that turns it into edition.md
+    (the wrapper, the converter helpers it calls, the shape check). A re-pushed md or a code fix rebuilds."""
+    code = (inspect.getsource(wrap_routine_md).encode() + (SCRIPTS / "edition-to-paper.py").read_bytes()
+            + (SCRIPTS / "edition-md-check.py").read_bytes())
+    return "md:" + hashlib.sha256(md.encode() + b"\0" + code).hexdigest()[:16]
+
+
+def md_convert(section, stem, md, st):
+    """The routine's markdown -> edition.md, after the shape check. Raises on a SHAPE failure."""
+    shape = md_check().check(md)
+    if shape:
+        raise ValueError("; ".join(shape[:5]))
+    d = folder(section, stem)
+    d.mkdir(parents=True, exist_ok=True)
+    (d / "source.md").write_text(md)
+    wrapped = wrap_routine_md(section, stem, md)
+    (d / "edition.md").write_text(wrapped)
+    _, lead, _, stories, entries = edition_parts(wrapped)
+    if st.get("lead") and st["lead"] != lead and (d / "images").exists():
+        shutil.rmtree(d / "images")  # a different lead story gets different pictures
+        st.pop("image_attempts", None)
+    st.update(source_sha=md_key(md), lead=lead, route="md", redos=0,
+              converted={"route": "md", "lead": lead, "stories": len(stories), "log_entries": len(entries)})
+    st.pop("published_images", None)
+    log(f"{section}/{stem}: from the routine markdown ({len(stories)} stories, {len(entries)} log entries)")
+
+
 def shadow(section, stem, st, page_src):
     """Render the paper front from the routine's markdown and compare it with the HTML route.
 
@@ -922,34 +999,68 @@ def shadow(section, stem, st, page_src):
         f.write(json.dumps(verdict) + "\n")
 
 
+def md_route(section, stem, page, st):
+    """The routine markdown when this edition takes the markdown route, else "".
+
+    The markdown route runs only when there is no routine HTML page: none on the branch, or only our own
+    paper page for an edition that was not built from a routine page (an HTML-route edition keeps its
+    route, so this change is a no-op until the routine stops pushing HTML)."""
+    if page and MARKER not in page:
+        return ""  # the routine's own page: the HTML route (and the shadow), exactly as before
+    legacy = (folder(section, stem) / "source.html").exists() and st.get("route") != "md"
+    if page and legacy:
+        return ""
+    return routine_md(section, stem)
+
+
 def process(section, stem, a):
     page = blob(section, stem)
-    if not page:
-        return
     st = load_state(section, stem)
     if st.get("paused"):
         return
+    md = md_route(section, stem, page, st)
+    if not page and not md:
+        return
     try:
         ours = MARKER in page
-        key_now = source_key(page)
-        if a.retry:
-            st.pop("convert_failure", None)
-        if not ours and st.get("convert_failure") == key_now:
-            return  # this exact page already failed to convert; it waits for a converter fix or --retry
-        if not ours and st.get("source_sha") != key_now:
-            try:
-                convert(section, stem, page, st)  # a new edition, or the routine re-published it
-            except Exception as e:
-                # Held once per page version, not re-tried (and re-alerted) every tick (2026-10-12: a
-                # daily re-rendered in a retired template failed every run).
-                st["convert_failure"] = key_now
-                raise RuntimeError(f"convert held: {e}") from e
-            st.pop("convert_failure", None)
-        elif not ours:
-            st.pop("published_images", None)      # the routine page is live again over ours
+        if md:
+            route = "md"
+            key_now = md_key(md)
+            if a.retry:
+                st.pop("shape_failure", None)
+            if st.get("shape_failure", {}).get("key") == key_now:
+                return  # this exact markdown already failed its shape check; it waits for a new md or --retry
+            if st.get("source_sha") != key_now:
+                try:
+                    md_convert(section, stem, md, st)
+                except Exception as e:
+                    # Held once per markdown version (same no-retry-storm rule as convert_failure); nothing
+                    # publishes, and the alert stands until a good markdown or --retry clears it.
+                    folder(section, stem).mkdir(parents=True, exist_ok=True)  # or the hold is never saved
+                    st["shape_failure"] = {"key": key_now, "problems": [f"routine markdown failed its shape check: {e}"[:300]]}
+                    raise RuntimeError(f"md shape held: {e}") from e
+                st.pop("shape_failure", None)
+        else:
+            route = "html"
+            key_now = source_key(page)
+            if a.retry:
+                st.pop("convert_failure", None)
+            if not ours and st.get("convert_failure") == key_now:
+                return  # this exact page already failed to convert; it waits for a converter fix or --retry
+            if not ours and st.get("source_sha") != key_now:
+                try:
+                    convert(section, stem, page, st)  # a new edition, or the routine re-published it
+                except Exception as e:
+                    # Held once per page version, not re-tried (and re-alerted) every tick (2026-10-12: a
+                    # daily re-rendered in a retired template failed every run).
+                    st["convert_failure"] = key_now
+                    raise RuntimeError(f"convert held: {e}") from e
+                st.pop("convert_failure", None)
+            elif not ours:
+                st.pop("published_images", None)      # the routine page is live again over ours
         if not (folder(section, stem) / "edition.md").exists():
             return
-        if not ours and (folder(section, stem) / "source.html").exists():
+        if route == "html" and not ours and (folder(section, stem) / "source.html").exists():
             try:  # the shadow never holds or publishes anything; a failure in it is only logged
                 shadow(section, stem, st, (folder(section, stem) / "source.html").read_text())
             except Exception as e:
@@ -966,7 +1077,10 @@ def process(section, stem, a):
         if (not ours or st.get("published_images") != want or stale) and not held:
             log(f"{section}/{stem}: building ({len(want)} approved images)" if want else f"{section}/{stem}: building text-only")
             try:
-                build(section, stem, st, want, a.dry_run)
+                if route == "md":
+                    build(section, stem, st, want, a.dry_run, route="md")
+                else:
+                    build(section, stem, st, want, a.dry_run)
             except Exception as e:  # a failed render or push holds like a failed gate: no retry storm
                 st["gate_failure"] = {"key": key, "problems": [f"build failed: {e}"[:300]]}
                 raise
@@ -1011,7 +1125,8 @@ def cmd_run(a):
     # Editions still held keep the alert standing even on a quiet run.
     for sec in SECTIONS:
         for d in sorted((EDITIONS / sec).glob("*")) if (EDITIONS / sec).exists() else []:
-            gf = load_state(sec, d.name).get("gate_failure")
+            st = load_state(sec, d.name)
+            gf = st.get("gate_failure") or st.get("shape_failure")  # a shape hold means NO page at all
             if gf and not any(f"{sec}/{d.name}" in e for e in ESCALATIONS):
                 ESCALATIONS.append(f"HELD {sec}/{d.name}: {gf['problems'][0]}")
     # A standing alert Night Desk reads every night: written on escalation, cleared on a clean run.
@@ -1033,6 +1148,18 @@ def cmd_rollback(a):
     section, stem = a.edition.split("/")
     path = f"{section}/{stem}.html"
     git("fetch", "origin", "daily-pages", "--quiet", check=True)
+    st = load_state(section, stem)
+    if st.get("route") == "md" or (not git("log", "-1", "--format=%H", "origin/daily-pages", "--", path).stdout.strip()
+                                   and routine_md(section, stem)):
+        # A markdown-route edition never had a routine page: there is nothing to restore. Pause it so no
+        # run re-publishes, and say so; the paper page stays live until someone replaces or removes it.
+        st["paused"] = True
+        save_state(section, stem, st)
+        msg = (f"{section}/{stem} was built from the routine's markdown; there is no routine page to restore. "
+               f"Paused it (no run will re-publish); the live paper page is unchanged, nothing pushed")
+        print(msg)
+        log(f"rollback {msg}")
+        return
     # The routine's page is the newest version WITHOUT the paper marker, whoever committed it: the
     # 23:00 sweep ("Shipped. bot") also rewrites paper pages, so authorship cannot decide it.
     routine = want = None

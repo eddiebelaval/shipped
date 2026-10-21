@@ -32,7 +32,7 @@ def sh(*args, cwd=None):
 
 
 def args(**kw):
-    base = dict(dry_run=False, no_images=True, only=None, retry=False)
+    base = dict(dry_run=False, no_images=True, only=None, retry=False, batch=False)
     base.update(kw)
     return argparse.Namespace(**base)
 

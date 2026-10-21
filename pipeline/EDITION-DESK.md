@@ -107,6 +107,19 @@ reverting it would put the leaked test page back. Tested: one publish (A), text 
 revert (C), after a bot sweep of a text-only and of an image edition (D). To resume: set `"paused": false` in that edition's `edition.json`, then
 `~/Development/id8/shipped/pipeline/scripts/edition-desk-launch.sh --retry --only <section>/<stem>`.
 
+Markdown-route editions (`"route": "md"` in `edition.json`, built from `<section>/src/<stem>.md` with no
+routine page) have no routine page to restore: rollback only pauses the edition, says so, and pushes nothing.
+The live paper page stays until someone replaces or removes it.
+
+## Markdown route
+
+When the routine pushes `<section>/src/<stem>.md` and no `<section>/<stem>.html`, the desk builds `edition.md`
+straight from that markdown after `edition-md-check` passes. A shape failure holds the edition (no page at
+all), escalates once per markdown version, and keeps a `HELD` line in the alert until a good markdown lands or
+`--retry`. The md route runs the text, link, dash, front, inside, image and figure gates against the markdown;
+the source.html gates do not apply. While the routine still pushes HTML, nothing changes: an edition with a
+routine page (or a paper page built from one) stays on the HTML route and the shadow keeps comparing.
+
 ## Unload
 
 ```bash
