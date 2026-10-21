@@ -47,7 +47,6 @@ class World(unittest.TestCase):
         sh("git", "init", "-q", "-b", "daily-pages", str(seed))
         (seed / "anthropic-daily").mkdir()
         shutil.copy(FIXTURE, seed / "anthropic-daily" / "2026-10-10.html")
-        shutil.copy(FIXTURE, seed / "anthropic-daily" / "2026-10-01.html")  # before the cutover
         for c in (["add", "-A"], ["-c", "user.name=t", "-c", "user.email=t@t", "commit", "-q", "-m", "seed"],
                   ["remote", "add", "origin", str(origin)], ["push", "-q", "origin", "daily-pages"]):
             sh("git", *c, cwd=seed)
@@ -91,15 +90,30 @@ class World(unittest.TestCase):
 
 
 class TestDesk(World):
-    def test_cutover_filter_skips_earlier_editions(self):
-        self.assertEqual(ed.branch_pages()["anthropic-daily"], ["2026-10-10"])
+    def test_every_dated_edition_is_taken_archive_runs_text_only(self):
+        """2026-10-15 ("all editions, all issues"): the cutover filter is gone. An archive edition before
+        IMAGES_FROM gets the paper too, text-only; the image desk starts at IMAGES_FROM. Undated pages are not editions."""
+        seed = self.tmp / "seed"
+        shutil.copy(FIXTURE, seed / "anthropic-daily" / "2026-10-01.html")  # archive: before the image cutover
+        (seed / "anthropic-daily" / "index.html").write_text("<html><body>index</body></html>")
+        sh("git", "add", "-A", cwd=seed)
+        sh("git", "-c", "user.name=t", "-c", "user.email=t@t", "commit", "-qm", "archive", cwd=seed)
+        sh("git", "push", "-q", "origin", "HEAD:daily-pages", cwd=seed)
+        self.assertEqual(ed.branch_pages()["anthropic-daily"], ["2026-10-01", "2026-10-10"])
+        drawn = []
+        with mock.patch.object(ed, "images", lambda section, stem, st: drawn.append((section, stem))):
+            ed.cmd_run(args(no_images=False))
+        self.assertEqual(drawn, [("anthropic-daily", "2026-10-10")])  # no image desk for the archive
+        self.assertIn(ed.MARKER, self.live("anthropic-daily/2026-10-01.html"))
+        self.assertIn(ed.MARKER, self.live())
+        self.assertEqual(self.live("anthropic-daily/index.html"), "<html><body>index</body></html>")
+        self.assertEqual(ed.load_state("anthropic-daily", "2026-10-01")["published_images"], [])
 
     def test_text_only_publish_end_to_end(self):
         ed.cmd_run(args())
         page = self.live()
         self.assertIn(ed.MARKER, page)
         self.assertIn("The Paper Trail", page)
-        self.assertEqual(self.live("anthropic-daily/2026-10-01.html"), FIXTURE.read_text())  # untouched
         st = ed.load_state("anthropic-daily", "2026-10-10")
         self.assertEqual(st["published_images"], [])
         self.assertFalse(ed.ALERT.exists())
@@ -677,8 +691,18 @@ class TestConverter(unittest.TestCase):
         self.assertNotIn("#### Oct", md)
 
     def test_empty_page_refused(self):
-        with self.assertRaises(SystemExit):
-            e2p.convert("<html><body><p>x</p></body></html>", "anthropic-daily", "2026-10-10")
+        """A page with no feature, also-item, prose or log entry is refused; furniture alone is not an edition."""
+        for page in ("<html><body></body></html>",
+                     "<html><body><div class='daily-head'>x</div></body></html>",
+                     "<html><body><nav>Home</nav><footer><p>x</p></footer></body></html>"):
+            with self.subTest(page=page), self.assertRaises(SystemExit):
+                e2p.convert(page, "anthropic-daily", "2026-10-10")
+
+    def test_one_paragraph_archive_page_is_an_edition(self):
+        """Since 2026-10-15 the legacy reader takes a lone paragraph as the lead (archive one-liners), not as empty."""
+        md, summary = e2p.convert("<html><body><p>Claude ships a thing.</p></body></html>", "anthropic-daily", "2026-10-10")
+        self.assertEqual(summary["lead"], "Claude ships a thing")
+        self.assertIn("# Claude ships a thing\n", md)
 
 
 class TestLauncher(unittest.TestCase):
