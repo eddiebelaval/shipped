@@ -1488,7 +1488,7 @@ body::before{
   <p class="pf-weather">The one that ages best is the one that costs the most to reverse.</p>
   <nav class="pf-nav"><a href="#top">Front Page</a><a href="#lead">Lead</a><a href="#also">Also Shipped</a><a href="#log">The Log</a></nav>
 
-  
+  <figure class="pf-fig pf-cover"><picture><source media="(min-width: 760px)" srcset="img/2026-10-23/cover-halftone.png"><img src="img/2026-10-23/cover-atkinson.png" alt="Illustration of an iron latch fixed to a wooden door."></picture><figcaption class="pf-cap">Door latch, a hand-rendered plate by Fritz Boehmer, about 1939, National Gallery of Art. <i>Fritz Boehmer, CC0.</i></figcaption></figure>
 
   <header class="pf-head">
     <span class="pf-kick">Lead Story</span>
@@ -1518,7 +1518,7 @@ body::before{
         <a class="pf-jump" href="#also">Continued inside</a>
       </div>
       <div class="pf-story">
-        
+        <figure class="pf-fig "><img src="img/2026-10-23/story-2-atkinson.png" alt="A row of tall container gantry cranes along a port quay." loading="lazy"><figcaption class="pf-cap">Container cranes at a terminal in Tokyo Bay. <i>Syced, CC0.</i></figcaption></figure>
         <h3>Agent Skills Goes to a Foundation, Not a File Cabinet</h3>
         <div class="pf-sm"><p>Anthropic donated the Agent Skills standard to the Agentic AI Foundation on October 22. More than 70 agent platforms have adopted the standard since its December 2025 release, including ChatGPT, Cursor, GitHub Copilot, and VS Code. The AAIF operates under the Linux Foundation and was co-founded by OpenAI, Anthropic, and Block.</p></div>
         <a class="pf-jump" href="#also">Continued inside</a>
@@ -1627,7 +1627,7 @@ body::before{
       <p>The mechanism: removing temperature from the API surface is Anthropic saying the model's own calibration is now the sampling policy, and your wrapper should stop second-guessing it. The docs started discouraging non-default temperature settings in spring 2026. The API version makes that recommendation load-bearing with a 400 error. The blast radius is wide. Most LLM integrations built before 2026 set temperature explicitly, often to 0 for determinism. Those calls fail now.</p>
       <p>Version 2023-06-01 is not deprecated. If you need time to migrate, pinning to the old version is the path. On Bedrock, 2026-10-21 is available for Claude 4.7 and later only. Migration guide at <a href="https://platform.claude.com/docs/en/api/migration-2026-10-21">platform.claude.com/docs/en/api/migration-2026-10-21</a>.</p>
       <p><em><a href="https://platform.claude.com/docs/en/api/migration-2026-10-21">platform.claude.com/docs/en/api/migration-2026-10-21</a></em></p>
-      <h3 style="font-family:var(--disp);font-weight:500;font-style:italic;font-size:30px;letter-spacing:-.02em;line-height:1.15;color:var(--ink);margin:32px 0 14px">Agent Skills Goes to a Foundation, Not a File Cabinet.</h3>
+      <figure class="pf-fig pf-jumpfig"><img src="img/2026-10-23/story-2-atkinson.png" alt="A row of tall container gantry cranes along a port quay." loading="lazy"><figcaption class="pf-cap">Container cranes at a terminal in Tokyo Bay. <i>Syced, CC0.</i></figcaption></figure><h3 style="font-family:var(--disp);font-weight:500;font-style:italic;font-size:30px;letter-spacing:-.02em;line-height:1.15;color:var(--ink);margin:32px 0 14px">Agent Skills Goes to a Foundation, Not a File Cabinet.</h3>
       <p>Anthropic donated the Agent Skills standard to the Agentic AI Foundation on October 22. More than 70 agent platforms have adopted the standard since its December 2025 release, including ChatGPT, Cursor, GitHub Copilot, and VS Code. The AAIF operates under the Linux Foundation and was co-founded by OpenAI, Anthropic, and Block.</p>
       <p>Agent Skills is the spec that lets AI agents carry specialized knowledge and workflows across platforms without rebuilding them per deployment. Donating governance to a neutral body means the standard outlives any single lab's product priorities. Platform builders who shipped integrations get continuity. The spec does not disappear if Anthropic changes direction.</p>
       <p>Once ChatGPT and Copilot both run on Agent Skills, a proprietary alternative has no adoption path. Fragmentation at the infrastructure layer costs everyone. By donating early, Anthropic shapes the spec while stepping back from ownership. This is the MCP play from 2025 with a different standard. Build it, seed adoption, move governance to neutral hands.</p>
