@@ -1,0 +1,1237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light">
+<title>Shipped. Daily, Tuesday, October 27, 2026</title>
+<meta name="description" content="Anthropic files for an IPO; OpenAI cuts its computer-use model price in half.">
+<meta property="og:title" content="Shipped. Daily, Tuesday, October 27, 2026">
+<meta property="og:description" content="Anthropic files for an IPO; OpenAI cuts its computer-use model price in half.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://eddiebelaval.github.io/shipped/anthropic-daily/2026-10-27.html">
+<!--
+  ISSUE CHROME: the canonical Shipped. issue design.
+
+  Locked 2026-08-06 to anthropic-weekly/2026-31, chosen by Eddie as the standard
+  after an audit showed the three cadences had drifted into three different looks.
+  Cause: three cloud routines each free-hand their HTML from template.html every
+  run, and nothing enforced a shared component vocabulary, so each invented one.
+
+  This file is the enforcement point, the same pattern as subscribe-block.html:
+  paste it VERBATIM into the head. Do not retype it, do not restyle it. Editing
+  the design means editing THIS file, and every cadence inherits the change.
+
+  Consumed by pipeline/scripts/render-issue.py and by the daily, weekly and
+  monthly routine prompts. Class vocabulary: pub-bar, weekly-header, open-section,
+  feature-opener, prose-well, also-item, log-*, close-section, colophon.
+-->
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='75' cy='62' r='14' fill='%23FF6B35'/%3E%3Ctext x='10' y='75' font-family='Georgia,serif' font-weight='700' font-size='62' fill='%231a1a1a'%3ES%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;0,9..144,900;1,9..144,300;1,9..144,400;1,9..144,500;1,9..144,700&family=Archivo:wght@300;400;500;600;700;800;900&family=Archivo+Narrow:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"><style>
+
+
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{font-size:16px;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;text-rendering:optimizeLegibility}
+body{background:#FAF8F4;color:#0b0b0b;font-family:'Archivo',sans-serif;overflow-x:hidden}
+::selection{background:#FF6B35;color:#fff}
+
+:root{
+  --orange:#FF6B35;
+  --ink:#0b0b0b;
+  --paper:#FAF8F4;
+  --paper-shadow:#f2f0e8;
+  --body:#2a2a2a;
+  --muted:#5a5a5a;
+  --gray:#8a8a8a;
+  --hair:rgba(11,11,11,0.12);
+  --hair-soft:rgba(11,11,11,0.06);
+  --hair-hard:rgba(11,11,11,0.22);
+  --disp:'Fraunces', 'Times New Roman', serif;
+  --sans:'Archivo', system-ui, sans-serif;
+  --narrow:'Archivo Narrow', 'Archivo', sans-serif;
+  --mono:'JetBrains Mono', ui-monospace, monospace;
+}
+
+body::before{
+  content:"";
+  position:fixed;inset:0;pointer-events:none;z-index:1000;opacity:.28;mix-blend-mode:multiply;
+  background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='180' height='180'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' seed='3'/><feColorMatrix values='0 0 0 0 0.02  0 0 0 0 0.02  0 0 0 0 0.02  0 0 0 0.22 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+}
+
+.pub-bar{
+  position:sticky;top:0;z-index:100;
+  background:var(--paper);
+  border-bottom:1px solid var(--hair);
+  padding:0 28px;height:42px;
+  display:flex;align-items:center;justify-content:space-between;
+  font-family:var(--narrow);
+  font-size:11px;font-weight:600;letter-spacing:.22em;
+  text-transform:uppercase;color:var(--ink);
+}
+.pub-bar-left,.pub-bar-right{display:flex;align-items:center;gap:16px}
+.pub-bar-mark{font-family:var(--disp);font-weight:500;font-size:16px;letter-spacing:-.01em;text-transform:none;font-style:italic}
+.pub-bar-mark .dot{color:var(--orange)}
+.pub-bar-sep{width:1px;height:12px;background:var(--hair-hard)}
+.pub-bar-meta{color:var(--muted)}
+.pub-bar-link{color:inherit;text-decoration:none;border-bottom:1px solid currentColor;transition:color .15s ease}
+.pub-bar-link:hover{color:var(--orange)}
+.colophon-link{color:inherit;text-decoration:none;border-bottom:1px solid currentColor;transition:color .15s ease}
+.colophon-link:hover{color:var(--orange)}
+.colophon-foot .colophon-link b{color:var(--paper)}
+.pub-bar-folio{color:var(--ink)}
+.pub-bar-folio b{font-weight:600;color:var(--orange)}
+.pub-bar-cta{
+  display:inline-block;background:var(--ink);color:var(--paper);
+  text-decoration:none;border:1px solid var(--ink);border-radius:10px;
+  font-family:var(--narrow);font-weight:700;font-size:11px;
+  letter-spacing:.2em;text-transform:uppercase;
+  padding:6px 14px;transition:background .15s ease,border-color .15s ease;
+}
+.pub-bar-cta:hover{background:var(--orange);border-color:var(--orange);color:var(--ink)}
+@media (max-width:720px){
+  .pub-bar-hide-sm{display:none}
+  .pub-bar{padding:0 16px}
+  .pub-bar-cta{padding:5px 10px;letter-spacing:.12em}
+}
+
+.folio{
+  font-family:var(--narrow);
+  font-size:10px;font-weight:500;letter-spacing:.28em;
+  text-transform:uppercase;color:var(--gray);
+  display:flex;align-items:center;gap:10px;
+}
+.folio b{color:var(--ink);font-weight:700}
+.folio .ruler{width:28px;height:1px;background:var(--hair-hard)}
+.folio .dot{color:var(--orange)}
+
+.section{
+  position:relative;
+  padding:64px 28px 40px;
+  max-width:1280px;margin:0 auto;
+}
+.section-folio{
+  display:flex;align-items:center;justify-content:space-between;
+  padding-bottom:18px;
+  border-bottom:1px solid var(--ink);
+  margin-bottom:44px;
+}
+.section-folio-left{display:flex;align-items:center;gap:14px}
+.section-folio-label{
+  font-family:var(--narrow);
+  font-size:11px;font-weight:700;letter-spacing:.28em;
+  text-transform:uppercase;color:var(--ink);
+}
+.section-folio-sub{
+  font-family:var(--disp);font-style:italic;
+  font-size:13px;color:var(--muted);
+}
+
+.open-section{background:var(--paper)}
+.open-grid{
+  display:grid;
+  grid-template-columns:repeat(12,1fr);
+  gap:32px;
+}
+.open-lead{
+  grid-column:2 / span 7;
+}
+.open-quote{
+  font-family:var(--disp);
+  font-variation-settings:"opsz" 144;
+  font-weight:500;font-size:clamp(36px,5vw,72px);
+  line-height:1.02;letter-spacing:-.025em;
+  color:var(--ink);
+  margin-bottom:36px;
+  padding-bottom:28px;
+  border-bottom:1px solid var(--hair-hard);
+}
+.open-quote em{font-style:italic;color:var(--orange);font-weight:500}
+.open-prose{
+  font-family:var(--disp);
+  font-variation-settings:"opsz" 14;
+  font-weight:400;font-size:18px;line-height:1.68;
+  color:var(--body);
+  max-width:620px;
+}
+.open-prose p{margin-bottom:22px}
+.open-prose em{font-style:italic;color:var(--ink)}
+.open-aside{
+  grid-column:10 / span 3;
+  border-top:1px solid var(--ink);
+  padding-top:16px;
+  font-family:var(--narrow);
+  font-size:11px;font-weight:500;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--muted);
+  line-height:1.9;
+}
+.open-aside b{color:var(--ink);font-weight:700}
+@media(max-width:860px){
+  .open-lead{grid-column:1 / -1}
+  .open-aside{grid-column:1 / -1;margin-top:16px}
+}
+
+.feature-opener{
+  display:grid;
+  grid-template-columns:72px 1fr minmax(0,320px);
+  gap:32px;
+  padding:56px 28px 40px;
+  max-width:1280px;margin:0 auto;
+  position:relative;
+  border-top:2px solid var(--ink);
+}
+.feature-opener::before{
+  content:"";
+  position:absolute;
+  left:100px;top:0;bottom:0;
+  width:1px;background:var(--hair);
+}
+.vert-label{
+  position:relative;
+  writing-mode:vertical-rl;
+  transform:rotate(180deg);
+  font-family:var(--narrow);
+  font-size:13px;font-weight:700;letter-spacing:.48em;
+  text-transform:uppercase;color:var(--ink);
+  align-self:start;
+  padding-top:12px;
+  white-space:nowrap;
+}
+.vert-label .vert-num{
+  color:var(--orange);
+  font-family:var(--disp);
+  font-style:italic;font-weight:500;
+  letter-spacing:-.02em;
+  margin-top:12px;display:inline-block;
+  writing-mode:horizontal-tb;
+  transform:rotate(180deg);
+  font-size:20px;
+}
+.feature-heading{min-width:0}
+.feature-kicker{
+  font-family:var(--narrow);
+  font-size:10px;font-weight:700;letter-spacing:.32em;
+  text-transform:uppercase;color:var(--orange);
+  margin-bottom:20px;
+}
+.feature-title{
+  font-family:var(--disp);font-weight:700;
+  font-variation-settings:"opsz" 144;
+  font-size:clamp(52px,8vw,128px);
+  line-height:.9;letter-spacing:-.042em;
+  color:var(--ink);
+  margin-bottom:24px;
+}
+.feature-title em{font-style:italic;font-weight:400;color:var(--ink)}
+.feature-deck{
+  font-family:var(--disp);font-weight:400;
+  font-variation-settings:"opsz" 72;
+  font-size:clamp(20px,2.4vw,28px);
+  line-height:1.3;letter-spacing:-.01em;
+  color:var(--muted);
+  max-width:640px;
+  margin-bottom:24px;
+}
+.feature-meta{
+  padding-top:18px;
+  border-top:1px solid var(--hair);
+  font-family:var(--narrow);
+  font-size:10px;font-weight:600;letter-spacing:.24em;
+  text-transform:uppercase;color:var(--muted);
+  line-height:1.8;
+}
+.feature-meta b{color:var(--ink);font-weight:700}
+.feature-right{
+  padding-top:28px;
+  border-top:1px solid var(--hair);
+  font-family:var(--disp);font-style:italic;
+  font-size:15px;line-height:1.55;color:var(--muted);
+}
+.feature-right-label{
+  display:block;
+  font-family:var(--narrow);font-style:normal;
+  font-size:10px;font-weight:700;letter-spacing:.28em;
+  text-transform:uppercase;color:var(--ink);
+  margin-bottom:10px;
+}
+@media(max-width:860px){
+  .feature-opener{grid-template-columns:1fr;gap:16px}
+  .feature-opener::before{display:none}
+  .vert-label{writing-mode:horizontal-tb;transform:none;font-size:11px}
+  .vert-label .vert-num{writing-mode:horizontal-tb;transform:none;margin-left:16px}
+  .feature-right{grid-column:1 / -1}
+}
+
+.prose-well{
+  max-width:1280px;margin:0 auto;padding:0 28px 56px;
+  display:grid;grid-template-columns:72px 1fr minmax(0,320px);
+  gap:32px;position:relative;
+}
+.prose-well::before{
+  content:"";position:absolute;left:100px;top:0;bottom:0;
+  width:1px;background:var(--hair);
+}
+.prose-marginalia{
+  grid-column:1;
+  font-family:var(--narrow);
+  font-size:10px;font-weight:600;letter-spacing:.26em;
+  text-transform:uppercase;color:var(--gray);
+  writing-mode:vertical-rl;transform:rotate(180deg);
+  align-self:start;padding-top:8px;
+  white-space:nowrap;
+}
+.prose{
+  grid-column:2;
+  font-family:var(--disp);
+  font-variation-settings:"opsz" 14;
+  font-weight:400;font-size:19px;line-height:1.66;
+  color:var(--body);
+  max-width:640px;
+}
+.prose p{margin-bottom:24px}
+.prose em{font-style:italic;color:var(--ink)}
+.prose strong{font-weight:600;color:var(--ink)}
+.prose code{
+  font-family:var(--mono);font-size:.86em;
+  background:var(--paper-shadow);padding:1px 6px;
+  border-radius:3px;color:var(--ink);
+}
+.prose a{color:var(--ink);border-bottom:1px solid var(--hair-hard);text-decoration:none;transition:color .15s,border-color .15s}
+.prose a:hover{color:var(--orange);border-bottom-color:var(--orange)}
+.prose-aside{
+  grid-column:3;
+  font-family:var(--narrow);
+  font-size:11px;font-weight:500;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--muted);
+  border-top:1px solid var(--ink);padding-top:14px;
+  line-height:1.8;
+}
+.prose-aside b{color:var(--ink);font-weight:700}
+
+.drop-cap::first-letter{
+  font-family:var(--disp);
+  font-variation-settings:"opsz" 144;
+  font-weight:700;
+  font-size:9.2em;
+  float:left;line-height:.78;
+  padding:.02em 12px 0 0;
+  margin:.02em 4px -.1em -2px;
+  color:var(--ink);
+}
+.drop-cap-orange::first-letter{
+  color:var(--orange);
+}
+
+@media(max-width:860px){
+  .prose-well{grid-template-columns:1fr;padding-left:20px;padding-right:20px}
+  .prose-well::before{display:none}
+  .prose-marginalia{display:none}
+  .prose{grid-column:1}
+  .prose-aside{grid-column:1;margin-top:20px}
+  .drop-cap::first-letter{font-size:6.6em}
+}
+
+.quiet-section{
+  max-width:1280px;margin:0 auto;padding:64px 28px 24px;
+  display:grid;grid-template-columns:repeat(12,1fr);gap:24px;
+}
+.quiet-head{
+  grid-column:1 / span 3;
+}
+.quiet-title{
+  font-family:var(--disp);font-style:italic;font-weight:400;
+  font-variation-settings:"opsz" 72;
+  font-size:32px;line-height:1;letter-spacing:-.02em;
+  color:var(--ink);
+}
+.quiet-title em{color:var(--orange);font-style:normal;font-weight:500}
+.quiet-kicker{
+  font-family:var(--narrow);
+  font-size:10px;font-weight:700;letter-spacing:.32em;
+  text-transform:uppercase;color:var(--muted);
+  margin-bottom:10px;
+}
+.quiet-body{
+  grid-column:5 / -1;
+  font-family:var(--disp);font-size:17px;line-height:1.65;color:var(--body);
+  padding-left:24px;border-left:1px solid var(--ink);
+}
+.quiet-body p{margin-bottom:16px}
+.quiet-body strong{font-weight:600;color:var(--ink)}
+@media(max-width:860px){
+  .quiet-head,.quiet-body{grid-column:1 / -1}
+  .quiet-body{padding-left:0;border-left:none;border-top:1px solid var(--ink);padding-top:18px}
+}
+
+.close-section{
+  background:var(--ink);color:var(--paper);
+  padding:120px 28px 140px;
+  position:relative;
+  text-align:center;
+}
+.close-kicker{
+  font-family:var(--narrow);
+  font-size:11px;font-weight:700;letter-spacing:.38em;
+  text-transform:uppercase;color:rgba(250,250,247,.5);
+  margin-bottom:48px;
+}
+.close-stack{
+  max-width:780px;margin:0 auto;
+  display:flex;flex-direction:column;gap:32px;
+}
+.close-line{
+  font-family:var(--disp);font-weight:400;
+  font-variation-settings:"opsz" 96;
+  font-size:clamp(26px,3.6vw,46px);
+  line-height:1.18;letter-spacing:-.018em;
+  color:var(--paper);
+}
+.close-line em{font-style:italic;color:var(--orange);font-weight:500}
+.close-final{
+  font-style:italic;color:var(--orange);
+  font-size:clamp(18px,2.2vw,26px);
+  line-height:1.5;letter-spacing:0;
+  max-width:580px;margin:0 auto;
+  font-variation-settings:"opsz" 36;
+}
+.close-coda-start{
+  margin-top:48px;position:relative;
+}
+.close-coda-start::before{
+  content:"";display:block;
+  width:32px;height:1px;
+  background:rgba(217,107,73,.45);
+  margin:0 auto 36px;
+}
+.close-mark{
+  margin-top:72px;
+  font-family:var(--disp);
+  font-size:48px;color:rgba(250,250,247,.3);
+  letter-spacing:.8em;
+}
+
+.log-divider{
+  background:var(--paper);
+  padding:96px 28px 48px;
+  text-align:center;
+  border-top:3px double var(--ink);
+  border-bottom:1px solid var(--ink);
+  max-width:1280px;margin:0 auto;
+}
+.log-divider-kicker{
+  font-family:var(--narrow);
+  font-size:11px;font-weight:700;letter-spacing:.48em;
+  text-transform:uppercase;color:var(--orange);
+  margin-bottom:14px;
+}
+.log-divider-title{
+  font-family:var(--disp);font-weight:700;
+  font-variation-settings:"opsz" 144;
+  font-size:clamp(56px,10vw,144px);
+  line-height:.9;letter-spacing:-.045em;color:var(--ink);
+  margin-bottom:16px;
+}
+.log-divider-title em{font-style:italic;font-weight:400}
+.log-divider-sub{
+  font-family:var(--disp);font-style:italic;
+  font-size:18px;color:var(--muted);max-width:640px;margin:0 auto;line-height:1.5;
+}
+
+.log-section{
+  padding:48px 28px;max-width:1280px;margin:0 auto;
+}
+.log-cat-head{
+  display:grid;
+  grid-template-columns:1fr auto;
+  gap:24px;align-items:baseline;
+  padding-bottom:18px;
+  border-bottom:1px solid var(--ink);
+  margin-bottom:0;
+}
+.log-cat-name{
+  font-family:var(--disp);font-weight:600;font-style:italic;
+  font-variation-settings:"opsz" 96;
+  font-size:clamp(36px,5vw,56px);
+  letter-spacing:-.02em;color:var(--ink);line-height:1;
+}
+.log-cat-count{
+  font-family:var(--narrow);
+  font-size:10px;font-weight:600;letter-spacing:.28em;
+  text-transform:uppercase;color:var(--muted);
+  text-align:right;
+}
+.log-cat-count b{color:var(--ink);font-weight:700;font-size:13px;display:block}
+
+.log-cat-deck{
+  font-family:var(--disp);
+  font-style:italic;
+  font-weight:400;
+  font-variation-settings:"opsz" 24;
+  font-size:18px;
+  line-height:1.45;
+  color:var(--muted);
+  margin-top:14px;
+  margin-bottom:8px;
+  max-width:760px;
+  letter-spacing:-.005em;
+}
+.log-cat-deck b{color:var(--ink);font-weight:600;font-style:normal}
+.log-cat-deck em{color:var(--orange);font-style:normal;font-weight:500}
+
+.log-entries{display:flex;flex-direction:column}
+.log-entry{
+  padding:24px 0;
+  border-bottom:1px solid var(--hair);
+  display:grid;
+  grid-template-columns:120px 1fr;gap:28px;
+}
+.log-entry-left{
+  display:flex;flex-direction:column;gap:8px;
+}
+.log-entry-date{
+  font-family:var(--narrow);
+  font-size:10px;font-weight:700;letter-spacing:.22em;
+  text-transform:uppercase;color:var(--ink);
+  font-variant-numeric:tabular-nums;
+}
+.log-tag{
+  font-family:var(--narrow);
+  font-size:9px;font-weight:700;letter-spacing:.22em;
+  text-transform:uppercase;padding:3px 7px;
+  display:inline-block;line-height:1.3;width:fit-content;
+}
+.log-tag.model{background:var(--orange);color:var(--paper)}
+.log-tag.api{background:var(--ink);color:var(--paper)}
+.log-tag.code{background:#3a3a3a;color:var(--paper)}
+.log-tag.apps{background:#5a5a5a;color:var(--paper)}
+.log-tag.sdk-py,.log-tag.sdk-ts{background:var(--paper);color:var(--ink);border:1px solid var(--ink)}
+.log-tag.research,.log-tag.news{background:var(--paper);color:var(--muted);border:1px solid var(--hair-hard)}
+.log-tag.deprecation{background:var(--paper-shadow);color:var(--muted);border:1px solid var(--hair-hard)}
+.log-entry-title{
+  font-family:var(--disp);font-weight:500;
+  font-variation-settings:"opsz" 72;
+  font-size:20px;letter-spacing:-.012em;
+  color:var(--ink);line-height:1.25;
+  margin-bottom:10px;
+}
+.log-entry-title a{color:inherit;text-decoration:none;border-bottom:1px solid var(--hair-hard)}
+.log-entry-title a:hover{border-bottom-color:var(--orange);color:var(--orange)}
+.log-entry-body{
+  font-family:var(--sans);font-size:14.5px;line-height:1.6;color:var(--body);
+  margin-bottom:12px;
+}
+.log-entry-how{
+  font-family:var(--sans);font-size:13.5px;line-height:1.6;color:var(--muted);
+  padding-top:12px;border-top:1px solid var(--hair-soft);
+}
+.log-entry-how b{font-family:var(--narrow);font-size:10px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--ink);display:block;margin-bottom:6px}
+.log-entry-how code{font-family:var(--mono);font-size:.86em;background:var(--paper-shadow);padding:1px 6px;border-radius:3px;color:var(--ink)}
+.log-entry-why{
+  font-family:var(--disp);font-style:italic;
+  font-size:14px;color:var(--muted);line-height:1.55;
+  margin-top:10px;padding-left:14px;
+  border-left:2px solid var(--orange);
+}
+.log-entry-why b{font-style:normal;font-family:var(--narrow);font-size:10px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--orange);display:block;margin-bottom:4px}
+
+@media(max-width:720px){
+  .log-entry{grid-template-columns:1fr;gap:12px}
+  .log-cat-head{grid-template-columns:auto 1fr}
+  .log-cat-count{grid-column:1 / -1;text-align:left;padding-top:8px;border-top:1px solid var(--hair)}
+}
+
+.colophon{
+  background:var(--ink);color:var(--paper);
+  padding:80px 28px 64px;
+  border-top:2px solid var(--orange);
+}
+.colophon-inner{
+  max-width:1280px;margin:0 auto;
+  display:grid;grid-template-columns:repeat(12,1fr);gap:32px;
+}
+.colophon-mast{
+  grid-column:1 / span 5;
+}
+.colophon-word{
+  font-family:var(--disp);font-weight:500;
+  font-variation-settings:"opsz" 144;
+  font-size:clamp(72px,10vw,120px);
+  line-height:.9;letter-spacing:-.04em;color:var(--paper);
+}
+.colophon-word .dot{color:var(--orange)}
+.colophon-tag{
+  margin-top:14px;
+  font-family:var(--disp);font-style:italic;font-size:18px;
+  color:rgba(250,250,247,.65);line-height:1.4;max-width:360px;
+}
+
+.colophon-body{
+  grid-column:6 / -1;
+  display:grid;grid-template-columns:repeat(3,1fr);gap:32px;
+}
+.colophon-col h4{
+  font-family:var(--narrow);
+  font-size:10px;font-weight:700;letter-spacing:.32em;
+  text-transform:uppercase;color:var(--orange);
+  margin-bottom:12px;padding-bottom:10px;
+  border-bottom:1px solid rgba(250,250,247,.2);
+}
+.colophon-col p,.colophon-col li{
+  font-family:var(--sans);font-size:13px;line-height:1.6;
+  color:rgba(250,250,247,.75);
+  margin-bottom:8px;list-style:none;
+}
+.colophon-col b{color:var(--paper);font-weight:600}
+.colophon-col em{font-style:italic;color:rgba(250,250,247,.9)}
+
+.colophon-foot{
+  grid-column:1 / -1;
+  margin-top:32px;padding-top:24px;
+  border-top:1px solid rgba(250,250,247,.2);
+  display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap;
+  font-family:var(--narrow);font-size:10px;font-weight:600;
+  letter-spacing:.28em;text-transform:uppercase;color:rgba(250,250,247,.5);
+}
+.colophon-foot b{color:var(--paper);font-weight:700}
+.colophon-foot .hot{color:var(--orange)}
+
+@media(max-width:860px){
+  .colophon-mast,.colophon-body{grid-column:1 / -1}
+  .colophon-body{grid-template-columns:1fr;gap:24px}
+}
+
+/* ---- Weekly-specific ---- */
+.weekly-header{
+  padding:64px 28px 48px;
+  max-width:1280px;margin:0 auto;
+  border-bottom:1px solid var(--ink);
+}
+.weekly-kicker{
+  font-family:var(--narrow);
+  font-size:10px;font-weight:700;letter-spacing:.38em;
+  text-transform:uppercase;color:var(--orange);
+  margin-bottom:20px;
+}
+.weekly-masthead{
+  font-family:var(--disp);font-weight:500;
+  font-variation-settings:"opsz" 144;
+  font-size:clamp(72px,14vw,192px);
+  line-height:.86;letter-spacing:-.04em;
+  color:var(--ink);
+  margin-bottom:28px;
+}
+.weekly-masthead .dot{color:var(--orange);display:inline-block}
+.weekly-cover-line{
+  font-family:var(--disp);font-style:italic;font-weight:400;
+  font-variation-settings:"opsz" 72;
+  font-size:clamp(22px,3.4vw,42px);
+  line-height:1.15;letter-spacing:-.015em;
+  color:var(--ink);
+  max-width:820px;
+  margin-bottom:28px;
+}
+.weekly-dateline{
+  font-family:var(--narrow);
+  font-size:11px;font-weight:600;letter-spacing:.28em;
+  text-transform:uppercase;color:var(--muted);
+  display:flex;gap:24px;flex-wrap:wrap;
+  padding-top:24px;
+  border-top:1px solid var(--hair);
+}
+.weekly-dateline span b{color:var(--ink)}
+
+.also-item{
+  padding:28px 0;
+  border-bottom:1px solid var(--hair);
+}
+.also-item:last-child{border-bottom:none}
+.also-item-kicker{
+  font-family:var(--narrow);
+  font-size:9px;font-weight:700;letter-spacing:.32em;
+  text-transform:uppercase;color:var(--orange);
+  margin-bottom:8px;
+}
+.also-item-title{
+  font-family:var(--disp);font-weight:600;
+  font-variation-settings:"opsz" 72;
+  font-size:22px;letter-spacing:-.015em;
+  color:var(--ink);margin-bottom:12px;line-height:1.2;
+}
+.also-item-body{
+  font-family:var(--disp);
+  font-variation-settings:"opsz" 14;
+  font-size:17px;line-height:1.6;color:var(--body);
+  max-width:680px;
+}
+.also-item-body a{color:var(--ink);border-bottom:1px solid var(--hair-hard);text-decoration:none}
+.also-item-body a:hover{color:var(--orange);border-bottom-color:var(--orange)}
+.also-item-source{
+  margin-top:8px;
+  font-family:var(--narrow);font-size:10px;font-weight:600;
+  letter-spacing:.2em;text-transform:uppercase;color:var(--gray);
+}
+.also-item-source a{color:inherit;border-bottom:1px solid currentColor;text-decoration:none}
+.also-item-source a:hover{color:var(--orange)}
+
+.ornament{
+  text-align:center;margin:64px auto;
+  font-family:var(--disp);font-size:16px;color:var(--hair-hard);
+  letter-spacing:1.2em;
+}
+
+@media(max-width:600px){
+  .section,.log-section,.feature-opener,.prose-well{padding-left:20px;padding-right:20px}
+  .weekly-header{padding:40px 20px 36px}
+}
+</style>
+
+</head>
+<body>
+
+<nav class="pub-bar">
+  <div class="pub-bar-left">
+    <span class="pub-bar-mark">Shipped<span class="dot">.</span></span>
+    <span class="pub-bar-sep pub-bar-hide-sm"></span>
+    <span class="pub-bar-meta pub-bar-hide-sm">Daily, Frontier</span>
+    <span class="pub-bar-sep pub-bar-hide-sm"></span>
+    <span class="pub-bar-meta pub-bar-hide-sm"><a href="https://id8labs.app" class="pub-bar-link">id8Labs</a></span>
+  </div>
+  <div class="pub-bar-right">
+    <span class="pub-bar-folio pub-bar-hide-sm"><b>Oct 27</b></span>
+    <span class="pub-bar-sep pub-bar-hide-sm"></span>
+    <span class="pub-bar-meta pub-bar-hide-sm">Oct 26 to Oct 27</span>
+    <a href="#subscribe" class="pub-bar-cta">Subscribe</a>
+  </div>
+</nav>
+
+<header class="weekly-header">
+  <div class="weekly-kicker">Daily, Frontier, Six Labs, One Feed</div>
+  <div class="weekly-masthead">Shipped<span class="dot">.</span></div>
+  <div class="weekly-cover-line">Anthropic files for an IPO; OpenAI cuts its computer-use model price in half.</div>
+  <div class="weekly-dateline">
+    <span><b>Date</b> Tuesday, October 27, 2026</span>
+    <span><b>Window</b> Oct 26 to Oct 27</span>
+    <span><b>Labs</b> Anthropic, OpenAI, Google DeepMind, xAI</span>
+    <span><b>Published by</b> id8Labs</span>
+  </div>
+</header>
+
+<section class="open-section">
+  <div class="section">
+    <div class="section-folio">
+      <div class="section-folio-left">
+        <div class="folio"><div class="ruler"></div><b>The Open</b></div>
+      </div>
+      <div class="section-folio-sub">Setting the day</div>
+    </div>
+    <div class="open-grid">
+      <div class="open-lead">
+        <div class="open-quote">Monday, 8 AM. The S-1 hit the SEC wire before the markets <em>opened</em>.</div>
+        <div class="open-prose">
+          <p>Anthropic has been doing something quietly for two years: growing faster than any of its competitors wanted to believe. $16.3 billion in first-half revenue. That number went public Monday when the company filed its Form S-1 with the Securities and Exchange Commission, proposing a Nasdaq listing under ticker &#x201c;ANT.&#x201d; Goldman Sachs and Morgan Stanley are underwriting. The shares and the price range are not yet set.</p>
+          <p>What is set: the scrutiny that comes with being a public company, and the question of whether a public-benefit corporation structure can survive quarterly earnings calls from analysts who do not have long-term benefit as their mandate.</p>
+          <p>The test starts now.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="feature-opener">
+  <div class="vert-label">Lead Story<span class="vert-num">01</span></div>
+  <div class="feature-heading">
+    <div class="feature-kicker">Anthropic / IPO Filing</div>
+    <h2 class="feature-title">The Numbers<br>Were Always<br><em>There</em></h2>
+    <div class="feature-deck">Anthropic files its S-1. The financials explain why the company has been so confident for so long.</div>
+    <div class="feature-meta">
+      <span><b>Lab</b> Anthropic</span> &nbsp;&nbsp;
+      <span><b>Date</b> Oct 26, 2026</span> &nbsp;&nbsp;
+      <span><b>Tag</b> NEWS</span> &nbsp;&nbsp;
+      <span><b>Source</b> <a href="https://www.anthropic.com/news/s1-sec">anthropic.com</a></span>
+    </div>
+  </div>
+  <div class="feature-right">
+    <span class="feature-right-label">By the Numbers</span>
+    $16.3B H1 2026 revenue<br>
+    ~$1.2B H1 2025 revenue<br>
+    $80.7B net loss (non-cash)<br>
+    $417B compute commitments<br>
+    Nasdaq ticker: ANT<br>
+    Underwriters: GS &amp; MS
+  </div>
+</div>
+<div class="prose-well">
+  <div class="prose-marginalia">Lead Story / Anthropic IPO</div>
+  <div class="prose drop-cap drop-cap-orange">
+    <p>The headline figure in the S-1 is the net loss: $80.7 billion. That sounds terminal until you read what it actually is. The vast majority of that figure is non-cash accounting charges, plus $417 billion in long-term compute commitments that run out over years. The cash story is a different document entirely: $16.3 billion in first-half 2026 revenue, against roughly $1.2 billion in first-half 2025. One year. Roughly thirteen times.</p>
+    <p>That growth rate is what Wall Street is pricing, not the accounting line.</p>
+    <p>The S-1 tells you how Anthropic got here: enterprise customers who needed Claude at scale, and a twelve-month window when every large organization discovered that not having an AI strategy was itself a strategy, and not a survivable one. The revenue trajectory is the kind that makes underwriters patient about timing. A prior confidential S-1 went in on June 1, 2026. The public filing landed October 26. The gap is four months and change. A potential listing in November would be fast, even by 2026 standards.</p>
+    <p>The $417 billion in compute commitments is the more interesting number. That is not a line item about this quarter. That is a statement about what Anthropic believes frontier training costs will look like over the next several years, and how much it is willing to commit to being at the frontier when those bills come due. It is a bet that the economics of inference do not converge fast enough to undermine the case for training at scale. You can disagree with the bet. You cannot pretend it is a small one.</p>
+    <p>The public-benefit corporation structure is the test no other AI lab has run. Anthropic&#x2019;s charter includes a Long-Term Benefit Trust with a majority of board seats aligned to the mission, not to shareholder return. On paper, that structure survives a public listing intact. In practice, it survives until the first quarter where the market wants an answer the charter does not permit, and the board has to decide whether the structure holds or bends. That quarter has not happened yet. The S-1 is the moment the countdown starts.</p>
+    <p>The contrast with OpenAI is direct. OpenAI took a $300 billion valuation in January via a SoftBank deal, a number self-reported through a term sheet with no audited revenue attached. Anthropic&#x2019;s S-1 puts the actual revenue trajectory on the table for anyone with a Bloomberg terminal to verify. The gap between these two companies in revenue, in API penetration, and in enterprise adoption is narrowing faster than the private valuation memos suggested. The public filing is the proof.</p>
+    <p>For builders, nothing changes this week. Your API keys still work. The pricing is unchanged. But the governance disclosures in the S-1 are worth reading carefully: specifically the sections on who controls the company and what the charter permits them to optimize for. The answer is not &#x201c;maximize shareholder return.&#x201d; Whether that holds after the first earnings miss is the question every builder depending on Claude&#x2019;s API roadmap now has an interest in tracking.</p>
+    <p>Ticker ANT. Keep watching.</p>
+  </div>
+</div>
+
+<section class="section">
+  <div class="section-folio">
+    <div class="section-folio-left">
+      <div class="folio"><div class="ruler"></div><b>Also Shipped</b></div>
+    </div>
+    <div class="section-folio-sub">More from the frontier</div>
+  </div>
+
+  <div class="also-item">
+    <div class="also-item-kicker">OpenAI / Models</div>
+    <div class="also-item-title">OpenAI Cuts Its Computer-Use Model Price in Half</div>
+    <div class="also-item-body">
+      <p>OpenAI launched <code>gpt-6.1-terra</code> on October 26, a multimodal computer-use model available in the API and in ChatGPT for Work, Codex, and Plus/Pro/Enterprise/Edu subscribers. Pricing: $1 per million input tokens, $0.05 per million cached input tokens, $5 per million output tokens. That is 50% lower than GPT-5.6 Terra.</p>
+      <p>The model scores 15 percentage points higher than GPT-5.6 Terra on Agents&#x2019; Last Exam at medium reasoning effort. It also carries a Critical cybersecurity capability rating under OpenAI&#x2019;s Preparedness Framework, the first model OpenAI has shipped with that designation.</p>
+      <p>The timing is not accidental. The week Anthropic opens its books to public scrutiny, OpenAI cuts its flagship computer-use model price in half and pushes it to every paying tier. One company is writing an IPO prospectus. The other is repricing the market before the prospectus has time to frame expectations. That is the correct competitive response, and it tells you that OpenAI read the room before the S-1 dropped.</p>
+    </div>
+    <div class="also-item-source"><em>Source: multiple secondary outlets including BleepingComputer, gHacks, 9to5Mac; primary openai.com page located but not directly fetchable at sweep time.</em></div>
+  </div>
+
+  <div class="also-item">
+    <div class="also-item-kicker">Anthropic / Government</div>
+    <div class="also-item-title">Claude Gets a GSA Contract: Forty Percent Off for Every Level of Government</div>
+    <div class="also-item-body">
+      <p>Anthropic announced October 27 a 40% discount on Claude Enterprise, Claude for Government, and the Claude API for all levels of U.S. government, including federal, state, local, tribal, and territorial, via the GSA Multiple Award Schedule. Estimated $1 billion in savings. No minimum spend commitment.</p>
+      <p>Direct Anthropic purchase is available now. Cloud provider coverage through Bedrock and Vertex is coming in the following months. Claude for Government holds FedRAMP High authorization. IL4 and IL5 Department of Defense authorization runs through Bedrock.</p>
+      <p>The government-AI procurement fight has been running quietly for two years. What changes with a GSA vehicle is the friction: any agency that uses GSA can now put Claude in a budget line without a separate procurement fight. The blast radius is every agency that wanted to move but was waiting for the paperwork to be simpler. That is most of them.</p>
+    </div>
+    <div class="also-item-source"><a href="https://www.anthropic.com/news/expanding-partnership-gsa">anthropic.com/news/expanding-partnership-gsa</a></div>
+  </div>
+
+  <div class="also-item">
+    <div class="also-item-kicker">Anthropic / Research</div>
+    <div class="also-item-title">Anthropic&#x2019;s Drug Trials Are Producing Numbers</div>
+    <div class="also-item-body">
+      <p>The research memo that dropped October 27 is not a paper. It is an operational status report from six drug development partnerships that are already producing results.</p>
+      <p>Generate Biomedicines used Claude Code to redesign a CAR T-cell therapy targeting solid tumors. CAR T constructs are complex genetic programs encoded in a vector; shorter constructs pack more efficiently, reduce manufacturing failure rates, and deliver more reliably to the target cell. The best design from the Claude-assisted run came in roughly 70% shorter, with better lab performance. Divergence Labs ran approximately 35,000 antibody designs in about a month for a food allergy treatment, searching for molecules that displace IgE at the receptor. Twenty hits. Three outperforming the standard medication. BigHat Biosciences ran 1,010 antibody variants over ten weeks; the best versions showed 10x tighter binding.</p>
+      <p>Enveda ran a regulatory document review. Claude caught all 11 issues human reviewers found, plus 7 more. Review time down 89%. A full regulatory submission drafted in 4 hours against a baseline of approximately 3 months.</p>
+      <p>Anthropic also acquired Mithril Medicine. A muscular dystrophy treatment concept reached mouse results in under 18 months. Potential human trials: late 2028.</p>
+      <p>This is the first time a foundation model lab has published drug development results at operational scale, with actual binding numbers, actual timelines, and an actual acquisition. Not a proof of concept. A pipeline.</p>
+    </div>
+    <div class="also-item-source"><a href="https://www.anthropic.com/research/early-progress-drug-development">anthropic.com/research/early-progress-drug-development</a></div>
+  </div>
+
+  <div class="also-item">
+    <div class="also-item-kicker">Google DeepMind / Research</div>
+    <div class="also-item-title">DeepMind Opens a Window Into Its World Model</div>
+    <div class="also-item-body">
+      <p>Google DeepMind opened a limited research preview of Genie 4 on October 27. New capabilities: native audio generation including music, ambient sound, and dialogue; real-time mid-simulation steering letting you change weather, camera angle, and character placement while the world runs; scenes that hold coherence for approximately two minutes. Gemini models handle the reasoning layer and robotics task decomposition inside the simulation.</p>
+      <p>A wider rollout to Google AI Ultra subscribers and Gemini API early access partners is planned in the coming weeks. No developer pricing or API model identifier has been published.</p>
+      <p>The distinction worth tracking is what kind of object Genie 4 is. Video generators render clips. Genie renders navigable spaces. That distinction is narrow for a consumer demo and wide for robotics training, where the ability to steer a simulation mid-run is the point. With Genie 4, the argument has audio and real-time controls behind it.</p>
+    </div>
+    <div class="also-item-source"><em>Confirmed via TechCrunch and multiple secondary outlets, Oct 27; deepmind.google primary page not available at sweep time.</em></div>
+  </div>
+</section>
+
+<div class="quiet-section">
+  <div class="quiet-head">
+    <div class="quiet-kicker">Signals</div>
+    <div class="quiet-title">Quiet on<br>the <em>Wire</em></div>
+  </div>
+  <div class="quiet-body">
+    <p>OpenAI made extraordinary mathematics claims this week: a disproof of the Exponential Time Hypothesis, a proof of the local smoothing conjecture for the wave equation, and an existence proof for Yang-Mills theory in four dimensions. OpenAI committed to publishing raw data and funding a conference for independent verification. These claims have not been confirmed by independent mathematicians as of this writing. The right response to extraordinary unverified mathematical claims is to wait for the verification, not to announce the implications of proofs before anyone has checked the proofs.</p>
+    <p><strong>Mistral Large 4</strong>, a reported one-trillion-parameter mixture-of-experts model with 52 billion active parameters, was expected by end of October. Mistral&#x2019;s wire was quiet during this window. Watch the next 48 hours.</p>
+    <p>In the UK, Labour MP Jess Asato filed suit against xAI in England over sexualized images allegedly generated by Grok, seeking damages and a system-change order. More than 12,000 messages of support reported. xAI has not responded publicly.</p>
+  </div>
+</div>
+
+<section class="close-section">
+  <div class="close-kicker">The Close / Oct 27, 2026</div>
+  <div class="close-stack">
+    <div class="close-line">Anthropic put its numbers on the table.</div>
+    <div class="close-line">The numbers are very good.</div>
+    <div class="close-coda-start">
+      <div class="close-final">The frontier is not a research project anymore.</div>
+    </div>
+  </div>
+  <div class="close-mark">&#x25cf;</div>
+</section>
+
+<div class="log-divider" id="log">
+  <div class="log-divider-kicker">Release Log</div>
+  <h2 class="log-divider-title">Oct 26<br><em>to</em> Oct 27</h2>
+  <div class="log-divider-sub">Every confirmed release from the frontier labs in this window, grouped A to C. Items that did not make the front-of-book are here as one-liners.</div>
+</div>
+
+<div class="log-section">
+  <div class="log-cat-head">
+    <div class="log-cat-name">A. Models</div>
+    <div class="log-cat-count"><b>1</b>release</div>
+  </div>
+  <div class="log-cat-deck">OpenAI&#x2019;s computer-use flagship repriced at half the cost of its predecessor.</div>
+  <div class="log-entries">
+    <div class="log-entry">
+      <div class="log-entry-left">
+        <div class="log-entry-date">2026-10-26</div>
+        <span class="log-tag model">MODEL</span>
+      </div>
+      <div>
+        <div class="log-entry-title"><a href="https://openai.com/index/introducing-gpt-6-1-terra/">GPT-6.1 Terra</a></div>
+        <div class="log-entry-body">OpenAI&#x2019;s latest multimodal computer-use model. API: <code>gpt-6.1-terra</code>. Pricing: $1/M input, $0.05/M cached, $5/M output (50% lower than GPT-5.6 Terra). 15pp higher on Agents&#x2019; Last Exam at medium reasoning effort. First OpenAI model with a Critical cybersecurity capability rating under its Preparedness Framework. Available across all paid ChatGPT tiers.</div>
+        <div class="log-entry-how"><b>How to use</b> <code>client.chat.completions.create(model="gpt-6.1-terra", ...)</code>. Computer-use tool spec activates the capability. <em>(Primary openai.com page located but not directly fetchable at sweep time; confirmed via multiple secondary outlets.)</em></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="log-section">
+  <div class="log-cat-head">
+    <div class="log-cat-name">B. Research</div>
+    <div class="log-cat-count"><b>2</b>releases</div>
+  </div>
+  <div class="log-cat-deck">Anthropic&#x2019;s drug development pipeline publishes operational results. DeepMind previews its world model.</div>
+  <div class="log-entries">
+    <div class="log-entry">
+      <div class="log-entry-left">
+        <div class="log-entry-date">2026-10-27</div>
+        <span class="log-tag research">RESEARCH</span>
+      </div>
+      <div>
+        <div class="log-entry-title"><a href="https://www.anthropic.com/research/early-progress-drug-development">Early progress on accelerating drug development with Claude</a></div>
+        <div class="log-entry-body">Operational update from six drug development partnerships. CAR T-cell therapy redesign (70% shorter construct, better lab performance). ~35,000 antibody designs in one month for food allergy treatment (20 IgE-displacing hits, 3 outperforming standard medication). 1,010 antibody variants in 10 weeks at 10x tighter binding. Regulatory review cutting time 89% and catching 7 issues human reviewers missed. Anthropic acquired Mithril Medicine; muscular dystrophy treatment from concept to mouse results in under 18 months, potential human trials late 2028.</div>
+        <div class="log-entry-why"><b>Why it matters</b> First operational-scale drug development results from a foundation model lab: specific binding numbers, specific timelines, an actual acquisition.</div>
+      </div>
+    </div>
+    <div class="log-entry">
+      <div class="log-entry-left">
+        <div class="log-entry-date">2026-10-27</div>
+        <span class="log-tag research">RESEARCH</span>
+      </div>
+      <div>
+        <div class="log-entry-title"><a href="https://deepmind.google/discover/blog/">Genie 4 world model research preview (Google DeepMind)</a></div>
+        <div class="log-entry-body">Limited research preview of Genie 4. New: native audio (music, ambient, dialogue), real-time mid-simulation steering (weather, camera, characters), ~2 minutes of scene coherence. Gemini handles reasoning and robotics task decomposition. Wider rollout to Google AI Ultra and Gemini API early access partners coming. No API model ID or developer pricing published. <em>(Confirmed via TechCrunch and multiple secondary outlets; deepmind.google primary page not available at sweep time.)</em></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="log-section">
+  <div class="log-cat-head">
+    <div class="log-cat-name">C. News</div>
+    <div class="log-cat-count"><b>3</b>releases</div>
+  </div>
+  <div class="log-cat-deck">Anthropic IPO filing, a government pricing deal, and a UK legal action against xAI.</div>
+  <div class="log-entries">
+    <div class="log-entry">
+      <div class="log-entry-left">
+        <div class="log-entry-date">2026-10-26</div>
+        <span class="log-tag news">NEWS</span>
+      </div>
+      <div>
+        <div class="log-entry-title"><a href="https://www.anthropic.com/news/s1-sec">Anthropic files Form S-1 with the SEC</a></div>
+        <div class="log-entry-body">Anthropic, PBC filed a Form S-1 for a proposed Nasdaq IPO under ticker &#x201c;ANT.&#x201d; Goldman Sachs and Morgan Stanley underwriting. Share count and price not yet set. Confidential S-1 submitted June 1, 2026. From secondary coverage: ~$16.3B revenue H1 2026 (versus ~$1.2B H1 2025), $80.7B net loss (predominantly non-cash), ~$417B future compute commitments. Potential listing as early as November 2026.</div>
+        <div class="log-entry-why"><b>Why it matters</b> First major foundation model lab proposing a public listing. PBC structure with Long-Term Benefit Trust controlling board majority. Whether mission-alignment survives quarterly earnings scrutiny is the test this filing initiates.</div>
+      </div>
+    </div>
+    <div class="log-entry">
+      <div class="log-entry-left">
+        <div class="log-entry-date">2026-10-27</div>
+        <span class="log-tag news">NEWS</span>
+      </div>
+      <div>
+        <div class="log-entry-title"><a href="https://www.anthropic.com/news/expanding-partnership-gsa">Anthropic expands GSA partnership for government access</a></div>
+        <div class="log-entry-body">40% discount on Claude Enterprise, Claude for Government, and the Claude API for all U.S. government levels via GSA Multiple Award Schedule. Estimated $1B in savings. No minimum spend. Direct purchase now; Bedrock and Vertex in subsequent months. Claude for Government: FedRAMP High. IL4/IL5 DoD authorization via Bedrock.</div>
+        <div class="log-entry-how"><b>How to use</b> Purchase through GSA Multiple Award Schedule. Contact Anthropic government sales or the GSA portal.</div>
+      </div>
+    </div>
+    <div class="log-entry">
+      <div class="log-entry-left">
+        <div class="log-entry-date">2026-10-27</div>
+        <span class="log-tag news">NEWS</span>
+      </div>
+      <div>
+        <div class="log-entry-title"><a href="https://tokenpost.com/news/regulation/42094">UK MP files suit against xAI over Grok-generated images</a></div>
+        <div class="log-entry-body">UK Labour MP Jess Asato filed suit against xAI in England over sexualized images allegedly generated by Grok, seeking damages and a system-change order. More than 12,000 messages of support reported. xAI has not responded publicly. <em>(TokenPost secondary source; primary court filing not yet available.)</em></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer class="colophon">
+  <div class="colophon-inner">
+    <div class="colophon-mast">
+      <div class="colophon-word">Shipped<span class="dot">.</span></div>
+      <div class="colophon-tag">Daily frontier coverage from the six labs shaping AI.</div>
+    </div>
+    <div class="colophon-body">
+      <div class="colophon-col">
+        <h4>This Edition</h4>
+        <p><b>Date</b> Tuesday, October 27, 2026</p>
+        <p><b>Window</b> Oct 26 to Oct 27</p>
+        <p><b>Labs</b> Anthropic, OpenAI, Google DeepMind, xAI</p>
+        <p><b>Items</b> 6 confirmed</p>
+      </div>
+      <div class="colophon-col">
+        <h4>Published by</h4>
+        <p><b>id8Labs</b></p>
+        <p><a href="https://id8labs.app/shipped" class="colophon-link">id8labs.app/shipped</a></p>
+        <p>Daily digest at 9 PM ET. Weekly magazine every Friday.</p>
+      </div>
+      <div class="colophon-col">
+        <h4>About Shipped.</h4>
+        <p>A daily and weekly magazine on what the frontier AI labs are shipping. Six labs. One feed. Anthropic anchor.</p>
+        <p><em>Rolling Stone meets Wired.</em></p>
+      </div>
+    </div>
+    <div class="colophon-foot">
+      <span><b>Shipped.</b> Daily</span>
+      <span>Tuesday, October 27, 2026</span>
+      <span>id8Labs</span>
+      <span class="hot">id8labs.app/shipped</span>
+    </div>
+  </div>
+</footer>
+
+<!-- ═════════════════════════════════════════
+     SUBSCRIBE BLOCK: daily / weekly / monthly pages
+     ═════════════════════════════════════════
+
+     The single source of truth for the subscribe form on pages published to
+     the daily-pages branch (served from eddiebelaval.github.io). Injected at
+     the end of the document by render-daily.py and render-monthly.py, and
+     backfilled into already-published pages by scripts/backfill-subscribe.py.
+
+     Do not write a literal closing body or html tag anywhere in this file,
+     including in this comment. The injectors locate their anchor by counting
+     those tags, and a copy inside a comment (invisible to a browser, which
+     skips comments) makes a patched page look malformed to the next tool that
+     parses it.
+
+     Two things differ from the issue-page block in template.html:
+
+       1. The POST URL is ABSOLUTE. These pages are served from github.io, not
+          id8labs.app, so a relative /api/... path would hit GitHub Pages and
+          404. The subscribe route allows this origin explicitly in CORS_ORIGINS
+          (if that list ever changes, this form breaks silently.)
+
+       2. shipped-daily is substituted per page type (shipped-daily,
+          shipped-weekly, shipped-monthly) for attribution. It MUST keep the
+          "shipped" prefix: the API only merges a reader onto the Shipped. list
+          when the source starts with it.
+-->
+<style>
+  /* Spine CTA. Lives here rather than in <head> because two published pages
+     are truncated and have no </head> to inject into; CSS applies document-wide
+     from anywhere, so the end of <body> is the one anchor every page has.
+     Only takes effect on pages that actually carry a pub-bar. */
+  .pub-bar-cta{
+    display:inline-block;
+    background:var(--ink, #0b0b0b);
+    color:var(--paper, #fafaf7);
+    text-decoration:none;
+    border:1px solid var(--ink, #0b0b0b);
+    border-radius:10px;
+    font-family:var(--narrow, 'Archivo Narrow','Archivo',system-ui,sans-serif);
+    font-weight:700;
+    font-size:11px;
+    letter-spacing:.2em;
+    text-transform:uppercase;
+    padding:6px 14px;
+    transition:background .15s ease,border-color .15s ease;
+  }
+  .pub-bar-cta:hover{
+    background:var(--orange, #ff6b35);
+    border-color:var(--orange, #ff6b35);
+    color:var(--ink, #0b0b0b);
+  }
+  @media (max-width:720px){
+    .pub-bar-hide-sm{display:none}
+    .pub-bar-cta{padding:5px 10px;letter-spacing:.12em}
+  }
+
+  .ship-sub {
+    background: var(--ink, #0b0b0b);
+    color: var(--paper, #fafaf7);
+    padding: 72px 64px;
+    margin: 56px auto;
+    max-width: 1280px;
+    text-align: center;
+    /* clears the sticky pub-bar when jumped to from the top CTA */
+    scroll-margin-top: 64px;
+  }
+  .ship-sub-kicker {
+    font-family: var(--narrow, 'Archivo Narrow','Archivo',system-ui,sans-serif);
+    font-weight: 700;
+    font-size: 12px;
+    letter-spacing: .25em;
+    text-transform: uppercase;
+    color: var(--orange, #ff6b35);
+    margin-bottom: 18px;
+  }
+  .ship-sub h3 {
+    font-family: var(--disp, 'Fraunces',Georgia,serif);
+    font-weight: 600;
+    font-style: italic;
+    font-size: clamp(26px, 3.6vw, 40px);
+    line-height: 1.15;
+    margin: 0 0 16px;
+    color: var(--paper, #fafaf7);
+  }
+  .ship-sub p {
+    font-family: var(--sans, 'Archivo',system-ui,sans-serif);
+    font-size: 15px;
+    line-height: 1.6;
+    color: rgba(250,250,247,.72);
+    max-width: 560px;
+    margin: 0 auto 28px;
+  }
+  .ship-sub-form {
+    display: flex;
+    flex-direction: column;
+    max-width: 480px;
+    margin: 0 auto;
+  }
+  .ship-sub-row {
+    display: flex;
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.12);
+    transition: border-color .15s;
+  }
+  .ship-sub-row:focus-within { border-color: var(--orange, #ff6b35); }
+  .ship-sub-form input[type="email"] {
+    flex: 1;
+    background: transparent;
+    border: none;
+    outline: none;
+    color: var(--paper, #fafaf7);
+    font-family: var(--sans, 'Archivo',system-ui,sans-serif);
+    font-size: 15px;
+    padding: 16px 20px;
+    -webkit-appearance: none;
+    min-width: 0;
+  }
+  .ship-sub-form input::placeholder { color: rgba(250,250,247,.4); }
+  /* Honeypot: off-screen rather than display:none, so naive bots still fill it */
+  .ship-sub-hp {
+    position: absolute !important;
+    left: -9999px !important;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+  }
+  .ship-sub-form button {
+    background: var(--orange, #ff6b35);
+    color: var(--ink, #0b0b0b);
+    border: none;
+    font-family: var(--narrow, 'Archivo Narrow','Archivo',system-ui,sans-serif);
+    font-weight: 700;
+    font-size: 12px;
+    letter-spacing: .2em;
+    text-transform: uppercase;
+    padding: 0 28px;
+    cursor: pointer;
+    transition: background .15s;
+    white-space: nowrap;
+  }
+  .ship-sub-form button:hover { background: #ff5722; }
+  .ship-sub-form button:disabled { opacity: .5; cursor: wait; }
+  .ship-sub-cadences {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    margin-top: 16px;
+  }
+  .ship-sub-cadence {
+    font-family: var(--narrow, 'Archivo Narrow','Archivo',system-ui,sans-serif);
+    font-size: 11px;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    color: rgba(250,250,247,.66);
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    cursor: pointer;
+  }
+  .ship-sub-cadence input { accent-color: var(--orange, #ff6b35); cursor: pointer; }
+  .ship-sub-status {
+    margin-top: 16px;
+    font-family: var(--sans, 'Archivo',system-ui,sans-serif);
+    font-size: 14px;
+    color: var(--orange, #ff6b35);
+    min-height: 20px;
+  }
+  .ship-sub-status.error { color: #ff8b6b; }
+  @media (max-width: 540px) {
+    .ship-sub { padding: 48px 22px; margin: 28px auto; }
+    .ship-sub-cadences { gap: 14px; }
+  }
+</style>
+<section class="ship-sub" id="subscribe">
+  <div class="ship-sub-kicker">Stay on the frontier</div>
+  <h3>Get <em>Shipped.</em> in your inbox.</h3>
+  <p>Daily digest at 9 PM ET. Weekly magazine every Friday morning. Six labs, one feed. No spam, one-click unsubscribe.</p>
+  <form class="ship-sub-form" id="ship-sub-form">
+    <div class="ship-sub-row">
+      <input type="email" name="email" placeholder="your@email.com" required autocomplete="email" aria-label="Email address">
+      <button type="submit" id="ship-sub-btn">Subscribe &#x2192;</button>
+    </div>
+    <input type="text" name="website" class="ship-sub-hp" tabindex="-1" autocomplete="off" aria-hidden="true">
+    <div class="ship-sub-cadences">
+      <label class="ship-sub-cadence"><input type="checkbox" name="cadences" value="nightly" checked> Daily digest</label>
+      <label class="ship-sub-cadence"><input type="checkbox" name="cadences" value="weekly" checked> Weekly magazine</label>
+      <label class="ship-sub-cadence"><input type="checkbox" name="cadences" value="monthly"> Monthly roundup</label>
+    </div>
+  </form>
+  <div class="ship-sub-status" id="ship-sub-status" aria-live="polite"></div>
+</section>
+<script>
+(function () {
+  var form = document.getElementById('ship-sub-form');
+  if (!form) return;
+  var btn = document.getElementById('ship-sub-btn');
+  var status = document.getElementById('ship-sub-status');
+
+  form.addEventListener('submit', async function (e) {
+    e.preventDefault();
+    var data = new FormData(form);
+    var email = (data.get('email') || '').toString().trim();
+    if (!email) return;
+
+    var cadences = data.getAll('cadences').map(String);
+    status.className = 'ship-sub-status';
+    status.textContent = '';
+    btn.disabled = true;
+    btn.textContent = 'Subscribing…';
+
+    try {
+      var res = await fetch('https://id8labs.app/api/newsletter/subscribe', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          email: email,
+          source: 'shipped-daily',
+          website: (data.get('website') || '').toString(),
+          cadences: cadences.length ? cadences : ['nightly', 'weekly']
+        })
+      });
+      var body = await res.json().catch(function () { return {}; });
+      if (res.ok) {
+        status.textContent = body.isNewSubscriber === false
+          ? 'Already on the list.'
+          : 'You’re in. Next edition lands soon.';
+        if (body.isNewSubscriber !== false) form.reset();
+      } else {
+        status.className = 'ship-sub-status error';
+        status.textContent = body.error || 'Could not subscribe right now. Try again in a moment.';
+      }
+    } catch (err) {
+      status.className = 'ship-sub-status error';
+      status.textContent = 'Could not subscribe right now. Try again in a moment.';
+    } finally {
+      btn.disabled = false;
+      btn.textContent = 'Subscribe →';
+    }
+  });
+})();
+</script>
+
+</body>
+</html>
