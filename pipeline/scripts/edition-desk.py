@@ -452,7 +452,24 @@ def link_check(page, source_page, md_text):
     return out
 
 
-def source_parity(source_page, page, extra=""):
+def date_furniture(inside, date):
+    """The page's inside with the desk-generated date stamp blanked: the renderer prints the edition's own
+    date (frontmatter `date`; a weekly's Friday, a monthly's last day, which the routine never names) in
+    the top bar. Only that one element, only when its text is exactly that date; a story's figure that
+    happens to equal the day of the month stays in the scan."""
+    try:
+        d = datetime.date.fromisoformat(date)
+    except (TypeError, ValueError):
+        return inside
+    stamp = f"{d.strftime('%b')}\u00a0{d.day}, {d.year}"
+    return re.sub(r'(<span class="pub-bar-meta[^"]*">)\s*' + re.escape(stamp) + r'\s*(</span>)', r"\1\2", inside)
+
+
+def md_date(md_text):
+    return (re.search(r"^date:\s*(\S+)", md_text.split("---", 2)[1], re.M) or [None, ""])[1].strip('"')
+
+
+def source_parity(source_page, page, extra="", date=""):
     """Diff the ROUTINE page against the render: every block's full text (every number) and every link.
 
     A converter drop or a changed figure cannot hide behind edition.md this way.
@@ -541,7 +558,7 @@ def source_parity(source_page, page, extra=""):
             continue
         missing.append(f"link dropped from its words: '{text[:40]}' -> {href[:60]}")
     page_nums = {}
-    for n in NUM.findall(plain(inside)):
+    for n in NUM.findall(plain(date_furniture(inside, date))):
         page_nums[n] = page_nums.get(n, 0) + 1
     for n, c in want_nums.items():
         if page_nums.get(n, 0) < c:
@@ -603,16 +620,18 @@ def source_coverage(source_page, page):
     return missing
 
 
-def md_figures(md_text, page, extra=""):
+def md_figures(md_text, page, extra="", date=""):
     """The markdown route's figure check (source_parity's, against edition.md): a number inside the page
     the edition never printed is a changed figure. Dropped figures are caught by parity_gate's text match."""
     _, inside = split_front(page)
-    allowed = set(NUM.findall(md_plain(md_text) + " " + extra)) | CHROME_NUMS
+    _, head, body = md_text.split("---", 2)
+    head = re.sub(r"^(?:date|issue):.*$", "", head, flags=re.M)  # the desk's own stamps, not the routine's figures
+    allowed = set(NUM.findall(md_plain("---" + head + "---" + body) + " " + extra)) | CHROME_NUMS
     allowed |= {str(int(x)) for x in allowed if x.isdigit()}
     allowed |= set(re.findall(r'class="log-cat-count"><b>(\d+)</b>', page))
     for m in CHROME_PHRASES.finditer(plain(page)):
         allowed.add(next(g for g in m.groups() if g))
-    stray = sorted({n for n in NUM.findall(plain(inside)) if n not in allowed})
+    stray = sorted({n for n in NUM.findall(plain(date_furniture(inside, date))) if n not in allowed})
     return ["figures not in the edition: " + ", ".join(stray[:8])] if stray else []
 
 
@@ -764,11 +783,11 @@ def build(section, stem, st, want, dry, route="html"):
             src = ""
             # The deck, weather and title live in the frontmatter, not the body: the front may print them.
             front_extra = image_text(want, d / "images") + " " + md_text.split("---", 2)[1]
-            problems += md_figures(md_text, page, extra)
+            problems += md_figures(md_text, page, extra, md_date(md_text))
         else:
             src = (d / "source.html").read_text()
             front_extra = image_text(want, d / "images")
-            problems += source_parity(src, page, extra)
+            problems += source_parity(src, page, extra, md_date(md_text))
             problems += source_coverage(src, page)
         problems += image_gate(page, want, d / "images")
         problems += front_check(split_front(page)[0], src, md_text, front_extra)
