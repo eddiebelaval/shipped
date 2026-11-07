@@ -8,13 +8,44 @@ set -u
 MAIN="$HOME/Development/id8/shipped"
 WT="$HOME/Development/.worktrees/shipped/edition-desk"
 LOCK="$MAIN/ops/.edition-desk.lock"
-ALERT="$MAIN/ops/EDITION-DESK-LAUNCHER-ALERT.md"  # sticky: removed by hand once read; Night Desk escalates it nightly
+ALERT="$MAIN/ops/EDITION-DESK-LAUNCHER-ALERT.md"  # Night Desk escalates every "- " line in it
+FAILS="$MAIN/ops/.edition-desk-launcher-fails"    # one line per consecutive failed tick; a good tick deletes it
+FAIL_LIMIT=3                                      # failed ticks in a row (15 min at the 5-minute cadence) before escalating
 
+alert_header() {
+  [ -e "$ALERT" ] || printf '# Edition Desk launcher alert (runbook pipeline/EDITION-DESK.md)\n\n' > "$ALERT"
+}
+
+# Failure lines describe current state, so they go when the launcher recovers. Other lines (a stale lock
+# cleared after a crashed run) are events and stay until someone deletes the file.
+drop_failure_lines() {
+  [ -e "$ALERT" ] || return 0
+  grep -v -- 'launcher failed' "$ALERT" > "$ALERT.tmp"
+  mv "$ALERT.tmp" "$ALERT"
+  grep -q '^- ' "$ALERT" || rm -f "$ALERT"
+}
+
+clear_failures() {
+  rm -f "$FAILS"
+  drop_failure_lines
+}
+
+# One failed tick is logged and retried by the next tick. FAIL_LIMIT in a row escalates, and the alert
+# is rewritten (not appended) each tick so a long outage stays one line.
 fail() {
   mkdir -p "$MAIN/ops"
-  [ -e "$ALERT" ] || printf '# Edition Desk launcher alert (delete once read; runbook pipeline/EDITION-DESK.md)\n\n' > "$ALERT"
-  printf -- '- ESCALATE %s launcher failed: %s\n' "$(date '+%Y-%m-%d %H:%M')" "$1" >> "$ALERT"
-  [ -n "${EDITION_DESK_QUIET:-}" ] || osascript -e "display notification \"launcher failed: $1\" with title \"Shipped. Edition Desk\"" >/dev/null 2>&1
+  printf '%s %s\n' "$(date '+%Y-%m-%d %H:%M')" "$1" >> "$FAILS"
+  n=$(wc -l < "$FAILS" | tr -d ' ')
+  if [ "$n" -lt "$FAIL_LIMIT" ]; then
+    echo "launcher failed ($n of $FAIL_LIMIT ticks before escalating): $1" >&2
+    exit 1
+  fi
+  since=$(head -1 "$FAILS" | cut -c1-16)
+  drop_failure_lines
+  alert_header
+  printf -- '- ESCALATE %s launcher failed %s ticks in a row since %s: %s\n' "$(date '+%Y-%m-%d %H:%M')" "$n" "$since" "$1" >> "$ALERT"
+  [ "$n" -eq "$FAIL_LIMIT" ] && [ -z "${EDITION_DESK_QUIET:-}" ] &&
+    osascript -e "display notification \"launcher failed $n ticks in a row: $1\" with title \"Shipped. Edition Desk\"" >/dev/null 2>&1
   exit 1
 }
 
@@ -25,7 +56,7 @@ mkdir -p "$MAIN/ops"
 if ! mkdir "$LOCK" 2>/dev/null; then
   # A lock older than 2 hours is a crashed run (kill -9, reboot): say so, clear it, carry on.
   if [ -n "$(find "$LOCK" -maxdepth 0 -mmin +120 2>/dev/null)" ]; then
-    [ -e "$ALERT" ] || printf '# Edition Desk launcher alert (delete once read; runbook pipeline/EDITION-DESK.md)\n\n' > "$ALERT"
+    alert_header
     printf -- '- ESCALATE %s stale lock cleared (a run died holding it)\n' "$(date '+%Y-%m-%d %H:%M')" >> "$ALERT"
     rmdir "$LOCK" && mkdir "$LOCK" || fail "could not clear the stale lock"
   else
@@ -47,3 +78,4 @@ if [ ! -e "$WT/pipeline/node_modules" ]; then
 fi
 export SHIPPED_CONTENT="$MAIN/content" SHIPPED_OPS="$MAIN/ops"
 /usr/bin/python3 "$WT/pipeline/scripts/edition-desk.py" run "$@" || fail "edition-desk.py exited $?"
+clear_failures
