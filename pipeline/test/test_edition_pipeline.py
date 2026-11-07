@@ -473,6 +473,80 @@ class TestDeskUnits(unittest.TestCase):
         st.assert_called_once()
 
 
+class TestDateStamp(unittest.TestCase):
+    """The top bar prints the edition's own date: a weekly's Friday, a monthly's last day. The routine only names
+    the week's days (2026-42 held on a Friday "16" whose only source twin was inside $16.8 billion). That stamp
+    is page furniture; a figure in story copy that happens to equal it is still a changed figure."""
+
+    @classmethod
+    def setUpClass(cls):
+        cls.tmp = Path(tempfile.mkdtemp(prefix="datestamp-"))
+        cls.src = FIXTURE.read_text().replace("$300 million", "$16.8 billion").replace("$300M", "$16.8B")
+        cls.shapes = (("anthropic-weekly", "2026-42", "16"), ("anthropic-weekly", "2026-43", "23"),
+                      ("anthropic-weekly", "2026-44", "30"), ("anthropic-monthly", "2026-10", "31"))
+        cls.renders = {}
+        for section, stem, day in cls.shapes:
+            md, _ = e2p.convert(cls.src, section, stem)
+            out = cls.tmp / f"{stem}.html"
+            (cls.tmp / f"{stem}.md").write_text(md)
+            subprocess.run(["npx", "tsx", "src/render/edition-cli.ts", str(cls.tmp / f"{stem}.md"), str(out)],
+                           cwd=HERE.parent, check=True, capture_output=True)
+            cls.renders[stem] = (md, out.read_text())
+
+    @classmethod
+    def tearDownClass(cls):
+        shutil.rmtree(cls.tmp, ignore_errors=True)
+
+    def gate(self, stem, page=None):
+        md, rendered = self.renders[stem]
+        return ed.source_parity(self.src, page or rendered, stem.replace("-", " "), ed.md_date(md))
+
+    def test_the_source_never_names_the_day(self):
+        self.assertFalse({"16", "23", "30", "31"} & set(ed.NUM.findall(ed.plain(self.src))))
+        self.assertIn("$16.8", ed.NUM.findall(ed.plain(self.src)))
+
+    def test_the_friday_stamp_is_the_only_new_figure(self):
+        for section, stem, day in self.shapes:
+            md, page = self.renders[stem]
+            with self.subTest(stem=stem):
+                self.assertEqual(ed.split_front(page)[1].count(f"pub-bar-meta pub-bar-hide-sm\">Oct\u00a0{day}, 2026"), 1)
+                self.assertEqual(ed.source_parity(self.src, page, stem.replace("-", " ")), [f"figures not in the source: {day}"])
+
+    def test_the_stamp_passes_for_every_date_shape(self):
+        for section, stem, day in self.shapes:
+            with self.subTest(stem=stem):
+                self.assertEqual(self.gate(stem), [])
+
+    def test_a_story_figure_equal_to_the_date_is_still_caught(self):
+        for section, stem, day in self.shapes:
+            md, page = self.renders[stem]
+            bad = page.replace("Claude Haiku 5.5 launched Tuesday at", f"Claude Haiku 5.5 launched Tuesday {day} times at")
+            with self.subTest(stem=stem):
+                self.assertNotEqual(bad, page)
+                self.assertIn(f"figures not in the source: {day}", self.gate(stem, bad))
+
+    def test_a_changed_figure_is_still_caught(self):
+        md, page = self.renders["2026-42"]
+        self.assertTrue(any("72.4" in x or "74.2" in x for x in self.gate("2026-42", page.replace("72.4%", "74.2%"))))
+        self.assertTrue(any(x.startswith("figure missing: $16.8") for x in self.gate("2026-42", page.replace("$16.8 billion", "$17 billion"))))
+
+    def test_only_the_editions_own_date_is_furniture(self):
+        md, page = self.renders["2026-42"]
+        wrong = page.replace("Oct\u00a016, 2026", "Oct\u00a017, 2026", 1)
+        self.assertIn("figures not in the source: 17", self.gate("2026-42", wrong))
+        self.assertEqual(ed.source_parity(self.src, page, "2026 42", "not a date"), ["figures not in the source: 16"])
+
+    def test_the_markdown_route_holds_the_same_line(self):
+        md = "---\nissue: 90\ndate: 2026-10-16\ntitle: x\n---\n## The Open\n\nRevenue was $16.8 billion.\n"
+        bar = '<span class="pub-bar-meta pub-bar-hide-sm">Oct\u00a016, 2026</span>'
+        page = f"<nav>{bar}</nav><p>Revenue was $16.8 billion.</p>"
+        self.assertEqual(ed.md_figures(md, page, "", ed.md_date(md)), [])
+        self.assertEqual(ed.md_figures(md, page.replace("billion.", "billion, 16 times."), "", "2026-10-16"),
+                         ["figures not in the edition: 16"])
+        self.assertEqual(ed.md_figures(md, page.replace("billion.", "billion, 90 times."), "", "2026-10-16"),
+                         ["figures not in the edition: 90"])
+
+
 class TestGateMutants(unittest.TestCase):
     """The Prometheus L2 mutations (2026-10-11): each must trip a gate. Block ORDER is out of scope:
     the paper front reorders blocks by design (teaser, columns, rail), so order cannot be a rule."""
