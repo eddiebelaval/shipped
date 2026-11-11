@@ -110,6 +110,16 @@ pipeline/output/            — scraper output (gitignored)
 4. Every numeric claim needs a source link within 3 paragraphs. Every quote needs attribution. The verifier will catch you if you don't.
 5. Run the voice gate mentally before outputting: no forbidden phrases, max 1 "X isn't Y, it's Z" in the front-of-book.
 
+### When generating a daily (routine or manual)
+
+This binds **any** session that writes a file in `content/anthropic-daily/` — including the nightly claude.ai routine. The recurring failure it exists to stop: the routine ships a 100–200-word digest against DAILY.md's 1,000-word floor, CI goes red overnight, and the next night it happens again.
+
+1. Read `content/DAILY.md` before drafting. The depth floor does not move with the news: 1,000 words front-of-book on a quiet day, 700 on a one-item day. Run every item through the six levers. The cross-lab contrast (lever 6) — or an honest "the other labs were silent in this window" line — is required, not optional.
+2. Before committing, run the verifier exactly as CI does:
+   `cd pipeline && pnpm verify ../content/anthropic-daily/YYYY-MM-DD.md --offline`
+3. A FAIL verdict is not committable. Dig the thin items and re-run until it passes. Do not commit a failing daily "to fix later" — CI re-verifies every daily from the trailing week on each push, so one thin file keeps the repo red until someone re-digs it.
+4. Depth comes from the levers, never from padding. If the verifier says 900 words, the fix is another lever on an existing item, not adjectives.
+
 ### When working on the pipeline
 
 1. Read `SPEC.md` for architecture and gate definitions.

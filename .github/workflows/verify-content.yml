@@ -18,12 +18,14 @@ on:
       - "content/anthropic-weekly/*.md"
       - "content/issue-*.md"
       - "pipeline/src/verify/**"
+      - ".github/workflows/verify-content.yml"
   pull_request:
     paths:
       - "content/anthropic-daily/*.md"
       - "content/anthropic-weekly/*.md"
       - "content/issue-*.md"
       - "pipeline/src/verify/**"
+      - ".github/workflows/verify-content.yml"
 
 jobs:
   verify:
@@ -65,12 +67,30 @@ jobs:
             'content/anthropic-weekly/*.md' \
             'content/issue-*.md' | sort -u)
 
+          # Also sweep every daily dated within the trailing week, changed or not.
+          # A diff-only check has a hole: a thin daily that fails its own push run
+          # disappears from every later run, and the next night's push goes green
+          # on top of it (2026-07-02 slipped through exactly this way). The sweep
+          # keeps CI red until the failing file is actually re-dug. Dailies before
+          # the cutoff predate enforcement and are graded under the old regime.
+          cutoff="2026-07-02"
+          window_start="$(date -u -d '7 days ago' +%F)"
+          if [[ "$window_start" < "$cutoff" ]]; then window_start="$cutoff"; fi
+          for f in content/anthropic-daily/*.md; do
+            d="$(basename "$f" .md)"
+            [[ "$d" =~ ^[0-9]{4}-[0-9]{2}-[0-9]{2}$ ]] || continue
+            if [[ ! "$d" < "$window_start" ]]; then
+              files+=("$f")
+            fi
+          done
+          mapfile -t files < <(printf '%s\n' "${files[@]}" | sed '/^$/d' | sort -u)
+
           if [ "${#files[@]}" -eq 0 ]; then
-            echo "No content markdown changed; nothing to verify."
+            echo "No content markdown changed and no dailies in the sweep window; nothing to verify."
             exit 0
           fi
 
-          echo "Verifying ${#files[@]} changed file(s):"
+          echo "Verifying ${#files[@]} file(s) (changed + trailing-week dailies):"
           printf '  %s\n' "${files[@]}"
 
           failed=0
