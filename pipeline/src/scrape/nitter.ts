@@ -208,6 +208,7 @@ function parseTweetBlock(
     date,
     text,
     url: `https://x.com/${username}/status/${id}`,
+    author: username,
     links,
     hashtags,
     attachments,

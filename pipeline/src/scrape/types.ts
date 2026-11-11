@@ -32,6 +32,15 @@ export interface ScrapedTweet {
   /** Canonical URL to the tweet (e.g. https://x.com/claudedevs/status/{id}). */
   url: string;
 
+  /**
+   * Handle of the post's author, without the `@`. For a timeline pull this is
+   * the feed being scraped; for enrichment search hits (X MCP) it is whoever
+   * actually posted — which is how third-party / cross-lab signal carries its
+   * provenance instead of masquerading as the anchor feed. Optional for
+   * backward compatibility: consumers should fall back to the feed handle.
+   */
+  author?: string;
+
   /** Expanded URLs found in the tweet (excluding the tweet's own URL). */
   links: string[];
 
@@ -69,6 +78,22 @@ export interface ScrapeOptions {
 
   /** Whether to include retweets. Default false. */
   includeRetweets: boolean;
+
+  /**
+   * Whether to run the X MCP search-enrichment sweep after the timeline pull.
+   * Off by default. Requires the X MCP source to be configured (X_MCP_URL);
+   * a no-op otherwise. This is the lever against thin issues: the timeline
+   * pull is one feed, the search sweep brings in the cross-lab/third-party
+   * signal the front-of-book digs (see content/DAILY.md, lever 6).
+   */
+  enrich?: boolean;
+
+  /**
+   * Terms the enrichment sweep searches X for. Defaults to the lab/product
+   * terms derived from the handle (see scrape/sources.ts). Ignored unless
+   * `enrich` is true.
+   */
+  searchTerms?: string[];
 }
 
 /**
@@ -81,14 +106,27 @@ export interface ScrapeResult {
   /** ISO 8601 timestamp of when the scrape ran. */
   scrapedAt: string;
 
-  /** Which source produced the tweets. "cached" means we couldn't reach a live source. */
-  source: 'x-api' | 'nitter' | 'cached';
+  /**
+   * Which source produced the timeline. "x-mcp" is the preferred source (X's
+   * MCP server); "x-api" and "nitter" are fallbacks; "cached" means no live
+   * source was reachable.
+   */
+  source: 'x-mcp' | 'x-api' | 'nitter' | 'cached';
 
   /**
-   * Human-readable reason if both live sources failed and cache was empty.
+   * Human-readable reason if every live source failed and cache was empty.
    * Set only when `tweets.length === 0` and source is "cached".
    */
   failureReason?: string;
+
+  /**
+   * Set when the X MCP search-enrichment sweep ran. `added` is how many novel
+   * posts the sweep merged on top of the timeline; `terms` is what it searched.
+   */
+  enrichment?: {
+    added: number;
+    terms: string[];
+  };
 }
 
 /**

@@ -44,3 +44,31 @@ export const BEAT_SOURCES: BeatSource[] = [
 export function beatHandles(): string[] {
   return BEAT_SOURCES.map((s) => s.handle)
 }
+
+/**
+ * Lab → the terms the X MCP enrichment sweep searches for. A timeline pull
+ * only sees a lab's own posts; the search sweep widens the net to everyone
+ * talking about the lab's products, which is the cross-lab / third-party
+ * signal the front-of-book digs against thin issues (content/DAILY.md).
+ */
+const LAB_SEARCH_TERMS: Record<string, string[]> = {
+  Anthropic: ['Anthropic', 'Claude'],
+  OpenAI: ['OpenAI', 'ChatGPT'],
+  'Google DeepMind': ['Google DeepMind', 'Gemini'],
+  'Meta AI': ['Meta AI', 'Llama'],
+  Mistral: ['Mistral'],
+  xAI: ['xAI', 'Grok'],
+}
+
+/**
+ * Search terms for a feed handle, derived from its lab on the beat. Falls back
+ * to the bare handle for anything not on the beat. Used by the scraper's
+ * `--enrich` sweep when no explicit `--search` terms are given.
+ */
+export function searchTermsForHandle(handle: string): string[] {
+  const src = BEAT_SOURCES.find(
+    (s) => s.handle.toLowerCase() === handle.replace(/^@/, '').toLowerCase(),
+  )
+  if (!src) return [handle.replace(/^@/, '')]
+  return LAB_SEARCH_TERMS[src.lab] ?? [src.lab]
+}

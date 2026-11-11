@@ -42,7 +42,7 @@ The build system for the **Shipped.** weekly magazine. Scrapes Anthropic release
 |---|---|---|
 | **Renderer** | `src/render/` | Markdown → HTML magazine. Template extracted from MOCKUP-FINAL.html. |
 | **Verifier** | `src/verify/` | The lying-prevention layer. URL liveness, number-claim attestation, quote attestation, date attestation. Blocks publish on any failure. |
-| **Scraper** | `src/scrape/` | @claudedevs X feed → JSON output. Cross-references against existing Release Log. |
+| **Scraper** | `src/scrape/` | Frontier-labs X feeds → JSON output. Sources in order: X MCP → X API → Nitter. `--enrich` adds an MCP search sweep for cross-lab signal. Cross-references against existing Release Log. |
 | **Orchestrator** | `src/orchestrate/` | Chains scrape → render → verify → stage. The `pnpm publish` entry point. |
 
 ## Scripts
@@ -59,9 +59,36 @@ pnpm test              # Run test suite (verifier and renderer)
 ## Environment
 
 ```
-X_API_BEARER_TOKEN=...        # X API v2 read-only token (optional, falls back to Nitter)
+X_MCP_URL=...                 # X MCP server endpoint (PREFERRED source; tried first)
+X_MCP_BEARER_TOKEN=...        # Auth for the X MCP server
+X_MCP_TIMELINE_TOOL=...       # Optional override (default: get_user_posts)
+X_MCP_SEARCH_TOOL=...         # Optional override (default: search_posts)
+X_API_BEARER_TOKEN=...        # X API v2 token (fallback after MCP; then Nitter)
+SHIPPED_X_ENRICH=on|off       # Run the MCP search sweep in the orchestrator (default: on)
 SHIPPED_DEPLOY_PATH=...       # Default: ../../../id8labs/public/shipped
 SHIPPED_KNOWLEDGE_PATH=...    # Default: ../../../knowledge/series/shipped
+```
+
+### X MCP — the preferred source + enrichment
+
+The scraper resolves a feed through three sources in order: **X MCP → X API → Nitter.**
+X's MCP server is read-only and dependency-free here — `src/scrape/x-mcp.ts` speaks
+JSON-RPC 2.0 over MCP Streamable HTTP with built-in `fetch`, the same posture as the
+X API client. No `@modelcontextprotocol/sdk` dependency.
+
+Beyond pulling a lab's own timeline, the MCP unlocks **enrichment**: a `--enrich`
+search sweep that pulls posts *about* each lab's products from anyone — the cross-lab
+and third-party signal a single feed never sees. This is the structural answer to the
+recurring "issue collapsed to two paragraphs" failure (see `content/DAILY.md`): the
+front-of-book digs deeper when there's more real signal to dig through, and lever 6
+(cross-lab contrast) needs exactly this wider net. Enrichment is MCP-only and a
+graceful no-op when `X_MCP_URL` is unset, so the pipeline degrades cleanly to the
+X API / Nitter path.
+
+```bash
+pnpm scrape --enrich                 # timeline + MCP search sweep (default terms)
+pnpm scrape --search "Claude Code"   # explicit term, repeatable (implies --enrich)
+pnpm scrape --no-mcp                 # force the X API / Nitter path
 ```
 
 ## The verification gates
@@ -81,7 +108,7 @@ Every gate must pass for `pnpm publish` to stage changes. Any failure exits non-
 ## Failure modes
 
 - **Verifier fails:** Stage is aborted. Eddie reviews the failure log, fixes the markdown, re-runs.
-- **Scraper API key missing:** Logged warning, returns empty array, pipeline continues with primary sources only.
+- **Scraper sources unreachable:** X MCP → X API → Nitter are tried in order; each failure is logged and the next is tried. If all fail, an empty result with `failureReason` is written and the pipeline continues (the X feed is supplemental, not blocking).
 - **Renderer template missing:** Hard fail. Pipeline can't proceed.
 - **Git working tree dirty in id8labs:** Hard fail. Pipeline refuses to stage on top of unrelated changes.
 
