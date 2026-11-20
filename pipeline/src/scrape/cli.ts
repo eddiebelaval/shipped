@@ -9,6 +9,9 @@
  *   pnpm scrape --dry                     # don't write output
  *   pnpm scrape --include-replies         # include reply tweets
  *   pnpm scrape --include-retweets        # include RT'd tweets
+ *   pnpm scrape --enrich                  # add X MCP search sweep (needs X_MCP_URL)
+ *   pnpm scrape --search "Claude Code"    # explicit enrichment term (repeatable)
+ *   pnpm scrape --no-mcp                  # skip X MCP even if configured
  *
  * Exit codes:
  *   0 = success (or graceful empty)
@@ -25,6 +28,9 @@ interface CliFlags {
   dry: boolean;
   includeReplies: boolean;
   includeRetweets: boolean;
+  enrich: boolean;
+  noMcp: boolean;
+  search: string[];
   help: boolean;
 }
 
@@ -35,6 +41,9 @@ function parseArgs(argv: string[]): CliFlags {
     dry: false,
     includeReplies: DEFAULT_SCRAPE_OPTIONS.includeReplies,
     includeRetweets: DEFAULT_SCRAPE_OPTIONS.includeRetweets,
+    enrich: false,
+    noMcp: false,
+    search: [],
     help: false,
   };
 
@@ -69,6 +78,20 @@ function parseArgs(argv: string[]): CliFlags {
       case '--include-retweets':
         flags.includeRetweets = true;
         break;
+      case '--enrich':
+        flags.enrich = true;
+        break;
+      case '--no-mcp':
+        flags.noMcp = true;
+        break;
+      case '--search': {
+        const next = argv[i + 1];
+        if (!next) throw new Error('--search requires a term');
+        flags.search.push(next);
+        flags.enrich = true; // explicit terms imply enrichment
+        i += 1;
+        break;
+      }
       case '--help':
       case '-h':
         flags.help = true;
@@ -96,11 +119,17 @@ Options:
   --dry                Skip writing output to disk
   --include-replies    Include reply tweets (default: off)
   --include-retweets   Include retweeted tweets (default: off)
+  --enrich             Run the X MCP search sweep on top of the timeline
+                       (needs X_MCP_URL; no-op otherwise)
+  --search TERM        Explicit enrichment term (repeatable; implies --enrich)
+  --no-mcp             Skip the X MCP source even if X_MCP_URL is set
   --help, -h           Show this help
 
 Environment:
-  X_API_BEARER_TOKEN   Optional. If set, X API is tried first.
-                       If absent, falls back to Nitter (best-effort).
+  X_MCP_URL            Optional. X's MCP server endpoint. Tried first.
+  X_MCP_BEARER_TOKEN   Optional. Auth for the X MCP server.
+  X_API_BEARER_TOKEN   Optional. X API v2 token. Tried after X MCP.
+                       If both absent, falls back to Nitter (best-effort).
 
 Output:
   output/x-claudedevs/{YYYY-MM-DD}.json
@@ -129,6 +158,9 @@ async function main(): Promise<number> {
     sinceDays: flags.days,
     includeReplies: flags.includeReplies,
     includeRetweets: flags.includeRetweets,
+    enrich: flags.enrich,
+    noMcp: flags.noMcp,
+    ...(flags.search.length > 0 ? { searchTerms: flags.search } : {}),
     dry: flags.dry,
   });
 
@@ -140,8 +172,13 @@ async function main(): Promise<number> {
     `  window:    last ${flags.days}d`,
     `  source:    ${result.source}`,
     `  tweets:    ${result.tweets.length}`,
-    `  output:    ${result.outputPath ?? '(dry-run, not written)'}`,
   ];
+  if (result.enrichment) {
+    lines.push(
+      `  enriched:  +${result.enrichment.added} via X MCP search [${result.enrichment.terms.join(', ')}]`,
+    );
+  }
+  lines.push(`  output:    ${result.outputPath ?? '(dry-run, not written)'}`);
   if (result.failureReason) {
     lines.push(`  failure:   ${result.failureReason}`);
   }
