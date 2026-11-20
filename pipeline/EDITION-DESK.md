@@ -10,8 +10,13 @@ finds fresh images, has Claude QC grade them, gates the result, and re-publishes
   pushed `origin/main` by `scripts/edition-desk-launch.sh`. The main checkout is never the release surface.
 - State: `content/editions/<section>/<stem>/` (gitignored): `source.html`, `edition.md`, `images/`, `edition.json`.
 - Log: `~/Library/Logs/shipped/edition-desk.log`. Alerts: `ops/EDITION-DESK-ALERT.md` (the desk's; stands while any
-  edition is held, clears when none is) and `ops/EDITION-DESK-LAUNCHER-ALERT.md` (the launcher's: failures and stale
-  locks; sticky, delete it by hand once read). Night Desk escalates both every night.
+  edition is held, clears when none is) and `ops/EDITION-DESK-LAUNCHER-ALERT.md` (the launcher's). Night Desk escalates both every night.
+  The launcher alert follows current state: a failed tick (fetch, checkout, or the desk crashing) only logs and the next
+  tick is the retry; 3 failed ticks in a row (15 minutes) write one `launcher failed N ticks in a row since ...` line
+  (rewritten each tick) and notify once; the first good tick removes that line, and the file when nothing else is in it.
+  A `stale lock cleared` line records a crashed run, is not state, and stays until you delete the file by hand.
+  Counter: `ops/.edition-desk-launcher-fails` (one line per consecutive failed tick; paused and lock-held ticks leave it alone).
+  Proof: `python3 pipeline/test/test-edition-desk-launch.py`.
 
 ## Status
 
