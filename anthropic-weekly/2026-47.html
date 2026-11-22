@@ -1,0 +1,1402 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light">
+<title>Shipped. Weekly, Week of 2026-11-16</title>
+<meta property="og:title" content="Shipped. Weekly, Week of 2026-11-16">
+<meta property="og:description" content="The safety thesis priced at $83. ANT opened at $111.50 and closed at $97.17. The largest technology IPO in history, and the frontier's first public company.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://eddiebelaval.github.io/shipped/anthropic-weekly/2026-47.html">
+<meta property="og:image" content="https://id8labs.app/shipped/og-weekly-v1.png?v=1">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Shipped. Weekly from id8Labs">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Shipped. Weekly, Week of 2026-11-16">
+<meta name="twitter:description" content="The safety thesis priced at $83. ANT opened at $111.50 and closed at $97.17. The largest technology IPO in history, and the frontier's first public company.">
+<meta name="twitter:image" content="https://id8labs.app/shipped/og-weekly-v1.png?v=1">
+<meta name="description" content="The safety thesis priced at $83. ANT opened at $111.50 and closed at $97.17. The largest technology IPO in history, and the frontier's first public company.">
+<meta name="author" content="Eddie Belaval">
+<!--
+  ISSUE CHROME: the canonical Shipped. issue design.
+
+  Locked 2026-08-06 to anthropic-weekly/2026-31, chosen by Eddie as the standard
+  after an audit showed the three cadences had drifted into three different looks.
+  Cause: three cloud routines each free-hand their HTML from template.html every
+  run, and nothing enforced a shared component vocabulary, so each invented one.
+
+  This file is the enforcement point, the same pattern as subscribe-block.html:
+  paste it VERBATIM into the head. Do not retype it, do not restyle it. Editing
+  the design means editing THIS file, and every cadence inherits the change.
+
+  Consumed by pipeline/scripts/render-issue.py and by the daily, weekly and
+  monthly routine prompts. Class vocabulary: pub-bar, weekly-header, open-section,
+  feature-opener, prose-well, also-item, log-*, close-section, colophon.
+-->
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='75' cy='62' r='14' fill='%23FF6B35'/%3E%3Ctext x='10' y='75' font-family='Georgia,serif' font-weight='700' font-size='62' fill='%231a1a1a'%3ES%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;0,9..144,900;1,9..144,300;1,9..144,400;1,9..144,500;1,9..144,700&family=Archivo:wght@300;400;500;600;700;800;900&family=Archivo+Narrow:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"><style>
+
+
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{font-size:16px;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;text-rendering:optimizeLegibility}
+body{background:#FAF8F4;color:#0b0b0b;font-family:'Archivo',sans-serif;overflow-x:hidden}
+::selection{background:#FF6B35;color:#fff}
+
+:root{
+  --orange:#FF6B35;
+  --ink:#0b0b0b;
+  --paper:#FAF8F4;
+  --paper-shadow:#f2f0e8;
+  --body:#2a2a2a;
+  --muted:#5a5a5a;
+  --gray:#8a8a8a;
+  --hair:rgba(11,11,11,0.12);
+  --hair-soft:rgba(11,11,11,0.06);
+  --hair-hard:rgba(11,11,11,0.22);
+  --disp:'Fraunces', 'Times New Roman', serif;
+  --sans:'Archivo', system-ui, sans-serif;
+  --narrow:'Archivo Narrow', 'Archivo', sans-serif;
+  --mono:'JetBrains Mono', ui-monospace, monospace;
+}
+
+body::before{
+  content:"";
+  position:fixed;inset:0;pointer-events:none;z-index:1000;opacity:.28;mix-blend-mode:multiply;
+  background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='180' height='180'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' seed='3'/><feColorMatrix values='0 0 0 0 0.02  0 0 0 0 0.02  0 0 0 0 0.02  0 0 0 0.22 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+}
+
+.pub-bar{
+  position:sticky;top:0;z-index:100;
+  background:var(--paper);
+  border-bottom:1px solid var(--hair);
+  padding:0 28px;height:42px;
+  display:flex;align-items:center;justify-content:space-between;
+  font-family:var(--narrow);
+  font-size:11px;font-weight:600;letter-spacing:.22em;
+  text-transform:uppercase;color:var(--ink);
+}
+.pub-bar-left,.pub-bar-right{display:flex;align-items:center;gap:16px}
+.pub-bar-mark{font-family:var(--disp);font-weight:500;font-size:16px;letter-spacing:-.01em;text-transform:none;font-style:italic}
+.pub-bar-mark .dot{color:var(--orange)}
+.pub-bar-sep{width:1px;height:12px;background:var(--hair-hard)}
+.pub-bar-meta{color:var(--muted)}
+.pub-bar-link{color:inherit;text-decoration:none;border-bottom:1px solid currentColor;transition:color .15s ease}
+.pub-bar-link:hover{color:var(--orange)}
+.colophon-link{color:inherit;text-decoration:none;border-bottom:1px solid currentColor;transition:color .15s ease}
+.colophon-link:hover{color:var(--orange)}
+.colophon-foot .colophon-link b{color:var(--paper)}
+.pub-bar-folio{color:var(--ink)}
+.pub-bar-folio b{font-weight:600;color:var(--orange)}
+.pub-bar-cta{
+  display:inline-block;background:var(--ink);color:var(--paper);
+  text-decoration:none;border:1px solid var(--ink);border-radius:10px;
+  font-family:var(--narrow);font-weight:700;font-size:11px;
+  letter-spacing:.2em;text-transform:uppercase;
+  padding:6px 14px;transition:background .15s ease,border-color .15s ease;
+}
+.pub-bar-cta:hover{background:var(--orange);border-color:var(--orange);color:var(--ink)}
+@media (max-width:720px){
+  .pub-bar-hide-sm{display:none}
+  .pub-bar{padding:0 16px}
+  .pub-bar-cta{padding:5px 10px;letter-spacing:.12em}
+}
+
+.folio{
+  font-family:var(--narrow);
+  font-size:10px;font-weight:500;letter-spacing:.28em;
+  text-transform:uppercase;color:var(--gray);
+  display:flex;align-items:center;gap:10px;
+}
+.folio b{color:var(--ink);font-weight:700}
+.folio .ruler{width:28px;height:1px;background:var(--hair-hard)}
+.folio .dot{color:var(--orange)}
+
+.section{
+  position:relative;
+  padding:64px 28px 40px;
+  max-width:1280px;margin:0 auto;
+}
+.section-folio{
+  display:flex;align-items:center;justify-content:space-between;
+  padding-bottom:18px;
+  border-bottom:1px solid var(--ink);
+  margin-bottom:44px;
+}
+.section-folio-left{display:flex;align-items:center;gap:14px}
+.section-folio-label{
+  font-family:var(--narrow);
+  font-size:11px;font-weight:700;letter-spacing:.28em;
+  text-transform:uppercase;color:var(--ink);
+}
+.section-folio-sub{
+  font-family:var(--disp);font-style:italic;
+  font-size:13px;color:var(--muted);
+}
+
+.open-section{background:var(--paper)}
+.open-grid{
+  display:grid;
+  grid-template-columns:repeat(12,1fr);
+  gap:32px;
+}
+.open-lead{
+  grid-column:2 / span 7;
+}
+.open-quote{
+  font-family:var(--disp);
+  font-variation-settings:"opsz" 144;
+  font-weight:500;font-size:clamp(36px,5vw,72px);
+  line-height:1.02;letter-spacing:-.025em;
+  color:var(--ink);
+  margin-bottom:36px;
+  padding-bottom:28px;
+  border-bottom:1px solid var(--hair-hard);
+}
+.open-quote em{font-style:italic;color:var(--orange);font-weight:500}
+.open-prose{
+  font-family:var(--disp);
+  font-variation-settings:"opsz" 14;
+  font-weight:400;font-size:18px;line-height:1.68;
+  color:var(--body);
+  max-width:620px;
+}
+.open-prose p{margin-bottom:22px}
+.open-prose em{font-style:italic;color:var(--ink)}
+.open-aside{
+  grid-column:10 / span 3;
+  border-top:1px solid var(--ink);
+  padding-top:16px;
+  font-family:var(--narrow);
+  font-size:11px;font-weight:500;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--muted);
+  line-height:1.9;
+}
+.open-aside b{color:var(--ink);font-weight:700}
+@media(max-width:860px){
+  .open-lead{grid-column:1 / -1}
+  .open-aside{grid-column:1 / -1;margin-top:16px}
+}
+
+.feature-opener{
+  display:grid;
+  grid-template-columns:72px 1fr minmax(0,320px);
+  gap:32px;
+  padding:56px 28px 40px;
+  max-width:1280px;margin:0 auto;
+  position:relative;
+  border-top:2px solid var(--ink);
+}
+.feature-opener::before{
+  content:"";
+  position:absolute;
+  left:100px;top:0;bottom:0;
+  width:1px;background:var(--hair);
+}
+.vert-label{
+  position:relative;
+  writing-mode:vertical-rl;
+  transform:rotate(180deg);
+  font-family:var(--narrow);
+  font-size:13px;font-weight:700;letter-spacing:.48em;
+  text-transform:uppercase;color:var(--ink);
+  align-self:start;
+  padding-top:12px;
+  white-space:nowrap;
+}
+.vert-label .vert-num{
+  color:var(--orange);
+  font-family:var(--disp);
+  font-style:italic;font-weight:500;
+  letter-spacing:-.02em;
+  margin-top:12px;display:inline-block;
+  writing-mode:horizontal-tb;
+  transform:rotate(180deg);
+  font-size:20px;
+}
+.feature-heading{min-width:0}
+.feature-kicker{
+  font-family:var(--narrow);
+  font-size:10px;font-weight:700;letter-spacing:.32em;
+  text-transform:uppercase;color:var(--orange);
+  margin-bottom:20px;
+}
+.feature-title{
+  font-family:var(--disp);font-weight:700;
+  font-variation-settings:"opsz" 144;
+  font-size:clamp(52px,8vw,128px);
+  line-height:.9;letter-spacing:-.042em;
+  color:var(--ink);
+  margin-bottom:24px;
+}
+.feature-title em{font-style:italic;font-weight:400;color:var(--ink)}
+.feature-deck{
+  font-family:var(--disp);font-weight:400;
+  font-variation-settings:"opsz" 72;
+  font-size:clamp(20px,2.4vw,28px);
+  line-height:1.3;letter-spacing:-.01em;
+  color:var(--muted);
+  max-width:640px;
+  margin-bottom:24px;
+}
+.feature-meta{
+  padding-top:18px;
+  border-top:1px solid var(--hair);
+  font-family:var(--narrow);
+  font-size:10px;font-weight:600;letter-spacing:.24em;
+  text-transform:uppercase;color:var(--muted);
+  line-height:1.8;
+}
+.feature-meta b{color:var(--ink);font-weight:700}
+.feature-right{
+  padding-top:28px;
+  border-top:1px solid var(--hair);
+  font-family:var(--disp);font-style:italic;
+  font-size:15px;line-height:1.55;color:var(--muted);
+}
+.feature-right-label{
+  display:block;
+  font-family:var(--narrow);font-style:normal;
+  font-size:10px;font-weight:700;letter-spacing:.28em;
+  text-transform:uppercase;color:var(--ink);
+  margin-bottom:10px;
+}
+@media(max-width:860px){
+  .feature-opener{grid-template-columns:1fr;gap:16px}
+  .feature-opener::before{display:none}
+  .vert-label{writing-mode:horizontal-tb;transform:none;font-size:11px}
+  .vert-label .vert-num{writing-mode:horizontal-tb;transform:none;margin-left:16px}
+  .feature-right{grid-column:1 / -1}
+}
+
+.prose-well{
+  max-width:1280px;margin:0 auto;padding:0 28px 56px;
+  display:grid;grid-template-columns:72px 1fr minmax(0,320px);
+  gap:32px;position:relative;
+}
+.prose-well::before{
+  content:"";position:absolute;left:100px;top:0;bottom:0;
+  width:1px;background:var(--hair);
+}
+.prose-marginalia{
+  grid-column:1;
+  font-family:var(--narrow);
+  font-size:10px;font-weight:600;letter-spacing:.26em;
+  text-transform:uppercase;color:var(--gray);
+  writing-mode:vertical-rl;transform:rotate(180deg);
+  align-self:start;padding-top:8px;
+  white-space:nowrap;
+}
+.prose{
+  grid-column:2;
+  font-family:var(--disp);
+  font-variation-settings:"opsz" 14;
+  font-weight:400;font-size:19px;line-height:1.66;
+  color:var(--body);
+  max-width:640px;
+}
+.prose p{margin-bottom:24px}
+.prose em{font-style:italic;color:var(--ink)}
+.prose strong{font-weight:600;color:var(--ink)}
+.prose code{
+  font-family:var(--mono);font-size:.86em;
+  background:var(--paper-shadow);padding:1px 6px;
+  border-radius:3px;color:var(--ink);
+}
+.prose a{color:var(--ink);border-bottom:1px solid var(--hair-hard);text-decoration:none;transition:color .15s,border-color .15s}
+.prose a:hover{color:var(--orange);border-bottom-color:var(--orange)}
+.prose-aside{
+  grid-column:3;
+  font-family:var(--narrow);
+  font-size:11px;font-weight:500;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--muted);
+  border-top:1px solid var(--ink);padding-top:14px;
+  line-height:1.8;
+}
+.prose-aside b{color:var(--ink);font-weight:700}
+
+.drop-cap::first-letter{
+  font-family:var(--disp);
+  font-variation-settings:"opsz" 144;
+  font-weight:700;
+  font-size:9.2em;
+  float:left;line-height:.78;
+  padding:.02em 12px 0 0;
+  margin:.02em 4px -.1em -2px;
+  color:var(--ink);
+}
+.drop-cap-orange::first-letter{
+  color:var(--orange);
+}
+
+@media(max-width:860px){
+  .prose-well{grid-template-columns:1fr;padding-left:20px;padding-right:20px}
+  .prose-well::before{display:none}
+  .prose-marginalia{display:none}
+  .prose{grid-column:1}
+  .prose-aside{grid-column:1;margin-top:20px}
+  .drop-cap::first-letter{font-size:6.6em}
+}
+
+.quiet-section{
+  max-width:1280px;margin:0 auto;padding:64px 28px 24px;
+  display:grid;grid-template-columns:repeat(12,1fr);gap:24px;
+}
+.quiet-head{
+  grid-column:1 / span 3;
+}
+.quiet-title{
+  font-family:var(--disp);font-style:italic;font-weight:400;
+  font-variation-settings:"opsz" 72;
+  font-size:32px;line-height:1;letter-spacing:-.02em;
+  color:var(--ink);
+}
+.quiet-title em{color:var(--orange);font-style:normal;font-weight:500}
+.quiet-kicker{
+  font-family:var(--narrow);
+  font-size:10px;font-weight:700;letter-spacing:.32em;
+  text-transform:uppercase;color:var(--muted);
+  margin-bottom:10px;
+}
+.quiet-body{
+  grid-column:5 / -1;
+  font-family:var(--disp);font-size:17px;line-height:1.65;color:var(--body);
+  padding-left:24px;border-left:1px solid var(--ink);
+}
+.quiet-body p{margin-bottom:16px}
+.quiet-body strong{font-weight:600;color:var(--ink)}
+@media(max-width:860px){
+  .quiet-head,.quiet-body{grid-column:1 / -1}
+  .quiet-body{padding-left:0;border-left:none;border-top:1px solid var(--ink);padding-top:18px}
+}
+
+.close-section{
+  background:var(--ink);color:var(--paper);
+  padding:120px 28px 140px;
+  position:relative;
+  text-align:center;
+}
+.close-kicker{
+  font-family:var(--narrow);
+  font-size:11px;font-weight:700;letter-spacing:.38em;
+  text-transform:uppercase;color:rgba(250,250,247,.5);
+  margin-bottom:48px;
+}
+.close-stack{
+  max-width:780px;margin:0 auto;
+  display:flex;flex-direction:column;gap:32px;
+}
+.close-line{
+  font-family:var(--disp);font-weight:400;
+  font-variation-settings:"opsz" 96;
+  font-size:clamp(26px,3.6vw,46px);
+  line-height:1.18;letter-spacing:-.018em;
+  color:var(--paper);
+}
+.close-line em{font-style:italic;color:var(--orange);font-weight:500}
+.close-final{
+  font-style:italic;color:var(--orange);
+  font-size:clamp(18px,2.2vw,26px);
+  line-height:1.5;letter-spacing:0;
+  max-width:580px;margin:0 auto;
+  font-variation-settings:"opsz" 36;
+}
+.close-coda-start{
+  margin-top:48px;position:relative;
+}
+.close-coda-start::before{
+  content:"";display:block;
+  width:32px;height:1px;
+  background:rgba(217,107,73,.45);
+  margin:0 auto 36px;
+}
+.close-mark{
+  margin-top:72px;
+  font-family:var(--disp);
+  font-size:48px;color:rgba(250,250,247,.3);
+  letter-spacing:.8em;
+}
+
+.log-divider{
+  background:var(--paper);
+  padding:96px 28px 48px;
+  text-align:center;
+  border-top:3px double var(--ink);
+  border-bottom:1px solid var(--ink);
+  max-width:1280px;margin:0 auto;
+}
+.log-divider-kicker{
+  font-family:var(--narrow);
+  font-size:11px;font-weight:700;letter-spacing:.48em;
+  text-transform:uppercase;color:var(--orange);
+  margin-bottom:14px;
+}
+.log-divider-title{
+  font-family:var(--disp);font-weight:700;
+  font-variation-settings:"opsz" 144;
+  font-size:clamp(56px,10vw,144px);
+  line-height:.9;letter-spacing:-.045em;color:var(--ink);
+  margin-bottom:16px;
+}
+.log-divider-title em{font-style:italic;font-weight:400}
+.log-divider-sub{
+  font-family:var(--disp);font-style:italic;
+  font-size:18px;color:var(--muted);max-width:640px;margin:0 auto;line-height:1.5;
+}
+
+.log-section{
+  padding:48px 28px;max-width:1280px;margin:0 auto;
+}
+.log-cat-head{
+  display:grid;
+  grid-template-columns:1fr auto;
+  gap:24px;align-items:baseline;
+  padding-bottom:18px;
+  border-bottom:1px solid var(--ink);
+  margin-bottom:0;
+}
+.log-cat-name{
+  font-family:var(--disp);font-weight:600;font-style:italic;
+  font-variation-settings:"opsz" 96;
+  font-size:clamp(36px,5vw,56px);
+  letter-spacing:-.02em;color:var(--ink);line-height:1;
+}
+.log-cat-count{
+  font-family:var(--narrow);
+  font-size:10px;font-weight:600;letter-spacing:.28em;
+  text-transform:uppercase;color:var(--muted);
+  text-align:right;
+}
+.log-cat-count b{color:var(--ink);font-weight:700;font-size:13px;display:block}
+
+.log-cat-deck{
+  font-family:var(--disp);
+  font-style:italic;
+  font-weight:400;
+  font-variation-settings:"opsz" 24;
+  font-size:18px;
+  line-height:1.45;
+  color:var(--muted);
+  margin-top:14px;
+  margin-bottom:8px;
+  max-width:760px;
+  letter-spacing:-.005em;
+}
+.log-cat-deck b{color:var(--ink);font-weight:600;font-style:normal}
+.log-cat-deck em{color:var(--orange);font-style:normal;font-weight:500}
+
+.log-entries{display:flex;flex-direction:column}
+.log-entry{
+  padding:24px 0;
+  border-bottom:1px solid var(--hair);
+  display:grid;
+  grid-template-columns:120px 1fr;gap:28px;
+}
+.log-entry-left{
+  display:flex;flex-direction:column;gap:8px;
+}
+.log-entry-date{
+  font-family:var(--narrow);
+  font-size:10px;font-weight:700;letter-spacing:.22em;
+  text-transform:uppercase;color:var(--ink);
+  font-variant-numeric:tabular-nums;
+}
+.log-tag{
+  font-family:var(--narrow);
+  font-size:9px;font-weight:700;letter-spacing:.22em;
+  text-transform:uppercase;padding:3px 7px;
+  display:inline-block;line-height:1.3;width:fit-content;
+}
+.log-tag.model{background:var(--orange);color:var(--paper)}
+.log-tag.api{background:var(--ink);color:var(--paper)}
+.log-tag.code{background:#3a3a3a;color:var(--paper)}
+.log-tag.apps{background:#5a5a5a;color:var(--paper)}
+.log-tag.sdk-py,.log-tag.sdk-ts{background:var(--paper);color:var(--ink);border:1px solid var(--ink)}
+.log-tag.research,.log-tag.news{background:var(--paper);color:var(--muted);border:1px solid var(--hair-hard)}
+.log-tag.deprecation{background:var(--paper-shadow);color:var(--muted);border:1px solid var(--hair-hard)}
+.log-entry-title{
+  font-family:var(--disp);font-weight:500;
+  font-variation-settings:"opsz" 72;
+  font-size:20px;letter-spacing:-.012em;
+  color:var(--ink);line-height:1.25;
+  margin-bottom:10px;
+}
+.log-entry-title a{color:inherit;text-decoration:none;border-bottom:1px solid var(--hair-hard)}
+.log-entry-title a:hover{border-bottom-color:var(--orange);color:var(--orange)}
+.log-entry-body{
+  font-family:var(--sans);font-size:14.5px;line-height:1.6;color:var(--body);
+  margin-bottom:12px;
+}
+.log-entry-how{
+  font-family:var(--sans);font-size:13.5px;line-height:1.6;color:var(--muted);
+  padding-top:12px;border-top:1px solid var(--hair-soft);
+}
+.log-entry-how b{font-family:var(--narrow);font-size:10px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--ink);display:block;margin-bottom:6px}
+.log-entry-how code{font-family:var(--mono);font-size:.86em;background:var(--paper-shadow);padding:1px 6px;border-radius:3px;color:var(--ink)}
+.log-entry-why{
+  font-family:var(--disp);font-style:italic;
+  font-size:14px;color:var(--muted);line-height:1.55;
+  margin-top:10px;padding-left:14px;
+  border-left:2px solid var(--orange);
+}
+.log-entry-why b{font-style:normal;font-family:var(--narrow);font-size:10px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--orange);display:block;margin-bottom:4px}
+
+@media(max-width:720px){
+  .log-entry{grid-template-columns:1fr;gap:12px}
+  .log-cat-head{grid-template-columns:auto 1fr}
+  .log-cat-count{grid-column:1 / -1;text-align:left;padding-top:8px;border-top:1px solid var(--hair)}
+}
+
+.colophon{
+  background:var(--ink);color:var(--paper);
+  padding:80px 28px 64px;
+  border-top:2px solid var(--orange);
+}
+.colophon-inner{
+  max-width:1280px;margin:0 auto;
+  display:grid;grid-template-columns:repeat(12,1fr);gap:32px;
+}
+.colophon-mast{
+  grid-column:1 / span 5;
+}
+.colophon-word{
+  font-family:var(--disp);font-weight:500;
+  font-variation-settings:"opsz" 144;
+  font-size:clamp(72px,10vw,120px);
+  line-height:.9;letter-spacing:-.04em;color:var(--paper);
+}
+.colophon-word .dot{color:var(--orange)}
+.colophon-tag{
+  margin-top:14px;
+  font-family:var(--disp);font-style:italic;font-size:18px;
+  color:rgba(250,250,247,.65);line-height:1.4;max-width:360px;
+}
+
+.colophon-body{
+  grid-column:6 / -1;
+  display:grid;grid-template-columns:repeat(3,1fr);gap:32px;
+}
+.colophon-col h4{
+  font-family:var(--narrow);
+  font-size:10px;font-weight:700;letter-spacing:.32em;
+  text-transform:uppercase;color:var(--orange);
+  margin-bottom:12px;padding-bottom:10px;
+  border-bottom:1px solid rgba(250,250,247,.2);
+}
+.colophon-col p,.colophon-col li{
+  font-family:var(--sans);font-size:13px;line-height:1.6;
+  color:rgba(250,250,247,.75);
+  margin-bottom:8px;list-style:none;
+}
+.colophon-col b{color:var(--paper);font-weight:600}
+.colophon-col em{font-style:italic;color:rgba(250,250,247,.9)}
+
+.colophon-foot{
+  grid-column:1 / -1;
+  margin-top:32px;padding-top:24px;
+  border-top:1px solid rgba(250,250,247,.2);
+  display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap;
+  font-family:var(--narrow);font-size:10px;font-weight:600;
+  letter-spacing:.28em;text-transform:uppercase;color:rgba(250,250,247,.5);
+}
+.colophon-foot b{color:var(--paper);font-weight:700}
+.colophon-foot .hot{color:var(--orange)}
+
+@media(max-width:860px){
+  .colophon-mast,.colophon-body{grid-column:1 / -1}
+  .colophon-body{grid-template-columns:1fr;gap:24px}
+}
+
+/* ---- Weekly-specific ---- */
+.weekly-header{
+  padding:64px 28px 48px;
+  max-width:1280px;margin:0 auto;
+  border-bottom:1px solid var(--ink);
+}
+.weekly-kicker{
+  font-family:var(--narrow);
+  font-size:10px;font-weight:700;letter-spacing:.38em;
+  text-transform:uppercase;color:var(--orange);
+  margin-bottom:20px;
+}
+.weekly-masthead{
+  font-family:var(--disp);font-weight:500;
+  font-variation-settings:"opsz" 144;
+  font-size:clamp(72px,14vw,192px);
+  line-height:.86;letter-spacing:-.04em;
+  color:var(--ink);
+  margin-bottom:28px;
+}
+.weekly-masthead .dot{color:var(--orange);display:inline-block}
+.weekly-cover-line{
+  font-family:var(--disp);font-style:italic;font-weight:400;
+  font-variation-settings:"opsz" 72;
+  font-size:clamp(22px,3.4vw,42px);
+  line-height:1.15;letter-spacing:-.015em;
+  color:var(--ink);
+  max-width:820px;
+  margin-bottom:28px;
+}
+.weekly-dateline{
+  font-family:var(--narrow);
+  font-size:11px;font-weight:600;letter-spacing:.28em;
+  text-transform:uppercase;color:var(--muted);
+  display:flex;gap:24px;flex-wrap:wrap;
+  padding-top:24px;
+  border-top:1px solid var(--hair);
+}
+.weekly-dateline span b{color:var(--ink)}
+
+.also-item{
+  padding:28px 0;
+  border-bottom:1px solid var(--hair);
+}
+.also-item:last-child{border-bottom:none}
+.also-item-kicker{
+  font-family:var(--narrow);
+  font-size:9px;font-weight:700;letter-spacing:.32em;
+  text-transform:uppercase;color:var(--orange);
+  margin-bottom:8px;
+}
+.also-item-title{
+  font-family:var(--disp);font-weight:600;
+  font-variation-settings:"opsz" 72;
+  font-size:22px;letter-spacing:-.015em;
+  color:var(--ink);margin-bottom:12px;line-height:1.2;
+}
+.also-item-body{
+  font-family:var(--disp);
+  font-variation-settings:"opsz" 14;
+  font-size:17px;line-height:1.6;color:var(--body);
+  max-width:680px;
+}
+.also-item-body a{color:var(--ink);border-bottom:1px solid var(--hair-hard);text-decoration:none}
+.also-item-body a:hover{color:var(--orange);border-bottom-color:var(--orange)}
+.also-item-source{
+  margin-top:8px;
+  font-family:var(--narrow);font-size:10px;font-weight:600;
+  letter-spacing:.2em;text-transform:uppercase;color:var(--gray);
+}
+.also-item-source a{color:inherit;border-bottom:1px solid currentColor;text-decoration:none}
+.also-item-source a:hover{color:var(--orange)}
+
+.ornament{
+  text-align:center;margin:64px auto;
+  font-family:var(--disp);font-size:16px;color:var(--hair-hard);
+  letter-spacing:1.2em;
+}
+
+@media(max-width:600px){
+  .section,.log-section,.feature-opener,.prose-well{padding-left:20px;padding-right:20px}
+  .weekly-header{padding:40px 20px 36px}
+}
+</style>
+</head>
+<body>
+
+<!-- PUBLICATION BAR -->
+<nav class="pub-bar">
+  <div class="pub-bar-left">
+    <span class="pub-bar-mark pub-bar-hide-sm">Shipped<span class="dot">.</span></span>
+    <span class="pub-bar-sep pub-bar-hide-sm"></span>
+    <span class="pub-bar-meta pub-bar-hide-sm">Weekly, Anthropic</span>
+    <span class="pub-bar-sep pub-bar-hide-sm"></span>
+    <span class="pub-bar-meta pub-bar-hide-sm"><a href="https://id8labs.app" class="pub-bar-link">id8Labs</a></span>
+  </div>
+  <div class="pub-bar-right">
+    <span class="pub-bar-folio pub-bar-hide-sm">Week <b>47</b></span>
+    <span class="pub-bar-sep pub-bar-hide-sm"></span>
+    <span class="pub-bar-meta pub-bar-hide-sm">Nov 16 to Nov 20, 2026</span>
+    <a href="#subscribe" class="pub-bar-cta">Subscribe</a>
+  </div>
+</nav>
+
+<!-- WEEKLY HEADER -->
+<header class="weekly-header">
+  <div class="weekly-kicker">Anthropic Weekly, Week 47</div>
+  <div class="weekly-masthead">Shipped<span class="dot">.</span></div>
+  <p class="weekly-cover-line">The safety thesis priced at $83, opened at $111.50, and closed the week at $97.17, the largest technology IPO in history and the frontier's first public company.</p>
+  <div class="weekly-dateline">
+    <span><b>Week</b> 47</span>
+    <span><b>Coverage</b> Nov 16 to Nov 20, 2026</span>
+    <span><b>Lab</b> Anthropic</span>
+    <span><b>Edition</b> Shipped. Weekly</span>
+  </div>
+</header>
+
+<!-- THE OPEN -->
+<section class="open-section">
+  <div class="section">
+    <div class="section-folio">
+      <div class="section-folio-left">
+        <div class="folio"><div class="ruler"></div><b>The Open</b></div>
+      </div>
+      <span class="section-folio-sub">Week of November 16, 2026</span>
+    </div>
+    <div class="open-grid">
+      <div class="open-lead">
+        <p class="open-quote">The safety company now has <em>shareholders.</em></p>
+        <div class="open-prose">
+          <p>Five trading sessions. One produced the largest technology IPO in history. The other four produced a 20% price cut on frontier AI models, free agentic features in six countries, open-weight frontier models on Hugging Face, a 100 million euro European AI investment, and the first enterprise deployment of AI screen control. The frontier does not pause for ceremony.</p>
+          <p>Anthropic priced at $83 on November 18, above its $70 to $78 marketed range. The offering was upsized to 980 million Class A shares. ANT opened November 19 at $111.50, ran to a session high of $115.10, and closed at $97.17, up 17% from the IPO price. Gross proceeds: $81.3 billion, the largest public offering on record by dollars raised. Fully diluted market cap at close: $1.76 trillion. The company is a Public Benefit Corporation. The founding team retained control through dual-class shares. The market bought economic exposure, not governance exposure, and it bought a lot of it.</p>
+          <p>The rest of the week declined to wait its turn. OpenAI dropped GPT-6.2 Astra the day before Anthropic priced, cut the flagship 20%, and buried a system card disclosure stating Astra is the first externally released OpenAI model to reach its internal "High" threshold for AI self-improvement. Google made agentic task execution free in six countries. Mistral put frontier-tier weights on Hugging Face and took a 100 million euro check from Deutsche Telekom. The frontier is a schedule, not a ceremony, and this week ran both simultaneously.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LEAD STORY: THE IPO -->
+<div class="feature-opener">
+  <div class="vert-label">Lead<span class="vert-num">01</span></div>
+  <div class="feature-heading">
+    <div class="feature-kicker">Anthropic, Capital Markets</div>
+    <h2 class="feature-title">The Public<br><em>Company</em></h2>
+    <p class="feature-deck">$83 to $97 in a day. $81.3 billion raised. The safety company now has shareholders, analysts, and a quarterly earnings calendar.</p>
+    <div class="feature-meta">
+      <b>Date:</b> November 18 to 19, 2026 &nbsp;|&nbsp; <b>Source:</b> <a href="https://www.anthropic.com/news" style="color:inherit;border-bottom:1px solid currentColor;text-decoration:none">anthropic.com/news</a>
+    </div>
+  </div>
+  <div class="feature-right">
+    <span class="feature-right-label">By the Numbers</span>
+    <p><strong>$83.00</strong> IPO price per share</p>
+    <p><strong>$97.17</strong> Day-one closing price</p>
+    <p><strong>$81.3B</strong> Total gross proceeds raised</p>
+    <p><strong>+17%</strong> First-day return from IPO price</p>
+    <p><strong>$1.76T</strong> Fully diluted market cap at close</p>
+    <p><strong>980M</strong> Class A shares offered</p>
+    <p><strong>147M</strong> Underwriter greenshoe option shares</p>
+  </div>
+</div>
+<div class="prose-well">
+  <div class="prose-marginalia">Anthropic / IPO / 2026-11-19</div>
+  <div class="prose drop-cap drop-cap-orange">
+    <p>Anthropic has been the frontier's most prominent exception: a company that said the race it was running was dangerous, and ran it anyway. That tension did not resolve this week. It incorporated.</p>
+    <p>The IPO priced at $83 a share on November 18, above the original marketed range of $70 to $78. That range had already been widened: the offer grew from 825 million shares to 980 million Class A shares, with 956 million sold by Anthropic itself and the remainder by existing stockholders. At $83, the gross proceeds from Anthropic's portion alone were roughly $79.4 billion. Total raise: $81.3 billion, the largest IPO on record. Goldman Sachs and Morgan Stanley ran the book. The company was founded in 2021. Five years, three months, and a Nasdaq listing.</p>
+    <p>The first trade Thursday morning came at $111.50, a 34% jump at the open. The session touched a high of $115.10. The Nasdaq 100 finished down 2.2% on the same day, off 15% from its October peak. The pop was not a rising tide. By close the stock had cooled to $97.17, up 17.1% from the IPO price, with a fully diluted market cap of $1.76 trillion. Alphabet raised $1.67 billion when it went public in 2004. Meta raised $16 billion in 2012. Anthropic raised $81.3 billion in 2026 and was not the first AI lab to list this year.</p>
+    <p>The governance structure matters. The Class A shares are the public float. The dual-class structure keeps Dario Amodei and the founding team in operational control regardless of institutional ownership. What the market bought is economic exposure, not governance. Anthropic is a Public Benefit Corporation, which layers a legal obligation to its stated mission alongside the shareholder value obligations that come with going public. How those two obligations interact under earnings pressure is the governance question that will define the company's next five years. The first earnings call is the first real test.</p>
+    <p>The blast radius runs in several directions. Anthropic now has to disclose API revenue, margin, and growth trajectory on a public schedule. The model of saying nothing about commercial performance ends. For builders pricing long-term infrastructure decisions against Claude's continued availability, that transparency is an upgrade over the previous silence. For the AI industry, the blast radius goes one level deeper. OpenAI is still private, with a pending conversion from nonprofit that has been in slow motion for two years. Anthropic's debut at $83 and $1.27 trillion closing valuation hands OpenAI's bankers a comparable. It is now easier to price the OpenAI offering, whenever it comes, and harder to argue it is not overdue.</p>
+    <p>The read: the story Anthropic has told since its founding is that building the most capable AI is the best way to make it safe, and that only a commercially serious lab can do it. Today's $1.76 trillion close is not a contradiction of that story. But the story now has a price-to-earnings expectation attached to it, and safety research does not currently produce one. Watch for Mythos access expanding to new tiers without a safety rationale. That would be the tell.</p>
+  </div>
+</div>
+
+<!-- STORY 02: GPT-6.2 AND THE PREPAREDNESS DISCLOSURE -->
+<div class="feature-opener">
+  <div class="vert-label">Story<span class="vert-num">02</span></div>
+  <div class="feature-heading">
+    <div class="feature-kicker">OpenAI, Capability Disclosure</div>
+    <h2 class="feature-title">Self-<br><em>Improvement</em></h2>
+    <p class="feature-deck">OpenAI cut Astra's price 20% and buried a Preparedness Framework disclosure that most readers scrolled past before the paragraph ended.</p>
+    <div class="feature-meta">
+      <b>Date:</b> November 17, 2026 &nbsp;|&nbsp; <b>Source:</b> <a href="https://openai.com/index/introducing-gpt-6-2-astra-sol" style="color:inherit;border-bottom:1px solid currentColor;text-decoration:none">openai.com</a>
+    </div>
+  </div>
+  <div class="feature-right">
+    <span class="feature-right-label">Key Numbers</span>
+    <p><strong>20%</strong> Price cut on GPT-6.2 Astra vs. GPT-6 Astra</p>
+    <p><strong>$8/$40</strong> Astra input/output per million tokens</p>
+    <p><strong>$2/$10</strong> Sol input/output per million tokens</p>
+    <p><strong>0.5 pts</strong> Sol vs. Astra gap on FrontierCode 2.0</p>
+    <p><strong>+22 pts</strong> Astra jump on ExploitBench Internal Port</p>
+  </div>
+</div>
+<div class="prose-well">
+  <div class="prose-marginalia">OpenAI / GPT-6.2 / 2026-11-17</div>
+  <div class="prose drop-cap">
+    <p>The models landed in ChatGPT Work and Codex on Tuesday for Plus, Pro, Enterprise, and Edu users, and went live on the API as <code>gpt-6.2-astra</code> and <code>gpt-6.2-sol</code>. The price change is clean: Astra drops from $10 input / $50 output to $8 / $40 per million tokens. No migration required. No model swap. If you were running GPT-6 Astra in production on Monday, your next billing cycle was 20% smaller without touching a line of code.</p>
+    <p>Sol keeps its prior rates from GPT-6.1 Sol: $2 input, $0.10 cached input, $10 output. On Cognition's FrontierCode 2.0 benchmark at maximum reasoning effort, Sol came within 0.5 points of Astra at roughly one-fifth the cost. For coding workloads that do not specifically require Astra's ceiling, Sol is now the obvious default.</p>
+    <p>The sentence that deserves more attention than it received: OpenAI says GPT-6.2 Astra is "the first externally released model to meet the High threshold for AI self-improvement under our Preparedness Framework." Read that twice. The Preparedness Framework is OpenAI's internal scoring system for model capability along dimensions that matter for existential risk, and AI self-improvement is one of the specific axes. "High" is the second-highest tier. If the claim is accurate, Astra is now technically categorized by OpenAI as a system capable of contributing meaningfully to the development of its successors. That is either a mature, transparent milestone or a capability disclosure that most readers scrolled past before the paragraph ended. The right response is both: it matters, and it was buried in a product release.</p>
+    <p>The concurrent restriction makes the picture sharper. Astra shipped with tighter safeguards for higher-risk cybersecurity use cases. The stated reason: Astra jumps 22 points over GPT-6 Astra on ExploitBench Internal Port. The model got meaningfully better at offensive security tasks, and OpenAI narrowed access to that specific slice. The fact that the restriction shipped alongside the model, rather than six weeks later, suggests the safety team has the deployment process wired in a way it did not in earlier cycles.</p>
+    <p>The timing is also not incidental. This launch came roughly two months after OpenAI canceled GPT-6.1 Astra over safety concerns. That delay gave Claude Fable 5.2 a clear run on the frontier tier. GPT-6.2 Astra is OpenAI's answer, with a price cut attached. The commercial competition between OpenAI and Anthropic just became a daily public market story. Anthropic competes on perceived frontier quality and governance. OpenAI competes on cost per token and consistent delivery cadence. Watch which theory compounds faster through Q1 2027.</p>
+  </div>
+</div>
+
+<!-- ALSO SHIPPED -->
+<section class="section">
+  <div class="section-folio">
+    <div class="section-folio-left">
+      <div class="folio"><div class="ruler"></div><b>Also Shipped</b></div>
+    </div>
+    <span class="section-folio-sub">Other stories from the week of Nov 16</span>
+  </div>
+
+  <div class="also-item">
+    <div class="also-item-kicker">Anthropic, Enterprise</div>
+    <div class="also-item-title">Computer Use Enters Enterprise Beta</div>
+    <div class="also-item-body">Anthropic's computer use feature moved into gradual beta for Team and Enterprise plans on November 20, the same day the company began trading on Nasdaq. The feature has existed in Claude.ai in limited form since late 2024. The news is not the technology. It is the go-to-market. Computer use gives Claude a view of a screen and a set of actions, click, type, scroll, so it can operate software that has no API. It runs only in the new unified Claude experience, not in Cowork tasks. An organization owner must explicitly enable it. Admins can gate access by role and device policy. Defaults to off. The IPO did not loosen that posture.</div>
+    <div class="also-item-source">Source: <a href="https://www.anthropic.com/news/computer-use-team-enterprise">anthropic.com/news</a></div>
+  </div>
+
+  <div class="also-item">
+    <div class="also-item-kicker">Anthropic, API Platform</div>
+    <div class="also-item-title">Linked Billing Beta and Text Watermarking on Four Models</div>
+    <div class="also-item-body">Two developer-facing updates shipped mid-week. Linked billing (November 17, beta): operators can now route API charges to the end-customer's own Claude organization using the <code>user-profiles-billing-2026-10-01</code> beta header with <code>billing_policy</code> set per request. The blast radius is narrow but meaningful for B2B SaaS products running on Claude sold to enterprises who also hold Claude Enterprise contracts. Text watermarking (November 16): statistical watermarks deployed on Claude Opus 4.6, Opus 4.5, Sonnet 4.5, and Haiku 4.5 on supported platforms. Generated text carries a watermark embedded in the token distribution at inference time. Setting temperature, top_p, or top_k to non-default values may prevent the watermark from being preserved.</div>
+    <div class="also-item-source">Source: <a href="https://platform.claude.com">platform.claude.com release notes</a></div>
+  </div>
+
+  <div class="also-item">
+    <div class="also-item-kicker">Google, Consumer Agents</div>
+    <div class="also-item-title">Gemini Tasks Free in Six Countries</div>
+    <div class="also-item-body">Google made Gemini Tasks free on November 17 in the United States, Japan, South Korea, Canada, Australia, and India. The feature was previously locked behind AI Pro at $19.99 per month. Tasks is Google's 24/7 personal agent inside the Gemini app: booking, calling businesses, paying bills, acting on a timer when you are not watching. Free users get the core capability now. The mechanism is distribution, not capability. Making agentic product free in six markets simultaneously is how Google turns a feature into infrastructure. Neither OpenAI nor Anthropic has made autonomous task-execution free for personal account users at this scale.</div>
+    <div class="also-item-source">Source: Google blog</div>
+  </div>
+
+  <div class="also-item">
+    <div class="also-item-kicker">Meta, AI Infrastructure</div>
+    <div class="also-item-title">Ranking Engineer Agent Handles 60% of Ads Technique Propagation</div>
+    <div class="also-item-body">Meta disclosed on November 19 that its Ranking Engineer Agent handles over 60% of technique propagation across its ads ranking models, with the company claiming three times greater engineering productivity and a median fourfold reduction in training compute for specific model combinations. The mechanism: Meta's ad ranking is a large ensemble of models that need to absorb improvements from each other. The agent runs those experiments autonomously, covering a majority of the work previously done by human engineers. The read: the labs most likely to win the agent-infrastructure race are the ones with enough internal surface area to dog-food it at scale. Meta's ads stack is one of the largest ML systems in production. That capability now has a production reference point.</div>
+    <div class="also-item-source">Source: Via Rio Rundown, Nov 19, 2026</div>
+  </div>
+
+  <div class="also-item">
+    <div class="also-item-kicker">Mistral, Funding and Product</div>
+    <div class="also-item-title">Deutsche Telekom 100M Euros into Series D, Vibe Desktop Ships</div>
+    <div class="also-item-body">Deutsche Telekom's T.Capital Tech Fund put 100 million euros into Mistral's Series D on November 19, lifting Mistral's valuation above 21 billion euros. The check is roughly 3.3% of a 3 billion euro round. Deutsche Telekom framed it as a beachhead into selling Mistral's AI to German industry and government, a market where European data residency is a real competitive variable against American alternatives. Separately, Mistral Vibe Desktop landed November 17 for macOS and Windows, combining work sessions, local coding via on-device models, and cloud coding against the API in one application. Defaults to Mistral Large 4, the open-weight model Mistral calls Le Chonk. The first coupon batch for three months free ran out on launch day. The contrast with Anthropic's IPO is stark: Mistral is the highest-valued private European AI company, funded by a century-old German telecoms giant, explicitly positioning against US-origin models on sovereignty grounds.</div>
+    <div class="also-item-source">Source: Mistral / Deutsche Telekom announcement</div>
+  </div>
+
+  <div class="also-item">
+    <div class="also-item-kicker">OpenAI, Infrastructure</div>
+    <div class="also-item-title">TensorWave Signs 457 Megawatt AMD Deal</div>
+    <div class="also-item-body">TensorWave announced on November 17 it has signed a six-year agreement to supply OpenAI with 457 megawatts of dedicated AI compute capacity on AMD Instinct MI455X GPUs in Helios rack-scale systems. Single-tenant, purpose-built, spread across multiple U.S. data-center sites. First capacity arrives in H1 2027. Full deployment by early 2028. TensorWave is the first publicly named neocloud under the broader AMD-OpenAI partnership from October 2025, which covers up to 6 gigawatts of AMD GPU capacity in total. The 457 MW represents about 7.6% of that total commitment. The strategic read: OpenAI is building AMD-based infrastructure in parallel with its existing Nvidia infrastructure as a hedge before it needs one.</div>
+    <div class="also-item-source">Source: TensorWave announcement</div>
+  </div>
+</section>
+
+<!-- THE CLOSE -->
+<section class="close-section">
+  <div class="close-kicker">The Close, Week 47</div>
+  <div class="close-stack">
+    <p class="close-line">The safety company now has shareholders.</p>
+    <p class="close-line">The question the market asked Thursday is the same one it will ask every ninety days starting in March.</p>
+    <p class="close-coda-start"><span class="close-final">Watch which models become unrestricted, and when. That is the tell.</span></p>
+  </div>
+  <div class="close-mark">&#x25cf;</div>
+</section>
+
+<!-- RELEASE LOG -->
+<div class="log-divider" id="log">
+  <div class="log-divider-kicker">Back of Book</div>
+  <h2 class="log-divider-title">Release <em>Log</em></h2>
+  <p class="log-divider-sub">Every confirmed release across all six labs in the window Nov 16 to Nov 20, 2026. Grouped by category. Use it as reference.</p>
+</div>
+
+<!-- LOG: NEWS -->
+<div class="log-section">
+  <div class="log-cat-head">
+    <div class="log-cat-name">News</div>
+    <div class="log-cat-count"><b>6</b> entries</div>
+  </div>
+  <p class="log-cat-deck">The company events and partnerships that shaped the week, from the IPO roadshow close to the European funding round.</p>
+  <div class="log-entries">
+
+    <div class="log-entry">
+      <div class="log-entry-left">
+        <span class="log-entry-date">2026 · 11 · 19</span>
+        <span class="log-tag news">News</span>
+      </div>
+      <div>
+        <h3 class="log-entry-title"><a href="https://www.anthropic.com/news">ANT Begins Trading on Nasdaq</a></h3>
+        <p class="log-entry-body">Anthropic began trading on the Nasdaq Global Select Market under ticker ANT on November 19, 2026. IPO price was $83.00 per share. Opening print: $111.50 (+34%). Day-one close: $97.17 (+17%). Fully diluted market cap at close: approximately $1.76 trillion. The offering raised $81.3 billion, the largest technology IPO on record. Goldman Sachs and Morgan Stanley ran the book.</p>
+        <p class="log-entry-why"><b>Why it matters</b>Anthropic is now the only major frontier AI lab trading on a public exchange. The first earnings call will be the first public window into API revenue, model economics, and growth trajectory.</p>
+      </div>
+    </div>
+
+    <div class="log-entry">
+      <div class="log-entry-left">
+        <span class="log-entry-date">2026 · 11 · 18</span>
+        <span class="log-tag news">News</span>
+      </div>
+      <div>
+        <h3 class="log-entry-title"><a href="https://www.anthropic.com/news">Anthropic Prices IPO at $83 per Share</a></h3>
+        <p class="log-entry-body">Anthropic priced 980 million Class A common shares at $83.00 on November 18, 2026, raising approximately $81.3 billion. Pricing came above the original marketed range of $70 to $78 per share, signaling oversubscription. Underwriters hold a 30-day greenshoe option for 147 million additional shares at $83, representing another $12.2 billion in potential proceeds. The company is a Public Benefit Corporation. Founders retain operational control via dual-class share structure.</p>
+      </div>
+    </div>
+
+    <div class="log-entry">
+      <div class="log-entry-left">
+        <span class="log-entry-date">2026 · 11 · 19</span>
+        <span class="log-tag news">News</span>
+      </div>
+      <div>
+        <h3 class="log-entry-title">Deutsche Telekom 100M Euros into Mistral Series D</h3>
+        <p class="log-entry-body">Deutsche Telekom's T.Capital Tech Fund put 100 million euros into Mistral's Series D on November 19, lifting Mistral's post-money valuation above 21 billion euros. The Series D total is approximately 3 billion euros, led by Samsung Electronics. Deutsche Telekom framed the investment as a beachhead into selling Mistral AI to German industry and government, where European data residency and regulatory alignment are competitive variables against US-origin alternatives.</p>
+      </div>
+    </div>
+
+    <div class="log-entry">
+      <div class="log-entry-left">
+        <span class="log-entry-date">2026 · 11 · 17</span>
+        <span class="log-tag news">News</span>
+      </div>
+      <div>
+        <h3 class="log-entry-title">TensorWave 457 MW AMD Capacity Agreement with OpenAI</h3>
+        <p class="log-entry-body">TensorWave signed a six-year agreement to supply OpenAI with 457 megawatts of dedicated AI compute capacity on AMD Instinct MI455X GPUs in Helios rack-scale systems. Single-tenant, purpose-built, across multiple U.S. data-center sites. First capacity delivers in H1 2027, full deployment by early 2028. First publicly named neocloud under the broader 6 GW AMD-OpenAI partnership from October 2025.</p>
+      </div>
+    </div>
+
+    <div class="log-entry">
+      <div class="log-entry-left">
+        <span class="log-entry-date">2026 · 11 · 17</span>
+        <span class="log-tag news">News</span>
+      </div>
+      <div>
+        <h3 class="log-entry-title">Mistral Vibe Desktop for macOS and Windows</h3>
+        <p class="log-entry-body">Mistral Vibe Desktop launched November 17 for macOS and Windows. Combines work sessions, local coding via on-device models, and cloud coding against the Mistral API in one application. Defaults to Mistral Large 4 (Le Chonk), the open-weight frontier model. European developers received three months Pro free with launch coupon; first batch sold out on day one. Linux support planned. The first Mistral product that competes directly for real estate on a developer's dock.</p>
+      </div>
+    </div>
+
+    <div class="log-entry">
+      <div class="log-entry-left">
+        <span class="log-entry-date">2026 · 11 · 10</span>
+        <span class="log-tag news">News</span>
+      </div>
+      <div>
+        <h3 class="log-entry-title"><a href="https://www.anthropic.com/news/roadshow-launch">Anthropic Launches IPO Roadshow</a></h3>
+        <p class="log-entry-body">Anthropic launched the roadshow for its Nasdaq IPO on November 10, 2026 under the ticker symbol ANT. Goldman Sachs and Morgan Stanley are lead underwriters. Original offering: 825 million shares in the $70 to $78 range. Pricing date: November 18. First trading day: November 19. Anthropic is structured as a public benefit corporation; the S-1 cites frontier AI development risk as a material risk factor.</p>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- LOG: MODELS -->
+<div class="log-section">
+  <div class="log-cat-head">
+    <div class="log-cat-name">Models</div>
+    <div class="log-cat-count"><b>2</b> entries</div>
+  </div>
+  <p class="log-cat-deck">OpenAI shipped two GPT-6.2 variants the day before Anthropic priced. The price cut on the flagship was the headline. The capability disclosure was the story.</p>
+  <div class="log-entries">
+
+    <div class="log-entry">
+      <div class="log-entry-left">
+        <span class="log-entry-date">2026 · 11 · 17</span>
+        <span class="log-tag model">Model</span>
+      </div>
+      <div>
+        <h3 class="log-entry-title"><a href="https://openai.com/index/introducing-gpt-6-2-astra-sol">GPT-6.2 Astra</a></h3>
+        <p class="log-entry-body">OpenAI's most capable GPT-6.2 variant. Available in ChatGPT Work and Codex for Plus, Pro, Enterprise, and Edu users, and on the API as <code>gpt-6.2-astra</code>. First externally released OpenAI model to meet the "High" threshold for AI self-improvement on the Preparedness Framework. Tighter safeguards apply to higher-risk cybersecurity use cases. Jumps 22 points over GPT-6 Astra on ExploitBench Internal Port.</p>
+        <div class="log-entry-how"><b>How to use</b>Pin to <code>gpt-6.2-astra</code> in the API. Input: $8/MTok. Output: $40/MTok. A 20% reduction from GPT-6 Astra ($10/$50). No other migration needed.</div>
+        <p class="log-entry-why"><b>Why it matters</b>The Preparedness Framework "High" rating for AI self-improvement is the most significant capability disclosure in this release, and it was buried in the product notes.</p>
+      </div>
+    </div>
+
+    <div class="log-entry">
+      <div class="log-entry-left">
+        <span class="log-entry-date">2026 · 11 · 17</span>
+        <span class="log-tag model">Model</span>
+      </div>
+      <div>
+        <h3 class="log-entry-title"><a href="https://openai.com/index/introducing-gpt-6-2-astra-sol">GPT-6.2 Sol</a></h3>
+        <p class="log-entry-body">OpenAI's efficient GPT-6.2 variant, optimized for everyday tasks and coding. Came within 0.5 points of Astra on Cognition FrontierCode 2.0 at maximum reasoning effort, at roughly one-fifth the cost. Available in ChatGPT Work and Codex for Plus, Pro, Enterprise, and Edu users, and on the API as <code>gpt-6.2-sol</code>. Ultrafast access available for Pro 200 subscribers.</p>
+        <div class="log-entry-how"><b>How to use</b>Pin to <code>gpt-6.2-sol</code>. Input: $2/MTok. Cached input: $0.10/MTok. Output: $10/MTok. Same rates as GPT-6.1 Sol.</div>
+        <p class="log-entry-why"><b>Why it matters</b>Sol is now the strongest value model in OpenAI's lineup for coding-heavy workloads where the extra half-point from Astra is not worth the 5x cost premium.</p>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- LOG: API -->
+<div class="log-section">
+  <div class="log-cat-head">
+    <div class="log-cat-name">API</div>
+    <div class="log-cat-count"><b>3</b> entries</div>
+  </div>
+  <p class="log-cat-deck">Two Anthropic platform updates that shipped the same week as the IPO, and the voice API that opened to builders on Friday.</p>
+  <div class="log-entries">
+
+    <div class="log-entry">
+      <div class="log-entry-left">
+        <span class="log-entry-date">2026 · 11 · 17</span>
+        <span class="log-tag api">API</span>
+      </div>
+      <div>
+        <h3 class="log-entry-title"><a href="https://platform.claude.com">Linked Billing (Beta)</a></h3>
+        <p class="log-entry-body">Operators can now route API charges to the end-customer's own Claude organization using the <code>user-profiles-billing-2026-10-01</code> beta header with <code>billing_policy</code> set per request. Customers can cap spend and unlink at any time from the Claude Console. Applies only to customers who pay Anthropic directly for API access.</p>
+        <div class="log-entry-how"><b>How to use</b>Include <code>user-profiles-billing-2026-10-01</code> as a beta header. Set <code>billing_policy: "customer"</code> on each <code>/v1/messages</code> request to route the charge to the linked organization.</div>
+      </div>
+    </div>
+
+    <div class="log-entry">
+      <div class="log-entry-left">
+        <span class="log-entry-date">2026 · 11 · 16</span>
+        <span class="log-tag api">API</span>
+      </div>
+      <div>
+        <h3 class="log-entry-title"><a href="https://platform.claude.com">Text Watermark Deployed on Four Claude Models</a></h3>
+        <p class="log-entry-body">Text generated by Claude Opus 4.6, Opus 4.5, Sonnet 4.5, and Haiku 4.5 now carries Anthropic's statistical text watermark on supported platforms. Setting temperature, top_p, or top_k to non-default values may prevent the watermark from being embedded. Detection capability is documented without a public endpoint, suggesting primary use in Anthropic's own provenance verification.</p>
+      </div>
+    </div>
+
+    <div class="log-entry">
+      <div class="log-entry-left">
+        <span class="log-entry-date">2026 · 11 · 20</span>
+        <span class="log-tag api">API</span>
+      </div>
+      <div>
+        <h3 class="log-entry-title">GPT-Live-1.1 in the OpenAI API</h3>
+        <p class="log-entry-body">OpenAI's voice model GPT-Live-1.1 is now available in the API with model ID <code>gpt-live-1.1</code>. Sessions connect via POST <code>/v1/live/sessions</code> over WebRTC, WebSocket, or SIP. Active sessions bill at $0.05/min; idle sessions at $0.02/min. Idle timeout configurable between 5 and 60 seconds. Improvements over GPT-Live-1 include multilingual fidelity, instruction adherence, and voice quality. The model has been powering voice in ChatGPT Plus and Pro since October 15; the API release opens it to builders.</p>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- LOG: APPS -->
+<div class="log-section">
+  <div class="log-cat-head">
+    <div class="log-cat-name">Apps</div>
+    <div class="log-cat-count"><b>3</b> entries</div>
+  </div>
+  <p class="log-cat-deck">Computer use in the enterprise, meetings in beta, and agentic task execution free in six countries.</p>
+  <div class="log-entries">
+
+    <div class="log-entry">
+      <div class="log-entry-left">
+        <span class="log-entry-date">2026 · 11 · 20</span>
+        <span class="log-tag apps">Apps</span>
+      </div>
+      <div>
+        <h3 class="log-entry-title"><a href="https://www.anthropic.com/news/computer-use-team-enterprise">Computer Use Beta, Team and Enterprise</a></h3>
+        <p class="log-entry-body">Computer use, Anthropic's screen-control capability, entered gradual beta rollout for Team and Enterprise plans on November 20. It is off by default. An organization owner must enable it. The feature runs only in the new unified Claude experience, not in Cowork tasks. Admins can gate access by role and device policy. Rollout is gradual; not all organizations have access on day one.</p>
+        <div class="log-entry-how"><b>How to use</b>Organization owners on Team or Enterprise plans go to Settings and enable computer use under the AI capabilities section.</div>
+        <p class="log-entry-why"><b>Why it matters</b>Every enterprise running legacy software with no programmatic interface just became a potential customer for AI-powered automation.</p>
+      </div>
+    </div>
+
+    <div class="log-entry">
+      <div class="log-entry-left">
+        <span class="log-entry-date">2026 · 11 · 12</span>
+        <span class="log-tag apps">Apps</span>
+      </div>
+      <div>
+        <h3 class="log-entry-title"><a href="https://www.anthropic.com/news/claude-meetings-beta">Claude Meetings Beta, Google Meet Integration</a></h3>
+        <p class="log-entry-body">Claude Meetings entered beta on November 12, 2026 with integration into Google Meet. Claude attends the meeting as a visible participant, generates live notes, drafts documents, and builds whiteboards live during calls. Currently in limited beta for Claude Pro and Team subscribers. Microsoft Teams support is not yet dated. In-call document creation ships free through February 10, 2027; pricing after that date has not been announced.</p>
+      </div>
+    </div>
+
+    <div class="log-entry">
+      <div class="log-entry-left">
+        <span class="log-entry-date">2026 · 11 · 17</span>
+        <span class="log-tag apps">Apps</span>
+      </div>
+      <div>
+        <h3 class="log-entry-title">Gemini Tasks Free in Six Countries</h3>
+        <p class="log-entry-body">Google made Gemini Tasks free on November 17 in the United States, Japan, South Korea, Canada, Australia, and India. The feature was previously locked behind AI Pro at $19.99 per month. Free users need a personal Google account and Activity turned on. Tasks is Google's 24/7 personal agent: booking, calling businesses, paying bills, and acting on timers. The United Kingdom notably did not make the first wave, which was not explained publicly.</p>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- LOG: CODE -->
+<div class="log-section">
+  <div class="log-cat-head">
+    <div class="log-cat-name">Code</div>
+    <div class="log-cat-count"><b>1</b> entry</div>
+  </div>
+  <p class="log-cat-deck">One point release from Claude Code, shipped the week before the IPO.</p>
+  <div class="log-entries">
+
+    <div class="log-entry">
+      <div class="log-entry-left">
+        <span class="log-entry-date">2026 · 11 · 13</span>
+        <span class="log-tag code">Code</span>
+      </div>
+      <div>
+        <h3 class="log-entry-title"><a href="https://github.com/anthropics/claude-code/blob/main/CHANGELOG.md">Claude Code v2.1.325</a></h3>
+        <p class="log-entry-body">Claude Code v2.1.325 released November 13, 2026. Full changelog at the official CHANGELOG.md on GitHub.</p>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- LOG: RESEARCH -->
+<div class="log-section">
+  <div class="log-cat-head">
+    <div class="log-cat-name">Research</div>
+    <div class="log-cat-count"><b>1</b> entry</div>
+  </div>
+  <p class="log-cat-deck">The most consequential DeepMind research move of the quarter, which received almost no coverage relative to the IPO story.</p>
+  <div class="log-entries">
+
+    <div class="log-entry">
+      <div class="log-entry-left">
+        <span class="log-entry-date">2026 · 11 · 11</span>
+        <span class="log-tag research">Research</span>
+      </div>
+      <div>
+        <h3 class="log-entry-title">Gemini Robotics 2.5 and AlphaGenome 2</h3>
+        <p class="log-entry-body">Google DeepMind released Gemini Robotics 2.5 and AlphaGenome 2 on November 11. Gemini Robotics 2.5 is a vision-language-action model for physical systems. AlphaGenome 2 advances genomic sequence modeling. Both releases have primary coverage from SiliconANGLE. Gemini Robotics 2.5 is the more consequential DeepMind research move in a quarter, and it has received almost no coverage relative to the IPO story running the same week.</p>
+        <p class="log-entry-why"><b>Why it matters</b>A vision-language-action model for physical systems is a different category from language and coding benchmarks. The IPO dominated the week's attention; this did not.</p>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- COLOPHON -->
+<footer class="colophon">
+  <div class="colophon-inner">
+    <div class="colophon-mast">
+      <div class="colophon-word">Shipped<span class="dot">.</span></div>
+      <p class="colophon-tag">The frontier AI weekly from id8Labs. All the labs, one feed, every Friday.</p>
+    </div>
+    <div class="colophon-body">
+      <div class="colophon-col">
+        <h4>Publication</h4>
+        <p><b>Shipped. Weekly</b></p>
+        <p>Week 47, 2026</p>
+        <p>Coverage: Nov 16 to Nov 20</p>
+        <p>Published: Nov 20, 2026</p>
+        <p>Cadence: Every Friday</p>
+      </div>
+      <div class="colophon-col">
+        <h4>About</h4>
+        <p>The frontier AI weekly for builders, researchers, and decision-makers. Six labs, one feed.</p>
+        <p>Published by <b>id8Labs</b></p>
+        <p><a href="https://id8labs.app/shipped" class="colophon-link">id8labs.app/shipped</a></p>
+      </div>
+      <div class="colophon-col">
+        <h4>Credits</h4>
+        <p><b>Reporting:</b> Eddie Belaval</p>
+        <p><b>Source:</b> Daily pages, Nov 16 to Nov 20</p>
+        <p><b>Design:</b> DESIGN.md Rev 4, Iris</p>
+        <p><b>Display:</b> Fraunces, optical sizes 9 to 144</p>
+        <p><b>Body:</b> Archivo, Archivo Narrow</p>
+      </div>
+    </div>
+    <div class="colophon-foot">
+      <span>Shipped. <b>Weekly</b></span>
+      <span>Week <b>47</b></span>
+      <span>Nov 16 to Nov 20, <b>2026</b></span>
+      <span class="hot">id8Labs</span>
+    </div>
+  </div>
+</footer>
+
+<!-- SUBSCRIBE BLOCK -->
+<style>
+  /* Spine CTA. Lives here rather than in <head> because two published pages
+     are truncated and have no </head> to inject into; CSS applies document-wide
+     from anywhere, so the end of <body> is the one anchor every page has.
+     Only takes effect on pages that actually carry a pub-bar. */
+  .pub-bar-cta{
+    display:inline-block;
+    background:var(--ink, #0b0b0b);
+    color:var(--paper, #fafaf7);
+    text-decoration:none;
+    border:1px solid var(--ink, #0b0b0b);
+    border-radius:10px;
+    font-family:var(--narrow, 'Archivo Narrow','Archivo',system-ui,sans-serif);
+    font-weight:700;
+    font-size:11px;
+    letter-spacing:.2em;
+    text-transform:uppercase;
+    padding:6px 14px;
+    transition:background .15s ease,border-color .15s ease;
+  }
+  .pub-bar-cta:hover{
+    background:var(--orange, #ff6b35);
+    border-color:var(--orange, #ff6b35);
+    color:var(--ink, #0b0b0b);
+  }
+  @media (max-width:720px){
+    .pub-bar-hide-sm{display:none}
+    .pub-bar-cta{padding:5px 10px;letter-spacing:.12em}
+  }
+
+  .ship-sub {
+    background: var(--ink, #0b0b0b);
+    color: var(--paper, #fafaf7);
+    padding: 72px 64px;
+    margin: 56px auto;
+    max-width: 1280px;
+    text-align: center;
+    /* clears the sticky pub-bar when jumped to from the top CTA */
+    scroll-margin-top: 64px;
+  }
+  .ship-sub-kicker {
+    font-family: var(--narrow, 'Archivo Narrow','Archivo',system-ui,sans-serif);
+    font-weight: 700;
+    font-size: 12px;
+    letter-spacing: .25em;
+    text-transform: uppercase;
+    color: var(--orange, #ff6b35);
+    margin-bottom: 18px;
+  }
+  .ship-sub h3 {
+    font-family: var(--disp, 'Fraunces',Georgia,serif);
+    font-weight: 600;
+    font-style: italic;
+    font-size: clamp(26px, 3.6vw, 40px);
+    line-height: 1.15;
+    margin: 0 0 16px;
+    color: var(--paper, #fafaf7);
+  }
+  .ship-sub p {
+    font-family: var(--sans, 'Archivo',system-ui,sans-serif);
+    font-size: 15px;
+    line-height: 1.6;
+    color: rgba(250,250,247,.72);
+    max-width: 560px;
+    margin: 0 auto 28px;
+  }
+  .ship-sub-form {
+    display: flex;
+    flex-direction: column;
+    max-width: 480px;
+    margin: 0 auto;
+  }
+  .ship-sub-row {
+    display: flex;
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.12);
+    transition: border-color .15s;
+  }
+  .ship-sub-row:focus-within { border-color: var(--orange, #ff6b35); }
+  .ship-sub-form input[type="email"] {
+    flex: 1;
+    background: transparent;
+    border: none;
+    outline: none;
+    color: var(--paper, #fafaf7);
+    font-family: var(--sans, 'Archivo',system-ui,sans-serif);
+    font-size: 15px;
+    padding: 16px 20px;
+    -webkit-appearance: none;
+    min-width: 0;
+  }
+  .ship-sub-form input::placeholder { color: rgba(250,250,247,.4); }
+  /* Honeypot: off-screen rather than display:none, so naive bots still fill it */
+  .ship-sub-hp {
+    position: absolute !important;
+    left: -9999px !important;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+  }
+  .ship-sub-form button {
+    background: var(--orange, #ff6b35);
+    color: var(--ink, #0b0b0b);
+    border: none;
+    font-family: var(--narrow, 'Archivo Narrow','Archivo',system-ui,sans-serif);
+    font-weight: 700;
+    font-size: 12px;
+    letter-spacing: .2em;
+    text-transform: uppercase;
+    padding: 0 28px;
+    cursor: pointer;
+    transition: background .15s;
+    white-space: nowrap;
+  }
+  .ship-sub-form button:hover { background: #ff5722; }
+  .ship-sub-form button:disabled { opacity: .5; cursor: wait; }
+  .ship-sub-cadences {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    margin-top: 16px;
+  }
+  .ship-sub-cadence {
+    font-family: var(--narrow, 'Archivo Narrow','Archivo',system-ui,sans-serif);
+    font-size: 11px;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    color: rgba(250,250,247,.66);
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    cursor: pointer;
+  }
+  .ship-sub-cadence input { accent-color: var(--orange, #ff6b35); cursor: pointer; }
+  .ship-sub-status {
+    margin-top: 16px;
+    font-family: var(--sans, 'Archivo',system-ui,sans-serif);
+    font-size: 14px;
+    color: var(--orange, #ff6b35);
+    min-height: 20px;
+  }
+  .ship-sub-status.error { color: #ff8b6b; }
+  @media (max-width: 540px) {
+    .ship-sub { padding: 48px 22px; margin: 28px auto; }
+    .ship-sub-cadences { gap: 14px; }
+  }
+</style>
+<section class="ship-sub" id="subscribe">
+  <div class="ship-sub-kicker">Stay on the frontier</div>
+  <h3>Get <em>Shipped.</em> in your inbox.</h3>
+  <p>Daily digest at 9 PM ET. Weekly magazine every Friday morning. Six labs, one feed. No spam, one-click unsubscribe.</p>
+  <form class="ship-sub-form" id="ship-sub-form">
+    <div class="ship-sub-row">
+      <input type="email" name="email" placeholder="your@email.com" required autocomplete="email" aria-label="Email address">
+      <button type="submit" id="ship-sub-btn">Subscribe &#x2192;</button>
+    </div>
+    <input type="text" name="website" class="ship-sub-hp" tabindex="-1" autocomplete="off" aria-hidden="true">
+    <div class="ship-sub-cadences">
+      <label class="ship-sub-cadence"><input type="checkbox" name="cadences" value="nightly" checked> Daily digest</label>
+      <label class="ship-sub-cadence"><input type="checkbox" name="cadences" value="weekly" checked> Weekly magazine</label>
+      <label class="ship-sub-cadence"><input type="checkbox" name="cadences" value="monthly"> Monthly roundup</label>
+    </div>
+  </form>
+  <div class="ship-sub-status" id="ship-sub-status" aria-live="polite"></div>
+</section>
+<script>
+(function () {
+  var form = document.getElementById('ship-sub-form');
+  if (!form) return;
+  var btn = document.getElementById('ship-sub-btn');
+  var status = document.getElementById('ship-sub-status');
+
+  form.addEventListener('submit', async function (e) {
+    e.preventDefault();
+    var data = new FormData(form);
+    var email = (data.get('email') || '').toString().trim();
+    if (!email) return;
+
+    var cadences = data.getAll('cadences').map(String);
+    status.className = 'ship-sub-status';
+    status.textContent = '';
+    btn.disabled = true;
+    btn.textContent = 'Subscribing…';
+
+    try {
+      var res = await fetch('https://id8labs.app/api/newsletter/subscribe', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          email: email,
+          source: 'shipped-weekly',
+          website: (data.get('website') || '').toString(),
+          cadences: cadences.length ? cadences : ['nightly', 'weekly']
+        })
+      });
+      var body = await res.json().catch(function () { return {}; });
+      if (res.ok) {
+        status.textContent = body.isNewSubscriber === false
+          ? 'Already on the list.'
+          : 'You’re in. Next edition lands soon.';
+        if (body.isNewSubscriber !== false) form.reset();
+      } else {
+        status.className = 'ship-sub-status error';
+        status.textContent = body.error || 'Could not subscribe right now. Try again in a moment.';
+      }
+    } catch (err) {
+      status.className = 'ship-sub-status error';
+      status.textContent = 'Could not subscribe right now. Try again in a moment.';
+    } finally {
+      btn.disabled = false;
+      btn.textContent = 'Subscribe →';
+    }
+  });
+})();
+</script>
+</body>
+</html>
