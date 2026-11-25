@@ -1512,7 +1512,7 @@ body::before{
       <div class="pf-sect">Also Shipped</div>
       
       <div class="pf-story">
-        
+        <figure class="pf-fig "><img src="img/2026-11-24/story-1-atkinson.png" alt="A board covered in handwritten lecture notes." loading="lazy"><figcaption class="pf-cap">Handwritten equations in chalk on a board. <i>Yulia Meshkova, CC BY 4.0.</i></figcaption></figure>
         <h3>DeepMind Proves Faster Quantum Circuits in Lean</h3>
         <div class="pf-sm"><p>Google DeepMind published a blog post and accompanying paper describing how teams of Gemini 4 agents found improved quantum circuits and machine-proved each result in Lean, the formal theorem prover. Two numbers stand out: a 2.57x speedup on a Grover's algorithm implementation, and a 290x speedup for arcsin, the routine used to load classical numbers into quantum states.</p></div>
         <a class="pf-jump" href="#also">Continued inside</a>
@@ -1628,7 +1628,7 @@ body::before{
   <div class="prose-well" style="padding:0">
     <div class="prose">
 
-      <h3 style="font-family:var(--disp);font-weight:500;font-style:italic;font-size:30px;letter-spacing:-.02em;line-height:1.15;color:var(--ink);margin:32px 0 14px">DeepMind Proves Faster Quantum Circuits in Lean.</h3>
+      <figure class="pf-fig pf-jumpfig"><img src="img/2026-11-24/story-1-atkinson.png" alt="A board covered in handwritten lecture notes." loading="lazy"><figcaption class="pf-cap">Handwritten equations in chalk on a board. <i>Yulia Meshkova, CC BY 4.0.</i></figcaption></figure><h3 style="font-family:var(--disp);font-weight:500;font-style:italic;font-size:30px;letter-spacing:-.02em;line-height:1.15;color:var(--ink);margin:32px 0 14px">DeepMind Proves Faster Quantum Circuits in Lean.</h3>
       <p>Google DeepMind published a blog post and accompanying paper describing how teams of Gemini 4 agents found improved quantum circuits and machine-proved each result in Lean, the formal theorem prover. Two numbers stand out: a 2.57x speedup on a Grover's algorithm implementation, and a 290x speedup for arcsin, the routine used to load classical numbers into quantum states.</p>
       <p>The mechanism: agent teams generated candidate circuits, then verified each one in Lean before accepting it. The Lean proof is not an optional check. It is the acceptance criterion. A circuit that the agents cannot prove is discarded. DeepMind open-sourced the Lean library for quantum algorithms, the problem specifications, and the verified solutions.</p>
       <p>The blast radius for quantum engineers is specific. For the broader AI industry, the more interesting signal is that the agent-finds-then-formally-proves loop is working in a domain where solutions are mathematically verifiable. That loop is currently limited to domains with formal verifiers. The list of those domains is growing.</p>
